@@ -31,32 +31,35 @@ jobs:
       - name: Run Sports Blog Agent — Football + Sport News
         working-directory: agents/python
         env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
         run: |
           python agent_sports_blog.py --category football
           python agent_sports_blog.py --category sportnews
 
-      - name: Run Sports Blog Agent — Rotating sport (every 2 hours)
+      - name: Run Sports Blog Agent — Rotating category (all 10 covered daily)
         working-directory: agents/python
         env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          # Rotate through secondary sports based on hour of day
+          # Rotate all 10 blog categories across the day in 2-hour windows
           HOUR=$(date -u +%H)
-          if   [ "$HOUR" -lt 8  ]; then python agent_sports_blog.py --category basketball
-          elif [ "$HOUR" -lt 10 ]; then python agent_sports_blog.py --category tennis
-          elif [ "$HOUR" -lt 12 ]; then python agent_sports_blog.py --category cricket
-          elif [ "$HOUR" -lt 14 ]; then python agent_sports_blog.py --category rugby
-          elif [ "$HOUR" -lt 16 ]; then python agent_sports_blog.py --category boxing
-          elif [ "$HOUR" -lt 18 ]; then python agent_sports_blog.py --category f1
-          elif [ "$HOUR" -lt 20 ]; then python agent_sports_blog.py --category igaming
+          if   [ "$HOUR" -lt 7  ]; then python agent_sports_blog.py --category basketball
+          elif [ "$HOUR" -lt 9  ]; then python agent_sports_blog.py --category betting
+          elif [ "$HOUR" -lt 11 ]; then python agent_sports_blog.py --category tennis
+          elif [ "$HOUR" -lt 13 ]; then python agent_sports_blog.py --category cricket
+          elif [ "$HOUR" -lt 15 ]; then python agent_sports_blog.py --category rugby
+          elif [ "$HOUR" -lt 17 ]; then python agent_sports_blog.py --category boxing
+          elif [ "$HOUR" -lt 19 ]; then python agent_sports_blog.py --category f1
+          elif [ "$HOUR" -lt 21 ]; then python agent_sports_blog.py --category igaming
           else python agent_sports_blog.py --category basketball
           fi
 
       - name: Update live ticker
         working-directory: agents/python
         env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python agent_sports_blog.py --ticker-only
 
