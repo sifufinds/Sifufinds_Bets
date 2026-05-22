@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!-- sifufinds.com – Best Betting Bonuses in Africa -->
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SifuFinds · Best Betting Bonuses in Africa 2026</title>
+<link rel="stylesheet" href="assets/shared.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="tbar">
+  <div class="tbar-l">
+    <button onclick="goHome()">🏠 Home</button>
+    <a href="countries/index.html">🌍 Africa</a>
+    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <button onclick="openPage('about')">18+ Only</button>
+  </div>
+  <div class="tbar-r">
+    <span class="csel-lbl">Your Country:</span>
+    <select class="csel" id="ctySel" onchange="changeCountry(this.value)">
+      <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
+      <option value="KE">🇰🇪 Kenya · KSh KES</option>
+      <option value="GH">🇬🇭 Ghana · GH₵ GHS</option>
+      <option value="ZA">🇿🇦 South Africa · R ZAR</option>
+      <option value="TZ">🇹🇿 Tanzania · TSh TZS</option>
+      <option value="UG">🇺🇬 Uganda · USh UGX</option>
+      <option value="ZM">🇿🇲 Zambia · ZK ZMW</option>
+      <option value="ET">🇪🇹 Ethiopia · Br ETB</option>
+      <option value="CI">🇨🇮 Ivory Coast · CFA XOF</option>
+      <option value="CM">🇨🇲 Cameroon · CFA XAF</option>
+      <option value="SN">🇸🇳 Senegal · CFA XOF</option>
+      <option value="RW">🇷🇼 Rwanda · RWF</option>
+      <option value="ZW">🇿🇼 Zimbabwe · USD</option>
+      <option value="MW">🇲🇼 Malawi · MWK</option>
+      <option value="MZ">🇲🇿 Mozambique · MZN</option>
+      <option value="AO">🇦🇴 Angola · AOA</option>
+      <option value="CD">🇨🇩 DR Congo · CDF</option>
+      <option value="BT">🇧🇼 Botswana · BWP</option>
+      <option value="NA">🇳🇦 Namibia · NAD</option>
+    </select>
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="mnav">
+  <div class="mnav-in">
+    <a class="logo" href="index.html">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="white" stroke-width="1.8"/><path d="M1.5 11h19M11 1.5c-2.5 3.5-2.5 13.5 0 19M11 1.5c2.5 3.5 2.5 13.5 0 19M4.5 6h13M4.5 16h13" stroke="white" stroke-width="1.4"/></svg>
+      SifuFinds
+    </a>
+    <div class="ntabs">
+      <a class="nt on" href="index.html">⭐ Best Bonuses</a>
+      <a class="nt" href="tips/index.html">💡 Tips</a>
+      <a class="nt" href="casino/index.html">🎰 Casino</a>
+      <a class="nt" href="odds/index.html">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
+      <a class="nt" href="countries/index.html">🌍 Countries</a>
+      <a class="nt" href="blog/index.html">📰 Blog</a>
+    </div>
+    <div class="srch-wrap">
+      <input class="srch-inp" id="srch-inp" type="text" placeholder="Search bookmakers..." oninput="srchBooks(this.value)" onkeydown="if(event.key==='Escape')clearSearch()" autocomplete="off" aria-label="Search bookmakers">
+      <button class="srch-clear" id="srch-clear-btn" onclick="clearSearch()" title="Clear">×</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER BRANDS BAR -->
+<div id="hbrands" class="hbrands"></div>
+
+<!-- SUBNAV -->
+<div class="snav">
+  <div class="snav-in" id="snav-links"></div>
+</div>
+
+<!-- HERO -->
+<div class="hero"><div class="wrap">
+  <h1 id="hero-h1">Best Betting Bonuses in Africa · <span id="hero-mon"></span></h1>
+  <p>SifuFinds brings you verified, up-to-date betting bonuses from licensed bookmakers across all of Africa. All offers shown in your local currency and checked daily.</p>
+  <div class="ctrs">
+    <div class="ctr"><div class="ctr-n" id="top-bonus">–</div><div class="ctr-l">largest welcome bonus</div></div>
+    <div class="ctr"><div class="ctr-n" id="bk-count">–</div><div class="ctr-l">licensed bookmakers</div></div>
+    <div class="ctr"><div class="ctr-n" id="today-d">–</div><div class="ctr-l">last updated</div></div>
+  </div>
+  <div class="trust">
+    <div class="tb">✅ Licensed &amp; Verified</div>
+    <div class="tb">📱 Mobile-First</div>
+    <div class="tb">🔄 Updated Daily</div>
+    <div class="tb">💳 Local Payments</div>
+  </div>
+</div></div>
+
+<!-- FEATURED -->
+<div class="feat-bar"><div class="wrap">
+  <div class="feat-lbl">⭐ Top Picks · <span id="feat-country">Nigeria</span></div>
+  <div class="feat-grid" id="feat-cards"></div>
+</div></div>
+
+<!-- MAIN CONTENT -->
+<div class="sec-bg"><div class="wrap">
+  <div class="adv">📢 <strong>Advertiser Disclosure:</strong> We may earn commission from bookmaker links. All bonuses independently verified. Always check the bookmaker's official site for current T&Cs.</div>
+
+  <!-- Country indicator bar -->
+  <div class="cty-bar">
+    <div class="cty-bar-left">
+      <span class="cty-bar-emoji" id="cty-emoji">🇳🇬</span>
+      <span>Showing <strong id="cty-bar-name">Nigeria</strong> bookmakers</span>
+      <span style="font-size:11px;color:#aaa;font-weight:400">· Use dropdown above or quick-switch below</span>
+    </div>
+    <div class="cty-bar-right">
+      <button class="cty-q" onclick="changeCountry('NG')">🇳🇬 Nigeria</button>
+      <button class="cty-q" onclick="changeCountry('KE')">🇰🇪 Kenya</button>
+      <button class="cty-q" onclick="changeCountry('GH')">🇬🇭 Ghana</button>
+      <button class="cty-q" onclick="changeCountry('ZA')">🇿🇦 South Africa</button>
+      <button class="cty-q" onclick="changeCountry('ZM')">🇿🇲 Zambia</button>
+      <button class="cty-q" onclick="changeCountry('TZ')">🇹🇿 Tanzania</button>
+      <button class="cty-q" onclick="changeCountry('ZW')">🇿🇼 Zimbabwe</button>
+    </div>
+  </div>
+
+  <!-- Global search results -->
+  <div id="global-results" style="display:none"></div>
+
+  <!-- Filter bar -->
+  <div class="fbar"><div class="fr">
+    <span class="fr-label">Sort:</span>
+    <select class="fsel" id="srt" onchange="renderBooks()">
+      <option value="default">Editors' Picks</option>
+      <option value="stars">Highest Rated</option>
+      <option value="bonus">Highest Bonus</option>
+      <option value="sports">Most Sports</option>
+    </select>
+    <span class="fr-label" style="margin-left:4px">Filter:</span>
+    <button class="fp on" data-f="all" onclick="setFilt(this)">All</button>
+    <button class="fp" data-f="nodep" onclick="setFilt(this)">No Deposit</button>
+    <button class="fp" data-f="cashout" onclick="setFilt(this)">Cash Out</button>
+    <button class="fp" data-f="stream" onclick="setFilt(this)">Live Stream</button>
+    <button class="fp" data-f="instant" onclick="setFilt(this)">Instant Pay</button>
+    <button class="fp" data-f="mpesa" onclick="setFilt(this)">M-Pesa</button>
+    <button class="fp" data-f="mtn" onclick="setFilt(this)">MTN MoMo</button>
+  </div></div>
+
+  <div class="mc" id="mcount"></div>
+  <div id="bk-cards"></div>
+
+  <!-- FAQ -->
+  <div class="cbox2">
+    <h2 id="faq-h">Frequently Asked Questions</h2>
+    <div id="faq-items"></div>
+  </div>
+
+  <div class="resp">⚠️ Gambling involves risk. Only bet what you can afford to lose.
+    <button onclick="openPage('responsible')">GamCare</button> ·
+    <button onclick="openPage('responsible')">BeGambleAware</button> ·
+    <button onclick="openPage('responsible')">NCPG Africa</button>. 18+ only.
+  </div>
+</div></div>
+
+<!-- COMPARE BAR -->
+<div class="cmp-bar" id="cmp-bar">
+  <span style="font-size:12px;font-weight:700;white-space:nowrap">Compare:</span>
+  <div class="cmp-items" id="cmp-items"></div>
+  <button class="cmp-now" onclick="openCompare()">Compare Now →</button>
+  <button class="cmp-clr" onclick="clearCompare()">Clear</button>
+</div>
+
+<!-- COMPARE MODAL -->
+<div class="modal-bg" id="cmp-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('cmp-modal').classList.remove('open')">×</button>
+    <h2 style="font-size:18px;font-weight:800;margin-bottom:14px">Side-by-Side Comparison</h2>
+    <div id="cmp-table-wrap" style="overflow-x:auto"></div>
+  </div>
+</div>
+
+<!-- PAGE MODAL -->
+<div class="page-modal-bg" id="page-modal">
+  <div class="page-modal">
+    <button class="page-modal-close" onclick="closePage()">×</button>
+    <div class="pm" id="page-content"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer"><div class="footer-in">
+  <div class="flogo">🌍 SifuFinds</div>
+  <div class="fgrid">
+    <div class="fc4"><h4>Bonuses</h4>
+      <button onclick="setFiltByName('all')">Best Bonuses</button>
+      <button onclick="setFiltByName('nodep')">No Deposit Bonus</button>
+      <button onclick="setFiltByName('cashout')">Cash Out Sites</button>
+      <button onclick="setFiltByName('stream')">Live Streaming</button>
+    </div>
+    <div class="fc4"><h4>Payments</h4>
+      <button onclick="setFiltByName('mpesa')">M-Pesa Sites</button>
+      <button onclick="setFiltByName('mtn')">MTN MoMo Sites</button>
+      <button onclick="setFiltByName('instant')">Instant Pay Sites</button>
+      <button onclick="setFiltByName('nodep')">No Min Deposit</button>
+    </div>
+    <div class="fc4"><h4>Tips</h4>
+      <a href="tips/index.html">Free Tips Today</a>
+      <a href="tips/index.html?tf=afcon">AFCON Tips</a>
+      <a href="tips/index.html?tf=cafl">CAF CL Tips</a>
+      <a href="tips/index.html?tf=epl">Premier League</a>
+    </div>
+    <div class="fc4"><h4>Casino</h4>
+      <a href="casino/index.html">Best Casinos</a>
+      <a href="casino/index.html?cf=nodep">No Deposit Casino</a>
+      <a href="casino/index.html?cf=live">Live Casino</a>
+      <a href="casino/index.html?cf=jackpot">Jackpots</a>
+    </div>
+    <div class="fc4"><h4>Countries</h4>
+      <button onclick="changeCountry('NG')">Nigeria ₦</button>
+      <button onclick="changeCountry('KE')">Kenya KSh</button>
+      <button onclick="changeCountry('GH')">Ghana GH₵</button>
+      <button onclick="changeCountry('ZA')">South Africa R</button>
+      <button onclick="changeCountry('TZ')">Tanzania TSh</button>
+      <button onclick="changeCountry('ZM')">Zambia ZK</button>
+    </div>
+    <div class="fc4"><h4>More Countries</h4>
+      <button onclick="changeCountry('ZW')">Zimbabwe USD</button>
+      <button onclick="changeCountry('UG')">Uganda USh</button>
+      <button onclick="changeCountry('ET')">Ethiopia Br</button>
+      <button onclick="changeCountry('CI')">Ivory Coast CFA</button>
+      <button onclick="changeCountry('SN')">Senegal CFA</button>
+      <button onclick="changeCountry('RW')">Rwanda RWF</button>
+    </div>
+    <div class="fc4"><h4>Odds</h4>
+      <a href="odds/index.html">All Leagues</a>
+      <a href="odds/index.html?lg=cafl">CAF CL Odds</a>
+      <a href="odds/index.html?lg=afcon">AFCON Odds</a>
+      <a href="odds/index.html?lg=epl">Premier League</a>
+    </div>
+    <div class="fc4"><h4>About</h4>
+      <button onclick="openPage('about')">About SifuFinds</button>
+      <button onclick="openPage('contact')">Contact Us</button>
+      <button onclick="openPage('privacy')">Privacy Policy</button>
+      <button onclick="openPage('terms')">Terms of Use</button>
+      <button onclick="openPage('responsible')">Responsible Gambling</button>
+      <button onclick="openPage('advertise')">Advertise With Us</button>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>SifuFinds is an independent affiliate comparison site. Bonus information verified as of <span id="foot-date"></span>. Always check the bookmaker's official site for current offers and T&Cs.</p>
+    <p style="margin-top:5px">Gambling is entertainment only. Bet responsibly. 18+ only. Not available where prohibited by law.</p>
+    <p style="margin-top:5px">© <span id="foot-yr"></span> SifuFinds ·
+      <button onclick="openPage('privacy')">Privacy Policy</button> ·
+      <button onclick="openPage('terms')">Terms of Use</button> ·
+      <button onclick="openPage('responsible')">Responsible Gambling</button> ·
+      <button onclick="openPage('advertise')">Advertise</button>
+    </p>
+  </div>
+</div></footer>
+
+<script>
+const SITE={home:'index.html',tips:'tips/index.html',casino:'casino/index.html',odds:'odds/index.html',countries:'countries/index.html'};
+</script>
+<script src="assets/shared.js"></script>
+<script>
+// ── PAGE-SPECIFIC JS ──────────────────────────────────────────────────────────
+const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BT:'Botswana',NA:'Namibia'};
+let _activeFilt='all';
+
+function setFilt(btn){
+  document.querySelectorAll('.fp').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  _activeFilt=btn.dataset.f;
+  renderBooks();
+}
+function setFiltByName(f){
+  _activeFilt=f;
+  document.querySelectorAll('.fp').forEach(b=>b.classList.toggle('on',b.dataset.f===f));
+  renderBooks();
+}
+
+function filterBooks(books){
+  const f=_activeFilt;
+  if(f==='all')return books;
+  if(f==='nodep')return books.filter(b=>b.nodep);
+  if(f==='cashout')return books.filter(b=>b.cashout);
+  if(f==='stream')return books.filter(b=>b.stream);
+  if(f==='instant')return books.filter(b=>b.instant);
+  if(f==='mpesa')return books.filter(b=>(b.pms||[]).some(p=>p.toLowerCase().includes('m-pesa')));
+  if(f==='mtn')return books.filter(b=>(b.pms||[]).some(p=>p.toLowerCase().includes('mtn')));
+  return books;
+}
+
+function sortBooks(books){
+  const srt=document.getElementById('srt')?.value||'default';
+  if(srt==='stars')return[...books].sort((a,b)=>b.stars-a.stars);
+  if(srt==='sports')return[...books].sort((a,b)=>b.sports-a.sports);
+  if(srt==='bonus')return[...books].sort((a,b)=>(b.nodep?1:0)-(a.nodep?1:0));
+  return books;
+}
+
+function bookCard(b,i,rank){
+  const badge=b.badge==='new'?'<span class="badge-new">NEW</span>':b.badge==='hot'?'<span class="badge-hot">HOT</span>':b.nodep?'<span class="badge-nd">NO DEP</span>':'';
+  return`<div class="bkcard ${rank<3?'top3':''} ${b.nodep?'nodep-card':''}">
+  <div class="bk-main">
+    <span class="bk-rk">#${rank+1}</span>
+    <div class="bk-logo" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,60,8)}</div>
+    <div>
+      <div class="bk-tag">${b.tag}</div>
+      <div class="bk-nm">${b.name}${badge}</div>
+      <div class="bk-off">${b.off}</div>
+      <div class="bk-meta"><span>Min: ${b.min}</span><span>${b.sports} sports</span><span>${b.lic}</span></div>
+    </div>
+    <div class="bk-act">
+      <div class="bk-stars">${stars(b.stars)}</div>
+      <label class="cmp-wrap"><input type="checkbox" onchange="toggleCmp(${i},'${b.name.replace(/'/g,"\\'")}','${b.bg}','${b.tc}','${b.abbr}','${b.url}')"> Compare</label>
+      <a class="gbtn${b.nodep?' gold':''}" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a>
+      <div class="tc-n">T&Cs Apply · 18+</div>
+    </div>
+  </div>
+  <div class="pm-row">${(b.pms||[]).map(pm).join('')}</div>
+  <button class="xbtn" onclick="toggleDet(this)">▼ More details</button>
+  <div class="xdet">
+    <div class="xg">
+      <div class="xi"><div class="xl">Min Deposit</div><div class="xv">${b.min}</div></div>
+      <div class="xi"><div class="xl">Cash Out</div><div class="xv ${b.cashout?'yes':'no'}">${b.cashout?'✓ Yes':'✗ No'}</div></div>
+      <div class="xi"><div class="xl">Live Stream</div><div class="xv ${b.stream?'yes':'no'}">${b.stream?'✓ Yes':'✗ No'}</div></div>
+      <div class="xi"><div class="xl">Instant Pay</div><div class="xv ${b.instant?'yes':'no'}">${b.instant?'✓ Yes':'✗ No'}</div></div>
+      <div class="xi"><div class="xl">No Deposit</div><div class="xv ${b.nodep?'yes':'no'}">${b.nodep?'✓ Yes':'✗ No'}</div></div>
+      <div class="xi"><div class="xl">Sports</div><div class="xv">${b.sports}+</div></div>
+    </div>
+    <div class="trms">${b.terms}</div>
+    <a class="gbtn" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a>
+  </div>
+</div>`;
+}
+
+function renderBooks(){
+  const cty=getCurrentCountry();
+  const allAffiliate=affiliateBooks(BOOKS[cty]||BOOKS.NG);
+  let books=filterBooks(sortBooks(allAffiliate));
+  const container=document.getElementById('bk-cards');
+  if(!allAffiliate.length){
+    container.innerHTML='<div class="no-results">Our affiliate partners are not yet available in this country — check back soon for new offers!</div>';
+    H('mcount','');return;
+  }
+  if(!books.length){
+    container.innerHTML='<div class="no-results">No bookmakers match this filter. Try clearing the filter.</div>';
+    H('mcount','');return;
+  }
+  container.innerHTML=books.map((b,i)=>bookCard(b,i,i)).join('');
+  H('mcount',`Showing ${books.length} bookmaker${books.length!==1?'s':''}`);
+}
+
+function renderFeatCards(){
+  const cty=getCurrentCountry();
+  const books=affiliateBooks(BOOKS[cty]||BOOKS.NG).slice(0,5);
+  H('feat-cards',books.map(b=>`
+  <div class="fc">
+    <div class="fc-img" style="background:${b.bg}">
+      <span class="fc-logo-txt" style="color:${b.tc}">${b.name.split(' ')[0]}</span>
+      <img src="${logoUrl(b.url)}" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.style.display='none'">
+      <span class="fc-nm">${b.name}</span>
+    </div>
+    <div class="fc-body">
+      <div class="fc-stars">${stars(b.stars)}</div>
+      <div class="fc-off">${b.off}</div>
+      <a class="gbtn" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a>
+    </div>
+  </div>`).join(''));
+}
+
+function renderHeroStats(){
+  const cty=getCurrentCountry();
+  const books=affiliateBooks(BOOKS[cty]||BOOKS.NG);
+  const topBook=books.reduce((a,b)=>(a.top>b.top?a:b),books[0]);
+  H('top-bonus',topBook?.top||'');
+  H('bk-count',books.length);
+  H('today-d',SHORT_DATE);
+  H('hero-mon',MON_YR);
+  const cd=COUNTRY_DATA[cty]||COUNTRY_DATA.NG;
+  H('feat-country',cd.name);
+  H('cty-emoji',CTY_EMOJI[cty]||'🌍');
+  H('cty-bar-name',cd.name);
+  // active country quick-switch
+  document.querySelectorAll('.cty-q').forEach(b=>{
+    const m=b.getAttribute('onclick')||'';
+    b.classList.toggle('on',m.includes(`'${cty}'`));
+  });
+}
+
+function renderSubnav(){
+  const cty=getCurrentCountry();
+  const ctys=[['NG','🇳🇬 Nigeria'],['KE','🇰🇪 Kenya'],['GH','🇬🇭 Ghana'],['ZA','🇿🇦 South Africa'],['TZ','🇹🇿 Tanzania'],['UG','🇺🇬 Uganda'],['ZM','🇿🇲 Zambia'],['ET','🇪🇹 Ethiopia'],['CI','🇨🇮 Ivory Coast'],['RW','🇷🇼 Rwanda'],['ZW','🇿🇼 Zimbabwe']];
+  H('snav-links',ctys.map(([code,label])=>`<button class="snl${code===cty?' on':''}" onclick="changeCountry('${code}')">${label}</button>`).join('')+`<a class="snl" href="countries/index.html">All Countries →</a>`);
+}
+
+function renderFAQ(){
+  const cty=getCurrentCountry();
+  const cd=COUNTRY_DATA[cty]||COUNTRY_DATA.NG;
+  const name=cd.name;
+  H('faq-h',`FAQ – Betting in ${name}`);
+  const faqs=[
+    {q:`Are these betting bonuses really free in ${name}?`,a:`Yes – all bonuses listed for ${name} are from licensed, regulated operators. No-deposit bonuses require no payment. Deposit bonuses require a qualifying deposit but are otherwise free to claim. Always read the T&Cs.`},
+    {q:`What payment methods work for betting in ${name}?`,a:`The most popular payment methods in ${name} are: ${cd.payments.join(', ')}. Most operators support instant deposits and same-day withdrawals.`},
+    {q:'How do I claim a no-deposit bonus?',a:'Register an account, complete any required verification (usually phone number or ID), and the bonus is credited automatically. No deposit needed. Check the T&Cs for wagering requirements before withdrawing.'},
+    {q:'Which bookmaker has the highest bonus?',a:`The highest welcome bonus varies by country. For ${name}, check the "Highest Bonus" sort option at the top of the page to see the current leader.`},
+    {q:'Is online sports betting legal here?',a:`In ${name}, sports betting is regulated by the ${cd.regulator}. All bookmakers listed on SifuFinds hold valid licences for their operating country. Always verify a licence number on the regulator's official website.`}
+  ];
+  H('faq-items',faqs.map(f=>`<div class="faq-i"><div class="faq-q">${f.q}</div><div class="faq-a">${f.a}</div></div>`).join(''));
+}
+
+function srchBooks(q){
+  const clearBtn=document.getElementById('srch-clear-btn');
+  clearBtn.classList.toggle('show',q.length>0);
+  if(!q.trim()){document.getElementById('global-results').style.display='none';document.getElementById('bk-cards').style.display='';return;}
+  const term=q.toLowerCase();
+  const results=[];
+  Object.entries(BOOKS).forEach(([cty,books])=>{
+    affiliateBooks(books).forEach(b=>{
+      if(b.name.toLowerCase().includes(term)||b.off.toLowerCase().includes(term)){
+        results.push({...b,cty});
+      }
+    });
+  });
+  document.getElementById('bk-cards').style.display='none';
+  const box=document.getElementById('global-results');
+  box.style.display='block';
+  if(!results.length){box.innerHTML=`<div class="no-results">No results for "${q}"</div>`;return;}
+  box.innerHTML=`<div class="gs-box"><div class="gs-hd"><span>🔍 Results for "${q}" – ${results.length} found</span><button style="background:none;border:none;color:#fff;cursor:pointer" onclick="clearSearch()">×</button></div>${results.slice(0,12).map(b=>`<div class="gs-item"><div class="gs-logo" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,30,4)}</div><div><div class="gs-name">${b.name} <span style="font-size:10px;color:#bbb">${CTY_EMOJI[b.cty]||''} ${COUNTRY_DATA[b.cty]?.name||b.cty}</span></div><div class="gs-off">${b.off}</div></div><a class="gs-sw" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a></div>`).join('')}</div>`;
+}
+function clearSearch(){
+  document.getElementById('srch-inp').value='';
+  document.getElementById('srch-clear-btn').classList.remove('show');
+  document.getElementById('global-results').style.display='none';
+  document.getElementById('bk-cards').style.display='';
+}
+
+async function init(){
+  await waitForCountry();
+  // Apply URL filter param if present
+  const params=new URLSearchParams(window.location.search);
+  const urlFilt=params.get('filter');
+  if(urlFilt){
+    _activeFilt=urlFilt;
+    document.querySelectorAll('.fp').forEach(b=>b.classList.toggle('on',b.dataset.f===urlFilt));
+  }
+  syncCountryUI();
+  renderHeroStats();
+  renderSubnav();
+  renderFeatCards();
+  renderBooks();
+  renderFAQ();
+  H('foot-date',DATE_STR);
+  H('foot-yr',NOW.getFullYear());
+}
+init();
+</script>
+</body>
+</html>

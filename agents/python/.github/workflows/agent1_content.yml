@@ -1,0 +1,43 @@
+name: Agent 1 — Content Creator
+
+on:
+  schedule:
+    # Runs at 05:00 and 14:00 UTC (which is 06:00 and 15:00 WAT)
+    - cron: "0 5 * * *"
+    - cron: "0 14 * * *"
+  workflow_dispatch: # Allow manual trigger from GitHub UI
+
+jobs:
+  create-content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run Content Creator
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python agent1_content.py
+
+      - name: Commit generated content to repo
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add agents/python/latest_blog.json agents/python/content_queue.json agents/python/agent_log.json || true
+          git diff --cached --quiet || git commit -m "Agent 1: content $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

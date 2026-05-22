@@ -1,0 +1,57 @@
+# ── Environment / secrets ─────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.env
+
+# ── API keys / tokens (any file matching these patterns) ─────────────────────
+*secret*
+*secrets*
+*credentials*
+*api_key*
+*apikey*
+*access_token*
+*auth_token*
+*private_key*
+*.key
+*.pem
+*.p12
+*.pfx
+
+# ── Telegram session files ────────────────────────────────────────────────────
+*.session
+*.session-journal
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+.env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+
+# ── Node (if ever used) ───────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ── OS / editor ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Dev server logs ───────────────────────────────────────────────────────────
+/tmp/ruby-server.log
+*.log

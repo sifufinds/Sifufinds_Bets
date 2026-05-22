@@ -1,0 +1,373 @@
+"""
+Sports & iGaming Blog Writer Agent — Research-First Edition
+Fetches LIVE headlines from RSS feeds before generating content,
+so every article is grounded in real, current events.
+
+Covers: Football · Basketball · Tennis · Cricket · Rugby · Transfers · Betting · iGaming
+Usage:
+  python agent_sports_blog.py                         # 1 article, random category
+  python agent_sports_blog.py --category football     # target category
+  python agent_sports_blog.py --topics 3              # 3 articles
+  python agent_sports_blog.py --mode daily            # 2 articles across 2 categories
+  python agent_sports_blog.py --mode weekly           # full week batch
+  python agent_sports_blog.py --ticker-only           # update ticker.json without writing
+"""
+import argparse
+import json
+import os
+import random
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Optional
+
+sys.path.insert(0, os.path.dirname(__file__))
+
+from llm import ask
+from config import SITE_URL, BRAND_NAME
+from utils.news_fetcher import fetch_category, format_for_prompt
+from utils.ticker_builder import build_and_save as update_ticker
+
+# ── CATEGORY METADATA ─────────────────────────────────────────────────────────
+
+CATEGORIES = {
+    "football":   {"icon": "⚽", "color": "#1a6b35", "author": "SifuFinds Football Desk"},
+    "sportnews":  {"icon": "🗞️", "color": "#7c3aed", "author": "Sport News Desk"},
+    "betting":    {"icon": "📊", "color": "#d4af37", "author": "SifuFinds Analytics"},
+    "igaming":    {"icon": "🎮", "color": "#0055a4", "author": "iGaming Desk"},
+    "basketball": {"icon": "🏀", "color": "#c2410c", "author": "Basketball Desk"},
+    "tennis":     {"icon": "🎾", "color": "#b45309", "author": "Tennis Desk"},
+    "cricket":    {"icon": "🏏", "color": "#166534", "author": "Cricket Desk"},
+    "rugby":      {"icon": "🏉", "color": "#9f1239", "author": "Rugby Desk"},
+    "boxing":     {"icon": "🥊", "color": "#b91c1c", "author": "Boxing Desk"},
+    "f1":         {"icon": "🏎️", "color": "#dc2626", "author": "F1 Desk"},
+}
+
+# ── BETTING ANGLE PROMPTS (layered on top of live news) ──────────────────────
+
+BETTING_ANGLES = {
+    "football": [
+        "analyse the betting implications and best odds for African bettors",
+        "identify value bets for African bookmakers (Bet9ja, Sportybet, 1xBet, Betway)",
+        "build a match preview with goal scorer odds and correct score markets",
+        "create an AFCON or CAF angle connecting the news to African football fans",
+    ],
+    "sportnews": [
+        "cover this trending global sports story and connect it to betting markets for African fans",
+        "analyse transfer news and how squad changes shift betting odds (title, relegation, golden boot)",
+        "round up the biggest world sport stories this week and highlight the best betting angles",
+        "break down the most viral sports story right now and explain the betting implications",
+    ],
+    "betting": [
+        "build an accumulator with these fixtures and compare odds across bookmakers",
+        "explain bankroll management strategy using these matches as examples",
+        "identify where the bookmaker odds are mispriced vs true probability",
+    ],
+    "igaming": [
+        "explain what this regulatory news means for African bettors and their deposits",
+        "compare how this industry trend affects operators licensed in Nigeria, Kenya, SA",
+        "discuss responsible gambling implications for African mobile betting users",
+    ],
+    "basketball": [
+        "build NBA betting guide for African fans with odds from 1xBet and Betway",
+        "compare Basketball Africa League (BAL) odds across African bookmakers",
+        "explain player prop betting using these performances as examples",
+    ],
+    "tennis": [
+        "build Grand Slam match betting guide with set betting and total games markets",
+        "identify value in the tournament outright odds given this news",
+        "explain in-play tennis betting strategy based on this player's form",
+    ],
+    "cricket": [
+        "build a match betting guide for African fans covering Proteas and major series",
+        "explain how pitch conditions and weather affect betting markets",
+        "identify value in the series winner and top batsman/bowler markets",
+    ],
+    "rugby": [
+        "build a Springboks or Six Nations betting guide for South African fans",
+        "explain first try scorer and correct score rugby markets",
+        "identify value in tournament winner odds given this news",
+    ],
+    "boxing": [
+        "build a fight-night betting guide with method of victory and round betting markets",
+        "identify value in the outright winner odds and compare across African bookmakers",
+        "explain how to bet on boxing underdogs and why African bettors love upset picks",
+    ],
+    "f1": [
+        "build a race weekend betting guide with race winner, podium, and fastest lap markets",
+        "identify value in the drivers and constructors championship odds given this news",
+        "explain in-race betting strategy and safety car impact on F1 markets for African fans",
+    ],
+}
+
+# ── SYSTEM PROMPT ─────────────────────────────────────────────────────────────
+
+SYSTEM_PROMPT = f"""You are the Sports & iGaming Blog Writer for SifuFinds ({SITE_URL}), Africa's #1 betting comparison website.
+
+YOUR JOB: Write authoritative articles about the REAL, CURRENT news items provided below. Each news item shows its exact age (e.g. "2.3h ago"). You MUST write about what actually happened — do NOT invent scores, signings, transfers, or events.
+
+ACCURACY RULES — NON-NEGOTIABLE:
+- Only write about stories explicitly listed in the provided headlines
+- Quote or paraphrase the actual headline/story — name the real teams, players, events
+- If a headline says "Villa beat Freiburg", write about that specific match
+- Never fabricate odds, scores, or transfer fees — estimate odds in realistic ranges (1.30–12.00)
+- If the news shows the story is X hours old, reflect that timing accurately in the article
+
+BRAND VOICE:
+- Confident, knowledgeable, street-smart African analyst
+- Reference African bookmakers naturally: Bet9ja, Sportybet, 1xBet, Betway, Hollywoodbets, Betika, Melbet
+- Never promote just one bookmaker — always compare at least 2
+- Use natural African English; occasional Pidgin/slang where it fits ("This odds na fire!", "Eish, massive news!")
+
+ARTICLE REQUIREMENTS:
+- 700-900 words, grounded in the real news provided
+- Compare odds across at least 2 African bookmakers per market
+- Include a responsible gambling section
+- End with a CTA linking to {SITE_URL}
+- FINAL LINE must be: *18+ | Bet Responsibly | T&Cs Apply*
+
+OUTPUT FORMAT — return EXACTLY this structure, nothing outside the markers:
+
+===META===
+{{
+  "category": "football|sportnews|betting|igaming|basketball|tennis|cricket|rugby|boxing|f1",
+  "icon": "emoji for the category",
+  "title": "Specific title referencing the ACTUAL news story (max 80 chars)",
+  "slug": "url-slug-format",
+  "excerpt": "150-200 char excerpt naming the real story and promising betting insight",
+  "image_color": "#hex color",
+  "tags": ["Tag1", "Tag2", "Tag3", "Tag4"],
+  "featured": false,
+  "bookmaker_featured": "primary bookmaker referenced",
+  "read_time": 4
+}}
+===BLOG===
+[Full article in plain markdown — 700-900 words]
+[MUST reference the actual named events from the headlines provided]
+[Must include odds comparison table where relevant]
+[Must include responsible betting section]
+[Final line: *18+ | Bet Responsibly | T&Cs Apply*]
+===END==="""
+
+
+# ── CORE GENERATION ───────────────────────────────────────────────────────────
+
+def generate_post(category: str) -> Optional[dict]:
+    today = datetime.now(timezone.utc).strftime("%A, %d %B %Y")
+    cat_meta = CATEGORIES.get(category, CATEGORIES["football"])
+
+    # 1. Fetch live headlines — strict freshness enforced inside fetch_category
+    print(f"  📡 Fetching live {category} news...")
+    news_items = fetch_category(category, max_per_feed=6)
+    news_text = format_for_prompt(news_items, limit=10)
+
+    if not news_items:
+        print(f"  ⚠ No fresh news found for {category} (all items exceed freshness window) — skipping")
+        return None
+
+    oldest_h = max(i.get("age_hours", 0) for i in news_items)
+    freshest_h = min(i.get("age_hours", 0) for i in news_items)
+    print(f"  ✓ {len(news_items)} fresh items — newest: {freshest_h:.1f}h ago, oldest: {oldest_h:.1f}h ago")
+
+    # 2. Pick a betting angle
+    angles = BETTING_ANGLES.get(category, BETTING_ANGLES["football"])
+    angle = random.choice(angles)
+
+    # 3. Build the prompt with real news context
+    user_message = f"""TODAY: {today}
+
+LIVE NEWS HEADLINES FOR {category.upper()} — these are real stories published within the last {oldest_h:.0f} hours:
+{news_text}
+
+YOUR TASK: Write a compelling sports blog article about {category} that:
+1. References the REAL named stories, teams, and players from the headlines above — do not invent anything
+2. {angle}
+3. Is written for African sports bettors (Nigeria, Kenya, South Africa, Ghana, Tanzania)
+
+AFRICAN CONTEXT:
+- Primary currencies: NGN (₦), KES (KSh), GHS (GH₵), ZAR (R), TZS (TSh)
+- Top bookmakers in Africa: Bet9ja, Sportybet, 1xBet, Betway, Hollywoodbets, Betika, Melbet, BetKing
+- Popular payment methods: M-Pesa, MTN MoMo, OPay, PalmPay
+- Key African leagues: NPFL (Nigeria), KPL (Kenya), PSL (South Africa), GPL (Ghana), CAF Champions League, AFCON
+
+Write the article now. Base it on the REAL news provided above — do not invent events."""
+
+    try:
+        print(f"  🤖 Generating article with Groq LLM...")
+        raw = ask(SYSTEM_PROMPT, user_message)
+
+        meta_raw = _extract(raw, "===META===", "===BLOG===")
+        blog_body = _extract(raw, "===BLOG===", "===END===", end_required=False)
+
+        if not meta_raw or not blog_body:
+            print(f"  ✗ LLM response missing required sections")
+            return None
+
+        meta = json.loads(_clean_json(meta_raw))
+
+        return {
+            "id": f"post-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}-{random.randint(100, 999)}",
+            "category": meta.get("category", category),
+            "title": meta.get("title", ""),
+            "slug": meta.get("slug", ""),
+            "excerpt": meta.get("excerpt", ""),
+            "body": blog_body.strip(),
+            "author": cat_meta["author"],
+            "published_at": datetime.now(timezone.utc).isoformat(),
+            "image_color": meta.get("image_color", cat_meta["color"]),
+            "image_icon": meta.get("icon", cat_meta["icon"]),
+            "tags": meta.get("tags", []),
+            "featured": meta.get("featured", False),
+            "bookmaker_featured": meta.get("bookmaker_featured", ""),
+            "read_time": meta.get("read_time", 4),
+            "_sources": [item["source"] for item in news_items[:5]],
+        }
+
+    except json.JSONDecodeError as e:
+        print(f"  ✗ JSON parse error: {e}")
+        return None
+    except Exception as e:
+        print(f"  ✗ Error: {e}")
+        return None
+
+
+def _extract(text: str, start: str, end: str, end_required: bool = True) -> str:
+    try:
+        s = text.index(start) + len(start)
+        try:
+            e = text.index(end, s)
+            return text[s:e].strip()
+        except ValueError:
+            if end_required:
+                return ""
+            return text[s:].strip()
+    except ValueError:
+        return ""
+
+
+def _clean_json(s: str) -> str:
+    s = s.strip()
+    if s.startswith("```"):
+        s = s.split("```")[1]
+        if s.startswith("json"):
+            s = s[4:]
+    return s.strip()
+
+
+# ── POST STORAGE ──────────────────────────────────────────────────────────────
+
+POSTS_PATH = Path(__file__).parent.parent.parent / "blog" / "posts.json"
+
+
+def load_posts() -> list[dict]:
+    if POSTS_PATH.exists():
+        try:
+            with open(POSTS_PATH) as f:
+                return json.load(f).get("posts", [])
+        except Exception:
+            return []
+    return []
+
+
+def save_posts(posts: list[dict]) -> None:
+    POSTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    payload = {"posts": posts}
+    with open(POSTS_PATH, "w") as f:
+        json.dump(payload, f, indent=2)
+    # Also write posts-data.js so the blog works on file:// protocol
+    js_path = POSTS_PATH.parent / "posts-data.js"
+    with open(js_path, "w", encoding="utf-8") as f:
+        f.write(f"window.POSTS_DATA={json.dumps(payload, ensure_ascii=False)};\n")
+
+
+# ── RUN MODES ─────────────────────────────────────────────────────────────────
+
+def run(topics: int = 1, specific_category: Optional[str] = None,
+        update_ticker: bool = True) -> None:
+    """Generate articles from LIVE news research."""
+    print(f"🚀 Sports Blog Agent — generating {topics} article(s) from live news")
+
+    if update_ticker:
+        print("\n📡 Updating live ticker first...")
+        from utils.ticker_builder import build_and_save
+        build_and_save()
+
+    existing = load_posts()
+    recent_titles = {p["title"].lower()[:40] for p in existing[:30]}
+    new_posts: list[dict] = []
+
+    categories = list(CATEGORIES.keys())
+    if specific_category:
+        categories = [specific_category] * topics
+    else:
+        categories = random.choices(categories, k=topics)
+
+    for cat in categories:
+        print(f"\n📝 Category: {cat.upper()}")
+        post = generate_post(cat)
+
+        if post is None:
+            continue
+
+        title_key = post["title"].lower()[:40]
+        if title_key in recent_titles:
+            print(f"  ⚠ Similar title already exists — skipping")
+            continue
+
+        new_posts.append(post)
+        recent_titles.add(title_key)
+        print(f"  ✓ '{post['title']}'")
+        print(f"  ✓ Tags: {', '.join(post['tags'][:3])}")
+        print(f"  ✓ Sources: {', '.join(post.get('_sources', [])[:3])}")
+
+    if new_posts:
+        all_posts = new_posts + existing
+        all_posts = all_posts[:50]  # Cap at 50 posts
+        save_posts(all_posts)
+        print(f"\n✅ Added {len(new_posts)} article(s). Total in blog: {len(all_posts)}")
+    else:
+        print("\n⚠ No new articles generated.")
+
+
+def run_daily() -> None:
+    """2 articles across different categories — for GitHub Actions daily schedule."""
+    cats = random.sample(list(CATEGORIES.keys()), 2)
+    print(f"📅 Daily run — categories: {', '.join(cats)}")
+    for cat in cats:
+        run(topics=1, specific_category=cat, update_ticker=(cat == cats[0]))
+
+
+def run_weekly() -> None:
+    """Cover all categories — run on Mondays for a full week of content."""
+    print("📅 Weekly batch run — all categories")
+    # Football twice (most popular), others once
+    for cat in ["football", "football", "sportnews", "betting", "igaming",
+                "basketball", "tennis", "cricket", "boxing", "f1"]:
+        run(topics=1, specific_category=cat, update_ticker=False)
+    # Update ticker once at the end
+    from utils.ticker_builder import build_and_save
+    build_and_save()
+
+
+# ── CLI ───────────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="SifuFinds Sports Blog Writer Agent")
+    parser.add_argument("--topics", type=int, default=1)
+    parser.add_argument("--category", type=str, default=None,
+                        choices=list(CATEGORIES.keys()))
+    parser.add_argument("--mode", type=str, default="single",
+                        choices=["single", "daily", "weekly"])
+    parser.add_argument("--ticker-only", action="store_true",
+                        help="Only update ticker.json, don't write articles")
+    args = parser.parse_args()
+
+    if args.ticker_only:
+        from utils.ticker_builder import build_and_save
+        build_and_save()
+    elif args.mode == "daily":
+        run_daily()
+    elif args.mode == "weekly":
+        run_weekly()
+    else:
+        run(topics=args.topics, specific_category=args.category)

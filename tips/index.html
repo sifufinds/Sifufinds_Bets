@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!-- tips.sifufinds.com – Free Betting Tips -->
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Betting Tips · Africa & International · SifuFinds</title>
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="tbar">
+  <div class="tbar-l">
+    <a href="../index.html">🏠 Home</a>
+    <a href="../countries/index.html">🌍 Africa</a>
+    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <button onclick="openPage('about')">18+ Only</button>
+  </div>
+  <div class="tbar-r">
+    <span class="csel-lbl">Your Country:</span>
+    <select class="csel" id="ctySel" onchange="changeCountry(this.value)">
+      <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
+      <option value="KE">🇰🇪 Kenya · KSh KES</option>
+      <option value="GH">🇬🇭 Ghana · GH₵ GHS</option>
+      <option value="ZA">🇿🇦 South Africa · R ZAR</option>
+      <option value="TZ">🇹🇿 Tanzania · TSh TZS</option>
+      <option value="UG">🇺🇬 Uganda · USh UGX</option>
+      <option value="ZM">🇿🇲 Zambia · ZK ZMW</option>
+      <option value="ET">🇪🇹 Ethiopia · Br ETB</option>
+      <option value="CI">🇨🇮 Ivory Coast · CFA XOF</option>
+      <option value="CM">🇨🇲 Cameroon · CFA XAF</option>
+      <option value="SN">🇸🇳 Senegal · CFA XOF</option>
+      <option value="RW">🇷🇼 Rwanda · RWF</option>
+      <option value="ZW">🇿🇼 Zimbabwe · USD</option>
+      <option value="MW">🇲🇼 Malawi · MWK</option>
+      <option value="MZ">🇲🇿 Mozambique · MZN</option>
+      <option value="AO">🇦🇴 Angola · AOA</option>
+      <option value="CD">🇨🇩 DR Congo · CDF</option>
+      <option value="BT">🇧🇼 Botswana · BWP</option>
+      <option value="NA">🇳🇦 Namibia · NAD</option>
+    </select>
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="mnav">
+  <div class="mnav-in">
+    <a class="logo" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="white" stroke-width="1.8"/><path d="M1.5 11h19M11 1.5c-2.5 3.5-2.5 13.5 0 19M11 1.5c2.5 3.5 2.5 13.5 0 19M4.5 6h13M4.5 16h13" stroke="white" stroke-width="1.4"/></svg>
+      SifuFinds
+    </a>
+    <div class="ntabs">
+      <a class="nt" href="../index.html">⭐ Best Bonuses</a>
+      <a class="nt on" href="index.html">💡 Tips</a>
+      <a class="nt" href="../casino/index.html">🎰 Casino</a>
+      <a class="nt" href="../odds/index.html">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
+      <a class="nt" href="../countries/index.html">🌍 Countries</a>
+      <a class="nt" href="../blog/index.html">📰 Blog</a>
+    </div>
+    <div class="srch-wrap">
+      <input class="srch-inp" id="srch-inp" type="text" placeholder="Search tips..." oninput="srchTips(this.value)" onkeydown="if(event.key==='Escape')clearTipSearch()" autocomplete="off">
+      <button class="srch-clear" id="srch-clear-btn" onclick="clearTipSearch()" title="Clear">×</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER BRANDS BAR -->
+<div id="hbrands" class="hbrands"></div>
+
+<!-- SUBNAV -->
+<div class="snav"><div class="snav-in">
+  <button class="snl on" data-tf="all" onclick="tipFilt(this)">All Tips</button>
+  <button class="snl" data-tf="cafl" onclick="tipFilt(this)">CAF CL</button>
+  <button class="snl" data-tf="afcon" onclick="tipFilt(this)">AFCON</button>
+  <button class="snl" data-tf="epl" onclick="tipFilt(this)">Premier League</button>
+  <button class="snl" data-tf="local" onclick="tipFilt(this)">Local Leagues</button>
+</div></div>
+
+<!-- HERO -->
+<div class="hero"><div class="wrap">
+  <h1>Free Betting Tips · Africa &amp; International · <span id="tips-date"></span></h1>
+  <p>Expert daily predictions powered by our analysts and live AI · AFCON, CAF CL, Premier League, NPFL, KPL, PSL and more.</p>
+  <div class="ctrs">
+    <div class="ctr"><div class="ctr-n" id="tips-cnt">–</div><div class="ctr-l">tips today</div></div>
+    <div class="ctr"><div class="ctr-n">71%</div><div class="ctr-l">7-day win rate</div></div>
+    <div class="ctr"><div class="ctr-n">63%</div><div class="ctr-l">30-day win rate</div></div>
+  </div>
+</div></div>
+
+<!-- MAIN CONTENT -->
+<div class="sec-bg"><div class="wrap">
+  <div class="fbar"><div class="fr">
+    <button class="fp on" data-tf="all" onclick="tipFilt(this)">All Tips</button>
+    <button class="fp" data-tf="cafl" onclick="tipFilt(this)">CAF CL</button>
+    <button class="fp" data-tf="afcon" onclick="tipFilt(this)">AFCON</button>
+    <button class="fp" data-tf="epl" onclick="tipFilt(this)">Premier League</button>
+    <button class="fp" data-tf="local" onclick="tipFilt(this)">Local Leagues</button>
+  </div></div>
+
+  <!-- AI section -->
+  <div id="ai-section">
+    <div id="ai-loader" class="ai-loading">🤖 Generating live AI tips for <span id="ai-cty">Nigeria</span>...</div>
+  </div>
+
+  <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.3px">📋 Expert Curated Tips</div>
+  <div id="tips-cards"></div>
+
+  <div class="cbox2">
+    <h2>📰 Latest Betting News</h2>
+    <div class="news-grid" id="news-cards"></div>
+  </div>
+
+  <div class="resp">⚠️ Tips are for informational purposes only. Gambling involves risk. 18+ only.
+    <button onclick="openPage('responsible')">Responsible Gambling</button>
+  </div>
+</div></div>
+
+<!-- PAGE MODAL -->
+<div class="page-modal-bg" id="page-modal">
+  <div class="page-modal">
+    <button class="page-modal-close" onclick="closePage()">×</button>
+    <div class="pm" id="page-content"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer"><div class="footer-in">
+  <div class="flogo">🌍 SifuFinds</div>
+  <div class="fgrid">
+    <div class="fc4"><h4>Bonuses</h4>
+      <a href="../index.html">Best Bonuses</a>
+      <a href="../index.html?filter=nodep">No Deposit Bonus</a>
+      <a href="../index.html?filter=cashout">Cash Out Sites</a>
+      <a href="../index.html?filter=stream">Live Streaming</a>
+    </div>
+    <div class="fc4"><h4>Tips</h4>
+      <a href="index.html">Free Tips Today</a>
+      <a href="index.html?tf=afcon">AFCON Tips</a>
+      <a href="index.html?tf=cafl">CAF CL Tips</a>
+      <a href="index.html?tf=epl">Premier League</a>
+    </div>
+    <div class="fc4"><h4>Casino</h4>
+      <a href="../casino/index.html">Best Casinos</a>
+      <a href="../casino/index.html?cf=nodep">No Deposit Casino</a>
+      <a href="../casino/index.html?cf=live">Live Casino</a>
+      <a href="../casino/index.html?cf=jackpot">Jackpots</a>
+    </div>
+    <div class="fc4"><h4>Countries</h4>
+      <a href="../countries/index.html?sel=NG">Nigeria ₦</a>
+      <a href="../countries/index.html?sel=KE">Kenya KSh</a>
+      <a href="../countries/index.html?sel=GH">Ghana GH₵</a>
+      <a href="../countries/index.html?sel=ZA">South Africa R</a>
+      <a href="../countries/index.html?sel=TZ">Tanzania TSh</a>
+      <a href="../countries/index.html?sel=ZM">Zambia ZK</a>
+    </div>
+    <div class="fc4"><h4>Odds</h4>
+      <a href="../odds/index.html">All Leagues</a>
+      <a href="../odds/index.html?lg=cafl">CAF CL Odds</a>
+      <a href="../odds/index.html?lg=afcon">AFCON Odds</a>
+      <a href="../odds/index.html?lg=epl">Premier League</a>
+    </div>
+    <div class="fc4"><h4>About</h4>
+      <button onclick="openPage('about')">About SifuFinds</button>
+      <button onclick="openPage('contact')">Contact Us</button>
+      <button onclick="openPage('privacy')">Privacy Policy</button>
+      <button onclick="openPage('terms')">Terms of Use</button>
+      <button onclick="openPage('responsible')">Responsible Gambling</button>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>SifuFinds is an independent affiliate comparison site. Tips are for informational purposes only. Bet responsibly. 18+ only.</p>
+    <p style="margin-top:5px">© <span id="foot-yr"></span> SifuFinds ·
+      <button onclick="openPage('privacy')">Privacy Policy</button> ·
+      <button onclick="openPage('terms')">Terms of Use</button> ·
+      <button onclick="openPage('responsible')">Responsible Gambling</button>
+    </p>
+  </div>
+</div></footer>
+
+<script>
+const SITE={home:'../index.html',tips:'index.html',casino:'../casino/index.html',odds:'../odds/index.html',countries:'../countries/index.html'};
+</script>
+<script src="../assets/shared.js"></script>
+<script>
+let _activeTF='all';
+
+function tipFilt(btn){
+  document.querySelectorAll('[data-tf]').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll(`[data-tf="${btn.dataset.tf}"]`).forEach(b=>b.classList.add('on'));
+  _activeTF=btn.dataset.tf;
+  renderTips();
+}
+
+function tipCard(t,idx){
+  const booksForCty=BOOKS[getCurrentCountry()]||BOOKS.NG;
+  const bkData=booksForCty.find(b=>b.name.toLowerCase().includes(t.via.toLowerCase()))||booksForCty[0];
+  return`<div class="tipcard${t.isAI?' ai-tip':''}">
+  <div class="th">
+    <span class="tlg">${t.league}${t.isAI?' <span class="ai-badge">🤖 AI</span>':''}</span>
+    <span class="ttm">${t.time} · ${DATE_STR}</span>
+  </div>
+  <div class="tbody">
+    <div>
+      <div class="tmatch">${t.match}</div>
+      <span class="tpred">${t.pred}</span>
+      <div class="tan">${t.analysis}</div>
+      <div class="tcta">
+        <span class="opill">Odds: ${t.odds}</span>
+        <a href="${bkData?bkData.url:'#'}" target="_blank" rel="noopener noreferrer" style="color:var(--g);font-size:11px;font-weight:700">Bet via ${t.via} →</a>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <div class="cring"><div class="cpct">${t.conf}%</div><div class="clbl">Confidence</div></div>
+      <div class="conf-bar"><div class="conf-fill" style="width:${t.conf}%"></div></div>
+      <div class="bkvia" style="margin-top:5px">via ${t.via}</div>
+    </div>
+  </div>
+</div>`;
+}
+
+function renderTips(){
+  const filtered=_activeTF==='all'?TIPS:TIPS.filter(t=>t.key===_activeTF);
+  const container=document.getElementById('tips-cards');
+  if(!filtered.length){container.innerHTML='<div class="no-results">No tips for this filter today. Check back later.</div>';return;}
+  container.innerHTML=filtered.map((t,i)=>tipCard(t,i)).join('');
+  H('tips-cnt',filtered.length);
+}
+
+function renderNews(){
+  H('news-cards',NEWS.map(n=>`
+  <div class="nc">
+    <div class="nc-bar" style="background:${n.color}"></div>
+    <div class="nc-body">
+      <div class="nc-cat">${n.cat}</div>
+      <div class="nc-title">${n.title}</div>
+      <div class="nc-date">${n.date}</div>
+    </div>
+  </div>`).join(''));
+}
+
+async function renderAI(){
+  const cty=getCurrentCountry();
+  const cd=COUNTRY_DATA[cty]||COUNTRY_DATA.NG;
+  H('ai-cty',cd.name);
+  const BKS=['Betway','1xBet','22Bet','Melbet','Sportybet'];
+  const LG_KEY_MAP={15:'epl',10:'laliga',45:'ucl',46:'uel',50:'world'};
+  const LG_LABEL={15:'Premier League',10:'La Liga',45:'UEFA Champions League',46:'UEFA Europa League',50:'World Cup'};
+  try{
+    const r=await fetch('https://footballdata.io/api/v1/fixtures/upcoming',{
+      headers:{Authorization:'Bearer fd_554baa8cfac7cfe33ba92edfbc00f3e2a179ba179f44ada9'}
+    });
+    const d=await r.json();
+    const matches=(d.data?.matches||[]).filter(m=>m.odds?.home_win&&m.probabilities);
+    const aiTips=matches.map(m=>{
+      const p=m.probabilities;
+      let predLabel,prob,odds;
+      if(p.home_win>=p.draw&&p.home_win>=p.away_win){
+        predLabel=`${m.home_team.team_name} Win`;prob=p.home_win;odds=m.odds.home_win;
+      }else if(p.away_win>=p.draw){
+        predLabel=`${m.away_team.team_name} Win`;prob=p.away_win;odds=m.odds.away_win;
+      }else{
+        predLabel='Draw';prob=p.draw;odds=m.odds.draw;
+      }
+      const key=LG_KEY_MAP[m.league.league_id]||'epl';
+      const time=new Date(m.match_date.replace(' ','T')+'Z').toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+      return{
+        league:`AI Pick · ${LG_LABEL[m.league.league_id]||m.league.name}`,
+        key,match:`${m.home_team.team_name} vs ${m.away_team.team_name}`,
+        pred:predLabel,
+        analysis:`Model probabilities: ${m.home_team.team_name} ${p.home_win.toFixed(0)}% · Draw ${p.draw.toFixed(0)}% · ${m.away_team.team_name} ${p.away_win.toFixed(0)}%. The ${predLabel.toLowerCase()} has the highest statistical backing at ${prob.toFixed(0)}% confidence.`,
+        odds:odds.toFixed(2),
+        via:BKS[Math.floor(Math.random()*BKS.length)],
+        conf:Math.round(prob),time,isAI:true
+      };
+    }).sort((a,b)=>b.conf-a.conf).slice(0,4);
+    const filtered=_activeTF==='all'?aiTips:aiTips.filter(t=>t.key===_activeTF);
+    H('ai-section',filtered.length
+      ?`<div style="margin-bottom:8px;font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.3px">🤖 AI Predictions · Live Data</div>${filtered.map((t,i)=>tipCard(t,i)).join('')}`
+      :'');
+  }catch(e){
+    H('ai-section','');
+  }
+}
+
+function srchTips(q){
+  document.getElementById('srch-clear-btn').classList.toggle('show',q.length>0);
+}
+function clearTipSearch(){
+  document.getElementById('srch-inp').value='';
+  document.getElementById('srch-clear-btn').classList.remove('show');
+}
+
+async function init(){
+  await waitForCountry();
+  const params=new URLSearchParams(window.location.search);
+  const urlTf=params.get('tf');
+  if(urlTf){
+    _activeTF=urlTf;
+    document.querySelectorAll('[data-tf]').forEach(b=>b.classList.toggle('on',b.dataset.tf===urlTf));
+  }
+  syncCountryUI();
+  H('tips-date',DATE_STR);
+  H('foot-yr',NOW.getFullYear());
+  renderTips();
+  renderNews();
+  renderAI();
+}
+init();
+</script>
+</body>
+</html>

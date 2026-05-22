@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<!-- odds.sifufinds.com – Live Betting Odds -->
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Betting Odds · Africa & International · SifuFinds</title>
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="tbar">
+  <div class="tbar-l">
+    <a href="../index.html">🏠 Home</a>
+    <a href="../countries/index.html">🌍 Africa</a>
+    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <button onclick="openPage('about')">18+ Only</button>
+  </div>
+  <div class="tbar-r">
+    <span class="csel-lbl">Your Country:</span>
+    <select class="csel" id="ctySel" onchange="changeCountry(this.value)">
+      <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
+      <option value="KE">🇰🇪 Kenya · KSh KES</option>
+      <option value="GH">🇬🇭 Ghana · GH₵ GHS</option>
+      <option value="ZA">🇿🇦 South Africa · R ZAR</option>
+      <option value="TZ">🇹🇿 Tanzania · TSh TZS</option>
+      <option value="UG">🇺🇬 Uganda · USh UGX</option>
+      <option value="ZM">🇿🇲 Zambia · ZK ZMW</option>
+      <option value="ET">🇪🇹 Ethiopia · Br ETB</option>
+      <option value="CI">🇨🇮 Ivory Coast · CFA XOF</option>
+      <option value="CM">🇨🇲 Cameroon · CFA XAF</option>
+      <option value="SN">🇸🇳 Senegal · CFA XOF</option>
+      <option value="RW">🇷🇼 Rwanda · RWF</option>
+      <option value="ZW">🇿🇼 Zimbabwe · USD</option>
+      <option value="MW">🇲🇼 Malawi · MWK</option>
+      <option value="MZ">🇲🇿 Mozambique · MZN</option>
+      <option value="AO">🇦🇴 Angola · AOA</option>
+      <option value="CD">🇨🇩 DR Congo · CDF</option>
+      <option value="BT">🇧🇼 Botswana · BWP</option>
+      <option value="NA">🇳🇦 Namibia · NAD</option>
+    </select>
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="mnav">
+  <div class="mnav-in">
+    <a class="logo" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="white" stroke-width="1.8"/><path d="M1.5 11h19M11 1.5c-2.5 3.5-2.5 13.5 0 19M11 1.5c2.5 3.5 2.5 13.5 0 19M4.5 6h13M4.5 16h13" stroke="white" stroke-width="1.4"/></svg>
+      SifuFinds
+    </a>
+    <div class="ntabs">
+      <a class="nt" href="../index.html">⭐ Best Bonuses</a>
+      <a class="nt" href="../tips/index.html">💡 Tips</a>
+      <a class="nt" href="../casino/index.html">🎰 Casino</a>
+      <a class="nt on" href="index.html">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
+      <a class="nt" href="../countries/index.html">🌍 Countries</a>
+      <a class="nt" href="../blog/index.html">📰 Blog</a>
+    </div>
+    <div class="srch-wrap">
+      <input class="srch-inp" id="srch-inp" type="text" placeholder="Search leagues..." autocomplete="off">
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER BRANDS BAR -->
+<div id="hbrands" class="hbrands"></div>
+
+<!-- SUBNAV -->
+<div class="snav"><div class="snav-in">
+  <button class="snl on" data-lg="all" onclick="lgFilt(this)">All Leagues</button>
+  <button class="snl" data-lg="epl" onclick="lgFilt(this)">Premier League</button>
+  <button class="snl" data-lg="ucl" onclick="lgFilt(this)">UEFA CL</button>
+  <button class="snl" data-lg="uel" onclick="lgFilt(this)">Europa League</button>
+  <button class="snl" data-lg="laliga" onclick="lgFilt(this)">La Liga</button>
+  <button class="snl" data-lg="cafl" onclick="lgFilt(this)">CAF CL</button>
+  <button class="snl" data-lg="afcon" onclick="lgFilt(this)">AFCON</button>
+  <button class="snl" data-lg="local" onclick="lgFilt(this)">Local Leagues</button>
+</div></div>
+
+<!-- HERO -->
+<div class="odds-hero"><div class="wrap">
+  <h1>Live &amp; Upcoming Betting Odds · Africa &amp; International</h1>
+  <p>Real-time odds across CAF CL, AFCON, Premier League, NPFL, KPL, PSL and more. Click any odds to bet. Auto-updates every 15 seconds.</p>
+  <div style="display:flex;align-items:center;gap:10px;margin-top:9px">
+    <span class="livtag"><span class="lpulse" style="width:6px;height:6px;margin-right:3px"></span>LIVE</span>
+    <span style="font-size:12px;color:rgba(255,255,255,.55)" id="odds-upd">Simulation active</span>
+  </div>
+</div></div>
+
+<div style="background:rgba(255,255,255,.04);padding:7px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="wrap">
+    <div class="apib">
+      <span class="apist" id="api-st">🔄 Loading live odds...</span>
+    </div>
+  </div>
+</div>
+
+<!-- ODDS CONTENT -->
+<div class="odds-bg"><div class="wrap">
+  <div class="lgf" id="lg-filter"></div>
+  <div id="odds-cards"></div>
+  <div class="odf" id="odds-foot">⏱ Next update in 15s</div>
+</div></div>
+
+<!-- PAGE MODAL -->
+<div class="page-modal-bg" id="page-modal">
+  <div class="page-modal">
+    <button class="page-modal-close" onclick="closePage()">×</button>
+    <div class="pm" id="page-content"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer"><div class="footer-in">
+  <div class="flogo">🌍 SifuFinds</div>
+  <div class="fgrid">
+    <div class="fc4"><h4>Bonuses</h4>
+      <a href="../index.html">Best Bonuses</a>
+      <a href="../index.html?filter=nodep">No Deposit Bonus</a>
+    </div>
+    <div class="fc4"><h4>Tips</h4>
+      <a href="../tips/index.html">Free Tips Today</a>
+      <a href="../tips/index.html?tf=cafl">CAF CL Tips</a>
+    </div>
+    <div class="fc4"><h4>Casino</h4>
+      <a href="../casino/index.html">Best Casinos</a>
+    </div>
+    <div class="fc4"><h4>Countries</h4>
+      <a href="../countries/index.html?sel=NG">Nigeria ₦</a>
+      <a href="../countries/index.html?sel=KE">Kenya KSh</a>
+      <a href="../countries/index.html?sel=ZA">South Africa R</a>
+    </div>
+    <div class="fc4"><h4>About</h4>
+      <button onclick="openPage('about')">About SifuFinds</button>
+      <button onclick="openPage('contact')">Contact Us</button>
+      <button onclick="openPage('privacy')">Privacy Policy</button>
+      <button onclick="openPage('responsible')">Responsible Gambling</button>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>Odds data is for informational purposes only. Always verify odds directly with the bookmaker. Bet responsibly. 18+ only.</p>
+    <p style="margin-top:5px">© <span id="foot-yr"></span> SifuFinds ·
+      <button onclick="openPage('privacy')">Privacy Policy</button> ·
+      <button onclick="openPage('terms')">Terms of Use</button>
+    </p>
+  </div>
+</div></footer>
+
+<script>
+const SITE={home:'../index.html',tips:'../tips/index.html',casino:'../casino/index.html',odds:'index.html',countries:'../countries/index.html'};
+</script>
+<script src="../assets/shared.js"></script>
+<script>
+const FD_KEY='fd_554baa8cfac7cfe33ba92edfbc00f3e2a179ba179f44ada9';
+const FD_URL='https://footballdata.io/api/v1';
+const SDB_KEY='3JOIGRycRY0jNCrxgLnuNzzA5AIoyQmnN7RHew9t';
+const SDB_BASE='https://api.sportdb.dev';
+const SEASON='2025-2026';
+
+const LG_KEY_MAP={15:'epl',10:'laliga',45:'ucl',46:'uel',50:'world'};
+const LG_NAME_MAP={15:'Premier League',10:'La Liga',45:'UEFA Champions League',46:'UEFA Europa League',50:'World Cup'};
+const LG_TABS=[
+  {key:'all',label:'All Leagues'},
+  {key:'epl',label:'Premier League'},
+  {key:'ucl',label:'UEFA CL'},
+  {key:'uel',label:'Europa League'},
+  {key:'laliga',label:'La Liga'},
+  {key:'cafl',label:'CAF CL'},
+  {key:'afcon',label:'AFCON'},
+  {key:'local',label:'Local Leagues'}
+];
+
+const AFRICAN_COMPS=[
+  {path:'africa:1/caf-champions-league:EcZwBi3N',key:'cafl',name:'CAF Champions League'},
+  {path:'africa:1/caf-confederation-cup:UF0IztbB',key:'cafl',name:'CAF Confederation Cup'},
+  {path:'africa:1/africa-cup-of-nations:8bP2bXmH',key:'afcon',name:'AFCON'},
+  {path:'nigeria:143/npfl:0YfyoJfj',key:'local',name:'NPFL'},
+  {path:'kenya:103/premier-league:Y7QCbf53',key:'local',name:'Kenya Premier League'},
+  {path:'south-africa:175/betway-premiership:WYFXQ1KH',key:'local',name:'Betway Premiership'},
+  {path:'ghana:82/premier-league:6BeXoaup',key:'local',name:'Ghana Premier League'}
+];
+
+let _activeLG='all';
+let _oddsTimer=null;
+let _countdown=60;
+let _apiMatches=[];
+let _africanMatches=[];
+
+function mapApiMatch(m){
+  const key=LG_KEY_MAP[m.league.league_id]||'epl';
+  const isLive=m.status==='live'||m.status==='inprogress';
+  const isComplete=m.status==='complete';
+  let time;
+  if(isLive){
+    time='LIVE';
+  }else if(isComplete){
+    time='FT';
+  }else{
+    const d=new Date(m.match_date.replace(' ','T')+'Z');
+    time=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  }
+  return{
+    league:LG_NAME_MAP[m.league.league_id]||m.league.name,
+    key,live:isLive,complete:isComplete,
+    home:m.home_team.team_name,away:m.away_team.team_name,
+    hScore:isLive||isComplete?m.score.home:null,
+    aScore:isLive||isComplete?m.score.away:null,
+    time,
+    h:m.odds?.home_win??0,d:m.odds?.draw??0,a:m.odds?.away_win??0,
+    hBk:'1xBet',dBk:'Betway',aBk:'Melbet'
+  };
+}
+
+function mapSdbMatch(m,key,leagueName){
+  const isLive=m.eventStage==='INPROGRESS';
+  const isComplete=m.eventStage==='FINISHED';
+  const d=new Date(m.startDateTimeUtc);
+  const today=new Date();
+  const tomorrow=new Date(today.getTime()+86400000);
+  const t=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  let timeLabel;
+  if(isLive)timeLabel='LIVE';
+  else if(isComplete)timeLabel='FT';
+  else if(d.toDateString()===today.toDateString())timeLabel=t;
+  else if(d.toDateString()===tomorrow.toDateString())timeLabel=`Tomorrow ${t}`;
+  else timeLabel=`${d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})} ${t}`;
+  return{
+    league:leagueName,key,live:isLive,complete:isComplete,
+    home:m.homeName||m.homeFirstName||'TBC',
+    away:m.awayName||m.awayFirstName||'TBC',
+    hScore:null,aScore:null,
+    time:timeLabel,startMs:d.getTime(),
+    h:0,d:0,a:0,hBk:'',dBk:'',aBk:''
+  };
+}
+
+async function fetchAfricanFixtures(){
+  const now=Date.now();
+  const cutoff=now+8*86400000;
+  const results=await Promise.allSettled(
+    AFRICAN_COMPS.map(({path,key,name})=>
+      fetch(`${SDB_BASE}/api/flashscore/football/${path}/${SEASON}/fixtures?page=1`,{
+        headers:{'X-API-Key':SDB_KEY}
+      }).then(r=>r.json()).then(data=>({data,key,name}))
+    )
+  );
+  const matches=[];
+  results.forEach(r=>{
+    if(r.status!=='fulfilled')return;
+    const{data,key,name}=r.value;
+    (Array.isArray(data)?data:[]).filter(m=>{
+      const t=new Date(m.startDateTimeUtc).getTime();
+      return(m.eventStage==='SCHEDULED'||m.eventStage==='INPROGRESS')&&t>=now&&t<=cutoff;
+    }).slice(0,3).forEach(m=>matches.push(mapSdbMatch(m,key,name)));
+  });
+  return matches.sort((a,b)=>a.startMs-b.startMs);
+}
+
+async function fetchOddsData(){
+  try{
+    const[liveR,todayR,upcomingR]=await Promise.all([
+      fetch(`${FD_URL}/fixtures/live`,{headers:{Authorization:`Bearer ${FD_KEY}`}}),
+      fetch(`${FD_URL}/fixtures/today`,{headers:{Authorization:`Bearer ${FD_KEY}`}}),
+      fetch(`${FD_URL}/fixtures/upcoming`,{headers:{Authorization:`Bearer ${FD_KEY}`}})
+    ]);
+    const[liveD,todayD,upcomingD]=await Promise.all([liveR.json(),todayR.json(),upcomingR.json()]);
+    const seen=new Set();
+    const all=[];
+    const add=arr=>(arr||[]).forEach(m=>{
+      if(!seen.has(m.match_id)&&m.odds?.home_win){seen.add(m.match_id);all.push(mapApiMatch(m));}
+    });
+    add(liveD.data?.matches);
+    add(todayD.data?.matches);
+    add(upcomingD.data?.matches);
+    _apiMatches=all;
+    updateStatus();
+    renderOdds();
+  }catch(e){
+    _apiMatches=[];
+    updateStatus();
+    renderOdds();
+  }
+}
+
+function updateStatus(){
+  const total=_apiMatches.length+_africanMatches.length;
+  H('api-st',total>0?`🟢 Live · ${total} matches`:'⚠️ Using cached data');
+  H('odds-upd',`Updated ${new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}`);
+}
+
+function lgFilt(btn){
+  document.querySelectorAll('[data-lg]').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll(`[data-lg="${btn.dataset.lg}"]`).forEach(b=>b.classList.add('on'));
+  _activeLG=btn.dataset.lg;
+  renderOdds();
+}
+
+function odcCard(m){
+  const cty=getCurrentCountry();
+  const books=affiliateBooks(BOOKS[cty]||BOOKS.NG);
+  const bk=books[0]||BOOKS[cty]?.[0]||{};
+  const hasScore=m.live||m.complete;
+  const scoreHtml=hasScore
+    ?`<div class="tline"><div class="tnm">${m.home}</div><div class="scn">${m.hScore??''}</div></div><div class="tline"><div class="tnm">${m.away}</div><div class="scn">${m.aScore??''}</div></div>`
+    :`<div class="tline"><div class="tnm">${m.home}</div></div><div class="tline"><div class="tnm">${m.away}</div></div>`;
+  const timeHtml=m.live
+    ?`<span class="livtag"><span class="lpulse" style="width:5px;height:5px;margin-right:2px"></span>LIVE</span>`
+    :m.complete
+      ?`<span class="odc-tm" style="color:#4ade80">FT</span>`
+      :`<span class="odc-tm">${m.time}</span>`;
+  const hasOdds=m.h>0;
+  const oddsHtml=hasOdds
+    ?`<div class="obg">
+      <div class="ob${m.live?' best':''}" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
+        <div class="ob-t">1</div><div class="ob-v">${m.h.toFixed(2)}</div><div class="ob-bk">${m.hBk}</div>
+      </div>
+      <div class="ob" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
+        <div class="ob-t">X</div><div class="ob-v">${m.d.toFixed(2)}</div><div class="ob-bk">${m.dBk}</div>
+      </div>
+      <div class="ob" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
+        <div class="ob-t">2</div><div class="ob-v">${m.a.toFixed(2)}</div><div class="ob-bk">${m.aBk}</div>
+      </div>
+    </div>`
+    :`<a class="gbtn" href="${bk?bk.url:'#'}" target="_blank" rel="noopener" style="font-size:12px;padding:8px 14px;white-space:nowrap">Get Odds →</a>`;
+  return`<div class="odc">
+  <div class="odch">
+    <span class="odc-lg">${m.league}</span>
+    <div style="display:flex;align-items:center;gap:6px">${timeHtml}</div>
+  </div>
+  <div class="odcb">
+    <div>${scoreHtml}</div>
+    ${oddsHtml}
+  </div>
+</div>`;
+}
+
+function renderLgFilter(){
+  H('lg-filter',LG_TABS.map(t=>`<button class="lgtab${t.key===_activeLG?' on':''}" data-lg="${t.key}" onclick="lgFilt(this)">${t.label}</button>`).join(''));
+}
+
+function renderOdds(){
+  const all=[..._apiMatches,..._africanMatches];
+  const data=_activeLG==='all'?all:all.filter(m=>m.key===_activeLG);
+  if(!data.length){H('odds-cards','<div style="color:rgba(255,255,255,.4);text-align:center;padding:30px;font-size:13px">No odds available for this filter.</div>');return;}
+  const sorted=[...data].sort((a,b)=>{
+    if(a.live&&!b.live)return -1;
+    if(!a.live&&b.live)return 1;
+    if(a.complete&&!b.complete)return 1;
+    if(!a.complete&&b.complete)return -1;
+    return 0;
+  });
+  H('odds-cards',sorted.map(m=>odcCard(m)).join(''));
+}
+
+function startTimer(){
+  _countdown=60;
+  clearInterval(_oddsTimer);
+  _oddsTimer=setInterval(()=>{
+    _countdown--;
+    H('odds-foot',`⏱ Next update in ${_countdown}s`);
+    if(_countdown<=0){
+      Promise.all([fetchOddsData(),fetchAfricanFixtures().then(m=>{_africanMatches=m;})]).then(()=>renderOdds());
+      _countdown=60;
+    }
+  },1000);
+}
+
+async function init(){
+  await waitForCountry();
+  const params=new URLSearchParams(window.location.search);
+  const urlLg=params.get('lg');
+  if(urlLg)_activeLG=urlLg;
+  syncCountryUI();
+  H('foot-yr',NOW.getFullYear());
+  renderLgFilter();
+  renderOdds();
+  await Promise.all([
+    fetchOddsData(),
+    fetchAfricanFixtures().then(m=>{_africanMatches=m;updateStatus();renderOdds();})
+  ]);
+  startTimer();
+}
+init();
+</script>
+</body>
+</html>

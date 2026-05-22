@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- countries.sifufinds.com – African Betting Sites by Country -->
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>African Betting Sites by Country · 19 Countries · SifuFinds</title>
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="tbar">
+  <div class="tbar-l">
+    <a href="../index.html">🏠 Home</a>
+    <a href="index.html">🌍 Africa</a>
+    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <button onclick="openPage('about')">18+ Only</button>
+  </div>
+  <div class="tbar-r">
+    <span class="csel-lbl">Your Country:</span>
+    <select class="csel" id="ctySel" onchange="changeCountry(this.value)">
+      <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
+      <option value="KE">🇰🇪 Kenya · KSh KES</option>
+      <option value="GH">🇬🇭 Ghana · GH₵ GHS</option>
+      <option value="ZA">🇿🇦 South Africa · R ZAR</option>
+      <option value="TZ">🇹🇿 Tanzania · TSh TZS</option>
+      <option value="UG">🇺🇬 Uganda · USh UGX</option>
+      <option value="ZM">🇿🇲 Zambia · ZK ZMW</option>
+      <option value="ET">🇪🇹 Ethiopia · Br ETB</option>
+      <option value="CI">🇨🇮 Ivory Coast · CFA XOF</option>
+      <option value="CM">🇨🇲 Cameroon · CFA XAF</option>
+      <option value="SN">🇸🇳 Senegal · CFA XOF</option>
+      <option value="RW">🇷🇼 Rwanda · RWF</option>
+      <option value="ZW">🇿🇼 Zimbabwe · USD</option>
+      <option value="MW">🇲🇼 Malawi · MWK</option>
+      <option value="MZ">🇲🇿 Mozambique · MZN</option>
+      <option value="AO">🇦🇴 Angola · AOA</option>
+      <option value="CD">🇨🇩 DR Congo · CDF</option>
+      <option value="BT">🇧🇼 Botswana · BWP</option>
+      <option value="NA">🇳🇦 Namibia · NAD</option>
+    </select>
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="mnav">
+  <div class="mnav-in">
+    <a class="logo" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="white" stroke-width="1.8"/><path d="M1.5 11h19M11 1.5c-2.5 3.5-2.5 13.5 0 19M11 1.5c2.5 3.5 2.5 13.5 0 19M4.5 6h13M4.5 16h13" stroke="white" stroke-width="1.4"/></svg>
+      SifuFinds
+    </a>
+    <div class="ntabs">
+      <a class="nt" href="../index.html">⭐ Best Bonuses</a>
+      <a class="nt" href="../tips/index.html">💡 Tips</a>
+      <a class="nt" href="../casino/index.html">🎰 Casino</a>
+      <a class="nt" href="../odds/index.html">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
+      <a class="nt on" href="index.html">🌍 Countries</a>
+      <a class="nt" href="../blog/index.html">📰 Blog</a>
+    </div>
+    <div class="srch-wrap">
+      <input class="srch-inp" id="srch-inp" type="text" placeholder="Search countries..." oninput="srchCountry(this.value)" onkeydown="if(event.key==='Escape')clearCtySearch()" autocomplete="off">
+      <button class="srch-clear" id="srch-clear-btn" onclick="clearCtySearch()" title="Clear">×</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER BRANDS BAR -->
+<div id="hbrands" class="hbrands"></div>
+
+<!-- SUBNAV -->
+<div class="snav"><div class="snav-in">
+  <button class="snl on" data-region="all" onclick="filterRegion(this)">All Africa</button>
+  <button class="snl" data-region="west" onclick="filterRegion(this)">West Africa</button>
+  <button class="snl" data-region="east" onclick="filterRegion(this)">East Africa</button>
+  <button class="snl" data-region="south" onclick="filterRegion(this)">Southern Africa</button>
+  <button class="snl" data-region="central" onclick="filterRegion(this)">Central Africa</button>
+</div></div>
+
+<!-- HERO -->
+<div class="hero"><div class="wrap">
+  <h1>African Betting Sites by Country · <span id="cty-total">19</span> Countries Covered</h1>
+  <p>Click any country to see licensed bookmakers, verified bonus amounts in local currency, payment methods, and top leagues.</p>
+  <div class="ctrs" style="margin-top:10px">
+    <div class="ctr"><div class="ctr-n" id="total-operators">170+</div><div class="ctr-l">total operators listed</div></div>
+    <div class="ctr"><div class="ctr-n">19</div><div class="ctr-l">countries covered</div></div>
+    <div class="ctr"><div class="ctr-n">14+</div><div class="ctr-l">local currencies</div></div>
+  </div>
+</div></div>
+
+<!-- MAIN CONTENT -->
+<div class="sec-bg"><div class="wrap">
+  <div class="fbar"><div class="fr">
+    <span class="fr-label">Region:</span>
+    <button class="fp on" data-region="all" onclick="filterRegion(this)">All Africa</button>
+    <button class="fp" data-region="west" onclick="filterRegion(this)">West Africa</button>
+    <button class="fp" data-region="east" onclick="filterRegion(this)">East Africa</button>
+    <button class="fp" data-region="south" onclick="filterRegion(this)">Southern Africa</button>
+    <button class="fp" data-region="central" onclick="filterRegion(this)">Central Africa</button>
+  </div></div>
+
+  <div class="cgrid" id="cty-grid"></div>
+  <div id="cty-detail"></div>
+
+  <div class="resp">⚠️ Always verify bookmaker licences with your country's gambling regulator before depositing. 18+ only.
+    <button onclick="openPage('responsible')">Responsible Gambling</button>
+  </div>
+</div></div>
+
+<!-- PAGE MODAL -->
+<div class="page-modal-bg" id="page-modal">
+  <div class="page-modal">
+    <button class="page-modal-close" onclick="closePage()">×</button>
+    <div class="pm" id="page-content"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer"><div class="footer-in">
+  <div class="flogo">🌍 SifuFinds</div>
+  <div class="fgrid">
+    <div class="fc4"><h4>West Africa</h4>
+      <button onclick="selectCountry('NG')">🇳🇬 Nigeria</button>
+      <button onclick="selectCountry('GH')">🇬🇭 Ghana</button>
+      <button onclick="selectCountry('CI')">🇨🇮 Ivory Coast</button>
+      <button onclick="selectCountry('SN')">🇸🇳 Senegal</button>
+      <button onclick="selectCountry('CM')">🇨🇲 Cameroon</button>
+    </div>
+    <div class="fc4"><h4>East Africa</h4>
+      <button onclick="selectCountry('KE')">🇰🇪 Kenya</button>
+      <button onclick="selectCountry('TZ')">🇹🇿 Tanzania</button>
+      <button onclick="selectCountry('UG')">🇺🇬 Uganda</button>
+      <button onclick="selectCountry('ET')">🇪🇹 Ethiopia</button>
+      <button onclick="selectCountry('RW')">🇷🇼 Rwanda</button>
+    </div>
+    <div class="fc4"><h4>Southern Africa</h4>
+      <button onclick="selectCountry('ZA')">🇿🇦 South Africa</button>
+      <button onclick="selectCountry('ZM')">🇿🇲 Zambia</button>
+      <button onclick="selectCountry('ZW')">🇿🇼 Zimbabwe</button>
+      <button onclick="selectCountry('MW')">🇲🇼 Malawi</button>
+      <button onclick="selectCountry('MZ')">🇲🇿 Mozambique</button>
+    </div>
+    <div class="fc4"><h4>More Countries</h4>
+      <button onclick="selectCountry('BT')">🇧🇼 Botswana</button>
+      <button onclick="selectCountry('NA')">🇳🇦 Namibia</button>
+      <button onclick="selectCountry('AO')">🇦🇴 Angola</button>
+      <button onclick="selectCountry('CD')">🇨🇩 DR Congo</button>
+    </div>
+    <div class="fc4"><h4>Bonuses</h4>
+      <a href="../index.html">Best Bonuses</a>
+      <a href="../index.html?filter=nodep">No Deposit</a>
+      <a href="../tips/index.html">Free Tips</a>
+      <a href="../odds/index.html">Live Odds</a>
+    </div>
+    <div class="fc4"><h4>About</h4>
+      <button onclick="openPage('about')">About SifuFinds</button>
+      <button onclick="openPage('contact')">Contact Us</button>
+      <button onclick="openPage('privacy')">Privacy Policy</button>
+      <button onclick="openPage('responsible')">Responsible Gambling</button>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>SifuFinds covers 19 African countries. Country data updated regularly. Bet responsibly. 18+ only.</p>
+    <p style="margin-top:5px">© <span id="foot-yr"></span> SifuFinds ·
+      <button onclick="openPage('privacy')">Privacy Policy</button> ·
+      <button onclick="openPage('terms')">Terms of Use</button>
+    </p>
+  </div>
+</div></footer>
+
+<script>
+const SITE={home:'../index.html',tips:'../tips/index.html',casino:'../casino/index.html',odds:'../odds/index.html',countries:'index.html'};
+</script>
+<script src="../assets/shared.js"></script>
+<script>
+let _activeRegion='all';
+let _selectedCty=null;
+
+function filterRegion(btn){
+  document.querySelectorAll('[data-region]').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll(`[data-region="${btn.dataset.region}"]`).forEach(b=>b.classList.add('on'));
+  _activeRegion=btn.dataset.region;
+  renderGrid();
+}
+
+function renderGrid(filter){
+  const codes=Object.keys(COUNTRY_DATA);
+  const filtered=codes.filter(code=>{
+    const cd=COUNTRY_DATA[code];
+    if(_activeRegion!=='all'&&cd.region!==_activeRegion)return false;
+    if(filter&&!cd.name.toLowerCase().includes(filter.toLowerCase()))return false;
+    return true;
+  });
+  H('cty-grid',filtered.map(code=>{
+    const cd=COUNTRY_DATA[code];
+    const bkCount=(BOOKS[code]||[]).length;
+    return`<div class="cbox${code===_selectedCty?' sel':''}" onclick="selectCountry('${code}')">
+      <span class="cflag-icon">${cd.flag}</span>
+      <div class="cnm">${cd.name}</div>
+      <div class="ccur">${cd.currency}</div>
+      <div class="cbkn">${bkCount} bookmakers</div>
+    </div>`;
+  }).join(''));
+  H('cty-total',filtered.length);
+  H('total-operators',filtered.reduce((s,c)=>s+(BOOKS[c]||[]).length,0)+'+');
+}
+
+function selectCountry(code){
+  _selectedCty=_selectedCty===code?null:code;
+  renderGrid();
+  renderDetail();
+  if(_selectedCty){
+    const el=document.getElementById('cty-detail');
+    if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+}
+
+function renderDetail(){
+  const detEl=document.getElementById('cty-detail');
+  if(!_selectedCty){detEl.innerHTML='';return;}
+  const cd=COUNTRY_DATA[_selectedCty];
+  const books=BOOKS[_selectedCty]||[];
+  detEl.innerHTML=`<div class="cdet open">
+  <div class="cdh">
+    <div class="cdflag-big">${cd.flag}</div>
+    <div>
+      <div class="cdnm">${cd.name}</div>
+      <div class="cdlic">Regulator: ${cd.regulator}</div>
+    </div>
+  </div>
+  <div class="cdabout">${cd.about}</div>
+  <div class="slbl">Popular Payment Methods</div>
+  <div class="pchips">${cd.payments.map(p=>pm(p)).join('')}</div>
+  <div class="slbl">Top Local Leagues</div>
+  <div class="lcchips">${(cd.leagues||[]).map(l=>`<span class="lcc">${l}</span>`).join('')}</div>
+  <div class="slbl">Top Bookmakers in ${cd.name}</div>
+  <div class="local-grid">${books.slice(0,6).map(b=>`
+    <div class="lbk">
+      <div style="width:36px;height:36px;border-radius:6px;background:${b.bg};display:flex;align-items:center;justify-content:center;margin:0 auto 6px;overflow:hidden;position:relative">${logoImg(b.url,b.name,b.abbr,b.tc,32,5)}</div>
+      <div class="lbnm">${b.name}</div>
+      <div class="lbof">${b.top}</div>
+      <a class="gbtn" style="font-size:11px;padding:6px 8px" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a>
+    </div>`).join('')}</div>
+  <div style="margin-top:12px">
+    <a class="gbtn" style="max-width:280px;margin:0 auto" href="../index.html?cty=${_selectedCty}">View All ${books.length} Bookmakers for ${cd.name} →</a>
+  </div>
+</div>`;
+}
+
+function srchCountry(q){
+  document.getElementById('srch-clear-btn').classList.toggle('show',q.length>0);
+  renderGrid(q);
+}
+function clearCtySearch(){
+  document.getElementById('srch-inp').value='';
+  document.getElementById('srch-clear-btn').classList.remove('show');
+  renderGrid();
+}
+
+async function init(){
+  await waitForCountry();
+  const params=new URLSearchParams(window.location.search);
+  const urlSel=params.get('sel');
+  const urlRegion=params.get('region');
+  if(urlRegion){
+    _activeRegion=urlRegion;
+    document.querySelectorAll('[data-region]').forEach(b=>b.classList.toggle('on',b.dataset.region===urlRegion));
+  }
+  syncCountryUI();
+  H('foot-yr',NOW.getFullYear());
+  renderGrid();
+  if(urlSel&&COUNTRY_DATA[urlSel]){
+    _selectedCty=urlSel;
+    renderGrid();
+    renderDetail();
+    setTimeout(()=>{
+      const el=document.getElementById('cty-detail');
+      if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'});
+    },200);
+  }
+}
+init();
+</script>
+</body>
+</html>

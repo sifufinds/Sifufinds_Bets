@@ -1,0 +1,47 @@
+name: Agent 4 — Community Engagement
+
+on:
+  schedule:
+    # 4x per day: 06:00, 10:00, 15:00, 19:00 UTC (07:00, 11:00, 16:00, 20:00 WAT)
+    - cron: "0 6 * * *"
+    - cron: "0 10 * * *"
+    - cron: "0 15 * * *"
+    - cron: "0 19 * * *"
+  workflow_dispatch:
+
+jobs:
+  engage-community:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run Engagement Agent
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+        run: python agent4_engagement.py
+
+      - name: Commit engagement log
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add agents/python/engagement_queue.json agents/python/agent_log.json || true
+          git diff --cached --quiet || git commit -m "Agent 4: engaged $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,40 @@
+name: Agent 2 — SEO Optimizer
+
+on:
+  schedule:
+    # Runs at 02:00 UTC daily (03:00 WAT)
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  seo-optimize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run SEO Optimizer
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python agent2_seo.py
+
+      - name: Commit SEO output
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add agents/python/latest_seo.json agents/python/agent_log.json || true
+          git diff --cached --quiet || git commit -m "Agent 2: SEO $(date -u '+%Y-%m-%d') UTC"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

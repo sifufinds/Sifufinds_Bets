@@ -1,0 +1,50 @@
+name: Agent 3 — Social Media Manager
+
+on:
+  schedule:
+    # 4x per day: 07:00, 11:00, 16:00, 20:00 UTC (08:00, 12:00, 17:00, 21:00 WAT)
+    - cron: "0 7 * * *"
+    - cron: "0 11 * * *"
+    - cron: "0 16 * * *"
+    - cron: "0 20 * * *"
+  workflow_dispatch:
+
+jobs:
+  post-social:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Post to social media
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+          TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+        run: python agent3_social_telethon.py
+
+      - name: Commit updated queue log
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add agents/python/content_queue.json agents/python/agent_log.json || true
+          git diff --cached --quiet || git commit -m "Agent 3: posted $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

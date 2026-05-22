@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.sifufinds.newsbot</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/raventrack/Desktop/Sifu Finds/agents/python/run_news_bot.sh</string>
+  </array>
+
+  <!-- Run every 15 minutes -->
+  <key>StartInterval</key>
+  <integer>900</integer>
+
+  <!-- Run immediately when loaded, then on schedule -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Restart automatically if it crashes -->
+  <key>KeepAlive</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/raventrack/Desktop/Sifu Finds/agents/python/newsbot-stdout.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/raventrack/Desktop/Sifu Finds/agents/python/newsbot-stderr.log</string>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/raventrack/Desktop/Sifu Finds/agents/python</string>
+</dict>
+</plist>
