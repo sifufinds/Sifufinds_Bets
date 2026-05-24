@@ -1,0 +1,93 @@
+name: Brand Bonus Scraper — Daily Update
+
+# Runs daily at 08:00 UTC (09:00 WAT / 11:00 EAT / 10:00 SAST)
+# This agent scrapes all 19 bookmaker sites to verify and update:
+#   - Welcome bonuses & promo codes
+#   - Free bets & free games
+#   - Casino offers & best markets
+# Writes blog/banners.json, blog/banners-data.js, brands/data.json
+# then commits + pushes so GitHub Pages serves the updated data immediately.
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: "Scrape a specific brand (leave blank for all)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Dry run — show changes without writing"
+        required: false
+        default: "false"
+
+concurrency:
+  group: brand-scraper
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-scraper-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-scraper-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run brand bonus scraper
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.brand }}" ]; then
+            ARGS="--brand '${{ github.event.inputs.brand }}'"
+          fi
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          python agent_brand_scraper.py $ARGS
+
+      - name: Commit updated data files
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Scraper"
+          git add \
+            blog/banners.json \
+            blog/banners-data.js \
+            brands/data.json \
+            agents/python/scraper_state.json \
+            agents/python/scraper_changes.json \
+            || true
+          if git diff --cached --quiet; then
+            echo "No data changes — nothing to commit."
+            exit 0
+          fi
+          git pull --rebase origin main
+          CHANGED_COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
+          git commit -m "scraper: update brand bonuses $(date -u '+%Y-%m-%d') — ${CHANGED_COUNT} files changed"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
