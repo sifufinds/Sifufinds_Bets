@@ -253,14 +253,16 @@ async def post_to_groups(
         print("Install Telethon: pip install telethon")
         return results
 
-    api_id   = int(os.getenv("TELEGRAM_API_ID", "0"))
-    api_hash = os.getenv("TELEGRAM_API_HASH", "")
-    session  = os.getenv("TELEGRAM_SESSION_STRING", "")
-    phone    = os.getenv("TELEGRAM_PHONE", "")
+    api_id_str = os.getenv("TELEGRAM_API_ID", "").strip()
+    api_hash   = os.getenv("TELEGRAM_API_HASH", "").strip()
+    session    = os.getenv("TELEGRAM_SESSION_STRING", "").strip()
+    phone      = os.getenv("TELEGRAM_PHONE", "").strip()
 
-    if api_id == 0:
-        print("✗ TELEGRAM_API_ID not set.")
+    if not api_id_str or not api_hash or not session:
+        print("✗ Telethon credentials not set (TELEGRAM_API_ID / TELEGRAM_API_HASH / TELEGRAM_SESSION_STRING).")
         return results
+
+    api_id = int(api_id_str)
 
     session_obj = StringSession(session) if session else StringSession()
 

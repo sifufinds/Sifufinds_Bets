@@ -9,6 +9,7 @@ Usage:
   python agent_telegram_offers.py --force    # ignore cooldown, post anyway
 """
 import argparse
+import asyncio
 import json
 import os
 import sys
@@ -25,9 +26,9 @@ from utils.logger import log
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
-CHANNEL   = os.getenv("TELEGRAM_CHANNEL_USERNAME", "@sifufinds")
-SITE_URL  = "https://sifufinds.com"
+CHANNEL    = os.getenv("TELEGRAM_CHANNEL_USERNAME", "@sifufinds")
+BOT_TOKEN  = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
+SITE_URL   = "https://sifufinds.com"
 STATE_FILE = Path(__file__).parent / "offers_state.json"
 
 # Minimum hours between posts of the SAME brand
@@ -424,9 +425,29 @@ def build_offer_message(brand: dict) -> str:
 
 # ── TELEGRAM SENDER ───────────────────────────────────────────────────────────
 
-def send_to_channel(message: str) -> bool:
+async def _send_telethon(message: str) -> bool:
+    """Primary sender — uses Telethon user session (same creds as all other agents)."""
+    api_id_str = os.getenv("TELEGRAM_API_ID", "").strip()
+    api_hash   = os.getenv("TELEGRAM_API_HASH", "").strip()
+    session    = os.getenv("TELEGRAM_SESSION_STRING", "").strip()
+
+    if not api_id_str or not api_hash or not session:
+        return False
+
+    try:
+        from telethon import TelegramClient
+        from telethon.sessions import StringSession
+        async with TelegramClient(StringSession(session), int(api_id_str), api_hash) as client:
+            await client.send_message(CHANNEL, message, parse_mode="html")
+        return True
+    except Exception as e:
+        print(f"✗ Telethon error: {e}")
+        return False
+
+
+def _send_bot_token(message: str) -> bool:
+    """Fallback sender — uses Bot Token if Telethon creds not available."""
     if not BOT_TOKEN:
-        print("✗ TELEGRAM_BOT_TOKEN not set.")
         return False
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     resp = requests.post(url, json={
@@ -437,8 +458,16 @@ def send_to_channel(message: str) -> bool:
     }, timeout=15)
     ok = resp.status_code == 200
     if not ok:
-        print(f"✗ Telegram error: {resp.json().get('description', resp.text[:200])}")
+        print(f"✗ Bot token error: {resp.json().get('description', resp.text[:200])}")
     return ok
+
+
+def send_to_channel(message: str) -> bool:
+    """Try Telethon first, fall back to bot token."""
+    if asyncio.run(_send_telethon(message)):
+        return True
+    print("Telethon unavailable — trying bot token fallback...")
+    return _send_bot_token(message)
 
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
