@@ -35,6 +35,8 @@ STATE_FILE = Path(__file__).parent / "offers_state.json"
 BRAND_COOLDOWN_HOURS = 48
 
 # ── BRANDS (full rotation — all 19 bookmakers) ────────────────────────────────
+# url: affiliate link where available, direct brand URL otherwise
+# No promo codes — do not add unless instructed
 
 BRANDS = [
     {
@@ -43,7 +45,7 @@ BRANDS = [
         "countries": ["Nigeria"],
         "welcome": "₦2,500 Free Bet on Signup + 170% ACCA Boost",
         "bonus_highlight": "No deposit needed",
-        "promo_code": "9BONUS",
+        "url": "https://www.bet9ja.com",
         "min_deposit": "₦100",
         "stars": 5,
         "instant_withdrawal": True,
@@ -58,7 +60,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Uganda", "Tanzania"],
         "welcome": "150% Welcome Bonus – Up to ₦30,000",
         "bonus_highlight": "150% free bet gifts on qualifying deposits",
-        "promo_code": None,
+        "url": "https://www.sportybet.com/ng/",
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -73,7 +75,7 @@ BRANDS = [
         "countries": ["Nigeria"],
         "welcome": "₦100 Free Bets + 10 Aviator Flights — No Deposit",
         "bonus_highlight": "Zero deposit required to claim",
-        "promo_code": "BONUSKG",
+        "url": "https://www.betking.com",
         "min_deposit": "₦0",
         "stars": 5,
         "instant_withdrawal": True,
@@ -88,7 +90,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania", "Uganda", "Zambia"],
         "welcome": "300% First Deposit Bonus – Up to ₦1,200,000",
         "bonus_highlight": "Highest welcome bonus in Africa",
-        "promo_code": "1BONUSNG",
+        "url": "https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97",
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -103,7 +105,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "South Africa", "Ghana", "Tanzania"],
         "welcome": "Up to ₦100,000 in Free Bets — First 7 Days",
         "bonus_highlight": "Free bets on every settled stake for 7 days",
-        "promo_code": "WAYBON",
+        "url": "https://www.betway.com/en-ng/",
         "min_deposit": "₦1,000",
         "stars": 4,
         "instant_withdrawal": True,
@@ -118,7 +120,7 @@ BRANDS = [
         "countries": ["South Africa", "Kenya", "Uganda", "Tanzania"],
         "welcome": "R25 Free Bet on Registration — No Deposit",
         "bonus_highlight": "25 years of trust in South Africa",
-        "promo_code": "HOLLYWOODBETS",
+        "url": "https://www.hollywoodbets.net/",
         "min_deposit": "R5",
         "stars": 5,
         "instant_withdrawal": True,
@@ -133,7 +135,7 @@ BRANDS = [
         "countries": ["Kenya", "Tanzania", "Uganda", "Malawi", "Ghana"],
         "welcome": "Free Bet + Aviator Free Bets on Signup",
         "bonus_highlight": "Operator of the Year 2025 — 8M+ users",
-        "promo_code": None,
+        "url": "https://www.betika.com/en-ke/",
         "min_deposit": "KSh 10",
         "stars": 5,
         "instant_withdrawal": True,
@@ -148,7 +150,7 @@ BRANDS = [
         "countries": ["Kenya", "Tanzania", "Uganda", "Rwanda"],
         "welcome": "300% Welcome Karibu Gift on First Deposit",
         "bonus_highlight": "Triple your first deposit as free bets",
-        "promo_code": None,
+        "url": "https://www.sportpesa.co.ke",
         "min_deposit": "KSh 10",
         "stars": 5,
         "instant_withdrawal": True,
@@ -163,7 +165,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania", "Ethiopia"],
         "welcome": "200% First Deposit Bonus – Up to ₦480,000",
         "bonus_highlight": "150+ sports markets — most in Africa",
-        "promo_code": "MBMAX",
+        "url": "https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559",
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": False,
@@ -178,7 +180,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Zimbabwe"],
         "welcome": "100% Bonus Up to ₦50,000 + 500 Aviator Free Bets",
         "bonus_highlight": "500 Aviator free bets included",
-        "promo_code": None,
+        "url": "https://www.mozzartbet.com/en/",
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -193,7 +195,7 @@ BRANDS = [
         "countries": ["Nigeria"],
         "welcome": "Free Bet on First Deposit + Daily Free Bets",
         "bonus_highlight": "Nigeria's pioneer bookmaker since 2009",
-        "promo_code": None,
+        "url": "https://www.nairabet.com",
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -208,7 +210,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania"],
         "welcome": "100% First Deposit Bonus – Up to ₦207,500",
         "bonus_highlight": "Proven fast payouts, 35 sports",
-        "promo_code": "BNSNG",
+        "url": "https://22bet.com",
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -223,7 +225,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Uganda", "Tanzania"],
         "welcome": "Weekly Jackpot — Win Millions from ₦50 Stake",
         "bonus_highlight": "Jackpot entry from just ₦50 / KSh 1 min stake",
-        "promo_code": None,
+        "url": "https://www.betpawa.ng",
         "min_deposit": "₦50",
         "stars": 4,
         "instant_withdrawal": True,
@@ -238,7 +240,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania"],
         "welcome": "200% First Deposit Bonus – Up to ₦130,000",
         "bonus_highlight": "Easy 5x wagering requirement",
-        "promo_code": "WBONUS1",
+        "url": "https://bwredir.com/1Lvf?p=%2Fregistration%2F",
         "min_deposit": "₦400",
         "stars": 3,
         "instant_withdrawal": False,
@@ -253,7 +255,7 @@ BRANDS = [
         "countries": ["Kenya"],
         "welcome": "KSh 30 Free Bet on Registration — No Deposit",
         "bonus_highlight": "Min stake KSh 1 — most affordable in Kenya",
-        "promo_code": None,
+        "url": "https://odibets.com/",
         "min_deposit": "KSh 10",
         "stars": 4,
         "instant_withdrawal": True,
@@ -268,7 +270,7 @@ BRANDS = [
         "countries": ["South Africa", "Zimbabwe", "Zambia"],
         "welcome": "R10 Free Bet on Registration",
         "bonus_highlight": "SuperBanker weekly cash bonuses",
-        "promo_code": None,
+        "url": "https://www.supabets.com/",
         "min_deposit": "R5",
         "stars": 4,
         "instant_withdrawal": True,
@@ -283,7 +285,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya"],
         "welcome": "Deposit ₦50, Get ₦200 in Free Bets",
         "bonus_highlight": "Beginner-friendly low minimum stake",
-        "promo_code": None,
+        "url": "https://www.bangbet.com",
         "min_deposit": "₦50",
         "stars": 3,
         "instant_withdrawal": True,
@@ -298,7 +300,7 @@ BRANDS = [
         "countries": ["Kenya"],
         "welcome": "100% Welcome Bonus – Up to KSh 5,000",
         "bonus_highlight": "Instant M-Pesa payouts",
-        "promo_code": None,
+        "url": "https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235",
         "min_deposit": "KSh 10",
         "stars": 4,
         "instant_withdrawal": True,
@@ -313,7 +315,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania"],
         "welcome": "200% First Deposit Bonus – Up to ₦200,000",
         "bonus_highlight": "50+ sports markets, live streaming",
-        "promo_code": None,
+        "url": "https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569",
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -396,7 +398,6 @@ def _country_flags(countries: list[str]) -> str:
 
 
 def build_offer_message(brand: dict) -> str:
-    code_line = f"🎟 Promo Code: <b>{brand['promo_code']}</b>\n" if brand.get("promo_code") else ""
     flags = _country_flags(brand["countries"])
     countries_str = " · ".join(brand["countries"][:5])
     if len(brand["countries"]) > 5:
@@ -407,7 +408,6 @@ def build_offer_message(brand: dict) -> str:
         f"━━━━━━━━━━━━━━━━━━━━━\n"
         f"💰 <b>{brand['welcome']}</b>\n"
         f"✨ {brand['bonus_highlight']}\n"
-        f"{code_line}"
         f"━━━━━━━━━━━━━━━━━━━━━\n"
         f"{_stars(brand['stars'])}  {brand['tag']}\n\n"
         f"💳 Min Deposit: {brand['min_deposit']}\n"
@@ -415,7 +415,8 @@ def build_offer_message(brand: dict) -> str:
         f"💸 Cash-Out: {_yes_no(brand['cashout'])}\n"
         f"🛡 {brand['licence']}\n\n"
         f"🌍 Available in: {countries_str}\n\n"
-        f"👉 Compare all bonuses → <a href=\"{SITE_URL}\">{SITE_URL}</a>\n"
+        f"👉 Claim offer → <a href=\"{brand['url']}\">{brand['name']}</a>\n"
+        f"📊 Compare all bonuses → <a href=\"{SITE_URL}\">{SITE_URL}</a>\n"
         f"📲 Join our channel → @sifufinds\n\n"
         f"{brand['hashtags']} #SifuFinds #BettingBonus #AfricanBetting\n\n"
         f"<i>18+ | Bet Responsibly | T&Cs Apply</i>"
