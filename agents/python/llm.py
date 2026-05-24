@@ -35,15 +35,28 @@ if _gemini_key:
 
 
 def ask(system_prompt: str, user_message: str) -> str:
-    if _groq_client:
-        return _ask_groq(system_prompt, user_message, max_tokens=4096)
-    return _ask_gemini(system_prompt, user_message, max_tokens=4096)
+    return _ask_with_fallback(system_prompt, user_message, max_tokens=4096)
 
 
 def ask_long(system_prompt: str, user_message: str) -> str:
+    return _ask_with_fallback(system_prompt, user_message, max_tokens=8000)
+
+
+def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -> str:
     if _groq_client:
-        return _ask_groq(system_prompt, user_message, max_tokens=8000)
-    return _ask_gemini(system_prompt, user_message, max_tokens=8000)
+        try:
+            return _ask_groq(system_prompt, user_message, max_tokens)
+        except Exception as e:
+            err = str(e).lower()
+            # Fall through to Gemini on rate limit or quota errors
+            if "rate_limit" in err or "429" in err or "quota" in err or "tokens" in err:
+                if _gemini_client:
+                    print(f"[llm] Groq rate-limited — falling back to Gemini")
+                    return _ask_gemini(system_prompt, user_message, max_tokens)
+            raise
+    if _gemini_client:
+        return _ask_gemini(system_prompt, user_message, max_tokens)
+    raise RuntimeError("No AI provider available")
 
 
 def _ask_groq(system_prompt: str, user_message: str, max_tokens: int) -> str:
