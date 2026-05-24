@@ -1,0 +1,63 @@
+name: Telegram Channel Growth — Post in African groups 3x/day
+
+on:
+  schedule:
+    # 3x per day: 08:00, 14:00, 19:00 UTC (09:00, 15:00, 20:00 WAT)
+    - cron: "0 8 * * *"
+    - cron: "0 14 * * *"
+    - cron: "0 19 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview messages without sending (true/false)"
+        required: false
+        default: "false"
+      limit:
+        description: "Max groups to post in per run"
+        required: false
+        default: "4"
+
+permissions:
+  contents: write
+
+jobs:
+  grow-channel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run growth agent
+        working-directory: agents/python
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+          TELEGRAM_PHONE: ${{ secrets.TELEGRAM_PHONE }}
+          TELEGRAM_GROWTH_GROUPS: ${{ secrets.TELEGRAM_GROWTH_GROUPS }}
+        run: |
+          ARGS="--limit ${{ github.event.inputs.limit || '4' }}"
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          python agent_telegram_growth.py $ARGS
+
+      - name: Commit updated growth state
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add agents/python/growth_state.json agents/python/agent_log.json || true
+          git diff --cached --quiet || git commit -m "growth: posted to groups $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

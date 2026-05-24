@@ -1,0 +1,65 @@
+name: Telegram Brand Offers — Post every 3 hours
+
+on:
+  schedule:
+    # 6x per day: 06:00, 09:00, 12:00, 15:00, 18:00, 21:00 UTC
+    # (07:00, 10:00, 13:00, 16:00, 19:00, 22:00 WAT / EAT)
+    - cron: "0 6 * * *"
+    - cron: "0 9 * * *"
+    - cron: "0 12 * * *"
+    - cron: "0 15 * * *"
+    - cron: "0 18 * * *"
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: "Post a specific brand (leave blank for rotation)"
+        required: false
+        default: ""
+      force:
+        description: "Ignore cooldown and post anyway"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  post-offer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Post brand offer to Telegram
+        working-directory: agents/python
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.brand }}" ]; then ARGS="--brand '${{ github.event.inputs.brand }}'"; fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          python agent_telegram_offers.py $ARGS
+
+      - name: Commit updated state
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add agents/python/offers_state.json agents/python/agent_log.json || true
+          git diff --cached --quiet || git commit -m "offers: posted $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
