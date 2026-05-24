@@ -17,6 +17,10 @@ on:
         required: false
         default: "4"
 
+concurrency:
+  group: telegram-growth
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -35,6 +39,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
 
       - name: Install dependencies
         run: pip install -r agents/python/requirements.txt
@@ -57,7 +68,10 @@ jobs:
           git config --local user.email "agents@sifufinds.com"
           git config --local user.name "SifuFinds Agent"
           git add agents/python/growth_state.json agents/python/agent_log.json || true
-          git diff --cached --quiet || git commit -m "growth: posted to groups $(date -u '+%Y-%m-%d %H:%M') UTC"
-          git push
+          git diff --cached --quiet || (
+            git pull --rebase origin main &&
+            git commit -m "growth: posted to groups $(date -u '+%Y-%m-%d %H:%M') UTC" &&
+            git push
+          )
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

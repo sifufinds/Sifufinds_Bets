@@ -1,0 +1,49 @@
+name: SEO — Update sitemap lastmod after blog publish
+
+on:
+  # Trigger whenever the breaking news bot pushes new posts
+  push:
+    branches: [main]
+    paths:
+      - "blog/posts.json"
+      - "blog/posts-data.js"
+      - "blog/ticker.json"
+  # Also allow manual trigger
+  workflow_dispatch:
+
+concurrency:
+  group: seo-sitemap
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  update-sitemap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Update sitemap lastmod dates
+        run: |
+          TODAY=$(date -u '+%Y-%m-%d')
+          # Replace all lastmod dates in sitemap.xml with today's date
+          sed -i "s|<lastmod>[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}</lastmod>|<lastmod>${TODAY}</lastmod>|g" sitemap.xml
+          # Set blog and ticker pages to now (they just changed)
+          echo "Sitemap lastmod updated to ${TODAY}"
+
+      - name: Commit updated sitemap
+        run: |
+          git config --local user.email "seo@sifufinds.com"
+          git config --local user.name "SifuFinds SEO Bot"
+          git add sitemap.xml
+          git diff --cached --quiet || (
+            git pull --rebase origin main &&
+            git commit -m "seo: update sitemap lastmod to $(date -u '+%Y-%m-%d')" &&
+            git push
+          )
