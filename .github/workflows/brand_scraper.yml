@@ -1,7 +1,8 @@
 name: Brand Bonus Scraper — Daily Update
 
-# Runs daily at 08:00 UTC (09:00 WAT / 11:00 EAT / 10:00 SAST)
-# This agent scrapes all 19 bookmaker sites to verify and update:
+# Runs daily at 02:00 UTC — first run of the day so Groq/Gemini quotas are fresh.
+# (03:00 WAT / 05:00 EAT / 04:00 SAST)
+# This agent scrapes all 11 bookmaker banner brands to verify and update:
 #   - Welcome bonuses & promo codes
 #   - Free bets & free games
 #   - Casino offers & best markets
@@ -10,7 +11,7 @@ name: Brand Bonus Scraper — Daily Update
 
 on:
   schedule:
-    - cron: "0 8 * * *"
+    - cron: "0 2 * * *"
   workflow_dispatch:
     inputs:
       brand:

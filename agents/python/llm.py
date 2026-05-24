@@ -31,7 +31,7 @@ if _gemini_key:
     from google import genai
     from google.genai import types as _gtypes
     _gemini_client = genai.Client(api_key=_gemini_key)
-    _GEMINI_MODEL = "gemini-2.0-flash-lite"
+    _GEMINI_MODEL = "gemini-1.5-flash"
 
 
 def ask(system_prompt: str, user_message: str) -> str:
