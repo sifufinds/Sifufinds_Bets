@@ -4,18 +4,6 @@
 
   <!-- ── CORE PAGES ─────────────────────────────────────────────────── -->
   <url>
-    <loc>https://sifufinds.com/about/</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://sifufinds.com/tips/world-cup-2026/</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.92</priority>
-  </url>
-  <url>
     <loc>https://sifufinds.com/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>daily</changefreq>
@@ -51,8 +39,22 @@
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://sifufinds.com/about/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-  <!-- ── COUNTRY PAGES — Nigeria ───────────────────────────────────── -->
+  <!-- ── TIME-SENSITIVE CONTENT ────────────────────────────────────── -->
+  <url>
+    <loc>https://sifufinds.com/tips/world-cup-2026/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+  </url>
+
+  <!-- ── COUNTRY PAGES — Top Tier ──────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/nigeria/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -61,8 +63,6 @@
     <xhtml:link rel="alternate" hreflang="en-NG" href="https://sifufinds.com/countries/nigeria/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/nigeria/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Kenya ─────────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/kenya/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -71,8 +71,6 @@
     <xhtml:link rel="alternate" hreflang="en-KE" href="https://sifufinds.com/countries/kenya/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/kenya/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — South Africa ──────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/south-africa/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -81,18 +79,32 @@
     <xhtml:link rel="alternate" hreflang="en-ZA" href="https://sifufinds.com/countries/south-africa/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/south-africa/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Ghana ─────────────────────────────────────── -->
+  <url>
+    <loc>https://sifufinds.com/countries/egypt/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.91</priority>
+    <xhtml:link rel="alternate" hreflang="en-EG" href="https://sifufinds.com/countries/egypt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/egypt/"/>
+  </url>
+  <url>
+    <loc>https://sifufinds.com/countries/morocco/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.91</priority>
+    <xhtml:link rel="alternate" hreflang="en-MA" href="https://sifufinds.com/countries/morocco/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/morocco/"/>
+  </url>
   <url>
     <loc>https://sifufinds.com/countries/ghana/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.91</priority>
+    <priority>0.90</priority>
     <xhtml:link rel="alternate" hreflang="en-GH" href="https://sifufinds.com/countries/ghana/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/ghana/"/>
   </url>
 
-  <!-- ── COUNTRY PAGES — Tanzania ──────────────────────────────────── -->
+  <!-- ── COUNTRY PAGES — Second Tier ───────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/tanzania/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -101,8 +113,6 @@
     <xhtml:link rel="alternate" hreflang="en-TZ" href="https://sifufinds.com/countries/tanzania/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/tanzania/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Uganda ────────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/uganda/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -111,8 +121,6 @@
     <xhtml:link rel="alternate" hreflang="en-UG" href="https://sifufinds.com/countries/uganda/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/uganda/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Zambia ────────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/zambia/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -121,8 +129,6 @@
     <xhtml:link rel="alternate" hreflang="en-ZM" href="https://sifufinds.com/countries/zambia/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/zambia/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Ethiopia ──────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/ethiopia/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -131,8 +137,6 @@
     <xhtml:link rel="alternate" hreflang="en-ET" href="https://sifufinds.com/countries/ethiopia/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/ethiopia/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Ivory Coast ──────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/ivory-coast/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -141,8 +145,6 @@
     <xhtml:link rel="alternate" hreflang="en-CI" href="https://sifufinds.com/countries/ivory-coast/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/ivory-coast/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Cameroon ──────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/cameroon/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -151,8 +153,6 @@
     <xhtml:link rel="alternate" hreflang="en-CM" href="https://sifufinds.com/countries/cameroon/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/cameroon/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Senegal ───────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/senegal/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -161,8 +161,6 @@
     <xhtml:link rel="alternate" hreflang="en-SN" href="https://sifufinds.com/countries/senegal/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/senegal/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Rwanda ────────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/rwanda/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -171,8 +169,6 @@
     <xhtml:link rel="alternate" hreflang="en-RW" href="https://sifufinds.com/countries/rwanda/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/rwanda/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Zimbabwe ──────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/zimbabwe/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -182,7 +178,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/zimbabwe/"/>
   </url>
 
-  <!-- ── COUNTRY PAGES — Malawi ────────────────────────────────────── -->
+  <!-- ── COUNTRY PAGES — Third Tier ────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/malawi/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -191,8 +187,6 @@
     <xhtml:link rel="alternate" hreflang="en-MW" href="https://sifufinds.com/countries/malawi/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/malawi/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Mozambique ───────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/mozambique/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -201,8 +195,6 @@
     <xhtml:link rel="alternate" hreflang="en-MZ" href="https://sifufinds.com/countries/mozambique/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/mozambique/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Angola ────────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/angola/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -211,8 +203,6 @@
     <xhtml:link rel="alternate" hreflang="en-AO" href="https://sifufinds.com/countries/angola/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/angola/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — DR Congo ──────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/dr-congo/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -221,8 +211,6 @@
     <xhtml:link rel="alternate" hreflang="en-CD" href="https://sifufinds.com/countries/dr-congo/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/dr-congo/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Botswana ──────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/botswana/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -231,8 +219,6 @@
     <xhtml:link rel="alternate" hreflang="en-BW" href="https://sifufinds.com/countries/botswana/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/botswana/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Namibia ───────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/countries/namibia/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -241,46 +227,24 @@
     <xhtml:link rel="alternate" hreflang="en-NA" href="https://sifufinds.com/countries/namibia/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/namibia/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Egypt ─────────────────────────────────────── -->
   <url>
-    <loc>https://sifufinds.com/countries/egypt/</loc>
+    <loc>https://sifufinds.com/countries/sierra-leone/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-    <xhtml:link rel="alternate" hreflang="en-EG" href="https://sifufinds.com/countries/egypt/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/egypt/"/>
+    <priority>0.78</priority>
+    <xhtml:link rel="alternate" hreflang="en-SL" href="https://sifufinds.com/countries/sierra-leone/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/sierra-leone/"/>
   </url>
-
-  <!-- ── COUNTRY PAGES — Morocco ───────────────────────────────────── -->
   <url>
-    <loc>https://sifufinds.com/countries/morocco/</loc>
+    <loc>https://sifufinds.com/countries/liberia/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-    <xhtml:link rel="alternate" hreflang="en-MA" href="https://sifufinds.com/countries/morocco/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/morocco/"/>
+    <priority>0.77</priority>
+    <xhtml:link rel="alternate" hreflang="en-LR" href="https://sifufinds.com/countries/liberia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/liberia/"/>
   </url>
 
-  <!-- ── BONUS, PAYMENT & EDUCATIONAL GUIDES ──────────────────────── -->
-  <url>
-    <loc>https://sifufinds.com/guides/how-to-bet-on-football/</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.84</priority>
-  </url>
-  <url>
-    <loc>https://sifufinds.com/guides/what-is-accumulator-betting/</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.83</priority>
-  </url>
-  <url>
-    <loc>https://sifufinds.com/betting/mtn-momo-betting/</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.84</priority>
-  </url>
+  <!-- ── BONUS & PAYMENT GUIDES ────────────────────────────────────── -->
   <url>
     <loc>https://sifufinds.com/bonuses/no-deposit/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -297,32 +261,20 @@
     <loc>https://sifufinds.com/betting/mtn-momo-betting/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.86</priority>
+    <priority>0.84</priority>
   </url>
 
-  <!-- ── TIPS COUNTRY VARIANTS ──────────────────────────────────────── -->
+  <!-- ── EDUCATIONAL GUIDES ─────────────────────────────────────────── -->
   <url>
-    <loc>https://sifufinds.com/tips/?c=NG</loc>
+    <loc>https://sifufinds.com/guides/how-to-bet-on-football/</loc>
     <lastmod>2026-06-01</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.85</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.84</priority>
   </url>
   <url>
-    <loc>https://sifufinds.com/tips/?c=KE</loc>
+    <loc>https://sifufinds.com/guides/what-is-accumulator-betting/</loc>
     <lastmod>2026-06-01</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://sifufinds.com/tips/?c=GH</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.83</priority>
-  </url>
-  <url>
-    <loc>https://sifufinds.com/tips/?c=ZA</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>hourly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.83</priority>
   </url>
 
@@ -391,37 +343,25 @@
     <loc>https://sifufinds.com/?filter=nodep</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.88</priority>
+    <priority>0.78</priority>
   </url>
   <url>
     <loc>https://sifufinds.com/?filter=mpesa</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.86</priority>
+    <priority>0.76</priority>
   </url>
   <url>
     <loc>https://sifufinds.com/?filter=cashout</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.84</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://sifufinds.com/?filter=mtn</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.84</priority>
-  </url>
-  <url>
-    <loc>https://sifufinds.com/?filter=instant</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.83</priority>
-  </url>
-  <url>
-    <loc>https://sifufinds.com/?filter=stream</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.82</priority>
+    <priority>0.75</priority>
   </url>
 
 </urlset>
