@@ -28,12 +28,14 @@ jobs:
   grow-channel:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -64,14 +66,30 @@ jobs:
           python agent_telegram_growth.py $ARGS
 
       - name: Commit updated growth state
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "agents@sifufinds.com"
           git config --local user.name "SifuFinds Agent"
           git add agents/python/growth_state.json agents/python/agent_log.json || true
-          if ! git diff --cached --quiet; then
-            git commit -m "growth: posted to groups $(date -u '+%Y-%m-%d %H:%M') UTC"
-            git pull --rebase origin main
-            git push
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git commit -m "growth: posted to groups $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          # Retry push up to 5 times — handles concurrent bot pushes
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done

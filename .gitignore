@@ -52,6 +52,9 @@ Thumbs.db
 *.swo
 *~
 
+# ── Firecrawl research scrapes (temp data, not for deploy) ───────────────────
+.firecrawl/
+
 # ── Dev server logs ───────────────────────────────────────────────────────────
 /tmp/ruby-server.log
 *.log

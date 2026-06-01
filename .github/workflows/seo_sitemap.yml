@@ -22,19 +22,20 @@ jobs:
   update-sitemap:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Update sitemap lastmod dates
         run: |
           TODAY=$(date -u '+%Y-%m-%d')
           # Replace all lastmod dates in sitemap.xml with today's date
           sed -i "s|<lastmod>[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}</lastmod>|<lastmod>${TODAY}</lastmod>|g" sitemap.xml
-          # Set blog and ticker pages to now (they just changed)
           echo "Sitemap lastmod updated to ${TODAY}"
 
       - name: Commit updated sitemap
@@ -42,8 +43,24 @@ jobs:
           git config --local user.email "seo@sifufinds.com"
           git config --local user.name "SifuFinds SEO Bot"
           git add sitemap.xml
-          git diff --cached --quiet || (
-            git pull --rebase origin main &&
-            git commit -m "seo: update sitemap lastmod to $(date -u '+%Y-%m-%d')" &&
-            git push
-          )
+          if git diff --cached --quiet; then
+            echo "No sitemap changes"
+            exit 0
+          fi
+          git commit -m "seo: update sitemap lastmod to $(date -u '+%Y-%m-%d')"
+
+          # Retry push up to 5 times — handles concurrent bot pushes
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done

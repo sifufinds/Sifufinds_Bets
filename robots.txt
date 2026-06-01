@@ -8,6 +8,9 @@ Disallow: /firecrawl/
 Disallow: /geo-content-writer/
 Disallow: /.github/
 Disallow: /.venv/
+Disallow: /add_eg_ma_selectors.py
+Disallow: /gen_eg_ma.py
+Disallow: /generate_country_pages.py
 
 # Block common bad bots that waste crawl budget
 User-agent: AhrefsBot

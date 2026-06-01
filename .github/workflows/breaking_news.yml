@@ -18,12 +18,17 @@ jobs:
   publish-breaking-news:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
+
+      - name: Pull latest content (avoid stale reads)
+        run: git pull --rebase origin main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -80,9 +85,24 @@ jobs:
           git config --local user.email "newsbot@sifufinds.com"
           git config --local user.name "SifuFinds Breaking News Bot"
           git add blog/posts.json blog/posts-data.js blog/ticker.json blog/ticker-data.js
-          # Commit first, then rebase on top of any concurrent pushes
-          git diff --cached --quiet || (
-            git commit -m "🔴 Breaking news: $(date -u '+%Y-%m-%d %H:%M') UTC" &&
-            git pull --rebase origin main &&
-            git push
-          )
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "🔴 Breaking news: $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          # Retry push up to 5 times — handles concurrent bot pushes
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done

@@ -34,12 +34,14 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -72,6 +74,8 @@ jobs:
           python agent_brand_scraper.py $ARGS
 
       - name: Commit updated data files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "agents@sifufinds.com"
           git config --local user.name "SifuFinds Scraper"
@@ -88,7 +92,19 @@ jobs:
           fi
           CHANGED_COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
           git commit -m "scraper: update brand bonuses $(date -u '+%Y-%m-%d') — ${CHANGED_COUNT} files changed"
-          git pull --rebase origin main
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # Retry push up to 5 times — handles concurrent bot pushes
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done
