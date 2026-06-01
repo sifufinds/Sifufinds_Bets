@@ -1,5 +1,99 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#1a6b35"/>
-  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3" fill="none"/>
-  <path d="M12 32h40M32 12c-5 7-5 27 0 40M32 12c5 7 5 27 0 40M18 21h28M18 43h28" stroke="white" stroke-width="2.5" fill="none"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- Metallic gold radial for Africa body -->
+    <radialGradient id="afG" cx="38%" cy="28%" r="68%">
+      <stop offset="0%"   stop-color="#FCECA2"/>
+      <stop offset="28%"  stop-color="#D4B26F"/>
+      <stop offset="62%"  stop-color="#A48243"/>
+      <stop offset="100%" stop-color="#6B5228"/>
+    </radialGradient>
+    <!-- Africa border gradient -->
+    <linearGradient id="afBrd" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#FCECA2"/>
+      <stop offset="100%" stop-color="#7A5C28"/>
+    </linearGradient>
+    <!-- Pin body: dark charcoal-gold -->
+    <linearGradient id="pinBG" x1="25%" y1="0%" x2="75%" y2="100%">
+      <stop offset="0%"   stop-color="#3C2E10"/>
+      <stop offset="100%" stop-color="#0E0A04"/>
+    </linearGradient>
+    <!-- Pin border: gold highlight ring -->
+    <linearGradient id="pinBrd" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#FCECA2"/>
+      <stop offset="50%"  stop-color="#D4B26F"/>
+      <stop offset="100%" stop-color="#8A6830"/>
+    </linearGradient>
+    <!-- Compass lens face -->
+    <radialGradient id="lensG" cx="38%" cy="32%" r="65%">
+      <stop offset="0%"   stop-color="#3A2E10"/>
+      <stop offset="100%" stop-color="#0C0804"/>
+    </radialGradient>
+    <!-- Africa drop shadow -->
+    <filter id="afSha" x="-8%" y="-8%" width="122%" height="122%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="rgba(0,0,0,.55)"/>
+    </filter>
+    <!-- Pin drop shadow -->
+    <filter id="pinSha" x="-30%" y="-15%" width="165%" height="145%">
+      <feDropShadow dx="1" dy="2.5" stdDeviation="2.5" flood-color="rgba(0,0,0,.65)"/>
+    </filter>
+  </defs>
+
+  <!-- Africa silhouette — clockwise from Morocco -->
+  <g filter="url(#afSha)">
+    <path
+      d="M22,6  L50,4  L60,7  L68,11 L71,16
+         L76,24 L82,33 L80,44 L74,53 L71,63
+         L68,72 L62,82 L54,90 L50,94
+         L44,88 L35,77 L26,65 L20,55
+         L16,48 L12,42 L11,36 L11,30
+         L12,24 L10,18 L15,12 L20,7 Z"
+      fill="url(#afG)"
+      stroke="url(#afBrd)" stroke-width="1.2" stroke-linejoin="round"
+    />
+    <!-- Madagascar -->
+    <path
+      d="M86,57 L89,62 L89,73 L86,80 L83,73 L83,62 Z"
+      fill="url(#afG)"
+      stroke="url(#afBrd)" stroke-width="0.8" stroke-linejoin="round"
+    />
+  </g>
+
+  <!-- Pin tip ground shadow -->
+  <ellipse cx="54" cy="72" rx="8" ry="2.5" fill="rgba(0,0,0,.28)"/>
+
+  <!-- Location pin — gold border layer (r=14) -->
+  <g filter="url(#pinSha)">
+    <path d="M54,71
+      C54,67 40,58 40,41
+      A14,14 0 0,1 54,27
+      A14,14 0 0,1 68,41
+      C68,58 54,67 54,71 Z"
+      fill="url(#pinBrd)"/>
+
+    <!-- Pin dark body (r=12) -->
+    <path d="M54,69
+      C54,65 42,57 42,41
+      A12,12 0 0,1 54,29
+      A12,12 0 0,1 66,41
+      C66,57 54,65 54,69 Z"
+      fill="url(#pinBG)"/>
+  </g>
+
+  <!-- Compass lens circle -->
+  <circle cx="54" cy="41" r="9"   fill="url(#lensG)"/>
+  <circle cx="54" cy="41" r="8.5" fill="none" stroke="#D4B26F" stroke-width="0.7" opacity="0.8"/>
+
+  <!-- Cardinal tick marks -->
+  <line x1="54" y1="33" x2="54" y2="35.5" stroke="#FCECA2" stroke-width="1"   stroke-linecap="round"/>
+  <line x1="54" y1="46.5" x2="54" y2="49" stroke="#A48243" stroke-width="0.9" stroke-linecap="round"/>
+  <line x1="46" y1="41"   x2="48.5" y2="41" stroke="#A48243" stroke-width="0.9" stroke-linecap="round"/>
+  <line x1="59.5" y1="41" x2="62"   y2="41" stroke="#A48243" stroke-width="0.9" stroke-linecap="round"/>
+
+  <!-- Compass needle: N (bright gold) / S (dark shadow-gold) -->
+  <polygon points="54,34  56.5,41  54,42.5  51.5,41" fill="#FCECA2"/>
+  <polygon points="54,48  56.5,41  54,42.5  51.5,41" fill="#5E4924"/>
+
+  <!-- Center pivot -->
+  <circle cx="54" cy="41" r="1.6" fill="#D4B26F"/>
 </svg>
