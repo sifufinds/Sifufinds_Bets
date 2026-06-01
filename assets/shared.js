@@ -387,25 +387,25 @@ async function waitForCountry(){
 }
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
-function goHome(){window.location.href=(typeof SITE!=='undefined'?SITE.home:'index.html');}
+function goHome(){window.location.href=(typeof SITE!=='undefined'?SITE.home:'/');}
 function goFilter(f){
-  const base=typeof SITE!=='undefined'?SITE.home:'index.html';
+  const base=typeof SITE!=='undefined'?SITE.home:'/';
   window.location.href=base+(base.includes('?')?'&':'?')+'filter='+f;
 }
 function gotoTips(tf){
-  const base=typeof SITE!=='undefined'?SITE.tips:'tips/index.html';
+  const base=typeof SITE!=='undefined'?SITE.tips:'/tips/';
   window.location.href=base+(base.includes('?')?'&':'?')+'tf='+tf;
 }
 function gotoCasino(cf){
-  const base=typeof SITE!=='undefined'?SITE.casino:'casino/index.html';
+  const base=typeof SITE!=='undefined'?SITE.casino:'/casino/';
   window.location.href=base+(base.includes('?')?'&':'?')+'cf='+cf;
 }
 function gotoOdds(lg){
-  const base=typeof SITE!=='undefined'?SITE.odds:'odds/index.html';
+  const base=typeof SITE!=='undefined'?SITE.odds:'/odds/';
   window.location.href=base+(base.includes('?')?'&':'?')+'lg='+lg;
 }
 function showCty(code){
-  const base=typeof SITE!=='undefined'?SITE.countries:'countries/index.html';
+  const base=typeof SITE!=='undefined'?SITE.countries:'/countries/';
   window.location.href=base+(base.includes('?')?'&':'?')+'sel='+code;
 }
 
