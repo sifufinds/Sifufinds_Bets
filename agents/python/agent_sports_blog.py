@@ -130,7 +130,7 @@ OUTPUT FORMAT — return EXACTLY this structure, nothing outside the markers:
 
 ===META===
 {{
-  "category": "football|sportnews|betting|igaming|basketball|tennis|cricket|rugby|boxing|f1",
+  "category": "ONE of: football, sportnews, betting, igaming, basketball, tennis, cricket, rugby, boxing, f1 — pick exactly one word",
   "icon": "emoji for the category",
   "title": "Specific title referencing the ACTUAL news story (max 80 chars)",
   "slug": "url-slug-format",
@@ -205,9 +205,15 @@ Write the article now. Base it on the REAL news provided above — do not invent
 
         meta = json.loads(_clean_json(meta_raw))
 
+        # Sanitise category: LLMs sometimes echo the enum notation "a|b|c" — take first token
+        raw_cat = str(meta.get("category", category))
+        clean_cat = raw_cat.split("|")[0].split(",")[0].strip().lower()
+        if clean_cat not in CATEGORIES:
+            clean_cat = category
+
         return {
             "id": f"post-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}-{random.randint(100, 999)}",
-            "category": meta.get("category", category),
+            "category": clean_cat,
             "title": meta.get("title", ""),
             "slug": meta.get("slug", ""),
             "excerpt": meta.get("excerpt", ""),
