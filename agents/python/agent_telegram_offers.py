@@ -34,9 +34,11 @@ STATE_FILE = Path(__file__).parent / "offers_state.json"
 # Minimum hours between posts of the SAME brand
 BRAND_COOLDOWN_HOURS = 48
 
-# ── BRANDS (full rotation — all 19 bookmakers) ────────────────────────────────
-# url: affiliate link where available, direct brand URL otherwise
-# No promo codes — do not add unless instructed
+# ── BRANDS ────────────────────────────────────────────────────────────────────
+# RULE: Only post brands where affiliate=True (affiliate link exists).
+#       Brands with affiliate=False are kept for reference — add their affiliate
+#       link and flip to True when ready. Never post without an affiliate link.
+# No promo codes — do not add unless instructed.
 
 BRANDS = [
     {
@@ -46,6 +48,7 @@ BRANDS = [
         "welcome": "₦2,500 Free Bet on Signup + 170% ACCA Boost",
         "bonus_highlight": "No deposit needed",
         "url": "https://www.bet9ja.com",
+        "affiliate": False,
         "min_deposit": "₦100",
         "stars": 5,
         "instant_withdrawal": True,
@@ -61,6 +64,7 @@ BRANDS = [
         "welcome": "150% Welcome Bonus – Up to ₦30,000",
         "bonus_highlight": "150% free bet gifts on qualifying deposits",
         "url": "https://www.sportybet.com/ng/",
+        "affiliate": False,
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -76,6 +80,7 @@ BRANDS = [
         "welcome": "₦100 Free Bets + 10 Aviator Flights — No Deposit",
         "bonus_highlight": "Zero deposit required to claim",
         "url": "https://www.betking.com",
+        "affiliate": False,
         "min_deposit": "₦0",
         "stars": 5,
         "instant_withdrawal": True,
@@ -91,6 +96,7 @@ BRANDS = [
         "welcome": "300% First Deposit Bonus – Up to ₦1,200,000",
         "bonus_highlight": "Highest welcome bonus in Africa",
         "url": "https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97",
+        "affiliate": True,
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -106,6 +112,7 @@ BRANDS = [
         "welcome": "Up to ₦100,000 in Free Bets — First 7 Days",
         "bonus_highlight": "Free bets on every settled stake for 7 days",
         "url": "https://www.betway.com/en-ng/",
+        "affiliate": False,
         "min_deposit": "₦1,000",
         "stars": 4,
         "instant_withdrawal": True,
@@ -121,6 +128,7 @@ BRANDS = [
         "welcome": "R25 Free Bet on Registration — No Deposit",
         "bonus_highlight": "25 years of trust in South Africa",
         "url": "https://www.hollywoodbets.net/",
+        "affiliate": False,
         "min_deposit": "R5",
         "stars": 5,
         "instant_withdrawal": True,
@@ -136,6 +144,7 @@ BRANDS = [
         "welcome": "Free Bet + Aviator Free Bets on Signup",
         "bonus_highlight": "Operator of the Year 2025 — 8M+ users",
         "url": "https://www.betika.com/en-ke/",
+        "affiliate": False,
         "min_deposit": "KSh 10",
         "stars": 5,
         "instant_withdrawal": True,
@@ -151,6 +160,7 @@ BRANDS = [
         "welcome": "300% Welcome Karibu Gift on First Deposit",
         "bonus_highlight": "Triple your first deposit as free bets",
         "url": "https://www.sportpesa.co.ke",
+        "affiliate": False,
         "min_deposit": "KSh 10",
         "stars": 5,
         "instant_withdrawal": True,
@@ -166,6 +176,7 @@ BRANDS = [
         "welcome": "200% First Deposit Bonus – Up to ₦480,000",
         "bonus_highlight": "150+ sports markets — most in Africa",
         "url": "https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559",
+        "affiliate": True,
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": False,
@@ -181,6 +192,7 @@ BRANDS = [
         "welcome": "100% Bonus Up to ₦50,000 + 500 Aviator Free Bets",
         "bonus_highlight": "500 Aviator free bets included",
         "url": "https://www.mozzartbet.com/en/",
+        "affiliate": False,
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -196,6 +208,7 @@ BRANDS = [
         "welcome": "Free Bet on First Deposit + Daily Free Bets",
         "bonus_highlight": "Nigeria's pioneer bookmaker since 2009",
         "url": "https://www.nairabet.com",
+        "affiliate": False,
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -211,6 +224,7 @@ BRANDS = [
         "welcome": "100% First Deposit Bonus – Up to ₦207,500",
         "bonus_highlight": "Proven fast payouts, 35 sports",
         "url": "https://22bet.com",
+        "affiliate": False,
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -226,6 +240,7 @@ BRANDS = [
         "welcome": "Weekly Jackpot — Win Millions from ₦50 Stake",
         "bonus_highlight": "Jackpot entry from just ₦50 / KSh 1 min stake",
         "url": "https://www.betpawa.ng",
+        "affiliate": False,
         "min_deposit": "₦50",
         "stars": 4,
         "instant_withdrawal": True,
@@ -241,6 +256,7 @@ BRANDS = [
         "welcome": "200% First Deposit Bonus – Up to ₦130,000",
         "bonus_highlight": "Easy 5x wagering requirement",
         "url": "https://bwredir.com/1Lvf?p=%2Fregistration%2F",
+        "affiliate": True,
         "min_deposit": "₦400",
         "stars": 3,
         "instant_withdrawal": False,
@@ -256,6 +272,7 @@ BRANDS = [
         "welcome": "KSh 30 Free Bet on Registration — No Deposit",
         "bonus_highlight": "Min stake KSh 1 — most affordable in Kenya",
         "url": "https://odibets.com/",
+        "affiliate": False,
         "min_deposit": "KSh 10",
         "stars": 4,
         "instant_withdrawal": True,
@@ -271,6 +288,7 @@ BRANDS = [
         "welcome": "R10 Free Bet on Registration",
         "bonus_highlight": "SuperBanker weekly cash bonuses",
         "url": "https://www.supabets.com/",
+        "affiliate": False,
         "min_deposit": "R5",
         "stars": 4,
         "instant_withdrawal": True,
@@ -286,6 +304,7 @@ BRANDS = [
         "welcome": "Deposit ₦50, Get ₦200 in Free Bets",
         "bonus_highlight": "Beginner-friendly low minimum stake",
         "url": "https://www.bangbet.com",
+        "affiliate": False,
         "min_deposit": "₦50",
         "stars": 3,
         "instant_withdrawal": True,
@@ -301,6 +320,7 @@ BRANDS = [
         "welcome": "100% Welcome Bonus – Up to KSh 5,000",
         "bonus_highlight": "Instant M-Pesa payouts",
         "url": "https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235",
+        "affiliate": True,
         "min_deposit": "KSh 10",
         "stars": 4,
         "instant_withdrawal": True,
@@ -316,6 +336,7 @@ BRANDS = [
         "welcome": "200% First Deposit Bonus – Up to ₦200,000",
         "bonus_highlight": "50+ sports markets, live streaming",
         "url": "https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569",
+        "affiliate": True,
         "min_deposit": "₦100",
         "stars": 4,
         "instant_withdrawal": True,
@@ -326,7 +347,9 @@ BRANDS = [
     },
 ]
 
-BRAND_NAMES = [b["name"] for b in BRANDS]
+# Only brands with affiliate links are eligible for posting
+AFFILIATE_BRANDS = [b for b in BRANDS if b.get("affiliate")]
+BRAND_NAMES = [b["name"] for b in AFFILIATE_BRANDS]
 
 
 # ── STATE MANAGEMENT ──────────────────────────────────────────────────────────
@@ -349,17 +372,18 @@ def _next_brand(state: dict, force_name: str | None = None, force: bool = False)
     brand_last = state.get("brand_last_posted", {})
 
     if force_name:
-        candidates = [b for b in BRANDS if b["name"].lower() == force_name.lower()]
+        candidates = [b for b in AFFILIATE_BRANDS if b["name"].lower() == force_name.lower()]
         if not candidates:
-            print(f"✗ Brand '{force_name}' not found. Options: {', '.join(BRAND_NAMES)}")
+            print(f"✗ Brand '{force_name}' not found or has no affiliate link. Options: {', '.join(BRAND_NAMES)}")
             return None
         return candidates[0]
 
-    # Round-robin, respecting cooldown
-    start = (state.get("last_index", -1) + 1) % len(BRANDS)
-    for offset in range(len(BRANDS)):
-        idx = (start + offset) % len(BRANDS)
-        brand = BRANDS[idx]
+    # Round-robin across affiliate brands only, respecting cooldown
+    n = len(AFFILIATE_BRANDS)
+    start = (state.get("last_index", -1) + 1) % n
+    for offset in range(n):
+        idx = (start + offset) % n
+        brand = AFFILIATE_BRANDS[idx]
         last_str = brand_last.get(brand["name"])
         if force or not last_str:
             state["last_index"] = idx
@@ -369,9 +393,9 @@ def _next_brand(state: dict, force_name: str | None = None, force: bool = False)
             state["last_index"] = idx
             return brand
 
-    # All on cooldown — pick the one with the oldest post
-    oldest = min(BRANDS, key=lambda b: brand_last.get(b["name"], "2000-01-01T00:00:00+00:00"))
-    state["last_index"] = BRANDS.index(oldest)
+    # All on cooldown — pick the affiliate brand with the oldest post
+    oldest = min(AFFILIATE_BRANDS, key=lambda b: brand_last.get(b["name"], "2000-01-01T00:00:00+00:00"))
+    state["last_index"] = AFFILIATE_BRANDS.index(oldest)
     return oldest
 
 
