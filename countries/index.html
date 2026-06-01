@@ -89,8 +89,8 @@
 <!-- TOP BAR -->
 <div class="tbar">
   <div class="tbar-l">
-    <a href="../index.html">🏠 Home</a>
-    <a href="index.html">🌍 Africa</a>
+    <a href="../">🏠 Home</a>
+    <a href="./">🌍 Africa</a>
     <button onclick="openPage('responsible')">Responsible Gambling</button>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
@@ -123,17 +123,17 @@
 <!-- MAIN NAV -->
 <nav class="mnav">
   <div class="mnav-in">
-    <a class="logo" href="../index.html">
+    <a class="logo" href="../">
       <img src="../assets/icon.png" height="38" alt="" style="display:block;object-fit:contain">
       SifuFinds
     </a>
     <div class="ntabs">
-      <a class="nt" href="../index.html">⭐ Best Bonuses</a>
-      <a class="nt" href="../tips/index.html">💡 Tips</a>
-      <a class="nt" href="../casino/index.html">🎰 Casino</a>
-      <a class="nt" href="../odds/index.html">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
-      <a class="nt on" href="index.html">🌍 Countries</a>
-      <a class="nt" href="../blog/index.html">📰 Blog</a>
+      <a class="nt" href="../">⭐ Best Bonuses</a>
+      <a class="nt" href="../tips/">💡 Tips</a>
+      <a class="nt" href="../casino/">🎰 Casino</a>
+      <a class="nt" href="../odds/">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
+      <a class="nt on" href="./">🌍 Countries</a>
+      <a class="nt" href="../blog/">📰 Blog</a>
     </div>
     <div class="srch-wrap">
       <input class="srch-inp" id="srch-inp" type="text" placeholder="Search countries..." oninput="srchCountry(this.value)" onkeydown="if(event.key==='Escape')clearCtySearch()" autocomplete="off">
@@ -224,10 +224,10 @@
       <button onclick="selectCountry('CD')">🇨🇩 DR Congo</button>
     </div>
     <div class="fc4"><h4>Bonuses</h4>
-      <a href="../index.html">Best Bonuses</a>
-      <a href="../index.html?filter=nodep">No Deposit</a>
-      <a href="../tips/index.html">Free Tips</a>
-      <a href="../odds/index.html">Live Odds</a>
+      <a href="../">Best Bonuses</a>
+      <a href="../?filter=nodep">No Deposit</a>
+      <a href="../tips/">Free Tips</a>
+      <a href="../odds/">Live Odds</a>
     </div>
     <div class="fc4"><h4>About</h4>
       <button onclick="openPage('about')">About SifuFinds</button>
@@ -246,7 +246,7 @@
 </div></footer>
 
 <script>
-const SITE={home:'../index.html',tips:'../tips/index.html',casino:'../casino/index.html',odds:'../odds/index.html',countries:'index.html'};
+const SITE={home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'./'};
 </script>
 <script src="../assets/shared.js"></script>
 <script>
@@ -319,7 +319,7 @@ function renderDetail(){
       <a class="gbtn" style="font-size:11px;padding:6px 8px" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a>
     </div>`).join('')}</div>
   <div style="margin-top:12px">
-    <a class="gbtn" style="max-width:280px;margin:0 auto" href="../index.html?cty=${_selectedCty}">View All ${books.length} Bookmakers for ${cd.name} →</a>
+    <a class="gbtn" style="max-width:280px;margin:0 auto" href="../?cty=${_selectedCty}">View All ${books.length} Bookmakers for ${cd.name} →</a>
   </div>
 </div>`;
 }

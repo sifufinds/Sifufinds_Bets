@@ -1,0 +1,9 @@
+Options -Indexes
+
+# Redirect */index.html to */ (permanent, covers all current and future pages)
+RewriteEngine On
+RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
+RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+# Serve index.html for directory requests (default Apache behavior)
+DirectoryIndex index.html
