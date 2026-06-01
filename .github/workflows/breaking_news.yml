@@ -80,9 +80,9 @@ jobs:
           git config --local user.email "newsbot@sifufinds.com"
           git config --local user.name "SifuFinds Breaking News Bot"
           git add blog/posts.json blog/posts-data.js blog/ticker.json blog/ticker-data.js
-          # Pull latest before push to survive concurrent runs that sneak through
+          # Commit first, then rebase on top of any concurrent pushes
           git diff --cached --quiet || (
-            git pull --rebase origin main &&
             git commit -m "🔴 Breaking news: $(date -u '+%Y-%m-%d %H:%M') UTC" &&
+            git pull --rebase origin main &&
             git push
           )

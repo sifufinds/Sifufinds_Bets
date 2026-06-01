@@ -86,9 +86,9 @@ jobs:
             echo "No data changes — nothing to commit."
             exit 0
           fi
-          git pull --rebase origin main
           CHANGED_COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
           git commit -m "scraper: update brand bonuses $(date -u '+%Y-%m-%d') — ${CHANGED_COUNT} files changed"
+          git pull --rebase origin main
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
