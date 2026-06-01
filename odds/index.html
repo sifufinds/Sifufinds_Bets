@@ -93,7 +93,7 @@
       <option value="MZ">🇲🇿 Mozambique · MZN</option>
       <option value="AO">🇦🇴 Angola · AOA</option>
       <option value="CD">🇨🇩 DR Congo · CDF</option>
-      <option value="BT">🇧🇼 Botswana · BWP</option>
+      <option value="BW">🇧🇼 Botswana · BWP</option>
       <option value="NA">🇳🇦 Namibia · NAD</option>
     </select>
   </div>
@@ -355,8 +355,8 @@ function lgFilt(btn){
 
 function odcCard(m){
   const cty=getCurrentCountry();
-  const books=affiliateBooks(BOOKS[cty]||BOOKS.NG);
-  const bk=books[0]||BOOKS[cty]?.[0]||{};
+  const books=BOOKS[cty]||BOOKS.NG;
+  const bk=books[0]||{};
   const hasScore=m.live||m.complete;
   const scoreHtml=hasScore
     ?`<div class="tline"><div class="tnm">${m.home}</div><div class="scn">${m.hScore??''}</div></div><div class="tline"><div class="tnm">${m.away}</div><div class="scn">${m.aScore??''}</div></div>`

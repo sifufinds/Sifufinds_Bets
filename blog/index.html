@@ -630,9 +630,6 @@ html,body{max-width:100%;overflow-x:hidden}
   </div>
 </nav>
 
-<!-- HEADER BRANDS BAR -->
-<div id="hbrands" class="hbrands"></div>
-
 <!-- LIVE TICKER (populated dynamically from ticker.json) -->
 <div class="live-ticker">
   <div class="ticker-label">
@@ -1158,14 +1155,14 @@ function renderSidebar(){
   const cty=getCurrentCountry();
   const sidebar=document.getElementById('sidebar');
 
-  // Get active banners, prefer country-relevant ones
-  const activeBanners=_allBanners.filter(b=>b.active&&b.slot!=='inline-article');
-  const top=activeBanners.filter(b=>b.slot==='sidebar-top').find(b=>!b.countries||b.countries.includes(cty)||true)||activeBanners[0];
-  const mid=activeBanners.filter(b=>b.slot==='sidebar-mid')[0];
-  const bot=activeBanners.filter(b=>b.slot==='sidebar-bottom')[0];
+  // Only show affiliate brands in the sidebar
+  const affiliateBanners=_allBanners.filter(b=>b.active&&b.affiliate);
+  const top=affiliateBanners[0]||null;
+  const mid=affiliateBanners[1]||null;
+  const bot=affiliateBanners[2]||null;
 
   const trendingPosts=[..._allPosts].slice(0,5);
-  const topBks=affiliateBooks(BOOKS[cty]||BOOKS.NG).slice(0,4);
+  const topBks=(BOOKS[cty]||BOOKS.NG).slice(0,4);
 
   sidebar.innerHTML=`
   ${top?buildSidebarBanner(top):''}

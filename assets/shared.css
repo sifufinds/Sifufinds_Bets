@@ -220,7 +220,7 @@ select.csel option{color:#222;background:#fff}
 .ob-bk{font-size:8.5px;color:rgba(255,255,255,.35);margin-top:2px}
 .odf{font-size:10px;color:rgba(255,255,255,.35);text-align:center;padding:6px;border-top:1px solid rgba(255,255,255,.06)}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px;margin-bottom:12px}
-.cbox{background:#fff;border:1px solid #e8e8e8;border-radius:10px;padding:12px;text-align:center;cursor:pointer;transition:all .15s}
+.cbox{background:#fff;border:1px solid #e8e8e8;border-radius:10px;padding:12px;text-align:center;cursor:pointer;transition:all .15s;text-decoration:none;color:inherit;display:block}
 .cbox:hover,.cbox.sel{border-color:var(--g);background:#edf7f0;box-shadow:0 2px 8px rgba(26,107,53,.1)}
 .cflag-icon{font-size:26px;margin-bottom:5px;display:block}
 .cnm{font-size:12.5px;font-weight:700;margin-bottom:2px}

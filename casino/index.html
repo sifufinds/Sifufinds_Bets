@@ -88,7 +88,7 @@
       <option value="MZ">🇲🇿 Mozambique · MZN</option>
       <option value="AO">🇦🇴 Angola · AOA</option>
       <option value="CD">🇨🇩 DR Congo · CDF</option>
-      <option value="BT">🇧🇼 Botswana · BWP</option>
+      <option value="BW">🇧🇼 Botswana · BWP</option>
       <option value="NA">🇳🇦 Namibia · NAD</option>
     </select>
   </div>
@@ -281,7 +281,7 @@ function renderFeatCasinos(){
   <div class="cas-fc">
     <div class="fc-img" style="background:${c.bg}">
       <span class="fc-logo-txt" style="color:${c.tc}">${c.name.split(' ')[0]}</span>
-      <img src="${logoUrl(c.url)}" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.style.display='none'">
+      <img src="${logoUrl(c.url,c.abbr)}" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.style.display='none'">
       <span class="fc-nm">${c.name}</span>
     </div>
     <div class="fc-body">

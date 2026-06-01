@@ -169,7 +169,7 @@
       <option value="MZ">🇲🇿 Mozambique · MZN</option>
       <option value="AO">🇦🇴 Angola · AOA</option>
       <option value="CD">🇨🇩 DR Congo · CDF</option>
-      <option value="BT">🇧🇼 Botswana · BWP</option>
+      <option value="BW">🇧🇼 Botswana · BWP</option>
       <option value="NA">🇳🇦 Namibia · NAD</option>
     </select>
   </div>
@@ -390,7 +390,7 @@ const SITE={home:'/',tips:'tips/',casino:'casino/',odds:'odds/',countries:'count
 <script src="assets/shared.js"></script>
 <script>
 // ── PAGE-SPECIFIC JS ──────────────────────────────────────────────────────────
-const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BT:'Botswana',NA:'Namibia'};
+const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BW:'Botswana',NA:'Namibia'};
 let _activeFilt='all';
 
 function setFilt(btn){
@@ -463,11 +463,11 @@ function bookCard(b,i,rank){
 
 function renderBooks(){
   const cty=getCurrentCountry();
-  const allAffiliate=affiliateBooks(BOOKS[cty]||BOOKS.NG);
-  let books=filterBooks(sortBooks(allAffiliate));
+  const allBooks=BOOKS[cty]||BOOKS.NG;
+  let books=filterBooks(sortBooks(allBooks));
   const container=document.getElementById('bk-cards');
-  if(!allAffiliate.length){
-    container.innerHTML='<div class="no-results">Our affiliate partners are not yet available in this country — check back soon for new offers!</div>';
+  if(!allBooks.length){
+    container.innerHTML='<div class="no-results">No bookmakers listed for this country yet — check back soon!</div>';
     H('mcount','');return;
   }
   if(!books.length){
@@ -480,12 +480,12 @@ function renderBooks(){
 
 function renderFeatCards(){
   const cty=getCurrentCountry();
-  const books=affiliateBooks(BOOKS[cty]||BOOKS.NG).slice(0,5);
+  const books=(BOOKS[cty]||BOOKS.NG).slice(0,5);
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${b.bg}">
       <span class="fc-logo-txt" style="color:${b.tc}">${b.name.split(' ')[0]}</span>
-      <img src="${logoUrl(b.url)}" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.style.display='none'">
+      <img src="${logoUrl(b.url,b.abbr)}" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.style.display='none'">
       <span class="fc-nm">${b.name}</span>
     </div>
     <div class="fc-body">
@@ -498,7 +498,7 @@ function renderFeatCards(){
 
 function renderHeroStats(){
   const cty=getCurrentCountry();
-  const books=affiliateBooks(BOOKS[cty]||BOOKS.NG);
+  const books=BOOKS[cty]||BOOKS.NG;
   const topBook=books.reduce((a,b)=>(a.top>b.top?a:b),books[0]);
   H('top-bonus',topBook?.top||'');
   H('bk-count',books.length);
@@ -543,7 +543,7 @@ function srchBooks(q){
   const term=q.toLowerCase();
   const results=[];
   Object.entries(BOOKS).forEach(([cty,books])=>{
-    affiliateBooks(books).forEach(b=>{
+    (books||[]).forEach(b=>{
       if(b.name.toLowerCase().includes(term)||b.off.toLowerCase().includes(term)){
         results.push({...b,cty});
       }
