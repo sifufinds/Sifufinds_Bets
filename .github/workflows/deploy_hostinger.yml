@@ -1,0 +1,63 @@
+name: Deploy to Hostinger — FTP on push to main
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "agents/**"
+      - ".github/workflows/brand_scraper.yml"
+      - ".github/workflows/breaking_news.yml"
+      - ".github/workflows/seo_sitemap.yml"
+      - ".github/workflows/telegram_growth.yml"
+      - ".github/workflows/telegram_offers.yml"
+      - "*.md"
+      - "*.py"
+      - "pyproject.toml"
+      - "uv.lock"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: FTP deploy to Hostinger
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftp
+          local-dir: ./
+          server-dir: /public_html/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            agents/**
+            .venv/**
+            firecrawl/**
+            geo-content-writer/**
+            .github/**
+            .claude/**
+            brands/**
+            *.py
+            main.py
+            pyproject.toml
+            uv.lock
+            README.md
+            .DS_Store
+          dangerous-clean-slate: false
+          log-level: standard
