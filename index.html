@@ -50,15 +50,7 @@
       "alternateName": "Sifu Finds Betting",
       "url": "https://sifufinds.com",
       "description": "Africa's #1 independent betting comparison platform — verified bonuses, live odds, free tips and bookmaker reviews across 19 African countries.",
-      "inLanguage": "en-GB",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://sifufinds.com/?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
+      "inLanguage": "en-GB"
     },
     {
       "@type": "Organization",
@@ -73,7 +65,31 @@
       },
       "description": "Africa's leading independent betting comparison platform, providing verified bonus information, live odds, free tips, and country-specific bookmaker reviews across 19 African countries.",
       "foundingDate": "2024",
-      "areaServed": ["NG","KE","GH","ZA","TZ","UG","ZM","ET","CI","CM","SN","RW","ZW","MW","MZ","AO","CD","BW","NA"],
+      "areaServed": [
+        {"@type": "Country", "name": "Nigeria"},
+        {"@type": "Country", "name": "Kenya"},
+        {"@type": "Country", "name": "Ghana"},
+        {"@type": "Country", "name": "South Africa"},
+        {"@type": "Country", "name": "Tanzania"},
+        {"@type": "Country", "name": "Uganda"},
+        {"@type": "Country", "name": "Zambia"},
+        {"@type": "Country", "name": "Ethiopia"},
+        {"@type": "Country", "name": "Ivory Coast"},
+        {"@type": "Country", "name": "Cameroon"},
+        {"@type": "Country", "name": "Senegal"},
+        {"@type": "Country", "name": "Rwanda"},
+        {"@type": "Country", "name": "Zimbabwe"},
+        {"@type": "Country", "name": "Malawi"},
+        {"@type": "Country", "name": "Mozambique"},
+        {"@type": "Country", "name": "Angola"},
+        {"@type": "Country", "name": "DR Congo"},
+        {"@type": "Country", "name": "Botswana"},
+        {"@type": "Country", "name": "Namibia"},
+        {"@type": "Country", "name": "Egypt"},
+        {"@type": "Country", "name": "Morocco"}
+      ],
+      "knowsAbout": ["Sports Betting", "Online Casino", "Betting Bonuses", "African Football", "AFCON", "CAF Champions League", "iGaming Africa", "World Cup 2026 Betting"],
+      "url": "https://sifufinds.com",
       "sameAs": [
         "https://t.me/sifufinds"
       ]
@@ -94,7 +110,7 @@
           "name": "Which African countries does SifuFinds cover?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "SifuFinds covers 19 African countries: Nigeria, Kenya, Ghana, South Africa, Tanzania, Uganda, Zambia, Ethiopia, Ivory Coast, Cameroon, Senegal, Rwanda, Zimbabwe, Malawi, Mozambique, Angola, DR Congo, Botswana and Namibia."
+            "text": "SifuFinds covers 21 African countries: Nigeria, Kenya, Ghana, South Africa, Tanzania, Uganda, Zambia, Ethiopia, Ivory Coast, Cameroon, Senegal, Rwanda, Zimbabwe, Malawi, Mozambique, Angola, DR Congo, Botswana, Namibia, Egypt and Morocco."
           }
         },
         {
@@ -171,6 +187,8 @@
       <option value="CD">🇨🇩 DR Congo · CDF</option>
       <option value="BW">🇧🇼 Botswana · BWP</option>
       <option value="NA">🇳🇦 Namibia · NAD</option>
+      <option value="EG">🇪🇬 Egypt · EGP</option>
+      <option value="MA">🇲🇦 Morocco · MAD</option>
     </select>
   </div>
 </div>
@@ -179,7 +197,7 @@
 <nav class="mnav">
   <div class="mnav-in">
     <a class="logo" href="/">
-      <img src="assets/icon.png" height="38" alt="" style="display:block;object-fit:contain">
+      <img src="assets/icon.png" height="38" alt="SifuFinds" style="display:block;object-fit:contain">
       SifuFinds
     </a>
     <div class="ntabs">
@@ -390,7 +408,7 @@ const SITE={home:'/',tips:'tips/',casino:'casino/',odds:'odds/',countries:'count
 <script src="assets/shared.js"></script>
 <script>
 // ── PAGE-SPECIFIC JS ──────────────────────────────────────────────────────────
-const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BW:'Botswana',NA:'Namibia'};
+const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BW:'Botswana',NA:'Namibia',EG:'Egypt',MA:'Morocco'};
 let _activeFilt='all';
 
 function setFilt(btn){

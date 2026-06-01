@@ -4,6 +4,18 @@
 
   <!-- ── CORE PAGES ─────────────────────────────────────────────────── -->
   <url>
+    <loc>https://sifufinds.com/about/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://sifufinds.com/tips/world-cup-2026/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
     <loc>https://sifufinds.com/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>daily</changefreq>
@@ -228,6 +240,40 @@
     <priority>0.79</priority>
     <xhtml:link rel="alternate" hreflang="en-NA" href="https://sifufinds.com/countries/namibia/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/namibia/"/>
+  </url>
+
+  <!-- ── COUNTRY PAGES — Egypt ─────────────────────────────────────── -->
+  <url>
+    <loc>https://sifufinds.com/countries/egypt/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en-EG" href="https://sifufinds.com/countries/egypt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/egypt/"/>
+  </url>
+
+  <!-- ── COUNTRY PAGES — Morocco ───────────────────────────────────── -->
+  <url>
+    <loc>https://sifufinds.com/countries/morocco/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en-MA" href="https://sifufinds.com/countries/morocco/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/morocco/"/>
+  </url>
+
+  <!-- ── BONUS & PAYMENT GUIDES ────────────────────────────────────── -->
+  <url>
+    <loc>https://sifufinds.com/bonuses/no-deposit/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://sifufinds.com/betting/mpesa-betting-sites/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
   </url>
 
   <!-- ── TIPS COUNTRY VARIANTS ──────────────────────────────────────── -->
