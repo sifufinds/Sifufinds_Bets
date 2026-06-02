@@ -779,54 +779,64 @@ document.addEventListener('DOMContentLoaded',renderBrandsBar);
 (function(){
   'use strict';
   var GA_ID='G-0B51MX2ZKE';
+  var GC_SITE='sifufinds'; // GoatCounter site code — update after signup at goatcounter.com
 
-  // Local event log – persists up to 500 events in localStorage for the dashboard
+  // ── Local event log (powers the /analytics.html dashboard) ──────────────────
   function logLocal(name,params){
     try{
-      var key='sf_events';
-      var ev=JSON.parse(localStorage.getItem(key)||'[]');
+      var ev=JSON.parse(localStorage.getItem('sf_events')||'[]');
       ev.unshift({t:Date.now(),n:name,p:params});
-      localStorage.setItem(key,JSON.stringify(ev.slice(0,500)));
+      localStorage.setItem('sf_events',JSON.stringify(ev.slice(0,500)));
     }catch(e){}
   }
 
-  // Thin GA4 wrapper (no-op if ID not set)
-  var isGA=GA_ID&&GA_ID!=='G-XXXXXXXXXX';
-  function gtag(){if(window.dataLayer)window.dataLayer.push(arguments);}
-  if(isGA){
-    window.dataLayer=window.dataLayer||[];
-    var gs=document.createElement('script');
-    gs.async=true;
-    gs.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
-    document.head.appendChild(gs);
-    gtag('js',new Date());
-    gtag('config',GA_ID,{send_page_view:true});
+  // ── GA4 (page views + events → Google Analytics) ────────────────────────────
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){window.dataLayer.push(arguments);}
+  var gs=document.createElement('script');
+  gs.async=true;gs.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
+  document.head.appendChild(gs);
+  gtag('js',new Date());
+  gtag('config',GA_ID,{send_page_view:true});
+
+  // ── GoatCounter (lightweight page views + custom events → goatcounter.com) ──
+  var gcs=document.createElement('script');
+  gcs.async=true;
+  gcs.setAttribute('data-goatcounter','https://'+GC_SITE+'.goatcounter.com/count');
+  gcs.src='//gc.zgo.at/count.js';
+  document.head.appendChild(gcs);
+  function gcEvent(path,title){
+    // fires after GoatCounter has loaded
+    if(window.goatcounter&&window.goatcounter.count){
+      window.goatcounter.count({path:path,title:title,event:true});
+    }
   }
 
+  // ── Unified track helper ─────────────────────────────────────────────────────
   function track(name,params){
     logLocal(name,params);
-    if(isGA)gtag('event',name,params||{});
+    gtag('event',name,params||{});
   }
 
-  // Page impression
-  track('page_view',{page:location.pathname});
+  // Page impression (GA4 fires automatically; log locally too)
+  logLocal('page_view',{page:location.pathname});
 
-  // Outbound / affiliate clicks (fires on every external link)
+  // ── Outbound / affiliate clicks ──────────────────────────────────────────────
   document.addEventListener('click',function(e){
     var a=e.target.closest('a[href]');
     if(!a)return;
     var href=a.href||'';
     var ext=a.target==='_blank'||(href.indexOf('http')===0&&href.indexOf('sifufinds.com')===-1);
     if(!ext)return;
-    var name=(a.closest('.hbrand,.bk-card,.feat-card,.gs-item')||{}).querySelector
-      ? (a.closest('.hbrand,.bk-card,.feat-card,.gs-item').querySelector('.hbrand-name,.bk-name,.feat-name,.gs-name')||{}).textContent
-      : null;
-    name=(name||a.textContent||'').trim().slice(0,60)||'unknown';
+    var card=a.closest('.hbrand,.bk-card,.feat-card,.gs-item');
+    var bkName=card?(card.querySelector('.hbrand-name,.bk-name,.feat-name,.gs-name')||{}).textContent:null;
+    bkName=(bkName||a.textContent||'').trim().slice(0,60)||'unknown';
     var aff=typeof AFFILIATE_DOMAINS!=='undefined'&&AFFILIATE_DOMAINS.some(function(d){return href.indexOf(d)>-1;});
-    track('outbound_click',{link:href.slice(0,200),bk:name,affiliate:aff,page:location.pathname});
+    track('outbound_click',{link:href.slice(0,200),bk:bkName,affiliate:aff,page:location.pathname});
+    gcEvent('click/'+bkName.toLowerCase().replace(/\s+/g,'-'),bkName+' click');
   },true);
 
-  // Scroll depth milestones
+  // ── Scroll depth ─────────────────────────────────────────────────────────────
   var depths=[25,50,75,90],fired={};
   window.addEventListener('scroll',function(){
     var el=document.documentElement,body=document.body;
@@ -839,7 +849,7 @@ document.addEventListener('DOMContentLoaded',renderBrandsBar);
     });
   },{passive:true});
 
-  // Engagement time (seconds actively on page)
+  // ── Engagement time ──────────────────────────────────────────────────────────
   var t0=Date.now(),engaged=0;
   document.addEventListener('visibilitychange',function(){
     if(document.hidden){engaged+=Date.now()-t0;}else{t0=Date.now();}
@@ -849,14 +859,14 @@ document.addEventListener('DOMContentLoaded',renderBrandsBar);
     if(engaged>3000)track('engagement',{secs:Math.round(engaged/1000),page:location.pathname});
   });
 
-  // Filter / sort button clicks
+  // ── Filter clicks ────────────────────────────────────────────────────────────
   document.addEventListener('click',function(e){
     var b=e.target.closest('.fp,[data-f]');
     if(!b)return;
     track('filter',{v:(b.dataset.f||b.textContent||'').trim().slice(0,30)});
   });
 
-  // Site search queries
+  // ── Site search ──────────────────────────────────────────────────────────────
   var sTimer;
   document.addEventListener('input',function(e){
     if(e.target.id!=='srch-inp')return;

@@ -1,0 +1,70 @@
+name: Live Odds — Update every 5 minutes
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # every 5 minutes, 24/7
+  workflow_dispatch:          # manual trigger from GitHub UI
+
+concurrency:
+  group: live-odds
+  cancel-in-progress: false   # queue, don't drop
+
+permissions:
+  contents: write
+
+jobs:
+  update-live-odds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest (avoid stale reads)
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch live sports data
+        working-directory: agents/python
+        run: python agent_live_odds.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "livebot@sifufinds.com"
+          git config --local user.name "SifuFinds Live Odds Bot"
+          git add data/live.json
+          if git diff --cached --quiet; then
+            echo "No changes — data unchanged"
+            exit 0
+          fi
+          git commit -m "live: odds updated $(date -u '+%H:%M') UTC"
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            [ "$attempt" -eq 5 ] && { echo "❌ Push failed"; exit 1; }
+            echo "⚠ Push rejected ($attempt/5) — rebasing..."
+            sleep 4
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done

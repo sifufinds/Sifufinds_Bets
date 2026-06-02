@@ -2,6 +2,15 @@
 <!-- odds.sifufinds.com – Live Betting Odds -->
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0B51MX2ZKE');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Live Betting Odds · Africa & International 2026 · SifuFinds | Compare Bookmakers</title>
@@ -136,6 +145,7 @@
   <button class="snl" data-lg="afcon" onclick="lgFilt(this)">📋 AFCON</button>
   <button class="snl" data-lg="local" onclick="lgFilt(this)">🏟️ Local Football</button>
   <button class="snl" data-lg="basketball" onclick="lgFilt(this)">🏀 Basketball</button>
+  <button class="snl" data-lg="baseball" onclick="lgFilt(this)">⚾ MLB</button>
   <button class="snl" data-lg="tennis" onclick="lgFilt(this)">🎾 Tennis</button>
   <button class="snl" data-lg="cricket" onclick="lgFilt(this)">🏏 Cricket</button>
   <button class="snl" data-lg="rugby" onclick="lgFilt(this)">🏉 Rugby</button>
@@ -246,13 +256,13 @@ const LG_TABS=[
   {key:'afcon',label:'📋 AFCON'},
   {key:'local',label:'🏟️ Local Football'},
   {key:'basketball',label:'🏀 Basketball'},
+  {key:'baseball',label:'⚾ MLB'},
   {key:'tennis',label:'🎾 Tennis'},
   {key:'cricket',label:'🏏 Cricket'},
   {key:'rugby',label:'🏉 Rugby'},
   {key:'boxing',label:'🥊 Boxing'},
   {key:'epl',label:'Premier League'},
   {key:'ucl',label:'UEFA CL'},
-  {key:'uel',label:'Europa League'},
   {key:'laliga',label:'La Liga'}
 ];
 
@@ -268,9 +278,11 @@ const AFRICAN_COMPS=[
 
 let _activeLG='all';
 let _oddsTimer=null;
-let _countdown=60;
+let _countdown=15;
 let _apiMatches=[];
 let _africanMatches=[];
+let _liveJsonMatches=[];
+let _liveJsonUpdated='';
 
 function mapEspnEvent(ev,key,label){
   const comp=ev.competitions&&ev.competitions[0];
@@ -342,6 +354,28 @@ async function fetchAfricanFixtures(){
   return matches.sort((a,b)=>a.startMs-b.startMs);
 }
 
+async function fetchLiveJson(){
+  try{
+    const r=await fetch('../data/live.json?t='+Date.now());
+    if(!r.ok)return;
+    const d=await r.json();
+    _liveJsonMatches=d.events||[];
+    _liveJsonUpdated=d.updated||'';
+  }catch(e){/* fallback to ESPN + ODDS_DATA */}
+}
+
+function mergeWithEspn(jsonMatches,espnMatches){
+  if(!espnMatches.length)return jsonMatches;
+  const espnMap={};
+  espnMatches.forEach(m=>{espnMap[m.home+'|'+m.away]=m;});
+  return jsonMatches.map(m=>{
+    const e=espnMap[m.home+'|'+m.away];
+    if(e&&e.live)return{...m,live:true,hScore:e.hScore,aScore:e.aScore,time:e.time};
+    if(e&&e.complete&&!m.complete)return{...m,complete:true,hScore:e.hScore,aScore:e.aScore,time:'FT'};
+    return m;
+  });
+}
+
 async function fetchEspnData(){
   const results=await Promise.allSettled(
     ESPN_ENDPOINTS.map(({url,key,label})=>
@@ -363,8 +397,9 @@ async function fetchEspnData(){
 }
 
 function updateStatus(){
-  const total=_apiMatches.length+_africanMatches.length;
-  H('api-st',total>0?`🟢 Live · ${total} matches`:'⚠️ Using cached data');
+  const total=_liveJsonMatches.length||(_apiMatches.length+_africanMatches.length);
+  const src=_liveJsonMatches.length?'🟢 Live':'⚠️';
+  H('api-st',total>0?`${src} ${total} events`:'⚠️ Using cached data');
   H('odds-upd',`Updated ${new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}`);
 }
 
@@ -420,8 +455,15 @@ function renderLgFilter(){
 }
 
 function renderOdds(){
-  const live=[..._apiMatches,..._africanMatches];
-  const all=live.length?live:[...ODDS_DATA];
+  let base;
+  if(_liveJsonMatches.length){
+    // Primary: live.json (has DraftKings odds) with ESPN live score overlays
+    base=[...mergeWithEspn(_liveJsonMatches,_apiMatches),..._africanMatches];
+  }else{
+    const combined=[..._apiMatches,..._africanMatches];
+    base=combined.length?combined:[...ODDS_DATA];
+  }
+  const all=base;
   const data=_activeLG==='all'?all:all.filter(m=>m.key===_activeLG);
   if(!data.length){H('odds-cards','<div style="color:rgba(255,255,255,.4);text-align:center;padding:30px;font-size:13px">No odds available for this filter.</div>');return;}
   const sorted=[...data].sort((a,b)=>{
@@ -435,17 +477,18 @@ function renderOdds(){
 }
 
 function startTimer(){
-  _countdown=60;
+  _countdown=15;
   clearInterval(_oddsTimer);
   _oddsTimer=setInterval(()=>{
     _countdown--;
     H('odds-foot',`⏱ Next update in ${_countdown}s`);
     if(_countdown<=0){
       Promise.all([
+        fetchLiveJson(),
         fetchEspnData(),
         fetchAfricanFixtures().then(m=>{_africanMatches=m;})
       ]).then(()=>{updateStatus();renderOdds();});
-      _countdown=60;
+      _countdown=15;
     }
   },1000);
 }
@@ -460,9 +503,12 @@ async function init(){
   renderLgFilter();
   renderOdds();
   await Promise.all([
+    fetchLiveJson(),
     fetchEspnData(),
-    fetchAfricanFixtures().then(m=>{_africanMatches=m;updateStatus();renderOdds();})
+    fetchAfricanFixtures().then(m=>{_africanMatches=m;})
   ]);
+  updateStatus();
+  renderOdds();
   startTimer();
 }
 init();
