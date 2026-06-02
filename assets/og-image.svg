@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#0a3d1e"/>
+      <stop offset="55%"  stop-color="#125a2c"/>
+      <stop offset="100%" stop-color="#1a6b35"/>
+    </linearGradient>
+
+    <!-- Gold shimmer for headline -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#FCECA2"/>
+      <stop offset="40%"  stop-color="#d4af37"/>
+      <stop offset="70%"  stop-color="#f0d060"/>
+      <stop offset="100%" stop-color="#a88520"/>
+    </linearGradient>
+
+    <!-- Glow filter for globe -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Soft shadow for text -->
+    <filter id="txtShadow" x="-5%" y="-10%" width="110%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(0,0,0,0.5)"/>
+    </filter>
+
+    <!-- Card blur/glass -->
+    <filter id="cardShadow" x="-3%" y="-5%" width="106%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="rgba(0,0,0,0.35)"/>
+    </filter>
+
+    <!-- Africa gradient -->
+    <radialGradient id="africaGold" cx="40%" cy="30%" r="65%">
+      <stop offset="0%"   stop-color="#FCECA2"/>
+      <stop offset="50%"  stop-color="#c9973a"/>
+      <stop offset="100%" stop-color="#6B5228"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ── BACKGROUND ─────────────────────────────────────────────────────── -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200"  y1="0" x2="200"  y2="630"/>
+    <line x1="400"  y1="0" x2="400"  y2="630"/>
+    <line x1="600"  y1="0" x2="600"  y2="630"/>
+    <line x1="800"  y1="0" x2="800"  y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Radial glow behind globe -->
+  <radialGradient id="glowBg" cx="75%" cy="50%" r="35%">
+    <stop offset="0%"   stop-color="rgba(212,175,55,0.18)"/>
+    <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+  </radialGradient>
+  <ellipse cx="900" cy="315" rx="320" ry="280" fill="url(#glowBg)"/>
+
+  <!-- ── LEFT CONTENT ───────────────────────────────────────────────────── -->
+
+  <!-- Gold top accent bar -->
+  <rect x="80" y="95" width="5" height="90" rx="3" fill="#d4af37"/>
+
+  <!-- SIFUFINDS logotype -->
+  <text x="105" y="155"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+    font-size="80" font-weight="900" letter-spacing="-3"
+    fill="white" filter="url(#txtShadow)">SifuFinds</text>
+
+  <!-- Gold underline -->
+  <rect x="105" y="172" width="430" height="4" rx="2" fill="url(#goldGrad)"/>
+
+  <!-- Tagline -->
+  <text x="105" y="235"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+    font-size="28" font-weight="600" fill="rgba(255,255,255,0.88)" letter-spacing="0.5">
+    Africa's #1 Betting Comparison Platform
+  </text>
+
+  <!-- Divider dot row -->
+  <circle cx="105" cy="272" r="3" fill="#d4af37"/>
+  <circle cx="120" cy="272" r="3" fill="rgba(212,175,55,0.5)"/>
+  <circle cx="135" cy="272" r="3" fill="rgba(212,175,55,0.25)"/>
+
+  <!-- Feature pills -->
+  <!-- Verified Bonuses -->
+  <rect x="105" y="298" width="200" height="44" rx="22" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <text x="125" y="326"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="17" font-weight="600" fill="white">✅ Verified Bonuses</text>
+
+  <!-- Live Odds -->
+  <rect x="320" y="298" width="160" height="44" rx="22" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <text x="340" y="326"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="17" font-weight="600" fill="white">📊 Live Odds</text>
+
+  <!-- Free Tips -->
+  <rect x="495" y="298" width="145" height="44" rx="22" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <text x="515" y="326"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="17" font-weight="600" fill="white">💡 Free Tips</text>
+
+  <!-- Country flags strip -->
+  <text x="105" y="420"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="36" letter-spacing="6">🇳🇬 🇰🇪 🇬🇭 🇿🇦 🇹🇿 🇺🇬</text>
+
+  <!-- Bottom stat cards -->
+  <!-- Card 1: Countries -->
+  <rect x="105" y="460" width="155" height="90" rx="14"
+    fill="rgba(255,255,255,0.08)" stroke="rgba(212,175,55,0.4)" stroke-width="1"
+    filter="url(#cardShadow)"/>
+  <text x="182" y="507" text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="38" font-weight="900" fill="url(#goldGrad)">23</text>
+  <text x="182" y="536" text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="13" font-weight="600" fill="rgba(255,255,255,0.65)">COUNTRIES</text>
+
+  <!-- Card 2: Bookmakers -->
+  <rect x="278" y="460" width="155" height="90" rx="14"
+    fill="rgba(255,255,255,0.08)" stroke="rgba(212,175,55,0.4)" stroke-width="1"
+    filter="url(#cardShadow)"/>
+  <text x="355" y="507" text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="38" font-weight="900" fill="url(#goldGrad)">150+</text>
+  <text x="355" y="536" text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="13" font-weight="600" fill="rgba(255,255,255,0.65)">BOOKMAKERS</text>
+
+  <!-- Card 3: Updated -->
+  <rect x="451" y="460" width="155" height="90" rx="14"
+    fill="rgba(255,255,255,0.08)" stroke="rgba(212,175,55,0.4)" stroke-width="1"
+    filter="url(#cardShadow)"/>
+  <text x="528" y="507" text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="38" font-weight="900" fill="url(#goldGrad)">24/7</text>
+  <text x="528" y="536" text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="13" font-weight="600" fill="rgba(255,255,255,0.65)">UPDATED</text>
+
+  <!-- Domain badge -->
+  <rect x="105" y="572" width="190" height="38" rx="8"
+    fill="rgba(212,175,55,0.15)" stroke="rgba(212,175,55,0.5)" stroke-width="1"/>
+  <text x="200" y="597" text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="16" font-weight="700" fill="#d4af37">sifufinds.com</text>
+
+  <!-- ── RIGHT: GLOBE ILLUSTRATION ─────────────────────────────────────── -->
+
+  <!-- Outer atmosphere glow ring -->
+  <circle cx="900" cy="315" r="200" fill="none" stroke="rgba(212,175,55,0.12)" stroke-width="18"/>
+  <circle cx="900" cy="315" r="188" fill="none" stroke="rgba(212,175,55,0.08)" stroke-width="1"/>
+
+  <!-- Globe body -->
+  <circle cx="900" cy="315" r="175" fill="#0d4d25"/>
+  <circle cx="900" cy="315" r="175" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="2"/>
+
+  <!-- Globe grid lines -->
+  <g stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none">
+    <!-- Latitude lines -->
+    <ellipse cx="900" cy="315" rx="175" ry="50"/>
+    <ellipse cx="900" cy="315" rx="175" ry="110"/>
+    <ellipse cx="900" cy="315" rx="175" ry="155"/>
+    <!-- Longitude lines -->
+    <line x1="900" y1="140" x2="900" y2="490"/>
+    <ellipse cx="900" cy="315" rx="80" ry="175"/>
+    <ellipse cx="900" cy="315" rx="140" ry="175"/>
+  </g>
+
+  <!-- Africa silhouette on globe -->
+  <g filter="url(#glow)">
+    <path
+      d="M870,180 L900,175 L918,180 L930,192
+         L936,208 L940,228 L935,248 L928,268
+         L920,288 L915,310 L912,332 L906,352
+         L898,370 L890,382 L880,372 L868,352
+         L856,330 L848,308 L844,286 L843,264
+         L845,244 L848,224 L854,204 L860,190 Z"
+      fill="url(#africaGold)"
+      stroke="rgba(252,236,162,0.5)" stroke-width="1.5"
+      stroke-linejoin="round"
+      opacity="0.92"
+    />
+    <!-- Madagascar -->
+    <path d="M944,268 L950,280 L950,306 L944,318 L938,306 L938,280 Z"
+      fill="url(#africaGold)" stroke="rgba(252,236,162,0.4)" stroke-width="1"
+      opacity="0.85"/>
+  </g>
+
+  <!-- Globe shine highlight -->
+  <ellipse cx="840" cy="245" rx="55" ry="38"
+    fill="rgba(255,255,255,0.06)" transform="rotate(-20,840,245)"/>
+  <ellipse cx="828" cy="238" rx="22" ry="14"
+    fill="rgba(255,255,255,0.09)" transform="rotate(-20,828,238)"/>
+
+  <!-- Animated-look pin on Nigeria (approx) -->
+  <circle cx="893" cy="240" r="14" fill="rgba(212,175,55,0.25)" stroke="rgba(212,175,55,0.6)" stroke-width="1.5"/>
+  <circle cx="893" cy="240" r="7"  fill="#d4af37"/>
+  <circle cx="893" cy="240" r="3"  fill="#0a3d1e"/>
+
+  <!-- ── BOTTOM STRIP ────────────────────────────────────────────────────── -->
+  <rect x="0" y="606" width="1200" height="24" fill="rgba(0,0,0,0.25)"/>
+  <text x="600" y="622" text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="12" fill="rgba(255,255,255,0.45)" letter-spacing="2">
+    VERIFIED · INDEPENDENT · UPDATED DAILY · 18+ · GAMBLE RESPONSIBLY
+  </text>
+</svg>

@@ -1,10 +1,12 @@
 """
 AI wrapper — Groq primary (free, fast), Gemini fallback.
 
-Groq free tier: 6,000 requests/day on llama-3.3-70b-versatile.
-Get a free key at: https://console.groq.com → API Keys → Create
+Fallback chain (each tier is tried before the next):
+  1. Groq llama-3.3-70b-versatile  — best quality, 6,000 req/day free
+  2. Groq llama-3.1-8b-instant     — faster, higher RPM limit, same free tier
+  3. Gemini gemini-2.0-flash       — requires GEMINI_API_KEY (billing enabled)
 
-Gemini fallback: requires billing on the Google project.
+Get a free Groq key at: https://console.groq.com → API Keys → Create
 """
 import os
 from pathlib import Path
@@ -12,26 +14,27 @@ from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent / ".env")
 
-_groq_key = os.getenv("GROQ_API_KEY", "")
+_groq_key   = os.getenv("GROQ_API_KEY", "")
 _gemini_key = os.getenv("GEMINI_API_KEY", "")
 
 if not _groq_key and not _gemini_key:
     raise RuntimeError("No AI key found. Set GROQ_API_KEY in agents/python/.env")
 
-# ── Groq client (primary — free tier) ────────────────────────────────────────
+# ── Groq clients (primary + fast fallback — both free tier) ──────────────────
 _groq_client = None
 if _groq_key:
     from groq import Groq
     _groq_client = Groq(api_key=_groq_key)
-    _GROQ_MODEL = "llama-3.3-70b-versatile"
 
-# ── Gemini client (fallback) ──────────────────────────────────────────────────
+_GROQ_MODEL_PRIMARY = "llama-3.3-70b-versatile"
+_GROQ_MODEL_FAST    = "llama-3.1-8b-instant"   # higher RPM; used when primary is rate-limited
+
+# ── Gemini client (last-resort fallback) ─────────────────────────────────────
 _gemini_client = None
 if _gemini_key:
     from google import genai
-    from google.genai import types as _gtypes
     _gemini_client = genai.Client(api_key=_gemini_key)
-    _GEMINI_MODEL = "gemini-1.5-flash"
+    _GEMINI_MODEL = "gemini-2.0-flash"
 
 
 def ask(system_prompt: str, user_message: str) -> str:
@@ -42,29 +45,46 @@ def ask_long(system_prompt: str, user_message: str) -> str:
     return _ask_with_fallback(system_prompt, user_message, max_tokens=8000)
 
 
+def _is_rate_limit(err: str) -> bool:
+    return any(k in err for k in ("rate_limit", "429", "quota", "tokens per", "requests per"))
+
+
 def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -> str:
     if _groq_client:
+        # Tier 1 — Groq 70B
         try:
-            return _ask_groq(system_prompt, user_message, max_tokens)
+            return _ask_groq(system_prompt, user_message, max_tokens, _GROQ_MODEL_PRIMARY)
         except Exception as e:
-            err = str(e).lower()
-            # Fall through to Gemini on rate limit or quota errors
-            if "rate_limit" in err or "429" in err or "quota" in err or "tokens" in err:
-                if _gemini_client:
-                    print(f"[llm] Groq rate-limited — falling back to Gemini")
-                    return _ask_gemini(system_prompt, user_message, max_tokens)
-            raise
+            if _is_rate_limit(str(e).lower()):
+                print(f"[llm] Groq 70B rate-limited — trying Groq 8B instant")
+            else:
+                raise
+
+        # Tier 2 — Groq 8B instant (different rate-limit bucket)
+        try:
+            return _ask_groq(system_prompt, user_message, max_tokens, _GROQ_MODEL_FAST)
+        except Exception as e:
+            if _is_rate_limit(str(e).lower()):
+                print(f"[llm] Groq 8B rate-limited — falling back to Gemini")
+            else:
+                raise
+
+    # Tier 3 — Gemini
     if _gemini_client:
         return _ask_gemini(system_prompt, user_message, max_tokens)
-    raise RuntimeError("No AI provider available")
+
+    raise RuntimeError(
+        "All AI providers exhausted or rate-limited. "
+        "Set GEMINI_API_KEY for an additional fallback."
+    )
 
 
-def _ask_groq(system_prompt: str, user_message: str, max_tokens: int) -> str:
+def _ask_groq(system_prompt: str, user_message: str, max_tokens: int, model: str) -> str:
     response = _groq_client.chat.completions.create(
-        model=_GROQ_MODEL,
+        model=model,
         messages=[
             {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_message},
+            {"role": "user",   "content": user_message},
         ],
         temperature=0.8,
         max_tokens=max_tokens,

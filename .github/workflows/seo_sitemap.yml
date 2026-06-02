@@ -64,3 +64,16 @@ jobs:
             git fetch origin main
             git rebase FETCH_HEAD -X theirs || git rebase --abort
           done
+
+      # ── Ping search engines so they re-crawl immediately ─────────────
+      - name: Ping Google Search Console
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://www.google.com/ping?sitemap=https://sifufinds.com/sitemap.xml")
+          echo "Google ping status: $STATUS"
+
+      - name: Ping Bing Webmaster Tools
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://www.bing.com/ping?sitemap=https://sifufinds.com/sitemap.xml")
+          echo "Bing ping status: $STATUS"
