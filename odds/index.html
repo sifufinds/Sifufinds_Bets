@@ -130,21 +130,25 @@
 
 <!-- SUBNAV -->
 <div class="snav"><div class="snav-in">
-  <button class="snl on" data-lg="all" onclick="lgFilt(this)">All Leagues</button>
+  <button class="snl on" data-lg="all" onclick="lgFilt(this)">All Sports</button>
   <button class="snl" data-lg="world" onclick="lgFilt(this)">🌍 World Cup 2026</button>
-  <button class="snl" data-lg="cafl" onclick="lgFilt(this)">CAF CL</button>
-  <button class="snl" data-lg="afcon" onclick="lgFilt(this)">AFCON</button>
-  <button class="snl" data-lg="local" onclick="lgFilt(this)">Local Leagues</button>
+  <button class="snl" data-lg="cafl" onclick="lgFilt(this)">⚽ CAF CL</button>
+  <button class="snl" data-lg="afcon" onclick="lgFilt(this)">📋 AFCON</button>
+  <button class="snl" data-lg="local" onclick="lgFilt(this)">🏟️ Local Football</button>
+  <button class="snl" data-lg="basketball" onclick="lgFilt(this)">🏀 Basketball</button>
+  <button class="snl" data-lg="tennis" onclick="lgFilt(this)">🎾 Tennis</button>
+  <button class="snl" data-lg="cricket" onclick="lgFilt(this)">🏏 Cricket</button>
+  <button class="snl" data-lg="rugby" onclick="lgFilt(this)">🏉 Rugby</button>
+  <button class="snl" data-lg="boxing" onclick="lgFilt(this)">🥊 Boxing</button>
   <button class="snl" data-lg="epl" onclick="lgFilt(this)">Premier League</button>
   <button class="snl" data-lg="ucl" onclick="lgFilt(this)">UEFA CL</button>
-  <button class="snl" data-lg="uel" onclick="lgFilt(this)">Europa League</button>
   <button class="snl" data-lg="laliga" onclick="lgFilt(this)">La Liga</button>
 </div></div>
 
 <!-- HERO -->
 <div class="odds-hero"><div class="wrap">
   <h1>Live &amp; Upcoming Betting Odds · Africa &amp; International</h1>
-  <p>Real-time odds across CAF CL, AFCON, Premier League, NPFL, KPL, PSL and more. Click any odds to bet. Auto-updates every 15 seconds.</p>
+  <p>Live scores &amp; odds across football, basketball, tennis, cricket, rugby, boxing and more — CAF CL, AFCON, NBA, French Open, ICC, World Cup 2026. Auto-updates every 60 seconds.</p>
   <div style="display:flex;align-items:center;gap:10px;margin-top:9px">
     <span class="livtag"><span class="lpulse" style="width:6px;height:6px;margin-right:3px"></span>LIVE</span>
     <span style="font-size:12px;color:rgba(255,255,255,.55)" id="odds-upd">Simulation active</span>
@@ -215,20 +219,37 @@ const SITE={home:'../',tips:'../tips/',casino:'../casino/',odds:'./',countries:'
 </script>
 <script src="../assets/shared.js"></script>
 <script>
-const FD_KEY='fd_554baa8cfac7cfe33ba92edfbc00f3e2a179ba179f44ada9';
-const FD_URL='https://footballdata.io/api/v1';
 const SDB_KEY='3JOIGRycRY0jNCrxgLnuNzzA5AIoyQmnN7RHew9t';
 const SDB_BASE='https://api.sportdb.dev';
 const SEASON='2025-2026';
 
-const LG_KEY_MAP={15:'epl',10:'laliga',45:'ucl',46:'uel',50:'world'};
-const LG_NAME_MAP={15:'Premier League',10:'La Liga',45:'UEFA Champions League',46:'UEFA Europa League',50:'World Cup'};
+const ESPN_BASE='https://site.api.espn.com/apis/site/v2/sports';
+const ESPN_ENDPOINTS=[
+  {url:`${ESPN_BASE}/soccer/eng.1/scoreboard`,key:'epl',label:'Premier League'},
+  {url:`${ESPN_BASE}/soccer/esp.1/scoreboard`,key:'laliga',label:'La Liga'},
+  {url:`${ESPN_BASE}/soccer/ger.1/scoreboard`,key:'epl',label:'Bundesliga'},
+  {url:`${ESPN_BASE}/soccer/ita.1/scoreboard`,key:'epl',label:'Serie A'},
+  {url:`${ESPN_BASE}/soccer/uefa.champions/scoreboard`,key:'ucl',label:'UEFA Champions League'},
+  {url:`${ESPN_BASE}/soccer/fifa.worldcup/scoreboard`,key:'world',label:'World Cup 2026'},
+  {url:`${ESPN_BASE}/basketball/nba/scoreboard`,key:'basketball',label:'NBA'},
+  {url:`${ESPN_BASE}/baseball/mlb/scoreboard`,key:'baseball',label:'MLB'},
+  {url:`${ESPN_BASE}/tennis/tennis_atp/scoreboard`,key:'tennis',label:'Tennis · ATP'},
+  {url:`${ESPN_BASE}/tennis/tennis_wta/scoreboard`,key:'tennis',label:'Tennis · WTA'},
+  {url:`${ESPN_BASE}/cricket/cricket/scoreboard`,key:'cricket',label:'Cricket'},
+  {url:`${ESPN_BASE}/rugby-league/nrl/scoreboard`,key:'rugby',label:'Rugby · NRL'}
+];
+
 const LG_TABS=[
-  {key:'all',label:'All Leagues'},
+  {key:'all',label:'All Sports'},
   {key:'world',label:'🌍 World Cup 2026'},
-  {key:'cafl',label:'CAF CL'},
-  {key:'afcon',label:'AFCON'},
-  {key:'local',label:'Local Leagues'},
+  {key:'cafl',label:'⚽ CAF CL'},
+  {key:'afcon',label:'📋 AFCON'},
+  {key:'local',label:'🏟️ Local Football'},
+  {key:'basketball',label:'🏀 Basketball'},
+  {key:'tennis',label:'🎾 Tennis'},
+  {key:'cricket',label:'🏏 Cricket'},
+  {key:'rugby',label:'🏉 Rugby'},
+  {key:'boxing',label:'🥊 Boxing'},
   {key:'epl',label:'Premier League'},
   {key:'ucl',label:'UEFA CL'},
   {key:'uel',label:'Europa League'},
@@ -251,29 +272,29 @@ let _countdown=60;
 let _apiMatches=[];
 let _africanMatches=[];
 
-function mapApiMatch(m){
-  const key=LG_KEY_MAP[m.league.league_id]||'epl';
-  const isLive=m.status==='live'||m.status==='inprogress';
-  const isComplete=m.status==='complete';
+function mapEspnEvent(ev,key,label){
+  const comp=ev.competitions&&ev.competitions[0];
+  if(!comp||!comp.competitors||comp.competitors.length<2)return null;
+  const home=comp.competitors.find(c=>c.homeAway==='home')||comp.competitors[0];
+  const away=comp.competitors.find(c=>c.homeAway==='away')||comp.competitors[1];
+  const st=ev.status&&ev.status.type;
+  const isLive=!!(st&&st.state==='in');
+  const isComplete=!!(st&&(st.completed||st.name==='STATUS_FINAL'));
+  const homeName=(home.team&&(home.team.displayName||home.team.name))||(home.athlete&&(home.athlete.displayName||home.athlete.shortName))||'TBC';
+  const awayName=(away.team&&(away.team.displayName||away.team.name))||(away.athlete&&(away.athlete.displayName||away.athlete.shortName))||'TBC';
+  const d=new Date(ev.date);
+  const today=new Date();
+  const tmr=new Date(today.getTime()+86400000);
   let time;
-  if(isLive){
-    time='LIVE';
-  }else if(isComplete){
-    time='FT';
-  }else{
-    const d=new Date(m.match_date.replace(' ','T')+'Z');
-    time=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  if(isLive)time=ev.status.displayClock||'LIVE';
+  else if(isComplete)time='FT';
+  else{
+    const t=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    if(d.toDateString()===today.toDateString())time=t;
+    else if(d.toDateString()===tmr.toDateString())time=`Tomorrow ${t}`;
+    else time=d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})+' '+t;
   }
-  return{
-    league:LG_NAME_MAP[m.league.league_id]||m.league.name,
-    key,live:isLive,complete:isComplete,
-    home:m.home_team.team_name,away:m.away_team.team_name,
-    hScore:isLive||isComplete?m.score.home:null,
-    aScore:isLive||isComplete?m.score.away:null,
-    time,
-    h:m.odds?.home_win??0,d:m.odds?.draw??0,a:m.odds?.away_win??0,
-    hBk:'1xBet',dBk:'Betway',aBk:'Melbet'
-  };
+  return{league:label,key,live:isLive,complete:isComplete,home:homeName,away:awayName,hScore:isLive||isComplete?home.score:null,aScore:isLive||isComplete?away.score:null,time,h:0,d:0,a:0,hBk:'',dBk:'',aBk:''};
 }
 
 function mapSdbMatch(m,key,leagueName){
@@ -321,30 +342,24 @@ async function fetchAfricanFixtures(){
   return matches.sort((a,b)=>a.startMs-b.startMs);
 }
 
-async function fetchOddsData(){
-  try{
-    const[liveR,todayR,upcomingR]=await Promise.all([
-      fetch(`${FD_URL}/fixtures/live`,{headers:{Authorization:`Bearer ${FD_KEY}`}}),
-      fetch(`${FD_URL}/fixtures/today`,{headers:{Authorization:`Bearer ${FD_KEY}`}}),
-      fetch(`${FD_URL}/fixtures/upcoming`,{headers:{Authorization:`Bearer ${FD_KEY}`}})
-    ]);
-    const[liveD,todayD,upcomingD]=await Promise.all([liveR.json(),todayR.json(),upcomingR.json()]);
-    const seen=new Set();
-    const all=[];
-    const add=arr=>(arr||[]).forEach(m=>{
-      if(!seen.has(m.match_id)&&m.odds?.home_win){seen.add(m.match_id);all.push(mapApiMatch(m));}
+async function fetchEspnData(){
+  const results=await Promise.allSettled(
+    ESPN_ENDPOINTS.map(({url,key,label})=>
+      fetch(url).then(r=>r.json()).then(data=>({data,key,label}))
+    )
+  );
+  const matches=[];
+  results.forEach(r=>{
+    if(r.status!=='fulfilled')return;
+    const{data,key,label}=r.value;
+    (data.events||[]).slice(0,6).forEach(ev=>{
+      const m=mapEspnEvent(ev,key,label);
+      if(m)matches.push(m);
     });
-    add(liveD.data?.matches);
-    add(todayD.data?.matches);
-    add(upcomingD.data?.matches);
-    _apiMatches=all;
-    updateStatus();
-    renderOdds();
-  }catch(e){
-    _apiMatches=[];
-    updateStatus();
-    renderOdds();
-  }
+  });
+  _apiMatches=matches;
+  updateStatus();
+  renderOdds();
 }
 
 function updateStatus(){
@@ -374,14 +389,15 @@ function odcCard(m){
       ?`<span class="odc-tm" style="color:#4ade80">FT</span>`
       :`<span class="odc-tm">${m.time}</span>`;
   const hasOdds=m.h>0;
+  const hasDraw=m.d>0;
   const oddsHtml=hasOdds
     ?`<div class="obg">
       <div class="ob${m.live?' best':''}" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
         <div class="ob-t">1</div><div class="ob-v">${m.h.toFixed(2)}</div><div class="ob-bk">${m.hBk}</div>
       </div>
-      <div class="ob" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
+      ${hasDraw?`<div class="ob" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
         <div class="ob-t">X</div><div class="ob-v">${m.d.toFixed(2)}</div><div class="ob-bk">${m.dBk}</div>
-      </div>
+      </div>`:''}
       <div class="ob" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
         <div class="ob-t">2</div><div class="ob-v">${m.a.toFixed(2)}</div><div class="ob-bk">${m.aBk}</div>
       </div>
@@ -425,7 +441,10 @@ function startTimer(){
     _countdown--;
     H('odds-foot',`⏱ Next update in ${_countdown}s`);
     if(_countdown<=0){
-      Promise.all([fetchOddsData(),fetchAfricanFixtures().then(m=>{_africanMatches=m;})]).then(()=>renderOdds());
+      Promise.all([
+        fetchEspnData(),
+        fetchAfricanFixtures().then(m=>{_africanMatches=m;})
+      ]).then(()=>{updateStatus();renderOdds();});
       _countdown=60;
     }
   },1000);
@@ -441,7 +460,7 @@ async function init(){
   renderLgFilter();
   renderOdds();
   await Promise.all([
-    fetchOddsData(),
+    fetchEspnData(),
     fetchAfricanFixtures().then(m=>{_africanMatches=m;updateStatus();renderOdds();})
   ]);
   startTimer();

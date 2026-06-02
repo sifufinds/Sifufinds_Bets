@@ -458,14 +458,27 @@ const CASINOS=[
 
 // ── TIPS ──────────────────────────────────────────────────────────────────────
 const TIPS=[
-{league:'World Cup 2026 · Pre-Tournament Friendly',key:'world',match:'Nigeria vs USA',pred:'Over 2.5 Goals',analysis:'Nigeria\'s World Cup squad features Osimhen, Lookman and Chukwueze — a lethal attacking trio. The USA hosts the tournament and their high-press style tends to open matches up. Both teams are finalising squads and will attack freely in this warm-up clash.',odds:'1.75',via:'Bet9ja',conf:73,time:'20:00',isAI:false},
-{league:'World Cup 2026 · Pre-Tournament Friendly',key:'world',match:'Morocco vs Croatia',pred:'Morocco Win or Draw',analysis:'Morocco are AFCON 2023 champions and come into this tournament as one of Africa\'s strongest sides. Croatia face a transitional squad after several retirements. The Atlas Lions\' organised defence and pace on the break make them hard to beat.',odds:'1.65',via:'1xBet',conf:74,time:'17:00',isAI:false},
-{league:'CAF Champions League · Final',key:'cafl',match:'Mamelodi Sundowns vs Al Ahly',pred:'Over 2.5 Goals',analysis:'The CAF CL Final brings together Africa\'s two most dominant clubs of the decade. Sundowns\' fast transitions and Al Ahly\'s clinical finishing make for a high-scoring final. Both teams have scored in 8 of their last 9 CAF knockout matches.',odds:'1.85',via:'Betway',conf:72,time:'20:00',isAI:false},
-{league:'AFCON 2027 Qualifier',key:'afcon',match:'Nigeria vs Rwanda',pred:'Nigeria Win & Over 1.5',analysis:'Super Eagles at home have won 11 of their last 12 qualifying games. Rwanda are a developing side who have conceded 2+ goals in 4 of their last 5 away qualifiers. With Osimhen leading the line, a commanding home win is the likely outcome.',odds:'1.65',via:'Bet9ja',conf:80,time:'17:00',isAI:false},
-{league:'AFCON 2027 Qualifier',key:'afcon',match:'Senegal vs DR Congo',pred:'Senegal Win',analysis:'Senegal are the reigning AFCON champions and unbeaten in 9 home qualifiers. DR Congo have quality but are inconsistent away from home. Sadio Mané\'s leadership and the passionate home support in Dakar give Senegal clear edge.',odds:'1.70',via:'1xBet',conf:76,time:'19:00',isAI:false},
-{league:'Kenya Premier League · Playoff',key:'local',match:'Gor Mahia vs AFC Leopards',pred:'Both Teams to Score',analysis:'The Mashemeji Derby is Kenyan football\'s fiercest rivalry. Both sides have attackers in excellent form and this playoff encounter historically produces goals at both ends. 7 of the last 10 meetings have seen BTTS.',odds:'1.75',via:'Betika',conf:70,time:'16:00',isAI:false},
-{league:'NPFL · Super 8',key:'local',match:'Enyimba FC vs Rivers United',pred:'Enyimba Win',analysis:'Enyimba are the most decorated club in Nigerian football. At home in Aba in the Super 8 playoff they have the crowd, momentum and squad depth. Rivers United have been inconsistent over the past month and conceded first in 4 of their last 5 away ties.',odds:'1.90',via:'Bet9ja',conf:67,time:'16:00',isAI:false},
-{league:'CAF Confederation Cup · Semi-Final',key:'cafl',match:'Étoile du Sahel vs Zamalek',pred:'Both Teams to Score',analysis:'A tight second-leg semi-final. Étoile lead by a single goal from the first leg. Zamalek must attack, which opens space for the home side on the counter. Both teams have prolific attackers and goals look inevitable.',odds:'1.95',via:'22Bet',conf:64,time:'19:00',isAI:false}
+// ── Football ──
+{league:'World Cup 2026 · Pre-Tournament Friendly',key:'world',match:'Nigeria vs USA',pred:'Over 2.5 Goals',analysis:'Nigeria\'s World Cup squad features Osimhen, Lookman and Chukwueze — a lethal attacking trio. The USA hosts the tournament and their high-press style opens matches up. Both teams are finalising squads and will attack freely.',odds:'1.75',via:'Bet9ja',conf:73,time:'20:00',isAI:false},
+{league:'World Cup 2026 · Pre-Tournament Friendly',key:'world',match:'Morocco vs Croatia',pred:'Morocco Win or Draw',analysis:'Morocco are AFCON 2023 champions and Africa\'s strongest World Cup contenders. Croatia face a transitional squad post-retirements. The Atlas Lions\' organised defence and pace on the break make them hard to beat.',odds:'1.65',via:'1xBet',conf:74,time:'17:00',isAI:false},
+{league:'CAF Champions League · Final',key:'cafl',match:'Mamelodi Sundowns vs Al Ahly',pred:'Over 2.5 Goals',analysis:'The CAF CL Final brings together Africa\'s two most dominant clubs. Sundowns\' fast transitions and Al Ahly\'s clinical finishing make for a high-scoring encounter. Both sides scored in 8 of their last 9 CAF knockout matches.',odds:'1.85',via:'Betway',conf:72,time:'20:00',isAI:false},
+{league:'AFCON 2027 Qualifier',key:'afcon',match:'Nigeria vs Rwanda',pred:'Nigeria Win & Over 1.5',analysis:'Super Eagles at home have won 11 of their last 12 qualifying games. Rwanda have conceded 2+ goals in 4 of their last 5 away qualifiers. With Osimhen leading the line, a commanding home win is expected.',odds:'1.65',via:'Bet9ja',conf:80,time:'17:00',isAI:false},
+{league:'AFCON 2027 Qualifier',key:'afcon',match:'Senegal vs DR Congo',pred:'Senegal Win',analysis:'Senegal are the reigning AFCON champions and unbeaten in 9 home qualifiers. DR Congo are inconsistent away from home. Mané\'s leadership and the Dakar crowd give the Lions of Teranga clear edge.',odds:'1.70',via:'1xBet',conf:76,time:'19:00',isAI:false},
+{league:'Kenya Premier League · Playoff',key:'local',match:'Gor Mahia vs AFC Leopards',pred:'Both Teams to Score',analysis:'The Mashemeji Derby is Kenyan football\'s fiercest rivalry. Both sides are in goalscoring form and this playoff encounter historically produces goals at both ends. 7 of the last 10 meetings saw BTTS.',odds:'1.75',via:'Betika',conf:70,time:'16:00',isAI:false},
+{league:'NPFL · Super 8',key:'local',match:'Enyimba FC vs Rivers United',pred:'Enyimba Win',analysis:'Enyimba are Nigeria\'s most decorated club. At home in Aba they have the crowd and momentum behind them. Rivers United have been inconsistent and conceded first in 4 of their last 5 away ties.',odds:'1.90',via:'Bet9ja',conf:67,time:'16:00',isAI:false},
+{league:'CAF Confederation Cup · Semi-Final',key:'cafl',match:'Étoile du Sahel vs Zamalek',pred:'Both Teams to Score',analysis:'A tight second-leg semi-final. Étoile lead by a single goal. Zamalek must attack, opening space on the counter. Both sides have prolific attackers and goals look inevitable.',odds:'1.95',via:'22Bet',conf:64,time:'19:00',isAI:false},
+// ── Basketball ──
+{league:'NBA Finals 2026 · Game 5',key:'basketball',match:'Boston Celtics vs Oklahoma City Thunder',pred:'Boston Win',analysis:'The Celtics have home-court advantage and their defensive intensity at TD Garden is elite. Jaylen Brown has been averaging 28 points per game in these Finals. OKC\'s youth may cost them in a must-win pressure moment.',odds:'1.75',via:'1xBet',conf:72,time:'03:30',isAI:false},
+{league:'NBA Finals 2026 · Game 5',key:'basketball',match:'Boston Celtics vs Oklahoma City Thunder',pred:'Over 214.5 Points',analysis:'All four previous games in this series exceeded 210 points. Both teams play at pace — Boston\'s three-point volume and OKC\'s inside scoring make for consistently high totals. Expect another fast-paced encounter.',odds:'1.85',via:'Bet9ja',conf:68,time:'03:30',isAI:false},
+// ── Tennis ──
+{league:'French Open 2026 · Men\'s Final',key:'tennis',match:'Carlos Alcaraz vs Jannik Sinner',pred:'Alcaraz Win',analysis:'Alcaraz is the defending Roland Garros champion and the dominant clay-court force this season. His footwork, variety and fighting spirit are unmatched in the current generation. Sinner has improved on clay but has never reached a Roland Garros final before.',odds:'1.80',via:'1xBet',conf:70,time:'15:00',isAI:false},
+{league:'French Open 2026 · Women\'s Final',key:'tennis',match:'Iga Świątek vs Madison Keys',pred:'Świątek Win',analysis:'Świątek has won Roland Garros four times and looks imperious on clay again this year. Keys is dangerous with a big serve, but on slow red clay Świątek\'s baseline consistency and mental strength are overwhelming.',odds:'1.55',via:'Bet9ja',conf:77,time:'12:00',isAI:false},
+// ── Cricket ──
+{league:'ICC World Test Championship · Final',key:'cricket',match:'South Africa vs India',pred:'South Africa Win',analysis:'The Proteas have their best Test side in a decade. Their pace trio of Rabada, Nortje and Jansen is the most feared attack in the world. India\'s batting depth is immense but they\'ve historically struggled against sustained world-class pace in neutral conditions.',odds:'2.20',via:'Hollywoodbets',conf:60,time:'09:00',isAI:false},
+// ── Rugby ──
+{league:'Super Rugby Pacific 2026 · Final',key:'rugby',match:'Blues vs Brumbies',pred:'Blues Win',analysis:'The Blues had the most dominant Super Rugby season in years with a 12-2 regular-phase record. Their backline — led by Beauden Barrett and Rieko Ioane — is the most dangerous in the competition. The Brumbies are defensively solid but Blues\' power game will prevail.',odds:'1.75',via:'1xBet',conf:68,time:'11:05',isAI:false},
+// ── Boxing ──
+{league:'WBC Heavyweight Championship',key:'boxing',match:'Oleksandr Usyk vs Daniel Dubois 2',pred:'Usyk Win',analysis:'Usyk is the most complete heavyweight of his generation — elite footwork, IQ and a chin tested at the highest level. In their first meeting Usyk\'s movement and jab neutralised Dubois\'s power entirely. Expect another masterclass with a points or late-stoppage retain.',odds:'1.45',via:'Bet9ja',conf:80,time:'22:00',isAI:false}
 ];
 
 // ── NEWS ──────────────────────────────────────────────────────────────────────
@@ -482,6 +495,7 @@ const NEWS=[
 const T_TODAY=SHORT_DATE;
 const T_TMR=new Date(NOW.getTime()+86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
 const ODDS_DATA=[
+// ── Football ──
 {league:'AFCON 2027 Qualifier',key:'afcon',live:true,home:'Nigeria',away:'Rwanda',hScore:2,aScore:0,time:"68'",h:1.65,d:3.90,a:5.50,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
 {league:'CAF Champions League · Final',key:'cafl',live:false,home:'Mamelodi Sundowns',away:'Al Ahly',hScore:null,aScore:null,time:`${T_TODAY} 20:00`,h:2.10,d:3.20,a:3.40,hBk:'Betway',dBk:'Bet9ja',aBk:'Hollywoodbets',complete:false},
 {league:'AFCON 2027 Qualifier',key:'afcon',live:false,home:'Senegal',away:'DR Congo',hScore:null,aScore:null,time:`${T_TODAY} 19:00`,h:1.70,d:3.30,a:5.00,hBk:'1xBet',dBk:'22Bet',aBk:'Melbet',complete:false},
@@ -489,7 +503,19 @@ const ODDS_DATA=[
 {league:'Kenya Premier League',key:'local',live:true,home:'Gor Mahia',away:'AFC Leopards',hScore:1,aScore:1,time:"72'",h:1.80,d:3.20,a:4.50,hBk:'Betika',dBk:'SportPesa',aBk:'Betway',complete:false},
 {league:'World Cup 2026 · Friendly',key:'world',live:false,home:'Morocco',away:'Croatia',hScore:null,aScore:null,time:`${T_TMR} 17:00`,h:2.10,d:3.30,a:3.60,hBk:'1xBet',dBk:'22Bet',aBk:'Melbet',complete:false},
 {league:'NPFL · Super 8',key:'local',live:false,home:'Enyimba FC',away:'Rivers United',hScore:null,aScore:null,time:`${T_TMR} 16:00`,h:1.90,d:3.20,a:4.20,hBk:'Bet9ja',dBk:'Sportybet',aBk:'BetKing',complete:false},
-{league:'CAF Confederation Cup · Semi-Final',key:'cafl',live:false,home:'Étoile du Sahel',away:'Zamalek',hScore:null,aScore:null,time:`${T_TMR} 19:00`,h:2.40,d:3.10,a:2.90,hBk:'Betway',dBk:'Bet9ja',aBk:'22Bet',complete:false}
+{league:'CAF Confederation Cup · Semi-Final',key:'cafl',live:false,home:'Étoile du Sahel',away:'Zamalek',hScore:null,aScore:null,time:`${T_TMR} 19:00`,h:2.40,d:3.10,a:2.90,hBk:'Betway',dBk:'Bet9ja',aBk:'22Bet',complete:false},
+// ── Basketball ──
+{league:'NBA Finals 2026 · Game 5',key:'basketball',live:true,home:'Boston Celtics',away:'Oklahoma City Thunder',hScore:62,aScore:57,time:"Q3 2:15",h:1.75,d:0,a:2.10,hBk:'1xBet',dBk:'',aBk:'Bet9ja',complete:false},
+{league:'EuroLeague · Final',key:'basketball',live:false,home:'Real Madrid',away:'Panathinaikos',hScore:null,aScore:null,time:`${T_TODAY} 21:00`,h:1.65,d:0,a:2.30,hBk:'1xBet',dBk:'',aBk:'22Bet',complete:false},
+// ── Tennis ──
+{league:'French Open 2026 · Men\'s Final',key:'tennis',live:false,home:'Carlos Alcaraz',away:'Jannik Sinner',hScore:null,aScore:null,time:`${T_TODAY} 15:00`,h:1.80,d:0,a:2.05,hBk:'1xBet',dBk:'',aBk:'22Bet',complete:false},
+{league:'French Open 2026 · Women\'s Final',key:'tennis',live:false,home:'Iga Świątek',away:'Madison Keys',hScore:null,aScore:null,time:`${T_TODAY} 12:00`,h:1.55,d:0,a:2.55,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
+// ── Cricket ──
+{league:'ICC World Test Championship · Final',key:'cricket',live:false,home:'South Africa',away:'India',hScore:null,aScore:null,time:`${T_TODAY} 09:00`,h:2.20,d:3.10,a:2.10,hBk:'Hollywoodbets',dBk:'Betway',aBk:'1xBet',complete:false},
+// ── Rugby ──
+{league:'Super Rugby Pacific · Final',key:'rugby',live:false,home:'Blues',away:'Brumbies',hScore:null,aScore:null,time:`${T_TODAY} 11:05`,h:1.75,d:0,a:2.05,hBk:'1xBet',dBk:'',aBk:'Bet9ja',complete:false},
+// ── Boxing ──
+{league:'WBC Heavyweight Championship',key:'boxing',live:false,home:'Oleksandr Usyk',away:'Daniel Dubois',hScore:null,aScore:null,time:`${T_TMR} 22:00`,h:1.45,d:0,a:2.75,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false}
 ];
 
 // ── PAGE CONTENT (modals) ─────────────────────────────────────────────────────
@@ -752,7 +778,7 @@ document.addEventListener('DOMContentLoaded',renderBrandsBar);
 // ── SIFU ANALYTICS TRACKER ────────────────────────────────────────────────────
 (function(){
   'use strict';
-  var GA_ID='G-XXXXXXXXXX'; // ← paste your GA4 Measurement ID here before deploying
+  var GA_ID='G-0B51MX2ZKE';
 
   // Local event log – persists up to 500 events in localStorage for the dashboard
   function logLocal(name,params){
