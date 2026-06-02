@@ -380,7 +380,7 @@ const logoUrl=(url,abbr='')=>{try{const brand=abbr&&BRAND_DOMAINS[abbr];const d=
 const logoImg=(url,name,abbr,tc,w,r)=>{const word=name.split(' ')[0];const fs=word.length>7?Math.max(9,Math.floor(w*0.22)):Math.floor(w*0.28);return`<span style="color:${tc};font-size:${fs}px;font-weight:900;letter-spacing:-0.5px;text-transform:lowercase;line-height:1;text-align:center;padding:0 2px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${word}</span><img src="${logoUrl(url,abbr)}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:4px;border-radius:${r}px" loading="lazy" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.style.display='none'">`;};
 
 // ── COUNTRY MANAGEMENT ────────────────────────────────────────────────────────
-const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA']);
+const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA','EG','MA','SL','LR']);
 const _CTY_LS='sf_cty';
 
 // Fire geo-IP request immediately so it resolves in parallel with page render.
