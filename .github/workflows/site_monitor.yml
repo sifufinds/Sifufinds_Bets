@@ -1,0 +1,116 @@
+name: Site Monitor — sifufinds.com 24/7 health check
+
+on:
+  schedule:
+    # Every hour, around the clock
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: site-monitor
+  cancel-in-progress: true
+
+jobs:
+  health-check:
+    name: Check all key pages are live
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check critical pages
+        id: check
+        run: |
+          FAILED=0
+          REPORT=""
+
+          check_page() {
+            local url="$1"
+            local label="$2"
+            local code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "$url")
+            if [ "$code" != "200" ]; then
+              echo "FAIL [$code] $label — $url"
+              FAILED=$((FAILED+1))
+              REPORT="$REPORT\n❌ $label ($code): $url"
+            else
+              echo "OK   [200] $label"
+              REPORT="$REPORT\n✅ $label: $url"
+            fi
+          }
+
+          check_page "https://sifufinds.com/"                          "Home"
+          check_page "https://sifufinds.com/about/"                    "About"
+          check_page "https://sifufinds.com/tips/"                     "Tips"
+          check_page "https://sifufinds.com/casino/"                   "Casino"
+          check_page "https://sifufinds.com/odds/"                     "Odds"
+          check_page "https://sifufinds.com/blog/"                     "Blog"
+          check_page "https://sifufinds.com/countries/"                "Countries"
+          check_page "https://sifufinds.com/bonuses/"                  "Bonuses"
+          check_page "https://sifufinds.com/bonuses/welcome-bonus/"    "Welcome Bonus"
+          check_page "https://sifufinds.com/bonuses/free-bet/"         "Free Bet"
+          check_page "https://sifufinds.com/guides/"                   "Guides"
+          check_page "https://sifufinds.com/betting/"                  "Betting"
+          check_page "https://sifufinds.com/assets/shared.css"         "CSS Asset"
+          check_page "https://sifufinds.com/assets/shared.js"          "JS Asset"
+
+          echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
+          printf "REPORT<<EOF\n$REPORT\nEOF" >> "$GITHUB_OUTPUT"
+
+          if [ "$FAILED" -gt 0 ]; then
+            echo ""
+            echo "::error::$FAILED page(s) down on sifufinds.com"
+            exit 1
+          fi
+
+      - name: Check for hacked/defaced content
+        run: |
+          # Fetch the home page and check for common hack signatures
+          BODY=$(curl -s --max-time 15 "https://sifufinds.com/" | tr '[:upper:]' '[:lower:]')
+
+          HACKED=0
+          check_hack() {
+            local term="$1"
+            if echo "$BODY" | grep -q "$term"; then
+              echo "::warning::Possible hack indicator found: '$term'"
+              HACKED=$((HACKED+1))
+            fi
+          }
+
+          check_hack "hacked by"
+          check_hack "defaced"
+          check_hack "you have been hacked"
+          check_hack "owned by"
+          check_hack "r00ted"
+          check_hack "casino bonus" # Spam injection check
+          check_hack "buy cheap" # SEO spam injection
+
+          if [ "$HACKED" -gt 0 ]; then
+            echo "::error::Possible content injection detected on home page!"
+            exit 1
+          fi
+          echo "Content check passed — no hack indicators found"
+
+      - name: Alert via Telegram on failure
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_ALERT_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+        run: |
+          if [ -z "$TELEGRAM_BOT_TOKEN" ] || [ -z "$TELEGRAM_CHAT_ID" ]; then
+            echo "No Telegram alert credentials configured — skipping alert"
+            exit 0
+          fi
+
+          MSG="🚨 *SifuFinds Site Alert*%0A%0A"
+          MSG="${MSG}One or more pages are DOWN or may be hacked.%0A"
+          MSG="${MSG}Time: $(date -u '+%Y-%m-%d %H:%M UTC')%0A"
+          MSG="${MSG}%0ACheck: https://sifufinds.com%0A"
+          MSG="${MSG}Workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d "chat_id=${TELEGRAM_CHAT_ID}" \
+            -d "text=${MSG}" \
+            -d "parse_mode=Markdown" \
+            -d "disable_web_page_preview=true" \
+            > /dev/null
+
+          echo "Telegram alert sent"

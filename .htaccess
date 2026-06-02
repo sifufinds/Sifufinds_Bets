@@ -1,9 +1,45 @@
 Options -Indexes
 
-# Redirect */index.html to */ (permanent, covers all current and future pages)
+# ── SECURITY HEADERS ──────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Prevent MIME sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # XSS protection for older browsers
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Don't send referrer to third-party sites
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Restrict browser features
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+
+  # Force HTTPS for 1 year, include subdomains
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Content Security Policy — allows SifuFinds assets + known CDNs only
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ipapi.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://ipapi.co https://www.google-analytics.com https://stats.g.doubleclick.net; frame-src 'none'; object-src 'none'; base-uri 'self'"
+
+  # Remove server version info
+  Header unset Server
+  Header unset X-Powered-By
+</IfModule>
+
+# ── BLOCK SENSITIVE FILES ─────────────────────────────────────────────────────
+<FilesMatch "(\.env|\.htpasswd|\.py|pyproject\.toml|uv\.lock)$">
+  Require all denied
+</FilesMatch>
+
+# Block access to hidden directories
+RedirectMatch 404 /\.(git|env|github|venv|claude)/
+
+# ── REDIRECTS ────────────────────────────────────────────────────────────────
 RewriteEngine On
 RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
 RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 
-# Serve index.html for directory requests (default Apache behavior)
+# ── DIRECTORY INDEX ───────────────────────────────────────────────────────────
 DirectoryIndex index.html
