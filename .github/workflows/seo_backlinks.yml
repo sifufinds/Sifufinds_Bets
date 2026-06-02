@@ -15,6 +15,7 @@ on:
           - research
           - outreach
           - send
+          - inbox
           - content
           - all
       dry_run:
@@ -70,6 +71,8 @@ jobs:
           SMTP_PASS:       ${{ secrets.SMTP_PASS }}
           SMTP_FROM_NAME:  ${{ secrets.SMTP_FROM_NAME }}
           HUNTER_API_KEY:  ${{ secrets.HUNTER_API_KEY }}
+          IMAP_HOST:       imap.hostinger.com
+          IMAP_PORT:       "993"
         run: |
           PHASE="${{ github.event.inputs.phase || 'all' }}"
           LIMIT="${{ github.event.inputs.limit || '15' }}"
@@ -80,6 +83,7 @@ jobs:
             research) ARGS="$ARGS --research" ;;
             outreach) ARGS="$ARGS --outreach" ;;
             send)     ARGS="$ARGS --send"     ;;
+            inbox)    ARGS="$ARGS --inbox"    ;;
             content)  ARGS="$ARGS --content"  ;;
             *)        ARGS="$ARGS --all"       ;;
           esac

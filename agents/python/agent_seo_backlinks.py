@@ -1,7 +1,7 @@
 """
 SEO Backlink Outreach Agent — SifuFinds
 Researches link targets, drafts personalised emails, finds contact addresses,
-and sends outreach directly via SMTP.
+sends outreach, monitors the inbox for replies, and auto-responds.
 
 White-hat only: guest posts, digital PR, resource pages, broken-link reclaim.
 
@@ -9,33 +9,37 @@ Workflow:
   1. --research  → AI discovers target sites + relevance scores
   2. --outreach  → AI drafts personalised email per pending opportunity
   3. --send      → Finds contact emails (Hunter.io or pattern fallback) and sends
-  4. --content   → AI suggests link-bait content assets
-  5. --status    → Full pipeline dashboard
+  4. --inbox     → Reads inbox, detects replies, AI drafts + sends reply automatically
+  5. --content   → AI suggests link-bait content assets
+  6. --status    → Full pipeline dashboard
 
 Usage:
   python agent_seo_backlinks.py --research           # discover new targets
   python agent_seo_backlinks.py --outreach           # draft emails
   python agent_seo_backlinks.py --send               # find contacts + send
+  python agent_seo_backlinks.py --inbox              # check inbox + auto-reply
   python agent_seo_backlinks.py --all                # all phases
-  python agent_seo_backlinks.py --dry-run --send     # preview sends without sending
-  python agent_seo_backlinks.py --limit 10           # cap per run
+  python agent_seo_backlinks.py --dry-run --inbox    # preview replies without sending
 
 Required env vars (agents/python/.env):
-  SMTP_USER      — sender Gmail address (or any SMTP user)
-  SMTP_PASS      — Gmail App Password (not your account password)
-  SMTP_FROM_NAME — display name, e.g. "Kai at SifuFinds"
+  SMTP_USER      — sending email address
+  SMTP_PASS      — email password
+  SMTP_FROM_NAME — display name, e.g. "SifuFinds Team"
+  IMAP_HOST      — defaults to imap.hostinger.com
+  IMAP_PORT      — defaults to 993
 
 Optional:
-  HUNTER_API_KEY — hunter.io key for accurate contact-email lookup (25 free/month)
-  SMTP_HOST      — defaults to smtp.hostinger.com
-  SMTP_PORT      — defaults to 465 (SSL)
+  HUNTER_API_KEY — hunter.io key for contact-email lookup
 
 State files (committed so CI tracks progress):
   backlink_opportunities.json   — discovered targets + relevance scores
-  backlink_state.json           — per-domain outreach status + email drafts
+  backlink_state.json           — per-domain outreach status, emails, replies
 """
 
 import argparse
+import email
+import email.header
+import imaplib
 import json
 import os
 import random
@@ -73,6 +77,8 @@ DEFAULT_SEND_LIMIT     = 10   # emails sent per run (keep low to protect sender 
 # ── SMTP CONFIG ────────────────────────────────────────────────────────────────
 SMTP_HOST      = os.getenv("SMTP_HOST", "smtp.hostinger.com")
 SMTP_PORT      = int(os.getenv("SMTP_PORT", "465"))
+IMAP_HOST      = os.getenv("IMAP_HOST", "imap.hostinger.com")
+IMAP_PORT      = int(os.getenv("IMAP_PORT", "993"))
 SMTP_USER      = os.getenv("SMTP_USER", "")
 SMTP_PASS      = os.getenv("SMTP_PASS", "")
 SMTP_FROM_NAME = os.getenv("SMTP_FROM_NAME", f"SifuFinds Team")
@@ -546,6 +552,193 @@ def _parse_json_object(text: str, label: str) -> dict:
     return {}
 
 
+# ── INBOX REPLY PROMPT ────────────────────────────────────────────────────────
+
+_REPLY_SYSTEM = f"""You are the outreach manager for {SITE_NAME} ({SITE_URL}).
+{SITE_DESC}
+
+Someone has replied to a backlink outreach email. Read their reply and write a warm,
+professional response that moves the conversation forward toward securing the backlink.
+
+Rules:
+- If they're interested: thank them, confirm the next step (guest post brief, link placement, etc.)
+- If they asked a question: answer clearly and helpfully
+- If they declined politely: thank them graciously and leave the door open
+- Never be pushy or salesy
+- Keep it under 150 words
+- Match the tone of their reply
+
+Respond ONLY with valid JSON:
+{{
+  "subject": "Re: <their subject>",
+  "body": "your reply body"
+}}"""
+
+
+# ── IMAP INBOX MONITOR ────────────────────────────────────────────────────────
+
+def _decode_header(value: str) -> str:
+    parts = email.header.decode_header(value or "")
+    decoded = []
+    for part, charset in parts:
+        if isinstance(part, bytes):
+            decoded.append(part.decode(charset or "utf-8", errors="replace"))
+        else:
+            decoded.append(part)
+    return "".join(decoded)
+
+
+def _get_email_body(msg) -> str:
+    body = ""
+    if msg.is_multipart():
+        for part in msg.walk():
+            if part.get_content_type() == "text/plain" and not part.get("Content-Disposition"):
+                payload = part.get_payload(decode=True)
+                if payload:
+                    body = payload.decode(part.get_content_charset() or "utf-8", errors="replace")
+                    break
+    else:
+        payload = msg.get_payload(decode=True)
+        if payload:
+            body = payload.decode(msg.get_content_charset() or "utf-8", errors="replace")
+    # Trim quoted history (lines starting with > or On ... wrote:)
+    lines = []
+    for line in body.splitlines():
+        if line.startswith(">") or re.match(r"^On .{10,} wrote:$", line):
+            break
+        lines.append(line)
+    return "\n".join(lines).strip()
+
+
+def run_inbox_sync(dry_run: bool = False) -> int:
+    """
+    Connect to IMAP inbox, find unread emails, match against sent outreach,
+    use AI to draft a reply, send it, and mark original as read.
+    """
+    if not SMTP_USER or not SMTP_PASS:
+        print("✗ SMTP_USER / SMTP_PASS not set — cannot check inbox.")
+        return 0
+
+    state = _load_state()
+    # Build lookup: sender email → domain record
+    sent_map: dict[str, tuple[str, dict]] = {}
+    for domain, rec in state.items():
+        if domain.startswith("__"):
+            continue
+        sent_to = rec.get("sent_to", "")
+        if sent_to and rec.get("sent_at") and not rec.get("replied"):
+            sent_map[sent_to.lower()] = (domain, rec)
+
+    print(f"\n📬 Checking inbox at {IMAP_HOST}...")
+
+    try:
+        imap = imaplib.IMAP4_SSL(IMAP_HOST, IMAP_PORT)
+        imap.login(SMTP_USER, SMTP_PASS)
+        imap.select("INBOX")
+    except Exception as e:
+        print(f"✗ IMAP connection failed: {e}")
+        log("backlinks", "inbox", "error", str(e)[:120])
+        return 0
+
+    _, msg_ids = imap.search(None, "UNSEEN")
+    all_ids = msg_ids[0].split() if msg_ids[0] else []
+    print(f"  {len(all_ids)} unread message(s)")
+
+    replied = 0
+
+    for uid in all_ids:
+        try:
+            _, data = imap.fetch(uid, "(RFC822)")
+            raw = data[0][1]
+            msg = email.message_from_bytes(raw)
+
+            sender_raw  = msg.get("From", "")
+            subject_raw = _decode_header(msg.get("Subject", ""))
+            from_email  = re.search(r"[\w.+-]+@[\w.-]+\.\w+", sender_raw)
+            from_email  = from_email.group(0).lower() if from_email else ""
+            from_domain = from_email.split("@")[-1] if "@" in from_email else ""
+
+            body = _get_email_body(msg)
+            if not body:
+                continue
+
+            # Match against a domain we contacted — by exact sent_to or domain
+            matched_domain, matched_rec = None, None
+            if from_email in sent_map:
+                matched_domain, matched_rec = sent_map[from_email]
+            else:
+                for domain, rec in state.items():
+                    if not domain.startswith("__") and from_domain and from_domain in domain:
+                        matched_domain, matched_rec = domain, rec
+                        break
+
+            print(f"\n  📩 From: {sender_raw}")
+            print(f"     Subject: {subject_raw}")
+            print(f"     Preview: {body[:120]}...")
+
+            # Generate AI reply
+            context = (
+                f"Their reply:\n{body[:1000]}\n\n"
+                f"Original subject we sent: {matched_rec.get('email_subject','') if matched_rec else subject_raw}\n"
+                f"Their site: {matched_domain or from_domain}\n"
+                f"Link type we proposed: {matched_rec.get('link_type','backlink') if matched_rec else 'backlink'}"
+            )
+
+            try:
+                raw_reply = ask(_REPLY_SYSTEM, context)
+            except Exception as e:
+                print(f"  ✗ AI reply generation failed: {e}")
+                continue
+
+            reply_data = _parse_json_object(raw_reply, "reply")
+            if not reply_data or not reply_data.get("body"):
+                print(f"  ✗ Could not parse AI reply")
+                continue
+
+            reply_subject = reply_data.get("subject") or f"Re: {subject_raw}"
+            reply_body    = reply_data["body"]
+
+            if dry_run:
+                print(f"\n  ── DRY RUN reply to {from_email} ──")
+                print(f"  Subject: {reply_subject}")
+                print(f"  Body:\n{reply_body}\n")
+            else:
+                try:
+                    _send_smtp(from_email, reply_subject, reply_body)
+                    # Mark original as read
+                    imap.store(uid, "+FLAGS", "\\Seen")
+                    print(f"  ✓ Replied to {from_email}")
+                    log("backlinks", "inbox_reply", "sent", f"to:{from_email}")
+
+                    # Update state
+                    if matched_domain and matched_rec is not None:
+                        matched_rec["replied"]      = True
+                        matched_rec["replied_at"]   = datetime.now(timezone.utc).isoformat()
+                        matched_rec["status"]       = "replied"
+                        matched_rec["reply_from"]   = from_email
+                        matched_rec["reply_preview"] = body[:300]
+                        state[matched_domain]       = matched_rec
+
+                    replied += 1
+                except Exception as e:
+                    print(f"  ✗ Failed to send reply to {from_email}: {e}")
+
+        except Exception as e:
+            print(f"  ✗ Error processing message {uid}: {e}")
+
+    try:
+        imap.logout()
+    except Exception:
+        pass
+
+    if not dry_run and replied:
+        _save_state(state)
+
+    print(f"\n✓ Inbox sync complete — {replied} replies sent")
+    log("backlinks", "inbox", "done", f"replied:{replied}")
+    return replied
+
+
 # ── CONTACT EMAIL DISCOVERY ───────────────────────────────────────────────────
 
 def find_contact_email(domain: str) -> str | None:
@@ -750,11 +943,16 @@ def run(
     do_research:  bool = False,
     do_outreach:  bool = False,
     do_send:      bool = False,
+    do_inbox:     bool = False,
     do_content:   bool = False,
     dry_run:      bool = False,
     limit:        int  = DEFAULT_RESEARCH_LIMIT,
 ) -> None:
     log("backlinks", "start", "running")
+
+    # Always check inbox first so replies are handled before new sends go out
+    if do_inbox:
+        run_inbox_sync(dry_run=dry_run)
 
     if do_research:
         run_research(limit=limit, dry_run=dry_run)
@@ -777,9 +975,10 @@ if __name__ == "__main__":
     parser.add_argument("--research",  action="store_true", help="Discover new backlink opportunities")
     parser.add_argument("--outreach",  action="store_true", help="Generate outreach emails for pending targets")
     parser.add_argument("--send",      action="store_true", help="Find contact emails and send outreach directly")
+    parser.add_argument("--inbox",     action="store_true", help="Check inbox for replies and auto-respond")
     parser.add_argument("--content",   action="store_true", help="Generate link-bait content strategy")
     parser.add_argument("--status",    action="store_true", help="Print pipeline dashboard and exit")
-    parser.add_argument("--all",       action="store_true", help="Run all phases (research + outreach + send + content)")
+    parser.add_argument("--all",       action="store_true", help="Run all phases")
     parser.add_argument("--dry-run",   action="store_true", help="Preview output without saving or sending")
     parser.add_argument("--limit",     type=int, default=DEFAULT_RESEARCH_LIMIT,
                         help=f"Max opportunities per run (default: {DEFAULT_RESEARCH_LIMIT})")
@@ -802,16 +1001,18 @@ if __name__ == "__main__":
     do_research = args.research or args.all
     do_outreach = args.outreach or args.all
     do_send     = args.send     or args.all
+    do_inbox    = args.inbox    or args.all
     do_content  = args.content  or args.all
 
-    if not any([do_research, do_outreach, do_send, do_content]):
-        # Default: full pipeline
-        do_research = do_outreach = do_send = True
+    if not any([do_research, do_outreach, do_send, do_inbox, do_content]):
+        # Default: full pipeline including inbox
+        do_research = do_outreach = do_send = do_inbox = True
 
     run(
         do_research=do_research,
         do_outreach=do_outreach,
         do_send=do_send,
+        do_inbox=do_inbox,
         do_content=do_content,
         dry_run=args.dry_run,
         limit=args.limit,
