@@ -72,7 +72,7 @@ SITE_DESC  = (
 
 DEFAULT_RESEARCH_LIMIT = 15   # new opportunities per research run
 DEFAULT_OUTREACH_LIMIT = 10   # emails generated per outreach run
-DEFAULT_SEND_LIMIT     = 10   # emails sent per run (keep low to protect sender reputation)
+DEFAULT_SEND_LIMIT     = 8    # emails sent per run × 5 runs/day = ~40/day max
 
 # ── SMTP CONFIG ────────────────────────────────────────────────────────────────
 SMTP_HOST      = os.getenv("SMTP_HOST", "smtp.hostinger.com")
@@ -81,15 +81,11 @@ IMAP_HOST      = os.getenv("IMAP_HOST", "imap.hostinger.com")
 IMAP_PORT      = int(os.getenv("IMAP_PORT", "993"))
 SMTP_USER      = os.getenv("SMTP_USER", "")
 SMTP_PASS      = os.getenv("SMTP_PASS", "")
-SMTP_FROM_NAME = os.getenv("SMTP_FROM_NAME", f"SifuFinds Team")
-HUNTER_API_KEY = os.getenv("HUNTER_API_KEY", "")
+SMTP_FROM_NAME = os.getenv("SMTP_FROM_NAME", "SifuFinds Team")
 
 # Seconds to wait between sends — avoids triggering spam filters
 SEND_DELAY_MIN = 30
 SEND_DELAY_MAX = 90
-
-# Common contact email prefixes tried in order when Hunter returns nothing
-CONTACT_PREFIXES = ["contact", "editor", "info", "hello", "advertise", "partnerships", "team"]
 
 OPPORTUNITIES_FILE = Path(__file__).parent / "backlink_opportunities.json"
 STATE_FILE         = Path(__file__).parent / "backlink_state.json"
@@ -741,44 +737,83 @@ def run_inbox_sync(dry_run: bool = False) -> int:
 
 # ── CONTACT EMAIL DISCOVERY ───────────────────────────────────────────────────
 
+_EMAIL_RE = re.compile(r"[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}", re.IGNORECASE)
+
+# Pages most likely to contain a contact email — checked in order
+_CONTACT_PATHS = [
+    "/contact", "/contact-us", "/about", "/about-us",
+    "/write-for-us", "/contribute", "/advertise", "/advertise-with-us",
+    "/partnerships", "/submit-guest-post",
+]
+
+_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (compatible; SifuFindsBot/1.0; "
+        "+https://sifufinds.com/contact)"
+    )
+}
+
+# Email prefixes tried if scraping finds nothing — no API, completely free
+_PATTERN_PREFIXES = [
+    "contact", "editor", "info", "hello",
+    "advertise", "partnerships", "team", "write",
+]
+
+# Domains we never want to return (spam traps, generic providers, etc.)
+_SKIP_DOMAINS = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "example.com"}
+
+
+def _scrape_emails_from_url(url: str) -> list[str]:
+    try:
+        r = requests.get(url, headers=_HEADERS, timeout=8, allow_redirects=True)
+        if r.status_code >= 400:
+            return []
+        found = _EMAIL_RE.findall(r.text)
+        # Strip tracking pixels and image filenames that look like emails
+        return [
+            e.lower() for e in found
+            if "." in e.split("@")[-1]
+            and not e.endswith((".png", ".jpg", ".gif", ".svg"))
+            and e.split("@")[-1] not in _SKIP_DOMAINS
+        ]
+    except Exception:
+        return []
+
+
 def find_contact_email(domain: str) -> str | None:
     """
-    Try Hunter.io first (most accurate). Fall back to guessing common prefixes.
-    Returns the best email found, or None if nothing is available.
+    100% free contact discovery:
+      1. Scrape /contact, /about, /write-for-us etc. for real email addresses
+      2. Fall back to common prefix patterns (contact@, editor@, info@, …)
+    No paid API required.
     """
-    # 1. Hunter.io domain search
-    if HUNTER_API_KEY:
-        try:
-            resp = requests.get(
-                "https://api.hunter.io/v2/domain-search",
-                params={"domain": domain, "api_key": HUNTER_API_KEY, "limit": 5},
-                timeout=10,
-            )
-            data = resp.json().get("data", {})
-            emails = data.get("emails", [])
-            if emails:
-                # Prefer editorial/content-related roles
-                editorial_roles = {"editor", "content", "writer", "seo", "marketing", "pr", "outreach"}
-                for e in emails:
-                    position = (e.get("position") or "").lower()
-                    if any(r in position for r in editorial_roles):
-                        return e["value"]
-                return emails[0]["value"]
-        except Exception as e:
-            print(f"  [hunter] {domain}: {e}")
+    base = f"https://{domain}"
 
-    # 2. Pattern fallback — most sites have at least contact@ or info@
-    for prefix in CONTACT_PREFIXES:
-        candidate = f"{prefix}@{domain}"
-        # Basic MX-record check via a lightweight HEAD request (best-effort)
-        try:
-            r = requests.head(f"https://{domain}", timeout=6, allow_redirects=True)
-            if r.status_code < 500:
-                return candidate  # Site is alive — return first pattern
-        except Exception:
-            return candidate  # Can't reach site but return candidate anyway
+    # Check the homepage first, then dedicated contact paths
+    all_found: list[str] = _scrape_emails_from_url(base)
+    for path in _CONTACT_PATHS:
+        if all_found:
+            break
+        all_found.extend(_scrape_emails_from_url(base + path))
 
-    return None
+    if all_found:
+        # Prefer editorial/content-related addresses
+        editorial = ["editor", "content", "write", "guest", "seo", "marketing", "pr", "outreach"]
+        for e in all_found:
+            if any(k in e for k in editorial):
+                return e
+        return all_found[0]
+
+    # Pattern fallback — site may be alive even if scraping fails
+    try:
+        r = requests.head(base, headers=_HEADERS, timeout=6, allow_redirects=True)
+        if r.status_code < 500:
+            return f"{_PATTERN_PREFIXES[0]}@{domain}"
+    except Exception:
+        pass
+
+    # Return best-guess even if site unreachable — email may still work
+    return f"{_PATTERN_PREFIXES[0]}@{domain}"
 
 
 # ── SMTP SEND ─────────────────────────────────────────────────────────────────
