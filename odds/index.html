@@ -131,13 +131,14 @@
 <!-- SUBNAV -->
 <div class="snav"><div class="snav-in">
   <button class="snl on" data-lg="all" onclick="lgFilt(this)">All Leagues</button>
+  <button class="snl" data-lg="world" onclick="lgFilt(this)">🌍 World Cup 2026</button>
+  <button class="snl" data-lg="cafl" onclick="lgFilt(this)">CAF CL</button>
+  <button class="snl" data-lg="afcon" onclick="lgFilt(this)">AFCON</button>
+  <button class="snl" data-lg="local" onclick="lgFilt(this)">Local Leagues</button>
   <button class="snl" data-lg="epl" onclick="lgFilt(this)">Premier League</button>
   <button class="snl" data-lg="ucl" onclick="lgFilt(this)">UEFA CL</button>
   <button class="snl" data-lg="uel" onclick="lgFilt(this)">Europa League</button>
   <button class="snl" data-lg="laliga" onclick="lgFilt(this)">La Liga</button>
-  <button class="snl" data-lg="cafl" onclick="lgFilt(this)">CAF CL</button>
-  <button class="snl" data-lg="afcon" onclick="lgFilt(this)">AFCON</button>
-  <button class="snl" data-lg="local" onclick="lgFilt(this)">Local Leagues</button>
 </div></div>
 
 <!-- HERO -->
@@ -224,13 +225,14 @@ const LG_KEY_MAP={15:'epl',10:'laliga',45:'ucl',46:'uel',50:'world'};
 const LG_NAME_MAP={15:'Premier League',10:'La Liga',45:'UEFA Champions League',46:'UEFA Europa League',50:'World Cup'};
 const LG_TABS=[
   {key:'all',label:'All Leagues'},
+  {key:'world',label:'🌍 World Cup 2026'},
+  {key:'cafl',label:'CAF CL'},
+  {key:'afcon',label:'AFCON'},
+  {key:'local',label:'Local Leagues'},
   {key:'epl',label:'Premier League'},
   {key:'ucl',label:'UEFA CL'},
   {key:'uel',label:'Europa League'},
-  {key:'laliga',label:'La Liga'},
-  {key:'cafl',label:'CAF CL'},
-  {key:'afcon',label:'AFCON'},
-  {key:'local',label:'Local Leagues'}
+  {key:'laliga',label:'La Liga'}
 ];
 
 const AFRICAN_COMPS=[
@@ -402,7 +404,8 @@ function renderLgFilter(){
 }
 
 function renderOdds(){
-  const all=[..._apiMatches,..._africanMatches];
+  const live=[..._apiMatches,..._africanMatches];
+  const all=live.length?live:[...ODDS_DATA];
   const data=_activeLG==='all'?all:all.filter(m=>m.key===_activeLG);
   if(!data.length){H('odds-cards','<div style="color:rgba(255,255,255,.4);text-align:center;padding:30px;font-size:13px">No odds available for this filter.</div>');return;}
   const sorted=[...data].sort((a,b)=>{

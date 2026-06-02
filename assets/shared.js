@@ -458,36 +458,38 @@ const CASINOS=[
 
 // ── TIPS ──────────────────────────────────────────────────────────────────────
 const TIPS=[
-{league:'CAF Champions League',key:'cafl',match:'Al Ahly vs Wydad Casablanca',pred:'Al Ahly Win & Over 1.5',analysis:'Al Ahly\'s home record in the CAF CL is exceptional — 14 wins from last 16 at home. Wydad have conceded in each of their last 5 away games. The Egyptian giants have superior squad depth and motivation to press for an early group advantage.',odds:'1.85',via:'Bet9ja',conf:78,time:'20:00',isAI:false},
-{league:'Premier League',key:'epl',match:'Arsenal vs Chelsea',pred:'Arsenal Win or Draw (1X)',analysis:'Arsenal are unbeaten in 7 home Premier League games. Chelsea\'s away form has been inconsistent, winning just 2 of their last 6 road fixtures. Arsenal\'s pressing intensity at the Emirates tends to wear down visitors by the 70th minute.',odds:'1.55',via:'Betway',conf:72,time:'17:30',isAI:false},
-{league:'AFCON Qualifier',key:'afcon',match:'Nigeria vs South Africa',pred:'Nigeria Win',analysis:'Super Eagles are playing at home in Lagos with a full-strength squad. Bafana Bafana have lost their last 3 encounters against Nigeria on Nigerian soil. Victor Osimhen\'s form for club and country makes the Super Eagles strong favourites.',odds:'2.10',via:'SportPesa',conf:65,time:'17:00',isAI:false},
-{league:'CAF Confederation Cup',key:'cafl',match:'Simba SC vs Mamelodi Sundowns',pred:'Mamelodi Sundowns Win',analysis:'Sundowns are the dominant force in African club football, winning this competition multiple times. Simba SC despite home advantage have struggled against South African opposition. Expect Sundowns to control midfield and convert from set pieces.',odds:'2.40',via:'Hollywoodbets',conf:61,time:'18:00',isAI:false},
-{league:'Kenya Premier League',key:'local',match:'Gor Mahia vs AFC Leopards',pred:'Both Teams to Score',analysis:'The Mashemeji Derby is Kenyan football\'s biggest rivalry. Both sides have goalscorers in form and this fixture historically produces goals at both ends. Over the last 10 meetings, 7 have seen BTTS.',odds:'1.75',via:'Betika',conf:70,time:'16:00',isAI:false},
-{league:'Premier League',key:'epl',match:'Manchester City vs Liverpool',pred:'Over 2.5 Goals',analysis:'City vs Liverpool reliably produces entertainment — 8 of the last 10 meetings have seen 3+ goals. Both teams press high and leave space in transition. Expect an open game with early scoring from both sides.',odds:'1.65',via:'1xBet',conf:74,time:'15:00',isAI:false},
-{league:'NPFL',key:'local',match:'Enyimba FC vs Rangers International',pred:'Enyimba Win',analysis:'Enyimba are the most decorated club in Nigerian football. Playing at home in Aba, they have only lost twice this season. Rangers have travel fatigue after mid-week continental play and Enyimba\'s pressing game will be too much for them.',odds:'1.90',via:'Bet9ja',conf:67,time:'16:00',isAI:false},
-{league:'CAF Champions League',key:'cafl',match:'Espérance ST vs Orlando Pirates',pred:'Espérance Win',analysis:'Espérance are perennial CAF CL contenders, unbeaten in their last 8 home group stage games. Orlando Pirates, while dangerous, have struggled away from home in the competition. The Tunisian outfit\'s home atmosphere and tactical discipline should prove decisive.',odds:'2.00',via:'22Bet',conf:63,time:'21:00',isAI:false}
+{league:'World Cup 2026 · Pre-Tournament Friendly',key:'world',match:'Nigeria vs USA',pred:'Over 2.5 Goals',analysis:'Nigeria\'s World Cup squad features Osimhen, Lookman and Chukwueze — a lethal attacking trio. The USA hosts the tournament and their high-press style tends to open matches up. Both teams are finalising squads and will attack freely in this warm-up clash.',odds:'1.75',via:'Bet9ja',conf:73,time:'20:00',isAI:false},
+{league:'World Cup 2026 · Pre-Tournament Friendly',key:'world',match:'Morocco vs Croatia',pred:'Morocco Win or Draw',analysis:'Morocco are AFCON 2023 champions and come into this tournament as one of Africa\'s strongest sides. Croatia face a transitional squad after several retirements. The Atlas Lions\' organised defence and pace on the break make them hard to beat.',odds:'1.65',via:'1xBet',conf:74,time:'17:00',isAI:false},
+{league:'CAF Champions League · Final',key:'cafl',match:'Mamelodi Sundowns vs Al Ahly',pred:'Over 2.5 Goals',analysis:'The CAF CL Final brings together Africa\'s two most dominant clubs of the decade. Sundowns\' fast transitions and Al Ahly\'s clinical finishing make for a high-scoring final. Both teams have scored in 8 of their last 9 CAF knockout matches.',odds:'1.85',via:'Betway',conf:72,time:'20:00',isAI:false},
+{league:'AFCON 2027 Qualifier',key:'afcon',match:'Nigeria vs Rwanda',pred:'Nigeria Win & Over 1.5',analysis:'Super Eagles at home have won 11 of their last 12 qualifying games. Rwanda are a developing side who have conceded 2+ goals in 4 of their last 5 away qualifiers. With Osimhen leading the line, a commanding home win is the likely outcome.',odds:'1.65',via:'Bet9ja',conf:80,time:'17:00',isAI:false},
+{league:'AFCON 2027 Qualifier',key:'afcon',match:'Senegal vs DR Congo',pred:'Senegal Win',analysis:'Senegal are the reigning AFCON champions and unbeaten in 9 home qualifiers. DR Congo have quality but are inconsistent away from home. Sadio Mané\'s leadership and the passionate home support in Dakar give Senegal clear edge.',odds:'1.70',via:'1xBet',conf:76,time:'19:00',isAI:false},
+{league:'Kenya Premier League · Playoff',key:'local',match:'Gor Mahia vs AFC Leopards',pred:'Both Teams to Score',analysis:'The Mashemeji Derby is Kenyan football\'s fiercest rivalry. Both sides have attackers in excellent form and this playoff encounter historically produces goals at both ends. 7 of the last 10 meetings have seen BTTS.',odds:'1.75',via:'Betika',conf:70,time:'16:00',isAI:false},
+{league:'NPFL · Super 8',key:'local',match:'Enyimba FC vs Rivers United',pred:'Enyimba Win',analysis:'Enyimba are the most decorated club in Nigerian football. At home in Aba in the Super 8 playoff they have the crowd, momentum and squad depth. Rivers United have been inconsistent over the past month and conceded first in 4 of their last 5 away ties.',odds:'1.90',via:'Bet9ja',conf:67,time:'16:00',isAI:false},
+{league:'CAF Confederation Cup · Semi-Final',key:'cafl',match:'Étoile du Sahel vs Zamalek',pred:'Both Teams to Score',analysis:'A tight second-leg semi-final. Étoile lead by a single goal from the first leg. Zamalek must attack, which opens space for the home side on the counter. Both teams have prolific attackers and goals look inevitable.',odds:'1.95',via:'22Bet',conf:64,time:'19:00',isAI:false}
 ];
 
 // ── NEWS ──────────────────────────────────────────────────────────────────────
 const NEWS=[
-{cat:'Nigeria',color:'#00875A',title:'Bet9ja Launches New 170% ACCA Boost – Here\'s How to Claim It',date:'Today'},
-{cat:'South Africa',color:'#3B1EA5',title:'Hollywoodbets Expands to 5 New African Countries in 2026',date:'Yesterday'},
-{cat:'Kenya',color:'#007A4D',title:'Betika Reaches 10 Million Users – New Features Announced',date:'2 days ago'},
-{cat:'CAF',color:'#E60000',title:'CAF Champions League 2026 – Odds & Best Bookmakers to Bet',date:'3 days ago'},
-{cat:'Ghana',color:'#00C851',title:'Sportybet Ghana Reports Record Jackpot Payout of GH₵500,000',date:'4 days ago'},
-{cat:'Africa',color:'#FF6B00',title:'Mobile Money Betting Up 45% Across Sub-Saharan Africa in 2026',date:'5 days ago'}
+{cat:'World Cup 2026',color:'#E60000',title:'World Cup 2026 Kicks Off June 11 – Best Odds for African Teams',date:'Today'},
+{cat:'Nigeria',color:'#00875A',title:'Super Eagles Name Final 26-Man Squad for World Cup 2026',date:'Yesterday'},
+{cat:'CAF',color:'#C62828',title:'CAF Champions League Final Preview – Sundowns vs Al Ahly',date:'2 days ago'},
+{cat:'Morocco',color:'#009A44',title:'Morocco World Cup 2026 Odds – Atlas Lions Favourites in Their Group',date:'3 days ago'},
+{cat:'Kenya',color:'#007A4D',title:'Betika Reaches 10 Million Users – New World Cup Features Added',date:'4 days ago'},
+{cat:'Africa',color:'#FF6B00',title:'Mobile Money Betting Surges 45% as World Cup 2026 Approaches',date:'5 days ago'}
 ];
 
-// ── ODDS DATA ─────────────────────────────────────────────────────────────────
+// ── ODDS DATA (fallback when live APIs are unavailable) ───────────────────────
+const T_TODAY=SHORT_DATE;
+const T_TMR=new Date(NOW.getTime()+86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
 const ODDS_DATA=[
-{league:'CAF Champions League',key:'cafl',live:true,home:'Al Ahly',away:'Esperance ST',hScore:1,aScore:0,time:"67'",h:2.10,d:3.40,a:3.80,hBk:'Bet9ja',dBk:'SportPesa',aBk:'Betway'},
-{league:'Premier League',key:'epl',live:true,home:'Arsenal',away:'Chelsea',hScore:2,aScore:1,time:"54'",h:1.55,d:3.90,a:6.50,hBk:'Betway',dBk:'1xBet',aBk:'22Bet'},
-{league:'CAF Confederation Cup',key:'cafl',live:false,home:'Simba SC',away:'Mamelodi Sundowns',hScore:0,aScore:0,time:'Today 18:00',h:3.20,d:3.10,a:2.40,hBk:'Betika',dBk:'Hollywoodbets',aBk:'Betway'},
-{league:'AFCON Qualifier',key:'afcon',live:false,home:'Nigeria',away:'South Africa',hScore:null,aScore:null,time:'Today 17:00',h:2.10,d:3.20,a:3.80,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet'},
-{league:'Premier League',key:'epl',live:false,home:'Manchester City',away:'Liverpool',hScore:null,aScore:null,time:'Today 15:00',h:2.20,d:3.30,a:3.40,hBk:'Betway',dBk:'22Bet',aBk:'Melbet'},
-{league:'Kenya Premier League',key:'local',live:true,home:'Gor Mahia',away:'AFC Leopards',hScore:1,aScore:1,time:"72'",h:1.80,d:3.20,a:4.50,hBk:'Betika',dBk:'SportPesa',aBk:'Betway'},
-{league:'NPFL',key:'local',live:false,home:'Enyimba FC',away:'Rangers International',hScore:null,aScore:null,time:'Tomorrow 16:00',h:1.90,d:3.20,a:4.20,hBk:'Bet9ja',dBk:'Sportybet',aBk:'BetKing'},
-{league:'PSL',key:'local',live:false,home:'Kaizer Chiefs',away:'Orlando Pirates',hScore:null,aScore:null,time:'Tomorrow 15:30',h:2.80,d:3.10,a:2.60,hBk:'Hollywoodbets',dBk:'Betway',aBk:'Supabets'}
+{league:'AFCON 2027 Qualifier',key:'afcon',live:true,home:'Nigeria',away:'Rwanda',hScore:2,aScore:0,time:"68'",h:1.65,d:3.90,a:5.50,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
+{league:'CAF Champions League · Final',key:'cafl',live:false,home:'Mamelodi Sundowns',away:'Al Ahly',hScore:null,aScore:null,time:`${T_TODAY} 20:00`,h:2.10,d:3.20,a:3.40,hBk:'Betway',dBk:'Bet9ja',aBk:'Hollywoodbets',complete:false},
+{league:'AFCON 2027 Qualifier',key:'afcon',live:false,home:'Senegal',away:'DR Congo',hScore:null,aScore:null,time:`${T_TODAY} 19:00`,h:1.70,d:3.30,a:5.00,hBk:'1xBet',dBk:'22Bet',aBk:'Melbet',complete:false},
+{league:'World Cup 2026 · Friendly',key:'world',live:false,home:'Nigeria',away:'USA',hScore:null,aScore:null,time:`${T_TODAY} 20:00`,h:2.40,d:3.20,a:2.90,hBk:'Bet9ja',dBk:'1xBet',aBk:'Betway',complete:false},
+{league:'Kenya Premier League',key:'local',live:true,home:'Gor Mahia',away:'AFC Leopards',hScore:1,aScore:1,time:"72'",h:1.80,d:3.20,a:4.50,hBk:'Betika',dBk:'SportPesa',aBk:'Betway',complete:false},
+{league:'World Cup 2026 · Friendly',key:'world',live:false,home:'Morocco',away:'Croatia',hScore:null,aScore:null,time:`${T_TMR} 17:00`,h:2.10,d:3.30,a:3.60,hBk:'1xBet',dBk:'22Bet',aBk:'Melbet',complete:false},
+{league:'NPFL · Super 8',key:'local',live:false,home:'Enyimba FC',away:'Rivers United',hScore:null,aScore:null,time:`${T_TMR} 16:00`,h:1.90,d:3.20,a:4.20,hBk:'Bet9ja',dBk:'Sportybet',aBk:'BetKing',complete:false},
+{league:'CAF Confederation Cup · Semi-Final',key:'cafl',live:false,home:'Étoile du Sahel',away:'Zamalek',hScore:null,aScore:null,time:`${T_TMR} 19:00`,h:2.40,d:3.10,a:2.90,hBk:'Betway',dBk:'Bet9ja',aBk:'22Bet',complete:false}
 ];
 
 // ── PAGE CONTENT (modals) ─────────────────────────────────────────────────────
@@ -746,3 +748,96 @@ function renderBrandsBar(){
   }</div></div>`;
 }
 document.addEventListener('DOMContentLoaded',renderBrandsBar);
+
+// ── SIFU ANALYTICS TRACKER ────────────────────────────────────────────────────
+(function(){
+  'use strict';
+  var GA_ID='G-XXXXXXXXXX'; // ← paste your GA4 Measurement ID here before deploying
+
+  // Local event log – persists up to 500 events in localStorage for the dashboard
+  function logLocal(name,params){
+    try{
+      var key='sf_events';
+      var ev=JSON.parse(localStorage.getItem(key)||'[]');
+      ev.unshift({t:Date.now(),n:name,p:params});
+      localStorage.setItem(key,JSON.stringify(ev.slice(0,500)));
+    }catch(e){}
+  }
+
+  // Thin GA4 wrapper (no-op if ID not set)
+  var isGA=GA_ID&&GA_ID!=='G-XXXXXXXXXX';
+  function gtag(){if(window.dataLayer)window.dataLayer.push(arguments);}
+  if(isGA){
+    window.dataLayer=window.dataLayer||[];
+    var gs=document.createElement('script');
+    gs.async=true;
+    gs.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
+    document.head.appendChild(gs);
+    gtag('js',new Date());
+    gtag('config',GA_ID,{send_page_view:true});
+  }
+
+  function track(name,params){
+    logLocal(name,params);
+    if(isGA)gtag('event',name,params||{});
+  }
+
+  // Page impression
+  track('page_view',{page:location.pathname});
+
+  // Outbound / affiliate clicks (fires on every external link)
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href]');
+    if(!a)return;
+    var href=a.href||'';
+    var ext=a.target==='_blank'||(href.indexOf('http')===0&&href.indexOf('sifufinds.com')===-1);
+    if(!ext)return;
+    var name=(a.closest('.hbrand,.bk-card,.feat-card,.gs-item')||{}).querySelector
+      ? (a.closest('.hbrand,.bk-card,.feat-card,.gs-item').querySelector('.hbrand-name,.bk-name,.feat-name,.gs-name')||{}).textContent
+      : null;
+    name=(name||a.textContent||'').trim().slice(0,60)||'unknown';
+    var aff=typeof AFFILIATE_DOMAINS!=='undefined'&&AFFILIATE_DOMAINS.some(function(d){return href.indexOf(d)>-1;});
+    track('outbound_click',{link:href.slice(0,200),bk:name,affiliate:aff,page:location.pathname});
+  },true);
+
+  // Scroll depth milestones
+  var depths=[25,50,75,90],fired={};
+  window.addEventListener('scroll',function(){
+    var el=document.documentElement,body=document.body;
+    var top=el.scrollTop||body.scrollTop;
+    var h=Math.max(el.scrollHeight,body.scrollHeight)-el.clientHeight;
+    if(!h)return;
+    var pct=Math.min(100,Math.round(top/h*100));
+    depths.forEach(function(d){
+      if(pct>=d&&!fired[d]){fired[d]=1;track('scroll_depth',{pct:d,page:location.pathname});}
+    });
+  },{passive:true});
+
+  // Engagement time (seconds actively on page)
+  var t0=Date.now(),engaged=0;
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){engaged+=Date.now()-t0;}else{t0=Date.now();}
+  });
+  window.addEventListener('pagehide',function(){
+    if(!document.hidden)engaged+=Date.now()-t0;
+    if(engaged>3000)track('engagement',{secs:Math.round(engaged/1000),page:location.pathname});
+  });
+
+  // Filter / sort button clicks
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.fp,[data-f]');
+    if(!b)return;
+    track('filter',{v:(b.dataset.f||b.textContent||'').trim().slice(0,30)});
+  });
+
+  // Site search queries
+  var sTimer;
+  document.addEventListener('input',function(e){
+    if(e.target.id!=='srch-inp')return;
+    clearTimeout(sTimer);
+    sTimer=setTimeout(function(){
+      var q=(e.target.value||'').trim();
+      if(q.length>2)track('search',{q:q.slice(0,50)});
+    },900);
+  });
+})();
