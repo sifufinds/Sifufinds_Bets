@@ -1,0 +1,96 @@
+name: Telegram Outreach — Scrape + DM sequence
+
+on:
+  schedule:
+    # 3x/day: 07:00, 13:00, 19:00 UTC (staggered from offers/growth)
+    - cron: "0 7 * * *"
+    - cron: "0 13 * * *"
+    - cron: "0 19 * * *"
+  workflow_dispatch:
+    inputs:
+      scrape:
+        description: "Scrape new prospects (true/false)"
+        required: false
+        default: "true"
+      outreach:
+        description: "Send DMs + follow-ups (true/false)"
+        required: false
+        default: "true"
+      dry_run:
+        description: "Preview messages without sending (true/false)"
+        required: false
+        default: "false"
+      limit:
+        description: "Max DMs to send per run"
+        required: false
+        default: "25"
+
+concurrency:
+  group: telegram-outreach
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  outreach:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run outreach agent
+        working-directory: agents/python
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+          TELEGRAM_PHONE: ${{ secrets.TELEGRAM_PHONE }}
+        run: |
+          ARGS=""
+          SCRAPE="${{ github.event.inputs.scrape || 'true' }}"
+          OUTREACH="${{ github.event.inputs.outreach || 'true' }}"
+          DRY_RUN="${{ github.event.inputs.dry_run || 'false' }}"
+          LIMIT="${{ github.event.inputs.limit || '25' }}"
+
+          if [ "$SCRAPE" = "true" ];   then ARGS="$ARGS --scrape";   fi
+          if [ "$OUTREACH" = "true" ]; then ARGS="$ARGS --outreach"; fi
+          if [ "$DRY_RUN" = "true" ];  then ARGS="$ARGS --dry-run";  fi
+          ARGS="$ARGS --limit $LIMIT"
+
+          python agent_telegram_outreach.py $ARGS
+
+      - name: Commit updated outreach state
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add \
+            agents/python/outreach_prospects.json \
+            agents/python/outreach_state.json \
+            agents/python/agent_log.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "outreach: sync state $(date -u '+%Y-%m-%d %H:%M') UTC"
+            git pull --rebase origin main
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
