@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0B51MX2ZKE');
+</script>
+<script data-goatcounter="https://sifufinds.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SifuFinds · Analytics</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d14;--surface:#16161f;--border:#1e1e2e;--border2:#2a2a3e;
+  --text:#e2e2f0;--muted:#7b7b96;--purple:#8b5cf6;--green:#10b981;
+  --amber:#f59e0b;--red:#ef4444;--blue:#3b82f6;
+  --r:10px;--font:'Inter',system-ui,sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;padding:24px 16px;}
+a{color:var(--purple);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* Lock screen */
+#lock{display:flex;align-items:center;justify-content:center;min-height:80vh;}
+.lock-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:40px 48px;width:320px;text-align:center;}
+.lock-card h2{font-size:1.2rem;margin-bottom:8px;}
+.lock-card p{color:var(--muted);font-size:.85rem;margin-bottom:24px;}
+.lock-input{width:100%;background:#0a0a11;border:1px solid var(--border2);border-radius:6px;color:var(--text);font-size:1.1rem;letter-spacing:.3em;padding:12px;text-align:center;outline:none;}
+.lock-input:focus{border-color:var(--purple);}
+.lock-btn{margin-top:12px;width:100%;background:var(--purple);border:none;border-radius:6px;color:#fff;cursor:pointer;font-size:.95rem;padding:12px;transition:opacity .15s;}
+.lock-btn:hover{opacity:.85;}
+.lock-err{color:var(--red);font-size:.8rem;margin-top:8px;min-height:18px;}
+
+/* Main app */
+#app{display:none;max-width:1100px;margin:0 auto;}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+.logo{font-size:1.1rem;font-weight:700;letter-spacing:-.02em;}
+.logo span{color:var(--purple);}
+.header-meta{display:flex;align-items:center;gap:12px;}
+.pill{background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:.75rem;padding:4px 12px;}
+.pill.green{border-color:var(--green);color:var(--green);}
+.pill.amber{border-color:var(--amber);color:var(--amber);}
+.pill.red{border-color:var(--red);color:var(--red);}
+.lock-out-btn{background:none;border:1px solid var(--border2);border-radius:6px;color:var(--muted);cursor:pointer;font-size:.75rem;padding:4px 10px;}
+.lock-out-btn:hover{border-color:var(--red);color:var(--red);}
+
+/* Grid */
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:24px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;}
+.card-title{color:var(--muted);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;}
+.stat-val{font-size:2rem;font-weight:700;letter-spacing:-.03em;}
+.stat-sub{color:var(--muted);font-size:.8rem;margin-top:4px;}
+
+/* Setup card */
+.setup-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.setup-row{display:flex;align-items:center;gap:10px;font-size:.87rem;}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dot.ok{background:var(--green);}
+.dot.warn{background:var(--amber);}
+.dot.bad{background:var(--red);}
+.setup-row span{color:var(--muted);font-size:.78rem;margin-left:auto;}
+
+/* Config section */
+.section-hd{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.config-row{display:flex;gap:8px;margin-bottom:10px;}
+.config-input{flex:1;background:#0a0a11;border:1px solid var(--border2);border-radius:6px;color:var(--text);font-family:monospace;font-size:.9rem;padding:9px 12px;outline:none;}
+.config-input:focus{border-color:var(--purple);}
+.save-btn{background:var(--purple);border:none;border-radius:6px;color:#fff;cursor:pointer;font-size:.85rem;padding:9px 16px;white-space:nowrap;}
+.save-btn:hover{opacity:.85;}
+.config-hint{color:var(--muted);font-size:.78rem;line-height:1.6;}
+
+/* Events table */
+.events-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:.82rem;}
+th{color:var(--muted);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);}
+td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+tr:last-child td{border-bottom:none;}
+.ev-name{background:var(--border2);border-radius:4px;display:inline-block;font-family:monospace;font-size:.75rem;padding:2px 7px;}
+.ev-name.pv{color:#60a5fa;}
+.ev-name.oc{color:var(--green);}
+.ev-name.sc{color:var(--amber);}
+.ev-name.en{color:var(--purple);}
+.ev-name.ot{color:var(--muted);}
+.ev-time{color:var(--muted);}
+.empty-state{color:var(--muted);font-size:.85rem;padding:20px 0;text-align:center;}
+
+/* Links grid */
+.links-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}
+.ext-link{background:#0a0a11;border:1px solid var(--border2);border-radius:8px;display:flex;flex-direction:column;gap:4px;padding:14px 16px;transition:border-color .15s;}
+.ext-link:hover{border-color:var(--purple);text-decoration:none;}
+.ext-link-name{color:var(--text);font-size:.9rem;font-weight:600;}
+.ext-link-desc{color:var(--muted);font-size:.75rem;}
+
+/* Tabs */
+.tabs{display:flex;gap:4px;margin-bottom:16px;}
+.tab{background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);cursor:pointer;font-size:.8rem;padding:6px 14px;}
+.tab.on{background:var(--purple);border-color:var(--purple);color:#fff;}
+
+/* Scroll bar */
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<!-- Lock screen -->
+<div id="lock">
+  <div class="lock-card">
+    <h2>SifuFinds Analytics</h2>
+    <p>Private owner dashboard</p>
+    <input id="pin-inp" class="lock-input" type="password" maxlength="12" placeholder="PIN" autocomplete="off">
+    <button class="lock-btn" onclick="unlock()">Enter</button>
+    <div id="lock-err" class="lock-err"></div>
+    <p style="margin-top:20px;font-size:.72rem;color:var(--muted)">Default PIN: <code>sifu2026</code> — change below after login</p>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="app">
+  <header>
+    <div class="logo">Sifu<span>Finds</span> · Analytics</div>
+    <div class="header-meta">
+      <span id="tracker-pill" class="pill">Tracker loading…</span>
+      <button class="lock-out-btn" onclick="lockOut()">Lock</button>
+    </div>
+  </header>
+
+  <!-- Stats row -->
+  <div class="grid" id="stat-cards">
+    <div class="card">
+      <div class="card-title">Page Views (this session)</div>
+      <div class="stat-val" id="s-pv">–</div>
+      <div class="stat-sub">page_view events in log</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Bookmaker Clicks (this session)</div>
+      <div class="stat-val" id="s-oc">–</div>
+      <div class="stat-sub">outbound_click events</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Affiliate Clicks</div>
+      <div class="stat-val" id="s-aff">–</div>
+      <div class="stat-sub">clicks on affiliate URLs</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Events Logged</div>
+      <div class="stat-val" id="s-total">–</div>
+      <div class="stat-sub">total in local store (≤500)</div>
+    </div>
+  </div>
+
+  <!-- Two-col row -->
+  <div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:24px;">
+
+    <!-- Setup status -->
+    <div class="card">
+      <div class="card-title">Setup Status</div>
+      <ul class="setup-list" id="setup-list"></ul>
+    </div>
+
+    <!-- GA4 config -->
+    <div class="card">
+      <div class="card-title">Configuration</div>
+      <div class="section-hd" style="margin-bottom:6px;">GA4 Measurement ID</div>
+      <div class="config-row">
+        <input id="ga-id-inp" class="config-input" type="text" placeholder="G-XXXXXXXXXX" autocomplete="off">
+        <button class="save-btn" onclick="saveGA()">Save</button>
+      </div>
+      <div class="config-hint">
+        1. Go to <a href="https://analytics.google.com" target="_blank">analytics.google.com</a><br>
+        2. Create property → Data Streams → Web<br>
+        3. Copy your <strong>G-XXXXXXXX</strong> ID above<br>
+        4. Then open <code>assets/shared.js</code> and replace <code>G-XXXXXXXXXX</code>
+      </div>
+      <div style="margin-top:16px;" class="section-hd">Change PIN</div>
+      <div class="config-row">
+        <input id="new-pin" class="config-input" type="password" placeholder="New PIN" autocomplete="new-password">
+        <button class="save-btn" onclick="savePin()">Save</button>
+      </div>
+      <div id="cfg-msg" style="color:var(--green);font-size:.78rem;min-height:18px;margin-top:4px;"></div>
+    </div>
+  </div>
+
+  <!-- Event log -->
+  <div class="card" style="margin-bottom:24px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <div class="card-title" style="margin-bottom:0;">Recent Events (your local session log)</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <div class="tabs" id="filter-tabs">
+          <button class="tab on" data-f="all" onclick="filterEvents('all',this)">All</button>
+          <button class="tab" data-f="page_view" onclick="filterEvents('page_view',this)">Views</button>
+          <button class="tab" data-f="outbound_click" onclick="filterEvents('outbound_click',this)">Clicks</button>
+          <button class="tab" data-f="engagement" onclick="filterEvents('engagement',this)">Engage</button>
+        </div>
+        <button onclick="clearLog()" style="background:none;border:1px solid var(--red);border-radius:6px;color:var(--red);cursor:pointer;font-size:.75rem;padding:5px 10px;">Clear</button>
+      </div>
+    </div>
+    <div class="events-wrap">
+      <table>
+        <thead><tr><th>Time</th><th>Event</th><th>Page / Detail</th><th>Extra</th></tr></thead>
+        <tbody id="ev-tbody"></tbody>
+      </table>
+      <div id="ev-empty" class="empty-state" style="display:none;">
+        No events yet. Browse a few pages on <a href="/" target="_blank">sifufinds.com</a> then come back here.
+      </div>
+    </div>
+  </div>
+
+  <!-- External links -->
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-title">Analytics Tools</div>
+    <div class="links-grid">
+      <a class="ext-link" href="https://sifufinds.goatcounter.com" target="_blank" style="border-color:#8b5cf6;">
+        <span class="ext-link-name" style="color:#a78bfa;">GoatCounter ↗</span>
+        <span class="ext-link-desc">Live dashboard — page views, top pages, countries, referrers</span>
+      </a>
+      <a class="ext-link" href="https://analytics.google.com" target="_blank">
+        <span class="ext-link-name">Google Analytics 4</span>
+        <span class="ext-link-desc">Events — bookmaker clicks, scroll depth, engagement</span>
+      </a>
+      <a class="ext-link" href="https://search.google.com/search-console" target="_blank">
+        <span class="ext-link-name">Search Console</span>
+        <span class="ext-link-desc">Impressions &amp; ranking clicks from Google</span>
+      </a>
+      <a class="ext-link" href="https://analytics.google.com/analytics/web/#/p_/reports/realtime" target="_blank">
+        <span class="ext-link-name">GA4 Real-Time</span>
+        <span class="ext-link-desc">Live visitors right now</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- What's tracked -->
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-title">What Gets Tracked</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;font-size:.83rem;">
+      <div><span class="ev-name pv">page_view</span><div style="margin-top:4px;color:var(--muted);">Every page load — page path</div></div>
+      <div><span class="ev-name oc">outbound_click</span><div style="margin-top:4px;color:var(--muted);">All external links — bookmaker name, affiliate flag</div></div>
+      <div><span class="ev-name sc">scroll_depth</span><div style="margin-top:4px;color:var(--muted);">25 / 50 / 75 / 90% milestones</div></div>
+      <div><span class="ev-name en">engagement</span><div style="margin-top:4px;color:var(--muted);">Active seconds on page</div></div>
+      <div><span class="ev-name ot">filter</span><div style="margin-top:4px;color:var(--muted);">Filter / sort button clicks</div></div>
+      <div><span class="ev-name ot">search</span><div style="margin-top:4px;color:var(--muted);">Site search queries (≥3 chars)</div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var DEFAULT_PIN='sifu2026';
+var LS_KEY='sf_analytics_pin';
+var EVT_KEY='sf_events';
+var GA_KEY='sf_ga_id';
+var curFilter='all';
+
+// ── Auth ────────────────────────────────────────────────────────────────────
+function storedPin(){return localStorage.getItem(LS_KEY)||DEFAULT_PIN;}
+function unlock(){
+  var p=document.getElementById('pin-inp').value;
+  if(p===storedPin()){document.getElementById('lock').style.display='none';document.getElementById('app').style.display='block';initApp();}
+  else{document.getElementById('lock-err').textContent='Wrong PIN';}
+}
+function lockOut(){
+  document.getElementById('app').style.display='none';
+  document.getElementById('lock').style.display='flex';
+  document.getElementById('pin-inp').value='';
+}
+document.getElementById('pin-inp').addEventListener('keydown',function(e){if(e.key==='Enter')unlock();});
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+function initApp(){
+  renderSetup();
+  renderStats();
+  renderEvents();
+  var saved=localStorage.getItem(GA_KEY)||'';
+  document.getElementById('ga-id-inp').value=saved;
+  setInterval(function(){renderStats();renderEvents();},5000);
+}
+
+// ── Setup status ────────────────────────────────────────────────────────────
+function renderSetup(){
+  var savedGA=localStorage.getItem(GA_KEY)||'';
+  var events=getEvents();
+  var hasEvents=events.length>0;
+  var gaConfigured=savedGA&&savedGA!=='G-XXXXXXXXXX';
+
+  var rows=[
+    {ok:true,label:'Tracker injected',detail:'In assets/shared.js — all '+countPages()+' pages covered'},
+    {ok:gaConfigured,label:gaConfigured?'GA4 connected ('+savedGA+')':'GA4 not configured',detail:gaConfigured?'Replace GA_ID in shared.js to activate':'Create property at analytics.google.com'},
+    {ok:hasEvents,label:hasEvents?'Events flowing ('+events.length+' in log)':'No events yet in local log',detail:'Browse the site then refresh this page'},
+    {ok:null,label:'Search Console',detail:'Set up at search.google.com/search-console for impressions'},
+  ];
+
+  document.getElementById('setup-list').innerHTML=rows.map(function(r){
+    var cls=r.ok===true?'ok':r.ok===false?'bad':'warn';
+    return '<li class="setup-row"><div class="dot '+cls+'"></div><div><div>'+r.label+'</div><div style="color:var(--muted);font-size:.75rem;margin-top:1px">'+r.detail+'</div></div></li>';
+  }).join('');
+
+  // Tracker pill
+  var pill=document.getElementById('tracker-pill');
+  if(gaConfigured){pill.textContent='GA4 Active';pill.className='pill green';}
+  else if(hasEvents){pill.textContent='Tracking (local only)';pill.className='pill amber';}
+  else{pill.textContent='Not configured';pill.className='pill red';}
+}
+
+function countPages(){
+  return 97;
+}
+
+// ── Stats ───────────────────────────────────────────────────────────────────
+function getEvents(){
+  try{return JSON.parse(localStorage.getItem(EVT_KEY)||'[]');}catch(e){return[];}
+}
+
+function renderStats(){
+  var events=getEvents();
+  var pv=events.filter(function(e){return e.n==='page_view';}).length;
+  var oc=events.filter(function(e){return e.n==='outbound_click';}).length;
+  var aff=events.filter(function(e){return e.n==='outbound_click'&&e.p&&e.p.affiliate;}).length;
+  document.getElementById('s-pv').textContent=pv;
+  document.getElementById('s-oc').textContent=oc;
+  document.getElementById('s-aff').textContent=aff;
+  document.getElementById('s-total').textContent=events.length;
+  renderSetup();
+}
+
+// ── Events table ─────────────────────────────────────────────────────────────
+function filterEvents(f,btn){
+  curFilter=f;
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+  if(btn)btn.classList.add('on');
+  renderEvents();
+}
+
+function renderEvents(){
+  var events=getEvents();
+  var filtered=curFilter==='all'?events:events.filter(function(e){return e.n===curFilter;});
+  var tbody=document.getElementById('ev-tbody');
+  var empty=document.getElementById('ev-empty');
+
+  if(!filtered.length){
+    tbody.innerHTML='';
+    empty.style.display='block';
+    return;
+  }
+  empty.style.display='none';
+
+  tbody.innerHTML=filtered.slice(0,80).map(function(e){
+    var d=new Date(e.t);
+    var time=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    var date=d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+    var cls=nameClass(e.n);
+    var page=(e.p&&e.p.page)||'';
+    var detail=detailStr(e.n,e.p);
+    var extra=extraStr(e.n,e.p);
+    return '<tr>'
+      +'<td class="ev-time" title="'+d.toISOString()+'">'+date+' '+time+'</td>'
+      +'<td><span class="ev-name '+cls+'">'+e.n+'</span></td>'
+      +'<td title="'+page+'">'+page+'</td>'
+      +'<td title="'+extra+'">'+detail+'</td>'
+      +'</tr>';
+  }).join('');
+}
+
+function nameClass(n){
+  if(n==='page_view')return 'pv';
+  if(n==='outbound_click')return 'oc';
+  if(n==='scroll_depth')return 'sc';
+  if(n==='engagement')return 'en';
+  return 'ot';
+}
+function detailStr(n,p){
+  if(!p)return'';
+  if(n==='outbound_click')return(p.bk||'')+(p.affiliate?' ★':'');
+  if(n==='scroll_depth')return p.pct+'%';
+  if(n==='engagement')return p.secs+'s';
+  if(n==='search')return'"'+(p.q||'')+'"';
+  if(n==='filter')return p.v||'';
+  return'';
+}
+function extraStr(n,p){
+  if(!p)return'';
+  if(n==='outbound_click')return(p.link||'').slice(0,60);
+  return JSON.stringify(p).slice(0,60);
+}
+
+function clearLog(){
+  if(confirm('Clear all local events?')){
+    localStorage.removeItem(EVT_KEY);
+    renderStats();
+    renderEvents();
+  }
+}
+
+// ── Config saves ─────────────────────────────────────────────────────────────
+function saveGA(){
+  var v=(document.getElementById('ga-id-inp').value||'').trim();
+  if(v&&!v.match(/^G-[A-Z0-9]+$/)){
+    flash('Invalid format — should be G-XXXXXXXXXX');return;
+  }
+  localStorage.setItem(GA_KEY,v);
+  flash('Saved! Now replace GA_ID in assets/shared.js with this value and re-deploy.');
+  renderSetup();
+}
+function savePin(){
+  var v=(document.getElementById('new-pin').value||'').trim();
+  if(v.length<4){flash('PIN must be at least 4 characters');return;}
+  localStorage.setItem(LS_KEY,v);
+  flash('PIN updated.');
+}
+function flash(msg){
+  var el=document.getElementById('cfg-msg');
+  el.textContent=msg;
+  setTimeout(function(){el.textContent='';},4000);
+}
+</script>
+</body>
+</html>

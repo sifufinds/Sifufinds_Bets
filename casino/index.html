@@ -2,6 +2,15 @@
 <!-- casino.sifufinds.com – Best Casino Bonuses in Africa -->
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0B51MX2ZKE');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Best Casino Bonuses in Africa 2026 · No Deposit, Live Casino & Jackpots · SifuFinds</title>
@@ -285,8 +294,8 @@ function renderFeatCasinos(){
   H('cas-feat',CASINOS.slice(0,4).map(c=>`
   <div class="cas-fc">
     <div class="fc-img" style="background:${c.bg}">
-      <span class="fc-logo-txt" style="color:${c.tc}">${c.name.split(' ')[0]}</span>
-      <img src="${logoUrl(c.url,c.abbr)}" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.style.display='none'">
+      <span class="fc-logo-txt" style="color:${c.tc};visibility:hidden">${c.name.split(' ')[0]}</span>
+      <img src="${logoUrl(c.url,c.abbr)}" alt="" onload="this.style.opacity='1'" onerror="this.style.display='none';this.previousElementSibling.style.visibility='visible'">
       <span class="fc-nm">${c.name}</span>
     </div>
     <div class="fc-body">

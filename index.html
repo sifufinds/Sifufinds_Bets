@@ -2,6 +2,15 @@
 <!-- sifufinds.com – Best Betting Bonuses in Africa -->
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0B51MX2ZKE');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SifuFinds · Best Betting Bonuses in Africa 2026 | Verified Bookmaker Reviews</title>
@@ -514,8 +523,8 @@ function renderFeatCards(){
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${b.bg}">
-      <span class="fc-logo-txt" style="color:${b.tc}">${b.name.split(' ')[0]}</span>
-      <img src="${logoUrl(b.url,b.abbr)}" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.style.display='none'">
+      <span class="fc-logo-txt" style="color:${b.tc};visibility:hidden">${b.name.split(' ')[0]}</span>
+      <img src="${logoUrl(b.url,b.abbr)}" alt="" onload="this.style.opacity='1'" onerror="this.style.display='none';this.previousElementSibling.style.visibility='visible'">
       <span class="fc-nm">${b.name}</span>
     </div>
     <div class="fc-body">

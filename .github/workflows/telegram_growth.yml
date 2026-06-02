@@ -61,7 +61,7 @@ jobs:
           TELEGRAM_PHONE: ${{ secrets.TELEGRAM_PHONE }}
           TELEGRAM_GROWTH_GROUPS: ${{ secrets.TELEGRAM_GROWTH_GROUPS }}
         run: |
-          ARGS="--limit ${{ github.event.inputs.limit || '4' }}"
+          ARGS="--limit ${{ github.event.inputs.limit || '6' }}"
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           python agent_telegram_growth.py $ARGS
 

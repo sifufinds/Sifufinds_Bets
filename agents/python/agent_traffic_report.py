@@ -1,0 +1,194 @@
+"""
+SifuFinds Traffic Report Agent — GoatCounter edition
+Pulls page views, top pages, referrers, and countries from GoatCounter's free API.
+Saves a Markdown report so Claude can read it in any session.
+
+Setup (2 minutes — no Google account needed):
+  1. Go to goatcounter.com → Sign Up (email + password)
+  2. Site code: pick anything short, e.g. "sifufinds"
+  3. Add your site URL: https://sifufinds.com
+  4. Settings → API tokens → Create token (any name)
+  5. Add to GitHub secrets:
+       GOATCOUNTER_SITE   = sifufinds        (the code you chose)
+       GOATCOUNTER_TOKEN  = your-api-token
+
+Usage:
+  python agent_traffic_report.py              # last 30 days
+  python agent_traffic_report.py --days 7
+  python agent_traffic_report.py --days 90
+"""
+
+import argparse
+import json
+import os
+import sys
+from datetime import date, timedelta
+from pathlib import Path
+
+import requests
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).parent / ".env")
+
+GC_SITE  = os.getenv("GOATCOUNTER_SITE", "")
+GC_TOKEN = os.getenv("GOATCOUNTER_TOKEN", "")
+
+REPORT_MD   = Path(__file__).parent / "traffic_report.md"
+REPORT_JSON = Path(__file__).parent / "traffic_report.json"
+
+
+def _headers():
+    return {"Authorization": f"Bearer {GC_TOKEN}"}
+
+
+def _base():
+    return f"https://{GC_SITE}.goatcounter.com/api/v0"
+
+
+def _date_range(days: int) -> tuple[str, str]:
+    end   = date.today()
+    start = end - timedelta(days=days)
+    return start.isoformat(), end.isoformat()
+
+
+def fetch_hits(days: int) -> list[dict]:
+    """Daily pageview counts."""
+    start, end = _date_range(days)
+    r = requests.get(
+        f"{_base()}/stats/hits",
+        headers=_headers(),
+        params={"start": start, "end": end},
+        timeout=15,
+    )
+    r.raise_for_status()
+    return r.json().get("hits", [])
+
+
+def fetch_stat(endpoint: str, days: int, limit: int = 20) -> list[dict]:
+    """Generic stat endpoint: /stats/pages, /stats/refs, /stats/countries, etc."""
+    start, end = _date_range(days)
+    r = requests.get(
+        f"{_base()}/stats/{endpoint}",
+        headers=_headers(),
+        params={"start": start, "end": end, "limit": limit},
+        timeout=15,
+    )
+    r.raise_for_status()
+    data = r.json()
+    # GoatCounter returns {stats: [...]} or {hits: [...]}
+    return data.get("stats") or data.get("hits") or []
+
+
+def build_report(days: int, hits: list, pages: list, refs: list, countries: list) -> str:
+    today = date.today().isoformat()
+    start = (date.today() - timedelta(days=days)).isoformat()
+
+    total_pv = sum(h.get("count", 0) for h in hits)
+    # unique visitors approximated from daily uniques if available
+    total_unique = sum(h.get("count_unique", 0) for h in hits)
+
+    lines = [
+        "# SifuFinds Traffic Report",
+        f"**Period:** {start} → {today} ({days} days)  ·  **Generated:** {today}",
+        f"**Source:** GoatCounter · sifufinds.com",
+        "",
+        "## Summary",
+        "",
+        "| Metric | Value |",
+        "|--------|-------|",
+        f"| Page Views | {total_pv:,} |",
+    ]
+    if total_unique:
+        lines.append(f"| Unique Visitors | {total_unique:,} |")
+    lines += [
+        f"| Avg Views/Day | {round(total_pv / max(days, 1)):,} |",
+        "",
+    ]
+
+    # ── Top pages ──────────────────────────────────────────────────────────────
+    if pages:
+        lines += ["## Top Pages", ""]
+        lines += ["| Page | Views | Unique |", "|------|-------|--------|"]
+        for p in pages[:20]:
+            path  = p.get("path") or p.get("id") or "/"
+            views = p.get("count", 0)
+            uniq  = p.get("count_unique", "–")
+            lines.append(f"| {path} | {views:,} | {uniq} |")
+        lines += [""]
+
+    # ── Referrers ──────────────────────────────────────────────────────────────
+    if refs:
+        lines += ["## Traffic Sources (Referrers)", ""]
+        lines += ["| Source | Visits |", "|--------|--------|"]
+        for r in refs[:15]:
+            src    = r.get("path") or r.get("id") or "direct"
+            visits = r.get("count", 0)
+            lines.append(f"| {src} | {visits:,} |")
+        lines += [""]
+
+    # ── Countries ──────────────────────────────────────────────────────────────
+    if countries:
+        lines += ["## Countries", ""]
+        lines += ["| Country | Views |", "|---------|-------|"]
+        for c in countries[:15]:
+            name   = c.get("path") or c.get("id") or "Unknown"
+            views  = c.get("count", 0)
+            lines.append(f"| {name} | {views:,} |")
+        lines += [""]
+
+    # ── Daily trend (last 14 days) ─────────────────────────────────────────────
+    recent = hits[-14:] if len(hits) > 14 else hits
+    if recent:
+        lines += ["## Daily Trend (last 14 days)", ""]
+        lines += ["| Date | Views |", "|------|-------|"]
+        for h in recent:
+            lines.append(f"| {h.get('day', '–')} | {h.get('count', 0):,} |")
+        lines += [""]
+
+    lines += [
+        "---",
+        f"*Auto-generated by agent_traffic_report.py · GoatCounter: {GC_SITE}.goatcounter.com*",
+        "",
+        "> **Search Console** (impressions + ranking clicks): check manually at",
+        "> https://search.google.com/search-console — verify ownership is done (HTML file already added).",
+    ]
+    return "\n".join(lines)
+
+
+def main():
+    if not GC_SITE or not GC_TOKEN:
+        sys.exit(
+            "ERROR: Set GOATCOUNTER_SITE and GOATCOUNTER_TOKEN in agents/python/.env\n\n"
+            "Quick setup (2 min):\n"
+            "  1. goatcounter.com → Sign Up\n"
+            "  2. Pick a site code (e.g. 'sifufinds')\n"
+            "  3. Settings → API tokens → Create\n"
+            "  4. Add GOATCOUNTER_SITE and GOATCOUNTER_TOKEN to .env / GitHub secrets"
+        )
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--days", type=int, default=30)
+    args = parser.parse_args()
+
+    print(f"[traffic] Fetching last {args.days} days from GoatCounter ({GC_SITE})…")
+
+    hits      = fetch_hits(args.days)
+    pages     = fetch_stat("pages",     args.days, limit=25)
+    refs      = fetch_stat("refs",      args.days, limit=20)
+    countries = fetch_stat("countries", args.days, limit=20)
+
+    total = sum(h.get("count", 0) for h in hits)
+    print(f"[traffic] {total:,} page views · {len(pages)} pages · {len(refs)} referrers")
+
+    report = build_report(args.days, hits, pages, refs, countries)
+    raw    = {"days": args.days, "hits": hits, "pages": pages, "refs": refs, "countries": countries}
+
+    REPORT_MD.write_text(report, encoding="utf-8")
+    REPORT_JSON.write_text(json.dumps(raw, indent=2), encoding="utf-8")
+
+    print(f"[traffic] Saved → {REPORT_MD.name}")
+    print("\n" + report)
+
+
+if __name__ == "__main__":
+    main()

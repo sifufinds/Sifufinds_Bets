@@ -46,7 +46,7 @@ OWN_CHANNEL = "@sifufinds"
 GROUP_COOLDOWN_HOURS = 8
 
 # Max groups to post in per run (keeps runtime short for CI)
-DEFAULT_RUN_LIMIT = 4
+DEFAULT_RUN_LIMIT = 6
 
 GROWTH_STATE_FILE = Path(__file__).parent / "growth_state.json"
 
@@ -56,31 +56,56 @@ GROWTH_STATE_FILE = Path(__file__).parent / "growth_state.json"
 # The agent will attempt to join and post — groups that don't allow it are skipped.
 
 GROWTH_GROUPS: list[dict] = [
-    # ── Nigeria ──
-    {"username": "bet9jatips",          "region": "Nigeria",       "topic": "betting"},
-    {"username": "nigerianfootballfans","region": "Nigeria",       "topic": "football"},
-    {"username": "npfl_fans",           "region": "Nigeria",       "topic": "football"},
-    {"username": "nigerialivebet",      "region": "Nigeria",       "topic": "betting"},
-    {"username": "naijabettingtips",    "region": "Nigeria",       "topic": "betting"},
-    {"username": "africanfootballdaily","region": "Pan-Africa",    "topic": "football"},
-    {"username": "bettingtipsafrica",   "region": "Pan-Africa",    "topic": "betting"},
-    # ── Kenya ──
-    {"username": "kenyabettingtips",    "region": "Kenya",         "topic": "betting"},
-    {"username": "kplsoccer",           "region": "Kenya",         "topic": "football"},
-    {"username": "sportpesatips",       "region": "Kenya",         "topic": "betting"},
-    {"username": "eastafricasports",    "region": "East Africa",   "topic": "football"},
-    # ── South Africa ──
-    {"username": "pslsoccerfans",       "region": "South Africa",  "topic": "football"},
-    {"username": "safootballtips",      "region": "South Africa",  "topic": "betting"},
-    {"username": "hollywoodbets_tips",  "region": "South Africa",  "topic": "betting"},
-    # ── Ghana ──
-    {"username": "ghanasportsbetting",  "region": "Ghana",         "topic": "betting"},
-    {"username": "gplghana",            "region": "Ghana",         "topic": "football"},
-    # ── Pan-Africa ──
-    {"username": "africansportsforum",  "region": "Pan-Africa",    "topic": "football"},
-    {"username": "cafsoccernews",       "region": "Pan-Africa",    "topic": "football"},
-    {"username": "africabettingcommunity","region": "Pan-Africa",  "topic": "betting"},
-    {"username": "ibetchannel",         "region": "Pan-Africa",    "topic": "betting"},
+    # ── Nigeria ───────────────────────────────────────────────────────────────
+    {"username": "bet9jatips",            "region": "Nigeria",      "topic": "betting"},
+    {"username": "nigerianfootballfans",  "region": "Nigeria",      "topic": "football"},
+    {"username": "npfl_fans",             "region": "Nigeria",      "topic": "football"},
+    {"username": "nigerialivebet",        "region": "Nigeria",      "topic": "betting"},
+    {"username": "naijabettingtips",      "region": "Nigeria",      "topic": "betting"},
+    {"username": "naijafreepicks",        "region": "Nigeria",      "topic": "betting"},
+    {"username": "nigeriabettors",        "region": "Nigeria",      "topic": "betting"},
+    {"username": "lagossportsbetting",    "region": "Nigeria",      "topic": "betting"},
+    {"username": "naijapredictor",        "region": "Nigeria",      "topic": "betting"},
+    # ── Kenya ─────────────────────────────────────────────────────────────────
+    {"username": "kenyabettingtips",      "region": "Kenya",        "topic": "betting"},
+    {"username": "kplsoccer",             "region": "Kenya",        "topic": "football"},
+    {"username": "sportpesatips",         "region": "Kenya",        "topic": "betting"},
+    {"username": "eastafricasports",      "region": "East Africa",  "topic": "football"},
+    {"username": "kenyafreepicks",        "region": "Kenya",        "topic": "betting"},
+    {"username": "kenyabettors",          "region": "Kenya",        "topic": "betting"},
+    {"username": "nairobisports",         "region": "Kenya",        "topic": "football"},
+    # ── South Africa ──────────────────────────────────────────────────────────
+    {"username": "pslsoccerfans",         "region": "South Africa", "topic": "football"},
+    {"username": "safootballtips",        "region": "South Africa", "topic": "betting"},
+    {"username": "hollywoodbets_tips",    "region": "South Africa", "topic": "betting"},
+    {"username": "safreepicks",           "region": "South Africa", "topic": "betting"},
+    {"username": "sabettors",             "region": "South Africa", "topic": "betting"},
+    # ── Ghana ─────────────────────────────────────────────────────────────────
+    {"username": "ghanasportsbetting",    "region": "Ghana",        "topic": "betting"},
+    {"username": "gplghana",              "region": "Ghana",        "topic": "football"},
+    {"username": "ghanafreepicks",        "region": "Ghana",        "topic": "betting"},
+    {"username": "ghanabettors",          "region": "Ghana",        "topic": "betting"},
+    # ── Uganda ────────────────────────────────────────────────────────────────
+    {"username": "ugandabettingtips",     "region": "Uganda",       "topic": "betting"},
+    {"username": "ugandabettors",         "region": "Uganda",       "topic": "betting"},
+    # ── Tanzania ──────────────────────────────────────────────────────────────
+    {"username": "tanzaniabetting",       "region": "Tanzania",     "topic": "betting"},
+    {"username": "tanzaniasports",        "region": "Tanzania",     "topic": "football"},
+    # ── Zimbabwe & Zambia ─────────────────────────────────────────────────────
+    {"username": "zimbabwebetting",       "region": "Zimbabwe",     "topic": "betting"},
+    {"username": "zambiasports",          "region": "Zambia",       "topic": "football"},
+    # ── Pan-Africa ────────────────────────────────────────────────────────────
+    {"username": "africanfootballdaily",  "region": "Pan-Africa",   "topic": "football"},
+    {"username": "bettingtipsafrica",     "region": "Pan-Africa",   "topic": "betting"},
+    {"username": "africansportsforum",    "region": "Pan-Africa",   "topic": "football"},
+    {"username": "cafsoccernews",         "region": "Pan-Africa",   "topic": "football"},
+    {"username": "africabettingcommunity","region": "Pan-Africa",   "topic": "betting"},
+    {"username": "ibetchannel",           "region": "Pan-Africa",   "topic": "betting"},
+    {"username": "africasportspicks",     "region": "Pan-Africa",   "topic": "betting"},
+    {"username": "africafreebets",        "region": "Pan-Africa",   "topic": "betting"},
+    {"username": "africanodds",           "region": "Pan-Africa",   "topic": "betting"},
+    {"username": "africasoccertips",      "region": "Pan-Africa",   "topic": "football"},
+    {"username": "africanpremierleague",  "region": "Pan-Africa",   "topic": "football"},
 ]
 
 

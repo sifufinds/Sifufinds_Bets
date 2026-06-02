@@ -58,33 +58,95 @@ MAX_PROSPECTS_PER_GROUP = 60    # cap per group scrape run
 PROSPECTS_FILE = Path(__file__).parent / "outreach_prospects.json"
 STATE_FILE     = Path(__file__).parent / "outreach_state.json"
 
-# ── TARGET GROUPS (competitors + high-traffic African betting communities) ─────
+# ── TARGET GROUPS ─────────────────────────────────────────────────────────────
+# All African betting + football communities. Scraper reads recent messages
+# and pulls active members — rotated daily so no group is hit too often.
 
 TARGET_GROUPS: list[dict] = [
-    # Nigeria
-    {"username": "bet9jatips",           "region": "Nigeria"},
+    # ── Nigeria (largest market) ──────────────────────────────────────────────
+    {"username": "bet9jatips",            "region": "Nigeria"},
     {"username": "nigerialivebet",        "region": "Nigeria"},
     {"username": "naijabettingtips",      "region": "Nigeria"},
     {"username": "npfl_fans",             "region": "Nigeria"},
     {"username": "nigerianfootballfans",  "region": "Nigeria"},
-    # Kenya
+    {"username": "bet9jaofficial",        "region": "Nigeria"},
+    {"username": "betkingofficial",       "region": "Nigeria"},
+    {"username": "sportybet_ng",          "region": "Nigeria"},
+    {"username": "nigeriaodds",           "region": "Nigeria"},
+    {"username": "naijafreepicks",        "region": "Nigeria"},
+    {"username": "lagossportsbetting",    "region": "Nigeria"},
+    {"username": "naijapredictor",        "region": "Nigeria"},
+    {"username": "nigeriabettors",        "region": "Nigeria"},
+    {"username": "bet9jabettors",         "region": "Nigeria"},
+
+    # ── Kenya ─────────────────────────────────────────────────────────────────
     {"username": "kenyabettingtips",      "region": "Kenya"},
     {"username": "sportpesatips",         "region": "Kenya"},
     {"username": "kplsoccer",             "region": "Kenya"},
+    {"username": "betikaofficial",        "region": "Kenya"},
+    {"username": "odibets_ke",            "region": "Kenya"},
+    {"username": "kenyaodds",             "region": "Kenya"},
+    {"username": "nairobisports",         "region": "Kenya"},
+    {"username": "kenyafreepicks",        "region": "Kenya"},
     {"username": "eastafricasports",      "region": "East Africa"},
-    # South Africa
+    {"username": "kenyabettors",          "region": "Kenya"},
+
+    # ── South Africa ──────────────────────────────────────────────────────────
     {"username": "safootballtips",        "region": "South Africa"},
     {"username": "hollywoodbets_tips",    "region": "South Africa"},
     {"username": "pslsoccerfans",         "region": "South Africa"},
-    # Ghana
+    {"username": "supabets_sa",           "region": "South Africa"},
+    {"username": "southafricabetting",    "region": "South Africa"},
+    {"username": "safreepicks",           "region": "South Africa"},
+    {"username": "pslfans",               "region": "South Africa"},
+    {"username": "sabettors",             "region": "South Africa"},
+
+    # ── Ghana ─────────────────────────────────────────────────────────────────
     {"username": "ghanasportsbetting",    "region": "Ghana"},
     {"username": "gplghana",              "region": "Ghana"},
-    # Pan-Africa
+    {"username": "ghanaodds",             "region": "Ghana"},
+    {"username": "ghanafreepicks",        "region": "Ghana"},
+    {"username": "ghanabettors",          "region": "Ghana"},
+    {"username": "accrasports",           "region": "Ghana"},
+
+    # ── Uganda ────────────────────────────────────────────────────────────────
+    {"username": "ugandabettingtips",     "region": "Uganda"},
+    {"username": "kampalaodds",           "region": "Uganda"},
+    {"username": "ugandabettors",         "region": "Uganda"},
+
+    # ── Tanzania ──────────────────────────────────────────────────────────────
+    {"username": "tanzaniabetting",       "region": "Tanzania"},
+    {"username": "tanzaniaodds",          "region": "Tanzania"},
+    {"username": "tanzaniasports",        "region": "Tanzania"},
+
+    # ── Zimbabwe & Zambia ─────────────────────────────────────────────────────
+    {"username": "zimbabwebetting",       "region": "Zimbabwe"},
+    {"username": "zambiasports",          "region": "Zambia"},
+
+    # ── Ethiopia & Rwanda ─────────────────────────────────────────────────────
+    {"username": "ethiopiasports",        "region": "Ethiopia"},
+    {"username": "rwandasports",          "region": "Rwanda"},
+
+    # ── Pan-Africa (all countries) ────────────────────────────────────────────
     {"username": "africanbettingcommunity", "region": "Pan-Africa"},
     {"username": "bettingtipsafrica",     "region": "Pan-Africa"},
     {"username": "africanfootballdaily",  "region": "Pan-Africa"},
     {"username": "ibetchannel",           "region": "Pan-Africa"},
+    {"username": "africasportspicks",     "region": "Pan-Africa"},
+    {"username": "africanodds",           "region": "Pan-Africa"},
+    {"username": "africafreebets",        "region": "Pan-Africa"},
+    {"username": "cafsoccernews",         "region": "Pan-Africa"},
+    {"username": "africasoccertips",      "region": "Pan-Africa"},
+    {"username": "1xbetafrica",           "region": "Pan-Africa"},
+    {"username": "melbet_africa",         "region": "Pan-Africa"},
+    {"username": "betwayafrica",          "region": "Pan-Africa"},
+    {"username": "africabetzone",         "region": "Pan-Africa"},
+    {"username": "africanpremierleague",  "region": "Pan-Africa"},
 ]
+
+# Groups rotated per run so no single group is hit on every run
+# The agent shuffles and picks the first N each time
+GROUPS_PER_RUN = 12
 
 # ── COUNTRY HINTS ──────────────────────────────────────────────────────────────
 
@@ -356,7 +418,13 @@ async def scrape_group(client, group_info: dict, existing_ids: set) -> list[dict
 
 
 async def run_scrape(dry_run: bool = False) -> int:
-    print(f"\n🔍 Scraping {len(TARGET_GROUPS)} target groups...")
+    # Rotate which groups we scrape each run so the full list is covered
+    # across the day without hammering any single group repeatedly.
+    groups_today = TARGET_GROUPS.copy()
+    random.shuffle(groups_today)
+    groups_today = groups_today[:GROUPS_PER_RUN]
+
+    print(f"\n🔍 Scraping {len(groups_today)}/{len(TARGET_GROUPS)} target groups (rotated)...")
     client = await _get_client()
 
     prospects  = _load_prospects()
@@ -365,7 +433,7 @@ async def run_scrape(dry_run: bool = False) -> int:
     total_new  = 0
 
     try:
-        for group in TARGET_GROUPS:
+        for group in groups_today:
             new = await scrape_group(client, group, existing)
             if not dry_run:
                 prospects.extend(new)

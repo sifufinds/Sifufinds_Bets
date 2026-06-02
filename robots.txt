@@ -5,6 +5,7 @@ User-agent: *
 Allow: /
 Disallow: /agents/
 Disallow: /firecrawl/
+Disallow: /analytics.html
 Disallow: /geo-content-writer/
 Disallow: /.github/
 Disallow: /.venv/

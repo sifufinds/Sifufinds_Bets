@@ -607,8 +607,8 @@ const BRAND_DOMAINS={
 // Upgrade: get a free Logo.dev token at logo.dev/signup and paste it below for
 // full-resolution transparent logos on all brands.
 const LOGO_DEV_TOKEN='';
-const logoUrl=(url,abbr='')=>{try{const brand=abbr&&BRAND_DOMAINS[abbr];const d=brand||new URL(url).hostname.replace(/^www\./,'');if(LOGO_DEV_TOKEN)return`https://img.logo.dev/${d}?token=${LOGO_DEV_TOKEN}&size=128&format=png`;return`https://www.google.com/s2/favicons?domain=${d}&sz=256`;}catch(e){return '';}};
-const logoImg=(url,name,abbr,tc,w,r)=>{const word=name.split(' ')[0];const fs=word.length>7?Math.max(9,Math.floor(w*0.22)):Math.floor(w*0.28);return`<span style="color:${tc};font-size:${fs}px;font-weight:900;letter-spacing:-0.5px;text-transform:lowercase;line-height:1;text-align:center;padding:0 2px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${word}</span><img src="${logoUrl(url,abbr)}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:4px;border-radius:${r}px" loading="lazy" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.style.display='none'">`;};
+const logoUrl=(url,abbr='')=>{try{const brand=abbr&&BRAND_DOMAINS[abbr];const d=brand||new URL(url).hostname.replace(/^www\./,'');if(LOGO_DEV_TOKEN)return`https://img.logo.dev/${d}?token=${LOGO_DEV_TOKEN}&size=128&format=png`;return`https://logo.clearbit.com/${d}?size=128`;}catch(e){return '';}};
+const logoImg=(url,name,abbr,tc,w,r)=>{const word=name.split(' ')[0];const fs=word.length>7?Math.max(9,Math.floor(w*0.22)):Math.floor(w*0.28);return`<span style="color:${tc};font-size:${fs}px;font-weight:900;letter-spacing:-0.5px;text-transform:lowercase;line-height:1;text-align:center;padding:0 2px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;visibility:hidden">${word}</span><img src="${logoUrl(url,abbr)}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:4px;border-radius:${r}px;opacity:0;transition:opacity .15s" loading="lazy" onload="this.style.opacity='1'" onerror="this.style.display='none';this.previousElementSibling.style.visibility='visible'">`;};
 
 // ── COUNTRY MANAGEMENT ────────────────────────────────────────────────────────
 const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA','EG','MA','SL','LR']);
@@ -779,7 +779,7 @@ document.addEventListener('DOMContentLoaded',renderBrandsBar);
 (function(){
   'use strict';
   var GA_ID='G-0B51MX2ZKE';
-  var GC_SITE='sifufinds'; // GoatCounter site code — update after signup at goatcounter.com
+  var GC_SITE='sifufinds'; // sifufinds.goatcounter.com — live
 
   // ── Local event log (powers the /analytics.html dashboard) ──────────────────
   function logLocal(name,params){
