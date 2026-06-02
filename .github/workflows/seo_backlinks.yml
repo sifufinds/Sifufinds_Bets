@@ -1,0 +1,121 @@
+name: SEO Backlink Outreach — Daily Research + Email Drafts
+
+on:
+  schedule:
+    # Daily at 07:00 UTC
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: "Which phase to run"
+        required: false
+        default: "all"
+        type: choice
+        options:
+          - research
+          - outreach
+          - send
+          - content
+          - all
+      dry_run:
+        description: "Preview without saving (true/false)"
+        required: false
+        default: "false"
+      limit:
+        description: "Max opportunities per run"
+        required: false
+        default: "15"
+
+concurrency:
+  group: seo-backlinks
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  backlink-outreach:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run backlink agent
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY:    ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY:  ${{ secrets.GEMINI_API_KEY }}
+          SMTP_USER:       ${{ secrets.SMTP_USER }}
+          SMTP_PASS:       ${{ secrets.SMTP_PASS }}
+          SMTP_FROM_NAME:  ${{ secrets.SMTP_FROM_NAME }}
+          HUNTER_API_KEY:  ${{ secrets.HUNTER_API_KEY }}
+        run: |
+          PHASE="${{ github.event.inputs.phase || 'all' }}"
+          LIMIT="${{ github.event.inputs.limit || '15' }}"
+          DRY="${{ github.event.inputs.dry_run || 'false' }}"
+
+          ARGS="--limit $LIMIT"
+          case "$PHASE" in
+            research) ARGS="$ARGS --research" ;;
+            outreach) ARGS="$ARGS --outreach" ;;
+            send)     ARGS="$ARGS --send"     ;;
+            content)  ARGS="$ARGS --content"  ;;
+            *)        ARGS="$ARGS --all"       ;;
+          esac
+          if [ "$DRY" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+
+          python agent_seo_backlinks.py $ARGS
+
+      - name: Commit updated backlink state
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add \
+            agents/python/backlink_opportunities.json \
+            agents/python/backlink_state.json \
+            agents/python/agent_log.json || true
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "seo: backlink pipeline update $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          # Retry push up to 5 times — handles concurrent bot pushes
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done
