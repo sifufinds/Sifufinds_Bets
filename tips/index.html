@@ -278,7 +278,7 @@ function tipCard(t,idx){
   return`<div class="tipcard${t.isAI?' ai-tip':''}">
   <div class="th">
     <span class="tlg">${t.league}${t.isAI?' <span class="ai-badge">🤖 AI</span>':''}</span>
-    <span class="ttm">${t.time} · ${DATE_STR}</span>
+    <span class="ttm">${t.time} · ${t.date||DATE_STR}</span>
   </div>
   <div class="tbody">
     <div>

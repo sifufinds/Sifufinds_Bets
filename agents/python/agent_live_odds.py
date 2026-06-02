@@ -9,7 +9,7 @@ Run by GitHub Actions every 5 minutes. No API keys required.
 import json
 import sys
 import requests
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports"
@@ -55,14 +55,39 @@ def american_to_decimal(odds_str: str) -> float:
 
 
 def format_time(event: dict, is_live: bool, is_complete: bool) -> str:
+    """Return a clean, date-aware time string.
+    Live:     '67'' or 'Q3 2:15'
+    Complete: 'FT'
+    Upcoming: '3 Jun · 20:30 UTC' / 'Today · 20:30 UTC' / 'Tomorrow · 20:30 UTC'
+    """
     status = event.get("status", {})
     if is_live:
-        return status.get("displayClock", "LIVE")
+        clock = status.get("displayClock", "")
+        return clock if clock and clock not in ("0:00", "0.0") else "LIVE"
     if is_complete:
         return "FT"
-    # Use ESPN's own short detail string ("6/3 - 8:30 PM EDT")
+
+    date_str = event.get("date", "")
+    if date_str:
+        try:
+            dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
+            now = datetime.now(timezone.utc)
+            today = now.date()
+            tomorrow = today + timedelta(days=1)
+            time_part = dt.strftime("%H:%M UTC")
+            if dt.date() == today:
+                return f"Today · {time_part}"
+            elif dt.date() == tomorrow:
+                return f"Tomorrow · {time_part}"
+            else:
+                day_mon = dt.strftime("%-d %b")
+                return f"{day_mon} · {time_part}"
+        except Exception:
+            pass
+
+    # Fallback to ESPN's own string (still better than nothing)
     short = status.get("type", {}).get("shortDetail", "")
-    return short or status.get("type", {}).get("detail", "TBD")
+    return short or "TBD"
 
 
 def map_event(event: dict, key: str, label: str):
