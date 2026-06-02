@@ -22,6 +22,7 @@ MAX_AGE_HOURS: dict[str, int] = {
     "football":   48,
     "sportnews":  48,
     "basketball": 48,
+    "betting":    72,
     "tennis":     72,
     "cricket":    72,
     "rugby":      72,
@@ -84,6 +85,11 @@ SEARCH_QUERIES: dict[str, list[str]] = {
         "online gambling regulation africa news",
         "igaming sports betting industry news",
     ],
+    "betting":    [
+        "sports betting tips odds today africa",
+        "best betting predictions accumulator today",
+        "african bookmaker odds value bets today",
+    ],
 }
 
 # ── FALLBACK RSS FEEDS ────────────────────────────────────────────────────────
@@ -128,6 +134,9 @@ FEEDS: list[tuple[str, str, str]] = [
     # iGaming
     ("iGaming Business",  "https://igamingbusiness.com/feed/",                          "igaming"),
     ("Calvinayre",        "https://calvinayre.com/feed/",                               "igaming"),
+    # Betting Tips & Odds
+    ("Guardian Betting",  "https://www.theguardian.com/sport/betting/rss",              "betting"),
+    ("BBC Sport Betting", "https://feeds.bbci.co.uk/sport/rss.xml",                     "betting"),
 ]
 
 _HEADERS = {
