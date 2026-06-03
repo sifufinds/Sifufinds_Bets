@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 60,
+            "statusMessage": "Deploying changes to sifufinds.com...",
+            "command": "cd \"/Users/raventrack/Desktop/Sifu Finds\" && git add assets/ tips/ odds/ data/ agents/python/ .github/workflows/ index.html about/ blog/ casino/ countries/ guides/ bonuses/ bookmakers/ betting/ 2>/dev/null; if git diff --cached --quiet 2>/dev/null; then exit 0; fi; git commit -m \"deploy: $(date -u '+%Y-%m-%d %H:%M UTC')\" && for i in 1 2 3; do git pull --rebase origin main 2>/dev/null && git push origin main && break; sleep 3; done"
+          }
+        ]
+      }
+    ]
+  }
+}
