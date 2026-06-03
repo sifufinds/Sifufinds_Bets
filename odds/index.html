@@ -397,9 +397,13 @@ async function fetchEspnData(){
 }
 
 function updateStatus(){
-  const total=_liveJsonMatches.length||(_apiMatches.length+_africanMatches.length);
-  const src=_liveJsonMatches.length?'🟢 Live':'⚠️';
-  H('api-st',total>0?`${src} ${total} events`:'⚠️ Using cached data');
+  const hasLive=_liveJsonMatches.some(m=>m.live);
+  const liveKeys=new Set([..._liveJsonMatches,..._apiMatches,..._africanMatches].map(m=>m.key));
+  const hasFallback=ODDS_DATA.some(m=>!liveKeys.has(m.key));
+  const liveCount=_liveJsonMatches.length+_apiMatches.length+_africanMatches.length;
+  const src=hasLive?'🟢 Live':liveCount>0?'🔄':'⚠️';
+  const label=liveCount>0?`${src} ${liveCount} events${hasFallback?' + cached':''}`:' ⚠️ Using cached data';
+  H('api-st',label);
   H('odds-upd',`Updated ${new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}`);
 }
 
@@ -456,12 +460,13 @@ function renderLgFilter(){
 
 function renderOdds(){
   let base;
-  if(_liveJsonMatches.length){
-    // Primary: live.json (has DraftKings odds) with ESPN live score overlays
-    base=[...mergeWithEspn(_liveJsonMatches,_apiMatches),..._africanMatches];
+  if(_liveJsonMatches.length||_apiMatches.length||_africanMatches.length){
+    // Supplement live/API data with ODDS_DATA for any sport keys not covered
+    const liveKeys=new Set([..._liveJsonMatches,..._apiMatches,..._africanMatches].map(m=>m.key));
+    const fallback=ODDS_DATA.filter(m=>!liveKeys.has(m.key));
+    base=[...mergeWithEspn(_liveJsonMatches,_apiMatches),..._africanMatches,...fallback];
   }else{
-    const combined=[..._apiMatches,..._africanMatches];
-    base=combined.length?combined:[...ODDS_DATA];
+    base=[...ODDS_DATA];
   }
   const all=base;
   const data=_activeLG==='all'?all:all.filter(m=>m.key===_activeLG);
