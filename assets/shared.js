@@ -610,7 +610,7 @@ const BRAND_DOMAINS={
 };
 // Upgrade: get a free Logo.dev token at logo.dev/signup and paste it below for
 // full-resolution transparent logos on all brands.
-const LOGO_DEV_TOKEN='';
+const LOGO_DEV_TOKEN='pk_LOpmKYtCS3q3rhYX_rDd9A';
 const logoDomain=(url,abbr='')=>{try{const brand=abbr&&BRAND_DOMAINS[abbr];return brand||new URL(url).hostname.replace(/^www\./,'');}catch(e){return '';}};
 const logoUrl=(url,abbr='')=>{const d=logoDomain(url,abbr);if(!d)return'';if(LOGO_DEV_TOKEN)return`https://img.logo.dev/${d}?token=${LOGO_DEV_TOKEN}&size=128&format=png`;return`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${d}&size=256`;};
 const logoFb=(url,abbr='')=>{const d=logoDomain(url,abbr);return d?`https://logo.clearbit.com/${d}?size=128`:'';}
