@@ -264,6 +264,8 @@ const SITE={home:'../',tips:'./',casino:'../casino/',odds:'../odds/',countries:'
 <script src="../assets/shared.js?v=2"></script>
 <script>
 let _activeTF='all';
+let _tipsData=TIPS;   // replaced with Supabase data in init() if available
+let _newsData=NEWS;   // replaced with Supabase data in init() if available
 
 function tipFilt(btn){
   document.querySelectorAll('[data-tf]').forEach(b=>b.classList.remove('on'));
@@ -300,7 +302,7 @@ function tipCard(t,idx){
 }
 
 function renderTips(){
-  const filtered=_activeTF==='all'?TIPS:TIPS.filter(t=>t.key===_activeTF);
+  const filtered=_activeTF==='all'?_tipsData:_tipsData.filter(t=>t.key===_activeTF);
   const container=document.getElementById('tips-cards');
   if(!filtered.length){container.innerHTML='<div class="no-results">No tips for this filter today. Check back later.</div>';return;}
   container.innerHTML=filtered.map((t,i)=>tipCard(t,i)).join('');
@@ -308,7 +310,7 @@ function renderTips(){
 }
 
 function renderNews(){
-  H('news-cards',NEWS.map(n=>`
+  H('news-cards',_newsData.map(n=>`
   <div class="nc">
     <div class="nc-bar" style="background:${n.color}"></div>
     <div class="nc-body">
@@ -382,6 +384,12 @@ async function init(){
   syncCountryUI();
   H('tips-date',DATE_STR);
   H('foot-yr',NOW.getFullYear());
+
+  // Load tips + news from Supabase; re-render if data arrives
+  const[sbTips,sbNews]=await Promise.all([fetchSBTips(),fetchSBNews()]);
+  if(sbTips&&sbTips.length)_tipsData=sbTips;
+  if(sbNews&&sbNews.length)_newsData=sbNews;
+
   renderTips();
   renderNews();
   renderAI();

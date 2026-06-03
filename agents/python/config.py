@@ -3,6 +3,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# ── Supabase ──────────────────────────────────────────────────────────────────
+SUPABASE_URL         = os.getenv("SUPABASE_URL", "https://kedfcmgqjxwzebhoeosi.supabase.co")
+SUPABASE_ANON_KEY    = os.getenv("SUPABASE_ANON_KEY", "sb_publishable_NK9TgE3pEvmJbQ-ZmEvSjQ_22adueMj")
+SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY", "")  # required for agent writes
+
 # ── API Keys ──────────────────────────────────────────────────────────────────
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")

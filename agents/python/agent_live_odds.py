@@ -208,6 +208,52 @@ def inject_football_fallbacks(events: list) -> list:
     return events + injected
 
 
+def _event_key(e: dict) -> str:
+    """Deterministic primary key: home:away:sport_key (lowercased)."""
+    return f"{e['home'].lower()}:{e['away'].lower()}:{e['key']}"
+
+
+def upsert_to_supabase(events: list, ts: str) -> bool:
+    """Push live_events rows to Supabase.  Returns True on success."""
+    try:
+        import sys as _sys
+        sys_path_backup = _sys.path[:]
+        _sys.path.insert(0, str(Path(__file__).parent))
+        from utils.supabase_client import sb_upsert  # type: ignore
+        _sys.path = sys_path_backup
+    except ImportError:
+        return False
+
+    rows = [
+        {
+            "event_key":    _event_key(e),
+            "league":       e["league"],
+            "sport_key":    e["key"],
+            "live":         e["live"],
+            "complete":     e["complete"],
+            "home":         e["home"],
+            "away":         e["away"],
+            "h_score":      str(e["hScore"]) if e.get("hScore") is not None else None,
+            "a_score":      str(e["aScore"]) if e.get("aScore") is not None else None,
+            "time_disp":    e["time"],
+            "h_odds":       float(e.get("h", 0) or 0),
+            "d_odds":       float(e.get("d", 0) or 0),
+            "a_odds":       float(e.get("a", 0) or 0),
+            "h_bk":         e.get("hBk", ""),
+            "d_bk":         e.get("dBk", ""),
+            "a_bk":         e.get("aBk", ""),
+            "refreshed_at": ts,
+        }
+        for e in events
+    ]
+    ok = sb_upsert("live_events", rows)
+    if ok:
+        print(f"  → Supabase: upserted {len(rows)} events to live_events")
+    else:
+        print("  ⚠ Supabase: upsert skipped (not configured or failed)", file=sys.stderr)
+    return ok
+
+
 def main():
     ts = datetime.now(timezone.utc).isoformat()
     print(f"[{ts}] Fetching live sports data...")
@@ -236,7 +282,10 @@ def main():
         "events": all_events,
     }
 
-    # Write to data/live.json at the repo root
+    # 1. Push to Supabase (primary)
+    upsert_to_supabase(all_events, ts)
+
+    # 2. Write data/live.json (fallback for frontend if Supabase is unreachable)
     repo_root = Path(__file__).parent.parent.parent
     data_dir = repo_root / "data"
     data_dir.mkdir(exist_ok=True)

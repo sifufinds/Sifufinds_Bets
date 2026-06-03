@@ -231,6 +231,8 @@ const SITE={home:'../',tips:'../tips/',casino:'../casino/',odds:'./',countries:'
 <script>
 const SDB_KEY='3JOIGRycRY0jNCrxgLnuNzzA5AIoyQmnN7RHew9t';
 const SDB_BASE='https://api.sportdb.dev';
+const SB_URL='https://kedfcmgqjxwzebhoeosi.supabase.co';
+const SB_ANON='sb_publishable_NK9TgE3pEvmJbQ-ZmEvSjQ_22adueMj';
 const SEASON='2025-2026';
 
 const ESPN_BASE='https://site.api.espn.com/apis/site/v2/sports';
@@ -354,7 +356,34 @@ async function fetchAfricanFixtures(){
   return matches.sort((a,b)=>a.startMs-b.startMs);
 }
 
+function _sbRowToEvent(row){
+  return{
+    league:row.league,key:row.sport_key,
+    live:row.live,complete:row.complete,
+    home:row.home,away:row.away,
+    hScore:row.h_score??null,aScore:row.a_score??null,
+    time:row.time_disp,
+    h:Number(row.h_odds)||0,d:Number(row.d_odds)||0,a:Number(row.a_odds)||0,
+    hBk:row.h_bk||'',dBk:row.d_bk||'',aBk:row.a_bk||''
+  };
+}
+
 async function fetchLiveJson(){
+  // 1. Try Supabase live_events first
+  try{
+    const r=await fetch(`${SB_URL}/rest/v1/live_events?select=*&order=refreshed_at.desc`,{
+      headers:{apikey:SB_ANON,Authorization:'Bearer '+SB_ANON}
+    });
+    if(r.ok){
+      const rows=await r.json();
+      if(Array.isArray(rows)&&rows.length){
+        _liveJsonMatches=rows.map(_sbRowToEvent);
+        _liveJsonUpdated=rows[0]?.refreshed_at||'';
+        return;
+      }
+    }
+  }catch(_){}
+  // 2. Fallback to static live.json
   try{
     const r=await fetch('../data/live.json?t='+Date.now());
     if(!r.ok)return;

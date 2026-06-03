@@ -456,6 +456,35 @@ const CASINOS=[
 {abbr:'22',bg:'#FF6B00',tc:'#fff',name:'22Bet Casino',url:'https://22bet.com',tag:'Aviator + Slots + Live Casino',off:'100% Welcome Casino Bonus',top:'100% Match',stars:3,min:'₦100',live:true,jackpot:false,slots:true,nodep:false,badge:'',terms:'100% match on first casino deposit. Wager x35. 30 days. T&Cs. 18+.'}
 ];
 
+// ── SUPABASE ──────────────────────────────────────────────────────────────────
+const SB_URL='https://kedfcmgqjxwzebhoeosi.supabase.co';
+const SB_ANON='sb_publishable_NK9TgE3pEvmJbQ-ZmEvSjQ_22adueMj';
+const _SB_HDR={apikey:SB_ANON,Authorization:'Bearer '+SB_ANON};
+
+async function fetchSBTips(){
+  try{
+    const r=await fetch(`${SB_URL}/rest/v1/tips?status=eq.active&order=sort_order.asc,conf.desc`,{headers:_SB_HDR});
+    if(!r.ok)return null;
+    const rows=await r.json();
+    if(!Array.isArray(rows)||!rows.length)return null;
+    return rows.map(r=>({
+      league:r.league,key:r.sport_key,match:r.match,pred:r.pred,
+      analysis:r.analysis,odds:r.odds,via:r.via,conf:r.conf,
+      time:r.time_disp,date:r.date_label,isAI:r.is_ai||false
+    }));
+  }catch(_){return null;}
+}
+
+async function fetchSBNews(){
+  try{
+    const r=await fetch(`${SB_URL}/rest/v1/news_items?order=sort_order.asc,created_at.desc&limit=6`,{headers:_SB_HDR});
+    if(!r.ok)return null;
+    const rows=await r.json();
+    if(!Array.isArray(rows)||!rows.length)return null;
+    return rows.map(r=>({cat:r.cat,color:r.color,title:r.title,date:r.date_label}));
+  }catch(_){return null;}
+}
+
 // ── TIPS ──────────────────────────────────────────────────────────────────────
 const TIPS=[
 // ── Football ──

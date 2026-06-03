@@ -1,4 +1,4 @@
-"""Simple file-based logger — no database needed."""
+"""File-based logger that also mirrors entries to Supabase agent_logs."""
 import json
 import os
 from datetime import datetime, timezone
@@ -7,21 +7,25 @@ from datetime import datetime, timezone
 LOG_FILE = os.path.join(os.path.dirname(__file__), "..", "agent_log.json")
 
 
-def log(agent: str, action: str, status: str, detail: str = ""):
-    entry = {
-        "ts": datetime.now(timezone.utc).isoformat(),
-        "agent": agent,
-        "action": action,
-        "status": status,
-        "detail": detail,
-    }
+def log(agent: str, action: str, status: str, detail: str = "", meta: dict | None = None):
+    ts = datetime.now(timezone.utc).isoformat()
+    entry = {"ts": ts, "agent": agent, "action": action, "status": status, "detail": detail}
+
+    # Write to local JSON (always, as fallback)
     records = _read()
     records.append(entry)
-    # Keep last 500 entries only
     records = records[-500:]
     with open(LOG_FILE, "w") as f:
         json.dump(records, f, indent=2)
-    print(f"[{entry['ts']}] [{agent}] {action} → {status}")
+
+    # Mirror to Supabase (best-effort, never raises)
+    try:
+        from utils.supabase_client import sb_log  # type: ignore
+        sb_log(agent, action, status, detail, meta)
+    except Exception:
+        pass
+
+    print(f"[{ts}] [{agent}] {action} → {status}")
 
 
 def _read() -> list:
