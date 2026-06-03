@@ -491,6 +491,14 @@ async function fetchSBNews(){
   }catch(_){return null;}
 }
 
+// ── DATE LABELS (must be declared before TIPS and ODDS_DATA which reference them) ─
+const T_TODAY=SHORT_DATE;
+const T_TMR=new Date(NOW.getTime()+  86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+const T_IN2 =new Date(NOW.getTime()+2*86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+const T_IN3 =new Date(NOW.getTime()+3*86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+const T_IN4 =new Date(NOW.getTime()+4*86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+const T_IN5 =new Date(NOW.getTime()+5*86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+
 // ── TIPS ──────────────────────────────────────────────────────────────────────
 const TIPS=[
 // ── Football ──
@@ -527,12 +535,6 @@ const NEWS=[
 ];
 
 // ── ODDS DATA (fallback when live APIs are unavailable) ───────────────────────
-const T_TODAY=SHORT_DATE;
-const T_TMR=new Date(NOW.getTime()+  86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-const T_IN2 =new Date(NOW.getTime()+2*86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-const T_IN3 =new Date(NOW.getTime()+3*86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-const T_IN4 =new Date(NOW.getTime()+4*86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-const T_IN5 =new Date(NOW.getTime()+5*86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
 const ODDS_DATA=[
 // ── Football ──
 {league:'AFCON 2027 Qualifier',key:'afcon',live:true,home:'Nigeria',away:'Rwanda',hScore:2,aScore:0,time:"68'",h:1.65,d:3.90,a:5.50,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
