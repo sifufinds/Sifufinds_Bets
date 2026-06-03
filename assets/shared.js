@@ -612,8 +612,8 @@ const BRAND_DOMAINS={
 // full-resolution transparent logos on all brands.
 const LOGO_DEV_TOKEN='';
 const logoDomain=(url,abbr='')=>{try{const brand=abbr&&BRAND_DOMAINS[abbr];return brand||new URL(url).hostname.replace(/^www\./,'');}catch(e){return '';}};
-const logoUrl=(url,abbr='')=>{const d=logoDomain(url,abbr);if(!d)return'';if(LOGO_DEV_TOKEN)return`https://img.logo.dev/${d}?token=${LOGO_DEV_TOKEN}&size=128&format=png`;return`https://logo.clearbit.com/${d}?size=128`;};
-const logoFb=(url,abbr='')=>{const d=logoDomain(url,abbr);return d?`https://www.google.com/s2/favicons?domain=${d}&sz=256`:'';}
+const logoUrl=(url,abbr='')=>{const d=logoDomain(url,abbr);if(!d)return'';if(LOGO_DEV_TOKEN)return`https://img.logo.dev/${d}?token=${LOGO_DEV_TOKEN}&size=128&format=png`;return`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${d}&size=256`;};
+const logoFb=(url,abbr='')=>{const d=logoDomain(url,abbr);return d?`https://logo.clearbit.com/${d}?size=128`:'';}
 function _imgFallback(img){if(!img._fb){img._fb=1;const s=img.getAttribute('data-fb');if(s){img.src=s;return;}}img.style.display='none';if(img.previousElementSibling)img.previousElementSibling.style.visibility='visible';}
 const logoImg=(url,name,abbr,tc,w,r)=>{const word=name.split(' ')[0];const fs=word.length>7?Math.max(9,Math.floor(w*0.22)):Math.floor(w*0.28);const pad=Math.max(4,Math.ceil(r*1.2));return`<span style="color:${tc};font-size:${fs}px;font-weight:900;letter-spacing:-0.5px;text-transform:lowercase;line-height:1;text-align:center;padding:0 2px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;visibility:hidden">${word}</span><img src="${logoUrl(url,abbr)}" data-fb="${logoFb(url,abbr)}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:${pad}px;border-radius:${r}px;opacity:0;transition:opacity .15s" loading="lazy" onload="this.style.opacity='1'" onerror="_imgFallback(this)">`;};
 
