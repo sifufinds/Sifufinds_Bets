@@ -1,5 +1,6 @@
 // ── SITE URLS (overridden per-page via inline <script> before this file) ──────
 // Each page defines: const SITE={home,tips,casino,odds,countries}
+// v:20260603-2
 
 // ── DATES ─────────────────────────────────────────────────────────────────────
 const NOW=new Date();
