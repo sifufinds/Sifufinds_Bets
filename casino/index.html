@@ -294,8 +294,8 @@ function renderFeatCasinos(){
   H('cas-feat',CASINOS.slice(0,4).map(c=>`
   <div class="cas-fc">
     <div class="fc-img" style="background:${c.bg}">
-      <span class="fc-logo-txt" style="color:${c.tc};visibility:hidden">${c.name.split(' ')[0]}</span>
-      <img src="${logoUrl(c.url,c.abbr)}" data-fb="${logoFb(c.url,c.abbr)}" alt="" onload="this.style.opacity='1'" onerror="_imgFallback(this)">
+      <span class="fc-logo-txt" style="color:${c.tc}">${c.name.split(' ')[0]}</span>
+      <img src="${logoUrl(c.url,c.abbr)}" data-fb="${logoFb(c.url,c.abbr)}" alt="" style="z-index:1" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
       <span class="fc-nm">${c.name}</span>
     </div>
     <div class="fc-body">

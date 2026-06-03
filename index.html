@@ -523,8 +523,8 @@ function renderFeatCards(){
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${b.bg}">
-      <span class="fc-logo-txt" style="color:${b.tc};visibility:hidden">${b.name.split(' ')[0]}</span>
-      <img src="${logoUrl(b.url,b.abbr)}" data-fb="${logoFb(b.url,b.abbr)}" alt="" onload="this.style.opacity='1'" onerror="_imgFallback(this)">
+      <span class="fc-logo-txt" style="color:${b.tc}">${b.name.split(' ')[0]}</span>
+      <img src="${logoUrl(b.url,b.abbr)}" data-fb="${logoFb(b.url,b.abbr)}" alt="" style="z-index:1" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
       <span class="fc-nm">${b.name}</span>
     </div>
     <div class="fc-body">
