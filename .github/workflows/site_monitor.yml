@@ -1,5 +1,9 @@
 name: Site Monitor — auto-heal sifufinds.com
 
+# Hourly deep check: HTTP status + content validation + hack detection.
+# site_doctor.yml runs every 15 min for data freshness.
+# This monitor is the broader sweep that triggers a full redeploy on failure.
+
 on:
   schedule:
     - cron: "0 * * * *"
@@ -15,12 +19,12 @@ permissions:
 
 jobs:
   health-check:
-    name: Check pages + auto-redeploy on failure
+    name: Check pages + content + auto-redeploy on failure
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
 
     steps:
-      - name: Check all critical pages
+      - name: Check all critical pages (HTTP status)
         id: check
         run: |
           FAILED=0
@@ -51,8 +55,65 @@ jobs:
           check_page "https://sifufinds.com/betting/"                  "Betting"
           check_page "https://sifufinds.com/assets/shared.css"         "CSS Asset"
           check_page "https://sifufinds.com/assets/shared.js"          "JS Asset"
+          check_page "https://sifufinds.com/data/live.json"            "live.json"
 
           echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
+
+      - name: Check content integrity
+        id: content
+        run: |
+          ISSUES=0
+
+          # shared.js must contain the BOOKS data object
+          JS=$(curl -s --max-time 20 "https://sifufinds.com/assets/shared.js")
+          if echo "$JS" | grep -qF "const BOOKS="; then
+            echo "OK   shared.js contains BOOKS data"
+          else
+            echo "FAIL shared.js missing BOOKS data"
+            ISSUES=$((ISSUES+1))
+          fi
+
+          # live.json must be valid JSON with events array
+          LIVE=$(curl -s --max-time 10 "https://sifufinds.com/data/live.json")
+          if echo "$LIVE" | python3 -c "import sys,json; d=json.load(sys.stdin); assert len(d.get('events',[])) > 0" 2>/dev/null; then
+            COUNT=$(echo "$LIVE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('count',0))")
+            echo "OK   live.json has $COUNT events"
+          else
+            echo "FAIL live.json missing or empty"
+            ISSUES=$((ISSUES+1))
+          fi
+
+          # live.json must contain at least one football event
+          if echo "$LIVE" | python3 -c "
+          import sys, json
+          d = json.load(sys.stdin)
+          football = [e for e in d.get('events',[]) if e.get('key') in ('world','cafl','afcon','local','epl')]
+          assert len(football) > 0
+          print(f'{len(football)} football events found')
+          " 2>/dev/null; then
+            echo "OK   live.json contains football events"
+          else
+            echo "FAIL live.json has no football events"
+            ISSUES=$((ISSUES+1))
+          fi
+
+          # live.json must not be stale (> 40 min)
+          if echo "$LIVE" | python3 -c "
+          import sys, json
+          from datetime import datetime, timezone
+          d = json.load(sys.stdin)
+          updated = datetime.fromisoformat(d.get('updated',''))
+          age = (datetime.now(timezone.utc) - updated).total_seconds() / 60
+          assert age < 40, f'{age:.0f} min'
+          print(f'age: {age:.0f} min')
+          " 2>/dev/null; then
+            echo "OK   live.json is fresh"
+          else
+            echo "FAIL live.json is stale (> 40 min old)"
+            ISSUES=$((ISSUES+1))
+          fi
+
+          echo "issues=$ISSUES" >> "$GITHUB_OUTPUT"
 
       - name: Check for hacked/defaced content
         id: hack_check
@@ -69,7 +130,18 @@ jobs:
 
           echo "hacked=$HACKED" >> "$GITHUB_OUTPUT"
 
-      - name: Auto-redeploy if anything failed
+      - name: Trigger site-doctor if data issues found
+        if: steps.content.outputs.issues != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Data issues detected — triggering site_doctor to auto-fix..."
+          gh workflow run site_doctor.yml \
+            --repo "${{ github.repository }}" \
+            --ref main
+          echo "✅ site_doctor.yml triggered"
+
+      - name: Auto-redeploy if pages are down or site is hacked
         if: steps.check.outputs.failed != '0' || steps.hack_check.outputs.hacked != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

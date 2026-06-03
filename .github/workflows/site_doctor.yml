@@ -1,0 +1,96 @@
+name: Site Doctor — 24/7 auto-heal sifufinds.com
+
+# Runs every 15 minutes around the clock.
+# Checks live.json freshness, football coverage, page health, and JS integrity.
+# Auto-fixes any issues it finds, commits, and triggers a deploy.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: site-doctor
+  cancel-in-progress: false   # never drop a heal run
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  diagnose-and-heal:
+    name: Diagnose and heal sifufinds.com
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest (avoid stale reads)
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run site doctor
+        id: doctor
+        working-directory: agents/python
+        run: |
+          python site_doctor.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+        continue-on-error: true
+
+      - name: Commit any fixes
+        id: commit
+        run: |
+          git config --local user.email "doctor@sifufinds.com"
+          git config --local user.name "SifuFinds Site Doctor"
+          git add data/live.json data/health.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes to commit"
+          else
+            git commit -m "doctor: auto-heal $(date -u '+%Y-%m-%d %H:%M') UTC"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push fixes
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            [ "$attempt" -eq 3 ] && { echo "❌ Push failed after 3 attempts"; exit 1; }
+            echo "⚠ Push rejected ($attempt/3) — rebasing..."
+            sleep 3
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done
+
+      - name: Trigger deploy if fixes were applied
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Fixes were committed — triggering fresh Hostinger deploy..."
+          gh workflow run deploy_hostinger.yml \
+            --repo "${{ github.repository }}" \
+            --ref main
+          echo "✅ Deploy triggered"
+
+      - name: Report critical failure
+        if: steps.doctor.outputs.exit_code == '1'
+        run: |
+          echo "🚨 CRITICAL: site_doctor.py reported an unrecoverable issue."
+          echo "Check the logs above for details."
+          exit 1

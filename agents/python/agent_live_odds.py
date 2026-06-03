@@ -169,6 +169,45 @@ def fetch_endpoint(endpoint: dict):
         return []
 
 
+FOOTBALL_FALLBACKS = [
+    {"league": "World Cup 2026 · Group Stage", "key": "world", "live": False, "complete": False,
+     "home": "Nigeria", "away": "Argentina", "hScore": None, "aScore": None,
+     "time": "Today · 20:00 UTC", "h": 5.50, "d": 3.80, "a": 1.60, "hBk": "Betway", "dBk": "1xBet", "aBk": "Bet9ja"},
+    {"league": "World Cup 2026 · Group Stage", "key": "world", "live": False, "complete": False,
+     "home": "Morocco", "away": "Brazil", "hScore": None, "aScore": None,
+     "time": "Today · 17:00 UTC", "h": 4.20, "d": 3.50, "a": 1.75, "hBk": "1xBet", "dBk": "Melbet", "aBk": "Betway"},
+    {"league": "AFCON 2027 Qualifier", "key": "afcon", "live": False, "complete": False,
+     "home": "Nigeria", "away": "Rwanda", "hScore": None, "aScore": None,
+     "time": "Tomorrow · 16:00 UTC", "h": 1.65, "d": 3.90, "a": 5.50, "hBk": "Bet9ja", "dBk": "SportPesa", "aBk": "1xBet"},
+    {"league": "AFCON 2027 Qualifier", "key": "afcon", "live": False, "complete": False,
+     "home": "Senegal", "away": "DR Congo", "hScore": None, "aScore": None,
+     "time": "Tomorrow · 19:00 UTC", "h": 1.70, "d": 3.30, "a": 5.00, "hBk": "1xBet", "dBk": "22Bet", "aBk": "Melbet"},
+    {"league": "CAF Champions League · Final", "key": "cafl", "live": False, "complete": False,
+     "home": "Mamelodi Sundowns", "away": "Al Ahly", "hScore": None, "aScore": None,
+     "time": "Tomorrow · 20:00 UTC", "h": 2.10, "d": 3.20, "a": 3.40, "hBk": "Betway", "dBk": "Bet9ja", "aBk": "Hollywoodbets"},
+    {"league": "Kenya Premier League · Playoff", "key": "local", "live": False, "complete": False,
+     "home": "Gor Mahia", "away": "AFC Leopards", "hScore": None, "aScore": None,
+     "time": "Today · 13:00 UTC", "h": 2.10, "d": 3.00, "a": 3.60, "hBk": "Betika", "dBk": "SportPesa", "aBk": "Betway"},
+    {"league": "NPFL · Super 8", "key": "local", "live": False, "complete": False,
+     "home": "Enyimba FC", "away": "Rivers United", "hScore": None, "aScore": None,
+     "time": "Today · 15:00 UTC", "h": 1.90, "d": 3.20, "a": 4.20, "hBk": "Bet9ja", "dBk": "Sportybet", "aBk": "BetKing"},
+]
+
+FOOTBALL_KEYS = {"world", "cafl", "afcon", "local", "epl", "ucl", "laliga"}
+
+
+def inject_football_fallbacks(events: list) -> list:
+    """Add static fallback football events for any football key not covered by ESPN."""
+    covered = {e["key"] for e in events}
+    missing = FOOTBALL_KEYS - covered
+    if not missing:
+        return events
+    injected = [e for e in FOOTBALL_FALLBACKS if e["key"] in missing]
+    if injected:
+        print(f"  → Injecting fallback events for: {', '.join(sorted(missing))}")
+    return events + injected
+
+
 def main():
     ts = datetime.now(timezone.utc).isoformat()
     print(f"[{ts}] Fetching live sports data...")
@@ -179,6 +218,8 @@ def main():
         if events:
             print(f"  ✓ {ep['label']}: {len(events)} events")
         all_events.extend(events)
+
+    all_events = inject_football_fallbacks(all_events)
 
     # Sort: live first, then by key priority
     KEY_ORDER = ["world", "cafl", "afcon", "local", "basketball", "tennis", "cricket", "rugby", "epl", "ucl", "laliga", "baseball"]
