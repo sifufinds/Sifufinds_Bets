@@ -43,8 +43,8 @@ select.csel option{color:#222;background:#fff}
 .feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:9px}
 .fc{border:1px solid #e8e8e8;border-radius:12px;background:#fff;overflow:hidden;transition:all .18s;display:flex;flex-direction:column}
 .fc:hover{box-shadow:0 6px 22px rgba(0,0,0,.13);transform:translateY(-3px);border-color:#bbb}
-.fc-img{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
-.fc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:20px;opacity:0;transition:opacity .2s}
+.fc-img{height:160px;background:#fff;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
+.fc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:22px;opacity:0;transition:opacity .25s}
 .fc-logo-txt{font-size:28px;font-weight:900;letter-spacing:-1px;text-align:center;padding:0 10px;line-height:1.1;text-transform:lowercase;max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.92}
 .fc-nm{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.52);color:#fff;font-size:9.5px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;z-index:3}
 .fc-body{padding:11px 12px;flex:1;display:flex;flex-direction:column;gap:6px}
