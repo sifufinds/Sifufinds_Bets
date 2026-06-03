@@ -71,7 +71,7 @@
 
 <link rel="icon" href="../assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
-<link rel="stylesheet" href="../assets/shared.css?v=2">
+<link rel="stylesheet" href="../assets/shared.css?v=3">
 </head>
 <body>
 
@@ -261,7 +261,7 @@
 <script>
 const SITE={home:'../',tips:'./',casino:'../casino/',odds:'../odds/',countries:'../countries/'};
 </script>
-<script src="../assets/shared.js?v=2"></script>
+<script src="../assets/shared.js?v=3"></script>
 <script>
 let _activeTF='all';
 let _tipsData=TIPS;   // replaced with Supabase data in init() if available
@@ -385,14 +385,14 @@ async function init(){
   H('tips-date',DATE_STR);
   H('foot-yr',NOW.getFullYear());
 
-  // Load tips + news from Supabase; re-render if data arrives
-  const[sbTips,sbNews]=await Promise.all([fetchSBTips(),fetchSBNews()]);
-  if(sbTips&&sbTips.length)_tipsData=sbTips;
-  if(sbNews&&sbNews.length)_newsData=sbNews;
-
+  // Render immediately with static data so users never see a blank page
   renderTips();
   renderNews();
   renderAI();
+
+  // Then try Supabase in background — re-render only if live data arrives
+  fetchSBTips().then(d=>{if(d&&d.length){_tipsData=d;renderTips();}});
+  fetchSBNews().then(d=>{if(d&&d.length){_newsData=d;renderNews();}});
 }
 init();
 </script>

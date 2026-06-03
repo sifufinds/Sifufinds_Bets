@@ -461,9 +461,15 @@ const SB_URL='https://kedfcmgqjxwzebhoeosi.supabase.co';
 const SB_ANON='sb_publishable_NK9TgE3pEvmJbQ-ZmEvSjQ_22adueMj';
 const _SB_HDR={apikey:SB_ANON,Authorization:'Bearer '+SB_ANON};
 
+function _sbFetch(url,timeout=4000){
+  const ctrl=new AbortController();
+  const id=setTimeout(()=>ctrl.abort(),timeout);
+  return fetch(url,{headers:_SB_HDR,signal:ctrl.signal}).finally(()=>clearTimeout(id));
+}
+
 async function fetchSBTips(){
   try{
-    const r=await fetch(`${SB_URL}/rest/v1/tips?status=eq.active&order=sort_order.asc,conf.desc`,{headers:_SB_HDR});
+    const r=await _sbFetch(`${SB_URL}/rest/v1/tips?status=eq.active&order=sort_order.asc,conf.desc`);
     if(!r.ok)return null;
     const rows=await r.json();
     if(!Array.isArray(rows)||!rows.length)return null;
@@ -477,7 +483,7 @@ async function fetchSBTips(){
 
 async function fetchSBNews(){
   try{
-    const r=await fetch(`${SB_URL}/rest/v1/news_items?order=sort_order.asc,created_at.desc&limit=6`,{headers:_SB_HDR});
+    const r=await _sbFetch(`${SB_URL}/rest/v1/news_items?order=sort_order.asc,created_at.desc&limit=6`);
     if(!r.ok)return null;
     const rows=await r.json();
     if(!Array.isArray(rows)||!rows.length)return null;
