@@ -646,18 +646,49 @@ const BRAND_DOMAINS={
   'BTA':'betano.com','BLB':'bolabet.com',
   'PB':'premierbet.com','BNZ':'bonanzabet.co.zm'
 };
-// Upgrade: get a free Logo.dev token at logo.dev/signup and paste it below for
-// full-resolution transparent logos on all brands.
+// Local logo assets — served from /assets/logos/ on the site root.
+// These take priority over any remote service. Add new entries as logos are downloaded.
+const LOCAL_LOGOS={
+  '1X':'/assets/logos/1xbet.png','MB':'/assets/logos/melbet.png',
+  'BN':'/assets/logos/betwinner.png','PP':'/assets/logos/paripesa.png',
+  'HB':'/assets/logos/helabet.png','TTC':'/assets/logos/tictacbets.png',
+  'B9':'/assets/logos/bet9ja.png','SB':'/assets/logos/sportybet.png',
+  'BK':'/assets/logos/betking.png','BW':'/assets/logos/betway.png',
+  '22':'/assets/logos/22bet.png','MZ':'/assets/logos/mozzartbet.png',
+  'BPW':'/assets/logos/betpawa.png','BT':'/assets/logos/betika.png',
+  'SP':'/assets/logos/sportpesa.png','OD':'/assets/logos/odibets.png',
+  'BG':'/assets/logos/bangbet.png','BB':'/assets/logos/bangbet.png',
+  'HW':'/assets/logos/hollywoodbets.png','BTA':'/assets/logos/betano.png',
+};
 const LOGO_DEV_TOKEN='pk_LOpmKYtCS3q3rhYX_rDd9A';
 const logoDomain=(url,abbr='')=>{try{const brand=abbr&&BRAND_DOMAINS[abbr];return brand||new URL(url).hostname.replace(/^www\./,'');}catch(e){return '';}};
-const logoUrl=(url,abbr='')=>{const d=logoDomain(url,abbr);if(!d)return'';if(LOGO_DEV_TOKEN)return`https://img.logo.dev/${d}?token=${LOGO_DEV_TOKEN}&size=256&format=png`;return`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${d}&size=256`;};
-const logoFb=(url,abbr='')=>{const d=logoDomain(url,abbr);return d?`https://logo.clearbit.com/${d}?size=128`:'';}
-// Only show an image if it is genuinely high-res (≥100px). Google favicon services return
-// 32-64px icons regardless of the requested size — those load successfully but look blurry,
-// so we suppress them here and let the styled text label show instead.
-function _logoLoaded(img){if(img.naturalWidth>=100){img.style.opacity='1';}else{img.style.display='none';}}
+// logoUrl: local asset first, then logo.dev, then Google favicon as last resort.
+const logoUrl=(url,abbr='')=>{
+  if(abbr&&LOCAL_LOGOS[abbr])return LOCAL_LOGOS[abbr];
+  const d=logoDomain(url,abbr);
+  if(!d)return'';
+  if(LOGO_DEV_TOKEN)return`https://img.logo.dev/${d}?token=${LOGO_DEV_TOKEN}&size=256&format=png`;
+  return`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${d}&size=256`;
+};
+const logoFb=(url,abbr='')=>{const d=logoDomain(url,abbr);return d?`https://logo.clearbit.com/${d}?size=256`:'';}
+// Local logos load instantly and are always valid — show them without the naturalWidth check.
+// For remote images: show if ≥100px; if smaller, chain to Clearbit before giving up.
+function _logoLoaded(img){
+  if(img.dataset.local==='1'||img.naturalWidth>=100){img.style.opacity='1';}
+  else if(!img._fb){img._fb=1;const s=img.getAttribute('data-fb');if(s){img.src=s;}else{img.style.display='none';}}
+  else{img.style.display='none';}
+}
 function _imgFallback(img){if(!img._fb){img._fb=1;const s=img.getAttribute('data-fb');if(s){img.src=s;return;}}img.style.display='none';}
-const logoImg=(url,name,abbr,tc,w,r)=>{const word=name.split(' ')[0];const fs=word.length>7?Math.max(9,Math.floor(w*0.22)):Math.floor(w*0.28);const pad=Math.max(4,Math.ceil(r*1.2));return`<span style="color:${tc};font-size:${fs}px;font-weight:900;letter-spacing:-0.5px;text-transform:lowercase;line-height:1;text-align:center;padding:0 2px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${word}</span><img src="${logoUrl(url,abbr)}" data-fb="${logoFb(url,abbr)}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:${pad}px;border-radius:${r}px;opacity:0;transition:opacity .15s;z-index:1" loading="lazy" onload="_logoLoaded(this)" onerror="_imgFallback(this)">`;};
+// logoImg: brand wordmark text (uppercase italic bold) + logo image layered on top.
+// Text is always the brand contrast color (tc) so it reads as intentional, not a broken state.
+const logoImg=(url,name,abbr,tc,w,r)=>{
+  const word=name.split(' ')[0].toUpperCase();
+  const fs=word.length>7?Math.max(8,Math.floor(w*0.20)):word.length>4?Math.floor(w*0.24):Math.floor(w*0.30);
+  const pad=Math.max(4,Math.ceil(r*1.2));
+  const isLocal=!!(abbr&&LOCAL_LOGOS[abbr]);
+  const lsrc=logoUrl(url,abbr);
+  const lfb=isLocal?'':logoFb(url,abbr);
+  return`<span style="color:${tc};font-size:${fs}px;font-weight:900;letter-spacing:-0.5px;text-transform:uppercase;font-style:italic;line-height:1;text-align:center;padding:0 4px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${word}</span>${lsrc?`<img src="${lsrc}" data-fb="${lfb}" data-local="${isLocal?'1':''}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:${pad}px;border-radius:${r}px;opacity:0;transition:opacity .15s;z-index:1" loading="lazy" onload="_logoLoaded(this)" onerror="_imgFallback(this)">`:''}`;};;
 
 // ── COUNTRY MANAGEMENT ────────────────────────────────────────────────────────
 const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA','EG','MA','SL','LR']);
