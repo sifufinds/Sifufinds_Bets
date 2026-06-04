@@ -69,8 +69,6 @@
 }
 </script>
 
-<link rel="icon" href="../assets/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="stylesheet" href="../assets/shared.css?v=3">
 </head>
 <body>
@@ -358,13 +356,13 @@ async function fetchAfricanFixtures(){
 
 function _sbRowToEvent(row){
   return{
-    league:row.league,key:row.sport_key,
+    league:row.league,key:row.sport_key||row.key,
     live:row.live,complete:row.complete,
     home:row.home,away:row.away,
     hScore:row.h_score??null,aScore:row.a_score??null,
-    time:row.time_disp,
-    h:Number(row.h_odds)||0,d:Number(row.d_odds)||0,a:Number(row.a_odds)||0,
-    hBk:row.h_bk||'',dBk:row.d_bk||'',aBk:row.a_bk||''
+    time:row.time_disp||row.time,
+    h:Number(row.h_odds||row.h)||0,d:Number(row.d_odds||row.d)||0,a:Number(row.a_odds||row.a)||0,
+    hBk:row.h_bk||row.hBk||'',dBk:row.d_bk||row.dBk||'',aBk:row.a_bk||row.aBk||''
   };
 }
 
@@ -380,7 +378,7 @@ async function fetchLiveJson(){
     if(r.ok){
       const rows=await r.json();
       if(Array.isArray(rows)&&rows.length){
-        _liveJsonMatches=rows.map(_sbRowToEvent);
+        _liveJsonMatches=rows.map(_sbRowToEvent).filter(m=>m.key);
         _liveJsonUpdated=rows[0]?.refreshed_at||'';
         return;
       }
@@ -391,7 +389,15 @@ async function fetchLiveJson(){
     const r=await fetch('../data/live.json?t='+Date.now());
     if(!r.ok)return;
     const d=await r.json();
-    _liveJsonMatches=d.events||[];
+    // Map through _sbRowToEvent for consistent field names, filter stale "live" events
+    const now=Date.now();
+    const updated=d.updated?new Date(d.updated).getTime():0;
+    const isStale=updated&&(now-updated)>3*3600000; // stale after 3h
+    _liveJsonMatches=(d.events||[]).map(_sbRowToEvent).filter(m=>{
+      if(!m.key)return false;
+      if(isStale&&m.live){m.live=false;m.time=m.time||'--:--';}
+      return true;
+    });
     _liveJsonUpdated=d.updated||'';
   }catch(e){/* fallback to ESPN + ODDS_DATA */}
 }
@@ -446,6 +452,19 @@ function lgFilt(btn){
   renderOdds();
 }
 
+function fmtMatchTime(m){
+  // Always return a string bettors can act on: "Wed 4 Jun · 20:00 UTC"
+  if(m.live)return null; // handled separately
+  if(m.complete)return null;
+  const raw=m.time||'';
+  // If already has a rich label (contains · or date words) just return it
+  if(raw.includes('·')||raw.match(/jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec/i)||raw==='FT'||raw==='--:--')return raw;
+  // Plain time like "20:00" — prefix today's date
+  const today=new Date();
+  const dd=today.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+  return raw?`${dd} · ${raw} UTC`:dd;
+}
+
 function odcCard(m){
   const cty=getCurrentCountry();
   const books=BOOKS[cty]||BOOKS.NG;
@@ -454,26 +473,27 @@ function odcCard(m){
   const scoreHtml=hasScore
     ?`<div class="tline"><div class="tnm">${m.home}</div><div class="scn">${m.hScore??''}</div></div><div class="tline"><div class="tnm">${m.away}</div><div class="scn">${m.aScore??''}</div></div>`
     :`<div class="tline"><div class="tnm">${m.home}</div></div><div class="tline"><div class="tnm">${m.away}</div></div>`;
+  const displayTime=fmtMatchTime(m);
   const timeHtml=m.live
     ?`<span class="livtag"><span class="lpulse" style="width:5px;height:5px;margin-right:2px"></span>LIVE</span>`
     :m.complete
       ?`<span class="odc-tm" style="color:#4ade80">FT</span>`
-      :`<span class="odc-tm">${m.time}</span>`;
+      :`<span class="odc-tm">${displayTime}</span>`;
   const hasOdds=m.h>0;
   const hasDraw=m.d>0;
   const oddsHtml=hasOdds
     ?`<div class="obg">
-      <div class="ob${m.live?' best':''}" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
-        <div class="ob-t">1</div><div class="ob-v">${m.h.toFixed(2)}</div><div class="ob-bk">${m.hBk}</div>
+      <div class="ob${m.live?' best':''}" title="Best odds via ${m.hBk}" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
+        <div class="ob-t">1</div><div class="ob-v">${m.h.toFixed(2)}</div><div class="ob-bk">${m.hBk||'Best'}</div>
       </div>
-      ${hasDraw?`<div class="ob" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
-        <div class="ob-t">X</div><div class="ob-v">${m.d.toFixed(2)}</div><div class="ob-bk">${m.dBk}</div>
+      ${hasDraw?`<div class="ob" title="Draw via ${m.dBk}" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
+        <div class="ob-t">X</div><div class="ob-v">${m.d.toFixed(2)}</div><div class="ob-bk">${m.dBk||'Best'}</div>
       </div>`:''}
-      <div class="ob" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
-        <div class="ob-t">2</div><div class="ob-v">${m.a.toFixed(2)}</div><div class="ob-bk">${m.aBk}</div>
+      <div class="ob" title="Best odds via ${m.aBk}" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
+        <div class="ob-t">2</div><div class="ob-v">${m.a.toFixed(2)}</div><div class="ob-bk">${m.aBk||'Best'}</div>
       </div>
     </div>`
-    :`<a class="gbtn" href="${bk?bk.url:'#'}" target="_blank" rel="noopener" style="font-size:12px;padding:8px 14px;white-space:nowrap">Get Odds →</a>`;
+    :`<a class="gbtn" href="${bk?bk.url:'#'}" target="_blank" rel="noopener" style="font-size:12px;padding:8px 14px;white-space:nowrap">Get Best Odds →</a>`;
   return`<div class="odc">
   <div class="odch">
     <span class="odc-lg">${m.league}</span>
@@ -491,18 +511,22 @@ function renderLgFilter(){
 }
 
 function renderOdds(){
-  let base;
-  if(_liveJsonMatches.length||_apiMatches.length||_africanMatches.length){
-    // Supplement live/API data with ODDS_DATA for any sport keys not covered
-    const liveKeys=new Set([..._liveJsonMatches,..._apiMatches,..._africanMatches].map(m=>m.key));
-    const fallback=ODDS_DATA.filter(m=>!liveKeys.has(m.key));
-    base=[...mergeWithEspn(_liveJsonMatches,_apiMatches),..._africanMatches,...fallback];
-  }else{
-    base=[...ODDS_DATA];
-  }
-  const all=base;
+  // ODDS_DATA is always the guaranteed base — live APIs supplement it
+  const liveAll=[...mergeWithEspn(_liveJsonMatches,_apiMatches),..._africanMatches];
+
+  // Build a dedup map: live data wins over static data for same match
+  const matchKey=m=>`${m.key}|${(m.home||'').toLowerCase()}|${(m.away||'').toLowerCase()}`;
+  const seen=new Map();
+  liveAll.forEach(m=>{if(m.key)seen.set(matchKey(m),m);});
+  // Add ODDS_DATA entries not already covered by live data
+  ODDS_DATA.forEach(m=>{if(!seen.has(matchKey(m)))seen.set(matchKey(m),m);});
+
+  const all=[...seen.values()];
   const data=_activeLG==='all'?all:all.filter(m=>m.key===_activeLG);
-  if(!data.length){H('odds-cards','<div style="color:rgba(255,255,255,.4);text-align:center;padding:30px;font-size:13px">No odds available for this filter.</div>');return;}
+  if(!data.length){
+    H('odds-cards','<div style="color:rgba(255,255,255,.4);text-align:center;padding:40px;font-size:13px">No odds available for this filter. <br><button style="margin-top:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:6px 14px;border-radius:6px;cursor:pointer" onclick="lgFilt(document.querySelector(\'[data-lg=all]\'))">Show All Sports</button></div>');
+    return;
+  }
   const sorted=[...data].sort((a,b)=>{
     if(a.live&&!b.live)return -1;
     if(!a.live&&b.live)return 1;

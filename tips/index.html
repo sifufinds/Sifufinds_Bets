@@ -69,8 +69,6 @@
 }
 </script>
 
-<link rel="icon" href="../assets/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="stylesheet" href="../assets/shared.css?v=3">
 </head>
 <body>
@@ -277,10 +275,14 @@ function tipFilt(btn){
 function tipCard(t,idx){
   const booksForCty=BOOKS[getCurrentCountry()]||BOOKS.NG;
   const bkData=booksForCty.find(b=>b.name.toLowerCase().includes(t.via.toLowerCase()))||booksForCty[0];
+  const dateLabel=t.date||DATE_STR;
+  const timeLabel=t.time||'--:--';
+  // Full bet-by label: "Wed 4 Jun · 20:00 UTC"
+  const betByLabel=`${dateLabel} · ${timeLabel}`;
   return`<div class="tipcard${t.isAI?' ai-tip':''}">
   <div class="th">
     <span class="tlg">${t.league}${t.isAI?' <span class="ai-badge">🤖 AI</span>':''}</span>
-    <span class="ttm">${t.time} · ${t.date||DATE_STR}</span>
+    <span class="ttm" title="Kick-off time">🕐 ${betByLabel}</span>
   </div>
   <div class="tbody">
     <div>
@@ -289,6 +291,7 @@ function tipCard(t,idx){
       <div class="tan">${t.analysis}</div>
       <div class="tcta">
         <span class="opill">Odds: ${t.odds}</span>
+        <span style="font-size:10px;color:#888;font-weight:600;white-space:nowrap">⏰ Place before ${timeLabel}</span>
         <a href="${bkData?bkData.url:'#'}" target="_blank" rel="noopener noreferrer" style="color:var(--g);font-size:11px;font-weight:700">Bet via ${t.via} →</a>
       </div>
     </div>
