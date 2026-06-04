@@ -8,9 +8,17 @@
 
   <key>ProgramArguments</key>
   <array>
-    <string>/bin/bash</string>
-    <string>/Users/raventrack/Desktop/Sifu Finds/agents/python/run_news_bot.sh</string>
+    <string>/Users/raventrack/Desktop/Sifu Finds/.venv/bin/python</string>
+    <string>/Users/raventrack/Desktop/Sifu Finds/agents/python/newsbot_runner.py</string>
   </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HOME</key>
+    <string>/Users/raventrack</string>
+    <key>PATH</key>
+    <string>/Users/raventrack/Desktop/Sifu Finds/.venv/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
 
   <!-- Run every 15 minutes -->
   <key>StartInterval</key>
@@ -29,8 +37,5 @@
 
   <key>StandardErrorPath</key>
   <string>/Users/raventrack/Desktop/Sifu Finds/agents/python/newsbot-stderr.log</string>
-
-  <key>WorkingDirectory</key>
-  <string>/Users/raventrack/Desktop/Sifu Finds/agents/python</string>
 </dict>
 </plist>
