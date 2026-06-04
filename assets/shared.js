@@ -671,43 +671,21 @@ const logoUrl=(url,abbr='')=>{
   return`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${d}&size=256`;
 };
 const logoFb=(url,abbr='')=>{const d=logoDomain(url,abbr);return d?`https://logo.clearbit.com/${d}?size=256`:'';}
-// When an image loads successfully, reveal it and hide the text-fallback span behind it.
-// Local files skip the naturalWidth check — they are always valid.
-// Remote images: show if ≥100px wide; otherwise chain to Clearbit fallback.
-function _logoLoaded(img){
-  const good=img.dataset.local==='1'||img.naturalWidth>=100;
-  if(good){
-    img.style.opacity='1';
-    const prev=img.previousElementSibling;
-    if(prev&&prev.tagName==='SPAN')prev.style.display='none';
-  }else if(!img._fb){
-    img._fb=1;
-    const s=img.getAttribute('data-fb');
-    if(s){img.src=s;}else{img.style.display='none';}
-  }else{img.style.display='none';}
-}
+// Reveal logo image immediately on load — no size threshold, no text fallback at all.
+// On error: try Clearbit once, then leave container blank (clean empty square).
+function _logoLoaded(img){img.style.opacity='1';}
 function _imgFallback(img){
   if(!img._fb){img._fb=1;const s=img.getAttribute('data-fb');if(s){img.src=s;return;}}
-  img.style.display='none';
+  img.style.opacity='0';
 }
-// logoImg: renders a logo image with a text-name fallback behind it.
-// - Local logos (in LOCAL_LOGOS): no text rendered — image guaranteed to load.
-// - Remote logos: text shown until image loads, then text is hidden by _logoLoaded.
-// Pass bg=true when the container already has a brand background (fc-img, hbrand-logo)
-// so the text uses the contrast color; omit/false for white-bg containers (bk-logo list).
+// logoImg: renders ONLY the logo image. No text, no background treatment.
+// Container bg is set by the caller — white for list cards, brand-color for featured/header.
 const logoImg=(url,name,abbr,tc,w,r,hasBg)=>{
-  const isLocal=!!(abbr&&LOCAL_LOGOS[abbr]);
   const lsrc=logoUrl(url,abbr);
-  const lfb=isLocal?'':logoFb(url,abbr);
+  if(!lsrc)return'';
+  const lfb=logoFb(url,abbr);
   const pad=Math.max(3,Math.ceil(r*1.0));
-  // Only render text fallback for remote logos (local ones load reliably)
-  const textHtml=isLocal?'':
-    (()=>{const word=name.split(' ')[0].toUpperCase();
-    const fs=word.length>7?Math.max(8,Math.floor(w*0.20)):word.length>4?Math.floor(w*0.24):Math.floor(w*0.30);
-    const col=hasBg?tc:'#888';
-    return`<span style="color:${col};font-size:${fs}px;font-weight:800;letter-spacing:-0.5px;text-transform:uppercase;line-height:1;text-align:center;padding:0 4px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${word}</span>`;})();
-  const imgHtml=lsrc?`<img src="${lsrc}" data-fb="${lfb}" data-local="${isLocal?'1':''}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:${pad}px;border-radius:${r}px;opacity:0;transition:opacity .2s;z-index:1" loading="lazy" onload="_logoLoaded(this)" onerror="_imgFallback(this)">`:'' ;
-  return textHtml+imgHtml;};;
+  return`<img src="${lsrc}" data-fb="${lfb}" alt="${name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:${pad}px;opacity:0;transition:opacity .2s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">`;};;
 
 // ── COUNTRY MANAGEMENT ────────────────────────────────────────────────────────
 const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA','EG','MA','SL','LR']);

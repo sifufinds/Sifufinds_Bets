@@ -162,7 +162,8 @@
 }
 </script>
 
-<link rel="stylesheet" href="assets/shared.css?v=5">
+<link rel="stylesheet" href="assets/shared.css?v=6">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -424,7 +425,7 @@
 <script>
 const SITE={home:'/',tips:'tips/',casino:'casino/',odds:'odds/',countries:'countries/'};
 </script>
-<script src="assets/shared.js?v=5"></script>
+<script src="assets/shared.js?v=6"></script>
 <script>
 // ── PAGE-SPECIFIC JS ──────────────────────────────────────────────────────────
 const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BW:'Botswana',NA:'Namibia',EG:'Egypt',MA:'Morocco',SL:'Sierra Leone',LR:'Liberia'};
@@ -521,8 +522,7 @@ function renderFeatCards(){
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${b.bg}">
-      <span class="fc-logo-txt" style="color:${b.tc||'#fff'}">${b.name.split(' ')[0]}</span>
-      <img src="${logoUrl(b.url,b.abbr)}" data-fb="${logoFb(b.url,b.abbr)}" alt="${b.name} logo" style="z-index:1;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:16px;opacity:0;transition:opacity .25s" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
+      <img src="${logoUrl(b.url,b.abbr)}" data-fb="${logoFb(b.url,b.abbr)}" alt="${b.name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:16px;opacity:0;transition:opacity .25s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
       <span class="fc-nm">${b.name}</span>
     </div>
     <div class="fc-body">
