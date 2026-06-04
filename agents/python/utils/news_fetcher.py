@@ -19,16 +19,17 @@ import re
 
 # ── FRESHNESS CONFIG ──────────────────────────────────────────────────────────
 MAX_AGE_HOURS: dict[str, int] = {
-    "football":   48,
-    "sportnews":  48,
-    "basketball": 48,
-    "betting":    72,
-    "tennis":     72,
-    "cricket":    72,
-    "rugby":      72,
-    "boxing":     168,
-    "f1":         168,
-    "igaming":    168,
+    "football":      48,
+    "sportnews":     48,
+    "basketball":    48,
+    "betting":       72,
+    "tennis":        72,
+    "cricket":       72,
+    "rugby":         72,
+    "boxing":        168,
+    "f1":            168,
+    "igaming":       168,
+    "worldcup2026":  24,   # daily freshness — tournament runs June–July 2026
 }
 DEFAULT_MAX_AGE_HOURS = 72
 MIN_FRESH_ITEMS = 3
@@ -90,6 +91,12 @@ SEARCH_QUERIES: dict[str, list[str]] = {
         "best betting predictions accumulator today",
         "african bookmaker odds value bets today",
     ],
+    "worldcup2026": [
+        "FIFA World Cup 2026 match results today",
+        "World Cup 2026 group stage scores news",
+        "World Cup 2026 African teams Nigeria Morocco Senegal news",
+        "World Cup 2026 betting odds predictions today",
+    ],
 }
 
 # ── FALLBACK RSS FEEDS ────────────────────────────────────────────────────────
@@ -100,6 +107,12 @@ FEEDS: list[tuple[str, str, str]] = [
     ("Guardian Football", "https://www.theguardian.com/football/rss",                   "football"),
     ("Sky Football",      "https://www.skysports.com/rss/11095",                        "football"),
     ("BBC Africa Sport",  "https://feeds.bbci.co.uk/sport/africa/rss.xml",              "football"),
+    # World Cup 2026
+    ("BBC Football WC",   "https://feeds.bbci.co.uk/sport/football/rss.xml",            "worldcup2026"),
+    ("ESPN Soccer WC",    "https://www.espn.com/espn/rss/soccer/news",                  "worldcup2026"),
+    ("Guardian Football WC", "https://www.theguardian.com/football/rss",               "worldcup2026"),
+    ("BBC Africa WC",     "https://feeds.bbci.co.uk/sport/africa/rss.xml",              "worldcup2026"),
+    ("Sky Football WC",   "https://www.skysports.com/rss/11095",                        "worldcup2026"),
     # Sport News
     ("Sky Sports News",   "https://www.skysports.com/rss/12040",                        "sportnews"),
     ("Sky Sport All",     "https://www.skysports.com/rss/12",                           "sportnews"),

@@ -40,7 +40,8 @@ CATEGORIES = {
     "cricket":    {"icon": "🏏", "color": "#166534", "author": "Cricket Desk"},
     "rugby":      {"icon": "🏉", "color": "#9f1239", "author": "Rugby Desk"},
     "boxing":     {"icon": "🥊", "color": "#b91c1c", "author": "Boxing Desk"},
-    "f1":         {"icon": "🏎️", "color": "#dc2626", "author": "F1 Desk"},
+    "f1":            {"icon": "🏎️", "color": "#dc2626", "author": "F1 Desk"},
+    "worldcup2026":  {"icon": "🏆", "color": "#c8a951", "author": "World Cup 2026 Desk"},
 }
 
 # ── BETTING ANGLE PROMPTS (layered on top of live news) ──────────────────────
@@ -98,6 +99,12 @@ BETTING_ANGLES = {
         "identify value in the drivers and constructors championship odds given this news",
         "explain in-race betting strategy and safety car impact on F1 markets for African fans",
     ],
+    "worldcup2026": [
+        "build a World Cup 2026 match preview with group stage betting markets and best odds for African fans",
+        "analyse the African teams' (Nigeria, Morocco, Senegal, Egypt, South Africa) World Cup 2026 performance and betting markets",
+        "compare World Cup 2026 outright winner odds across Bet9ja, Sportybet, 1xBet, and Betway for African bettors",
+        "break down today's World Cup 2026 results and identify value in upcoming knockout stage bets",
+    ],
 }
 
 # ── SYSTEM PROMPT ─────────────────────────────────────────────────────────────
@@ -130,7 +137,7 @@ OUTPUT FORMAT — return EXACTLY this structure, nothing outside the markers:
 
 ===META===
 {{
-  "category": "ONE of: football, sportnews, betting, igaming, basketball, tennis, cricket, rugby, boxing, f1 — pick exactly one word",
+  "category": "ONE of: football, sportnews, betting, igaming, basketball, tennis, cricket, rugby, boxing, f1, worldcup2026 — pick exactly one word",
   "icon": "emoji for the category",
   "title": "Specific title referencing the ACTUAL news story (max 80 chars)",
   "slug": "url-slug-format",

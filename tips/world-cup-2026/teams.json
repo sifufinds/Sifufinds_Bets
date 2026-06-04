@@ -1,0 +1,386 @@
+[
+  {
+    "slug": "united-states",
+    "name": "United States",
+    "flag": "🇺🇸",
+    "conf": "CONCACAF",
+    "ranking": 11,
+    "host": true
+  },
+  {
+    "slug": "canada",
+    "name": "Canada",
+    "flag": "🇨🇦",
+    "conf": "CONCACAF",
+    "ranking": 38,
+    "host": true
+  },
+  {
+    "slug": "mexico",
+    "name": "Mexico",
+    "flag": "🇲🇽",
+    "conf": "CONCACAF",
+    "ranking": 14,
+    "host": true
+  },
+  {
+    "slug": "panama",
+    "name": "Panama",
+    "flag": "🇵🇦",
+    "conf": "CONCACAF",
+    "ranking": 49,
+    "host": false
+  },
+  {
+    "slug": "honduras",
+    "name": "Honduras",
+    "flag": "🇭🇳",
+    "conf": "CONCACAF",
+    "ranking": 74,
+    "host": false
+  },
+  {
+    "slug": "jamaica",
+    "name": "Jamaica",
+    "flag": "🇯🇲",
+    "conf": "CONCACAF",
+    "ranking": 55,
+    "host": false
+  },
+  {
+    "slug": "argentina",
+    "name": "Argentina",
+    "flag": "🇦🇷",
+    "conf": "CONMEBOL",
+    "ranking": 1,
+    "host": false
+  },
+  {
+    "slug": "brazil",
+    "name": "Brazil",
+    "flag": "🇧🇷",
+    "conf": "CONMEBOL",
+    "ranking": 5,
+    "host": false
+  },
+  {
+    "slug": "colombia",
+    "name": "Colombia",
+    "flag": "🇨🇴",
+    "conf": "CONMEBOL",
+    "ranking": 9,
+    "host": false
+  },
+  {
+    "slug": "uruguay",
+    "name": "Uruguay",
+    "flag": "🇺🇾",
+    "conf": "CONMEBOL",
+    "ranking": 17,
+    "host": false
+  },
+  {
+    "slug": "ecuador",
+    "name": "Ecuador",
+    "flag": "🇪🇨",
+    "conf": "CONMEBOL",
+    "ranking": 35,
+    "host": false
+  },
+  {
+    "slug": "venezuela",
+    "name": "Venezuela",
+    "flag": "🇻🇪",
+    "conf": "CONMEBOL",
+    "ranking": 46,
+    "host": false
+  },
+  {
+    "slug": "france",
+    "name": "France",
+    "flag": "🇫🇷",
+    "conf": "UEFA",
+    "ranking": 2,
+    "host": false
+  },
+  {
+    "slug": "england",
+    "name": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "conf": "UEFA",
+    "ranking": 4,
+    "host": false
+  },
+  {
+    "slug": "germany",
+    "name": "Germany",
+    "flag": "🇩🇪",
+    "conf": "UEFA",
+    "ranking": 12,
+    "host": false
+  },
+  {
+    "slug": "spain",
+    "name": "Spain",
+    "flag": "🇪🇸",
+    "conf": "UEFA",
+    "ranking": 7,
+    "host": false
+  },
+  {
+    "slug": "portugal",
+    "name": "Portugal",
+    "flag": "🇵🇹",
+    "conf": "UEFA",
+    "ranking": 6,
+    "host": false
+  },
+  {
+    "slug": "netherlands",
+    "name": "Netherlands",
+    "flag": "🇳🇱",
+    "conf": "UEFA",
+    "ranking": 8,
+    "host": false
+  },
+  {
+    "slug": "belgium",
+    "name": "Belgium",
+    "flag": "🇧🇪",
+    "conf": "UEFA",
+    "ranking": 3,
+    "host": false
+  },
+  {
+    "slug": "croatia",
+    "name": "Croatia",
+    "flag": "🇭🇷",
+    "conf": "UEFA",
+    "ranking": 10,
+    "host": false
+  },
+  {
+    "slug": "switzerland",
+    "name": "Switzerland",
+    "flag": "🇨🇭",
+    "conf": "UEFA",
+    "ranking": 19,
+    "host": false
+  },
+  {
+    "slug": "denmark",
+    "name": "Denmark",
+    "flag": "🇩🇰",
+    "conf": "UEFA",
+    "ranking": 21,
+    "host": false
+  },
+  {
+    "slug": "austria",
+    "name": "Austria",
+    "flag": "🇦🇹",
+    "conf": "UEFA",
+    "ranking": 25,
+    "host": false
+  },
+  {
+    "slug": "turkey",
+    "name": "Turkey",
+    "flag": "🇹🇷",
+    "conf": "UEFA",
+    "ranking": 30,
+    "host": false
+  },
+  {
+    "slug": "serbia",
+    "name": "Serbia",
+    "flag": "🇷🇸",
+    "conf": "UEFA",
+    "ranking": 33,
+    "host": false
+  },
+  {
+    "slug": "scotland",
+    "name": "Scotland",
+    "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+    "conf": "UEFA",
+    "ranking": 37,
+    "host": false
+  },
+  {
+    "slug": "poland",
+    "name": "Poland",
+    "flag": "🇵🇱",
+    "conf": "UEFA",
+    "ranking": 28,
+    "host": false
+  },
+  {
+    "slug": "czech-republic",
+    "name": "Czech Republic",
+    "flag": "🇨🇿",
+    "conf": "UEFA",
+    "ranking": 36,
+    "host": false
+  },
+  {
+    "slug": "morocco",
+    "name": "Morocco",
+    "flag": "🇲🇦",
+    "conf": "CAF",
+    "ranking": 13,
+    "host": false
+  },
+  {
+    "slug": "senegal",
+    "name": "Senegal",
+    "flag": "🇸🇳",
+    "conf": "CAF",
+    "ranking": 20,
+    "host": false
+  },
+  {
+    "slug": "nigeria",
+    "name": "Nigeria",
+    "flag": "🇳🇬",
+    "conf": "CAF",
+    "ranking": 40,
+    "host": false
+  },
+  {
+    "slug": "egypt",
+    "name": "Egypt",
+    "flag": "🇪🇬",
+    "conf": "CAF",
+    "ranking": 34,
+    "host": false
+  },
+  {
+    "slug": "south-africa",
+    "name": "South Africa",
+    "flag": "🇿🇦",
+    "conf": "CAF",
+    "ranking": 58,
+    "host": false
+  },
+  {
+    "slug": "dr-congo",
+    "name": "DR Congo",
+    "flag": "🇨🇩",
+    "conf": "CAF",
+    "ranking": 62,
+    "host": false
+  },
+  {
+    "slug": "mali",
+    "name": "Mali",
+    "flag": "🇲🇱",
+    "conf": "CAF",
+    "ranking": 50,
+    "host": false
+  },
+  {
+    "slug": "tunisia",
+    "name": "Tunisia",
+    "flag": "🇹🇳",
+    "conf": "CAF",
+    "ranking": 32,
+    "host": false
+  },
+  {
+    "slug": "ivory-coast",
+    "name": "Côte d'Ivoire",
+    "flag": "🇨🇮",
+    "conf": "CAF",
+    "ranking": 43,
+    "host": false
+  },
+  {
+    "slug": "japan",
+    "name": "Japan",
+    "flag": "🇯🇵",
+    "conf": "AFC",
+    "ranking": 18,
+    "host": false
+  },
+  {
+    "slug": "south-korea",
+    "name": "South Korea",
+    "flag": "🇰🇷",
+    "conf": "AFC",
+    "ranking": 23,
+    "host": false
+  },
+  {
+    "slug": "iran",
+    "name": "Iran",
+    "flag": "🇮🇷",
+    "conf": "AFC",
+    "ranking": 22,
+    "host": false
+  },
+  {
+    "slug": "australia",
+    "name": "Australia",
+    "flag": "🇦🇺",
+    "conf": "AFC",
+    "ranking": 24,
+    "host": false
+  },
+  {
+    "slug": "iraq",
+    "name": "Iraq",
+    "flag": "🇮🇶",
+    "conf": "AFC",
+    "ranking": 67,
+    "host": false
+  },
+  {
+    "slug": "jordan",
+    "name": "Jordan",
+    "flag": "🇯🇴",
+    "conf": "AFC",
+    "ranking": 70,
+    "host": false
+  },
+  {
+    "slug": "saudi-arabia",
+    "name": "Saudi Arabia",
+    "flag": "🇸🇦",
+    "conf": "AFC",
+    "ranking": 56,
+    "host": false
+  },
+  {
+    "slug": "uzbekistan",
+    "name": "Uzbekistan",
+    "flag": "🇺🇿",
+    "conf": "AFC",
+    "ranking": 60,
+    "host": false
+  },
+  {
+    "slug": "new-zealand",
+    "name": "New Zealand",
+    "flag": "🇳🇿",
+    "conf": "OFC",
+    "ranking": 99,
+    "host": false
+  },
+  {
+    "slug": "ghana",
+    "name": "Ghana",
+    "flag": "🇬🇭",
+    "conf": "CAF",
+    "ranking": 65,
+    "host": false
+  },
+  {
+    "slug": "chile",
+    "name": "Chile",
+    "flag": "🇨🇱",
+    "conf": "CONMEBOL",
+    "ranking": 42,
+    "host": false
+  }
+]

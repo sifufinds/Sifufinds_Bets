@@ -31,16 +31,31 @@ def _rotate_log() -> None:
             LOG.write_text("\n".join(lines[-200:]) + "\n")
 
 
+WC_START = datetime.datetime(2026, 6, 11)
+WC_END   = datetime.datetime(2026, 7, 20)   # day after final
+
+
+def _is_wc_active(now: datetime.datetime) -> bool:
+    return WC_START <= now <= WC_END
+
+
 def main() -> None:
     _rotate_log()
-    _log(f"\n=== {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ===")
+    now = datetime.datetime.now()
+    _log(f"\n=== {now.strftime('%Y-%m-%d %H:%M:%S')} ===")
 
     # Football always (biggest audience)
     _log("[newsbot] running football...")
     _run(["agent_sports_blog.py", "--category", "football"])
 
-    # Rotating secondary category based on 15-min slot (8 slots, one per category)
-    now = datetime.datetime.now()
+    # World Cup 2026 — runs on every cycle during the tournament (Jun 11 – Jul 19)
+    if _is_wc_active(now):
+        _log("[newsbot] running worldcup2026...")
+        rc = _run(["agent_sports_blog.py", "--category", "worldcup2026"])
+        if rc != 0:
+            _log(f"  [warn] worldcup2026 exited {rc}")
+
+    # Rotating secondary category based on 15-min slot (8 slots)
     slot = (now.hour * 4 + now.minute // 15) % 8
     categories = ["sportnews", "basketball", "tennis", "cricket", "rugby", "boxing", "f1", "igaming"]
     cat = categories[slot]
