@@ -335,7 +335,6 @@ def run(topics: int = 1, specific_category: Optional[str] = None,
 
     if new_posts:
         all_posts = new_posts + existing
-        all_posts = all_posts[:50]  # Cap at 50 posts
         save_posts(all_posts)
         print(f"\n✅ Added {len(new_posts)} article(s). Total in blog: {len(all_posts)}")
     else:
