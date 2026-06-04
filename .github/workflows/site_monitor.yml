@@ -83,7 +83,7 @@ jobs:
             ISSUES=$((ISSUES+1))
           fi
 
-          # live.json must contain at least one football event
+          # live.json football check — informational only, not all hours have football
           if echo "$LIVE" | python3 -c "
           import sys, json
           d = json.load(sys.stdin)
@@ -93,23 +93,23 @@ jobs:
           " 2>/dev/null; then
             echo "OK   live.json contains football events"
           else
-            echo "FAIL live.json has no football events"
-            ISSUES=$((ISSUES+1))
+            echo "INFO live.json has no football events (normal during off-peak hours)"
           fi
 
-          # live.json must not be stale (> 40 min)
+          # live.json must not be stale (> 90 min — live_odds runs every 5 min but only
+          # commits when data changes, so gaps up to ~60 min are normal during quiet periods)
           if echo "$LIVE" | python3 -c "
           import sys, json
           from datetime import datetime, timezone
           d = json.load(sys.stdin)
           updated = datetime.fromisoformat(d.get('updated',''))
           age = (datetime.now(timezone.utc) - updated).total_seconds() / 60
-          assert age < 40, f'{age:.0f} min'
+          assert age < 90, f'{age:.0f} min old'
           print(f'age: {age:.0f} min')
           " 2>/dev/null; then
             echo "OK   live.json is fresh"
           else
-            echo "FAIL live.json is stale (> 40 min old)"
+            echo "FAIL live.json is stale (> 90 min old)"
             ISSUES=$((ISSUES+1))
           fi
 
@@ -132,17 +132,22 @@ jobs:
 
       - name: Trigger site-doctor if data issues found
         if: steps.content.outputs.issues != '0'
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Data issues detected — triggering site_doctor to auto-fix..."
-          gh workflow run site_doctor.yml \
+          if gh workflow run site_doctor.yml \
             --repo "${{ github.repository }}" \
-            --ref main
-          echo "✅ site_doctor.yml triggered"
+            --ref main; then
+            echo "✅ site_doctor.yml triggered"
+          else
+            echo "⚠️ Could not trigger site_doctor.yml — it runs on its own 15-min schedule and will self-correct"
+          fi
 
       - name: Auto-redeploy if pages are down or site is hacked
         if: steps.check.outputs.failed != '0' || steps.hack_check.outputs.hacked != '0'
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -157,8 +162,10 @@ jobs:
           echo "Auto-healing: $REASON"
           echo "Triggering fresh deploy to Hostinger..."
 
-          gh workflow run deploy_hostinger.yml \
+          if gh workflow run deploy_hostinger.yml \
             --repo "${{ github.repository }}" \
-            --ref main
-
-          echo "Deploy triggered. Site will be restored within ~2 minutes."
+            --ref main; then
+            echo "✅ Deploy triggered. Site will be restored within ~2 minutes."
+          else
+            echo "⚠️ Could not trigger deploy_hostinger.yml — check token permissions or trigger manually"
+          fi
