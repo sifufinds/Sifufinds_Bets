@@ -162,7 +162,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="assets/shared.css?v=4">
+<link rel="stylesheet" href="assets/shared.css?v=5">
 </head>
 <body>
 
@@ -424,7 +424,7 @@
 <script>
 const SITE={home:'/',tips:'tips/',casino:'casino/',odds:'odds/',countries:'countries/'};
 </script>
-<script src="assets/shared.js?v=4"></script>
+<script src="assets/shared.js?v=5"></script>
 <script>
 // ── PAGE-SPECIFIC JS ──────────────────────────────────────────────────────────
 const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BW:'Botswana',NA:'Namibia',EG:'Egypt',MA:'Morocco',SL:'Sierra Leone',LR:'Liberia'};
@@ -467,7 +467,7 @@ function bookCard(b,i,rank){
   return`<div class="bkcard ${rank<3?'top3':''} ${b.nodep?'nodep-card':''}">
   <div class="bk-main">
     <span class="bk-rk">#${rank+1}</span>
-    <div class="bk-logo" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,60,8)}</div>
+    <div class="bk-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,60,8,false)}</div>
     <div>
       <div class="bk-tag">${b.tag}</div>
       <div class="bk-nm">${b.name}${badge}</div>
@@ -590,7 +590,7 @@ function srchBooks(q){
   const box=document.getElementById('global-results');
   box.style.display='block';
   if(!results.length){box.innerHTML=`<div class="no-results">No results for "${q}"</div>`;return;}
-  box.innerHTML=`<div class="gs-box"><div class="gs-hd"><span>🔍 Results for "${q}" – ${results.length} found</span><button style="background:none;border:none;color:#fff;cursor:pointer" onclick="clearSearch()">×</button></div>${results.slice(0,12).map(b=>`<div class="gs-item"><div class="gs-logo" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,30,4)}</div><div><div class="gs-name">${b.name} <span style="font-size:10px;color:#bbb">${CTY_EMOJI[b.cty]||''} ${COUNTRY_DATA[b.cty]?.name||b.cty}</span></div><div class="gs-off">${b.off}</div></div><a class="gs-sw" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a></div>`).join('')}</div>`;
+  box.innerHTML=`<div class="gs-box"><div class="gs-hd"><span>🔍 Results for "${q}" – ${results.length} found</span><button style="background:none;border:none;color:#fff;cursor:pointer" onclick="clearSearch()">×</button></div>${results.slice(0,12).map(b=>`<div class="gs-item"><div class="gs-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,30,4,false)}</div><div><div class="gs-name">${b.name} <span style="font-size:10px;color:#bbb">${CTY_EMOJI[b.cty]||''} ${COUNTRY_DATA[b.cty]?.name||b.cty}</span></div><div class="gs-off">${b.off}</div></div><a class="gs-sw" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a></div>`).join('')}</div>`;
 }
 function clearSearch(){
   document.getElementById('srch-inp').value='';

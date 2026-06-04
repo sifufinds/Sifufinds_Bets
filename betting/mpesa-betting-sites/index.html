@@ -113,8 +113,8 @@
 }
 </script>
 
-<link rel="preload" href="../../assets/shared.css?v=4" as="style">
-<link rel="stylesheet" href="../../assets/shared.css?v=4">
+<link rel="preload" href="../../assets/shared.css?v=5" as="style">
+<link rel="stylesheet" href="../../assets/shared.css?v=5">
 <style>
 .mpesa-hero{background:linear-gradient(135deg,#004d2e 0%,#007a4d 100%);color:#fff;padding:28px 0}
 .mpesa-hero h1{font-size:clamp(20px,4vw,32px);font-weight:900;margin-bottom:8px;letter-spacing:-.5px}
@@ -339,7 +339,7 @@
   </div>
 </div>
 
-<script src="../../assets/shared.js?v=4"></script>
+<script src="../../assets/shared.js?v=5"></script>
 <script>
 const SITE={home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'};
 const MPESA_CTYS=['KE','TZ','CD','MZ'];
@@ -350,7 +350,7 @@ const bookCard=(b,i,rank)=>{
   return`<div class="bkcard ${rank<3?'top3':''} ${b.nodep?'nodep-card':''}">
   <div class="bk-main">
     <span class="bk-rk">#${rank+1}</span>
-    <div class="bk-logo" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,60,8)}</div>
+    <div class="bk-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,60,8,false)}</div>
     <div>
       <div class="bk-tag">${b.tag}</div>
       <div class="bk-nm">${b.name}${badge}</div>

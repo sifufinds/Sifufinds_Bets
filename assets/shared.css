@@ -81,7 +81,7 @@ select.csel option{color:#222;background:#fff}
 .bkcard.nodep-card{border-left:3px solid var(--gold)}
 .bk-main{padding:12px 14px;display:grid;grid-template-columns:30px 66px 1fr 135px;gap:10px;align-items:center}
 .bk-rk{font-size:15px;font-weight:800;color:#ccc;text-align:center}
-.bk-logo{width:64px;height:64px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;box-shadow:0 3px 10px rgba(0,0,0,.18);overflow:hidden;flex-shrink:0;position:relative}
+.bk-logo{width:64px;height:64px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;border:1px solid #e8e8e8;overflow:hidden;flex-shrink:0;position:relative;background:#fff}
 .bk-tag{font-size:10px;color:var(--g);font-weight:700;margin-bottom:1px;text-transform:uppercase;letter-spacing:.3px}
 .bk-nm{font-size:14.5px;font-weight:800;color:var(--g);margin-bottom:2px}
 .bk-off{font-size:13.5px;font-weight:700;color:#111;margin-bottom:2px;line-height:1.3}

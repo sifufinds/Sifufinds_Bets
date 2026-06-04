@@ -87,8 +87,8 @@
 }
 </script>
 
-<link rel="preload" href="../../assets/shared.css?v=4" as="style">
-<link rel="stylesheet" href="../../assets/shared.css?v=4">
+<link rel="preload" href="../../assets/shared.css?v=5" as="style">
+<link rel="stylesheet" href="../../assets/shared.css?v=5">
 <style>
 .airtel-hero{background:linear-gradient(135deg,#B71C1C 0%,#C62828 100%);color:#fff;padding:28px 0}
 .airtel-hero h1{font-size:clamp(20px,4vw,32px);font-weight:900;margin-bottom:8px;letter-spacing:-.5px}
@@ -243,7 +243,7 @@
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=4"></script>
+<script src="../../assets/shared.js?v=5"></script>
 <script>
 const SITE={home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'};
 const AIRTEL_CTYS=['KE','UG','ZM','MW','RW'];
@@ -252,7 +252,7 @@ let _airtelCty='KE';
 const bookCard=(b,i,rank)=>{
   const badge=b.badge==='new'?'<span class="badge-new">NEW</span>':b.badge==='hot'?'<span class="badge-hot">HOT</span>':b.nodep?'<span class="badge-nd">NO DEP</span>':'';
   return`<div class="bkcard ${rank<3?'top3':''} ${b.nodep?'nodep-card':''}">
-  <div class="bk-main"><span class="bk-rk">#${rank+1}</span><div class="bk-logo" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,60,8)}</div>
+  <div class="bk-main"><span class="bk-rk">#${rank+1}</span><div class="bk-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,60,8,false)}</div>
   <div><div class="bk-tag">${b.tag}</div><div class="bk-nm">${b.name}${badge}</div><div class="bk-off">${b.off}</div><div class="bk-meta"><span>Min: ${b.min}</span><span>${b.sports} sports</span><span>${b.lic}</span></div></div>
   <div class="bk-act"><div class="bk-stars">${stars(b.stars)}</div><a class="gbtn${b.nodep?' gold':''}" href="${b.url}" target="_blank" rel="noopener noreferrer">Bet via Airtel →</a><div class="tc-n">T&amp;Cs Apply · 18+</div></div></div>
   <div class="pm-row">${(b.pms||[]).map(pm).join('')}</div></div>`;

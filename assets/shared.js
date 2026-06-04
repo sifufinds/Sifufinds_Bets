@@ -671,24 +671,43 @@ const logoUrl=(url,abbr='')=>{
   return`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${d}&size=256`;
 };
 const logoFb=(url,abbr='')=>{const d=logoDomain(url,abbr);return d?`https://logo.clearbit.com/${d}?size=256`:'';}
-// Local logos load instantly and are always valid — show them without the naturalWidth check.
-// For remote images: show if ≥100px; if smaller, chain to Clearbit before giving up.
+// When an image loads successfully, reveal it and hide the text-fallback span behind it.
+// Local files skip the naturalWidth check — they are always valid.
+// Remote images: show if ≥100px wide; otherwise chain to Clearbit fallback.
 function _logoLoaded(img){
-  if(img.dataset.local==='1'||img.naturalWidth>=100){img.style.opacity='1';}
-  else if(!img._fb){img._fb=1;const s=img.getAttribute('data-fb');if(s){img.src=s;}else{img.style.display='none';}}
-  else{img.style.display='none';}
+  const good=img.dataset.local==='1'||img.naturalWidth>=100;
+  if(good){
+    img.style.opacity='1';
+    const prev=img.previousElementSibling;
+    if(prev&&prev.tagName==='SPAN')prev.style.display='none';
+  }else if(!img._fb){
+    img._fb=1;
+    const s=img.getAttribute('data-fb');
+    if(s){img.src=s;}else{img.style.display='none';}
+  }else{img.style.display='none';}
 }
-function _imgFallback(img){if(!img._fb){img._fb=1;const s=img.getAttribute('data-fb');if(s){img.src=s;return;}}img.style.display='none';}
-// logoImg: brand wordmark text (uppercase italic bold) + logo image layered on top.
-// Text is always the brand contrast color (tc) so it reads as intentional, not a broken state.
-const logoImg=(url,name,abbr,tc,w,r)=>{
-  const word=name.split(' ')[0].toUpperCase();
-  const fs=word.length>7?Math.max(8,Math.floor(w*0.20)):word.length>4?Math.floor(w*0.24):Math.floor(w*0.30);
-  const pad=Math.max(4,Math.ceil(r*1.2));
+function _imgFallback(img){
+  if(!img._fb){img._fb=1;const s=img.getAttribute('data-fb');if(s){img.src=s;return;}}
+  img.style.display='none';
+}
+// logoImg: renders a logo image with a text-name fallback behind it.
+// - Local logos (in LOCAL_LOGOS): no text rendered — image guaranteed to load.
+// - Remote logos: text shown until image loads, then text is hidden by _logoLoaded.
+// Pass bg=true when the container already has a brand background (fc-img, hbrand-logo)
+// so the text uses the contrast color; omit/false for white-bg containers (bk-logo list).
+const logoImg=(url,name,abbr,tc,w,r,hasBg)=>{
   const isLocal=!!(abbr&&LOCAL_LOGOS[abbr]);
   const lsrc=logoUrl(url,abbr);
   const lfb=isLocal?'':logoFb(url,abbr);
-  return`<span style="color:${tc};font-size:${fs}px;font-weight:900;letter-spacing:-0.5px;text-transform:uppercase;font-style:italic;line-height:1;text-align:center;padding:0 4px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${word}</span>${lsrc?`<img src="${lsrc}" data-fb="${lfb}" data-local="${isLocal?'1':''}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:${pad}px;border-radius:${r}px;opacity:0;transition:opacity .15s;z-index:1" loading="lazy" onload="_logoLoaded(this)" onerror="_imgFallback(this)">`:''}`;};;
+  const pad=Math.max(3,Math.ceil(r*1.0));
+  // Only render text fallback for remote logos (local ones load reliably)
+  const textHtml=isLocal?'':
+    (()=>{const word=name.split(' ')[0].toUpperCase();
+    const fs=word.length>7?Math.max(8,Math.floor(w*0.20)):word.length>4?Math.floor(w*0.24):Math.floor(w*0.30);
+    const col=hasBg?tc:'#888';
+    return`<span style="color:${col};font-size:${fs}px;font-weight:800;letter-spacing:-0.5px;text-transform:uppercase;line-height:1;text-align:center;padding:0 4px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${word}</span>`;})();
+  const imgHtml=lsrc?`<img src="${lsrc}" data-fb="${lfb}" data-local="${isLocal?'1':''}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:${pad}px;border-radius:${r}px;opacity:0;transition:opacity .2s;z-index:1" loading="lazy" onload="_logoLoaded(this)" onerror="_imgFallback(this)">`:'' ;
+  return textHtml+imgHtml;};;
 
 // ── COUNTRY MANAGEMENT ────────────────────────────────────────────────────────
 const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA','EG','MA','SL','LR']);
@@ -812,7 +831,7 @@ function _renderCmpBar(){
   if(_cmpList.length===0){bar.classList.remove('show');return;}
   bar.classList.add('show');
   document.getElementById('cmp-items').innerHTML=_cmpList.map(c=>
-    `<div class="cmp-chip"><div style="width:18px;height:18px;border-radius:3px;background:${c.bg};overflow:hidden;flex-shrink:0;position:relative">${logoImg(c.url,c.name,c.abbr,c.tc,16,2)}</div>${c.name}<button onclick="removeCmp(${c.idx})">×</button></div>`
+    `<div class="cmp-chip"><div style="width:18px;height:18px;border-radius:3px;background:${c.bg};overflow:hidden;flex-shrink:0;position:relative">${logoImg(c.url,c.name,c.abbr,c.tc,16,2,true)}</div>${c.name}<button onclick="removeCmp(${c.idx})">×</button></div>`
   ).join('');
 }
 function openCompare(){
@@ -821,7 +840,7 @@ function openCompare(){
   const sel=_cmpList.map(c=>books[c.idx]).filter(Boolean);
   if(sel.length<2)return;
   const fields=[['Bonus Offer','off'],['Min Deposit','min'],['Cash Out','cashout'],['Live Stream','stream'],['Instant Pay','instant'],['No Deposit','nodep'],['Sports','sports'],['Licence','lic']];
-  let html=`<table class="cmp-table"><thead><tr><th>Feature</th>${sel.map(b=>`<th><div class="cmp-logo-cell"><div class="cmp-mini-logo" style="background:${b.bg};overflow:hidden">${logoImg(b.url,b.name,b.abbr,b.tc,28,4)}</div>${b.name}</div></th>`).join('')}</tr></thead><tbody>`;
+  let html=`<table class="cmp-table"><thead><tr><th>Feature</th>${sel.map(b=>`<th><div class="cmp-logo-cell"><div class="cmp-mini-logo" style="background:${b.bg};overflow:hidden">${logoImg(b.url,b.name,b.abbr,b.tc,28,4,true)}</div>${b.name}</div></th>`).join('')}</tr></thead><tbody>`;
   fields.forEach(([label,key])=>{
     html+=`<tr><td><strong>${label}</strong></td>${sel.map(b=>{
       const v=b[key];
@@ -850,7 +869,7 @@ function renderBrandsBar(){
   const el=document.getElementById('hbrands');
   if(!el)return;
   el.innerHTML=`<div class="hbrands-in"><span class="hbrands-lbl">🔥 Featured</span><div class="hbrands-list">${
-    HEADER_BRANDS.map(b=>{const logoSrc=b.domain?`https://${b.domain}`:b.url;return`<a class="hbrand" href="${b.url}" target="_blank" rel="noopener noreferrer" style="background:${b.bg};color:${b.tc}"><div class="hbrand-logo">${logoImg(logoSrc,b.name,b.abbr,b.tc,22,3)}</div><div class="hbrand-body"><span class="hbrand-name">${b.name}</span><span class="hbrand-tag">${b.tag}</span></div><span class="hbrand-cta">Bet Now →</span></a>`;}).join('')
+    HEADER_BRANDS.map(b=>{const logoSrc=b.domain?`https://${b.domain}`:b.url;return`<a class="hbrand" href="${b.url}" target="_blank" rel="noopener noreferrer" style="background:${b.bg};color:${b.tc}"><div class="hbrand-logo">${logoImg(logoSrc,b.name,b.abbr,b.tc,22,3,true)}</div><div class="hbrand-body"><span class="hbrand-name">${b.name}</span><span class="hbrand-tag">${b.tag}</span></div><span class="hbrand-cta">Bet Now →</span></a>`;}).join('')
   }</div></div>`;
 }
 document.addEventListener('DOMContentLoaded',renderBrandsBar);

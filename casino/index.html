@@ -64,7 +64,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="../assets/shared.css?v=4">
+<link rel="stylesheet" href="../assets/shared.css?v=5">
 </head>
 <body>
 
@@ -228,7 +228,7 @@
 <script>
 const SITE={home:'../',tips:'../tips/',casino:'./',odds:'../odds/',countries:'../countries/'};
 </script>
-<script src="../assets/shared.js?v=4"></script>
+<script src="../assets/shared.js?v=5"></script>
 <script>
 let _activeCF='all';
 
@@ -244,7 +244,7 @@ function casCard(c,i){
   return`<div class="bkcard ${i<3?'top3':''} ${c.nodep?'nodep-card':''}">
   <div class="bk-main">
     <span class="bk-rk">#${i+1}</span>
-    <div class="bk-logo" style="background:${c.bg}">${logoImg(c.url,c.name,c.abbr,c.tc,60,8)}</div>
+    <div class="bk-logo" style="background:#fff">${logoImg(c.url,c.name,c.abbr,c.tc,60,8,false)}</div>
     <div>
       <div class="bk-tag">${c.tag}</div>
       <div class="bk-nm">${c.name}${badge}</div>

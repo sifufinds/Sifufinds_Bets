@@ -81,8 +81,8 @@
 }
 </script>
 
-<link rel="preload" href="../../../assets/shared.css?v=4" as="style">
-<link rel="stylesheet" href="../../../assets/shared.css?v=4">
+<link rel="preload" href="../../../assets/shared.css?v=5" as="style">
+<link rel="stylesheet" href="../../../assets/shared.css?v=5">
 <style>
 .reg-badge{display:inline-block;background:#edf7f0;border:1px solid #c8e6c9;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;color:#1a6b35;margin-bottom:10px}
 .pay-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
@@ -238,7 +238,7 @@
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../../assets/shared.js?v=4"></script>
+<script src="../../../assets/shared.js?v=5"></script>
 <script>
 const SITE={home:'../../../',tips:'../../../tips/',casino:'../../../casino/',odds:'../../../odds/',countries:'../../../countries/'};
 const _PAGE_CTY='CD';
@@ -249,7 +249,7 @@ function filterBooks(books){const f=_activeFilt;if(f==='all')return books;if(f==
 function sortBooks(books){const s=document.getElementById('srt')?.value||'default';if(s==='stars')return[...books].sort((a,b)=>b.stars-a.stars);if(s==='bonus')return[...books].sort((a,b)=>(b.nodep?1:0)-(a.nodep?1:0));return books;}
 const bookCard=(b,i,rank)=>{
   const badge=b.badge==='new'?'<span class="badge-new">NEW</span>':b.badge==='hot'?'<span class="badge-hot">HOT</span>':b.nodep?'<span class="badge-nd">NO DEP</span>':'';
-  return`<div class="bkcard ${rank<3?'top3':''} ${b.nodep?'nodep-card':''}"><div class="bk-main"><span class="bk-rk">#${rank+1}</span><div class="bk-logo" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,60,8)}</div><div><div class="bk-tag">${b.tag}</div><div class="bk-nm">${b.name}${badge}</div><div class="bk-off">${b.off}</div><div class="bk-meta"><span>Min: ${b.min}</span><span>${b.sports} sports</span><span>${b.lic}</span></div></div><div class="bk-act"><div class="bk-stars">${stars(b.stars)}</div><a class="gbtn${b.nodep?' gold':''}" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a><div class="tc-n">T&amp;Cs Apply · 18+</div></div></div><div class="pm-row">${(b.pms||[]).map(pm).join('')}</div></div>`;
+  return`<div class="bkcard ${rank<3?'top3':''} ${b.nodep?'nodep-card':''}"><div class="bk-main"><span class="bk-rk">#${rank+1}</span><div class="bk-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,60,8,false)}</div><div><div class="bk-tag">${b.tag}</div><div class="bk-nm">${b.name}${badge}</div><div class="bk-off">${b.off}</div><div class="bk-meta"><span>Min: ${b.min}</span><span>${b.sports} sports</span><span>${b.lic}</span></div></div><div class="bk-act"><div class="bk-stars">${stars(b.stars)}</div><a class="gbtn${b.nodep?' gold':''}" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a><div class="tc-n">T&amp;Cs Apply · 18+</div></div></div><div class="pm-row">${(b.pms||[]).map(pm).join('')}</div></div>`;
 };
 function renderBooks(){const books=filterBooks(sortBooks(BOOKS[_PAGE_CTY]||[]));const el=document.getElementById('bk-cards');if(!books.length){el.innerHTML='<div class="no-results">No bookmakers match this filter.</div>';return;}el.innerHTML=books.map((b,i)=>bookCard(b,i,i)).join('');H('mcount',`Showing ${books.length} bookmaker${books.length!==1?'s':''}`);}
 function init(){const sel=document.getElementById('ctySel');if(sel)sel.value=_PAGE_CTY;H('foot-yr',NOW.getFullYear());renderBooks();}
