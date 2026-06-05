@@ -405,21 +405,6 @@
   </div>
 </div>
 
-<!-- EmailJS SDK
-     ─────────────────────────────────────────────────────────────────────────
-     SETUP INSTRUCTIONS:
-     1. Create a free account at https://www.emailjs.com
-     2. Add an Email Service: Dashboard → Email Services → Add New Service
-        → Select "Custom SMTP" → enter your Hostinger SMTP details:
-          Host: smtp.hostinger.com | Port: 465 | User: advertise@sifufinds.com
-     3. Create an Email Template: Dashboard → Email Templates → Create New
-        Use these template variables: {{full_name}}, {{company_name}},
-        {{from_email}}, {{website}}, {{inquiry_type}}, {{budget}}, {{message}}
-     4. Copy your Public Key from: Dashboard → Account → General
-     5. Replace the three placeholder values below with your real IDs.
-     ────────────────────────────────────────────────────────────────────────── -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <script src="../assets/shared.js?v=6"></script>
 <script>
 // ── CONFIG ─────────────────────────────────────────────────────────────────────
@@ -428,17 +413,12 @@ const SITE = {home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',cou
 const SUPABASE_URL  = 'https://kedfcmgqjxwzebhoeosi.supabase.co';
 const SUPABASE_ANON = 'sb_publishable_NK9TgE3pEvmJbQ-ZmEvSjQ_22adueMj';
 
-// Replace these with your EmailJS credentials (see setup instructions above)
-const EJS_PUBLIC_KEY  = 'YOUR_EMAILJS_PUBLIC_KEY';
-const EJS_SERVICE_ID  = 'YOUR_EMAILJS_SERVICE_ID';
-const EJS_TEMPLATE_ID = 'YOUR_EMAILJS_TEMPLATE_ID';
-
-const EMAIL_ENABLED = (EJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY');
+// Email endpoint — formsubmit.co forwards submissions to advertise@sifufinds.com
+// No account or dashboard setup required; first submission triggers a one-time
+// activation email from formsubmit.co to the recipient address.
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/advertise@sifufinds.com';
 
 // ── INIT ───────────────────────────────────────────────────────────────────────
-if (EMAIL_ENABLED) {
-  emailjs.init({ publicKey: EJS_PUBLIC_KEY });
-}
 const sel = document.getElementById('ctySel');
 if (sel) { const c = getCurrentCountry(); sel.value = c; }
 document.getElementById('foot-yr').textContent = new Date().getFullYear();
@@ -472,54 +452,67 @@ function validateForm(data) {
   return ok;
 }
 
-// ── SUPABASE INSERT ────────────────────────────────────────────────────────────
-async function saveToSupabase(data) {
-  const res = await fetch(SUPABASE_URL + '/rest/v1/contact_submissions', {
+// ── SEND EMAIL via Formsubmit.co ───────────────────────────────────────────────
+async function sendEmail(data) {
+  const res = await fetch(FORMSUBMIT_ENDPOINT, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SUPABASE_ANON,
-      'Authorization': 'Bearer ' + SUPABASE_ANON,
-      'Prefer': 'return=minimal'
-    },
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
-      full_name:     data.full_name,
-      company_name:  data.company_name || null,
-      email:         data.email,
-      website:       data.website || null,
-      inquiry_type:  data.inquiry_type,
-      budget:        data.budget || null,
-      message:       data.message,
-      terms_accepted: true,
-      status:        'new'
+      _subject:      'New SIFUFINDS Contact Enquiry — ' + data.inquiry_type,
+      _template:     'table',
+      _captcha:      'false',
+      _replyto:      data.email,
+      _autoresponse: 'Thank you for contacting SIFUFINDS. We have received your enquiry and a member of our team will respond within 24–48 business hours.',
+      'Full Name':        data.full_name,
+      'Company':          data.company_name || '—',
+      'Email':            data.email,
+      'Website':          data.website || '—',
+      'Inquiry Type':     data.inquiry_type,
+      'Monthly Budget':   data.budget || '—',
+      'Message':          data.message
     })
   });
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error('Supabase error: ' + res.status + ' ' + body);
+  if (!res.ok) throw new Error('Email send failed: ' + res.status);
+  const json = await res.json();
+  if (json.success !== 'true' && json.success !== true) {
+    throw new Error('Formsubmit rejected: ' + JSON.stringify(json));
   }
 }
 
-// ── EMAILJS SEND ───────────────────────────────────────────────────────────────
-async function sendEmail(data) {
-  if (!EMAIL_ENABLED) return;
-  await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
-    full_name:    data.full_name,
-    company_name: data.company_name || '—',
-    from_email:   data.email,
-    website:      data.website || '—',
-    inquiry_type: data.inquiry_type,
-    budget:       data.budget || '—',
-    message:      data.message,
-    reply_to:     data.email
-  });
+// ── SAVE TO SUPABASE (secondary, non-blocking) ─────────────────────────────────
+async function saveToSupabase(data) {
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/contact_submissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON,
+        'Authorization': 'Bearer ' + SUPABASE_ANON,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        full_name:      data.full_name,
+        company_name:   data.company_name || null,
+        email:          data.email,
+        website:        data.website || null,
+        inquiry_type:   data.inquiry_type,
+        budget:         data.budget || null,
+        message:        data.message,
+        terms_accepted: true,
+        status:         'new'
+      })
+    });
+    if (!res.ok) console.warn('Supabase insert skipped (table may need migration):', res.status);
+  } catch (e) {
+    console.warn('Supabase save skipped:', e.message);
+  }
 }
 
 // ── FORM SUBMIT ────────────────────────────────────────────────────────────────
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  // Honeypot check
+  // Honeypot check — silently drop bot submissions
   const hp = this.querySelector('input[name="website_url"]');
   if (hp && hp.value) return;
 
@@ -547,16 +540,13 @@ document.getElementById('contactForm').addEventListener('submit', async function
   btn.innerHTML = '<span class="btn-spinner"></span>Sending…';
 
   try {
-    await saveToSupabase(data);
+    // Email is primary — must succeed
+    await sendEmail(data);
 
-    try {
-      await sendEmail(data);
-    } catch (emailErr) {
-      // Email failure is non-fatal — data already saved to Supabase
-      console.warn('Email notification failed (submission saved):', emailErr);
-    }
+    // Supabase is secondary — best-effort, never blocks success
+    saveToSupabase(data);
 
-    // Show success state
+    // Show success
     document.getElementById('contactForm').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
     document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -565,7 +555,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     console.error('Submission error:', err);
     btn.disabled = false;
     btn.innerHTML = 'Submit Enquiry';
-    errorBanner.textContent = 'Something went wrong. Please try again or email us directly at advertise@sifufinds.com.';
+    errorBanner.textContent = 'Something went wrong. Please try again or email us at advertise@sifufinds.com.';
     errorBanner.classList.add('show');
     errorBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
