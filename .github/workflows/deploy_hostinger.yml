@@ -53,7 +53,7 @@ jobs:
           for f in .htaccess .nojekyll; do
             [ -f "$f" ] && FILES+=("$f")
           done
-          for d in assets about betting blog bonuses bookmakers casino countries data guides odds tips brands; do
+          for d in assets about betting blog bonuses bookmakers casino contact countries data guides odds tips brands; do
             [ -d "$d" ] && FILES+=("$d")
           done
 
