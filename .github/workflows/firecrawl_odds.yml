@@ -1,0 +1,57 @@
+name: Firecrawl Odds — Daily African match data
+
+on:
+  schedule:
+    - cron: "0 6 * * *"   # 06:00 UTC daily (before peak hours)
+  workflow_dispatch:
+
+concurrency:
+  group: firecrawl-odds
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-odds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install firecrawl-py requests
+
+      - name: Install Firecrawl CLI (optional, falls back to SDK)
+        run: npm install -g @mendable/firecrawl-js 2>/dev/null || true
+
+      - name: Run Firecrawl odds agent
+        working-directory: agents/python
+        run: python agent_firecrawl_odds.py
+
+      - name: Commit if changed
+        run: |
+          git config --local user.email "firecrawlbot@sifufinds.com"
+          git config --local user.name "SifuFinds Firecrawl Bot"
+          git add data/live.json
+          if git diff --cached --quiet; then
+            echo "No new match data — nothing to commit"
+            exit 0
+          fi
+          git commit -m "live: firecrawl odds update $(date -u '+%Y-%m-%d')"
+          git push || (git fetch origin main && git rebase FETCH_HEAD -X theirs && git push)

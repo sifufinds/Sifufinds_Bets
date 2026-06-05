@@ -1,7 +1,7 @@
 name: Workflow Watchdog — auto-retry failed workflows
 
-# Triggers whenever site_monitor or site_doctor finishes.
-# If either completed with failure, immediately re-triggers site_doctor
+# Triggers whenever a watched workflow finishes with failure.
+# Immediately re-triggers site_doctor or the specific workflow
 # to attempt self-healing — no human action required.
 
 on:
@@ -10,6 +10,8 @@ on:
       - "Site Monitor — auto-heal sifufinds.com"
       - "Site Doctor — 24/7 auto-heal sifufinds.com"
       - "Live Odds — Update every 5 minutes"
+      - "Deploy to Hostinger — sifufinds.com"
+      - "Traffic Report — GoatCounter daily snapshot"
     types: [completed]
 
 permissions:
@@ -26,23 +28,24 @@ jobs:
       - name: Log failure
         run: |
           echo "⚠️ Workflow failed: ${{ github.event.workflow_run.name }}"
-          echo "   Run ID : ${{ github.event.workflow_run.id }}"
-          echo "   Branch : ${{ github.event.workflow_run.head_branch }}"
+          echo "   Run ID    : ${{ github.event.workflow_run.id }}"
+          echo "   Branch    : ${{ github.event.workflow_run.head_branch }}"
           echo "   Conclusion: ${{ github.event.workflow_run.conclusion }}"
 
-      - name: Re-trigger site_doctor to attempt self-heal
+      - name: Re-trigger deploy_hostinger if that was the failing workflow
+        if: github.event.workflow_run.name == 'Deploy to Hostinger — sifufinds.com'
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set +e
-          echo "Re-triggering site_doctor.yml to attempt auto-heal..."
-          if gh workflow run site_doctor.yml \
+          echo "Deploy workflow failed — re-triggering deploy_hostinger.yml..."
+          if gh workflow run deploy_hostinger.yml \
             --repo "${{ github.repository }}" \
             --ref main; then
-            echo "✅ site_doctor.yml re-triggered"
+            echo "✅ deploy_hostinger.yml re-triggered"
           else
-            echo "⚠️ Could not re-trigger site_doctor.yml"
+            echo "⚠️ Could not re-trigger deploy_hostinger.yml"
           fi
           exit 0
 
@@ -60,5 +63,42 @@ jobs:
             echo "✅ live_odds.yml re-triggered"
           else
             echo "⚠️ Could not re-trigger live_odds.yml"
+          fi
+          exit 0
+
+      - name: Re-trigger traffic_report if that was the failing workflow
+        if: github.event.workflow_run.name == 'Traffic Report — GoatCounter daily snapshot'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          echo "Traffic report failed — re-triggering..."
+          if gh workflow run traffic_report.yml \
+            --repo "${{ github.repository }}" \
+            --ref main; then
+            echo "✅ traffic_report.yml re-triggered"
+          else
+            echo "⚠️ Could not re-trigger traffic_report.yml"
+          fi
+          exit 0
+
+      - name: Re-trigger site_doctor for all other failures
+        if: >
+          github.event.workflow_run.name != 'Deploy to Hostinger — sifufinds.com' &&
+          github.event.workflow_run.name != 'Live Odds — Update every 5 minutes' &&
+          github.event.workflow_run.name != 'Traffic Report — GoatCounter daily snapshot'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          echo "Re-triggering site_doctor.yml to attempt auto-heal..."
+          if gh workflow run site_doctor.yml \
+            --repo "${{ github.repository }}" \
+            --ref main; then
+            echo "✅ site_doctor.yml re-triggered"
+          else
+            echo "⚠️ Could not re-trigger site_doctor.yml"
           fi
           exit 0

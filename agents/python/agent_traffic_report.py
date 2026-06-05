@@ -54,29 +54,37 @@ def _date_range(days: int) -> tuple[str, str]:
 def fetch_hits(days: int) -> list[dict]:
     """Daily pageview counts."""
     start, end = _date_range(days)
-    r = requests.get(
-        f"{_base()}/stats/hits",
-        headers=_headers(),
-        params={"start": start, "end": end},
-        timeout=15,
-    )
-    r.raise_for_status()
-    return r.json().get("hits", [])
+    try:
+        r = requests.get(
+            f"{_base()}/stats/hits",
+            headers=_headers(),
+            params={"start": start, "end": end},
+            timeout=15,
+        )
+        r.raise_for_status()
+        return r.json().get("hits", [])
+    except Exception as e:
+        print(f"[traffic] WARN: Could not fetch hits — {e}", file=sys.stderr)
+        return []
 
 
 def fetch_stat(endpoint: str, days: int, limit: int = 20) -> list[dict]:
     """Generic stat endpoint: /stats/pages, /stats/refs, /stats/countries, etc."""
     start, end = _date_range(days)
-    r = requests.get(
-        f"{_base()}/stats/{endpoint}",
-        headers=_headers(),
-        params={"start": start, "end": end, "limit": limit},
-        timeout=15,
-    )
-    r.raise_for_status()
-    data = r.json()
-    # GoatCounter returns {stats: [...]} or {hits: [...]}
-    return data.get("stats") or data.get("hits") or []
+    try:
+        r = requests.get(
+            f"{_base()}/stats/{endpoint}",
+            headers=_headers(),
+            params={"start": start, "end": end, "limit": limit},
+            timeout=15,
+        )
+        r.raise_for_status()
+        data = r.json()
+        # GoatCounter returns {stats: [...]} or {hits: [...]}
+        return data.get("stats") or data.get("hits") or []
+    except Exception as e:
+        print(f"[traffic] WARN: Could not fetch stats/{endpoint} — {e}", file=sys.stderr)
+        return []
 
 
 def build_report(days: int, hits: list, pages: list, refs: list, countries: list) -> str:
@@ -84,7 +92,6 @@ def build_report(days: int, hits: list, pages: list, refs: list, countries: list
     start = (date.today() - timedelta(days=days)).isoformat()
 
     total_pv = sum(h.get("count", 0) for h in hits)
-    # unique visitors approximated from daily uniques if available
     total_unique = sum(h.get("count_unique", 0) for h in hits)
 
     lines = [
@@ -105,7 +112,6 @@ def build_report(days: int, hits: list, pages: list, refs: list, countries: list
         "",
     ]
 
-    # ── Top pages ──────────────────────────────────────────────────────────────
     if pages:
         lines += ["## Top Pages", ""]
         lines += ["| Page | Views | Unique |", "|------|-------|--------|"]
@@ -116,7 +122,6 @@ def build_report(days: int, hits: list, pages: list, refs: list, countries: list
             lines.append(f"| {path} | {views:,} | {uniq} |")
         lines += [""]
 
-    # ── Referrers ──────────────────────────────────────────────────────────────
     if refs:
         lines += ["## Traffic Sources (Referrers)", ""]
         lines += ["| Source | Visits |", "|--------|--------|"]
@@ -126,7 +131,6 @@ def build_report(days: int, hits: list, pages: list, refs: list, countries: list
             lines.append(f"| {src} | {visits:,} |")
         lines += [""]
 
-    # ── Countries ──────────────────────────────────────────────────────────────
     if countries:
         lines += ["## Countries", ""]
         lines += ["| Country | Views |", "|---------|-------|"]
@@ -136,7 +140,6 @@ def build_report(days: int, hits: list, pages: list, refs: list, countries: list
             lines.append(f"| {name} | {views:,} |")
         lines += [""]
 
-    # ── Daily trend (last 14 days) ─────────────────────────────────────────────
     recent = hits[-14:] if len(hits) > 14 else hits
     if recent:
         lines += ["## Daily Trend (last 14 days)", ""]
@@ -179,6 +182,10 @@ def main():
 
     total = sum(h.get("count", 0) for h in hits)
     print(f"[traffic] {total:,} page views · {len(pages)} pages · {len(refs)} referrers")
+
+    # Fail only if the core hits endpoint returned nothing at all
+    if not hits and not pages:
+        sys.exit("ERROR: GoatCounter returned no data — check GOATCOUNTER_SITE and GOATCOUNTER_TOKEN")
 
     report = build_report(args.days, hits, pages, refs, countries)
     raw    = {"days": args.days, "hits": hits, "pages": pages, "refs": refs, "countries": countries}

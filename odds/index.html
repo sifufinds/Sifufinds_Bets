@@ -71,6 +71,440 @@
 
 <link rel="stylesheet" href="../assets/shared.css?v=7">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+
+<style>
+/* ============================================================
+   OddsPortal-style dark layout — odds/index.html only
+   ============================================================ */
+
+/* Override body background for this page */
+body { background: #1a1f2e; }
+
+/* ---- Status bar ---- */
+.op-statusbar {
+  background: #0f1623;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  padding: 6px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.op-statusbar .op-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(239,68,68,.15);
+  border: 1px solid rgba(239,68,68,.35);
+  color: #ef4444;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 4px;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}
+.op-statusbar .op-upd {
+  font-size: 11px;
+  color: rgba(255,255,255,.38);
+}
+.op-statusbar .op-api-st {
+  font-size: 11px;
+  color: rgba(255,255,255,.45);
+  margin-left: auto;
+}
+
+/* ---- Two-column layout ---- */
+.op-wrap {
+  display: flex;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 12px;
+  gap: 0;
+  min-height: 80vh;
+}
+
+/* ---- Sidebar ---- */
+.op-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: #0f1623;
+  border-right: 1px solid rgba(255,255,255,.06);
+  padding: 14px 0;
+}
+.op-sidebar-title {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: rgba(255,255,255,.3);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  padding: 0 14px 8px;
+}
+.op-sport-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background .12s, color .12s;
+  border-left: 2px solid transparent;
+  font-family: inherit;
+}
+.op-sport-link:hover {
+  background: rgba(255,255,255,.05);
+  color: #fff;
+}
+.op-sport-link.on {
+  background: rgba(74,222,128,.08);
+  color: #4ade80;
+  border-left-color: #4ade80;
+}
+.op-sport-link .op-sport-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.op-sport-link .op-sport-label {
+  flex: 1;
+  font-weight: 500;
+}
+.op-sidebar-sep {
+  height: 1px;
+  background: rgba(255,255,255,.06);
+  margin: 8px 14px;
+}
+
+/* ---- Main content area ---- */
+.op-main {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 0 12px 14px;
+}
+
+/* ---- Horizontal sport tabs (above cards) ---- */
+.op-tabs {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  margin-bottom: 10px;
+  scrollbar-width: none;
+}
+.op-tabs::-webkit-scrollbar { display: none; }
+.op-tab {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.6);
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 5px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all .13s;
+  font-family: inherit;
+}
+.op-tab:hover { background: rgba(255,255,255,.1); color: #fff; }
+.op-tab.on { background: #1a6b35; color: #fff; border-color: #1a6b35; }
+
+/* ---- Competition group ---- */
+.op-comp-group {
+  margin-bottom: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.07);
+}
+.op-comp-hdr {
+  background: #141c28;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,.75);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.op-cnt {
+  margin-left: auto;
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.5);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+/* ---- Match row ---- */
+.op-mrow {
+  display: grid;
+  grid-template-columns: 68px 1fr 80px 80px 80px;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  min-height: 56px;
+  transition: background .1s;
+  cursor: default;
+}
+.op-mrow:last-child { border-bottom: none; }
+.op-mrow:hover { background: rgba(255,255,255,.04); }
+.op-live-row { background: rgba(239,68,68,.04); }
+.op-live-row:hover { background: rgba(239,68,68,.07); }
+.op-done-row { opacity: .7; }
+
+/* Time column */
+.op-tcol {
+  padding: 8px 10px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,.04);
+}
+.op-live-ind {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 8.5px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: .3px;
+  margin-bottom: 3px;
+}
+.op-time-num {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: rgba(255,255,255,.75);
+  line-height: 1.2;
+}
+.op-time-day {
+  font-size: 9.5px;
+  color: rgba(255,255,255,.35);
+  margin-top: 2px;
+}
+.op-score-line {
+  font-size: 13px;
+  font-weight: 800;
+  color: #4ade80;
+  margin-top: 2px;
+}
+
+/* Teams column */
+.op-teams {
+  padding: 8px 12px;
+  border-right: 1px solid rgba(255,255,255,.04);
+}
+.op-team {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.8);
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.op-team.op-win {
+  color: #fff;
+  font-weight: 800;
+}
+.op-score {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  margin-left: auto;
+  min-width: 18px;
+  text-align: right;
+}
+
+/* Odds cells */
+.op-odd-cell {
+  padding: 6px 5px;
+  text-align: center;
+  cursor: pointer;
+  border-left: 1px solid rgba(255,255,255,.04);
+  transition: background .12s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 56px;
+}
+.op-odd-cell:hover { background: rgba(255,255,255,.07); }
+.op-odd-cell.op-live-odds { background: rgba(74,222,128,.05); }
+.op-odd-lbl {
+  font-size: 8.5px;
+  font-weight: 700;
+  color: rgba(255,255,255,.3);
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.op-odd-val {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  transition: color .4s;
+}
+.op-odd-val.op-best { color: #4ade80; }
+.op-odd-bk {
+  font-size: 8px;
+  color: rgba(255,255,255,.28);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70px;
+}
+.op-odd-na {
+  background: transparent;
+  cursor: default;
+}
+.op-odd-na:hover { background: transparent; }
+.op-bet-btn {
+  font-size: 11px;
+  font-weight: 700;
+  color: #4ade80;
+  background: rgba(74,222,128,.08);
+  border: 1px solid rgba(74,222,128,.2);
+  border-radius: 5px;
+  margin: 6px 5px;
+  min-height: 44px;
+  transition: background .13s, color .13s;
+}
+.op-bet-btn:hover {
+  background: rgba(74,222,128,.18);
+  color: #fff;
+}
+
+/* Empty state */
+.op-empty {
+  color: rgba(255,255,255,.4);
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 13px;
+}
+.op-empty button {
+  margin-top: 12px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  padding: 7px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+/* Footer timer */
+.odf {
+  font-size: 10px;
+  color: rgba(255,255,255,.3);
+  text-align: center;
+  padding: 8px;
+  border-top: 1px solid rgba(255,255,255,.05);
+  margin-top: 6px;
+}
+
+/* External sites section */
+.op-ext-sites {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 12px;
+}
+.op-ext-sites h2 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.op-ext-sites p {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  margin-bottom: 12px;
+}
+.op-ext-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 7px;
+}
+.op-ext-card {
+  display: block;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-left: 3px solid #4ade80;
+  border-radius: 8px;
+  padding: 11px;
+  text-decoration: none;
+  color: #fff;
+  transition: background .13s;
+}
+.op-ext-card:hover { background: rgba(255,255,255,.11); }
+.op-ext-cat {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #4ade80;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  margin-bottom: 3px;
+}
+.op-ext-name {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.op-ext-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,.45);
+  line-height: 1.5;
+}
+.op-ext-link {
+  margin-top: 7px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+/* Hide old snav on desktop when sidebar is visible */
+@media (min-width: 768px) {
+  .snav { display: none; }
+}
+
+/* ---- Responsive: mobile ---- */
+@media (max-width: 767px) {
+  .op-wrap { flex-direction: column; padding: 0; }
+  .op-sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding: 8px 0; }
+  .op-sidebar-title { display: none; }
+  .op-sidebar-inner { display: flex; flex-wrap: nowrap; overflow-x: auto; padding: 0 10px; gap: 4px; scrollbar-width: none; }
+  .op-sidebar-inner::-webkit-scrollbar { display: none; }
+  .op-sidebar-sep { display: none; }
+  .op-sport-link { width: auto; flex-shrink: 0; border-left: none; border-bottom: 2px solid transparent; border-radius: 6px; padding: 6px 10px; font-size: 12px; }
+  .op-sport-link.on { border-left-color: transparent; border-bottom-color: #4ade80; background: rgba(74,222,128,.1); }
+  .op-main { padding: 10px 8px; }
+  .op-mrow { grid-template-columns: 58px 1fr 72px 72px 72px; }
+  .op-odd-val { font-size: 12px; }
+  .op-team { font-size: 12px; }
+  .snav { display: block; }
+}
+
+@media (max-width: 560px) {
+  .op-mrow { grid-template-columns: 52px 1fr 64px 0px 64px; }
+  /* Hide draw column on very small screens */
+  .op-mrow .op-odd-cell:nth-child(4) { display: none; }
+  .op-odd-lbl { font-size: 7.5px; }
+  .op-odd-val { font-size: 12px; }
+}
+</style>
 </head>
 <body>
 
@@ -136,7 +570,7 @@
 <!-- HEADER BRANDS BAR -->
 <div id="hbrands" class="hbrands"></div>
 
-<!-- SUBNAV -->
+<!-- SUBNAV (mobile only — desktop uses sidebar) -->
 <div class="snav"><div class="snav-in">
   <button class="snl on" data-lg="all" onclick="lgFilt(this)">All Sports</button>
   <button class="snl" data-lg="world" onclick="lgFilt(this)">🌍 World Cup 2026</button>
@@ -154,73 +588,123 @@
   <button class="snl" data-lg="laliga" onclick="lgFilt(this)">La Liga</button>
 </div></div>
 
-<!-- HERO -->
-<div class="odds-hero"><div class="wrap">
-  <h1>Live &amp; Upcoming Betting Odds · Africa &amp; International</h1>
-  <p>Live scores &amp; odds across football, basketball, tennis, cricket, rugby, boxing and more — CAF CL, AFCON, NBA, French Open, ICC, World Cup 2026. Auto-updates every 60 seconds.</p>
-  <div style="display:flex;align-items:center;gap:10px;margin-top:9px">
-    <span class="livtag"><span class="lpulse" style="width:6px;height:6px;margin-right:3px"></span>LIVE</span>
-    <span style="font-size:12px;color:rgba(255,255,255,.55)" id="odds-upd">Simulation active</span>
-  </div>
-</div></div>
-
-<div style="background:rgba(255,255,255,.04);padding:7px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-  <div class="wrap">
-    <div class="apib">
-      <span class="apist" id="api-st">🔄 Loading live odds...</span>
-    </div>
-  </div>
+<!-- STATUS BAR (replaces odds-hero + api status) -->
+<div class="op-statusbar">
+  <div class="op-live-badge"><span class="lpulse" style="width:5px;height:5px;margin-right:2px"></span>LIVE</div>
+  <span class="op-upd" id="odds-upd">Loading...</span>
+  <span class="op-api-st" id="api-st">🔄 Loading live odds...</span>
 </div>
 
-<!-- ODDS CONTENT -->
-<div class="odds-bg"><div class="wrap">
-  <div class="lgf" id="lg-filter"></div>
-  <div id="odds-cards"></div>
-  <div class="odf" id="odds-foot">⏱ Next update in 15s</div>
-
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:18px;margin-top:12px">
-    <h2 style="font-size:18px;font-weight:800;color:#fff;margin-bottom:6px">🔗 Best Live Odds &amp; Scores Websites</h2>
-    <p style="font-size:13px;color:rgba(255,255,255,.55);margin-bottom:14px">Independently curated odds comparison and live scores platforms — all free, no registration required.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px">
-      <a href="https://www.oddsportal.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-left:3px solid #4ade80;border-radius:9px;padding:12px;text-decoration:none;color:#fff;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">
-        <div style="font-size:10px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Odds Compare</div>
-        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">OddsPortal</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.55">Compare live odds from 80+ bookmakers across all major leagues worldwide.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:#4ade80">oddsportal.com →</div>
-      </a>
-      <a href="https://www.flashscore.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-left:3px solid #4ade80;border-radius:9px;padding:12px;text-decoration:none;color:#fff;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">
-        <div style="font-size:10px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Live Scores</div>
-        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Flashscore</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.55">Real-time scores, live odds, stats and lineups. Covers 1,000+ leagues globally.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:#4ade80">flashscore.com →</div>
-      </a>
-      <a href="https://www.sofascore.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-left:3px solid #4ade80;border-radius:9px;padding:12px;text-decoration:none;color:#fff;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">
-        <div style="font-size:10px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Stats & Lineups</div>
-        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Sofascore</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.55">Live scores, player ratings, heat maps and in-depth match stats for all sports.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:#4ade80">sofascore.com →</div>
-      </a>
-      <a href="https://www.betexplorer.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-left:3px solid #4ade80;border-radius:9px;padding:12px;text-decoration:none;color:#fff;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">
-        <div style="font-size:10px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Historical Odds</div>
-        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">BetExplorer</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.55">Historical and live odds comparison including African leagues. Great for research.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:#4ade80">betexplorer.com →</div>
-      </a>
-      <a href="https://www.livescore.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-left:3px solid #4ade80;border-radius:9px;padding:12px;text-decoration:none;color:#fff;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">
-        <div style="font-size:10px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Live Scores</div>
-        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Livescore</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.55">Fast, clean real-time scores for football and 20+ other sports. Widely used in Africa.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:#4ade80">livescore.com →</div>
-      </a>
-      <a href="https://www.oddschecker.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-left:3px solid #4ade80;border-radius:9px;padding:12px;text-decoration:none;color:#fff;transition:background .15s" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">
-        <div style="font-size:10px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Best Odds Finder</div>
-        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">OddsChecker</div>
-        <div style="font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.55">Find the best available odds across bookmakers for any match instantly.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:#4ade80">oddschecker.com →</div>
-      </a>
+<!-- TWO-COLUMN LAYOUT -->
+<div class="op-wrap">
+  <!-- SIDEBAR -->
+  <aside class="op-sidebar">
+    <div class="op-sidebar-title">Sports</div>
+    <div class="op-sidebar-inner">
+      <button class="op-sport-link on" data-lg="all" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🏆</span><span class="op-sport-label">All Sports</span>
+      </button>
+      <div class="op-sidebar-sep"></div>
+      <button class="op-sport-link" data-lg="world" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🌍</span><span class="op-sport-label">World Cup 2026</span>
+      </button>
+      <button class="op-sport-link" data-lg="cafl" onclick="lgFilt(this)">
+        <span class="op-sport-icon">⚽</span><span class="op-sport-label">CAF CL</span>
+      </button>
+      <button class="op-sport-link" data-lg="afcon" onclick="lgFilt(this)">
+        <span class="op-sport-icon">📋</span><span class="op-sport-label">AFCON</span>
+      </button>
+      <button class="op-sport-link" data-lg="local" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🏟️</span><span class="op-sport-label">Local Football</span>
+      </button>
+      <div class="op-sidebar-sep"></div>
+      <button class="op-sport-link" data-lg="basketball" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🏀</span><span class="op-sport-label">Basketball</span>
+      </button>
+      <button class="op-sport-link" data-lg="tennis" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🎾</span><span class="op-sport-label">Tennis</span>
+      </button>
+      <button class="op-sport-link" data-lg="cricket" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🏏</span><span class="op-sport-label">Cricket</span>
+      </button>
+      <button class="op-sport-link" data-lg="rugby" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🏉</span><span class="op-sport-label">Rugby</span>
+      </button>
+      <button class="op-sport-link" data-lg="boxing" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🥊</span><span class="op-sport-label">Boxing</span>
+      </button>
+      <button class="op-sport-link" data-lg="baseball" onclick="lgFilt(this)">
+        <span class="op-sport-icon">⚾</span><span class="op-sport-label">MLB</span>
+      </button>
+      <div class="op-sidebar-sep"></div>
+      <button class="op-sport-link" data-lg="epl" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="op-sport-label">Premier League</span>
+      </button>
+      <button class="op-sport-link" data-lg="ucl" onclick="lgFilt(this)">
+        <span class="op-sport-icon">⭐</span><span class="op-sport-label">UEFA CL</span>
+      </button>
+      <button class="op-sport-link" data-lg="laliga" onclick="lgFilt(this)">
+        <span class="op-sport-icon">🇪🇸</span><span class="op-sport-label">La Liga</span>
+      </button>
     </div>
-  </div>
-</div></div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="op-main">
+    <!-- Horizontal quick-filter tabs (desktop supplement) -->
+    <div class="op-tabs" id="op-tabs-row"></div>
+
+    <!-- Match cards grouped by competition -->
+    <div id="odds-cards"><div class="op-empty">Loading matches…</div></div>
+
+    <!-- Countdown timer -->
+    <div class="odf" id="odds-foot">⏱ Next update in 15s</div>
+
+    <!-- External sites section -->
+    <div class="op-ext-sites">
+      <h2>🔗 Best Live Odds &amp; Scores Websites</h2>
+      <p>Independently curated odds comparison and live scores platforms — all free, no registration required.</p>
+      <div class="op-ext-grid">
+        <a href="https://www.oddsportal.com/" target="_blank" rel="noopener noreferrer" class="op-ext-card">
+          <div class="op-ext-cat">Odds Compare</div>
+          <div class="op-ext-name">OddsPortal</div>
+          <div class="op-ext-desc">Compare live odds from 80+ bookmakers across all major leagues worldwide.</div>
+          <div class="op-ext-link">oddsportal.com →</div>
+        </a>
+        <a href="https://www.flashscore.com/" target="_blank" rel="noopener noreferrer" class="op-ext-card">
+          <div class="op-ext-cat">Live Scores</div>
+          <div class="op-ext-name">Flashscore</div>
+          <div class="op-ext-desc">Real-time scores, live odds, stats and lineups. Covers 1,000+ leagues globally.</div>
+          <div class="op-ext-link">flashscore.com →</div>
+        </a>
+        <a href="https://www.sofascore.com/" target="_blank" rel="noopener noreferrer" class="op-ext-card">
+          <div class="op-ext-cat">Stats &amp; Lineups</div>
+          <div class="op-ext-name">Sofascore</div>
+          <div class="op-ext-desc">Live scores, player ratings, heat maps and in-depth match stats for all sports.</div>
+          <div class="op-ext-link">sofascore.com →</div>
+        </a>
+        <a href="https://www.betexplorer.com/" target="_blank" rel="noopener noreferrer" class="op-ext-card">
+          <div class="op-ext-cat">Historical Odds</div>
+          <div class="op-ext-name">BetExplorer</div>
+          <div class="op-ext-desc">Historical and live odds comparison including African leagues. Great for research.</div>
+          <div class="op-ext-link">betexplorer.com →</div>
+        </a>
+        <a href="https://www.livescore.com/" target="_blank" rel="noopener noreferrer" class="op-ext-card">
+          <div class="op-ext-cat">Live Scores</div>
+          <div class="op-ext-name">Livescore</div>
+          <div class="op-ext-desc">Fast, clean real-time scores for football and 20+ other sports. Widely used in Africa.</div>
+          <div class="op-ext-link">livescore.com →</div>
+        </a>
+        <a href="https://www.oddschecker.com/" target="_blank" rel="noopener noreferrer" class="op-ext-card">
+          <div class="op-ext-cat">Best Odds Finder</div>
+          <div class="op-ext-name">OddsChecker</div>
+          <div class="op-ext-desc">Find the best available odds across bookmakers for any match instantly.</div>
+          <div class="op-ext-link">oddschecker.com →</div>
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
 
 <!-- PAGE MODAL -->
 <div class="page-modal-bg" id="page-modal">
@@ -496,13 +980,10 @@ function lgFilt(btn){
 }
 
 function fmtMatchTime(m){
-  // Always return a string bettors can act on: "Wed 4 Jun · 20:00 UTC"
-  if(m.live)return null; // handled separately
+  if(m.live)return null;
   if(m.complete)return null;
   const raw=m.time||'';
-  // If already has a rich label (contains · or date words) just return it
   if(raw.includes('·')||raw.match(/jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec/i)||raw==='FT'||raw==='--:--')return raw;
-  // Plain time like "20:00" — prefix today's date
   const today=new Date();
   const dd=today.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
   return raw?`${dd} · ${raw} UTC`:dd;
@@ -513,61 +994,70 @@ function odcCard(m){
   const books=BOOKS[cty]||BOOKS.NG;
   const bk=books[0]||{};
   const hasScore=m.live||m.complete;
-  const scoreHtml=hasScore
-    ?`<div class="tline"><div class="tnm">${m.home}</div><div class="scn">${m.hScore??''}</div></div><div class="tline"><div class="tnm">${m.away}</div><div class="scn">${m.aScore??''}</div></div>`
-    :`<div class="tline"><div class="tnm">${m.home}</div></div><div class="tline"><div class="tnm">${m.away}</div></div>`;
-  const displayTime=fmtMatchTime(m);
+  const noDraw=!m.d||m.d===0;
+
   const timeHtml=m.live
-    ?`<span class="livtag"><span class="lpulse" style="width:5px;height:5px;margin-right:2px"></span>LIVE</span>`
+    ?`<div class="op-live-ind"><span class="lpulse" style="width:5px;height:5px"></span>LIVE</div><div class="op-time-num">${m.hScore??''}–${m.aScore??''}</div>`
     :m.complete
-      ?`<span class="odc-tm" style="color:#4ade80">FT</span>`
-      :`<span class="odc-tm">${displayTime}</span>`;
-  const hasOdds=m.h>0;
-  const hasDraw=m.d>0;
-  const oddsHtml=hasOdds
-    ?`<div class="obg">
-      <div class="ob${m.live?' best':''}" title="Best odds via ${m.hBk}" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
-        <div class="ob-t">1</div><div class="ob-v">${m.h.toFixed(2)}</div><div class="ob-bk">${m.hBk||'Best'}</div>
-      </div>
-      ${hasDraw?`<div class="ob" title="Draw via ${m.dBk}" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
-        <div class="ob-t">X</div><div class="ob-v">${m.d.toFixed(2)}</div><div class="ob-bk">${m.dBk||'Best'}</div>
-      </div>`:''}
-      <div class="ob" title="Best odds via ${m.aBk}" onclick="window.open('${bk?bk.url:'#'}','_blank','noopener')">
-        <div class="ob-t">2</div><div class="ob-v">${m.a.toFixed(2)}</div><div class="ob-bk">${m.aBk||'Best'}</div>
-      </div>
-    </div>`
-    :`<a class="gbtn" href="${bk?bk.url:'#'}" target="_blank" rel="noopener" style="font-size:12px;padding:8px 14px;white-space:nowrap">Get Best Odds →</a>`;
-  return`<div class="odc">
-  <div class="odch">
-    <span class="odc-lg">${m.league}</span>
-    <div style="display:flex;align-items:center;gap:6px">${timeHtml}</div>
-  </div>
-  <div class="odcb">
-    <div>${scoreHtml}</div>
-    ${oddsHtml}
-  </div>
-</div>`;
+      ?`<div class="op-time-num" style="color:#4ade80">FT</div><div class="op-score-line">${m.hScore??''}–${m.aScore??''}</div>`
+      :(()=>{
+          const raw=m.time||'TBD';
+          const isToday=!raw.toLowerCase().includes('tomorrow');
+          const disp=raw.replace(/Today\s*·\s*/i,'').replace(/Tomorrow\s*·\s*/i,'');
+          return`<div class="op-time-num">${disp}</div><div class="op-time-day">${isToday?'Today':'Tomorrow'}</div>`;
+        })();
+
+  const homeScore=hasScore?`<span class="op-score">${m.hScore??''}</span>`:'';
+  const awayScore=hasScore?`<span class="op-score">${m.aScore??''}</span>`:'';
+
+  const oddsOrBtn=m.h>0
+    ?`<div class="op-odd-cell${m.live?' op-live-odds':''}" onclick="window.open('${bk.url||'#'}','_blank','noopener')">
+        <div class="op-odd-lbl">1</div>
+        <div class="op-odd-val${m.live?' op-best':''}">${m.h.toFixed(2)}</div>
+        <div class="op-odd-bk">${m.hBk||'Best'}</div>
+       </div>
+       ${!noDraw
+         ?`<div class="op-odd-cell" onclick="window.open('${bk.url||'#'}','_blank','noopener')">
+            <div class="op-odd-lbl">X</div>
+            <div class="op-odd-val">${m.d.toFixed(2)}</div>
+            <div class="op-odd-bk">${m.dBk||'Best'}</div>
+           </div>`
+         :'<div class="op-odd-cell op-odd-na"></div>'}
+       <div class="op-odd-cell" onclick="window.open('${bk.url||'#'}','_blank','noopener')">
+        <div class="op-odd-lbl">2</div>
+        <div class="op-odd-val">${m.a.toFixed(2)}</div>
+        <div class="op-odd-bk">${m.aBk||'Best'}</div>
+       </div>`
+    :`<div class="op-odd-cell op-bet-btn" onclick="window.open('${bk.url||'#'}','_blank','noopener')">Bet Now →</div>
+       <div class="op-odd-cell op-odd-na"></div>
+       <div class="op-odd-cell op-odd-na"></div>`;
+
+  return`<div class="op-mrow${m.live?' op-live-row':''}${m.complete?' op-done-row':''}">
+    <div class="op-tcol">${timeHtml}</div>
+    <div class="op-teams">${hasScore
+      ?`<div class="op-team${m.live&&(m.hScore>m.aScore)?' op-win':''}">${m.home} ${homeScore}</div><div class="op-team${m.live&&(m.aScore>m.hScore)?' op-win':''}">${m.away} ${awayScore}</div>`
+      :`<div class="op-team">${m.home}</div><div class="op-team">${m.away}</div>`
+    }</div>
+    ${oddsOrBtn}
+  </div>`;
 }
 
 function renderLgFilter(){
-  H('lg-filter',LG_TABS.map(t=>`<button class="lgtab${t.key===_activeLG?' on':''}" data-lg="${t.key}" onclick="lgFilt(this)">${t.label}</button>`).join(''));
+  // Build horizontal tab row in op-tabs-row (desktop supplement)
+  const el=document.getElementById('op-tabs-row');
+  if(el)el.innerHTML=LG_TABS.map(t=>`<button class="op-tab${t.key===_activeLG?' on':''}" data-lg="${t.key}" onclick="lgFilt(this)">${t.label}</button>`).join('');
 }
 
 function renderOdds(){
-  // ODDS_DATA is always the guaranteed base — live APIs supplement it
   const liveAll=[...mergeWithEspn(_liveJsonMatches,_apiMatches),..._africanMatches];
-
-  // Build a dedup map: live data wins over static data for same match
   const matchKey=m=>`${m.key}|${(m.home||'').toLowerCase()}|${(m.away||'').toLowerCase()}`;
   const seen=new Map();
   liveAll.forEach(m=>{if(m.key)seen.set(matchKey(m),m);});
-  // Add ODDS_DATA entries not already covered by live data
   ODDS_DATA.forEach(m=>{if(!seen.has(matchKey(m)))seen.set(matchKey(m),m);});
-
   const all=[...seen.values()];
   const data=_activeLG==='all'?all:all.filter(m=>m.key===_activeLG);
   if(!data.length){
-    H('odds-cards','<div style="color:rgba(255,255,255,.4);text-align:center;padding:40px;font-size:13px">No odds available for this filter. <br><button style="margin-top:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:6px 14px;border-radius:6px;cursor:pointer" onclick="lgFilt(document.querySelector(\'[data-lg=all]\'))">Show All Sports</button></div>');
+    H('odds-cards',`<div class="op-empty">No matches for this filter. <button onclick="lgFilt(document.querySelector('[data-lg=all]'))">Show All</button></div>`);
     return;
   }
   const sorted=[...data].sort((a,b)=>{
@@ -577,7 +1067,19 @@ function renderOdds(){
     if(!a.complete&&b.complete)return -1;
     return 0;
   });
-  H('odds-cards',sorted.map(m=>odcCard(m)).join(''));
+  // Group by league
+  const groups={};
+  sorted.forEach(m=>{
+    const lg=m.league||'Other';
+    if(!groups[lg])groups[lg]=[];
+    groups[lg].push(m);
+  });
+  const lgIcons={cafl:'🏆',afcon:'🌍',world:'🌍',local:'🏟️',basketball:'🏀',tennis:'🎾',cricket:'🏏',rugby:'🏉',boxing:'🥊',epl:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',ucl:'⭐',laliga:'🇪🇸',baseball:'⚾'};
+  const html=Object.entries(groups).map(([league,matches])=>{
+    const icon=lgIcons[matches[0]?.key]||'⚽';
+    return`<div class="op-comp-group"><div class="op-comp-hdr"><span>${icon}</span><span>${league}</span><span class="op-cnt">${matches.length}</span></div>${matches.map(m=>odcCard(m)).join('')}</div>`;
+  }).join('');
+  H('odds-cards',html);
 }
 
 function startTimer(){
