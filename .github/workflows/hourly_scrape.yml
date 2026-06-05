@@ -53,22 +53,27 @@ jobs:
         working-directory: agents/python
         run: python agent_live_odds.py
 
-      - name: Step 2 — Run multi-source Firecrawl scrape
+      - name: Step 2 — Run multi-source Firecrawl scrape (odds + scores)
         working-directory: agents/python
         run: python agent_multi_scrape.py
 
-      - name: Commit and push if live.json changed
+      - name: Step 3 — Scrape all 6 tips sites (TipsterBattle, 1960Tips, FreeSuperTips, Forebet, EaglePredict, Predictz)
+        working-directory: agents/python
+        run: python agent_scrape_tips.py
+
+      - name: Commit and push if data changed
         run: |
           git config --local user.email "scrapebot@sifufinds.com"
           git config --local user.name "SifuFinds Hourly Scraper"
-          git add data/live.json
+          git add data/live.json data/tips.json
           if git diff --cached --quiet; then
-            echo "ℹ No changes to live.json — nothing to commit"
+            echo "ℹ No data changes — nothing to commit"
             exit 0
           fi
-          LIVE_COUNT=$(python3 -c "import json; d=json.load(open('data/live.json')); print(sum(1 for e in d.get('events',[]) if e.get('live')))")
-          TOTAL=$(python3 -c "import json; d=json.load(open('data/live.json')); print(len(d.get('events',[])))")
-          git commit -m "live: scrape update $(date -u '+%H:%M') UTC — ${TOTAL} events, ${LIVE_COUNT} live"
+          LIVE_COUNT=$(python3 -c "import json; d=json.load(open('data/live.json')); print(sum(1 for e in d.get('events',[]) if e.get('live')))" 2>/dev/null || echo "?")
+          TIPS_COUNT=$(python3 -c "import json; d=json.load(open('data/tips.json')); print(d.get('count',0))" 2>/dev/null || echo "?")
+          TOTAL=$(python3 -c "import json; d=json.load(open('data/live.json')); print(len(d.get('events',[])))" 2>/dev/null || echo "?")
+          git commit -m "live: hourly update $(date -u '+%H:%M') UTC — ${TOTAL} odds events, ${LIVE_COUNT} live, ${TIPS_COUNT} tips"
           for attempt in 1 2 3 4 5; do
             if git push; then
               echo "✅ Pushed on attempt $attempt"

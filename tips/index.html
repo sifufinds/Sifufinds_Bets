@@ -575,8 +575,36 @@ async function init(){
   renderNews();
   renderAI();
 
-  // Then try Supabase in background — re-render only if live data arrives
-  fetchSBTips().then(d=>{if(d&&d.length){_tipsData=d;renderTips();}});
+  // 1. Try Supabase first
+  // 2. Fallback to scraped tips.json (updated hourly by Firecrawl agent)
+  // 3. Static TIPS from shared.js is always the final fallback
+  async function fetchScrapedTips(){
+    try{
+      const r=await fetch('../data/tips.json?t='+Date.now());
+      if(!r.ok)return null;
+      const d=await r.json();
+      if(!Array.isArray(d?.tips)||!d.tips.length)return null;
+      // Map tips.json fields to tipCard-compatible shape
+      return d.tips.map(t=>({
+        league:t.league,key:t.key||'local',match:t.match,pred:t.pred,
+        analysis:t.analysis,odds:t.odds,via:t.via,conf:t.conf,
+        time:t.time,date:t.date,isAI:false
+      }));
+    }catch(_){return null;}
+  }
+
+  fetchSBTips().then(async sbTips=>{
+    if(sbTips&&sbTips.length){_tipsData=sbTips;renderTips();return;}
+    // Supabase unavailable — try scraped tips.json
+    const scraped=await fetchScrapedTips();
+    if(scraped&&scraped.length){
+      // Merge: keep static TIPS for sports not covered by scrape, add scraped on top
+      const scrapedKeys=new Set(scraped.map(t=>t.match.toLowerCase()));
+      const staticFallback=TIPS.filter(t=>!scrapedKeys.has(t.match.toLowerCase()));
+      _tipsData=[...scraped,...staticFallback];
+      renderTips();
+    }
+  });
   fetchSBNews().then(d=>{if(d&&d.length){_newsData=d;renderNews();}});
 }
 init();
