@@ -1,24 +1,7 @@
 {
-  "updated": "2026-06-05T20:59:39.904734+00:00",
+  "updated": "2026-06-05T22:17:32.998824+00:00",
   "count": 21,
   "events": [
-    {
-      "league": "MLB",
-      "key": "baseball",
-      "live": true,
-      "complete": false,
-      "home": "Chicago Cubs",
-      "away": "San Francisco Giants",
-      "hScore": "0",
-      "aScore": "9",
-      "time": "LIVE",
-      "h": 0.0,
-      "d": 0.0,
-      "a": 0.0,
-      "hBk": "",
-      "dBk": "",
-      "aBk": ""
-    },
     {
       "league": "World Cup 2026 \u00b7 Group Stage",
       "key": "world",
@@ -284,9 +267,9 @@
       "hScore": null,
       "aScore": null,
       "time": "Today \u00b7 23:10 UTC",
-      "h": 2.18,
+      "h": 2.14,
       "d": 0.0,
-      "a": 1.7,
+      "a": 1.73,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
@@ -358,6 +341,23 @@
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
+    },
+    {
+      "league": "MLB",
+      "key": "baseball",
+      "live": false,
+      "complete": true,
+      "home": "Chicago Cubs",
+      "away": "San Francisco Giants",
+      "hScore": "3",
+      "aScore": "18",
+      "time": "FT",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
     }
   ]
 }
