@@ -1,9 +1,11 @@
-name: Breaking News Bot — Auto-publish every 30 min
+name: Breaking News Bot — Auto-publish 3x daily
 
 on:
   schedule:
-    # Runs every 30 minutes, 06:00–23:00 WAT (05:00–22:00 UTC)
-    - cron: "*/30 5-22 * * *"
+    # 3x per day: 08:00, 14:00, 20:00 WAT (07:00, 13:00, 19:00 UTC)
+    - cron: "0 7 * * *"
+    - cron: "0 13 * * *"
+    - cron: "0 19 * * *"
   workflow_dispatch: # Allow manual trigger from GitHub UI
 
 # Prevent two runs colliding and creating git push conflicts
