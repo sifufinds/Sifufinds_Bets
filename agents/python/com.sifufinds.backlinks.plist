@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.sifufinds.backlinks</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/raventrack/Desktop/Sifu Finds/.venv/bin/python</string>
+    <string>/Users/raventrack/Desktop/Sifu Finds/agents/python/agent_seo_backlinks.py</string>
+    <string>--all</string>
+    <string>--limit</string>
+    <string>15</string>
+  </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HOME</key>
+    <string>/Users/raventrack</string>
+    <key>PATH</key>
+    <string>/Users/raventrack/Desktop/Sifu Finds/.venv/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+
+  <!-- Run every hour -->
+  <key>StartInterval</key>
+  <integer>3600</integer>
+
+  <!-- Run immediately when loaded -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Do not auto-restart if it exits non-zero -->
+  <key>KeepAlive</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/raventrack/Desktop/Sifu Finds/agents/python/backlinks-stdout.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/raventrack/Desktop/Sifu Finds/agents/python/backlinks-stderr.log</string>
+</dict>
+</plist>
