@@ -71,6 +71,149 @@
 
 <link rel="stylesheet" href="../assets/shared.css?v=7">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+
+<style>
+/* ============================================================
+   OddsPortal-style dark layout — tips/index.html
+   ============================================================ */
+
+/* Override body background for this page */
+body { background: #1a1f2e !important; color: #e8e8ea !important; }
+
+/* ---- Two-column layout ---- */
+.op-wrap {
+  display: flex;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 12px;
+  gap: 0;
+  min-height: 80vh;
+}
+
+/* ---- Sidebar ---- */
+.op-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: #0f1623;
+  border-right: 1px solid rgba(255,255,255,.06);
+  padding: 14px 0;
+}
+.op-sidebar-title {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: rgba(255,255,255,.3);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  padding: 0 14px 8px;
+}
+.op-sidebar-inner {
+  /* used on mobile as flex row */
+}
+.op-sport-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background .12s, color .12s;
+  border-left: 2px solid transparent;
+  font-family: inherit;
+}
+.op-sport-link:hover {
+  background: rgba(255,255,255,.05);
+  color: #fff;
+}
+.op-sport-link.on {
+  background: rgba(74,222,128,.08);
+  color: #4ade80;
+  border-left-color: #4ade80;
+}
+.op-sport-link .op-sport-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.op-sport-link .op-sport-label {
+  flex: 1;
+  font-weight: 500;
+}
+.op-sidebar-sep {
+  height: 1px;
+  background: rgba(255,255,255,.06);
+  margin: 8px 14px;
+}
+
+/* ---- Main content area ---- */
+.op-main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---- Tip card dark theme ---- */
+.tipcard { background: #1e2a3a !important; border-color: rgba(255,255,255,.08) !important; color: #e8e8ea !important; }
+.tipcard.ai-tip { border-left-color: #4ade80 !important; }
+.th { background: #141c28 !important; border-bottom: 1px solid rgba(255,255,255,.07) !important; }
+.tlg { color: rgba(255,255,255,.55) !important; }
+.ttm { color: rgba(255,255,255,.45) !important; }
+.tmatch { color: #fff !important; font-weight: 700 !important; }
+.tpred { background: rgba(74,222,128,.15) !important; color: #4ade80 !important; border: none !important; }
+.tan { color: rgba(255,255,255,.6) !important; }
+.opill { background: rgba(255,255,255,.08) !important; color: rgba(255,255,255,.7) !important; border: none !important; }
+.cring { border-color: rgba(74,222,128,.3) !important; }
+.cpct { color: #4ade80 !important; }
+.clbl { color: rgba(255,255,255,.4) !important; }
+.conf-bar { background: rgba(255,255,255,.08) !important; }
+.conf-fill { background: #4ade80 !important; }
+.bkvia { color: rgba(255,255,255,.4) !important; }
+.cbox2 { background: #1e2a3a !important; border-color: rgba(255,255,255,.08) !important; }
+.cbox2 h2 { color: #fff !important; }
+.cbox2 p { color: rgba(255,255,255,.55) !important; }
+.nc { background: #1e2a3a !important; border-color: rgba(255,255,255,.07) !important; }
+.nc-title { color: #e8e8ea !important; }
+.nc-date { color: rgba(255,255,255,.4) !important; }
+.ai-loading { background: rgba(74,222,128,.08) !important; border-color: rgba(74,222,128,.2) !important; }
+.fbar { background: #1e2a3a !important; border-color: rgba(255,255,255,.08) !important; }
+.fp { background: rgba(255,255,255,.06) !important; border: 1px solid rgba(255,255,255,.1) !important; color: rgba(255,255,255,.7) !important; }
+.fp.on { background: #4ade80 !important; color: #0f1623 !important; border-color: #4ade80 !important; font-weight: 700 !important; }
+.no-results { background: #1e2a3a !important; border-color: rgba(255,255,255,.1) !important; color: rgba(255,255,255,.4) !important; }
+/* Hero dark */
+.hero { background: linear-gradient(135deg, #0a1220 0%, #0f1e35 100%) !important; }
+.ctr-n { color: #4ade80 !important; }
+.ctr-l { color: rgba(255,255,255,.55) !important; }
+/* Sec-bg dark */
+.sec-bg { background: #1a1f2e !important; }
+/* Responsible warning dark */
+.resp { background: rgba(212,175,55,.08) !important; border-color: rgba(212,175,55,.3) !important; color: rgba(212,175,55,.9) !important; }
+/* External sites cards dark */
+.cbox2 a[href] { background: rgba(255,255,255,.06) !important; border-color: rgba(255,255,255,.1) !important; }
+.cbox2 a[href]:hover { background: rgba(255,255,255,.1) !important; box-shadow: none !important; }
+
+/* Hide old snav on desktop when sidebar is visible */
+@media (min-width: 768px) {
+  .tips-snav { display: none; }
+}
+
+/* ---- Responsive: mobile ---- */
+@media (max-width: 767px) {
+  .op-wrap { flex-direction: column; padding: 0; }
+  .op-sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding: 8px 0; }
+  .op-sidebar-title { display: none; }
+  .op-sidebar-inner { display: flex; flex-wrap: nowrap; overflow-x: auto; padding: 0 10px; gap: 4px; scrollbar-width: none; }
+  .op-sidebar-inner::-webkit-scrollbar { display: none; }
+  .op-sidebar-sep { display: none; }
+  .op-sport-link { width: auto; flex-shrink: 0; border-left: none; border-bottom: 2px solid transparent; border-radius: 6px; padding: 6px 10px; font-size: 12px; }
+  .op-sport-link.on { border-left-color: transparent; border-bottom-color: #4ade80; background: rgba(74,222,128,.1); }
+  .op-main { padding: 10px 8px; }
+  .tips-snav { display: block; }
+}
+</style>
 </head>
 <body>
 
@@ -138,7 +281,7 @@
 <div id="hbrands" class="hbrands"></div>
 
 <!-- SUBNAV -->
-<div class="snav"><div class="snav-in">
+<div class="snav tips-snav"><div class="snav-in">
   <button class="snl on" data-tf="all" onclick="tipFilt(this)">All Tips</button>
   <button class="snl" data-tf="world" onclick="tipFilt(this)">🌍 World Cup 2026</button>
   <button class="snl" data-tf="cafl" onclick="tipFilt(this)">⚽ CAF CL</button>
@@ -162,81 +305,124 @@
   </div>
 </div></div>
 
-<!-- MAIN CONTENT -->
-<div class="sec-bg"><div class="wrap">
-  <div class="fbar"><div class="fr">
-    <button class="fp on" data-tf="all" onclick="tipFilt(this)">All Tips</button>
-    <button class="fp" data-tf="world" onclick="tipFilt(this)">🌍 World Cup 2026</button>
-    <button class="fp" data-tf="cafl" onclick="tipFilt(this)">⚽ CAF CL</button>
-    <button class="fp" data-tf="afcon" onclick="tipFilt(this)">📋 AFCON</button>
-    <button class="fp" data-tf="local" onclick="tipFilt(this)">🏟️ Local Football</button>
-    <button class="fp" data-tf="basketball" onclick="tipFilt(this)">🏀 Basketball</button>
-    <button class="fp" data-tf="tennis" onclick="tipFilt(this)">🎾 Tennis</button>
-    <button class="fp" data-tf="cricket" onclick="tipFilt(this)">🏏 Cricket</button>
-    <button class="fp" data-tf="rugby" onclick="tipFilt(this)">🏉 Rugby</button>
-    <button class="fp" data-tf="boxing" onclick="tipFilt(this)">🥊 Boxing</button>
-  </div></div>
-
-  <!-- AI section -->
-  <div id="ai-section">
-    <div id="ai-loader" class="ai-loading">🤖 Generating live AI tips for <span id="ai-cty">Nigeria</span>...</div>
-  </div>
-
-  <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.3px">📋 Expert Curated Tips</div>
-  <div id="tips-cards"></div>
-
-  <div class="cbox2">
-    <h2>📰 Latest Betting News</h2>
-    <div class="news-grid" id="news-cards"></div>
-  </div>
-
-  <div class="cbox2" style="margin-top:9px">
-    <h2>🔗 Best Free Betting Tips Websites</h2>
-    <p style="font-size:13px;color:#555;margin-bottom:12px">Independently curated platforms for free daily predictions, statistical models, and expert analysis — all free to use.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px">
-      <a href="https://www.forebet.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:#fafafa;border:1px solid #e8e8e8;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 10px rgba(0,0,0,.09)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Mathematical</div>
-        <div style="font-size:14px;font-weight:800;color:#111;margin-bottom:3px">Forebet</div>
-        <div style="font-size:11.5px;color:#666;line-height:1.55">Statistical predictions for 60+ leagues using AI models. No sign-up needed.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">forebet.com →</div>
-      </a>
-      <a href="https://www.predictz.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:#fafafa;border:1px solid #e8e8e8;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 10px rgba(0,0,0,.09)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Free Picks</div>
-        <div style="font-size:14px;font-weight:800;color:#111;margin-bottom:3px">Predictz</div>
-        <div style="font-size:11.5px;color:#666;line-height:1.55">Daily predictions popular across Africa. Covers AFCON, EPL, La Liga and local leagues.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">predictz.com →</div>
-      </a>
-      <a href="https://www.1960tips.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:#fafafa;border:1px solid #e8e8e8;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 10px rgba(0,0,0,.09)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Expert Analysts</div>
-        <div style="font-size:14px;font-weight:800;color:#111;margin-bottom:3px">1960Tips</div>
-        <div style="font-size:11.5px;color:#666;line-height:1.55">Professional analysts covering 30+ leagues. Free daily tips with form guides.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">1960tips.com →</div>
-      </a>
-      <a href="https://eaglepredict.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:#fafafa;border:1px solid #e8e8e8;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 10px rgba(0,0,0,.09)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Africa Focus</div>
-        <div style="font-size:14px;font-weight:800;color:#111;margin-bottom:3px">EaglePredict</div>
-        <div style="font-size:11.5px;color:#666;line-height:1.55">Free predictions with strong African league coverage. Daily accumulators included.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">eaglepredict.com →</div>
-      </a>
-      <a href="https://www.freesupertips.com/" target="_blank" rel="noopener noreferrer" style="display:block;background:#fafafa;border:1px solid #e8e8e8;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 10px rgba(0,0,0,.09)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">All Sports</div>
-        <div style="font-size:14px;font-weight:800;color:#111;margin-bottom:3px">FreeSuperTips</div>
-        <div style="font-size:11.5px;color:#666;line-height:1.55">Tips from professional tipsters across football, tennis, basketball and more.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">freesupertips.com →</div>
-      </a>
-      <a href="https://www.tipsterbattle.com/football/africa" target="_blank" rel="noopener noreferrer" style="display:block;background:#fafafa;border:1px solid #e8e8e8;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 10px rgba(0,0,0,.09)'" onmouseout="this.style.boxShadow='none'">
-        <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Africa Tips</div>
-        <div style="font-size:14px;font-weight:800;color:#111;margin-bottom:3px">TipsterBattle</div>
-        <div style="font-size:11.5px;color:#666;line-height:1.55">Community tipsters with a dedicated Africa football section. Track records visible.</div>
-        <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">tipsterbattle.com →</div>
-      </a>
+<!-- TWO-COLUMN LAYOUT -->
+<div class="sec-bg">
+<div class="op-wrap">
+  <!-- SIDEBAR -->
+  <aside class="op-sidebar">
+    <div class="op-sidebar-title">Filter Tips</div>
+    <div class="op-sidebar-inner">
+      <button class="op-sport-link on" data-tf="all" onclick="tipFilt(this)">
+        <span class="op-sport-icon">🏆</span><span class="op-sport-label">All Tips</span>
+      </button>
+      <div class="op-sidebar-sep"></div>
+      <button class="op-sport-link" data-tf="world" onclick="tipFilt(this)">
+        <span class="op-sport-icon">🌍</span><span class="op-sport-label">World Cup 2026</span>
+      </button>
+      <button class="op-sport-link" data-tf="cafl" onclick="tipFilt(this)">
+        <span class="op-sport-icon">⚽</span><span class="op-sport-label">CAF CL</span>
+      </button>
+      <button class="op-sport-link" data-tf="afcon" onclick="tipFilt(this)">
+        <span class="op-sport-icon">📋</span><span class="op-sport-label">AFCON</span>
+      </button>
+      <button class="op-sport-link" data-tf="local" onclick="tipFilt(this)">
+        <span class="op-sport-icon">🏟️</span><span class="op-sport-label">Local Football</span>
+      </button>
+      <div class="op-sidebar-sep"></div>
+      <button class="op-sport-link" data-tf="basketball" onclick="tipFilt(this)">
+        <span class="op-sport-icon">🏀</span><span class="op-sport-label">Basketball</span>
+      </button>
+      <button class="op-sport-link" data-tf="tennis" onclick="tipFilt(this)">
+        <span class="op-sport-icon">🎾</span><span class="op-sport-label">Tennis</span>
+      </button>
+      <button class="op-sport-link" data-tf="cricket" onclick="tipFilt(this)">
+        <span class="op-sport-icon">🏏</span><span class="op-sport-label">Cricket</span>
+      </button>
+      <button class="op-sport-link" data-tf="rugby" onclick="tipFilt(this)">
+        <span class="op-sport-icon">🏉</span><span class="op-sport-label">Rugby</span>
+      </button>
+      <button class="op-sport-link" data-tf="boxing" onclick="tipFilt(this)">
+        <span class="op-sport-icon">🥊</span><span class="op-sport-label">Boxing</span>
+      </button>
     </div>
-  </div>
+  </aside>
+  <!-- MAIN TIPS CONTENT -->
+  <main class="op-main" style="padding:14px 16px">
+    <div class="fbar"><div class="fr">
+      <button class="fp on" data-tf="all" onclick="tipFilt(this)">All Tips</button>
+      <button class="fp" data-tf="world" onclick="tipFilt(this)">🌍 World Cup 2026</button>
+      <button class="fp" data-tf="cafl" onclick="tipFilt(this)">⚽ CAF CL</button>
+      <button class="fp" data-tf="afcon" onclick="tipFilt(this)">📋 AFCON</button>
+      <button class="fp" data-tf="local" onclick="tipFilt(this)">🏟️ Local Football</button>
+      <button class="fp" data-tf="basketball" onclick="tipFilt(this)">🏀 Basketball</button>
+      <button class="fp" data-tf="tennis" onclick="tipFilt(this)">🎾 Tennis</button>
+      <button class="fp" data-tf="cricket" onclick="tipFilt(this)">🏏 Cricket</button>
+      <button class="fp" data-tf="rugby" onclick="tipFilt(this)">🏉 Rugby</button>
+      <button class="fp" data-tf="boxing" onclick="tipFilt(this)">🥊 Boxing</button>
+    </div></div>
 
-  <div class="resp">⚠️ Tips are for informational purposes only. Gambling involves risk. 18+ only.
-    <button onclick="openPage('responsible')">Responsible Gambling</button>
-  </div>
-</div></div>
+    <!-- AI section -->
+    <div id="ai-section">
+      <div id="ai-loader" class="ai-loading">🤖 Generating live AI tips for <span id="ai-cty">Nigeria</span>...</div>
+    </div>
+
+    <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.3px">📋 Expert Curated Tips</div>
+    <div id="tips-cards"></div>
+
+    <div class="cbox2">
+      <h2>📰 Latest Betting News</h2>
+      <div class="news-grid" id="news-cards"></div>
+    </div>
+
+    <div class="cbox2" style="margin-top:9px">
+      <h2>🔗 Best Free Betting Tips Websites</h2>
+      <p style="font-size:13px;margin-bottom:12px">Independently curated platforms for free daily predictions, statistical models, and expert analysis — all free to use.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px">
+        <a href="https://www.forebet.com/" target="_blank" rel="noopener noreferrer" style="display:block;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s">
+          <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Mathematical</div>
+          <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Forebet</div>
+          <div style="font-size:11.5px;line-height:1.55">Statistical predictions for 60+ leagues using AI models. No sign-up needed.</div>
+          <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">forebet.com →</div>
+        </a>
+        <a href="https://www.predictz.com/" target="_blank" rel="noopener noreferrer" style="display:block;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s">
+          <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Free Picks</div>
+          <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">Predictz</div>
+          <div style="font-size:11.5px;line-height:1.55">Daily predictions popular across Africa. Covers AFCON, EPL, La Liga and local leagues.</div>
+          <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">predictz.com →</div>
+        </a>
+        <a href="https://www.1960tips.com/" target="_blank" rel="noopener noreferrer" style="display:block;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s">
+          <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Expert Analysts</div>
+          <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">1960Tips</div>
+          <div style="font-size:11.5px;line-height:1.55">Professional analysts covering 30+ leagues. Free daily tips with form guides.</div>
+          <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">1960tips.com →</div>
+        </a>
+        <a href="https://eaglepredict.com/" target="_blank" rel="noopener noreferrer" style="display:block;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s">
+          <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Africa Focus</div>
+          <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">EaglePredict</div>
+          <div style="font-size:11.5px;line-height:1.55">Free predictions with strong African league coverage. Daily accumulators included.</div>
+          <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">eaglepredict.com →</div>
+        </a>
+        <a href="https://www.freesupertips.com/" target="_blank" rel="noopener noreferrer" style="display:block;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s">
+          <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">All Sports</div>
+          <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">FreeSuperTips</div>
+          <div style="font-size:11.5px;line-height:1.55">Tips from professional tipsters across football, tennis, basketball and more.</div>
+          <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">freesupertips.com →</div>
+        </a>
+        <a href="https://www.tipsterbattle.com/football/africa" target="_blank" rel="noopener noreferrer" style="display:block;border-left:3px solid var(--g);border-radius:9px;padding:12px;text-decoration:none;color:inherit;transition:box-shadow .15s">
+          <div style="font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Africa Tips</div>
+          <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:3px">TipsterBattle</div>
+          <div style="font-size:11.5px;line-height:1.55">Community tipsters with a dedicated Africa football section. Track records visible.</div>
+          <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">tipsterbattle.com →</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="resp">⚠️ Tips are for informational purposes only. Gambling involves risk. 18+ only.
+      <button onclick="openPage('responsible')">Responsible Gambling</button>
+    </div>
+  </main>
+</div>
+</div>
 
 <!-- PAGE MODAL -->
 <div class="page-modal-bg" id="page-modal">
