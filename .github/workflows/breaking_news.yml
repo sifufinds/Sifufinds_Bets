@@ -103,8 +103,14 @@ jobs:
               echo "❌ Push failed after 5 attempts"
               exit 1
             fi
-            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            echo "Push rejected (attempt $_attempt/5) — merging posts and retrying in 5s..."
             sleep 5
             git fetch origin main
-            git rebase FETCH_HEAD -X theirs || git rebase --abort
+            # Smart-merge posts.json so no posts are lost from either side
+            python3 agents/python/merge_posts.py
+            # Reset our commit, re-apply on top of remote, re-stage merged file
+            git reset --soft HEAD~1
+            git rebase FETCH_HEAD || git rebase --abort
+            git add blog/posts.json blog/posts-data.js
+            git diff --cached --quiet || git commit --amend --no-edit
           done
