@@ -1,0 +1,82 @@
+name: Hourly Multi-Source Scrape — Flashscore, Sofascore, Livescore, OddsPortal, BetExplorer, OddsChecker
+
+on:
+  schedule:
+    - cron: "5 * * * *"   # :05 past every hour, 24/7 (offset from live_odds at :00)
+  workflow_dispatch:        # manual trigger from GitHub UI
+
+concurrency:
+  group: hourly-scrape
+  cancel-in-progress: false  # queue runs, never drop
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+      SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest (avoid stale reads)
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-multiscrape-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          pip install requests firecrawl-py
+          # Install Firecrawl CLI (best-effort — Python SDK is the reliable fallback)
+          npm install -g @mendable/firecrawl-js 2>/dev/null || echo "CLI install skipped"
+
+      - name: Step 1 — Run ESPN live odds agent (fast, no API key needed)
+        working-directory: agents/python
+        run: python agent_live_odds.py
+
+      - name: Step 2 — Run multi-source Firecrawl scrape
+        working-directory: agents/python
+        run: python agent_multi_scrape.py
+
+      - name: Commit and push if live.json changed
+        run: |
+          git config --local user.email "scrapebot@sifufinds.com"
+          git config --local user.name "SifuFinds Hourly Scraper"
+          git add data/live.json
+          if git diff --cached --quiet; then
+            echo "ℹ No changes to live.json — nothing to commit"
+            exit 0
+          fi
+          LIVE_COUNT=$(python3 -c "import json; d=json.load(open('data/live.json')); print(sum(1 for e in d.get('events',[]) if e.get('live')))")
+          TOTAL=$(python3 -c "import json; d=json.load(open('data/live.json')); print(len(d.get('events',[])))")
+          git commit -m "live: scrape update $(date -u '+%H:%M') UTC — ${TOTAL} events, ${LIVE_COUNT} live"
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            [ "$attempt" -eq 5 ] && { echo "❌ Push failed after 5 attempts"; exit 1; }
+            echo "⚠ Push rejected ($attempt/5) — rebasing..."
+            sleep $((attempt * 3))
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done
