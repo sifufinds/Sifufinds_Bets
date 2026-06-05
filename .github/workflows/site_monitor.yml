@@ -3,6 +3,10 @@ name: Site Monitor — auto-heal sifufinds.com
 # Hourly deep check: HTTP status + content validation + hack detection.
 # site_doctor.yml runs every 15 min for data freshness.
 # This monitor is the broader sweep that triggers a full redeploy on failure.
+#
+# IMPORTANT: every step uses `set +e` so that network timeouts or temporary
+# failures never make the monitor workflow itself turn red. Issues are
+# tracked via counters and output variables, not bash exit codes.
 
 on:
   schedule:
@@ -27,12 +31,14 @@ jobs:
       - name: Check all critical pages (HTTP status)
         id: check
         run: |
+          set +eo pipefail
           FAILED=0
 
           check_page() {
             local url="$1"
             local label="$2"
-            local code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "$url")
+            local code
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "$url" 2>/dev/null) || code="ERR"
             if [ "$code" != "200" ]; then
               echo "FAIL [$code] $label — $url"
               FAILED=$((FAILED+1))
@@ -58,47 +64,58 @@ jobs:
           check_page "https://sifufinds.com/data/live.json"            "live.json"
 
           echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
+          exit 0
 
       - name: Check content integrity
         id: content
         run: |
+          set +eo pipefail
           ISSUES=0
 
+          # Fetch assets — || true so a timeout never exits the step
+          JS=$(curl -s --max-time 20 "https://sifufinds.com/assets/shared.js" 2>/dev/null) || JS=""
+          LIVE=$(curl -s --max-time 15 "https://sifufinds.com/data/live.json" 2>/dev/null) || LIVE=""
+
           # shared.js must contain the BOOKS data object
-          JS=$(curl -s --max-time 20 "https://sifufinds.com/assets/shared.js")
-          if echo "$JS" | grep -qF "const BOOKS="; then
+          if [ -n "$JS" ] && echo "$JS" | grep -qF "const BOOKS="; then
             echo "OK   shared.js contains BOOKS data"
+          elif [ -z "$JS" ]; then
+            echo "WARN shared.js fetch failed (network) — skipping"
           else
             echo "FAIL shared.js missing BOOKS data"
             ISSUES=$((ISSUES+1))
           fi
 
           # live.json must be valid JSON with events array
-          LIVE=$(curl -s --max-time 10 "https://sifufinds.com/data/live.json")
-          if echo "$LIVE" | python3 -c "import sys,json; d=json.load(sys.stdin); assert len(d.get('events',[])) > 0" 2>/dev/null; then
-            COUNT=$(echo "$LIVE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('count',0))")
+          if [ -n "$LIVE" ] && echo "$LIVE" | python3 -c "import sys,json; d=json.load(sys.stdin); assert len(d.get('events',[])) > 0" 2>/dev/null; then
+            COUNT=$(echo "$LIVE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('count',0))" 2>/dev/null) || COUNT="?"
             echo "OK   live.json has $COUNT events"
+          elif [ -z "$LIVE" ]; then
+            echo "WARN live.json fetch failed (network) — skipping"
           else
-            echo "FAIL live.json missing or empty"
+            echo "FAIL live.json missing or empty events"
             ISSUES=$((ISSUES+1))
           fi
 
-          # live.json football check — informational only, not all hours have football
-          if echo "$LIVE" | python3 -c "
+          # Football coverage — informational only. Off-peak hours have no football.
+          if [ -n "$LIVE" ]; then
+            if echo "$LIVE" | python3 -c "
           import sys, json
           d = json.load(sys.stdin)
           football = [e for e in d.get('events',[]) if e.get('key') in ('world','cafl','afcon','local','epl')]
           assert len(football) > 0
-          print(f'{len(football)} football events found')
+          print(f'{len(football)} football events')
           " 2>/dev/null; then
-            echo "OK   live.json contains football events"
-          else
-            echo "INFO live.json has no football events (normal during off-peak hours)"
+              echo "OK   live.json contains football events"
+            else
+              echo "INFO live.json has no football events (normal off-peak)"
+            fi
           fi
 
-          # live.json must not be stale (> 90 min — live_odds runs every 5 min but only
-          # commits when data changes, so gaps up to ~60 min are normal during quiet periods)
-          if echo "$LIVE" | python3 -c "
+          # live.json staleness — threshold 90 min to account for quiet periods where
+          # live_odds sees no data change and skips committing
+          if [ -n "$LIVE" ]; then
+            if echo "$LIVE" | python3 -c "
           import sys, json
           from datetime import datetime, timezone
           d = json.load(sys.stdin)
@@ -107,28 +124,38 @@ jobs:
           assert age < 90, f'{age:.0f} min old'
           print(f'age: {age:.0f} min')
           " 2>/dev/null; then
-            echo "OK   live.json is fresh"
-          else
-            echo "FAIL live.json is stale (> 90 min old)"
-            ISSUES=$((ISSUES+1))
+              echo "OK   live.json is fresh"
+            else
+              echo "FAIL live.json is stale (> 90 min old)"
+              ISSUES=$((ISSUES+1))
+            fi
           fi
 
           echo "issues=$ISSUES" >> "$GITHUB_OUTPUT"
+          exit 0
 
       - name: Check for hacked/defaced content
         id: hack_check
         run: |
-          BODY=$(curl -s --max-time 15 "https://sifufinds.com/" | tr '[:upper:]' '[:lower:]')
+          set +eo pipefail
           HACKED=0
 
-          for term in "hacked by" "defaced" "you have been hacked" "owned by" "r00ted"; do
-            if echo "$BODY" | grep -qF "$term"; then
-              echo "WARNING: hack indicator found — '$term'"
-              HACKED=$((HACKED+1))
-            fi
-          done
+          BODY=$(curl -s --max-time 15 "https://sifufinds.com/" 2>/dev/null | tr '[:upper:]' '[:lower:]') || BODY=""
+
+          if [ -n "$BODY" ]; then
+            for term in "hacked by" "defaced" "you have been hacked" "owned by" "r00ted"; do
+              if echo "$BODY" | grep -qF "$term"; then
+                echo "WARNING: hack indicator found — '$term'"
+                HACKED=$((HACKED+1))
+              fi
+            done
+            echo "INFO hack scan complete ($HACKED indicators)"
+          else
+            echo "WARN home page fetch failed — skipping hack scan"
+          fi
 
           echo "hacked=$HACKED" >> "$GITHUB_OUTPUT"
+          exit 0
 
       - name: Trigger site-doctor if data issues found
         if: steps.content.outputs.issues != '0'
@@ -136,14 +163,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Data issues detected — triggering site_doctor to auto-fix..."
+          set +eo pipefail
+          echo "Data issues detected (${{ steps.content.outputs.issues }}) — triggering site_doctor..."
           if gh workflow run site_doctor.yml \
             --repo "${{ github.repository }}" \
-            --ref main; then
+            --ref main 2>&1; then
             echo "✅ site_doctor.yml triggered"
           else
             echo "⚠️ Could not trigger site_doctor.yml — it runs on its own 15-min schedule and will self-correct"
           fi
+          exit 0
 
       - name: Auto-redeploy if pages are down or site is hacked
         if: steps.check.outputs.failed != '0' || steps.hack_check.outputs.hacked != '0'
@@ -151,21 +180,28 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set +eo pipefail
           REASON=""
-          if [ "${{ steps.check.outputs.failed }}" != "0" ]; then
-            REASON="${{ steps.check.outputs.failed }} page(s) down"
-          fi
-          if [ "${{ steps.hack_check.outputs.hacked }}" != "0" ]; then
-            REASON="$REASON | possible hack detected"
-          fi
+          [ "${{ steps.check.outputs.failed }}" != "0" ] && REASON="${{ steps.check.outputs.failed }} page(s) down"
+          [ "${{ steps.hack_check.outputs.hacked }}" != "0" ] && REASON="$REASON | possible hack detected"
 
           echo "Auto-healing: $REASON"
-          echo "Triggering fresh deploy to Hostinger..."
-
           if gh workflow run deploy_hostinger.yml \
             --repo "${{ github.repository }}" \
-            --ref main; then
-            echo "✅ Deploy triggered. Site will be restored within ~2 minutes."
+            --ref main 2>&1; then
+            echo "✅ Deploy triggered — site will restore within ~2 minutes"
           else
             echo "⚠️ Could not trigger deploy_hostinger.yml — check token permissions or trigger manually"
           fi
+          exit 0
+
+      - name: Summary
+        if: always()
+        run: |
+          set +eo pipefail
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Pages failed : ${{ steps.check.outputs.failed || '0' }}"
+          echo "Content issues: ${{ steps.content.outputs.issues || '0' }}"
+          echo "Hack indicators: ${{ steps.hack_check.outputs.hacked || '0' }}"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          exit 0
