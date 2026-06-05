@@ -129,7 +129,9 @@ MULTI_WORD_TEAMS: list[tuple[str, str]] = [
 
 def scrape_url(url: str, wait_ms: int = 3000, name: str = "") -> str:
     """Scrape a URL via Firecrawl CLI (or Python SDK fallback)."""
-    env = {**os.environ, "FIRECRAWL_API_KEY": FIRECRAWL_API_KEY}
+    env = dict(os.environ)
+    if FIRECRAWL_API_KEY and len(FIRECRAWL_API_KEY) > 20:
+        env["FIRECRAWL_API_KEY"] = FIRECRAWL_API_KEY
     try:
         result = subprocess.run(
             [
@@ -789,8 +791,7 @@ def scrape_source(source: dict) -> tuple[str, list[dict]]:
 
 def main() -> None:
     if not FIRECRAWL_API_KEY:
-        print("FIRECRAWL_API_KEY not set — skipping multi-source scrape")
-        sys.exit(0)
+        print("ℹ FIRECRAWL_API_KEY not set — using CLI stored credentials")
 
     ts = datetime.now(timezone.utc).isoformat()
     print(f"\n[{ts}] Multi-source scrape starting...")

@@ -109,7 +109,10 @@ SOURCES = [
 # ── Firecrawl ─────────────────────────────────────────────────────────────────
 
 def scrape(url: str, wait_ms: int, name: str) -> str:
-    env = {**os.environ, "FIRECRAWL_API_KEY": FIRECRAWL_API_KEY}
+    # Build env: only inject FIRECRAWL_API_KEY if it looks like a real key (not empty/placeholder)
+    env = dict(os.environ)
+    if FIRECRAWL_API_KEY and len(FIRECRAWL_API_KEY) > 20:
+        env["FIRECRAWL_API_KEY"] = FIRECRAWL_API_KEY
     try:
         r = subprocess.run(
             ["firecrawl", "scrape", url, "--wait-for", str(wait_ms), "--only-main-content"],
@@ -117,22 +120,25 @@ def scrape(url: str, wait_ms: int, name: str) -> str:
         )
         if r.stdout and len(r.stdout) > 300:
             return r.stdout
+        if r.stderr:
+            print(f"    cli [{name}]: {r.stderr[:120]}")
     except FileNotFoundError:
-        pass
+        print(f"    firecrawl CLI not found — install with: npm i -g firecrawl-js")
     except Exception as e:
         print(f"    cli error [{name}]: {e}")
 
-    # Python SDK fallback
-    try:
-        from firecrawl import FirecrawlApp  # type: ignore
-        app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
-        res = app.scrape_url(url, params={
-            "formats": ["markdown"], "waitFor": wait_ms, "onlyMainContent": True
-        })
-        return res.get("markdown", "")
-    except Exception as e:
-        print(f"    sdk error [{name}]: {e}")
-        return ""
+    # Python SDK fallback (only if key is real)
+    if FIRECRAWL_API_KEY and len(FIRECRAWL_API_KEY) > 20:
+        try:
+            from firecrawl import FirecrawlApp  # type: ignore
+            app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
+            res = app.scrape_url(url, params={
+                "formats": ["markdown"], "waitFor": wait_ms, "onlyMainContent": True
+            })
+            return res.get("markdown", "")
+        except Exception as e:
+            print(f"    sdk error [{name}]: {e}")
+    return ""
 
 # ── Parsers ───────────────────────────────────────────────────────────────────
 
@@ -519,8 +525,7 @@ def scrape_source(source: dict) -> tuple[str, list[dict]]:
 
 def main():
     if not FIRECRAWL_API_KEY:
-        print("FIRECRAWL_API_KEY not set — skipping tips scrape")
-        sys.exit(0)
+        print("ℹ FIRECRAWL_API_KEY not set — using CLI stored credentials")
 
     ts = datetime.now(timezone.utc).isoformat()
     print(f"\n[{ts}] Tips scraper starting ({len(SOURCES)} sources)...")
