@@ -1,0 +1,79 @@
+name: Retry Failed — every 2 hours
+
+# Polls every 2 hours and re-triggers deploy_hostinger or traffic_report
+# if their most recent run ended in failure.
+# Using a cron poll instead of an immediate watchdog re-trigger gives
+# Hostinger / GoatCounter time to recover before we try again.
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"   # 00:00, 02:00, 04:00 … UTC
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  retry-deploy:
+    name: Retry deploy if last run failed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check last deploy_hostinger run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          CONCLUSION=$(gh run list \
+            --workflow=deploy_hostinger.yml \
+            --repo "${{ github.repository }}" \
+            --limit 1 \
+            --json conclusion \
+            --jq '.[0].conclusion' 2>/dev/null)
+          echo "Last deploy conclusion: ${CONCLUSION:-unknown}"
+          if [ "$CONCLUSION" = "failure" ]; then
+            echo "⚠ Last deploy failed — re-triggering now..."
+            if gh workflow run deploy_hostinger.yml \
+              --repo "${{ github.repository }}" \
+              --ref main; then
+              echo "✅ deploy_hostinger.yml re-triggered"
+            else
+              echo "⚠️ Could not re-trigger deploy_hostinger.yml"
+            fi
+          else
+            echo "✅ Last deploy was ${CONCLUSION:-unknown} — no retry needed"
+          fi
+          exit 0
+
+  retry-traffic:
+    name: Retry traffic report if last run failed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check last traffic_report run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          CONCLUSION=$(gh run list \
+            --workflow=traffic_report.yml \
+            --repo "${{ github.repository }}" \
+            --limit 1 \
+            --json conclusion \
+            --jq '.[0].conclusion' 2>/dev/null)
+          echo "Last traffic report conclusion: ${CONCLUSION:-unknown}"
+          if [ "$CONCLUSION" = "failure" ]; then
+            echo "⚠ Last traffic report failed — re-triggering now..."
+            if gh workflow run traffic_report.yml \
+              --repo "${{ github.repository }}" \
+              --ref main; then
+              echo "✅ traffic_report.yml re-triggered"
+            else
+              echo "⚠️ Could not re-trigger traffic_report.yml"
+            fi
+          else
+            echo "✅ Last traffic report was ${CONCLUSION:-unknown} — no retry needed"
+          fi
+          exit 0

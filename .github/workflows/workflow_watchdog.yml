@@ -1,8 +1,10 @@
 name: Workflow Watchdog — auto-retry failed workflows
 
 # Triggers whenever a watched workflow finishes with failure.
-# Immediately re-triggers site_doctor or the specific workflow
-# to attempt self-healing — no human action required.
+# Time-critical workflows (live_odds, site_doctor, site_monitor) are
+# retried immediately.
+# Deploy and traffic_report failures are handled by retry_failed.yml
+# which polls every 2 hours — avoids wasting runner minutes sleeping.
 
 on:
   workflow_run:
@@ -10,8 +12,6 @@ on:
       - "Site Monitor — auto-heal sifufinds.com"
       - "Site Doctor — 24/7 auto-heal sifufinds.com"
       - "Live Odds — Update every 5 minutes"
-      - "Deploy to Hostinger — sifufinds.com"
-      - "Traffic Report — GoatCounter daily snapshot"
     types: [completed]
 
 permissions:
@@ -32,23 +32,6 @@ jobs:
           echo "   Branch    : ${{ github.event.workflow_run.head_branch }}"
           echo "   Conclusion: ${{ github.event.workflow_run.conclusion }}"
 
-      - name: Re-trigger deploy_hostinger if that was the failing workflow
-        if: github.event.workflow_run.name == 'Deploy to Hostinger — sifufinds.com'
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set +e
-          echo "Deploy workflow failed — re-triggering deploy_hostinger.yml..."
-          if gh workflow run deploy_hostinger.yml \
-            --repo "${{ github.repository }}" \
-            --ref main; then
-            echo "✅ deploy_hostinger.yml re-triggered"
-          else
-            echo "⚠️ Could not re-trigger deploy_hostinger.yml"
-          fi
-          exit 0
-
       - name: Re-trigger live_odds if that was the failing workflow
         if: github.event.workflow_run.name == 'Live Odds — Update every 5 minutes'
         continue-on-error: true
@@ -66,28 +49,8 @@ jobs:
           fi
           exit 0
 
-      - name: Re-trigger traffic_report if that was the failing workflow
-        if: github.event.workflow_run.name == 'Traffic Report — GoatCounter daily snapshot'
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set +e
-          echo "Traffic report failed — re-triggering..."
-          if gh workflow run traffic_report.yml \
-            --repo "${{ github.repository }}" \
-            --ref main; then
-            echo "✅ traffic_report.yml re-triggered"
-          else
-            echo "⚠️ Could not re-trigger traffic_report.yml"
-          fi
-          exit 0
-
       - name: Re-trigger site_doctor for all other failures
-        if: >
-          github.event.workflow_run.name != 'Deploy to Hostinger — sifufinds.com' &&
-          github.event.workflow_run.name != 'Live Odds — Update every 5 minutes' &&
-          github.event.workflow_run.name != 'Traffic Report — GoatCounter daily snapshot'
+        if: github.event.workflow_run.name != 'Live Odds — Update every 5 minutes'
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
