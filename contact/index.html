@@ -405,6 +405,8 @@
   </div>
 </div>
 
+<!-- EmailJS SDK — sends via Hostinger SMTP (service_s8m6m6g) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="../assets/shared.js?v=6"></script>
 <script>
 // ── CONFIG ─────────────────────────────────────────────────────────────────────
@@ -413,10 +415,15 @@ const SITE = {home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',cou
 const SUPABASE_URL  = 'https://kedfcmgqjxwzebhoeosi.supabase.co';
 const SUPABASE_ANON = 'sb_publishable_NK9TgE3pEvmJbQ-ZmEvSjQ_22adueMj';
 
-// Email endpoint — formsubmit.co forwards submissions to advertise@sifufinds.com
-// No account or dashboard setup required; first submission triggers a one-time
-// activation email from formsubmit.co to the recipient address.
+// EmailJS — primary email delivery via Hostinger SMTP
+const EJS_PUBLIC_KEY  = 'EY_OJJFvMwQ3NqbAh';
+const EJS_SERVICE_ID  = 'service_s8m6m6g';
+const EJS_TEMPLATE_ID = 'template_pth79y4';
+
+// Formsubmit.co — fallback if EmailJS fails (already activated)
 const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/advertise@sifufinds.com';
+
+emailjs.init({ publicKey: EJS_PUBLIC_KEY });
 
 // ── INIT ───────────────────────────────────────────────────────────────────────
 const sel = document.getElementById('ctySel');
@@ -452,31 +459,46 @@ function validateForm(data) {
   return ok;
 }
 
-// ── SEND EMAIL via Formsubmit.co ───────────────────────────────────────────────
+// ── SEND EMAIL — EmailJS primary, Formsubmit.co fallback ──────────────────────
 async function sendEmail(data) {
+  try {
+    await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+      full_name:    data.full_name,
+      company_name: data.company_name || '—',
+      from_email:   data.email,
+      website:      data.website || '—',
+      inquiry_type: data.inquiry_type,
+      budget:       data.budget || '—',
+      message:      data.message,
+      reply_to:     data.email
+    });
+    return;
+  } catch (ejsErr) {
+    console.warn('EmailJS failed, falling back to Formsubmit:', ejsErr.text || ejsErr);
+  }
+  // Fallback: Formsubmit.co
   const res = await fetch(FORMSUBMIT_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
-      _subject:      'New SIFUFINDS Contact Enquiry — ' + data.inquiry_type,
+      _subject:      'New SIFUFINDS Enquiry — ' + data.inquiry_type,
       _template:     'table',
       _captcha:      'false',
       _replyto:      data.email,
       _autoresponse: 'Thank you for contacting SIFUFINDS. We have received your enquiry and a member of our team will respond within 24–48 business hours.',
-      'Full Name':        data.full_name,
-      'Company':          data.company_name || '—',
-      'Email':            data.email,
-      'Website':          data.website || '—',
-      'Inquiry Type':     data.inquiry_type,
-      'Monthly Budget':   data.budget || '—',
-      'Message':          data.message
+      'Full Name':   data.full_name,
+      'Company':     data.company_name || '—',
+      'Email':       data.email,
+      'Website':     data.website || '—',
+      'Inquiry':     data.inquiry_type,
+      'Budget':      data.budget || '—',
+      'Message':     data.message
     })
   });
-  if (!res.ok) throw new Error('Email send failed: ' + res.status);
+  if (!res.ok) throw new Error('Both email providers failed: ' + res.status);
   const json = await res.json();
-  if (json.success !== 'true' && json.success !== true) {
+  if (json.success !== 'true' && json.success !== true)
     throw new Error('Formsubmit rejected: ' + JSON.stringify(json));
-  }
 }
 
 // ── SAVE TO SUPABASE (secondary, non-blocking) ─────────────────────────────────
