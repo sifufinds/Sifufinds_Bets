@@ -49,10 +49,10 @@ RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
   </IfModule>
 </FilesMatch>
 
-# HTML files: revalidate on every visit so the page itself is always fresh
+# HTML files: 5-min TTL, serve stale while revalidating for speed
 <FilesMatch "\.html$">
   <IfModule mod_headers.c>
-    Header always set Cache-Control "no-cache, must-revalidate"
+    Header always set Cache-Control "public, max-age=300, stale-while-revalidate=86400"
   </IfModule>
 </FilesMatch>
 
