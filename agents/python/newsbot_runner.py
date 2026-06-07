@@ -2,14 +2,15 @@
 Newsbot launcher — called by launchd every 15 minutes.
 Equivalent to run_news_bot.sh but invoked via the venv python so launchd's
 TCC context (Desktop folder access) is satisfied by the venv binary itself.
+After generating posts it commits and pushes so the live site always stays current.
 """
 import subprocess
-import sys
 import datetime
 from pathlib import Path
 
 AGENT_DIR = Path(__file__).parent
-VENV = AGENT_DIR.parent.parent / ".venv" / "bin" / "python"
+REPO_ROOT = AGENT_DIR.parent.parent
+VENV = REPO_ROOT / ".venv" / "bin" / "python"
 LOG = AGENT_DIR / "newsbot.log"
 MAX_LOG_LINES = 500
 
@@ -24,6 +25,61 @@ def _run(args: list[str]) -> int:
     return result.returncode
 
 
+def _git(*args: str) -> subprocess.CompletedProcess:
+    return subprocess.run(["git"] + list(args), cwd=str(REPO_ROOT),
+                          capture_output=True, text=True)
+
+
+def _deploy(now: datetime.datetime) -> None:
+    """Commit and push new blog content to GitHub so it appears on the live site."""
+    timestamp = now.strftime("%Y-%m-%d %H:%M") + " UTC"
+
+    # Pull latest remote changes first to avoid conflicts
+    _log("[deploy] pulling latest from origin...")
+    pull = _git("pull", "--rebase", "origin", "main")
+    if pull.returncode != 0:
+        _log(f"  [warn] git pull failed: {pull.stderr.strip()}")
+
+    # Stage the blog files that the agent writes
+    _git("add",
+         "blog/posts.json",
+         "blog/posts-data.js",
+         "blog/ticker.json",
+         "blog/ticker-data.js")
+
+    # Nothing to commit → skip
+    diff = _git("diff", "--cached", "--quiet")
+    if diff.returncode == 0:
+        _log("[deploy] no new content to commit — skipping push")
+        return
+
+    commit = _git(
+        "commit",
+        "-m", f"live: breaking news {timestamp}",
+        "--author", "SifuFinds Breaking News Bot <newsbot@sifufinds.com>",
+    )
+    if commit.returncode != 0:
+        _log(f"  [warn] git commit failed: {commit.stderr.strip()}")
+        return
+
+    # Retry push up to 5 times to handle concurrent push conflicts
+    for attempt in range(1, 6):
+        push = _git("push", "origin", "main")
+        if push.returncode == 0:
+            _log(f"[deploy] ✓ pushed on attempt {attempt}")
+            return
+        if attempt == 5:
+            _log(f"[deploy] ✗ push failed after 5 attempts — will retry next run")
+            return
+        _log(f"  [deploy] push rejected (attempt {attempt}/5) — rebasing...")
+        _git("fetch", "origin", "main")
+        rebase = _git("rebase", "origin/main")
+        if rebase.returncode != 0:
+            _git("rebase", "--abort")
+            _log("  [deploy] rebase aborted — will retry next run")
+            return
+
+
 def _rotate_log() -> None:
     if LOG.exists():
         lines = LOG.read_text().splitlines()
@@ -32,7 +88,7 @@ def _rotate_log() -> None:
 
 
 WC_START = datetime.datetime(2026, 6, 11)
-WC_END   = datetime.datetime(2026, 7, 20)   # day after final
+WC_END   = datetime.datetime(2026, 7, 20)
 
 
 def _is_wc_active(now: datetime.datetime) -> bool:
@@ -68,6 +124,9 @@ def main() -> None:
     # Always refresh ticker
     _log("[newsbot] refreshing ticker...")
     _run(["agent_sports_blog.py", "--ticker-only"])
+
+    # Commit and push everything so the live site updates automatically
+    _deploy(now)
 
     _log("Done.")
 
