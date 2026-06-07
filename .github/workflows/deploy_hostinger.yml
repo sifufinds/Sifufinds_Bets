@@ -47,7 +47,7 @@ jobs:
           ARCHIVE="sifufinds_$(date +%Y%m%d_%H%M%S).zip"
           # Build file list — skip missing optional files gracefully
           FILES=()
-          for f in index.html robots.txt sitemap.xml; do
+          for f in index.html analytics.html robots.txt sitemap.xml; do
             [ -f "$f" ] && FILES+=("$f")
           done
           for f in .htaccess .nojekyll; do
