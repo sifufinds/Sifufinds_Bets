@@ -43,7 +43,7 @@ RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 
 # ── CACHE CONTROL ────────────────────────────────────────────────────────────
 # Data files must never be cached — they update every 15 minutes
-<FilesMatch "\.(json|js)$">
+<FilesMatch "\.(json|js|css)$">
   <IfModule mod_headers.c>
     Header always set Cache-Control "no-cache, must-revalidate"
   </IfModule>
