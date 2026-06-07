@@ -525,8 +525,37 @@ def _parse_json_array(text: str, label: str) -> list:
     return []
 
 
+def _fix_json_newlines(text: str) -> str:
+    """Escape literal newlines inside JSON string values so json.loads can parse them."""
+    result = []
+    in_string = False
+    i = 0
+    while i < len(text):
+        c = text[i]
+        if c == '\\' and i + 1 < len(text):
+            result.append(c)
+            result.append(text[i + 1])
+            i += 2
+            continue
+        if c == '"':
+            in_string = not in_string
+            result.append(c)
+        elif c == '\n' and in_string:
+            result.append('\\n')
+        elif c == '\r' and in_string:
+            result.append('\\r')
+        elif c == '\t' and in_string:
+            result.append('\\t')
+        else:
+            result.append(c)
+        i += 1
+    return ''.join(result)
+
+
 def _parse_json_object(text: str, label: str) -> dict:
     cleaned = text.strip()
+
+    # Strip markdown fences
     if "```" in cleaned:
         parts = cleaned.split("```")
         for part in parts:
@@ -537,12 +566,29 @@ def _parse_json_object(text: str, label: str) -> dict:
                 cleaned = part
                 break
 
+    # Attempt 1 — standard parse
     try:
         result = json.loads(cleaned)
         if isinstance(result, dict):
             return result
     except json.JSONDecodeError:
         pass
+
+    # Attempt 2 — fix unescaped newlines inside string values
+    try:
+        result = json.loads(_fix_json_newlines(cleaned))
+        if isinstance(result, dict):
+            return result
+    except (json.JSONDecodeError, Exception):
+        pass
+
+    # Attempt 3 — regex extraction fallback for subject/body emails
+    subject_m = re.search(r'"subject"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"', cleaned, re.DOTALL)
+    body_m    = re.search(r'"body"\s*:\s*"(.*?)(?<!\\)"(?:\s*[},]|\s*$)', cleaned, re.DOTALL)
+    if subject_m and body_m:
+        subject = subject_m.group(1).replace('\\"', '"')
+        body    = body_m.group(1).replace('\\"', '"').replace('\\n', '\n')
+        return {"subject": subject, "body": body}
 
     print(f"✗ Could not parse {label} JSON. Raw: {text[:300]}")
     return {}

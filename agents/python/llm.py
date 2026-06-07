@@ -1,16 +1,18 @@
 """
-AI wrapper — Groq primary (free, fast), Gemini fallback.
+AI wrapper — Groq primary, Claude fallback, Gemini last resort.
 
 Fallback chain (each tier is tried before the next):
   1. Groq llama-3.3-70b-versatile  — best quality, 6,000 req/day free
   2. Groq llama-3.1-8b-instant     — faster, higher RPM limit, same free tier
-  3. Gemini gemini-2.0-flash-lite  — higher free-tier RPM than full flash
-  4. Gemini gemini-2.0-flash       — separate daily quota fallback
+  3. Claude claude-haiku-4-5        — reliable paid fallback, very cheap
+  4. Gemini gemini-2.0-flash-lite  — higher free-tier RPM than full flash
+  5. Gemini gemini-2.0-flash       — separate daily quota fallback
 
 Per-minute rate limits (RPM) are retried once after the suggested delay.
 Daily token limits (TPD) are not retried — they reset at midnight UTC.
 
 Get a free Groq key at: https://console.groq.com → API Keys → Create
+Get an Anthropic key at: https://console.anthropic.com
 Get a free Gemini key at: https://aistudio.google.com/app/apikey
 """
 import os
@@ -21,11 +23,12 @@ from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent / ".env")
 
-_groq_key   = os.getenv("GROQ_API_KEY", "")
-_gemini_key = os.getenv("GEMINI_API_KEY", "")
+_groq_key      = os.getenv("GROQ_API_KEY", "")
+_gemini_key    = os.getenv("GEMINI_API_KEY", "")
+_anthropic_key = os.getenv("ANTHROPIC_API_KEY", "")
 
-if not _groq_key and not _gemini_key:
-    raise RuntimeError("No AI key found. Set GROQ_API_KEY in agents/python/.env")
+if not _groq_key and not _gemini_key and not _anthropic_key:
+    raise RuntimeError("No AI key found. Set GROQ_API_KEY or ANTHROPIC_API_KEY in agents/python/.env")
 
 # ── Groq client (tiers 1 & 2 — both free) ────────────────────────────────────
 _groq_client = None
@@ -36,7 +39,18 @@ if _groq_key:
 _GROQ_MODEL_PRIMARY = "llama-3.3-70b-versatile"
 _GROQ_MODEL_FAST    = "llama-3.1-8b-instant"
 
-# ── Gemini client (tiers 3 & 4) ───────────────────────────────────────────────
+# ── Anthropic client (tier 3 — reliable paid fallback) ───────────────────────
+_anthropic_client = None
+if _anthropic_key:
+    try:
+        import anthropic as _anthropic_lib
+        _anthropic_client = _anthropic_lib.Anthropic(api_key=_anthropic_key)
+    except ImportError:
+        pass  # anthropic package not installed — skip this tier
+
+_ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"  # fast + cheapest Claude
+
+# ── Gemini client (tiers 4 & 5) ───────────────────────────────────────────────
 # Tried in order; each model has its own separate daily quota bucket.
 _gemini_client = None
 if _gemini_key:
@@ -118,11 +132,22 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
                         return _ask_groq(system_prompt, user_message, max_tokens, _GROQ_MODEL_FAST)
                     except Exception:
                         pass
-                print(f"[llm] Groq 8B rate-limited — falling back to Gemini")
+                print(f"[llm] Groq 8B rate-limited — trying Claude")
             else:
                 raise
 
-    # Tiers 3 & 4 — Gemini models tried in order, each with its own daily quota
+    # Tier 3 — Claude (reliable paid fallback, fast)
+    if _anthropic_client:
+        try:
+            return _ask_claude(system_prompt, user_message, max_tokens)
+        except Exception as e:
+            err = str(e)
+            if _is_rate_limit(err.lower()):
+                print(f"[llm] Claude rate-limited — falling back to Gemini")
+            else:
+                raise
+
+    # Tiers 4 & 5 — Gemini models tried in order, each with its own daily quota
     if _gemini_client:
         last_err: Exception | None = None
         for model in _GEMINI_MODELS:
@@ -157,6 +182,16 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
         "All AI providers exhausted or rate-limited. "
         "Groq TPD resets at midnight UTC."
     )
+
+
+def _ask_claude(system_prompt: str, user_message: str, max_tokens: int) -> str:
+    response = _anthropic_client.messages.create(
+        model=_ANTHROPIC_MODEL,
+        max_tokens=min(max_tokens, 4096),
+        system=system_prompt,
+        messages=[{"role": "user", "content": user_message}],
+    )
+    return response.content[0].text.strip()
 
 
 def _ask_groq(system_prompt: str, user_message: str, max_tokens: int, model: str) -> str:
