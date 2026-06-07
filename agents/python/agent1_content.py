@@ -16,6 +16,7 @@ from config import SITE_URL, BRAND_NAME, CONTENT_SLOTS, COUNTRIES, INSTAGRAM_HAS
 from utils.football_api import get_todays_matches, get_best_odds
 from utils.queue_manager import push
 from utils.logger import log
+from utils.serp_research import research, build_keyword
 
 SYSTEM_PROMPT = """You are the Content Creator for SifuFinds (sifufinds.com), Africa's #1 betting comparison website covering 19 African countries.
 
@@ -56,6 +57,7 @@ Write the full blog post here in plain markdown (800-1000 words). Include H2 hea
 
 def run():
     log("agent1", "start", "running")
+    print(f"[agent1] keyword target: {build_keyword(CONTENT_SLOTS[datetime.now(timezone.utc).day % len(CONTENT_SLOTS)], 'auto')}")
 
     today = datetime.now(timezone.utc).strftime("%A %d %B %Y")
     slot_index = datetime.now(timezone.utc).day % len(CONTENT_SLOTS)
@@ -65,6 +67,10 @@ def run():
 
     matches = get_todays_matches()
     odds = get_best_odds()
+
+    # Auto-research: Firecrawl SERP + Apify competitor analysis
+    keyword = build_keyword(topic, country["name"])
+    serp_block = research(keyword, country["name"])
 
     user_message = f"""Today is {today}.
 
@@ -82,6 +88,7 @@ INSTAGRAM HASHTAGS TO USE: {hashtags}
 
 SITE URL: {SITE_URL}
 
+{serp_block}
 Generate the full content package now. Return only valid JSON, nothing else."""
 
     try:
