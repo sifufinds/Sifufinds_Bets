@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-07T11:37:25.286938+00:00",
+  "updated_at": "2026-06-07T12:04:33.601985+00:00",
   "items": [
     {
       "category": "football",
@@ -10,20 +10,12 @@
       "published_at": "2026-06-07T13:00:00+00:00"
     },
     {
-      "category": "sportnews",
-      "label": "\ud83d\udcf0 NEWS",
-      "text": "England v New Zealand: first cricket Test, day four \u2013 live",
-      "source": "Guardian Sport",
-      "url": "https://www.theguardian.com/sport/live/2026/jun/07/england-v-new-zealand-first-cricket-test-day-four-live",
-      "published_at": "2026-06-07T11:30:56+00:00"
-    },
-    {
-      "category": "sportnews",
-      "label": "\ud83d\udcf0 NEWS",
-      "text": "Euro 2016 ten years on - and NI's bright future",
-      "source": "BBC Sport All",
-      "url": "https://www.bbc.com/sport/football/articles/cd0p057z7ndo?at_medium=RSS&at_campaign=rss",
-      "published_at": "2026-06-07T11:26:10+00:00"
+      "category": "tennis",
+      "label": "\ud83c\udfbe TENNIS",
+      "text": "French Open 2026: Flavio Cobolli v Alexander Zverev, men\u2019s singles final \u2013 live",
+      "source": "Guardian Tennis",
+      "url": "https://www.theguardian.com/sport/live/2026/jun/07/french-open-2026-flavio-cobolli-alexander-zverev-mens-singles-final-live",
+      "published_at": "2026-06-07T12:03:14+00:00"
     },
     {
       "category": "cricket",
@@ -31,15 +23,55 @@
       "text": "County cricket: Surrey v Hampshire day one, plus T20 Blast updates \u2013 live",
       "source": "Guardian Cricket",
       "url": "https://www.theguardian.com/sport/live/2026/jun/07/county-championship-day-one-surrey-v-hampshire-notts-v-somerset-and-more-live",
-      "published_at": "2026-06-07T11:25:58+00:00"
+      "published_at": "2026-06-07T12:02:45+00:00"
     },
     {
       "category": "f1",
       "label": "\ud83d\udcf0 NEWS",
-      "text": "F1 Monaco GP LIVE: Race updates, results, stream, highlights from sixth round of 2026 Formula 1 season in Monte Carlo - Sky Sports",
+      "text": "Monaco Grand Prix: Formula One \u2013 live updates",
+      "source": "Guardian F1",
+      "url": "https://www.theguardian.com/sport/live/2026/jun/07/monaco-grand-prix-formula-one-live-updates",
+      "published_at": "2026-06-07T12:02:57+00:00"
+    },
+    {
+      "category": "sportnews",
+      "label": "\ud83d\udcf0 NEWS",
+      "text": "England begin Ashes rebuild with win over NZ",
+      "source": "BBC Sport All",
+      "url": "https://www.bbc.com/sport/cricket/articles/cx2k818rdkgo?at_medium=RSS&at_campaign=rss",
+      "published_at": "2026-06-07T11:58:07+00:00"
+    },
+    {
+      "category": "f1",
+      "label": "\ud83d\udcf0 NEWS",
+      "text": "LIVE: 2026 F1 Monaco Grand Prix - racingnews365.com",
       "source": "Google News",
-      "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPRzVaeU5kajc1RENGU1NITGduRjNZRWhzem1TZU9TWDM0M2psdmhrUmx3bV9FU0toaC10dFNMczk5cWVxM1pXc3FtY2U3MFR2UTh3MkVnX3o3Qjg3WVk4cmdWdDdhYkZlc3puZ1g4dnVFVzFVYlUtZFI4UDhXTHpOZTlYUlJrYkp1bW5NT01yTUUyNEdIUHdpdHpyVEhtdGJULW5uVl90N2dfVmg5azRZbDZnXzctWDB4SnRZQlJ5M0JveTV6TDhST1FtX1lMcFdhbC1mT3lDdzJzV3ZMTThpMmlJNzVkSnRabFlSLVB2dmdGMDRLYmlkcWNkcw?oc=5",
-      "published_at": "2026-06-07T11:21:00+00:00"
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1mbGt5QTRsdS1BRDIyYkhLMzR3SlZSYUhxd2RxVVlnSnVja2FYTVc0OUR2SGU2UldEMU85NWdXUjV4VUFETHZ0dk55N1ZYaUk3S0Z1U0NmNURrbHpOczBvczhVd3pRbVU?oc=5",
+      "published_at": "2026-06-07T12:00:00+00:00"
+    },
+    {
+      "category": "sportnews",
+      "label": "\ud83d\udcf0 NEWS",
+      "text": "England beat New Zealand by 115 runs: first cricket Test, day four \u2013 live reaction",
+      "source": "Guardian Sport",
+      "url": "https://www.theguardian.com/sport/live/2026/jun/07/england-v-new-zealand-first-cricket-test-day-four-live",
+      "published_at": "2026-06-07T11:45:50+00:00"
+    },
+    {
+      "category": "cricket",
+      "label": "\ud83c\udfcf CRICKET",
+      "text": "England end New Zealand\u2019s brief resistance to seal victory in first Test",
+      "source": "Guardian Cricket",
+      "url": "https://www.theguardian.com/sport/2026/jun/07/england-new-zealand-cricket-first-test-day-four-report",
+      "published_at": "2026-06-07T11:49:15+00:00"
+    },
+    {
+      "category": "football",
+      "label": "\u26bd FOOTBALL",
+      "text": "Euro 2016 10 years on - and NI's bright future",
+      "source": "BBC Sport",
+      "url": "https://www.bbc.com/sport/football/articles/cd0p057z7ndo?at_medium=RSS&at_campaign=rss",
+      "published_at": "2026-06-07T11:26:10+00:00"
     },
     {
       "category": "rugby",
@@ -50,36 +82,20 @@
       "published_at": "2026-06-07T11:13:30+00:00"
     },
     {
-      "category": "football",
-      "label": "\u26bd FOOTBALL",
-      "text": "\u2018It leaves a bad taste in my mouth\u2019: Columbus embraces NWSL while questioning the cost",
-      "source": "Guardian Football",
-      "url": "https://www.theguardian.com/football/2026/jun/07/nwsl-columbus-expansion-public-funding-park-dispute-fans",
-      "published_at": "2026-06-07T11:00:33+00:00"
+      "category": "basketball",
+      "label": "\ud83c\udfc0 BASKETBALL",
+      "text": "Ranking Duke Basketball Incoming Rookies by Immediate Impact",
+      "source": "Sports Illustrated",
+      "url": "https://www.si.com/college/duke/blue-devils-ranking-basketball-incoming-rookies-immediate-impact",
+      "published_at": "2026-06-07T11:04:13+00:00"
     },
     {
       "category": "tennis",
       "label": "\ud83c\udfbe TENNIS",
-      "text": "TV and streaming viewing picks for June 7, 2026: How to watch French Open Men\u2019s ...",
-      "source": "Awful Announcing \u00b7 via Yahoo Sports",
-      "url": "https://sports.yahoo.com/articles/tv-streaming-viewing-picks-june-110029104.html",
-      "published_at": "2026-06-07T11:00:14+00:00"
-    },
-    {
-      "category": "f1",
-      "label": "\ud83d\udcf0 NEWS",
-      "text": "F1 Results Today: Monaco Grand Prix times and positions - GPFans",
+      "text": "Alexander Zverev faces Flavio Cobolli in French Open final chasing elusive Grand Slam title - Source ONE News",
       "source": "Google News",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxORXNFWDUzWlgxaHBZZlZmWlNHWEZZQkVXMGd4RVNLeHp1UTM1ZENkVU5ER2RvbGxOUDRWeDNUTktTdEEtMURZV0l2YVJIam9IdE9zQXlxT2Z2VnFvOUx4RktHS0dfVGRWbFJFRXdVblFlSmRYUFR2aU51NFdRQzhhRm01SnZtNXlNSnJ2dUxkTWEwZ0R1ZWFsT2g3V0prQQ?oc=5",
-      "published_at": "2026-06-07T10:57:00+00:00"
-    },
-    {
-      "category": "cricket",
-      "label": "\ud83c\udfcf CRICKET",
-      "text": "'Another one!' Tongue strikes early as England close in on victory",
-      "source": "BBC Cricket",
-      "url": "https://www.bbc.com/sport/cricket/videos/c74ylrlp7v1o?at_medium=RSS&at_campaign=rss",
-      "published_at": "2026-06-07T10:29:00+00:00"
+      "url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxOZk5QMnZGT1I3RWFnZFpZNUFPWV9RdVpDd0ltTzN5RE1qaFEzQU1HWG9SRGF3dmgxcVhyQ0hxa096M2VueE5Uc080UzFfbWhPcDViRndDVGV5UExDd0cxOUNVb1RwWU1zZTgyMG5udmVYUGV3a2JLak5neThTYVlaSEFFbGc2SHVWQU9lUW1ScUx5SDB5X3JGcm9RRWxZLXJZVmQyS3NHZlZ5WnlpRGF5VWVFOGJfYXB3RklpZUxxY2JIV184a3BHS2RQQ2ExeFVRTEVoRUs1YlBrNXRUVnd6MGhVOWNmTXRZSjVYbWZSX0U4RU1XaGFCOWhQQVlYZHlQVmF4WTFqSUpXd1BtRUVBNExMLWk2TzlQckE?oc=5",
+      "published_at": "2026-06-07T10:27:38+00:00"
     },
     {
       "category": "boxing",
@@ -90,14 +106,6 @@
       "published_at": "2026-06-07T10:09:41+00:00"
     },
     {
-      "category": "boxing",
-      "label": "\ud83d\udcf0 NEWS",
-      "text": "Watch The Misfits take on Fame Fighting LIVE in biggest celeb boxing match EVER - The Sun",
-      "source": "Google News",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbFRJZW5oNGtpMkRZOXp0Ulg0bWR2cngyaXk2R29ySzVMclUxUkI2aHN0cU5CMUlENUh6NEtnZXVzdldRcHZ3NE5YUmh5RERRNmVkRFR4NEJ6WnpDQ01jUHBxaFUzZkxyZ25MV2F5Z3ozUzBvZDljSkM1dFJINmhtU2NNbkZ0VjZhSzVHNlpnRG1lWWlRdkR5SV8yeURWZw?oc=5",
-      "published_at": "2026-06-07T09:55:20+00:00"
-    },
-    {
       "category": "rugby",
       "label": "\ud83c\udfc9 RUGBY",
       "text": "New owners closing in on Exeter deal - Rowe",
@@ -106,12 +114,12 @@
       "published_at": "2026-06-07T09:06:30+00:00"
     },
     {
-      "category": "tennis",
-      "label": "\ud83c\udfbe TENNIS",
-      "text": "How to follow Queen's on the BBC",
-      "source": "BBC Tennis",
-      "url": "https://www.bbc.com/sport/tennis/articles/cewpevz8w1ko?at_medium=RSS&at_campaign=rss",
-      "published_at": "2026-06-07T07:51:18+00:00"
+      "category": "boxing",
+      "label": "\ud83d\udcf0 NEWS",
+      "text": "Chris Billam-Smith claims hometown victory over Ryan Rozicki after dramatic stoppage in epic cruiserweight contest - Sky Sports",
+      "source": "Google News",
+      "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNem1wMFgzSUQtWGpwS3pUeUh5RHU1ZzhkUmM3V3pPZkFiaEw5ZGpLdEQwbEVuWFNhUkZXNnQxdGRpazhLSUdoNmxVYzFTQkhIbzUwRm5faWxWbi1wNU9sZkY3bVpCcXBPYW5OcjRDRC1nR1ZDMlhITlRsWTZ1SWlZTnkyc2FMRHh4cm1oWXpBQ1lYNV9pSGI5US0zR0RNcW5YTUNtVWhnaW5CczV1bzJhdFdhRlZpcTR2a3hNVFR4VjNpMDlGOXl6YXFJR3oyOU1laHRlN2xzNzNmZUhkVUM4bXBqTU1PUHFsdF9MMVlRLUdrNHZKMFRyY3ZXQQ?oc=5",
+      "published_at": "2026-06-07T01:22:19+00:00"
     },
     {
       "category": "basketball",
@@ -120,14 +128,6 @@
       "source": "Google News",
       "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNeUl6OHhSbjg2RzJveldhY0FxZDVoSF82NWlBYlBoLTVfVGJnYldTNzNUZVFFUGszUDVHSkhVeW1oSnpXazRleXh4WnE4NzRTbkRZVng0NTZjLXFoNWUwY0hDWXhYbG1FSTJCd09mQVdEVWpqZzV5eGpYUDg5SEZxbGVoSWhpeGd1WTJLUXVn?oc=5",
       "published_at": "2026-06-07T00:16:00+00:00"
-    },
-    {
-      "category": "basketball",
-      "label": "\ud83c\udfc0 BASKETBALL",
-      "text": "Caitlin Clark cheers for a 7-game NBA Finals, savoring 'great basketball' - Audacy",
-      "source": "Google News",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOSVYyLTBpWjhsb2NEbU5fZllvZUtPZXREaGFIdEVxeVpWVXZJYlFENEZFQVNpWnVUQ3IwRm9KQUFJRm5jcW9pZXJjOEdibkJKWGp3MjBwZkhYTG9jS2VvWWRieDROOEJTc01HNnhtdlAzYjhFQWNMeU02Y011T0xvN0JiRWlJY0IyXzdmQW9kb2lBV3YwVHZfYm9mOFE?oc=5",
-      "published_at": "2026-06-06T23:20:16+00:00"
     },
     {
       "category": "igaming",
