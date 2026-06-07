@@ -274,9 +274,9 @@
         <button class="fsb-pop" onclick="tipFiltSb('ucl',this)">⭐ UEFA Champions League</button>
         <button class="fsb-pop" onclick="tipFiltSb('cafl',this)">🏆 CAF Champions League</button>
         <button class="fsb-pop" onclick="tipFiltSb('afcon',this)">📋 AFCON</button>
-        <a class="fsb-pop fsb-ext" href="https://www.oddsportal.com/football/europe/europa-league/" target="_blank" rel="noopener">🌐 UEFA Europa League</a>
-        <a class="fsb-pop fsb-ext" href="https://www.oddsportal.com/football/africa/caf-confederation-cup/" target="_blank" rel="noopener">🌐 CAF Confederation Cup</a>
-        <a class="fsb-pop fsb-ext" href="https://www.oddsportal.com/football/south-america/copa-america/" target="_blank" rel="noopener">🌐 Copa America</a>
+        <button class="fsb-pop" onclick="tipFiltSb('ucl',this)">🌐 UEFA Europa League</button>
+        <button class="fsb-pop" onclick="tipFiltSb('cafl',this)">🌐 CAF Confederation Cup</button>
+        <button class="fsb-pop" onclick="tipFiltSb('world',this)">🌐 Copa America</button>
 
         <div class="fsb-lbl">Africa</div>
 
@@ -284,7 +284,7 @@
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('ng')">🇳🇬 Nigeria<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
             <button class="fsb-item" onclick="tipFiltSb('local',this)">NPFL</button>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/nigeria/" target="_blank" rel="noopener">Nigeria Cup</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Nigeria Cup</button>
           </div>
         </div>
 
@@ -292,7 +292,7 @@
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('ke')">🇰🇪 Kenya<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
             <button class="fsb-item" onclick="tipFiltSb('local',this)">Premier League</button>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/kenya/" target="_blank" rel="noopener">Kenya Cup</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Kenya Cup</button>
           </div>
         </div>
 
@@ -300,7 +300,7 @@
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('gh')">🇬🇭 Ghana<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
             <button class="fsb-item" onclick="tipFiltSb('local',this)">Ghana Premier League</button>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/ghana/" target="_blank" rel="noopener">MTN FA Cup</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">MTN FA Cup</button>
           </div>
         </div>
 
@@ -308,8 +308,8 @@
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('za')">🇿🇦 South Africa<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
             <button class="fsb-item" onclick="tipFiltSb('local',this)">PSL</button>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/south-africa/" target="_blank" rel="noopener">NFD</a>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/south-africa/" target="_blank" rel="noopener">Nedbank Cup</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">NFD</button>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Nedbank Cup</button>
           </div>
         </div>
 
@@ -317,7 +317,7 @@
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('eg')">🇪🇬 Egypt<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
             <button class="fsb-item" onclick="tipFiltSb('local',this)">Egyptian Premier League</button>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/egypt/" target="_blank" rel="noopener">Egypt Cup</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Egypt Cup</button>
           </div>
         </div>
 
@@ -325,126 +325,126 @@
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('ma')">🇲🇦 Morocco<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
             <button class="fsb-item" onclick="tipFiltSb('local',this)">Botola Pro</button>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/morocco/" target="_blank" rel="noopener">Throne Cup</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Throne Cup</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-dz">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('dz')">🇩🇿 Algeria<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/algeria/ligue-1/" target="_blank" rel="noopener">Ligue 1</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Ligue 1</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-sn">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('sn')">🇸🇳 Senegal<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/senegal/" target="_blank" rel="noopener">Ligue 1</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Ligue 1</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-cm">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('cm')">🇨🇲 Cameroon<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/cameroon/" target="_blank" rel="noopener">MTN Elite One</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">MTN Elite One</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-ci">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('ci')">🇨🇮 Ivory Coast<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/ivory-coast/" target="_blank" rel="noopener">Ligue 1</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Ligue 1</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-tn">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('tn')">🇹🇳 Tunisia<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/tunisia/" target="_blank" rel="noopener">Ligue 1 Pro</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Ligue 1 Pro</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-ug">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('ug')">🇺🇬 Uganda<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/uganda/" target="_blank" rel="noopener">FUFA Premier League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">FUFA Premier League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-tz">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('tz')">🇹🇿 Tanzania<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/tanzania/" target="_blank" rel="noopener">NBC Premier League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">NBC Premier League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-zm">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('zm')">🇿🇲 Zambia<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/zambia/" target="_blank" rel="noopener">Super League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Super League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-zw">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('zw')">🇿🇼 Zimbabwe<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/zimbabwe/" target="_blank" rel="noopener">Castle Lager PSL</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Castle Lager PSL</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-et">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('et')">🇪🇹 Ethiopia<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/ethiopia/" target="_blank" rel="noopener">Ethiopian Premier League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Ethiopian Premier League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-rw">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('rw')">🇷🇼 Rwanda<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/rwanda/" target="_blank" rel="noopener">National League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">National League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-cd">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('cd')">🇨🇩 DR Congo<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/dr-congo/" target="_blank" rel="noopener">Linafoot</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Linafoot</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-ao">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('ao')">🇦🇴 Angola<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/angola/" target="_blank" rel="noopener">Girabola</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Girabola</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-mz">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('mz')">🇲🇿 Mozambique<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/mozambique/" target="_blank" rel="noopener">Moçambola</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Moçambola</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-gm">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('gm')">🇬🇲 Gambia<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/gambia/gfa-league/" target="_blank" rel="noopener">GFA League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">GFA League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-sl">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('sl')">🇸🇱 Sierra Leone<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/sierra-leone/" target="_blank" rel="noopener">Premier League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Premier League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-lr">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('lr')">🇱🇷 Liberia<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/liberia/" target="_blank" rel="noopener">LFA First Division</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">LFA First Division</button>
           </div>
         </div>
 
@@ -454,9 +454,9 @@
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('en')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
             <button class="fsb-item" onclick="tipFiltSb('epl',this)">Premier League</button>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/england/championship/" target="_blank" rel="noopener">Championship</a>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/england/league-one/" target="_blank" rel="noopener">League One</a>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/england/fa-cup/" target="_blank" rel="noopener">FA Cup</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Championship</button>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">League One</button>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">FA Cup</button>
           </div>
         </div>
 
@@ -464,95 +464,95 @@
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('es')">🇪🇸 Spain<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
             <button class="fsb-item" onclick="tipFiltSb('laliga',this)">La Liga</button>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/spain/laliga2/" target="_blank" rel="noopener">La Liga 2</a>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/spain/copa-del-rey/" target="_blank" rel="noopener">Copa del Rey</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">La Liga 2</button>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Copa del Rey</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-de">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('de')">🇩🇪 Germany<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/germany/bundesliga/" target="_blank" rel="noopener">Bundesliga</a>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/germany/2-bundesliga/" target="_blank" rel="noopener">2. Bundesliga</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Bundesliga</button>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">2. Bundesliga</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-it">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('it')">🇮🇹 Italy<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/italy/serie-a/" target="_blank" rel="noopener">Serie A</a>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/italy/serie-b/" target="_blank" rel="noopener">Serie B</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Serie A</button>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Serie B</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-fr">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('fr')">🇫🇷 France<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/france/ligue-1/" target="_blank" rel="noopener">Ligue 1</a>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/france/ligue-2/" target="_blank" rel="noopener">Ligue 2</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Ligue 1</button>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Ligue 2</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-pt">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('pt')">🇵🇹 Portugal<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/portugal/primeira-liga/" target="_blank" rel="noopener">Primeira Liga</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Primeira Liga</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-nl">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('nl')">🇳🇱 Netherlands<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/netherlands/eredivisie/" target="_blank" rel="noopener">Eredivisie</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Eredivisie</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-be">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('be')">🇧🇪 Belgium<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/belgium/first-division-a/" target="_blank" rel="noopener">First Division A</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">First Division A</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-tr">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('tr')">🇹🇷 Turkey<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/turkey/super-lig/" target="_blank" rel="noopener">Süper Lig</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Süper Lig</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-ru">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('ru')">🇷🇺 Russia<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/russia/premier-league/" target="_blank" rel="noopener">Premier League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Premier League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-sc">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('sc')">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/scotland/premiership/" target="_blank" rel="noopener">Premiership</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Premiership</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-no">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('no')">🇳🇴 Norway<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/norway/eliteserien/" target="_blank" rel="noopener">Eliteserien</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Eliteserien</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-se">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('se')">🇸🇪 Sweden<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/sweden/allsvenskan/" target="_blank" rel="noopener">Allsvenskan</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Allsvenskan</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-gr">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('gr')">🇬🇷 Greece<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/greece/super-league/" target="_blank" rel="noopener">Super League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Super League</button>
           </div>
         </div>
 
@@ -561,29 +561,29 @@
         <div class="fsb-cty" id="fsbc-br">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('br')">🇧🇷 Brazil<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/brazil/serie-a-betano/" target="_blank" rel="noopener">Serie A</a>
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/brazil/serie-b/" target="_blank" rel="noopener">Serie B</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Serie A</button>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Serie B</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-ar">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('ar')">🇦🇷 Argentina<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/argentina/" target="_blank" rel="noopener">Primera División</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Primera División</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-mx">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('mx')">🇲🇽 Mexico<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/mexico/liga-mx/" target="_blank" rel="noopener">Liga MX</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Liga MX</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-us">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('us')">🇺🇸 USA<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/usa/mls/" target="_blank" rel="noopener">MLS</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">MLS</button>
           </div>
         </div>
 
@@ -592,28 +592,28 @@
         <div class="fsb-cty" id="fsbc-jp">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('jp')">🇯🇵 Japan<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/japan/j1-league/" target="_blank" rel="noopener">J1 League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">J1 League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-sa">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('sa')">🇸🇦 Saudi Arabia<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/saudi-arabia/saudi-professional-league/" target="_blank" rel="noopener">Saudi Pro League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">Saudi Pro League</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-kr">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('kr')">🇰🇷 South Korea<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/south-korea/k-league-1/" target="_blank" rel="noopener">K League 1</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">K League 1</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-au">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('au')">🇦🇺 Australia<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <a class="fsb-item fsb-ext" href="https://www.oddsportal.com/football/australia/" target="_blank" rel="noopener">A-League</a>
+            <button class="fsb-item" onclick="tipFiltSb('local',this)">A-League</button>
           </div>
         </div>
 
