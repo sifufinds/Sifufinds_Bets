@@ -897,18 +897,23 @@ document.addEventListener('DOMContentLoaded',function(){
   // ── GA4 (page views + events → Google Analytics) ────────────────────────────
   window.dataLayer=window.dataLayer||[];
   function gtag(){window.dataLayer.push(arguments);}
-  var gs=document.createElement('script');
-  gs.async=true;gs.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
-  document.head.appendChild(gs);
-  gtag('js',new Date());
-  gtag('config',GA_ID,{send_page_view:true});
+  // Only inject if not already present in <head> (avoids double-firing)
+  if(!document.querySelector('script[src*="googletagmanager.com/gtag"]')){
+    var gs=document.createElement('script');
+    gs.async=true;gs.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
+    document.head.appendChild(gs);
+    gtag('js',new Date());
+    gtag('config',GA_ID,{send_page_view:true});
+  }
 
   // ── GoatCounter (lightweight page views + custom events → goatcounter.com) ──
-  var gcs=document.createElement('script');
-  gcs.async=true;
-  gcs.setAttribute('data-goatcounter','https://'+GC_SITE+'.goatcounter.com/count');
-  gcs.src='//gc.zgo.at/count.js';
-  document.head.appendChild(gcs);
+  if(!document.querySelector('script[data-goatcounter]')){
+    var gcs=document.createElement('script');
+    gcs.async=true;
+    gcs.setAttribute('data-goatcounter','https://'+GC_SITE+'.goatcounter.com/count');
+    gcs.src='//gc.zgo.at/count.js';
+    document.head.appendChild(gcs);
+  }
   function gcEvent(path,title){
     // fires after GoatCounter has loaded
     if(window.goatcounter&&window.goatcounter.count){
