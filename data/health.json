@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-06-07T01:55:44.647325+00:00",
-  "healthy": true,
+  "checked_at": "2026-06-07T06:25:53.855929+00:00",
+  "healthy": false,
   "pages": {
     "Home": true,
     "Odds": true,
@@ -11,8 +11,6 @@
     "shared.css": true,
     "live.json": true
   },
-  "fixes_applied": [
-    "refreshed stale live.json (99 min old)"
-  ],
-  "fix_count": 1
+  "fixes_applied": [],
+  "fix_count": 0
 }
