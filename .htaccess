@@ -21,7 +21,7 @@ Options -Indexes
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
   # Content Security Policy — allows SifuFinds assets + known CDNs only
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ipapi.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://ipapi.co https://www.google-analytics.com https://stats.g.doubleclick.net; frame-src 'none'; object-src 'none'; base-uri 'self'"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ipapi.co https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://ipapi.co https://www.google-analytics.com https://stats.g.doubleclick.net https://*.supabase.co https://api.emailjs.com https://formsubmit.co; frame-src 'none'; object-src 'none'; base-uri 'self'"
 
   # Remove server version info
   Header unset Server
@@ -40,6 +40,21 @@ RedirectMatch 404 /\.(git|env|github|venv|claude)/
 RewriteEngine On
 RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
 RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+# ── CACHE CONTROL ────────────────────────────────────────────────────────────
+# Data files must never be cached — they update every 15 minutes
+<FilesMatch "\.(json|js)$">
+  <IfModule mod_headers.c>
+    Header always set Cache-Control "no-cache, must-revalidate"
+  </IfModule>
+</FilesMatch>
+
+# HTML files: revalidate on every visit so the page itself is always fresh
+<FilesMatch "\.html$">
+  <IfModule mod_headers.c>
+    Header always set Cache-Control "no-cache, must-revalidate"
+  </IfModule>
+</FilesMatch>
 
 # ── DIRECTORY INDEX ───────────────────────────────────────────────────────────
 DirectoryIndex index.html

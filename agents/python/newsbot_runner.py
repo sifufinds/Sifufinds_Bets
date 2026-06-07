@@ -34,9 +34,9 @@ def _deploy(now: datetime.datetime) -> None:
     """Commit and push new blog content to GitHub so it appears on the live site."""
     timestamp = now.strftime("%Y-%m-%d %H:%M") + " UTC"
 
-    # Pull latest remote changes first to avoid conflicts
+    # Pull latest remote changes — autostash keeps dirty tracked files safe
     _log("[deploy] pulling latest from origin...")
-    pull = _git("pull", "--rebase", "origin", "main")
+    pull = _git("pull", "--rebase", "--autostash", "origin", "main")
     if pull.returncode != 0:
         _log(f"  [warn] git pull failed: {pull.stderr.strip()}")
 
@@ -73,7 +73,7 @@ def _deploy(now: datetime.datetime) -> None:
             return
         _log(f"  [deploy] push rejected (attempt {attempt}/5) — rebasing...")
         _git("fetch", "origin", "main")
-        rebase = _git("rebase", "origin/main")
+        rebase = _git("rebase", "--autostash", "origin/main")
         if rebase.returncode != 0:
             _git("rebase", "--abort")
             _log("  [deploy] rebase aborted — will retry next run")
