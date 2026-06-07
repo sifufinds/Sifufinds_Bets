@@ -124,8 +124,27 @@ def build_keyword(topic: str, country_name: str) -> str:
     for fragment, template in SLOT_KEYWORD_TEMPLATES.items():
         if fragment.lower() in topic.lower():
             return template.format(country=country_name)
-    # Generic fallback
     return f"betting tips {country_name} 2026"
+
+
+_CATEGORY_KEYWORDS = {
+    "football":     "football betting tips Africa today",
+    "sportnews":    "sports betting news Africa 2026",
+    "betting":      "accumulator betting tips Africa 2026",
+    "igaming":      "best igaming betting sites Africa 2026",
+    "basketball":   "NBA basketball betting tips Africa 2026",
+    "tennis":       "tennis betting predictions 2026",
+    "cricket":      "cricket betting tips Africa 2026",
+    "rugby":        "rugby betting predictions 2026",
+    "boxing":       "boxing betting odds 2026",
+    "f1":           "Formula 1 F1 betting tips 2026",
+    "worldcup2026": "World Cup 2026 betting guide Africa",
+}
+
+
+def build_keyword_from_category(category: str) -> str:
+    """Map an agent_sports_blog category name to a SERP search keyword."""
+    return _CATEGORY_KEYWORDS.get(category, f"{category} betting tips Africa 2026")
 
 
 # ── Main entry point ─────────────────────────────────────────────────────────

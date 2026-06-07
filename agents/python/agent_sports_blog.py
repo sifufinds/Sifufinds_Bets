@@ -27,6 +27,7 @@ from llm import ask
 from config import SITE_URL, BRAND_NAME
 from utils.news_fetcher import fetch_category, format_for_prompt
 from utils.ticker_builder import build_and_save as update_ticker
+from utils.serp_research import research, build_keyword_from_category
 
 # ── CATEGORY METADATA ─────────────────────────────────────────────────────────
 
@@ -176,11 +177,15 @@ def generate_post(category: str) -> Optional[dict]:
     freshest_h = min(i.get("age_hours", 0) for i in news_items)
     print(f"  ✓ {len(news_items)} fresh items — newest: {freshest_h:.1f}h ago, oldest: {oldest_h:.1f}h ago")
 
-    # 2. Pick a betting angle
+    # 2. SERP + competitor research — Firecrawl search + Apify RAG
+    print(f"  🔍 Running SERP research...")
+    serp_block = research(build_keyword_from_category(category))
+
+    # 3. Pick a betting angle
     angles = BETTING_ANGLES.get(category, BETTING_ANGLES["football"])
     angle = random.choice(angles)
 
-    # 3. Build the prompt with real news context
+    # 4. Build the prompt with live news + SERP research context
     user_message = f"""TODAY: {today}
 
 LIVE NEWS HEADLINES FOR {category.upper()} — these are real stories published within the last {oldest_h:.0f} hours:
@@ -197,7 +202,9 @@ AFRICAN CONTEXT:
 - Popular payment methods: M-Pesa, MTN MoMo, OPay, PalmPay
 - Key African leagues: NPFL (Nigeria), KPL (Kenya), PSL (South Africa), GPL (Ghana), CAF Champions League, AFCON
 
-Write the article now. Base it on the REAL news provided above — do not invent events."""
+Write the article now. Base it on the REAL news provided above — do not invent events.
+
+{serp_block}"""
 
     try:
         print(f"  🤖 Generating article with Groq LLM...")
