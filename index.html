@@ -574,6 +574,7 @@ function renderFAQ(){
   H('faq-items',faqs.map(f=>`<div class="faq-i"><div class="faq-q">${f.q}</div><div class="faq-a">${f.a}</div></div>`).join(''));
 }
 
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 function srchBooks(q){
   const clearBtn=document.getElementById('srch-clear-btn');
   clearBtn.classList.toggle('show',q.length>0);
@@ -590,8 +591,9 @@ function srchBooks(q){
   document.getElementById('bk-cards').style.display='none';
   const box=document.getElementById('global-results');
   box.style.display='block';
-  if(!results.length){box.innerHTML=`<div class="no-results">No results for "${q}"</div>`;return;}
-  box.innerHTML=`<div class="gs-box"><div class="gs-hd"><span>🔍 Results for "${q}" – ${results.length} found</span><button style="background:none;border:none;color:#fff;cursor:pointer" onclick="clearSearch()">×</button></div>${results.slice(0,12).map(b=>`<div class="gs-item"><div class="gs-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,30,4,false)}</div><div><div class="gs-name">${b.name} <span style="font-size:10px;color:#bbb">${CTY_EMOJI[b.cty]||''} ${COUNTRY_DATA[b.cty]?.name||b.cty}</span></div><div class="gs-off">${b.off}</div></div><a class="gs-sw" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a></div>`).join('')}</div>`;
+  const qSafe=escHtml(q);
+  if(!results.length){box.innerHTML=`<div class="no-results">No results for "${qSafe}"</div>`;return;}
+  box.innerHTML=`<div class="gs-box"><div class="gs-hd"><span>🔍 Results for "${qSafe}" – ${results.length} found</span><button style="background:none;border:none;color:#fff;cursor:pointer" onclick="clearSearch()">×</button></div>${results.slice(0,12).map(b=>`<div class="gs-item"><div class="gs-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,30,4,false)}</div><div><div class="gs-name">${escHtml(b.name)} <span style="font-size:10px;color:#bbb">${CTY_EMOJI[b.cty]||''} ${escHtml(COUNTRY_DATA[b.cty]?.name||b.cty)}</span></div><div class="gs-off">${escHtml(b.off)}</div></div><a class="gs-sw" href="${encodeURI(b.url)}" target="_blank" rel="noopener noreferrer">Claim →</a></div>`).join('')}</div>`;
 }
 function clearSearch(){
   document.getElementById('srch-inp').value='';
