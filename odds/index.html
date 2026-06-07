@@ -562,7 +562,8 @@
       <a class="nt" href="../contact/">✉️ Contact</a>
     </div>
     <div class="srch-wrap">
-      <input class="srch-inp" id="srch-inp" type="text" placeholder="Search leagues..." autocomplete="off">
+      <input class="srch-inp" id="srch-inp" type="text" placeholder="Search leagues..." oninput="srchOdds(this.value)" onkeydown="if(event.key==='Escape')clearOddsSearch()" autocomplete="off" aria-label="Search leagues">
+      <button class="srch-clear" id="srch-clear-btn" onclick="clearOddsSearch()" title="Clear">×</button>
     </div>
   </div>
 </nav>
@@ -1421,6 +1422,30 @@ function updateStatus(){
   const label=liveCount>0?`${src} ${liveCount} events${hasFallback?' + cached':''}`:' ⚠️ Using cached data';
   H('api-st',label);
   H('odds-upd',`Updated ${new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}`);
+}
+
+function srchOdds(q){
+  document.getElementById('srch-clear-btn').classList.toggle('show',q.length>0);
+  const term=(q||'').trim().toLowerCase();
+  const allItems=document.querySelectorAll('.fsb-item,.fsb-pop:not(#fsb-all)');
+  if(!term){
+    allItems.forEach(el=>{el.style.display='';});
+    document.querySelectorAll('.fsb-cty,.fsb-lbl,.fsb-sport').forEach(el=>{el.style.display='';});
+    return;
+  }
+  allItems.forEach(el=>{
+    el.style.display=(el.textContent||'').toLowerCase().includes(term)?'':'none';
+  });
+  document.querySelectorAll('.fsb-cty').forEach(cty=>{
+    const hasVisible=Array.from(cty.querySelectorAll('.fsb-item')).some(el=>el.style.display!=='none');
+    cty.style.display=hasVisible?'':'none';
+  });
+  document.querySelectorAll('.fsb-sport').forEach(el=>{el.style.display='';});
+}
+function clearOddsSearch(){
+  document.getElementById('srch-inp').value='';
+  document.getElementById('srch-clear-btn').classList.remove('show');
+  srchOdds('');
 }
 
 function lgFilt(btn){

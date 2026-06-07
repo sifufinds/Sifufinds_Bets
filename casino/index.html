@@ -305,8 +305,21 @@ function renderFeatCasinos(){
   </div>`).join(''));
 }
 
-function srchCasino(q){document.getElementById('srch-clear-btn').classList.toggle('show',q.length>0);}
-function clearCasSearch(){document.getElementById('srch-inp').value='';document.getElementById('srch-clear-btn').classList.remove('show');}
+function srchCasino(q){
+  document.getElementById('srch-clear-btn').classList.toggle('show',q.length>0);
+  if(!q.trim()){renderCasinos();return;}
+  const term=q.toLowerCase();
+  const results=CASINOS.filter(c=>c.name.toLowerCase().includes(term)||c.off.toLowerCase().includes(term)||(c.tag||'').toLowerCase().includes(term));
+  const container=document.getElementById('cas-cards');
+  if(!results.length){container.innerHTML='<div class="no-results">No casinos found for "'+escHtml(q)+'"</div>';H('cas-count','');return;}
+  container.innerHTML=results.map((c,i)=>casCard(c,i)).join('');
+  H('cas-count','Showing '+results.length+' result'+(results.length!==1?'s':''));
+}
+function clearCasSearch(){
+  document.getElementById('srch-inp').value='';
+  document.getElementById('srch-clear-btn').classList.remove('show');
+  renderCasinos();
+}
 
 async function init(){
   await waitForCountry();

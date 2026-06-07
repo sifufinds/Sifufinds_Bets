@@ -592,8 +592,9 @@ function srchBooks(q){
   const box=document.getElementById('global-results');
   box.style.display='block';
   const qSafe=escHtml(q);
-  if(!results.length){box.innerHTML=`<div class="no-results">No results for "${qSafe}"</div>`;return;}
+  if(!results.length){box.innerHTML=`<div class="no-results">No results for "${qSafe}"</div>`;box.scrollIntoView({behavior:'smooth',block:'start'});return;}
   box.innerHTML=`<div class="gs-box"><div class="gs-hd"><span>🔍 Results for "${qSafe}" – ${results.length} found</span><button style="background:none;border:none;color:#fff;cursor:pointer" onclick="clearSearch()">×</button></div>${results.slice(0,12).map(b=>`<div class="gs-item"><div class="gs-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,30,4,false)}</div><div><div class="gs-name">${escHtml(b.name)} <span style="font-size:10px;color:#bbb">${CTY_EMOJI[b.cty]||''} ${escHtml(COUNTRY_DATA[b.cty]?.name||b.cty)}</span></div><div class="gs-off">${escHtml(b.off)}</div></div><a class="gs-sw" href="${encodeURI(b.url)}" target="_blank" rel="noopener noreferrer">Claim →</a></div>`).join('')}</div>`;
+  box.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function clearSearch(){
   document.getElementById('srch-inp').value='';

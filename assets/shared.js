@@ -623,6 +623,7 @@ advertise:`<h1>Advertise With Us</h1>
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 const H=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 const pm=p=>{const c=(PM_C[p]||'#888|#fff').split('|');return`<span class="pmc" style="background:${c[0]};color:${c[1]}">${p}</span>`;};
 const stars=n=>'★'.repeat(Math.min(n,5))+'☆'.repeat(Math.max(0,5-n));
 const openURL=url=>window.open(url,'_blank','noopener noreferrer');

@@ -929,10 +929,18 @@ async function renderAI(){
 
 function srchTips(q){
   document.getElementById('srch-clear-btn').classList.toggle('show',q.length>0);
+  if(!q.trim()){renderTips();return;}
+  const term=q.toLowerCase();
+  const results=_tipsData.filter(t=>(t.match||'').toLowerCase().includes(term)||(t.league||'').toLowerCase().includes(term)||(t.pred||'').toLowerCase().includes(term));
+  const container=document.getElementById('tips-cards');
+  if(!results.length){container.innerHTML='<div class="no-results">No tips found for "'+escHtml(q)+'"</div>';H('tips-cnt',0);return;}
+  container.innerHTML=results.map((t,i)=>tipCard(t,i)).join('');
+  H('tips-cnt',results.length);
 }
 function clearTipSearch(){
   document.getElementById('srch-inp').value='';
   document.getElementById('srch-clear-btn').classList.remove('show');
+  renderTips();
 }
 
 async function init(){
