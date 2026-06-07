@@ -62,8 +62,8 @@
 }
 </script>
 
-<link rel="preload" href="../assets/shared.css?v=6" as="style">
-<link rel="stylesheet" href="../assets/shared.css?v=6">
+<link rel="preload" href="../assets/shared.css?v=7" as="style">
+<link rel="stylesheet" href="../assets/shared.css?v=7">
 <style>
 /* ── CONTACT HERO ──────────────────────────────────────────────────────────── */
 .contact-hero{background:linear-gradient(135deg,#0a3d1e 0%,#1a6b35 60%,#125a2c 100%);color:#fff;padding:48px 0 40px}
@@ -406,8 +406,8 @@
 </div>
 
 <!-- EmailJS SDK — sends via Hostinger SMTP (service_s8m6m6g) -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="../assets/shared.js?v=6"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" integrity="sha384-SALc35EccAf6RzGw4iNsyj7kTPr33K7RoGzYu+7heZhT8s0GZouafRiCg1qy44AS" crossorigin="anonymous"></script>
+<script src="../assets/shared.js?v=7"></script>
 <script>
 // ── CONFIG ─────────────────────────────────────────────────────────────────────
 const SITE = {home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'};
@@ -549,6 +549,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
   };
 
   const errorBanner = document.getElementById('errorBanner');
+  errorBanner.textContent = 'Please correct the errors below and try again.';
   errorBanner.classList.remove('show');
 
   if (!validateForm(data)) {

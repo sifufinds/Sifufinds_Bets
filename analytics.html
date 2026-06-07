@@ -314,6 +314,8 @@ function countPages(){
   return 97;
 }
 
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+
 // ── Stats ───────────────────────────────────────────────────────────────────
 function getEvents(){
   try{return JSON.parse(localStorage.getItem(EVT_KEY)||'[]');}catch(e){return[];}
@@ -357,12 +359,13 @@ function renderEvents(){
     var time=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
     var date=d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
     var cls=nameClass(e.n);
-    var page=(e.p&&e.p.page)||'';
-    var detail=detailStr(e.n,e.p);
-    var extra=extraStr(e.n,e.p);
+    var page=escHtml((e.p&&e.p.page)||'');
+    var detail=escHtml(detailStr(e.n,e.p));
+    var extra=escHtml(extraStr(e.n,e.p));
+    var name=escHtml(e.n);
     return '<tr>'
-      +'<td class="ev-time" title="'+d.toISOString()+'">'+date+' '+time+'</td>'
-      +'<td><span class="ev-name '+cls+'">'+e.n+'</span></td>'
+      +'<td class="ev-time" title="'+escHtml(d.toISOString())+'">'+escHtml(date)+' '+escHtml(time)+'</td>'
+      +'<td><span class="ev-name '+cls+'">'+name+'</span></td>'
       +'<td title="'+page+'">'+page+'</td>'
       +'<td title="'+extra+'">'+detail+'</td>'
       +'</tr>';
