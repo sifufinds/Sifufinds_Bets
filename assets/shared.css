@@ -276,9 +276,55 @@ select.csel option{color:#222;background:#fff}
 .hbrand-cta{background:rgba(255,255,255,.22);padding:3px 8px;border-radius:4px;font-size:9.5px;font-weight:700;white-space:nowrap;margin-left:2px;flex-shrink:0}
 @media(max-width:600px){.hbrands-lbl{display:none}.hbrand-tag{display:none}.hbrand-cta{display:none}}
 .fbot button:hover{color:#fff}
+
+/* Hamburger button — desktop: hidden */
+.mob-menu-btn{display:none;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;width:40px;height:40px;border-radius:8px;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:background .15s;line-height:1;padding:0}
+.mob-menu-btn:hover{background:rgba(255,255,255,.28)}
+
 @media(max-width:700px){
-  .bk-main{grid-template-columns:24px 56px 1fr}.bk-act{display:none}
-  .pm-row{padding-left:96px}.ntabs{gap:0}.nt{padding:7px 8px;font-size:11px}
-  .odcb{grid-template-columns:1fr}.tbody{grid-template-columns:1fr}
+  /* Top bar: hide left links, keep country selector only */
+  .tbar-l{display:none}
+  .tbar{justify-content:flex-end;padding:5px 14px}
+
+  /* Main nav: logo + hamburger only */
+  .mob-menu-btn{display:flex;margin-left:auto}
+  .mnav{position:relative}
+  .mnav-in{position:relative}
+  .ntabs{
+    display:none;
+    position:absolute;
+    top:100%;left:0;right:0;
+    background:var(--dg);
+    flex-direction:column;
+    z-index:200;
+    box-shadow:0 6px 20px rgba(0,0,0,.3);
+    border-top:2px solid rgba(255,255,255,.12)
+  }
+  .ntabs.mob-open{display:flex}
+  .nt{padding:14px 20px;font-size:14px;border-radius:0;border-bottom:1px solid rgba(255,255,255,.08);gap:10px;width:100%}
+  .nt:last-child{border-bottom:none}
+  .srch-wrap{display:none}
+
+  /* Bookmaker cards — show "Claim Bonus" full-width below card info */
+  .bk-main{grid-template-columns:26px 68px 1fr;grid-template-rows:auto auto;align-items:start}
+  .bk-act{
+    display:flex;
+    grid-column:1/-1;
+    flex-direction:row;
+    align-items:center;
+    gap:10px;
+    padding-top:10px;
+    margin-top:4px;
+    border-top:1px solid #f0f0f0
+  }
+  .bk-stars,.cmp-wrap,.tc-n{display:none}
+  .bk-act .gbtn{flex:1;font-size:13px;padding:11px 14px;text-align:center}
+
+  /* Payment chips: full width (no indent) */
+  .pm-row{padding-left:0;padding:0 14px 10px}
+
+  /* Odds / tips / countries pages */
+  .odcb{grid-template-columns:1fr}
+  .tbody{grid-template-columns:1fr}
   .cgrid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
 }

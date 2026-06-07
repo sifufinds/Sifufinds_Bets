@@ -852,6 +852,32 @@ function renderBrandsBar(){
 }
 document.addEventListener('DOMContentLoaded',renderBrandsBar);
 
+// Mobile hamburger nav
+document.addEventListener('DOMContentLoaded',function(){
+  const mnavIn=document.querySelector('.mnav-in');
+  if(!mnavIn)return;
+  const btn=document.createElement('button');
+  btn.className='mob-menu-btn';
+  btn.setAttribute('aria-label','Toggle navigation menu');
+  btn.innerHTML='&#9776;';
+  mnavIn.appendChild(btn);
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    const tabs=document.querySelector('.ntabs');
+    if(!tabs)return;
+    const open=tabs.classList.toggle('mob-open');
+    btn.innerHTML=open?'&#x2715;':'&#9776;';
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.mnav')){
+      document.querySelector('.ntabs')?.classList.remove('mob-open');
+      btn.innerHTML='&#9776;';
+      btn.setAttribute('aria-expanded','false');
+    }
+  });
+});
+
 // ── SIFU ANALYTICS TRACKER ────────────────────────────────────────────────────
 (function(){
   'use strict';
