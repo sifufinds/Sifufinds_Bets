@@ -150,10 +150,11 @@ Write a personalised, professional outreach email for a backlink opportunity.
 Tone: genuine, concise, non-spammy. Lead with value to the recipient, not your need.
 Max 200 words. Subject line + body only. No placeholders like [NAME] — use "Hi there" or the site name.
 
-Respond ONLY with valid JSON:
+CRITICAL: Respond ONLY with valid JSON. Use \\n for line breaks — never literal newlines inside strings.
+The JSON must be parseable by Python's json.loads() without modification.
 {{
   "subject": "email subject line",
-  "body": "full email body"
+  "body": "First paragraph.\\n\\nSecond paragraph.\\n\\nBest regards,\\nThe SifuFinds Team"
 }}"""
 
 _CONTENT_SYSTEM = f"""You are a link-building content strategist for {SITE_NAME} ({SITE_URL}).
