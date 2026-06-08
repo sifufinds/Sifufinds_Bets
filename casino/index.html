@@ -250,7 +250,7 @@ function casCard(c,i){
   return`<div class="bkcard ${i<3?'top3':''} ${c.nodep?'nodep-card':''}">
   <div class="bk-main">
     <span class="bk-rk">#${i+1}</span>
-    <div class="bk-logo" style="background:#fff">${logoImg(c.url,c.name,c.abbr,c.tc,60,8,false)}</div>
+    <div class="bk-logo" style="background:${c.bg}">${logoImg(c.url,c.name,c.abbr,c.tc,60,8,false)}</div>
     <div>
       <div class="bk-tag">${c.tag}</div>
       <div class="bk-nm">${c.name}${badge}</div>
@@ -298,7 +298,7 @@ function renderFeatCasinos(){
   H('cas-feat',CASINOS.slice(0,4).map(c=>`
   <div class="cas-fc">
     <div class="fc-img" style="background:${c.bg}">
-      <img src="${logoUrl(c.url,c.abbr)}" data-fb="${logoFb(c.url,c.abbr)}" alt="${c.name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:16px;opacity:0;transition:opacity .25s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
+      <img src="${logoUrl(c.url,c.abbr)}" data-fb="${logoFb(c.url,c.abbr)}" alt="${c.name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0;opacity:0;transition:opacity .25s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
       <span class="fc-nm">${c.name}</span>
     </div>
     <div class="fc-body">

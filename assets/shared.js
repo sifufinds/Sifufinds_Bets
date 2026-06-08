@@ -675,8 +675,7 @@ const logoImg=(url,name,abbr,tc,w,r,hasBg)=>{
   const lsrc=logoUrl(url,abbr);
   if(!lsrc)return'';
   const lfb=logoFb(url,abbr);
-  const pad=Math.max(3,Math.ceil(r*1.0));
-  return`<img src="${lsrc}" data-fb="${lfb}" alt="${name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:${pad}px;opacity:0;transition:opacity .2s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">`;};;
+  return`<img src="${lsrc}" data-fb="${lfb}" alt="${name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0;opacity:0;transition:opacity .2s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">`;};;
 
 // ── COUNTRY MANAGEMENT ────────────────────────────────────────────────────────
 const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA','EG','MA','SL','LR']);

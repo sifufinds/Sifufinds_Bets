@@ -354,7 +354,7 @@ const bookCard=(b,i,rank)=>{
   return`<div class="bkcard ${rank<3?'top3':''} ${b.nodep?'nodep-card':''}">
   <div class="bk-main">
     <span class="bk-rk">#${rank+1}</span>
-    <div class="bk-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,60,8,false)}</div>
+    <div class="bk-logo" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,60,8,false)}</div>
     <div>
       <div class="bk-tag">${b.tag}</div>
       <div class="bk-nm">${b.name}${badge}</div>

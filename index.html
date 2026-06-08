@@ -476,7 +476,7 @@ function bookCard(b,i,rank){
   return`<div class="bkcard ${rank<3?'top3':''} ${b.nodep?'nodep-card':''}">
   <div class="bk-main">
     <span class="bk-rk">#${rank+1}</span>
-    <div class="bk-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,60,8,false)}</div>
+    <div class="bk-logo" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,60,8,false)}</div>
     <div>
       <div class="bk-tag">${b.tag}</div>
       <div class="bk-nm">${b.name}${badge}</div>
@@ -530,7 +530,7 @@ function renderFeatCards(){
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${b.bg}">
-      <img src="${logoUrl(b.url,b.abbr)}" data-fb="${logoFb(b.url,b.abbr)}" alt="${b.name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:16px;opacity:0;transition:opacity .25s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
+      <img src="${logoUrl(b.url,b.abbr)}" data-fb="${logoFb(b.url,b.abbr)}" alt="${b.name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0;opacity:0;transition:opacity .25s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
       <span class="fc-nm">${b.name}</span>
     </div>
     <div class="fc-body">

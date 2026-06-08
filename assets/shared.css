@@ -44,7 +44,7 @@ select.csel option{color:#222;background:#fff}
 .fc{border:1px solid #e8e8e8;border-radius:12px;background:#fff;overflow:hidden;transition:all .18s;display:flex;flex-direction:column}
 .fc:hover{box-shadow:0 6px 22px rgba(0,0,0,.13);transform:translateY(-3px);border-color:#bbb}
 .fc-img{height:180px;background:#1a1a2e;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
-.fc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:16px;opacity:0;transition:opacity .25s}
+.fc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0;opacity:0;transition:opacity .25s}
 .fc-logo-txt{font-size:clamp(22px,3.5vw,34px);font-weight:900;letter-spacing:-1.5px;text-align:center;padding:0 12px;line-height:1;text-transform:uppercase;font-style:italic;max-width:92%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff}
 .fc-nm{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.52);color:#fff;font-size:9.5px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;z-index:3}
 .fc-body{padding:11px 12px;flex:1;display:flex;flex-direction:column;gap:6px}
@@ -81,7 +81,7 @@ select.csel option{color:#222;background:#fff}
 .bkcard.nodep-card{border-left:3px solid var(--gold)}
 .bk-main{padding:12px 14px;display:grid;grid-template-columns:30px 66px 1fr 135px;gap:10px;align-items:center}
 .bk-rk{font-size:15px;font-weight:800;color:#ccc;text-align:center}
-.bk-logo{width:64px;height:64px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;border:1px solid #e8e8e8;overflow:hidden;flex-shrink:0;position:relative;background:#fff}
+.bk-logo{width:64px;height:64px;border-radius:10px;overflow:hidden;flex-shrink:0;position:relative}
 .bk-tag{font-size:10px;color:var(--g);font-weight:700;margin-bottom:1px;text-transform:uppercase;letter-spacing:.3px}
 .bk-nm{font-size:14.5px;font-weight:800;color:var(--g);margin-bottom:2px}
 .bk-off{font-size:13.5px;font-weight:700;color:#111;margin-bottom:2px;line-height:1.3}
