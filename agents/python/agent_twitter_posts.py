@@ -380,34 +380,37 @@ async def _post_playwright(text: str) -> bool:
             await _login_x(page)
             await context.storage_state(path=str(session_file))
 
-        # Open the tweet compose dialog
-        await page.goto("https://x.com/compose/post", wait_until="domcontentloaded", timeout=15_000)
+        # Navigate to home and open compose via sidebar button
+        await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
+        await page.wait_for_timeout(2_000)
 
-        # Type tweet text
-        textarea = page.locator('[data-testid="tweetTextarea_0"]')
-        await textarea.wait_for(state="visible", timeout=10_000)
+        # Click the "Post" compose button in the left sidebar
+        compose_btn = page.locator('[data-testid="SideNav_NewTweet_Button"]')
+        await compose_btn.wait_for(state="visible", timeout=15_000)
+        await compose_btn.click()
+        await page.wait_for_timeout(1_000)
+
+        # Find the tweet textarea (try multiple selectors for resilience)
+        textarea = page.locator(
+            '[data-testid="tweetTextarea_0"], '
+            '[data-testid="tweetTextarea_0RichTextInputContainer"] div[contenteditable], '
+            'div[role="textbox"][contenteditable="true"]'
+        ).first
+        await textarea.wait_for(state="visible", timeout=15_000)
         await textarea.click()
-        # Use clipboard paste to handle emojis correctly
-        await page.evaluate(
-            """(txt) => {
-                const dt = new DataTransfer();
-                dt.setData('text/plain', txt);
-                document.activeElement.dispatchEvent(
-                    new ClipboardEvent('paste', {clipboardData: dt, bubbles: true})
-                );
-            }""",
-            text,
-        )
+
+        # Type text character by character (handles emojis reliably)
+        await page.keyboard.type(text, delay=30)
         await page.wait_for_timeout(800)
 
         # Click the Post / Tweet button
-        post_btn = page.locator('[data-testid="tweetButton"]').or_(
-            page.locator('[data-testid="tweetButtonInline"]')
-        )
-        await post_btn.first.wait_for(state="visible", timeout=8_000)
-        await post_btn.first.click()
+        post_btn = page.locator(
+            '[data-testid="tweetButton"], [data-testid="tweetButtonInline"]'
+        ).first
+        await post_btn.wait_for(state="visible", timeout=8_000)
+        await post_btn.click()
 
-        # Brief wait to confirm the post was submitted
+        # Wait for the modal to close (confirms post was submitted)
         await page.wait_for_timeout(3_000)
 
         await context.close()
