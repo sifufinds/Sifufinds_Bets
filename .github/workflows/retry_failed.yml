@@ -1,79 +1,94 @@
-name: Retry Failed — every 2 hours
+name: Retry Safety Net — every 30 minutes
 
-# Polls every 2 hours and re-triggers deploy_hostinger or traffic_report
-# if their most recent run ended in failure.
-# Using a cron poll instead of an immediate watchdog re-trigger gives
-# Hostinger / GoatCounter time to recover before we try again.
+# Safety net that polls every 30 min and re-triggers any workflow whose
+# last completed run ended in failure.  Complements the event-driven
+# workflow_watchdog.yml — catches cases where the watchdog itself failed
+# or a retried run also failed.
+#
+# Skips workflows that are currently in_progress / queued / waiting so
+# we never double-fire alongside a live run.
 
 on:
   schedule:
-    - cron: "0 */2 * * *"   # 00:00, 02:00, 04:00 … UTC
+    - cron: "*/30 * * * *"   # every 30 minutes, 24/7
   workflow_dispatch:
 
 permissions:
   actions: write
 
 jobs:
-  retry-deploy:
-    name: Retry deploy if last run failed
+  retry-all:
+    name: Scan all workflows and retry failures
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     steps:
-      - name: Check last deploy_hostinger run
+      - name: Check and retry failed workflows
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
         run: |
           set +e
-          CONCLUSION=$(gh run list \
-            --workflow=deploy_hostinger.yml \
-            --repo "${{ github.repository }}" \
-            --limit 1 \
-            --json conclusion \
-            --jq '.[0].conclusion' 2>/dev/null)
-          echo "Last deploy conclusion: ${CONCLUSION:-unknown}"
-          if [ "$CONCLUSION" = "failure" ]; then
-            echo "⚠ Last deploy failed — re-triggering now..."
-            if gh workflow run deploy_hostinger.yml \
-              --repo "${{ github.repository }}" \
-              --ref main; then
-              echo "✅ deploy_hostinger.yml re-triggered"
-            else
-              echo "⚠️ Could not re-trigger deploy_hostinger.yml"
-            fi
-          else
-            echo "✅ Last deploy was ${CONCLUSION:-unknown} — no retry needed"
-          fi
-          exit 0
 
-  retry-traffic:
-    name: Retry traffic report if last run failed
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+          WORKFLOWS=(
+            "brand_scraper.yml"
+            "breaking_news.yml"
+            "deploy_hostinger.yml"
+            "firecrawl_odds.yml"
+            "hourly_scrape.yml"
+            "live_odds.yml"
+            "seo_backlinks.yml"
+            "seo_sitemap.yml"
+            "site_doctor.yml"
+            "site_monitor.yml"
+            "telegram_growth.yml"
+            "telegram_offers.yml"
+            "telegram_outreach.yml"
+            "traffic_report.yml"
+            "twitter_posts.yml"
+            "update_countries_live.yml"
+            "update_predictions.yml"
+          )
 
-    steps:
-      - name: Check last traffic_report run
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set +e
-          CONCLUSION=$(gh run list \
-            --workflow=traffic_report.yml \
-            --repo "${{ github.repository }}" \
-            --limit 1 \
-            --json conclusion \
-            --jq '.[0].conclusion' 2>/dev/null)
-          echo "Last traffic report conclusion: ${CONCLUSION:-unknown}"
-          if [ "$CONCLUSION" = "failure" ]; then
-            echo "⚠ Last traffic report failed — re-triggering now..."
-            if gh workflow run traffic_report.yml \
-              --repo "${{ github.repository }}" \
-              --ref main; then
-              echo "✅ traffic_report.yml re-triggered"
-            else
-              echo "⚠️ Could not re-trigger traffic_report.yml"
+          RETRIED=0
+          SKIPPED=0
+          OK=0
+
+          for WF in "${WORKFLOWS[@]}"; do
+            INFO=$(gh run list \
+              --workflow="$WF" \
+              --repo "$REPO" \
+              --limit 1 \
+              --json conclusion,status \
+              --jq '.[0] | {conclusion: (.conclusion // ""), status: (.status // "")}' 2>/dev/null)
+
+            CONCLUSION=$(echo "$INFO" | jq -r '.conclusion')
+            STATUS=$(echo "$INFO"     | jq -r '.status')
+
+            # Skip if a run is already active
+            if [ "$STATUS" = "in_progress" ] || [ "$STATUS" = "queued" ] || [ "$STATUS" = "waiting" ]; then
+              echo "⏳  $WF — currently $STATUS, skipping"
+              SKIPPED=$((SKIPPED + 1))
+              continue
             fi
-          else
-            echo "✅ Last traffic report was ${CONCLUSION:-unknown} — no retry needed"
-          fi
+
+            if [ "$CONCLUSION" = "failure" ]; then
+              echo "⚠️  $WF — last run FAILED, re-triggering..."
+              if gh workflow run "$WF" --repo "$REPO" --ref main; then
+                echo "✅  $WF re-triggered"
+                RETRIED=$((RETRIED + 1))
+              else
+                echo "⚠️  Could not re-trigger $WF"
+              fi
+            else
+              echo "✅  $WF — $CONCLUSION"
+              OK=$((OK + 1))
+            fi
+          done
+
+          echo ""
+          echo "━━━ Safety Net Summary ━━━"
+          echo "  OK      : $OK"
+          echo "  Active  : $SKIPPED"
+          echo "  Retried : $RETRIED"
           exit 0
