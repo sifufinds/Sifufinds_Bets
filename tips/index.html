@@ -931,8 +931,27 @@ function clearTipSearch(){
   renderTips();
 }
 
+async function fetchLiveData(){
+  try{
+    const r=await fetch('../data/countries_live.json?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const live=await r.json();
+    if(live.bookmakers){
+      Object.keys(BOOKS).forEach(code=>{
+        BOOKS[code].forEach(bk=>{
+          const keys=Object.keys(live.bookmakers);
+          const key=keys.find(k=>k===bk.name)||
+                     keys.find(k=>bk.name.startsWith(k.split(' ')[0])||k.startsWith(bk.name.split(' ')[0]));
+          const ld=key?live.bookmakers[key]:null;
+          if(ld){if(ld.top)bk.top=ld.top;if(ld.off)bk.off=ld.off;bk._live=true;}
+        });
+      });
+    }
+  }catch(e){}
+}
+
 async function init(){
-  await waitForCountry();
+  await Promise.all([waitForCountry(),fetchLiveData()]);
   const params=new URLSearchParams(window.location.search);
   const urlTf=params.get('tf');
   if(urlTf){

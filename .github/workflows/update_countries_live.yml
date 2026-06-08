@@ -1,0 +1,51 @@
+name: Update Countries Live Data — Bookmaker Offers & Country Stats
+
+on:
+  schedule:
+    - cron: "0 */5 * * *"   # every 5 hours (00:00, 05:00, 10:00, 15:00, 20:00 UTC)
+  workflow_dispatch:          # manual trigger from GitHub UI
+
+concurrency:
+  group: update-countries-live
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update-live-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+      APIFY_API_TOKEN:   ${{ secrets.APIFY_API_TOKEN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Firecrawl CLI
+        run: npm install -g @mendable/firecrawl-js 2>/dev/null || npm install -g firecrawl-cli 2>/dev/null || true
+
+      - name: Run countries live updater
+        run: python3 update_countries.py
+        continue-on-error: true   # never block a deploy on scrape failure
+
+      - name: Commit updated live data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/countries_live.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "live: update countries live data $(date -u '+%Y-%m-%d %H:%M') UTC"
+            git push
+          fi

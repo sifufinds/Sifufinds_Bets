@@ -1565,6 +1565,25 @@ function startTimer(){
   },1000);
 }
 
+async function patchBooksFromLive(){
+  try{
+    const r=await fetch('../data/countries_live.json?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const live=await r.json();
+    if(live.bookmakers){
+      Object.keys(BOOKS).forEach(code=>{
+        BOOKS[code].forEach(bk=>{
+          const keys=Object.keys(live.bookmakers);
+          const key=keys.find(k=>k===bk.name)||
+                     keys.find(k=>bk.name.startsWith(k.split(' ')[0])||k.startsWith(bk.name.split(' ')[0]));
+          const ld=key?live.bookmakers[key]:null;
+          if(ld){if(ld.top)bk.top=ld.top;if(ld.off)bk.off=ld.off;bk._live=true;}
+        });
+      });
+    }
+  }catch(e){}
+}
+
 async function init(){
   await waitForCountry();
   const params=new URLSearchParams(window.location.search);
@@ -1577,7 +1596,8 @@ async function init(){
   await Promise.all([
     fetchLiveJson(),
     fetchEspnData(),
-    fetchAfricanFixtures().then(m=>{_africanMatches=m;})
+    fetchAfricanFixtures().then(m=>{_africanMatches=m;}),
+    patchBooksFromLive()
   ]);
   updateStatus();
   renderOdds();

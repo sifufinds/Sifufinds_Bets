@@ -52,6 +52,36 @@ Only after completing Steps 1–3, draft the post with:
 - Payment methods: OPay, PalmPay, M-Pesa, MTN MoMo, Airtel Money, EcoCash, bank transfer
 - Sports: Football (premier focus), basketball, cricket, tennis, WC2026, AFCON
 
+## CRITICAL — Real-Time Live Data (MANDATORY for ALL Pages)
+
+**Every page on SifuFinds is a live comparison site. All pages must always show real-time data.**
+
+### Architecture
+- `data/countries_live.json` — live bookmaker offer cache (updated every 5 hours by GitHub Actions)
+- `update_countries.py` — scheduled Python updater; run manually with `python3 update_countries.py`
+- GitHub Actions: `.github/workflows/update_countries_live.yml` — runs every 5 hours
+
+### Live Data Research Protocol (for manual updates)
+Whenever updating `data/countries_live.json` manually, ALWAYS use both Firecrawl AND Apify:
+1. **Firecrawl scrape** bookmaker promo pages (e.g. `bet9ja.com/register`, `1xbet.com/en/promo`)
+2. **Apify `rag-web-browser`** — query `"best betting sites [Country] 2026 bonus"` for top 5 priority countries (NG, KE, ZA, GH, TZ)
+3. Update `data/countries_live.json` with verified bonus amounts, `status: "live"`, `source`, and `last_verified` timestamp
+
+### Page Integration Pattern
+All pages use `fetchLiveData()` (or `patchBooksFromLive()`) to patch `BOOKS[code]` before rendering:
+- `index.html` — `Promise.all([waitForCountry(), fetchLiveData()])`
+- `tips/index.html` — same pattern
+- `odds/index.html` — adds `patchBooksFromLive()` to its existing parallel fetch
+- `countries/index.html` — full `fetchLiveData()` that also patches `COUNTRY_DATA._liveCount`
+- `countries/*/index.html` (23 country pages) — `fetchLiveData().then(init).catch(init)`
+
+When adding ANY new page that renders bookmakers, add `fetchLiveData()` that fetches `data/countries_live.json` and patches the `BOOKS` object before first render.
+
+### Path to `countries_live.json`
+- Root pages (`index.html`): `data/countries_live.json`
+- One level deep (`tips/`, `odds/`, `blog/`, `countries/`): `../data/countries_live.json`
+- Two levels deep (`countries/nigeria/`): `../../data/countries_live.json`
+
 ## CRITICAL — shared.js Must Never Have `defer`
 
 **NEVER add `defer` to the `<script src="...shared.js...">` tag on any page.**
