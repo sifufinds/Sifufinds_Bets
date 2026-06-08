@@ -474,6 +474,11 @@ async function fetchSBTips(){
     if(!r.ok)return null;
     const rows=await r.json();
     if(!Array.isArray(rows)||!rows.length)return null;
+    // Reject stale Supabase data: require at least one row with a specific date
+    // like "8 Jun 2026". Rows using relative labels ("Today","Tomorrow","In X days")
+    // were set weeks ago and re-anchor to today, surfacing played matches.
+    const hasSpecificDate=rows.some(r=>/\d{1,2}\s+[A-Za-z]{3}\s+\d{4}/.test(r.date_label||''));
+    if(!hasSpecificDate)return null;
     return rows.map(r=>({
       league:r.league,key:r.sport_key,match:r.match,pred:r.pred,
       analysis:r.analysis,odds:r.odds,via:r.via,conf:r.conf,
