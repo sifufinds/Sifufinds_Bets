@@ -52,6 +52,29 @@ Only after completing Steps 1–3, draft the post with:
 - Payment methods: OPay, PalmPay, M-Pesa, MTN MoMo, Airtel Money, EcoCash, bank transfer
 - Sports: Football (premier focus), basketball, cricket, tennis, WC2026, AFCON
 
+## CRITICAL — No Stale Matches (MANDATORY for ALL Pages)
+
+**Every match, tip, and odds entry shown on the site must be upcoming or live. Never show already-played matches.**
+
+### Rules
+- **Never show a match that has already kicked off by more than 90 minutes** (90-minute grace covers halftime)
+- **Never show a `complete: true` match** on the odds or tips pages
+- **Always show date AND time** on every tip card and odds match card (e.g. "Today · 20:00 UTC", "Tomorrow · 16:00 UTC", "10 Jun · 15:00 UTC")
+
+### Implementation
+Both `tips/index.html` and `odds/index.html` have `_isPastKo(timeStr, graceMins)` and `_parseKoMs(timeStr)` helpers that filter stale matches. `renderTips()` and `renderOdds()` both apply this filter before rendering.
+
+**When updating static fallback data** in `assets/shared.js`:
+- `TIPS` array: always use `date: T_TMR` or `date: T_IN2` for upcoming matches — **never `date: T_TODAY` for a match that might already have been played**
+- `ODDS_DATA` array: use `time: 'Today · HH:MM UTC'` or `time: 'Tomorrow · HH:MM UTC'` format — the filter parses and removes past entries automatically
+- **Never hardcode a `live: true` entry with a fake score** in static data — fake live scores become stale immediately
+
+### Time format conventions
+- Today same-day upcoming: `'Today · 20:00 UTC'`
+- Tomorrow: `'Tomorrow · 16:00 UTC'`
+- Specific future date: `'10 Jun · 15:00 UTC'`
+- Never use old `${T_TODAY} HH:MM` template literal format — it doesn't parse correctly
+
 ## CRITICAL — Real-Time Live Data (MANDATORY for ALL Pages)
 
 **Every page on SifuFinds is a live comparison site. All pages must always show real-time data.**

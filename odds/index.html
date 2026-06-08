@@ -1445,6 +1445,28 @@ function fsbFilt(key,el){
   lgFilt({dataset:{lg:key}});
 }
 
+// ── Kickoff helpers (shared logic with tips page) ─────────────────────────────
+function _parseKoMs(timeStr){
+  if(!timeStr)return null;
+  const tm=timeStr.match(/(\d{1,2}):(\d{2})/);
+  if(!tm)return null;
+  const hh=+tm[1],mm=+tm[2];
+  const MONTHS={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+  const now=new Date();
+  const [yr,mo,dy]=[now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate()];
+  if(/tomorrow/i.test(timeStr))return Date.UTC(yr,mo,dy+1,hh,mm);
+  const dm=timeStr.match(/(\d{1,2})\s+([a-z]{3})/i);
+  if(dm){const mon=MONTHS[(dm[2]||'').toLowerCase().slice(0,3)];if(mon!==undefined)return Date.UTC(yr,mon,+dm[1],hh,mm);}
+  return Date.UTC(yr,mo,dy,hh,mm);
+}
+function _isPastKo(timeStr,graceMins){
+  graceMins=graceMins||90;
+  if(!timeStr||timeStr==='FT')return true;
+  if(/^\d+['"′]/.test(timeStr))return false;
+  const ko=_parseKoMs(timeStr);
+  return ko!==null&&Date.now()>ko+graceMins*60000;
+}
+
 function fmtMatchTime(m){
   if(m.live)return null;
   if(m.complete)return null;
@@ -1468,9 +1490,11 @@ function odcCard(m){
       ?`<div class="op-time-num" style="color:#4ade80">FT</div><div class="op-score-line">${m.hScore??''}–${m.aScore??''}</div>`
       :(()=>{
           const raw=m.time||'TBD';
-          const isToday=!raw.toLowerCase().includes('tomorrow');
+          const isTomorrow=/tomorrow/i.test(raw);
+          const hasDate=/[a-z]{3}/i.test(raw)&&!/(today|tomorrow)/i.test(raw);
+          const dayLabel=isTomorrow?'Tomorrow':hasDate?'':  'Today';
           const disp=raw.replace(/Today\s*·\s*/i,'').replace(/Tomorrow\s*·\s*/i,'');
-          return`<div class="op-time-num">${disp}</div><div class="op-time-day">${isToday?'Today':'Tomorrow'}</div>`;
+          return`<div class="op-time-num">${disp}</div><div class="op-time-day">${dayLabel}</div>`;
         })();
 
   const homeScore=hasScore?`<span class="op-score">${m.hScore??''}</span>`:'';
@@ -1526,13 +1550,21 @@ function renderOdds(){
     H('odds-cards',`<div class="op-empty">No matches for this filter. <button onclick="lgFilt(document.querySelector('[data-lg=all]'))">Show All</button></div>`);
     return;
   }
-  const sorted=[...data].sort((a,b)=>{
+  // Filter: keep live matches always; hide completed and past-kickoff matches
+  const displayable=data.filter(m=>{
+    if(m.live)return true;
+    if(m.complete)return false;
+    return!_isPastKo(m.time||'',90);
+  });
+  const sorted=[...displayable].sort((a,b)=>{
     if(a.live&&!b.live)return -1;
     if(!a.live&&b.live)return 1;
-    if(a.complete&&!b.complete)return 1;
-    if(!a.complete&&b.complete)return -1;
     return 0;
   });
+  if(!sorted.length){
+    H('odds-cards',`<div class="op-empty">No upcoming matches right now. Live data refreshes every 15 seconds — check back soon.</div>`);
+    return;
+  }
   // Group by league
   const groups={};
   sorted.forEach(m=>{
@@ -1542,10 +1574,12 @@ function renderOdds(){
   });
   const lgIcons={cafl:'🏆',afcon:'🌍',world:'🌍',local:'🏟️',basketball:'🏀',tennis:'🎾',cricket:'🏏',rugby:'🏉',boxing:'🥊',epl:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',ucl:'⭐',laliga:'🇪🇸',baseball:'⚾'};
   const html=Object.entries(groups).map(([league,matches])=>{
+    const cards=matches.map(m=>odcCard(m)).filter(Boolean);
+    if(!cards.length)return'';
     const icon=lgIcons[matches[0]?.key]||'⚽';
-    return`<div class="op-comp-group"><div class="op-comp-hdr"><span>${icon}</span><span>${league}</span><span class="op-cnt">${matches.length}</span></div>${matches.map(m=>odcCard(m)).join('')}</div>`;
+    return`<div class="op-comp-group"><div class="op-comp-hdr"><span>${icon}</span><span>${league}</span><span class="op-cnt">${cards.length}</span></div>${cards.join('')}</div>`;
   }).join('');
-  H('odds-cards',html);
+  H('odds-cards',html||`<div class="op-empty">No upcoming matches. Live data refreshes every 15 seconds.</div>`);
 }
 
 function startTimer(){

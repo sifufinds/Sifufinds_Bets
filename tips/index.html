@@ -819,17 +819,50 @@ function tipFiltSb(key,el){
   tipFilt({dataset:{tf:key}});
 }
 
+// ── Kickoff time helpers ──────────────────────────────────────────────────────
+function _parseKoMs(dateStr,timeStr){
+  const combined=((dateStr||'')+' '+(timeStr||'')).trim();
+  const tm=combined.match(/(\d{1,2}):(\d{2})/);
+  if(!tm)return null;
+  const hh=+tm[1],mm=+tm[2];
+  const MONTHS={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+  const now=new Date();
+  const [yr,mo,dy]=[now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate()];
+  if(/tomorrow/i.test(combined))return Date.UTC(yr,mo,dy+1,hh,mm);
+  const dm=combined.match(/(\d{1,2})\s+([a-z]{3})/i);
+  if(dm){const mon=MONTHS[(dm[2]||'').toLowerCase().slice(0,3)];if(mon!==undefined)return Date.UTC(yr,mon,+dm[1],hh,mm);}
+  return Date.UTC(yr,mo,dy,hh,mm);
+}
+function isPastKickoff(dateStr,timeStr,graceMins){
+  graceMins=graceMins||90;
+  const ts=timeStr||'';
+  if(ts==='FT'||(dateStr||'')==='FT')return true;
+  if(/^\d+['"′]/.test(ts))return false; // live minute indicator
+  const ko=_parseKoMs(dateStr,timeStr);
+  return ko!==null&&Date.now()>ko+graceMins*60000;
+}
+function kickoffLabel(dateStr,timeStr){
+  const ko=_parseKoMs(dateStr,timeStr);
+  const timeOnly=(timeStr||'').replace(/\s*(UTC|utc)\s*/g,'').trim();
+  if(!ko)return{text:(dateStr||'')+(timeOnly?' · '+timeOnly+' UTC':''),cls:'ko-future'};
+  const diffH=(ko-Date.now())/3600000;
+  let when,cls;
+  if(diffH<-0.5){when='In play';cls='ko-live';}
+  else if(diffH<3){when='Today';cls='ko-soon';}
+  else if(diffH<24){when='Today';cls='ko-today';}
+  else if(diffH<48){when='Tomorrow';cls='ko-tmr';}
+  else{const dm=(dateStr||'').match(/(\d{1,2}\s+[a-z]{3})/i);when=dm?dm[0]:(dateStr||'');cls='ko-future';}
+  return{text:when+(timeOnly?' · '+timeOnly+' UTC':''),cls};
+}
+
 function tipCard(t,idx){
   const booksForCty=BOOKS[getCurrentCountry()]||BOOKS.NG;
   const bkData=booksForCty.find(b=>b.name.toLowerCase().includes(t.via.toLowerCase()))||booksForCty[0];
-  const dateLabel=t.date||DATE_STR;
-  const timeLabel=t.time||'--:--';
-  // Full bet-by label: "Wed 4 Jun · 20:00 UTC"
-  const betByLabel=`${dateLabel} · ${timeLabel}`;
+  const ko=kickoffLabel(t.date,t.time);
   return`<div class="tipcard${t.isAI?' ai-tip':''}">
   <div class="th">
     <span class="tlg">${t.league}${t.isAI?' <span class="ai-badge">🤖 AI</span>':''}</span>
-    <span class="ttm" title="Kick-off time">🕐 ${betByLabel}</span>
+    <span class="ttm ko-badge ${ko.cls}" title="Kick-off time">🕐 ${ko.text}</span>
   </div>
   <div class="tbody">
     <div>
@@ -838,7 +871,7 @@ function tipCard(t,idx){
       <div class="tan">${t.analysis}</div>
       <div class="tcta">
         <span class="opill">Odds: ${t.odds}</span>
-        <span style="font-size:10px;color:#888;font-weight:600;white-space:nowrap">⏰ Place before ${timeLabel}</span>
+        <span style="font-size:10px;color:#888;font-weight:600;white-space:nowrap">⏰ ${ko.text}</span>
         <a href="${bkData?bkData.url:'#'}" target="_blank" rel="noopener noreferrer" style="color:var(--g);font-size:11px;font-weight:700">Bet via ${t.via} →</a>
       </div>
     </div>
@@ -852,9 +885,14 @@ function tipCard(t,idx){
 }
 
 function renderTips(){
-  const filtered=_activeTF==='all'?_tipsData:_tipsData.filter(t=>t.key===_activeTF);
+  const upcoming=_tipsData.filter(t=>!isPastKickoff(t.date,t.time,90));
+  const filtered=_activeTF==='all'?upcoming:upcoming.filter(t=>t.key===_activeTF);
   const container=document.getElementById('tips-cards');
-  if(!filtered.length){container.innerHTML='<div class="no-results">No tips for this filter today. Check back later.</div>';return;}
+  if(!filtered.length){
+    container.innerHTML='<div class="no-results">No upcoming tips right now. Live predictions refresh every hour — check back soon.</div>';
+    H('tips-cnt',0);
+    return;
+  }
   container.innerHTML=filtered.map((t,i)=>tipCard(t,i)).join('');
   H('tips-cnt',filtered.length);
 }

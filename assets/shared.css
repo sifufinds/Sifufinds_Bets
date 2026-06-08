@@ -154,6 +154,12 @@ select.csel option{color:#222;background:#fff}
 .th{padding:8px 14px;background:#fafaf8;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center}
 .tlg{font-size:10.5px;color:var(--g);font-weight:700}
 .ttm{font-size:10.5px;color:#bbb}
+.ko-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:4px;font-weight:700;font-size:10.5px}
+.ko-live{background:rgba(74,222,128,.15);color:#16a34a}
+.ko-soon{background:rgba(74,222,128,.12);color:#059669}
+.ko-today{background:rgba(250,204,21,.15);color:#92400e}
+.ko-tmr{background:rgba(148,163,184,.12);color:#475569}
+.ko-future{background:rgba(148,163,184,.08);color:#94a3b8}
 .tbody{padding:13px 14px;display:grid;grid-template-columns:1fr 95px;gap:12px}
 .tmatch{font-size:15px;font-weight:800;margin-bottom:4px;color:#111}
 .tpred{display:inline-block;background:#edf7f0;color:var(--g);padding:3px 9px;border-radius:5px;font-size:11.5px;font-weight:700;margin-bottom:6px;border:1px solid #c8e6c9}
