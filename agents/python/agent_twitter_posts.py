@@ -307,6 +307,124 @@ def _build_tip_tweet(state: dict) -> str:
     return _trim_to_limit(_TIP_TEMPLATES[idx])
 
 
+# ── PLAYWRIGHT POSTER ────────────────────────────────────────────────────────
+
+async def _login_x(page) -> None:
+    """Handle X.com login flow including the optional account-confirmation step."""
+    import asyncio
+    from playwright.async_api import TimeoutError as PWTimeout
+
+    await page.goto("https://x.com/i/flow/login", wait_until="domcontentloaded", timeout=30_000)
+
+    # Step 1: username
+    await page.wait_for_selector('input[autocomplete="username"]', timeout=15_000)
+    await page.fill('input[autocomplete="username"]', os.environ["X_USERNAME"])
+    await page.get_by_role("button", name="Next").click()
+
+    # Step 2: X sometimes inserts an "unusual activity" prompt asking for email/phone
+    try:
+        confirm = page.locator('input[data-testid="ocfEnterTextTextInput"]')
+        await confirm.wait_for(timeout=4_000)
+        await confirm.fill(os.getenv("X_EMAIL", os.environ["X_USERNAME"]))
+        await page.get_by_role("button", name="Next").click()
+    except PWTimeout:
+        pass  # no confirmation prompt — continue
+
+    # Step 3: password
+    await page.wait_for_selector('input[name="password"]', timeout=10_000)
+    await page.fill('input[name="password"]', os.environ["X_PASSWORD"])
+    await page.get_by_role("button", name="Log in").click()
+
+    # Wait until we land somewhere other than the login flow
+    await page.wait_for_url(lambda url: "login" not in url and "flow" not in url, timeout=20_000)
+    print("✓ Logged in to X")
+
+
+async def _post_playwright(text: str) -> bool:
+    import asyncio
+    from playwright.async_api import async_playwright, TimeoutError as PWTimeout
+
+    username = os.getenv("X_USERNAME", "").strip()
+    password = os.getenv("X_PASSWORD", "").strip()
+    if not username or not password:
+        print("✗ Missing X_USERNAME or X_PASSWORD")
+        return False
+
+    session_file = Path(__file__).parent / "twitter_session.json"
+
+    async with async_playwright() as pw:
+        browser = await pw.chromium.launch(
+            headless=True,
+            args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+        )
+
+        # Try restoring saved session so we don't login every run
+        ctx_args: dict = {
+            "user_agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/124.0.0.0 Safari/537.36"
+            ),
+            "viewport": {"width": 1280, "height": 800},
+        }
+        if session_file.exists():
+            ctx_args["storage_state"] = str(session_file)
+
+        context = await browser.new_context(**ctx_args)
+        page = await context.new_page()
+
+        # Verify session is still valid; re-login if needed
+        await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
+        if "login" in page.url or "flow" in page.url:
+            print("Session expired or missing — logging in...")
+            await _login_x(page)
+            await context.storage_state(path=str(session_file))
+
+        # Open the tweet compose dialog
+        await page.goto("https://x.com/compose/post", wait_until="domcontentloaded", timeout=15_000)
+
+        # Type tweet text
+        textarea = page.locator('[data-testid="tweetTextarea_0"]')
+        await textarea.wait_for(state="visible", timeout=10_000)
+        await textarea.click()
+        # Use clipboard paste to handle emojis correctly
+        await page.evaluate(
+            """(txt) => {
+                const dt = new DataTransfer();
+                dt.setData('text/plain', txt);
+                document.activeElement.dispatchEvent(
+                    new ClipboardEvent('paste', {clipboardData: dt, bubbles: true})
+                );
+            }""",
+            text,
+        )
+        await page.wait_for_timeout(800)
+
+        # Click the Post / Tweet button
+        post_btn = page.locator('[data-testid="tweetButton"]').or_(
+            page.locator('[data-testid="tweetButtonInline"]')
+        )
+        await post_btn.first.wait_for(state="visible", timeout=8_000)
+        await post_btn.first.click()
+
+        # Brief wait to confirm the post was submitted
+        await page.wait_for_timeout(3_000)
+
+        await context.close()
+        await browser.close()
+        print("✓ Tweet posted via browser")
+        return True
+
+
+def _post_playwright_sync(text: str) -> bool:
+    import asyncio
+    try:
+        return asyncio.run(_post_playwright(text))
+    except Exception as e:
+        print(f"✗ Playwright error: {e}")
+        return False
+
+
 # ── TWITTER CLIENT ────────────────────────────────────────────────────────────
 
 def _post_tweet(text: str, dry_run: bool = False) -> bool:
@@ -318,19 +436,25 @@ def _post_tweet(text: str, dry_run: bool = False) -> bool:
         print(f"{'─'*50}\n")
         return True
 
+    # Playwright path (browser automation) — preferred when X_USERNAME is set
+    if os.getenv("X_USERNAME") and os.getenv("X_PASSWORD"):
+        print("Using Playwright browser poster...")
+        return _post_playwright_sync(text)
+
+    # Tweepy path (Twitter API v2) — requires paid Basic tier
     try:
         import tweepy
     except ImportError:
         print("✗ tweepy not installed — run: pip install tweepy")
         return False
 
-    api_key    = os.getenv("TWITTER_API_KEY", "").strip()
-    api_secret = os.getenv("TWITTER_API_SECRET", "").strip()
+    api_key             = os.getenv("TWITTER_API_KEY", "").strip()
+    api_secret          = os.getenv("TWITTER_API_SECRET", "").strip()
     access_token        = os.getenv("TWITTER_ACCESS_TOKEN", "").strip()
     access_token_secret = os.getenv("TWITTER_ACCESS_TOKEN_SECRET", "").strip()
 
     if not all([api_key, api_secret, access_token, access_token_secret]):
-        print("✗ Missing Twitter credentials in environment")
+        print("✗ No posting credentials found (set X_USERNAME+X_PASSWORD or TWITTER_API_KEY)")
         return False
 
     try:
