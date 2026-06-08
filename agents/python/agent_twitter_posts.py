@@ -382,11 +382,28 @@ async def _post_playwright(text: str) -> bool:
 
         # Navigate to home and open compose via sidebar button
         await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
-        await page.wait_for_timeout(2_000)
+        await page.wait_for_timeout(3_000)
+        print(f"After home nav — URL: {page.url}")
+
+        # If still on login/flow page, re-attempt login
+        if "login" in page.url or "flow" in page.url or "x.com/" == page.url.rstrip("/"):
+            print("Not on home — retrying login...")
+            await _login_x(page)
+            await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
+            await page.wait_for_timeout(3_000)
+            print(f"After retry — URL: {page.url}")
+
+        # Save screenshot to log (base64) for debugging
+        try:
+            import base64
+            shot = await page.screenshot(type="jpeg", quality=50, full_page=False)
+            print(f"SCREENSHOT_B64:{base64.b64encode(shot).decode()[:200]}...")
+        except Exception:
+            pass
 
         # Click the "Post" compose button in the left sidebar
         compose_btn = page.locator('[data-testid="SideNav_NewTweet_Button"]')
-        await compose_btn.wait_for(state="visible", timeout=15_000)
+        await compose_btn.wait_for(state="visible", timeout=20_000)
         await compose_btn.click()
         await page.wait_for_timeout(1_000)
 
