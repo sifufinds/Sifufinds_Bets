@@ -792,7 +792,7 @@
 <script>
 const SITE={home:'../',tips:'./',casino:'../casino/',odds:'../odds/',countries:'../countries/'};
 </script>
-<script src="../assets/shared.js?v=7"></script>
+<script src="../assets/shared.js?v=8"></script>
 <script>
 let _activeTF='all';
 let _tipsData=TIPS;   // replaced with Supabase data in init() if available
@@ -848,10 +848,15 @@ function kickoffLabel(dateStr,timeStr){
   const diffH=(ko-Date.now())/3600000;
   let when,cls;
   if(diffH<-0.5){when='In play';cls='ko-live';}
-  else if(diffH<3){when='Today';cls='ko-soon';}
-  else if(diffH<24){when='Today';cls='ko-today';}
-  else if(diffH<48){when='Tomorrow';cls='ko-tmr';}
-  else{const dm=(dateStr||'').match(/(\d{1,2}\s+[a-z]{3})/i);when=dm?dm[0]:(dateStr||'');cls='ko-future';}
+  else{
+    const d=new Date(ko);
+    const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    when=d.getUTCDate()+' '+MN[d.getUTCMonth()]+' '+d.getUTCFullYear();
+    if(diffH<3)cls='ko-soon';
+    else if(diffH<24)cls='ko-today';
+    else if(diffH<48)cls='ko-tmr';
+    else cls='ko-future';
+  }
   return{text:when+(timeOnly?' · '+timeOnly+' UTC':''),cls};
 }
 

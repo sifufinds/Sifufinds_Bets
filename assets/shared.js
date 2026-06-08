@@ -502,51 +502,52 @@ const T_IN5 =new Date(NOW.getTime()+5*86400000).toLocaleDateString('en-GB',{day:
 
 // ── TIPS ──────────────────────────────────────────────────────────────────────
 const TIPS=[
-// ── Football · World Cup 2026 Group Stage ──
-{league:'World Cup 2026 · Group Stage',key:'world',match:'Nigeria vs Argentina',pred:'Under 3.5 Goals',analysis:'Nigeria face the reigning World Cup champions in a Group C opener. The Super Eagles will set up deep with Osimhen leading a counter-attack. Argentina\'s defensive structure under Scaloni is compact — expect a tight, tense match decided by a single moment of quality.',odds:'1.70',via:'Bet9ja',conf:68,time:'20:00 UTC',date:T_TODAY,isAI:false},
-{league:'World Cup 2026 · Group Stage',key:'world',match:'Morocco vs Brazil',pred:'Morocco Win or Draw',analysis:"Africa's top-ranked team against a Brazil in transition. Morocco's compact defence and dangerous counter from Hakimi, En-Nesyri and Ziyech are proven at World Cup level — they reached the semi-final in 2022. Brazil without their best XI have been inconsistent. Back the Atlas Lions double chance.",odds:'2.10',via:'1xBet',conf:63,time:'17:00 UTC',date:T_TODAY,isAI:false},
-{league:'CAF Champions League · Final',key:'cafl',match:'Mamelodi Sundowns vs Al Ahly',pred:'Over 2.5 Goals',analysis:'The CAF CL Final between Africa\'s two most dominant clubs. Sundowns\' fast transitions and Al Ahly\'s clinical finishing have combined for high-scoring encounters — both sides have scored in 8 of their last 9 CAF knockout ties.',odds:'1.85',via:'Betway',conf:72,time:'20:00 UTC',date:T_TMR,isAI:false},
-{league:'AFCON 2027 Qualifier',key:'afcon',match:'Nigeria vs Rwanda',pred:'Nigeria Win & Over 1.5',analysis:'Super Eagles at home have won 11 of their last 12 qualifying games. Rwanda have conceded 2+ goals in 4 of their last 5 away qualifiers. With Osimhen leading the line, a commanding home win is expected.',odds:'1.65',via:'Bet9ja',conf:80,time:'16:00 UTC',date:T_TMR,isAI:false},
-{league:'AFCON 2027 Qualifier',key:'afcon',match:'Senegal vs DR Congo',pred:'Senegal Win',analysis:'The Lions of Teranga are reigning AFCON champions and unbeaten in 9 home qualifiers. DR Congo are inconsistent away from home. Sadio Mané\'s leadership and the Dakar atmosphere give Senegal a clear edge.',odds:'1.70',via:'1xBet',conf:76,time:'19:00 UTC',date:T_TMR,isAI:false},
-{league:'CAF Confederation Cup · Semi-Final',key:'cafl',match:'Étoile du Sahel vs Zamalek',pred:'Both Teams to Score',analysis:'A tense second-leg semi with Étoile holding a slim aggregate lead. Zamalek must attack and open space on the counter. Both attacks are prolific — BTTS has landed in 7 of the last 10 meetings between North African clubs in this competition.',odds:'1.95',via:'22Bet',conf:64,time:'18:00 UTC',date:T_IN2,isAI:false},
-// ── Basketball ──
-{league:'NBA · Playoffs',key:'basketball',match:'New York Knicks vs San Antonio Spurs',pred:'Knicks Win',analysis:'The Knicks have home court at Madison Square Garden. Brunson is averaging 32 PPG this postseason. MSG crowd effect is enormous — New York are 15-3 at home in these playoffs. Back the hosts to level the series.',odds:'1.80',via:'1xBet',conf:64,time:'00:30 UTC',date:T_TMR,isAI:false},
-// ── Tennis ──
-{league:'French Open 2026 · Final',key:'tennis',match:'Iga Świątek vs Aryna Sabalenka',pred:'Świątek Win',analysis:'Świątek has won Roland Garros four times and is virtually unbeatable on clay. Sabalenka\'s flat, aggressive game struggles to generate winners through Świątek\'s legendary defensive depth. Back the five-time champion.',odds:'1.50',via:'Bet9ja',conf:78,time:'15:00 UTC',date:T_IN2,isAI:false},
-// ── Cricket ──
-{league:'SA vs India · Test Series',key:'cricket',match:'South Africa vs India',pred:'South Africa Win',analysis:'The Proteas have their strongest Test team in a decade. Rabada, Nortje and Jansen form the most feared pace attack in the world. India\'s batting is deep but they\'ve historically struggled against sustained world-class pace.',odds:'2.20',via:'Hollywoodbets',conf:60,time:'08:00 UTC',date:T_IN2,isAI:false},
+// ── Football · 8 Jun 2026 (Today) — BBC Sport confirmed ──
+{league:'International Friendly',key:'world',match:'Mauritania vs Niger',pred:'Over 1.5 Goals',analysis:'Both sides have been prolific in recent CAF qualifying rounds. Mauritania, playing at home, have scored in 5 of their last 6 internationals. Niger have conceded in their last 4 away games. Expect goals in this West African friendly.',odds:'1.75',via:'Bet9ja',conf:68,time:'20:00 UTC',date:'8 Jun 2026',isAI:false},
+{league:'Women\'s International Friendly',key:'afcon',match:'Senegal vs Nigeria',pred:'Both Teams to Score',analysis:'Two of the continent\'s strongest women\'s national teams meet in a pre-tournament friendly. Nigeria\'s Super Falcons are the most decorated in AFCON history (11 titles). Senegal have improved dramatically under their new coaching staff — BTTS in a close, competitive friendly.',odds:'1.90',via:'1xBet',conf:65,time:'16:00 UTC',date:'8 Jun 2026',isAI:false},
+{league:'Women\'s International Friendly',key:'afcon',match:'Egypt vs Tunisia',pred:'Egypt Win or Draw',analysis:'Egypt\'s women\'s team are the dominant force in North African football. Tunisia will be competitive but Egypt\'s home advantage and superior squad depth make them clear favourites. Double chance at strong value.',odds:'1.75',via:'22Bet',conf:66,time:'17:00 UTC',date:'8 Jun 2026',isAI:false},
+// ── Football · 9 Jun 2026 ──
+{league:'CAF Champions League · Final',key:'cafl',match:'Mamelodi Sundowns vs Al Ahly',pred:'Over 2.5 Goals',analysis:'The CAF CL Final between Africa\'s two most dominant clubs. Sundowns\' fast transitions and Al Ahly\'s clinical finishing have combined for high-scoring encounters — both sides have scored in 8 of their last 9 CAF knockout ties.',odds:'1.85',via:'Betway',conf:72,time:'20:00 UTC',date:'9 Jun 2026',isAI:false},
+{league:'AFCON 2027 Qualifier',key:'afcon',match:'Nigeria vs Rwanda',pred:'Nigeria Win & Over 1.5',analysis:'Super Eagles at home have won 11 of their last 12 qualifying games. Rwanda have conceded 2+ goals in 4 of their last 5 away qualifiers. With Osimhen leading the line, a commanding home win is expected.',odds:'1.65',via:'Bet9ja',conf:80,time:'16:00 UTC',date:'9 Jun 2026',isAI:false},
+// ── Football · 10 Jun 2026 — BBC Sport confirmed ──
+{league:'International Friendly',key:'world',match:'Portugal vs Nigeria',pred:'Nigeria to Score',analysis:'Nigeria\'s Super Eagles face Portugal in a high-profile pre-World Cup friendly. Victor Osimhen, Ademola Lookman and Samuel Chukwueze are in devastating form. Nigeria have scored in 8 of their last 10 internationals — back the Eagles to find the net against a Portuguese side with one eye on the World Cup.',odds:'1.85',via:'Bet9ja',conf:70,time:'20:45 UTC',date:'10 Jun 2026',isAI:false},
+{league:'AFCON 2027 Qualifier',key:'afcon',match:'Senegal vs DR Congo',pred:'Senegal Win',analysis:'The Lions of Teranga are reigning AFCON champions and unbeaten in 9 home qualifiers. DR Congo are inconsistent away from home. Sadio Mané\'s leadership and the Dakar atmosphere give Senegal a clear edge.',odds:'1.70',via:'1xBet',conf:76,time:'19:00 UTC',date:'10 Jun 2026',isAI:false},
+{league:'SA vs India · 1st Test',key:'cricket',match:'South Africa vs India',pred:'South Africa Win',analysis:'The Proteas have their strongest Test team in a decade. Rabada, Nortje and Jansen form the most feared pace attack in the world. India\'s batting is deep but they\'ve historically struggled against sustained world-class pace.',odds:'2.20',via:'Hollywoodbets',conf:60,time:'09:00 UTC',date:'10 Jun 2026',isAI:false},
+// ── Football · 11 Jun 2026 · World Cup — BBC Sport confirmed ──
+{league:'FIFA World Cup 2026 · Group A',key:'world',match:'Mexico vs South Africa',pred:'Mexico Win or Draw',analysis:'Bafana Bafana face a daunting World Cup opener against the hosts in front of a huge crowd. Mexico\'s attacking depth and passionate home support make them clear favourites. South Africa will defend deep — back Mexico to win or draw.',odds:'1.40',via:'Bet9ja',conf:72,time:'20:00 UTC',date:'11 Jun 2026',isAI:false},
 // ── Boxing ──
-{league:'WBC Heavyweight Championship',key:'boxing',match:'Oleksandr Usyk vs Daniel Dubois 2',pred:'Usyk Win',analysis:'Usyk is the most complete heavyweight of his generation — elite footwork, ring IQ and a chin tested at the highest level. In their first meeting Usyk\'s movement and jab neutralised Dubois\'s power entirely. Expect another masterclass.',odds:'1.45',via:'Bet9ja',conf:80,time:'21:00 UTC',date:T_TMR,isAI:false}
+{league:'WBC Heavyweight Championship',key:'boxing',match:'Oleksandr Usyk vs Daniel Dubois 2',pred:'Usyk Win',analysis:'Usyk is the most complete heavyweight of his generation — elite footwork, ring IQ and a chin tested at the highest level. In their first meeting Usyk\'s movement and jab neutralised Dubois\'s power entirely. Expect another masterclass.',odds:'1.45',via:'Bet9ja',conf:80,time:'21:00 UTC',date:'13 Jun 2026',isAI:false}
 ];
 
 // ── NEWS ──────────────────────────────────────────────────────────────────────
 const NEWS=[
-{cat:'World Cup 2026',color:'#E60000',title:'World Cup 2026 Kicks Off June 11 – Best Odds for African Teams',date:'Today'},
-{cat:'Nigeria',color:'#00875A',title:'Super Eagles Name Final 26-Man Squad for World Cup 2026',date:'Yesterday'},
-{cat:'CAF',color:'#C62828',title:'CAF Champions League Final Preview – Sundowns vs Al Ahly',date:'2 days ago'},
-{cat:'Morocco',color:'#009A44',title:'Morocco World Cup 2026 Odds – Atlas Lions Favourites in Their Group',date:'3 days ago'},
-{cat:'Kenya',color:'#007A4D',title:'Betika Reaches 10 Million Users – New World Cup Features Added',date:'4 days ago'},
-{cat:'Africa',color:'#FF6B00',title:'Mobile Money Betting Surges 45% as World Cup 2026 Approaches',date:'5 days ago'}
+{cat:'World Cup 2026',color:'#E60000',title:'World Cup 2026 Kicks Off June 11 – Mexico vs South Africa Opens the Tournament',date:'8 Jun 2026'},
+{cat:'Nigeria',color:'#00875A',title:'Super Eagles Face Portugal in Pre-World Cup Friendly – 10 June',date:'7 Jun 2026'},
+{cat:'CAF',color:'#C62828',title:'CAF Champions League Final Preview – Sundowns vs Al Ahly, 9 June',date:'7 Jun 2026'},
+{cat:'Morocco',color:'#009A44',title:'Morocco World Cup 2026 Draw – Atlas Lions Group Stage Fixtures Confirmed',date:'6 Jun 2026'},
+{cat:'Kenya',color:'#007A4D',title:'Betika Reaches 10 Million Users – New World Cup Features Added',date:'5 Jun 2026'},
+{cat:'Africa',color:'#FF6B00',title:'Mobile Money Betting Surges 45% as World Cup 2026 Approaches',date:'4 Jun 2026'}
 ];
 
 // ── ODDS DATA (fallback when live APIs are unavailable) ───────────────────────
 const ODDS_DATA=[
-// ── Football · World Cup 2026 Group Stage ──
-{league:'World Cup 2026 · Group Stage',key:'world',live:false,home:'Nigeria',away:'Argentina',hScore:null,aScore:null,time:'Today · 20:00 UTC',h:5.50,d:3.80,a:1.60,hBk:'Bet9ja',dBk:'1xBet',aBk:'Betway',complete:false},
-{league:'World Cup 2026 · Group Stage',key:'world',live:false,home:'Morocco',away:'Brazil',hScore:null,aScore:null,time:'Today · 17:00 UTC',h:4.20,d:3.50,a:1.75,hBk:'1xBet',dBk:'Melbet',aBk:'Betway',complete:false},
-{league:'CAF Champions League · Final',key:'cafl',live:false,home:'Mamelodi Sundowns',away:'Al Ahly',hScore:null,aScore:null,time:'Tomorrow · 20:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'Betway',dBk:'Bet9ja',aBk:'Hollywoodbets',complete:false},
-{league:'AFCON 2027 Qualifier',key:'afcon',live:false,home:'Nigeria',away:'Rwanda',hScore:null,aScore:null,time:'Tomorrow · 16:00 UTC',h:1.65,d:3.90,a:5.50,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
-{league:'AFCON 2027 Qualifier',key:'afcon',live:false,home:'Senegal',away:'DR Congo',hScore:null,aScore:null,time:'Tomorrow · 19:00 UTC',h:1.70,d:3.30,a:5.00,hBk:'1xBet',dBk:'22Bet',aBk:'Melbet',complete:false},
-{league:'CAF Confederation Cup · Semi-Final',key:'cafl',live:false,home:'Étoile du Sahel',away:'Zamalek',hScore:null,aScore:null,time:'Tomorrow · 18:00 UTC',h:2.40,d:3.10,a:2.90,hBk:'Betway',dBk:'Bet9ja',aBk:'22Bet',complete:false},
-// ── Basketball ──
-{league:'NBA · Playoffs',key:'basketball',live:false,home:'New York Knicks',away:'San Antonio Spurs',hScore:null,aScore:null,time:'Tomorrow · 00:30 UTC',h:1.80,d:0,a:2.00,hBk:'1xBet',dBk:'',aBk:'Bet9ja',complete:false},
-// ── Tennis ──
-{league:'French Open 2026 · Final',key:'tennis',live:false,home:'Iga Świątek',away:'Aryna Sabalenka',hScore:null,aScore:null,time:'10 Jun · 15:00 UTC',h:1.50,d:0,a:2.65,hBk:'1xBet',dBk:'',aBk:'22Bet',complete:false},
-{league:'French Open 2026 · Men\'s Final',key:'tennis',live:false,home:'Carlos Alcaraz',away:'Novak Djokovic',hScore:null,aScore:null,time:'10 Jun · 14:00 UTC',h:1.35,d:0,a:3.20,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
+// ── Football · 8 Jun 2026 (Today) — BBC Sport confirmed ──
+{league:'International Friendly',key:'world',live:false,home:'Mauritania',away:'Niger',hScore:null,aScore:null,time:'8 Jun 2026 · 20:00 UTC',h:2.00,d:3.20,a:3.80,hBk:'Bet9ja',dBk:'1xBet',aBk:'22Bet',complete:false},
+{league:'Women\'s International Friendly',key:'afcon',live:false,home:'Senegal',away:'Nigeria',hScore:null,aScore:null,time:'8 Jun 2026 · 16:00 UTC',h:2.20,d:3.10,a:2.90,hBk:'1xBet',dBk:'Melbet',aBk:'Betway',complete:false},
+{league:'Women\'s International Friendly',key:'afcon',live:false,home:'Egypt',away:'Tunisia',hScore:null,aScore:null,time:'8 Jun 2026 · 17:00 UTC',h:1.90,d:3.20,a:4.00,hBk:'22Bet',dBk:'Betway',aBk:'1xBet',complete:false},
+// ── Football · 9 Jun 2026 ──
+{league:'CAF Champions League · Final',key:'cafl',live:false,home:'Mamelodi Sundowns',away:'Al Ahly',hScore:null,aScore:null,time:'9 Jun 2026 · 20:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'Betway',dBk:'Bet9ja',aBk:'Hollywoodbets',complete:false},
+{league:'AFCON 2027 Qualifier',key:'afcon',live:false,home:'Nigeria',away:'Rwanda',hScore:null,aScore:null,time:'9 Jun 2026 · 16:00 UTC',h:1.65,d:3.90,a:5.50,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
+{league:'AFCON 2027 Qualifier',key:'afcon',live:false,home:'Senegal',away:'DR Congo',hScore:null,aScore:null,time:'9 Jun 2026 · 19:00 UTC',h:1.70,d:3.30,a:5.00,hBk:'1xBet',dBk:'22Bet',aBk:'Melbet',complete:false},
+{league:'CAF Confederation Cup · Semi-Final',key:'cafl',live:false,home:'Étoile du Sahel',away:'Zamalek',hScore:null,aScore:null,time:'9 Jun 2026 · 18:00 UTC',h:2.40,d:3.10,a:2.90,hBk:'Betway',dBk:'Bet9ja',aBk:'22Bet',complete:false},
+// ── Football · 10 Jun 2026 — BBC Sport confirmed ──
+{league:'International Friendly',key:'world',live:false,home:'Portugal',away:'Nigeria',hScore:null,aScore:null,time:'10 Jun 2026 · 20:45 UTC',h:1.60,d:3.50,a:5.50,hBk:'Bet9ja',dBk:'1xBet',aBk:'22Bet',complete:false},
+// ── Football · 11 Jun 2026 · World Cup — BBC Sport confirmed ──
+{league:'FIFA World Cup 2026 · Group A',key:'world',live:false,home:'Mexico',away:'South Africa',hScore:null,aScore:null,time:'11 Jun 2026 · 20:00 UTC',h:1.70,d:3.50,a:4.50,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
 // ── Cricket ──
-{league:'SA vs India · Test Series',key:'cricket',live:false,home:'South Africa',away:'India',hScore:null,aScore:null,time:'10 Jun · 09:00 UTC',h:2.20,d:3.10,a:2.10,hBk:'Hollywoodbets',dBk:'Betway',aBk:'1xBet',complete:false},
+{league:'SA vs India · 1st Test',key:'cricket',live:false,home:'South Africa',away:'India',hScore:null,aScore:null,time:'10 Jun 2026 · 09:00 UTC',h:2.20,d:3.10,a:2.10,hBk:'Hollywoodbets',dBk:'Betway',aBk:'1xBet',complete:false},
 // ── Boxing ──
-{league:'WBC Heavyweight Championship',key:'boxing',live:false,home:'Oleksandr Usyk',away:'Daniel Dubois',hScore:null,aScore:null,time:'Tomorrow · 21:00 UTC',h:1.45,d:0,a:2.75,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false}
+{league:'WBC Heavyweight Championship',key:'boxing',live:false,home:'Oleksandr Usyk',away:'Daniel Dubois',hScore:null,aScore:null,time:'13 Jun 2026 · 21:00 UTC',h:1.45,d:0,a:2.75,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false}
 ];
 
 // ── PAGE CONTENT (modals) ─────────────────────────────────────────────────────
