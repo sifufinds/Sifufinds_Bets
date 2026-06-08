@@ -52,6 +52,19 @@ Only after completing Steps 1–3, draft the post with:
 - Payment methods: OPay, PalmPay, M-Pesa, MTN MoMo, Airtel Money, EcoCash, bank transfer
 - Sports: Football (premier focus), basketball, cricket, tennis, WC2026, AFCON
 
+## CRITICAL — shared.js Must Never Have `defer`
+
+**NEVER add `defer` to the `<script src="...shared.js...">` tag on any page.**
+
+Every page loads `shared.js` at the bottom of `<body>` just before the inline `init()` call. `defer` causes the browser to execute deferred scripts *after* all inline scripts, so `init()` runs before `shared.js` has loaded — making `waitForCountry`, `BOOKS`, `H()`, and every other shared function undefined. The result is a completely blank page: no bookmakers, no blog posts, no tips, no data of any kind.
+
+- Correct: `<script src="assets/shared.js?v=7"></script>`
+- **BROKEN**: `<script src="assets/shared.js?v=7" defer></script>`
+
+`shared.js` is already at the bottom of `<body>` so it does not block above-the-fold rendering. It must remain synchronous. Any SEO or performance audit that suggests adding `defer` here is wrong — do not apply it.
+
+If you ever need to verify: run `grep -r 'shared\.js.*defer' --include="*.html" .` — the result must be empty.
+
 ## File Conventions
 - Blog posts go in `blog/posts.json` under the `posts` array
 - Each post needs: `category`, `title`, `slug`, `excerpt`, `body` (markdown), `author`, `image_color`, `image_icon`, `tags`, `featured`, `bookmaker_featured`, `read_time`, `id`, `published_at`
