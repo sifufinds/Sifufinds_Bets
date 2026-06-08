@@ -605,21 +605,22 @@ function predCard(pred, tab) {
                 : pred.draw_odds;
 
   } else if (tab === 'btts') {
-    badge = `<span class="pred-badge btts">🎯 BTTS: ${escHtml(pred.btts || '—')}</span>`;
+    const bttsLabel = (pred.btts || '—').replace(/^BTTS\s*/i, '');
+    badge = `<span class="pred-badge btts">🎯 BTTS: ${escHtml(bttsLabel)}</span>`;
     subtext = 'Both teams to score prediction';
-    primaryOdds = pred.btts_yes_odds || pred.home_odds || '';
+    primaryOdds = pred.home_odds || '';
 
   } else if (tab === 'btts_win') {
-    const label = pred.btts_win_label || `BTTS & ${pred.wdw_label}`;
-    badge = `<span class="pred-badge"">🔥 ${escHtml(label)}</span>`;
+    const label = pred.btts_win || 'BTTS &amp; Win';
+    badge = `<span class="pred-badge">🔥 ${escHtml(label)}</span>`;
     subtext = 'Both teams to score + match winner';
-    primaryOdds = pred.btts_yes_odds || pred.home_odds || '';
+    primaryOdds = pred.home_odds || '';
 
   } else if (tab === 'ou25') {
-    const isOver = pred.over25 === 'Over';
-    badge = `<span class="pred-badge ${isOver ? 'over' : 'under'}">📈 ${escHtml(pred.over25_label || pred.over25 || '—')}</span>`;
+    const isOver = (pred.over25 || '').toLowerCase().startsWith('over');
+    badge = `<span class="pred-badge ${isOver ? 'over' : 'under'}">📈 ${escHtml(pred.over25 || '—')}</span>`;
     subtext = 'Goals over/under 2.5 prediction';
-    primaryOdds = pred.over25_odds || pred.home_odds || '';
+    primaryOdds = pred.home_odds || '';
 
   } else if (tab === 'score') {
     badge = `<span class="pred-badge score">🔢 ${escHtml(pred.correct_score || '—')}</span>`;
@@ -627,7 +628,9 @@ function predCard(pred, tab) {
     primaryOdds = '';
 
   } else if (tab === 'wdw') {
-    badge = `<span class="pred-badge wdw">1X2: ${escHtml(pred.wdw || '—')}</span>`;
+    const wdwMap = {'1':`1 (${pred.home})`, '2':`2 (${pred.away})`, 'X':'X (Draw)'};
+    const wdwLabel = wdwMap[pred.wdw] || pred.wdw || '—';
+    badge = `<span class="pred-badge wdw">1X2: ${escHtml(wdwLabel)}</span>`;
     subtext = `Win Draw Win prediction`;
     if (pred.home_odds || pred.draw_odds || pred.away_odds) {
       oddsRow = `
@@ -719,7 +722,7 @@ function renderPreds() {
   const filtered = upcoming.filter(p => matchesComp(p, _activeComp));
   const hasValue = p => {
     if (_activeTab === 'btts')     return p.btts && p.btts !== '';
-    if (_activeTab === 'btts_win') return p.btts === 'Yes' && p.match_winner;
+    if (_activeTab === 'btts_win') return p.btts_win && p.btts_win !== '';
     if (_activeTab === 'ou25')     return p.over25 && p.over25 !== '';
     if (_activeTab === 'score')    return p.correct_score && p.correct_score !== '';
     if (_activeTab === 'wdw')      return p.wdw && p.wdw !== '';
@@ -729,8 +732,8 @@ function renderPreds() {
 
   // Update stats
   H('pred-count', upcoming.length || '–');
-  H('pred-btts-count', upcoming.filter(p => p.btts === 'Yes').length || '–');
-  H('pred-over-count', upcoming.filter(p => p.over25 === 'Over').length || '–');
+  H('pred-btts-count', upcoming.filter(p => (p.btts || '').includes('Yes')).length || '–');
+  H('pred-over-count', upcoming.filter(p => (p.over25 || '').toLowerCase().startsWith('over')).length || '–');
 
   if (!ready.length) {
     container.innerHTML = `<div class="pred-empty">
