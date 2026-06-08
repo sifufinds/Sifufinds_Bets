@@ -571,9 +571,11 @@ function renderForm(form) {
 
 // ── Kickoff helpers ───────────────────────────────────────────────────────────
 function isUpcoming(pred) {
+  if (!pred.ko_utc) return true; // unknown time — always show
   try {
     const ko = new Date(pred.ko_utc).getTime();
-    return Date.now() < ko + 90 * 60000; // 90-min grace
+    if (!ko || isNaN(ko)) return true; // unparseable — show it
+    return Date.now() < ko + 90 * 60000;
   } catch {
     return true;
   }
