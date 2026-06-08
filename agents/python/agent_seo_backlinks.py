@@ -72,7 +72,7 @@ SITE_DESC  = (
 
 DEFAULT_RESEARCH_LIMIT = 15   # new opportunities per research run
 DEFAULT_OUTREACH_LIMIT = 10   # emails generated per outreach run
-DEFAULT_SEND_LIMIT     = 8    # emails sent per run × 5 runs/day = ~40/day max
+DEFAULT_SEND_LIMIT     = 5    # emails per run — daily hard cap enforced separately
 
 # ── SMTP CONFIG ────────────────────────────────────────────────────────────────
 SMTP_HOST      = os.getenv("SMTP_HOST", "smtp.hostinger.com")
@@ -83,9 +83,27 @@ SMTP_USER      = os.getenv("SMTP_USER", "")
 SMTP_PASS      = os.getenv("SMTP_PASS", "")
 SMTP_FROM_NAME = os.getenv("SMTP_FROM_NAME", "SifuFinds Team")
 
-# Seconds to wait between sends — avoids triggering spam filters
-SEND_DELAY_MIN = 30
-SEND_DELAY_MAX = 90
+# ── EMAIL SAFETY LIMITS ────────────────────────────────────────────────────────
+# Sources: Google Postmaster Guidelines, Mailgun, Topo, Instantly 2026 benchmarks.
+#
+# Key findings:
+#   - Spam complaint rate > 0.3%  → Google enforces hard block
+#   - Hard bounce rate > 5%       → ESP throttles/suspends account
+#   - New/cold inbox safe limit   → 20 emails/day max (warmed: 50)
+#   - Inter-send delay            → 5–12 min randomised (human-like cadence)
+#   - Send window                 → Mon–Fri 08:00–17:00 UTC only
+#   - Role addresses (info@,contact@) → high complaint rate; use editorial contacts
+#   - CAN-SPAM §7                 → physical address + opt-out in every email
+
+DAILY_SEND_HARD_CAP   = 20    # absolute max emails per UTC calendar day
+SEND_DELAY_MIN        = 300   # 5 min minimum between sends
+SEND_DELAY_MAX        = 720   # 12 min maximum — randomised jitter
+SEND_WINDOW_START_UTC = 8     # only send Mon–Fri 08:00–17:00 UTC
+SEND_WINDOW_END_UTC   = 17
+
+# Physical address required by CAN-SPAM §7 in every outgoing commercial email.
+# Set SMTP_PHYSICAL_ADDRESS in .env to your real registered address.
+SMTP_PHYSICAL_ADDRESS = os.getenv("SMTP_PHYSICAL_ADDRESS", "SifuFinds, P.O. Box, Nairobi, Kenya")
 
 OPPORTUNITIES_FILE = Path(__file__).parent / "backlink_opportunities.json"
 STATE_FILE         = Path(__file__).parent / "backlink_state.json"
@@ -147,14 +165,28 @@ _OUTREACH_SYSTEM = f"""You are a digital PR and outreach specialist for {SITE_NA
 {SITE_DESC}
 
 Write a personalised, professional outreach email for a backlink opportunity.
-Tone: genuine, concise, non-spammy. Lead with value to the recipient, not your need.
-Max 200 words. Subject line + body only. No placeholders like [NAME] — use "Hi there" or the site name.
+
+STRICT RULES (violation causes email suspension):
+1. BODY MUST BE UNDER 100 WORDS. Count carefully. Every word counts.
+2. Plain text only — no HTML, no bullet points with dashes, no markdown.
+3. Maximum ONE link (the site URL {SITE_URL}) — no other URLs.
+4. Never use these spam trigger words: free, guaranteed, winner, selected, urgent,
+   limited time, act now, click here, make money, no obligation, congratulations.
+5. Do NOT write "Dear Blogger", "Hi there", "To whom it may concern" — use their site name.
+6. Lead with a genuine observation about THEIR site, not your need.
+7. One clear, low-pressure ask in the final sentence.
+8. Sign off as "Kai, SifuFinds" — not "The SifuFinds Team".
+
+Subject line rules:
+- 6–10 words maximum
+- Accurately describes the email (CAN-SPAM requirement)
+- No ALL CAPS, no exclamation marks, no misleading hooks
 
 CRITICAL: Respond ONLY with valid JSON. Use \\n for line breaks — never literal newlines inside strings.
 The JSON must be parseable by Python's json.loads() without modification.
 {{
-  "subject": "email subject line",
-  "body": "First paragraph.\\n\\nSecond paragraph.\\n\\nBest regards,\\nThe SifuFinds Team"
+  "subject": "short subject line",
+  "body": "Opening observation about their site.\\n\\nValue you bring + your ask in one sentence.\\n\\nBest,\\nKai, SifuFinds"
 }}"""
 
 _CONTENT_SYSTEM = f"""You are a link-building content strategist for {SITE_NAME} ({SITE_URL}).
@@ -206,6 +238,71 @@ def _load_state() -> dict:
 
 def _save_state(state: dict) -> None:
     STATE_FILE.write_text(json.dumps(state, indent=2))
+
+
+# ── DELIVERABILITY SAFEGUARDS ─────────────────────────────────────────────────
+
+def _load_suppressed() -> set[str]:
+    """Load permanently suppressed addresses (hard bounces + unsubscribers)."""
+    return set(_load_state().get("__suppressed__", []))
+
+
+def _add_suppressed(email_addr: str) -> None:
+    """Permanently suppress an address. Persisted across runs."""
+    state = _load_state()
+    suppressed = set(state.get("__suppressed__", []))
+    suppressed.add(email_addr.lower().strip())
+    state["__suppressed__"] = sorted(suppressed)
+    _save_state(state)
+    print(f"  🚫 Suppressed {email_addr} — will not receive future emails")
+
+
+def _daily_send_count() -> int:
+    """Count emails sent today (UTC calendar day) across all runs."""
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    state = _load_state()
+    return sum(
+        1 for key, rec in state.items()
+        if not key.startswith("__") and rec.get("sent_at", "")[:10] == today
+    )
+
+
+def _within_send_window() -> bool:
+    """
+    Return True only Mon–Fri 08:00–17:00 UTC.
+    Cold email sent at night or weekends has lower open/reply rates and
+    higher spam complaint rates — both damage sender reputation.
+    """
+    now = datetime.now(timezone.utc)
+    return (
+        now.weekday() < 5  # 0=Mon … 4=Fri
+        and SEND_WINDOW_START_UTC <= now.hour < SEND_WINDOW_END_UTC
+    )
+
+
+def _canspam_footer() -> str:
+    """
+    CAN-SPAM Act §7 requires every commercial email to include:
+      - Physical mailing address of the sender
+      - A clear, functional opt-out mechanism
+      - Honest identification of the sender
+    Penalty: up to $53,088 per individual email in violation.
+    """
+    return (
+        "\n\n---\n"
+        f"Kai Manyeh · {SITE_NAME} · {SITE_URL}\n"
+        f"{SMTP_PHYSICAL_ADDRESS}\n\n"
+        "You received this because our team identified your site as a potential "
+        "editorial partner. This is a one-time outreach — we won't follow up "
+        "more than once. To opt out permanently, reply with STOP in the subject line."
+    )
+
+
+def _check_body_word_count(body: str, domain: str) -> None:
+    """Warn if email body exceeds recommended cold email length."""
+    words = len(body.split())
+    if words > 150:
+        print(f"  ⚠  {domain}: email body is {words} words (target < 100) — consider shortening")
 
 
 # ── RESEARCH ──────────────────────────────────────────────────────────────────
@@ -705,6 +802,65 @@ def run_inbox_sync(dry_run: bool = False) -> int:
             if not body:
                 continue
 
+            # ── Hard-bounce / MAILER-DAEMON detection ──────────────────────────
+            # A bounce means the address is dead — suppress it immediately so we
+            # never attempt to email it again.
+            is_bounce = (
+                "mailer-daemon" in sender_raw.lower()
+                or "mail delivery" in subject_raw.lower()
+                or "delivery status" in subject_raw.lower()
+                or "undeliverable" in subject_raw.lower()
+                or "delivery failed" in subject_raw.lower()
+                or "failure notice" in subject_raw.lower()
+                or "returned mail" in subject_raw.lower()
+            )
+            if is_bounce:
+                # Extract the original recipient from the bounce body (best effort)
+                bounce_targets = _EMAIL_RE.findall(body[:2000])
+                suppressed_any = False
+                for bt in bounce_targets:
+                    bt_lower = bt.lower()
+                    if bt_lower == SMTP_USER.lower():
+                        continue  # skip our own address
+                    # Only suppress addresses we actually sent to
+                    if bt_lower in sent_map:
+                        _add_suppressed(bt_lower)
+                        domain_key = sent_map[bt_lower][0]
+                        state[domain_key]["status"] = "hard_bounce"
+                        suppressed_any = True
+                if not suppressed_any and from_email:
+                    # Fallback: suppress whatever bounced back to us
+                    for sent_addr in list(sent_map.keys()):
+                        if from_domain and from_domain in sent_addr:
+                            _add_suppressed(sent_addr)
+                            state[sent_map[sent_addr][0]]["status"] = "hard_bounce"
+                imap.store(uid, "+FLAGS", "\\Seen")
+                print(f"  🔴 Bounce detected from {sender_raw} — suppressed recipient(s)")
+                log("backlinks", "inbox", "bounce", f"from:{sender_raw[:60]}")
+                _save_state(state)
+                continue
+
+            # ── Opt-out / STOP detection ──────────────────────────────────────
+            # If someone replies with STOP in the subject or body, honour it
+            # immediately and never contact them again.
+            is_stop = (
+                subject_raw.strip().upper() == "STOP"
+                or subject_raw.upper().startswith("STOP ")
+                or re.search(r"\bstop\b|\bunsubscribe\b|\bremove me\b|\bopt.?out\b",
+                             subject_raw + " " + body[:500], re.IGNORECASE)
+            )
+            if is_stop and from_email:
+                _add_suppressed(from_email)
+                if from_email in sent_map:
+                    domain_key = sent_map[from_email][0]
+                    state[domain_key]["status"] = "unsubscribed"
+                    state[domain_key]["unsubscribed_at"] = datetime.now(timezone.utc).isoformat()
+                imap.store(uid, "+FLAGS", "\\Seen")
+                print(f"  🚫 Opt-out from {from_email} — suppressed permanently")
+                log("backlinks", "inbox", "optout", f"from:{from_email}")
+                _save_state(state)
+                continue
+
             # Match against a domain we contacted — by exact sent_to or domain
             matched_domain, matched_rec = None, None
             if from_email in sent_map:
@@ -800,11 +956,15 @@ _HEADERS = {
     )
 }
 
-# Email prefixes tried if scraping finds nothing — no API, completely free
+# Email prefixes tried if scraping finds nothing — ordered by deliverability.
+# editorial/named prefixes first (lower spam score), generic role addresses last.
 _PATTERN_PREFIXES = [
-    "contact", "editor", "info", "hello",
-    "advertise", "partnerships", "team", "write",
+    "editor", "editorial", "news", "content",
+    "hello", "team", "info", "contact",
 ]
+
+# Generic role addresses that are spam-filtered more aggressively — deprioritised.
+_GENERIC_PREFIXES = {"contact", "info", "hello", "team"}
 
 # Domains we never want to return (spam traps, generic providers, etc.)
 _SKIP_DOMAINS = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "example.com"}
@@ -844,41 +1004,60 @@ def find_contact_email(domain: str) -> str | None:
         all_found.extend(_scrape_emails_from_url(base + path))
 
     if all_found:
-        # Prefer editorial/content-related addresses
-        editorial = ["editor", "content", "write", "guest", "seo", "marketing", "pr", "outreach"]
+        # 1st priority: specific named/editorial addresses (highest deliverability)
+        editorial_keywords = ["editor", "content", "write", "guest", "seo", "marketing", "pr", "outreach", "news"]
         for e in all_found:
-            if any(k in e for k in editorial):
+            if any(k in e for k in editorial_keywords):
                 return e
+        # 2nd priority: anything that isn't a generic role address
+        non_generic = [e for e in all_found if not any(e.startswith(p + "@") for p in _GENERIC_PREFIXES)]
+        if non_generic:
+            return non_generic[0]
+        # Last resort: first scraped address (generic role is still better than a guess)
         return all_found[0]
 
-    # Pattern fallback — site may be alive even if scraping fails
+    # Pattern fallback — try editorial prefixes before generic ones
+    # We check if the site is reachable first; if not, still return best-guess
+    site_alive = False
     try:
         r = requests.head(base, headers=_HEADERS, timeout=6, allow_redirects=True)
-        if r.status_code < 500:
-            return f"{_PATTERN_PREFIXES[0]}@{domain}"
+        site_alive = r.status_code < 500
     except Exception:
         pass
 
-    # Return best-guess even if site unreachable — email may still work
+    # Always return a guess — editorial prefix is less likely to be spam-filtered
+    # than contact@ which is a well-known honeypot on many sites
     return f"{_PATTERN_PREFIXES[0]}@{domain}"
 
 
 # ── SMTP SEND ─────────────────────────────────────────────────────────────────
 
 def _send_smtp(to_email: str, subject: str, body: str) -> bool:
-    """Send a plain-text email. Returns True on success."""
+    """
+    Send a plain-text email with CAN-SPAM footer and List-Unsubscribe header.
+    Raises RuntimeError for config errors or suppressed recipients.
+    """
+    # Suppression gate — never email hard-bounced or opted-out addresses
+    if to_email.lower().strip() in _load_suppressed():
+        raise RuntimeError(f"{to_email} is in suppression list — skipping")
+
     if not SMTP_USER or not SMTP_PASS:
         raise RuntimeError(
             "SMTP_USER and SMTP_PASS must be set in agents/python/.env to send emails.\n"
             "For Gmail: create an App Password at https://myaccount.google.com/apppasswords"
         )
 
+    # Append CAN-SPAM-required footer to every outgoing email
+    full_body = body.rstrip() + _canspam_footer()
+
     msg = MIMEMultipart("alternative")
-    msg["Subject"] = subject
-    msg["From"]    = f"{SMTP_FROM_NAME} <{SMTP_USER}>"
-    msg["To"]      = to_email
-    msg["Reply-To"] = SMTP_USER
-    msg.attach(MIMEText(body, "plain", "utf-8"))
+    msg["Subject"]          = subject
+    msg["From"]             = f"{SMTP_FROM_NAME} <{SMTP_USER}>"
+    msg["To"]               = to_email
+    msg["Reply-To"]         = SMTP_USER
+    # RFC 2369 List-Unsubscribe — honoured by Gmail, Outlook, Apple Mail
+    msg["List-Unsubscribe"] = f"<mailto:{SMTP_USER}?subject=STOP>"
+    msg.attach(MIMEText(full_body, "plain", "utf-8"))
 
     # Port 465 = direct SSL; port 587 = STARTTLS
     if SMTP_PORT == 465:
@@ -919,16 +1098,52 @@ def run_send(limit: int = DEFAULT_SEND_LIMIT, dry_run: bool = False) -> int:
         print("✓ No drafted outreach ready to send — run --outreach first.")
         return 0
 
-    print(f"\n📤 Sending outreach to {len(pending)} targets (limit: {limit})...")
+    # ── Deliverability safety gates ────────────────────────────────────────────
+
+    # Gate 1: Send window — Mon–Fri 08:00–17:00 UTC only
+    if not dry_run and not _within_send_window():
+        now_utc = datetime.now(timezone.utc)
+        print(
+            f"\n⏰ Outside send window ({now_utc.strftime('%A %H:%M UTC')}).\n"
+            f"   Outreach emails are sent Mon–Fri 08:00–17:00 UTC only.\n"
+            f"   This prevents night/weekend sends which raise spam complaint rates.\n"
+            f"   Skipping send — try again during business hours."
+        )
+        log("backlinks", "send", "outside_window", now_utc.isoformat())
+        return 0
+
+    # Gate 2: Daily hard cap — prevents inbox suspension
+    already_sent_today = _daily_send_count() if not dry_run else 0
+    remaining_today = DAILY_SEND_HARD_CAP - already_sent_today
+    if not dry_run and remaining_today <= 0:
+        print(
+            f"\n🛑 Daily send cap reached ({DAILY_SEND_HARD_CAP} emails/day).\n"
+            f"   Already sent {already_sent_today} emails today (UTC).\n"
+            f"   Cap resets at midnight UTC. This limit protects inbox reputation."
+        )
+        log("backlinks", "send", "daily_cap_reached", f"sent_today:{already_sent_today}")
+        return 0
+
+    # Honour the daily cap even within this run
+    effective_limit = min(limit, remaining_today) if not dry_run else limit
+
+    print(f"\n📤 Sending outreach to {min(len(pending), effective_limit)} targets "
+          f"(limit: {effective_limit}, daily remaining: {remaining_today})...")
     sent = 0
 
     for domain, rec in pending:
+        if sent >= effective_limit:
+            break
+
         subject = rec.get("email_subject", "")
         body    = rec.get("email_body", "")
 
         if not subject or not body:
             print(f"  ✗ {domain}: no email draft — run --outreach first")
             continue
+
+        # Warn on long email bodies
+        _check_body_word_count(body, domain)
 
         # Find contact email
         print(f"  🔍 {domain}: finding contact email...")
@@ -939,10 +1154,17 @@ def run_send(limit: int = DEFAULT_SEND_LIMIT, dry_run: bool = False) -> int:
             state[domain] = rec
             continue
 
+        # Skip suppressed addresses
+        if contact.lower() in _load_suppressed():
+            print(f"  🚫 {domain}: {contact} is suppressed (bounced/unsubscribed) — skipping")
+            rec["status"] = "suppressed"
+            state[domain] = rec
+            continue
+
         if dry_run:
             print(f"\n── DRY RUN: {domain} → {contact} ──")
             print(f"  Subject: {subject}")
-            print(f"  Body:\n{body[:300]}{'...' if len(body) > 300 else ''}\n")
+            print(f"  Body preview ({len(body.split())} words):\n{body[:300]}{'...' if len(body) > 300 else ''}\n")
             sent += 1
             continue
 
@@ -952,14 +1174,22 @@ def run_send(limit: int = DEFAULT_SEND_LIMIT, dry_run: bool = False) -> int:
             rec["sent_at"]  = datetime.now(timezone.utc).isoformat()
             rec["status"]   = "sent"
             state[domain]   = rec
+            _save_state(state)  # Save after every send so crashes don't lose progress
             print(f"  ✓ Sent to {contact} ({domain})")
             sent += 1
             log("backlinks", "send", "success", f"domain:{domain} to:{contact}")
         except RuntimeError as e:
-            # Config error — stop immediately, no point retrying other domains
-            print(f"\n✗ SMTP not configured: {e}")
-            log("backlinks", "send", "config_error", str(e)[:120])
-            break
+            err = str(e)
+            if "suppression list" in err:
+                print(f"  🚫 {domain}: {err}")
+                rec["status"] = "suppressed"
+            else:
+                # Config error — stop immediately, no point retrying
+                print(f"\n✗ SMTP error: {err}")
+                log("backlinks", "send", "config_error", err[:120])
+                _save_state(state)
+                break
+            state[domain] = rec
         except Exception as e:
             print(f"  ✗ {domain}: send failed — {e}")
             rec["status"] = "send_error"
@@ -967,13 +1197,12 @@ def run_send(limit: int = DEFAULT_SEND_LIMIT, dry_run: bool = False) -> int:
             state[domain] = rec
             log("backlinks", "send", "error", f"domain:{domain} err:{str(e)[:80]}")
 
-        if sent < len(pending):
+        if sent < effective_limit and sent < len(pending):
             delay = random.uniform(SEND_DELAY_MIN, SEND_DELAY_MAX)
-            print(f"  ⏱  Waiting {delay:.0f}s before next send...")
+            print(f"  ⏱  Waiting {delay/60:.1f} min before next send...")
             time.sleep(delay)
 
-    if not dry_run:
-        _save_state(state)
+    _save_state(state)
 
     print(f"\n✓ Send run complete — {sent} emails sent")
     log("backlinks", "send_run", "done", f"sent:{sent}")
