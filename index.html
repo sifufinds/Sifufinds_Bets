@@ -171,8 +171,57 @@
 <link rel="preload" href="assets/shared.css?v=7" as="style">
 <link rel="stylesheet" href="assets/shared.css?v=7">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<style>
+.sad{position:fixed;top:50%;transform:translateY(-50%);width:132px;background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.16);overflow:hidden;z-index:98;display:none;flex-direction:column;border:1px solid #e0e0e0}
+@media(min-width:1520px){
+  .sad{display:flex}
+  .sad-l{left:max(6px,calc((100vw - 1200px)/2 - 146px))}
+  .sad-r{right:max(6px,calc((100vw - 1200px)/2 - 146px))}
+}
+.sad-hd{height:58px;display:flex;align-items:center;justify-content:center;padding:9px}
+.sad-logo{max-height:36px;max-width:108px;object-fit:contain;filter:brightness(0) invert(1)}
+.sad-bd{padding:9px 8px;display:flex;flex-direction:column;gap:5px;text-align:center}
+.sad-ttl{font-size:9px;font-weight:700;color:#e67e22;text-transform:uppercase;letter-spacing:.5px}
+.sad-off{font-size:11px;color:#111;line-height:1.3;font-weight:600}
+.sad-sub{font-size:10px;color:#444;font-weight:700}
+.sad-cta{display:block;color:#fff;font-size:10.5px;font-weight:800;padding:7px 4px;border-radius:6px;text-align:center;text-decoration:none;margin-top:2px;transition:opacity .15s}
+.sad-cta:hover{opacity:.86}
+.sad-dis{font-size:8px;color:#bbb;text-align:center}
+.sad-x{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.32);border:none;color:#fff;font-size:11px;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;line-height:1;z-index:2}
+.sad-x:hover{background:rgba(0,0,0,.55)}
+</style>
 </head>
 <body>
+
+<!-- SIDEBAR AD LEFT: TicTacBets -->
+<div class="sad sad-l" id="sadL">
+  <div class="sad-hd" style="background:#00838F">
+    <img src="assets/logos/tictacbets.png" alt="TicTacBets" class="sad-logo">
+  </div>
+  <div class="sad-bd">
+    <div class="sad-ttl">🔥 No Deposit</div>
+    <div class="sad-off">25 Free Spins<br>on Registration</div>
+    <div class="sad-sub">+ 100% up to R5,000</div>
+    <a href="https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023" target="_blank" rel="noopener sponsored" class="sad-cta" style="background:#00838F">Claim Spins →</a>
+    <div class="sad-dis">18+ · Ad · T&Cs Apply</div>
+  </div>
+  <button class="sad-x" onclick="this.closest('.sad').style.display='none'" aria-label="Close ad">×</button>
+</div>
+
+<!-- SIDEBAR AD RIGHT: Paripesa -->
+<div class="sad sad-r" id="sadR">
+  <div class="sad-hd" style="background:#1b6b35">
+    <img src="assets/logos/paripesa_hq.png" alt="Paripesa" class="sad-logo">
+  </div>
+  <div class="sad-bd">
+    <div class="sad-ttl">🎁 Welcome Offer</div>
+    <div class="sad-off">200% Bonus<br>First Deposit</div>
+    <div class="sad-sub">Up to ₦200,000</div>
+    <a href="https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569" target="_blank" rel="noopener sponsored" class="sad-cta" style="background:#1b6b35">Claim Bonus →</a>
+    <div class="sad-dis">18+ · Ad · T&Cs Apply</div>
+  </div>
+  <button class="sad-x" onclick="this.closest('.sad').style.display='none'" aria-label="Close ad">×</button>
+</div>
 
 <!-- TOP BAR -->
 <div class="tbar">
