@@ -278,7 +278,7 @@ def _daily_send_count() -> int:
     state = _load_state()
     return sum(
         1 for key, rec in state.items()
-        if not key.startswith("__") and rec.get("sent_at", "")[:10] == today
+        if not key.startswith("__") and (rec.get("sent_at") or "")[:10] == today
     )
 
 

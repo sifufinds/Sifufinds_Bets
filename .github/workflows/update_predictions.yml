@@ -1,0 +1,66 @@
+name: SifuKaii Predicts — Scrape predictz.com every 15 minutes
+
+on:
+  schedule:
+    # Every 15 minutes, 24/7
+    - cron: "0,15,30,45 * * * *"
+  workflow_dispatch:   # manual trigger from GitHub UI
+
+concurrency:
+  group: update-predictions
+  cancel-in-progress: false   # queue runs, never drop a scrape
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-predictions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+      APIFY_API_TOKEN:   ${{ secrets.APIFY_API_TOKEN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Pull latest (avoid stale reads)
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests --quiet
+
+      - name: Run predictions scraper
+        run: python3 update_predictions.py
+        continue-on-error: true   # never block on scrape failure
+
+      - name: Commit updated predictions
+        run: |
+          git config user.name  "SifuKaii Predicts Bot"
+          git config user.email "scrapebot@sifufinds.com"
+          git add data/predictions.json
+          if git diff --cached --quiet; then
+            echo "ℹ No prediction changes — nothing to commit"
+            exit 0
+          fi
+          COUNT=$(python3 -c "import json; d=json.load(open('data/predictions.json')); print(d.get('count',0))" 2>/dev/null || echo "?")
+          git commit -m "live: predictions update $(date -u '+%Y-%m-%d %H:%M') UTC — ${COUNT} matches"
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            [ "$attempt" -eq 5 ] && { echo "❌ Push failed after 5 attempts"; exit 1; }
+            echo "⚠ Push rejected ($attempt/5) — rebasing…"
+            sleep $((attempt * 3))
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done
