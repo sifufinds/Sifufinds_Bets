@@ -71,6 +71,8 @@ jobs:
           X_PASSWORD: ${{ secrets.X_PASSWORD }}
           X_EMAIL: ${{ secrets.X_EMAIL }}
         run: |
+          echo "X_USERNAME set: $([ -n "$X_USERNAME" ] && echo YES || echo NO)"
+          echo "X_PASSWORD set: $([ -n "$X_PASSWORD" ] && echo YES || echo NO)"
           MODE="${{ github.event.inputs.mode || 'auto' }}"
           ARGS="--mode $MODE"
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
