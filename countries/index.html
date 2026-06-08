@@ -283,6 +283,54 @@ const CTY_SLUG={NG:'nigeria',KE:'kenya',GH:'ghana',ZA:'south-africa',TZ:'tanzani
 let _activeRegion='all';
 let _selectedCty=null;
 
+// ── Live data fetch & merge ────────────────────────────────────────────────
+async function fetchLiveData(){
+  try{
+    const r=await fetch('../data/countries_live.json?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return null;
+    const live=await r.json();
+
+    // Patch BOOKS in-memory with verified live offers
+    if(live.bookmakers){
+      Object.keys(BOOKS).forEach(code=>{
+        BOOKS[code].forEach(bk=>{
+          // Match by exact name or by name prefix (e.g. "1xBet" matches "1xBet Nigeria")
+          const ld=live.bookmakers[bk.name]||
+                    live.bookmakers[Object.keys(live.bookmakers).find(k=>bk.name.startsWith(k)||k.startsWith(bk.name))||''];
+          if(ld&&ld.top){
+            bk.top=ld.top;
+            bk._live=true;
+          }
+        });
+      });
+    }
+
+    // Update country counts if Apify found new operators
+    if(live.countries){
+      Object.keys(live.countries).forEach(code=>{
+        const lc=live.countries[code];
+        if(lc.count&&COUNTRY_DATA[code]){
+          COUNTRY_DATA[code]._liveCount=lc.count;
+        }
+      });
+    }
+
+    // Show live badge with relative time
+    const badge=document.getElementById('live-badge');
+    const agoEl=document.getElementById('live-updated-ago');
+    if(badge&&agoEl&&live.updated){
+      const mins=Math.round((Date.now()-new Date(live.updated).getTime())/60000);
+      const ago=mins<2?'just now':mins<60?mins+'m ago':Math.round(mins/60)+'h ago';
+      agoEl.textContent='verified '+ago;
+      badge.style.display='block';
+    }
+
+    return live;
+  }catch(e){
+    return null;
+  }
+}
+
 function filterRegion(btn){
   document.querySelectorAll('[data-region]').forEach(b=>b.classList.remove('on'));
   document.querySelectorAll(`[data-region="${btn.dataset.region}"]`).forEach(b=>b.classList.add('on'));
@@ -300,7 +348,7 @@ function renderGrid(filter){
   });
   H('cty-grid',filtered.map(code=>{
     const cd=COUNTRY_DATA[code];
-    const bkCount=(BOOKS[code]||[]).length;
+    const bkCount=cd._liveCount||(BOOKS[code]||[]).length;
     const slug=CTY_SLUG[code]||code.toLowerCase();
     return`<a class="cbox${code===_selectedCty?' sel':''}" href="${slug}/" onclick="event.preventDefault();selectCountry('${code}')">
       <span class="cflag-icon">${cd.flag}</span>
