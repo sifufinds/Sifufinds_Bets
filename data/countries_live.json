@@ -1,16 +1,20 @@
 {
-  "updated": "2026-06-08T00:45:58.741492+00:00",
+  "updated": "2026-06-08T00:52:16.609691+00:00",
   "v": 2,
   "bookmakers": {
     "Bet9ja": {
-      "top": "Get ₦2,500",
-      "last_verified": "2026-06-08T00:45:58.741492+00:00",
-      "status": "live"
+      "top": "₦2,500 Free Bet",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "off": "Register with code 9BONUS. Get ₦2,500 free bet on signup",
+      "source": "goal.com/apify"
     },
     "Hollywoodbets": {
-      "top": "R25 FREE BET",
-      "last_verified": "2026-06-08T00:45:58.741492+00:00",
-      "status": "live"
+      "top": "R25 No Deposit",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "off": "R25 Free Bet + 50 Free Spins – No Deposit Required",
+      "source": "goal.com/apify"
     },
     "1xBet": {
       "top": "Get ₦600,000 FREE",
@@ -33,9 +37,11 @@
       "status": "live"
     },
     "TicTacBets": {
-      "top": "Get 25 FS",
-      "last_verified": "2026-06-05T06:12:51.765170+00:00",
-      "status": "live"
+      "top": "R5,000 + 75 Spins",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "off": "25 Free Spins + 100% Match Up to R5,000 + 50 Spins",
+      "source": "goal.com/apify"
     },
     "Sportybet Nigeria": {
       "status": "live",
@@ -43,17 +49,120 @@
     },
     "1xBet Nigeria": {
       "status": "live",
-      "last_verified": "2026-06-08T00:45:58.741492+00:00"
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "top": "₦1,200,000",
+      "off": "300% First Deposit Bonus – Up to ₦1,200,000",
+      "source": "goal.com/apify"
     },
     "Betika Kenya": {
       "status": "live",
       "last_verified": "2026-06-08T00:45:58.741492+00:00"
+    },
+    "Betano Nigeria": {
+      "top": "₦200,000",
+      "off": "50% First Deposit Bonus – Up to ₦200,000",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "MSport Nigeria": {
+      "top": "₦500,000",
+      "off": "Up to ₦500,000 free bonus – no promo code needed",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "22Bet Nigeria": {
+      "top": "₦207,500",
+      "off": "100% First Deposit Bonus – Up to ₦207,500",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "BetWinner Nigeria": {
+      "top": "₦130,000",
+      "off": "200% First Deposit Bonus – Up to ₦130,000",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "Betway Nigeria": {
+      "top": "₦1,000 + Spins",
+      "off": "Coupon pack – ₦1,000 extra bet, 10 free spins + 10 free flights",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "BetKing": {
+      "top": "₦100 + 10 Flights",
+      "off": "₦100 Free Bets + 10 Aviator Flights – No Deposit (code BONUSKG)",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "MozzartBet Nigeria": {
+      "top": "₦50,000 + 500",
+      "off": "100% Bonus Up to ₦50,000 + 500 Aviator Free Bets",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "Wazobet": {
+      "top": "₦55,000",
+      "off": "110% First Deposit Bonus – Up to ₦55,000",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "Accessbet": {
+      "top": "₦10,000",
+      "off": "300% Welcome Bonus – Up to ₦10,000",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "Paripesa Nigeria": {
+      "top": "₦230,000",
+      "off": "100% Deposit Bonus – Up to ₦230,000 (code BETSPESA)",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "Easybet": {
+      "top": "R1,500 + 15% Cash",
+      "off": "150% First Deposit + 15% Cashback – Up to R1,500",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "YesPlay": {
+      "top": "R3,000",
+      "off": "100% Deposit Bonus – Up to R3,000",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "Supabets": {
+      "top": "R5,000 + 100 Spins",
+      "off": "R50 Free Bet + 100% Match Up to R5,000 + 100 Spins",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
+    },
+    "Betway South Africa": {
+      "top": "R1M Prize",
+      "off": "R10 Extra Bet + 10 Spins + Random R1M MEGA Prize",
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "status": "live",
+      "source": "goal.com/apify"
     }
   },
   "countries": {
     "NG": {
       "count": 34,
-      "last_verified": "2026-06-08T00:45:28.979481+00:00"
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "top_offer": "₦1,200,000",
+      "top_bookmaker": "1xBet Nigeria"
     },
     "KE": {
       "count": 51,
@@ -65,7 +174,9 @@
     },
     "ZA": {
       "count": 58,
-      "last_verified": "2026-06-08T00:45:28.979481+00:00"
+      "last_verified": "2026-06-08T00:52:16.609691+00:00",
+      "top_offer": "R25 No Deposit",
+      "top_bookmaker": "Hollywoodbets"
     },
     "TZ": {
       "count": 22,
