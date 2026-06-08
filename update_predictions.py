@@ -2,10 +2,9 @@
 """
 SifuKaii Predicts — predictz.com scraper.
 
-Primary:  Firecrawl REST API (FIRECRAWL_API_KEY env var — GitHub Actions secret)
-Local:    Firecrawl CLI (stored session — no env var needed)
-Fallback: Apify rag-web-browser (APIFY_API_TOKEN env var)
-Cache:    Previous predictions.json (last resort)
+Firecrawl (REST API or CLI) and Apify run in parallel for each page.
+Whichever returns a valid result first wins; the other is discarded.
+Cache is used only when both fail for all pages.
 """
 
 from __future__ import annotations
@@ -16,6 +15,7 @@ import re
 import subprocess
 import sys
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -135,31 +135,54 @@ def _scrape_apify(url: str, token: str) -> str:
     return items[0].get("markdown") or items[0].get("text") or ""
 
 
-def scrape(url: str) -> str:
-    """Try Firecrawl REST → CLI → Apify, in that order."""
-    api_key    = os.environ.get("FIRECRAWL_API_KEY", "").strip()
-    apify_tok  = os.environ.get("APIFY_API_TOKEN", "").strip()
-    errors: list[str] = []
+def _apify_token() -> str:
+    return (
+        os.environ.get("APIFY_API_TOKEN")
+        or os.environ.get("APIFY_TOKEN")
+        or ""
+    ).strip()
 
+
+def _firecrawl_scraper(url: str):
+    """Return a callable for whichever Firecrawl variant is available."""
+    api_key = os.environ.get("FIRECRAWL_API_KEY", "").strip()
     if api_key:
-        try:
-            return _scrape_firecrawl_rest(url, api_key)
-        except Exception as e:
-            errors.append(f"firecrawl-rest: {e}")
-            print(f"  [warn] firecrawl REST: {e}", file=sys.stderr)
+        return lambda: _scrape_firecrawl_rest(url, api_key)
+    return lambda: _scrape_firecrawl_cli(url)
 
-    try:
-        return _scrape_firecrawl_cli(url)
-    except Exception as e:
-        errors.append(f"firecrawl-cli: {e}")
-        print(f"  [warn] firecrawl CLI: {e}", file=sys.stderr)
 
-    if apify_tok:
-        try:
-            return _scrape_apify(url, apify_tok)
-        except Exception as e:
-            errors.append(f"apify: {e}")
-            print(f"  [warn] apify: {e}", file=sys.stderr)
+def scrape(url: str) -> str:
+    """
+    Run Firecrawl and Apify in parallel.
+    Return whichever produces a non-empty result first.
+    Fall back to the slower one if the fast one fails.
+    """
+    apify_tok = _apify_token()
+    tasks: dict = {}
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        tasks[pool.submit(_firecrawl_scraper(url))] = "firecrawl"
+        if apify_tok:
+            tasks[pool.submit(_scrape_apify, url, apify_tok)] = "apify"
+
+        errors: list[str] = []
+        remaining = set(tasks.keys())
+
+        while remaining:
+            done, remaining = wait(remaining, return_when=FIRST_COMPLETED, timeout=130)
+            for future in done:
+                name = tasks[future]
+                try:
+                    result = future.result()
+                    if result:
+                        # Cancel whatever is still running
+                        for f in remaining:
+                            f.cancel()
+                        print(f"  [ok/{name}] {len(result)} chars", file=sys.stderr)
+                        return result
+                except Exception as exc:
+                    errors.append(f"{name}: {exc}")
+                    print(f"  [warn/{name}] {exc}", file=sys.stderr)
 
     raise RuntimeError(f"All scrapers failed for {url}: {'; '.join(errors)}")
 
