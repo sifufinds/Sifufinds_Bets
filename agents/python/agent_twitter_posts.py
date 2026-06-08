@@ -160,23 +160,23 @@ def _tweet_len(text: str) -> int:
 
 
 def _trim_to_limit(text: str, limit: int = TWEET_MAX) -> str:
-    """Hard-truncate a tweet that exceeds the limit, breaking at a word boundary."""
+    """Truncate the last line of a tweet that exceeds the limit."""
     if _tweet_len(text) <= limit:
         return text
-    words = text.split()
-    result = []
-    count = 0
-    for word in words:
-        import re
-        word_len = TWITTER_URL_LEN if re.match(r'https?://', word) else len(word)
-        if count + word_len + (1 if result else 0) > limit - 3:
-            result.append("...")
-            break
-        if result:
-            count += 1
-        count += word_len
-        result.append(word)
-    return " ".join(result)
+    import re
+    # Truncate preserving newlines: shorten the last line
+    lines = text.split("\n")
+    while lines and _tweet_len("\n".join(lines)) > limit:
+        last = lines[-1]
+        if not last:
+            lines.pop()
+            continue
+        words = last.split()
+        if len(words) <= 1:
+            lines.pop()
+        else:
+            lines[-1] = " ".join(words[:-1]) + "..."
+    return "\n".join(lines)
 
 
 # ── OFFER MODE ────────────────────────────────────────────────────────────────
@@ -206,18 +206,12 @@ def _next_brand(state: dict, force: bool = False) -> dict | None:
 
 
 def _build_offer_tweet(brand: dict) -> str:
-    countries = " · ".join(brand["countries"][:4])
-    if len(brand["countries"]) > 4:
-        countries += f" +{len(brand['countries']) - 4} more"
-
     tweet = (
-        f"🔥 {brand['name']} {brand['flag']} — DEAL OF THE DAY\n"
+        f"🔥 TODAY'S DEAL — {brand['name']} {brand['flag']}\n"
         f"💰 {brand['welcome']}\n"
         f"✨ {brand['highlight']}\n\n"
-        f"Min deposit: {brand['min_deposit']} | {brand['licence']}\n"
-        f"🌍 {countries}\n\n"
-        f"👉 Claim → {brand['url']}\n"
-        f"📊 Compare all → {SITE_URL}\n\n"
+        f"Min deposit: {brand['min_deposit']} | {brand['licence']}\n\n"
+        f"👉 Claim → {brand['url']}\n\n"
         f"{brand['hashtags']} #SifuFinds #AfricanBetting"
     )
     return _trim_to_limit(tweet)
