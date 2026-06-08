@@ -819,6 +819,17 @@ function scheduleRefresh() {
   if (_refreshTimer) clearTimeout(_refreshTimer);
   _refreshTimer = setTimeout(async () => {
     await loadPredictions();
+    // If the active competition no longer has upcoming matches, reset to 'all'
+    if (_activeComp !== 'all') {
+      const stillHasData = _preds.filter(isUpcoming).some(p => matchesComp(p, _activeComp));
+      if (!stillHasData) {
+        _activeComp = 'all';
+        document.querySelectorAll('.fsb-item,.fsb-pop').forEach(i => i.classList.remove('on'));
+        const allBtn = document.getElementById('fsb-all');
+        if (allBtn) allBtn.classList.add('on');
+      }
+    }
+    buildCompSidebar();
     renderPreds();
     updateRefreshUI();
     scheduleRefresh();
