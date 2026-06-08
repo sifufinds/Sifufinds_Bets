@@ -64,6 +64,18 @@
         {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sifufinds.com/"},
         {"@type": "ListItem", "position": 2, "name": "SifuKaii Predicts", "item": "https://sifufinds.com/tips/"}
       ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What are football betting tips?", "acceptedAnswer": {"@type": "Answer", "text": "Football betting tips are expert or data-driven predictions on match outcomes — who will win, total goals, both teams to score, and more. SifuKaii Predicts pulls live tips directly from predictz.com every 15 minutes and matches them to the best available odds from top African bookmakers like Bet9ja, SportyBet and Betway."}},
+        {"@type": "Question", "name": "What does BTTS mean in football betting?", "acceptedAnswer": {"@type": "Answer", "text": "BTTS stands for Both Teams To Score. A BTTS Yes bet wins if both the home and away team score at least one goal — regardless of which team wins or the final scoreline. It's one of the most popular markets in Africa due to relatively high hit rates and competitive odds typically ranging from 1.6 to 2.0."}},
+        {"@type": "Question", "name": "What does Over/Under 2.5 goals mean?", "acceptedAnswer": {"@type": "Answer", "text": "Over 2.5 goals wins if the match ends with 3 or more goals in total. Under 2.5 wins if the match ends 0-0, 1-0, 0-1, 1-1, or 2-0/0-2. The threshold is 2.5 so there is no push — you always win or lose. It is the most widely available goals market across bookmakers in Nigeria, Kenya, Ghana, and South Africa."}},
+        {"@type": "Question", "name": "How do I read a correct score prediction?", "acceptedAnswer": {"@type": "Answer", "text": "A correct score prediction (e.g. 2-1) means the model expects the home team to win 2-1. The first number is always the home team's goals. Correct score bets carry higher odds — often 6.0 to 15.0 — because guessing the exact scoreline is difficult. Use them as part of combination bets rather than single stakes for best value."}},
+        {"@type": "Question", "name": "How often are the predictions updated?", "acceptedAnswer": {"@type": "Answer", "text": "SifuKaii Predicts refreshes automatically every 15 minutes via a scheduled GitHub Actions scraper. Each refresh pulls the latest Match Winner, BTTS, Over/Under 2.5, BTTS & Win, and Correct Score predictions for all available fixtures. The last update time is shown at the top of the page."}},
+        {"@type": "Question", "name": "Which bookmakers are best for betting in Africa?", "acceptedAnswer": {"@type": "Answer", "text": "In Nigeria, Bet9ja and SportyBet are the most widely used. In Kenya, Betway and 1xBet are popular. In South Africa, Hollywoodbets dominates. SifuFinds detects your location and shows the most relevant bookmakers with current welcome offers and payment methods for your market."}},
+        {"@type": "Question", "name": "Are these predictions guaranteed to win?", "acceptedAnswer": {"@type": "Answer", "text": "No prediction in football betting is ever guaranteed. Tips are statistical models based on form, head-to-head records, and league data. They improve your decision-making but cannot account for red cards, injuries discovered at kick-off, or other unpredictable events. Always bet only what you can afford to lose. 18+ only."}}
+      ]
     }
   ]
 }
@@ -267,118 +279,8 @@
       <button class="fsb-sport-hdr" onclick="fsbToggle('football')">⚽ <span style="flex:1">Competitions</span><span class="fsb-chev">▾</span></button>
       <div class="fsb-body">
         <button class="fsb-pop on" id="fsb-all" onclick="compFilt('all',this)">🏆 All Competitions</button>
-
-        <div class="fsb-lbl">International</div>
-        <button class="fsb-pop" onclick="compFilt('world',this)">🌍 World Cup 2026</button>
-        <button class="fsb-pop" onclick="compFilt('ucl',this)">⭐ UEFA Champions League</button>
-        <button class="fsb-pop" onclick="compFilt('cafl',this)">🏆 CAF Champions League</button>
-        <button class="fsb-pop" onclick="compFilt('afcon',this)">📋 AFCON</button>
-        <button class="fsb-pop" onclick="compFilt('uel',this)">UEFA Europa League</button>
-
-        <div class="fsb-lbl">Europe</div>
-        <div class="fsb-cty fsb-open-c" id="fsbc-en">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('en')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('epl',this)">Premier League</button>
-            <button class="fsb-item" onclick="compFilt('champ',this)">Championship</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-es">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('es')">🇪🇸 Spain<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('laliga',this)">La Liga</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-de">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('de')">🇩🇪 Germany<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('bund',this)">Bundesliga</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-it">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('it')">🇮🇹 Italy<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('seriea',this)">Serie A</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-fr">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('fr')">🇫🇷 France<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('ligue1',this)">Ligue 1</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-pt">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('pt')">🇵🇹 Portugal<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('liga',this)">Primeira Liga</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-nl">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('nl')">🇳🇱 Netherlands<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('eredivisie',this)">Eredivisie</button>
-          </div>
-        </div>
-
-        <div class="fsb-lbl">Africa</div>
-        <div class="fsb-cty fsb-open-c" id="fsbc-ng">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('ng')">🇳🇬 Nigeria<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('npfl',this)">NPFL</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-ke">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('ke')">🇰🇪 Kenya<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('kpl',this)">Premier League</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-za">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('za')">🇿🇦 South Africa<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('psl',this)">DStv Premiership</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-gh">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('gh')">🇬🇭 Ghana<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('gpl',this)">Ghana Premier League</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-eg">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('eg')">🇪🇬 Egypt<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('epl_eg',this)">Egyptian Premier League</button>
-          </div>
-        </div>
-
-        <div class="fsb-lbl">Americas</div>
-        <div class="fsb-cty" id="fsbc-us">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('us')">🇺🇸 USA<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('mls',this)">MLS</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-br">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('br')">🇧🇷 Brazil<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('brasileirao',this)">Brasileirão</button>
-          </div>
-        </div>
-
-        <div class="fsb-lbl">Asia</div>
-        <div class="fsb-cty" id="fsbc-jp">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('jp')">🇯🇵 Japan<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('jleague',this)">J1 League</button>
-          </div>
-        </div>
-        <div class="fsb-cty" id="fsbc-sa">
-          <button class="fsb-cty-hdr" onclick="fsbToggleCty('sa')">🇸🇦 Saudi Arabia<span class="fsb-cchev">▸</span></button>
-          <div class="fsb-lgs">
-            <button class="fsb-item" onclick="compFilt('spl',this)">Saudi Pro League</button>
-          </div>
-        </div>
+        <div class="fsb-lbl" id="fsb-today-lbl" style="display:none">Today's Leagues</div>
+        <div id="fsb-comp-list"></div>
       </div>
     </div><!-- /fsb-sport football -->
   </aside>
@@ -446,6 +348,60 @@
           <div style="font-size:11.5px;color:#555;line-height:1.55">Community tipsters with a dedicated Africa football section. Track records visible.</div>
           <div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--g)">tipsterbattle.com →</div>
         </a>
+      </div>
+    </div>
+
+    <!-- FAQ section -->
+    <div class="cbox2" style="margin-top:16px" itemscope itemtype="https://schema.org/FAQPage">
+      <h2>❓ Football Predictions FAQ</h2>
+
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid #eee;padding:14px 0">
+        <h3 itemprop="name" style="font-size:15px;font-weight:700;color:#111;margin:0 0 6px">What are football betting tips?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:13.5px;color:#444;margin:0;line-height:1.6">Football betting tips are expert or data-driven predictions on match outcomes — who will win, total goals, both teams to score, and more. SifuKaii Predicts pulls live tips directly from predictz.com every 15 minutes and matches them to the best available odds from top African bookmakers like Bet9ja, SportyBet and Betway.</p>
+        </div>
+      </div>
+
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid #eee;padding:14px 0">
+        <h3 itemprop="name" style="font-size:15px;font-weight:700;color:#111;margin:0 0 6px">What does BTTS mean in football betting?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:13.5px;color:#444;margin:0;line-height:1.6">BTTS stands for Both Teams To Score. A BTTS Yes bet wins if both the home and away team score at least one goal — regardless of which team wins or the final scoreline. It's one of the most popular markets in Africa due to relatively high hit rates and competitive odds typically ranging from 1.6 to 2.0.</p>
+        </div>
+      </div>
+
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid #eee;padding:14px 0">
+        <h3 itemprop="name" style="font-size:15px;font-weight:700;color:#111;margin:0 0 6px">What does Over/Under 2.5 goals mean?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:13.5px;color:#444;margin:0;line-height:1.6">Over 2.5 goals wins if the match ends with 3 or more goals in total. Under 2.5 wins if the match ends 0-0, 1-0, 0-1, 1-1, or 2-0/0-2. The threshold is 2.5 (not a whole number) so there is no push — you always win or lose. It is the most widely available goals market across bookmakers in Nigeria, Kenya, Ghana, and South Africa.</p>
+        </div>
+      </div>
+
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid #eee;padding:14px 0">
+        <h3 itemprop="name" style="font-size:15px;font-weight:700;color:#111;margin:0 0 6px">How do I read a correct score prediction?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:13.5px;color:#444;margin:0;line-height:1.6">A correct score prediction (e.g. 2-1) means the model expects the home team to win 2-1. The first number is always the home team's goals. Correct score bets carry higher odds — often 6.0 to 15.0 — because guessing the exact scoreline is difficult. Use them as part of combination bets rather than single stakes for best value.</p>
+        </div>
+      </div>
+
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid #eee;padding:14px 0">
+        <h3 itemprop="name" style="font-size:15px;font-weight:700;color:#111;margin:0 0 6px">How often are the predictions updated?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:13.5px;color:#444;margin:0;line-height:1.6">SifuKaii Predicts refreshes automatically every 15 minutes via a scheduled GitHub Actions scraper. Each refresh pulls the latest Match Winner, BTTS, Over/Under 2.5, BTTS &amp; Win, and Correct Score predictions for all available fixtures. The last update time is shown at the top of the page.</p>
+        </div>
+      </div>
+
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="border-bottom:1px solid #eee;padding:14px 0">
+        <h3 itemprop="name" style="font-size:15px;font-weight:700;color:#111;margin:0 0 6px">Which bookmakers are best for betting in Africa?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:13.5px;color:#444;margin:0;line-height:1.6">The top bookmakers for African bettors depend on your country. In Nigeria, Bet9ja and SportyBet are the most widely used. In Kenya, Betway and 1xBet are popular. In South Africa, Hollywoodbets dominates. SifuFinds detects your location and shows the most relevant bookmakers with current welcome offers and payment methods for your market.</p>
+        </div>
+      </div>
+
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" style="padding:14px 0 0">
+        <h3 itemprop="name" style="font-size:15px;font-weight:700;color:#111;margin:0 0 6px">Are these predictions guaranteed to win?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:13.5px;color:#444;margin:0;line-height:1.6">No prediction in football betting is ever guaranteed. Tips are statistical models based on form, head-to-head records, and league data. They improve your decision-making but cannot account for red cards, injuries discovered at kick-off, or other unpredictable events. Always bet only what you can afford to lose. 18+ only.</p>
+        </div>
       </div>
     </div>
 
@@ -556,10 +512,23 @@ const COMP_KEYS = {
 
 function matchesComp(pred, key) {
   if (key === 'all') return true;
+  if (key.startsWith('exact:')) return (pred.competition || '') === key.slice(6);
   const comp = (pred.competition || '').toLowerCase();
   const country = (pred.country || '').toLowerCase();
   const keywords = COMP_KEYS[key] || [key];
   return keywords.some(k => comp.includes(k) || country.includes(k));
+}
+
+function buildCompSidebar() {
+  const list = document.getElementById('fsb-comp-list');
+  const lbl  = document.getElementById('fsb-today-lbl');
+  if (!list) return;
+  const comps = [...new Set(_preds.map(p => p.competition).filter(Boolean))].sort();
+  if (!comps.length) { list.innerHTML = ''; if (lbl) lbl.style.display = 'none'; return; }
+  if (lbl) lbl.style.display = '';
+  list.innerHTML = comps.map(c =>
+    `<button class="fsb-pop" onclick="compFilt(${JSON.stringify('exact:' + c)}, this)">${escHtml(c)}</button>`
+  ).join('');
 }
 
 // ── Affiliate routing ─────────────────────────────────────────────────────────
@@ -915,6 +884,7 @@ async function init() {
     </div>`);
   } else {
     renderPreds();
+    buildCompSidebar();
   }
 
   buildMobileTabs();
