@@ -358,7 +358,8 @@ function renderGrid(filter){
     </a>`;
   }).join(''));
   H('cty-total',filtered.length);
-  H('total-operators',filtered.reduce((s,c)=>s+(BOOKS[c]||[]).length,0)+'+');
+  const totalOps=filtered.reduce((s,c)=>s+(COUNTRY_DATA[c]._liveCount||(BOOKS[c]||[]).length),0);
+  H('total-operators',totalOps+'+ ');
 }
 
 function selectCountry(code){
@@ -394,7 +395,7 @@ function renderDetail(){
     <div class="lbk">
       <div style="width:36px;height:36px;border-radius:6px;background:${b.bg};display:flex;align-items:center;justify-content:center;margin:0 auto 6px;overflow:hidden;position:relative">${logoImg(b.url,b.name,b.abbr,b.tc,32,5)}</div>
       <div class="lbnm">${b.name}</div>
-      <div class="lbof">${b.top}</div>
+      <div class="lbof">${b.top}${b._live?'<span style="font-size:9px;opacity:.6;margin-left:4px">✓ live</span>':''}</div>
       <a class="gbtn" style="font-size:11px;padding:6px 8px" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a>
     </div>`).join('')}</div>
   <div style="margin-top:12px">
@@ -414,7 +415,8 @@ function clearCtySearch(){
 }
 
 async function init(){
-  await waitForCountry();
+  // Load country preference + live data in parallel for fastest render
+  await Promise.all([waitForCountry(), fetchLiveData()]);
   const params=new URLSearchParams(window.location.search);
   const urlSel=params.get('sel');
   const urlRegion=params.get('region');
