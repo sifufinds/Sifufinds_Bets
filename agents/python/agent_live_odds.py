@@ -75,13 +75,8 @@ def format_time(event: dict, is_live: bool, is_complete: bool) -> str:
             today = now.date()
             tomorrow = today + timedelta(days=1)
             time_part = dt.strftime("%H:%M UTC")
-            if dt.date() == today:
-                return f"Today · {time_part}"
-            elif dt.date() == tomorrow:
-                return f"Tomorrow · {time_part}"
-            else:
-                day_mon = dt.strftime("%-d %b")
-                return f"{day_mon} · {time_part}"
+            day_mon_year = f"{dt.day} {dt.strftime('%b %Y')}"
+            return f"{day_mon_year} · {time_part}"
         except Exception:
             pass
 
@@ -170,27 +165,27 @@ def fetch_endpoint(endpoint: dict):
 
 
 FOOTBALL_FALLBACKS = [
-    {"league": "World Cup 2026 · Group Stage", "key": "world", "live": False, "complete": False,
-     "home": "Nigeria", "away": "Argentina", "hScore": None, "aScore": None,
-     "time": "Today · 20:00 UTC", "h": 5.50, "d": 3.80, "a": 1.60, "hBk": "Betway", "dBk": "1xBet", "aBk": "Bet9ja"},
-    {"league": "World Cup 2026 · Group Stage", "key": "world", "live": False, "complete": False,
-     "home": "Morocco", "away": "Brazil", "hScore": None, "aScore": None,
-     "time": "Today · 17:00 UTC", "h": 4.20, "d": 3.50, "a": 1.75, "hBk": "1xBet", "dBk": "Melbet", "aBk": "Betway"},
+    {"league": "International Friendly", "key": "world", "live": False, "complete": False,
+     "home": "Mauritania", "away": "Niger", "hScore": None, "aScore": None,
+     "time": "8 Jun 2026 · 20:00 UTC", "h": 2.10, "d": 3.20, "a": 3.50, "hBk": "1xBet", "dBk": "Melbet", "aBk": "Betway"},
+    {"league": "FIFA World Cup 2026 · Group A", "key": "world", "live": False, "complete": False,
+     "home": "Mexico", "away": "South Africa", "hScore": None, "aScore": None,
+     "time": "11 Jun 2026 · 20:00 UTC", "h": 1.80, "d": 3.50, "a": 4.50, "hBk": "Betway", "dBk": "1xBet", "aBk": "Bet9ja"},
     {"league": "AFCON 2027 Qualifier", "key": "afcon", "live": False, "complete": False,
      "home": "Nigeria", "away": "Rwanda", "hScore": None, "aScore": None,
-     "time": "Tomorrow · 16:00 UTC", "h": 1.65, "d": 3.90, "a": 5.50, "hBk": "Bet9ja", "dBk": "SportPesa", "aBk": "1xBet"},
+     "time": "9 Jun 2026 · 16:00 UTC", "h": 1.65, "d": 3.90, "a": 5.50, "hBk": "Bet9ja", "dBk": "SportPesa", "aBk": "1xBet"},
     {"league": "AFCON 2027 Qualifier", "key": "afcon", "live": False, "complete": False,
      "home": "Senegal", "away": "DR Congo", "hScore": None, "aScore": None,
-     "time": "Tomorrow · 19:00 UTC", "h": 1.70, "d": 3.30, "a": 5.00, "hBk": "1xBet", "dBk": "22Bet", "aBk": "Melbet"},
+     "time": "10 Jun 2026 · 19:00 UTC", "h": 1.70, "d": 3.30, "a": 5.00, "hBk": "1xBet", "dBk": "22Bet", "aBk": "Melbet"},
     {"league": "CAF Champions League · Final", "key": "cafl", "live": False, "complete": False,
      "home": "Mamelodi Sundowns", "away": "Al Ahly", "hScore": None, "aScore": None,
-     "time": "Tomorrow · 20:00 UTC", "h": 2.10, "d": 3.20, "a": 3.40, "hBk": "Betway", "dBk": "Bet9ja", "aBk": "Hollywoodbets"},
+     "time": "9 Jun 2026 · 20:00 UTC", "h": 2.10, "d": 3.20, "a": 3.40, "hBk": "Betway", "dBk": "Bet9ja", "aBk": "Hollywoodbets"},
     {"league": "Kenya Premier League · Playoff", "key": "local", "live": False, "complete": False,
      "home": "Gor Mahia", "away": "AFC Leopards", "hScore": None, "aScore": None,
-     "time": "Today · 13:00 UTC", "h": 2.10, "d": 3.00, "a": 3.60, "hBk": "Betika", "dBk": "SportPesa", "aBk": "Betway"},
+     "time": "12 Jun 2026 · 13:00 UTC", "h": 2.10, "d": 3.00, "a": 3.60, "hBk": "Betika", "dBk": "SportPesa", "aBk": "Betway"},
     {"league": "NPFL · Super 8", "key": "local", "live": False, "complete": False,
      "home": "Enyimba FC", "away": "Rivers United", "hScore": None, "aScore": None,
-     "time": "Today · 15:00 UTC", "h": 1.90, "d": 3.20, "a": 4.20, "hBk": "Bet9ja", "dBk": "Sportybet", "aBk": "BetKing"},
+     "time": "12 Jun 2026 · 15:00 UTC", "h": 1.90, "d": 3.20, "a": 4.20, "hBk": "Bet9ja", "dBk": "Sportybet", "aBk": "BetKing"},
 ]
 
 FOOTBALL_KEYS = {"world", "cafl", "afcon", "local", "epl", "ucl", "laliga"}

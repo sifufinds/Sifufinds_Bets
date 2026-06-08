@@ -15,7 +15,7 @@ import re
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -233,16 +233,16 @@ def fmt_time(raw_time: str, is_live: bool = False) -> str:
     t = raw_time.strip()
     if is_live:
         return t
-    # If we can't parse it, default to "Today · HH:MM UTC"
     try:
         h, m = map(int, t.split(":"))
         match_dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
-        if match_dt < now.replace(hour=0, minute=0, second=0):
-            match_dt = match_dt.replace(day=match_dt.day + 1)
-        label = "Today" if match_dt.date() == now.date() else "Tomorrow"
-        return f"{label} · {t} UTC"
+        if match_dt < now:
+            match_dt = match_dt + timedelta(days=1)
+        day_mon_year = f"{match_dt.day} {match_dt.strftime('%b %Y')}"
+        return f"{day_mon_year} · {t} UTC"
     except Exception:
-        return f"Today · {t} UTC"
+        day_mon_year = f"{now.day} {now.strftime('%b %Y')}"
+        return f"{day_mon_year} · {t} UTC"
 
 
 # ── Sofascore parser ──────────────────────────────────────────────────────────

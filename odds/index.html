@@ -1333,9 +1333,16 @@ async function fetchLiveJson(){
     if(r.ok){
       const rows=await r.json();
       if(Array.isArray(rows)&&rows.length){
-        _liveJsonMatches=rows.map(_sbRowToEvent).filter(m=>m.key);
-        _liveJsonUpdated=rows[0]?.refreshed_at||'';
-        return;
+        // Reject stale Supabase data: if refreshed_at is >6h old or all rows use
+        // relative time labels ("Today","Tomorrow"), fall through to live.json
+        const latestRefresh=rows[0]?.refreshed_at?new Date(rows[0].refreshed_at).getTime():0;
+        const isStaleRefresh=latestRefresh&&(Date.now()-latestRefresh)>6*3600000;
+        const hasSpecificDate=rows.some(r=>/\d{1,2}\s+[A-Za-z]{3}\s+\d{4}/.test(r.time_disp||''));
+        if(!isStaleRefresh||hasSpecificDate){
+          _liveJsonMatches=rows.map(_sbRowToEvent).filter(m=>m.key);
+          _liveJsonUpdated=rows[0]?.refreshed_at||'';
+          return;
+        }
       }
     }
   }catch(_){}
