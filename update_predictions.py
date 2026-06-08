@@ -472,8 +472,9 @@ def parse_score(text: str) -> dict[str, str]:
 # ---------------------------------------------------------------------------
 
 def _fb_split_teams(text: str) -> tuple[str, str]:
-    """Split CamelCase-concatenated team names by finding the boundary closest to mid."""
-    boundaries = [m.start() + 1 for m in re.finditer(r'(?<=[a-z\d])(?=[A-Z])', text)]
+    """Split CamelCase/period-concatenated team names at the boundary closest to mid."""
+    # Match position where lowercase/digit/period is followed by uppercase
+    boundaries = [m.start() for m in re.finditer(r'(?<=[a-z\d.])(?=[A-Z])', text)]
     if not boundaries:
         return text.strip(), ""
     mid = len(text) // 2

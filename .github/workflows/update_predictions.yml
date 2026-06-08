@@ -12,6 +12,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   scrape-predictions:
@@ -43,14 +44,17 @@ jobs:
         continue-on-error: true   # never block on scrape failure
 
       - name: Commit updated predictions
+        id: commit
         run: |
           git config user.name  "SifuKaii Predicts Bot"
           git config user.email "scrapebot@sifufinds.com"
           git add data/predictions.json
           if git diff --cached --quiet; then
             echo "ℹ No prediction changes — nothing to commit"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
           COUNT=$(python3 -c "import json; d=json.load(open('data/predictions.json')); print(d.get('count',0))" 2>/dev/null || echo "?")
           git commit -m "live: predictions update $(date -u '+%Y-%m-%d %H:%M') UTC — ${COUNT} matches"
           for attempt in 1 2 3 4 5; do
@@ -64,3 +68,16 @@ jobs:
             git fetch origin main
             git rebase FETCH_HEAD -X theirs || git rebase --abort
           done
+
+      - name: Trigger Hostinger deploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/deploy_hostinger.yml/dispatches" \
+            -d '{"ref":"main"}' | grep -qE '^(204|2[0-9][0-9])' \
+            && echo "✅ Deploy triggered" \
+            || echo "⚠ Deploy trigger failed (non-fatal)"
