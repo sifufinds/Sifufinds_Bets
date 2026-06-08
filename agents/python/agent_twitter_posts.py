@@ -309,39 +309,69 @@ def _build_tip_tweet(state: dict) -> str:
 
 # ── PLAYWRIGHT POSTER ────────────────────────────────────────────────────────
 
+async def _stealth_context(browser):
+    """Create a browser context that masks headless/automation signals."""
+    context = await browser.new_context(
+        user_agent=(
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/124.0.0.0 Safari/537.36"
+        ),
+        viewport={"width": 1280, "height": 800},
+        locale="en-US",
+        timezone_id="America/New_York",
+    )
+    # Mask the most common automation detection signals
+    await context.add_init_script("""
+        Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+        Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});
+        Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3, 4, 5]});
+        window.chrome = {runtime: {}};
+    """)
+    return context
+
+
 async def _login_x(page) -> None:
-    """Handle X.com login flow including the optional account-confirmation step."""
-    import asyncio
+    """Handle X.com login including the optional account-confirmation step."""
     from playwright.async_api import TimeoutError as PWTimeout
 
     await page.goto("https://x.com/i/flow/login", wait_until="domcontentloaded", timeout=30_000)
+    await page.wait_for_timeout(2_000)
 
     # Step 1: username
     await page.wait_for_selector('input[autocomplete="username"]', timeout=15_000)
     await page.fill('input[autocomplete="username"]', os.environ["X_USERNAME"])
+    await page.wait_for_timeout(500)
     await page.get_by_role("button", name="Next").click()
+    await page.wait_for_timeout(2_000)
 
-    # Step 2: X sometimes inserts an "unusual activity" prompt asking for email/phone
+    # Step 2: unusual-activity confirmation (email/phone)
     try:
         confirm = page.locator('input[data-testid="ocfEnterTextTextInput"]')
-        await confirm.wait_for(timeout=4_000)
+        await confirm.wait_for(timeout=3_000)
         await confirm.fill(os.getenv("X_EMAIL", os.environ["X_USERNAME"]))
         await page.get_by_role("button", name="Next").click()
+        await page.wait_for_timeout(2_000)
     except PWTimeout:
-        pass  # no confirmation prompt — continue
+        pass
 
     # Step 3: password
     await page.wait_for_selector('input[name="password"]', timeout=10_000)
     await page.fill('input[name="password"]', os.environ["X_PASSWORD"])
+    await page.wait_for_timeout(500)
     await page.get_by_role("button", name="Log in").click()
 
-    # Wait until we land somewhere other than the login flow
-    await page.wait_for_url(lambda url: "login" not in url and "flow" not in url, timeout=20_000)
-    print("✓ Logged in to X")
+    # Wait up to 20s to land on a non-login page
+    await page.wait_for_timeout(3_000)
+    for _ in range(17):
+        if "login" not in page.url and "flow" not in page.url:
+            break
+        await page.wait_for_timeout(1_000)
+
+    print(f"✓ Login complete — URL: {page.url}")
 
 
 async def _post_playwright(text: str) -> bool:
-    import asyncio
     from playwright.async_api import async_playwright, TimeoutError as PWTimeout
 
     username = os.getenv("X_USERNAME", "").strip()
@@ -355,79 +385,70 @@ async def _post_playwright(text: str) -> bool:
     async with async_playwright() as pw:
         browser = await pw.chromium.launch(
             headless=True,
-            args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-blink-features=AutomationControlled",
+            ],
         )
 
-        # Try restoring saved session so we don't login every run
-        ctx_args: dict = {
-            "user_agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/124.0.0.0 Safari/537.36"
-            ),
-            "viewport": {"width": 1280, "height": 800},
-        }
+        # Restore session if available, otherwise create clean context
         if session_file.exists():
-            ctx_args["storage_state"] = str(session_file)
+            context = await _stealth_context(browser)
+            await context.add_cookies(
+                (lambda d: d.get("cookies", []))(
+                    __import__("json").loads(session_file.read_text())
+                )
+            )
+        else:
+            context = await _stealth_context(browser)
 
-        context = await browser.new_context(**ctx_args)
         page = await context.new_page()
 
-        # Verify session is still valid; re-login if needed
-        await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
-        if "login" in page.url or "flow" in page.url:
-            print("Session expired or missing — logging in...")
-            await _login_x(page)
-            await context.storage_state(path=str(session_file))
-
-        # Navigate to home and open compose via sidebar button
+        # Check if saved session is still valid
         await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
         await page.wait_for_timeout(3_000)
-        print(f"After home nav — URL: {page.url}")
+        print(f"Initial URL: {page.url}")
 
-        # If still on login/flow page, re-attempt login
-        if "login" in page.url or "flow" in page.url or "x.com/" == page.url.rstrip("/"):
-            print("Not on home — retrying login...")
+        # If not on home, do a full login
+        if page.url.rstrip("/") != "https://x.com/home":
+            print("Not logged in — running login flow...")
             await _login_x(page)
+            # Save session cookies for next run
+            cookies = await context.cookies()
+            session_file.write_text(
+                __import__("json").dumps({"cookies": cookies}, indent=2)
+            )
             await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
             await page.wait_for_timeout(3_000)
-            print(f"After retry — URL: {page.url}")
+            print(f"Post-login URL: {page.url}")
 
-        # Save screenshot to log (base64) for debugging
-        try:
-            import base64
-            shot = await page.screenshot(type="jpeg", quality=50, full_page=False)
-            print(f"SCREENSHOT_B64:{base64.b64encode(shot).decode()[:200]}...")
-        except Exception:
-            pass
+        if page.url.rstrip("/") != "https://x.com/home":
+            raise Exception(f"Login failed — stuck at: {page.url}")
 
-        # Click the "Post" compose button in the left sidebar
+        # Click the compose button in the left sidebar
         compose_btn = page.locator('[data-testid="SideNav_NewTweet_Button"]')
-        await compose_btn.wait_for(state="visible", timeout=20_000)
+        await compose_btn.wait_for(state="visible", timeout=15_000)
         await compose_btn.click()
         await page.wait_for_timeout(1_000)
 
-        # Find the tweet textarea (try multiple selectors for resilience)
+        # Find the tweet textarea
         textarea = page.locator(
             '[data-testid="tweetTextarea_0"], '
-            '[data-testid="tweetTextarea_0RichTextInputContainer"] div[contenteditable], '
             'div[role="textbox"][contenteditable="true"]'
         ).first
         await textarea.wait_for(state="visible", timeout=15_000)
         await textarea.click()
-
-        # Type text character by character (handles emojis reliably)
-        await page.keyboard.type(text, delay=30)
+        await page.keyboard.type(text, delay=25)
         await page.wait_for_timeout(800)
 
-        # Click the Post / Tweet button
+        # Click Post
         post_btn = page.locator(
             '[data-testid="tweetButton"], [data-testid="tweetButtonInline"]'
         ).first
         await post_btn.wait_for(state="visible", timeout=8_000)
         await post_btn.click()
-
-        # Wait for the modal to close (confirms post was submitted)
         await page.wait_for_timeout(3_000)
 
         await context.close()
