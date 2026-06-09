@@ -1,5 +1,13 @@
 # SifuFinds — Project Instructions
 
+## STANDING RULE — Auto-Retry on Failure
+
+**Any job, run, agent, or task that fails must be automatically retried after 5–15 minutes. No exceptions.**
+
+- GitHub Actions: covered by `workflow_watchdog.yml` (event-driven, 10-min delay) and `retry_failed.yml` (30-min safety net). Both watch all 17 workflows.
+- Local tasks / scripts: re-run the failed command after a short wait. If a git push fails, retry up to 3 times before stopping.
+- Never leave a failed job unaddressed. If a retry also fails, flag it and keep retrying on schedule.
+
 ## Stack
 Static HTML site targeting African sports betting markets. Blog posts live in `blog/posts.json`; static pages are generated via `gen_blog_post_pages.py`.
 
@@ -122,3 +130,27 @@ If you ever need to verify: run `grep -r 'shared\.js.*defer' --include="*.html" 
 - Blog posts go in `blog/posts.json` under the `posts` array
 - Each post needs: `category`, `title`, `slug`, `excerpt`, `body` (markdown), `author`, `image_color`, `image_icon`, `tags`, `featured`, `bookmaker_featured`, `read_time`, `id`, `published_at`
 - After updating `posts.json`, run `python3 gen_blog_post_pages.py` to generate the static HTML files
+
+---
+
+## Research Intelligence — Apply to All Content
+
+### /last30days Skill
+Run `/last30days [topic]` before writing ANY blog post, country page, or email campaign to surface what the community is actually saying right now. The skill searches Reddit, X, YouTube, TikTok, Instagram, HN, Polymarket, and GitHub in parallel. Results are stored in `~/Documents/Last30Days/`.
+
+**Setup**: skill is installed at `~/.claude/skills/last30days` (v3.3.2). Keys configured in `~/last30days-skill/skills/last30days/.env`. To unlock X/Twitter: System Settings → Privacy & Security → Full Disk Access → add Terminal.
+
+### Nigeria / Bet9ja Intelligence (last updated June 8 2026)
+- **Bet9ja vs SportyBet** is the defining Nigeria betting debate — Bet9ja wins on odds/live markets/African football depth; SportyBet wins on welcome bonus (300% vs 170%), withdrawal speed (<5 min vs 24 hrs), and mobile app UX
+- **Bet9ja's #1 weakness**: withdrawal friction — PissedConsumer 3.8 stars (504 reviews), 36% recommend; main complaints are weekend delays, ID verification blocking first withdrawal, bank name mismatches; OPay and PalmPay process fastest
+- **Multi-booking is standard**: Nigerian bettors hold accounts on multiple platforms; content should acknowledge this reality
+- **WC2026** (June–July 2026): biggest betting moment for the Nigerian market; Bet9ja offers accumulator insurance; Polymarket has Nigeria at 6.8% to draw Portugal
+- **Community pulse lives on X/Twitter and TikTok**, not Reddit — always run `/last30days` with X enabled for Nigerian topics
+- **Bet9ja X**: @Bet9jaOfficial (primary), @Bet9jaHelp (support)
+
+### Content Tone Rules for African Betting Markets
+- Lead with what the community says, not press releases — cite real bettors, real complaints, real wins
+- Always include a comparison table when covering bookmakers (Bet9ja vs SportyBet is the evergreen matchup)
+- Use local payment method names (OPay, PalmPay, M-Pesa, MTN MoMo) — not generic "e-wallets"
+- Currency context is mandatory: ₦ for Nigeria, KSh for Kenya, GH₵ for Ghana, R for South Africa
+- 18+ / Responsible Gambling disclaimer at the bottom of every piece — no exceptions
