@@ -372,15 +372,17 @@ async def _login_x(page) -> None:
 
 
 async def _post_playwright(text: str) -> bool:
+    import base64
+    import tempfile
     from playwright.async_api import async_playwright, TimeoutError as PWTimeout
 
-    username = os.getenv("X_USERNAME", "").strip()
-    password = os.getenv("X_PASSWORD", "").strip()
-    if not username or not password:
-        print("✗ Missing X_USERNAME or X_PASSWORD")
-        return False
+    session_b64 = os.getenv("TWITTER_SESSION", "").strip()
+    username    = os.getenv("X_USERNAME", "").strip()
+    password    = os.getenv("X_PASSWORD", "").strip()
 
-    session_file = Path(__file__).parent / "twitter_session.json"
+    if not session_b64 and (not username or not password):
+        print("✗ Set TWITTER_SESSION or X_USERNAME+X_PASSWORD")
+        return False
 
     async with async_playwright() as pw:
         browser = await pw.chromium.launch(
@@ -393,39 +395,52 @@ async def _post_playwright(text: str) -> bool:
             ],
         )
 
-        # Restore session if available, otherwise create clean context
-        if session_file.exists():
-            context = await _stealth_context(browser)
-            await context.add_cookies(
-                (lambda d: d.get("cookies", []))(
-                    __import__("json").loads(session_file.read_text())
-                )
+        if session_b64:
+            # Decode the pre-saved session — no login flow, no bot-detection trigger
+            state_json = base64.b64decode(session_b64.encode()).decode()
+            tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False)
+            tmp.write(state_json)
+            tmp.flush()
+            tmp.close()
+            context = await browser.new_context(
+                storage_state=tmp.name,
+                user_agent=(
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/124.0.0.0 Safari/537.36"
+                ),
+                viewport={"width": 1280, "height": 800},
+                locale="en-US",
+                timezone_id="America/New_York",
             )
+            await context.add_init_script("""
+                Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+                Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});
+                Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3, 4, 5]});
+                window.chrome = {runtime: {}};
+            """)
+            Path(tmp.name).unlink(missing_ok=True)
         else:
             context = await _stealth_context(browser)
 
         page = await context.new_page()
-
-        # Check if saved session is still valid
-        await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
+        await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=30_000)
         await page.wait_for_timeout(3_000)
         print(f"Initial URL: {page.url}")
 
-        # If not on home, do a full login
+        # Fall back to login if session is missing or expired
         if page.url.rstrip("/") != "https://x.com/home":
-            print("Not logged in — running login flow...")
-            await _login_x(page)
-            # Save session cookies for next run
-            cookies = await context.cookies()
-            session_file.write_text(
-                __import__("json").dumps({"cookies": cookies}, indent=2)
-            )
-            await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
-            await page.wait_for_timeout(3_000)
-            print(f"Post-login URL: {page.url}")
+            if username and password:
+                print("Session invalid — falling back to login flow...")
+                await _login_x(page)
+                await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=20_000)
+                await page.wait_for_timeout(3_000)
+                print(f"Post-login URL: {page.url}")
+            else:
+                raise Exception(f"Not authenticated, no credentials set — URL: {page.url}")
 
         if page.url.rstrip("/") != "https://x.com/home":
-            raise Exception(f"Login failed — stuck at: {page.url}")
+            raise Exception(f"Authentication failed — URL: {page.url}")
 
         # Click the compose button in the left sidebar
         compose_btn = page.locator('[data-testid="SideNav_NewTweet_Button"]')
@@ -477,8 +492,8 @@ def _post_tweet(text: str, dry_run: bool = False) -> bool:
         print(f"{'─'*50}\n")
         return True
 
-    # Playwright path (browser automation) — preferred when X_USERNAME is set
-    if os.getenv("X_USERNAME") and os.getenv("X_PASSWORD"):
+    # Playwright path — preferred when session or credentials are set
+    if os.getenv("TWITTER_SESSION") or (os.getenv("X_USERNAME") and os.getenv("X_PASSWORD")):
         print("Using Playwright browser poster...")
         return _post_playwright_sync(text)
 
