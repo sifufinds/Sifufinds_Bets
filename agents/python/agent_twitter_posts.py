@@ -482,14 +482,15 @@ async def _post_playwright(text: str) -> bool:
         await page.keyboard.type(text, delay=30)
         await page.wait_for_timeout(1_500)
 
-        # Wait for Post button to be enabled (it's disabled until text exists)
+        # Wait for Post button to be enabled (disabled until text is entered)
         post_btn = page.locator(
             '[data-testid="tweetButton"]:not([disabled]),'
             '[data-testid="tweetButtonInline"]:not([disabled])'
         ).first
         await post_btn.wait_for(state="visible", timeout=10_000)
         print("Post button enabled — clicking...")
-        await post_btn.click()
+        # force=True bypasses the #layers overlay that intercepts pointer events on x.com
+        await post_btn.click(force=True)
         await page.wait_for_timeout(4_000)
 
         await context.close()
