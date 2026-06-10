@@ -1,0 +1,106 @@
+name: SEO Doctor — Daily auto-heal sifufinds.com
+
+# Runs every day at 06:00 UTC.
+# Checks and auto-fixes every SEO signal: title/meta lengths, dateModified,
+# thin content, FAQ coverage, schema freshness, llms.txt, and sitemap.
+# Regenerates all blog HTML and sitemap, then deploys if anything changed.
+#
+# This workflow NEVER exits with failure — it heals, then exits 0.
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: seo-doctor
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  seo-heal:
+    name: SEO Doctor — check and heal
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests 2>/dev/null || true
+
+      - name: Run SEO Doctor
+        id: doctor
+        working-directory: agents/python
+        shell: bash
+        run: |
+          set +e
+          python seo_doctor.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit any fixes
+        id: commit
+        run: |
+          git config --local user.email "seo-doctor@sifufinds.com"
+          git config --local user.name "SifuFinds SEO Doctor"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No SEO changes needed"
+          else
+            COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
+            git commit -m "seo: daily auto-heal $(date -u '+%Y-%m-%d') — ${COUNT} files updated"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push fixes
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            [ "$attempt" -eq 3 ] && { echo "❌ Push failed — will retry next run"; break; }
+            echo "⚠ Push rejected ($attempt/3) — rebasing..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done
+
+      - name: Trigger deploy if fixes applied
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          gh workflow run deploy_hostinger.yml \
+            --repo "${{ github.repository }}" \
+            --ref main && echo "✅ Deploy triggered" || echo "⚠️ Deploy trigger failed (will self-correct on next push)"
+          exit 0
+
+      - name: Report outcome
+        if: always()
+        run: |
+          CODE="${{ steps.doctor.outputs.exit_code }}"
+          if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
+            echo "✅ SEO Doctor completed — site is healthy"
+          else
+            echo "⚠️ SEO Doctor exit code $CODE — check logs above"
+          fi

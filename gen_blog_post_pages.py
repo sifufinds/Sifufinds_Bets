@@ -1001,16 +1001,26 @@ def markdown_to_html(md: str) -> str:
 
 def extract_faq_schema(body_md: str) -> str:
     """Extract FAQ entries from markdown and return a FAQPage JSON-LD block, or empty string."""
-    faq_section = re.search(
-        r'##\s*.*?(?:FAQ|Frequently Asked Questions|Common Questions).*?\n(.*?)(?=\n##|\Z)',
-        body_md, re.DOTALL | re.IGNORECASE
+    faq_section = (
+        re.search(r'^##[^\n]*(?:FAQ|Frequently Asked Questions|Common Questions)[^\n]*\n(.*?)(?=^## |\Z)', body_md, re.DOTALL | re.IGNORECASE | re.MULTILINE) or
+        re.search(r'^\*\*FAQs?\*\*\s*\n+(.*?)(?=^## |\Z)', body_md, re.DOTALL | re.IGNORECASE | re.MULTILINE)
     )
     if not faq_section:
         return ''
 
     text = faq_section.group(1)
-    # Match bold Q: / A: pairs, or ### headings followed by paragraphs
+    # 1. Bold **Q:** format
     pairs = re.findall(r'\*\*(?:Q:|Question:)\s*(.*?)\*\*\s*\n+(?:\*\*(?:A:|Answer:)\s*)?(.*?)(?=\n\*\*(?:Q:|Question:)|\Z)', text, re.DOTALL)
+    # 2. Plain Q: / A: lines (no bold markers)
+    if not pairs:
+        pairs = re.findall(r'^Q[:\.]?\s+(.+?)\nA[:\.]?\s+(.*?)(?=\nQ[:\.]|\Z)', text, re.DOTALL | re.MULTILINE)
+    # 3. Bullet-list * Q: / A: format
+    if not pairs:
+        pairs = re.findall(r'^\*\s+Q[:\.]?\s+(.+?)\nA[:\.]?\s+(.*?)(?=\n\*\s+Q[:\.]|\Z)', text, re.DOTALL | re.MULTILINE)
+    # 4. Bullet-list * **Question**: answer format
+    if not pairs:
+        pairs = re.findall(r'^\*\s+\*\*(.*?)\*\*[:\.]?\s*(.*?)(?=\n\*\s+\*\*|\Z)', text, re.DOTALL | re.MULTILINE)
+    # 5. ### heading + paragraph
     if not pairs:
         pairs = re.findall(r'###\s+(.*?)\n+(.*?)(?=\n###|\Z)', text, re.DOTALL)
     if not pairs:
