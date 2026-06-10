@@ -1,189 +1,139 @@
 """
-One-time session saver — run once on your local Mac.
-Opens a Chromium browser, logs into X, saves cookies as TWITTER_SESSION secret.
+Extracts X.com cookies from your real Chrome browser on macOS,
+converts them to a Playwright storage_state, and uploads to GitHub Secrets.
+
+You MUST be logged in to x.com in Chrome before running this.
 
 Usage:
-  X_USERNAME=SifuFinds X_PASSWORD=yourpass X_EMAIL=info@sifufinds.com \
-    GITHUB_TOKEN=ghp_... python save_twitter_session.py
+  GITHUB_TOKEN=ghp_... python save_twitter_session.py
 """
-import asyncio
 import base64
 import json
 import os
+import shutil
+import sqlite3
+import subprocess
+import sys
+import tempfile
+import urllib.request
 from pathlib import Path
 
 
-async def main() -> None:
-    from playwright.async_api import async_playwright, TimeoutError as PWTimeout
+# ── macOS Chrome cookie decryption ──────────────────────────────────────────
 
-    username = os.environ.get("X_USERNAME", "SifuFinds")
-    password = os.environ.get("X_PASSWORD", "")
-    email    = os.environ.get("X_EMAIL", "info@sifufinds.com")
-    gh_token = os.environ.get("GITHUB_TOKEN", "").strip()
+def _chrome_key() -> bytes:
+    """Fetch Chrome's cookie encryption key from macOS Keychain."""
+    result = subprocess.run(
+        [
+            "security", "find-generic-password",
+            "-w",                        # print password only
+            "-s", "Chrome Safe Storage",
+            "-a", "Chrome",
+        ],
+        capture_output=True, text=True,
+    )
+    if result.returncode != 0:
+        raise RuntimeError("Could not read Chrome key from Keychain. Is Chrome installed?")
+    password = result.stdout.strip()
+    # Chrome derives the AES key via PBKDF2
+    import hashlib
+    key = hashlib.pbkdf2_hmac(
+        "sha1", password.encode("utf-8"), b"saltysalt", 1003, dklen=16
+    )
+    return key
 
-    if not password:
-        raise SystemExit("Set X_PASSWORD env var")
 
-    print("Opening Chromium browser...")
+def _decrypt_value(encrypted: bytes, key: bytes) -> str:
+    """Decrypt a Chrome cookie value (AES-128-CBC with a fixed IV of spaces)."""
+    if not encrypted:
+        return ""
+    # Chrome prefix: b"v10" (macOS)
+    if encrypted[:3] == b"v10":
+        from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+        from cryptography.hazmat.backends import default_backend
+        iv  = b" " * 16
+        ct  = encrypted[3:]
+        cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
+        dec = cipher.decryptor()
+        raw = dec.update(ct) + dec.finalize()
+        # Strip PKCS7 padding
+        pad = raw[-1]
+        return raw[:-pad].decode("utf-8", errors="replace")
+    # Old-format unencrypted value
+    return encrypted.decode("utf-8", errors="replace")
 
-    async with async_playwright() as pw:
-        browser = await pw.chromium.launch(
-            headless=False,
-            slow_mo=120,
+
+# ── extract cookies ──────────────────────────────────────────────────────────
+
+COOKIE_DOMAINS = ("x.com", ".x.com", "twitter.com", ".twitter.com")
+
+def _chrome_cookies_path() -> Path:
+    """Find Chrome's Cookies SQLite file."""
+    candidates = [
+        Path.home() / "Library/Application Support/Google/Chrome/Default/Cookies",
+        Path.home() / "Library/Application Support/Google/Chrome/Profile 1/Cookies",
+        Path.home() / "Library/Application Support/Chromium/Default/Cookies",
+        Path.home() / "Library/Application Support/BraveSoftware/Brave-Browser/Default/Cookies",
+    ]
+    for p in candidates:
+        if p.exists():
+            return p
+    raise FileNotFoundError(
+        "Could not find Chrome Cookies file. "
+        "Tried:\n" + "\n".join(str(c) for c in candidates)
+    )
+
+
+def get_x_cookies() -> list[dict]:
+    cookies_db = _chrome_cookies_path()
+    print(f"Reading cookies from: {cookies_db}")
+
+    # Chrome locks the DB while running — copy it first
+    tmp = Path(tempfile.mktemp(suffix=".db"))
+    shutil.copy2(cookies_db, tmp)
+
+    key = _chrome_key()
+    rows = []
+    try:
+        con = sqlite3.connect(str(tmp))
+        cur = con.cursor()
+        cur.execute(
+            "SELECT host_key, name, encrypted_value, path, expires_utc, is_secure, is_httponly "
+            "FROM cookies WHERE host_key LIKE '%x.com' OR host_key LIKE '%twitter.com'"
         )
-        context = await browser.new_context(
-            user_agent=(
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/124.0.0.0 Safari/537.36"
-            ),
-            viewport={"width": 1280, "height": 900},
-            locale="en-US",
-        )
-        page = await context.new_page()
+        rows = cur.fetchall()
+        con.close()
+    finally:
+        tmp.unlink(missing_ok=True)
 
-        print("Navigating to x.com...")
-        await page.goto("https://x.com", wait_until="domcontentloaded", timeout=30_000)
-        await page.wait_for_timeout(2_000)
+    result = []
+    for host, name, enc_val, path, expires, secure, httponly in rows:
+        value = _decrypt_value(enc_val, key)
+        # Convert Chrome epoch (microseconds since 1601) → Unix seconds
+        unix_exp = (expires / 1_000_000) - 11644473600 if expires > 0 else -1
+        result.append({
+            "name": name,
+            "value": value,
+            "domain": host,
+            "path": path,
+            "expires": unix_exp,
+            "httpOnly": bool(httponly),
+            "secure": bool(secure),
+            "sameSite": "Lax",
+        })
 
-        # Accept cookies if the banner is up
-        for cookie_sel in ['button:has-text("Accept all cookies")', 'button:has-text("Accept")']:
-            try:
-                btn = page.locator(cookie_sel).first
-                await btn.wait_for(state="visible", timeout=2_000)
-                await btn.click()
-                print("Accepted cookie banner")
-                await page.wait_for_timeout(1_000)
-                break
-            except PWTimeout:
-                pass
-
-        # Fill username — the landing page uses placeholder="Email or username"
-        # The /i/flow/login page uses autocomplete="username"
-        username_sel = None
-        for sel in [
-            'input[placeholder="Email or username"]',
-            'input[autocomplete="username"]',
-            'input[name="text"]',
-            'input[type="text"]',
-        ]:
-            try:
-                inp = page.locator(sel).first
-                await inp.wait_for(state="visible", timeout=4_000)
-                username_sel = sel
-                break
-            except PWTimeout:
-                pass
-
-        if username_sel is None:
-            shot = Path(__file__).parent / "x_debug_noselector.png"
-            await page.screenshot(path=str(shot))
-            print(f"Could not find username field. Screenshot: {shot}")
-            print(f"URL: {page.url}")
-            # Wait up to 60s for manual login then capture cookies
-            print("\nBrowser is open. Please log in manually in the browser window.")
-            print("After you reach the home feed, wait 5 seconds — cookies will be captured.")
-            for _ in range(60):
-                await page.wait_for_timeout(1_000)
-                if "/home" in page.url:
-                    break
-            await _finish(context, browser, gh_token)
-            return
-
-        await page.locator(username_sel).first.fill(username)
-        print(f"Filled username via {username_sel}")
-
-        # Click Continue or Next
-        for btn_text in ["Continue", "Next"]:
-            try:
-                btn = page.get_by_role("button", name=btn_text)
-                await btn.wait_for(state="visible", timeout=3_000)
-                await btn.click()
-                print(f"Clicked '{btn_text}'")
-                break
-            except PWTimeout:
-                pass
-
-        await page.wait_for_timeout(2_000)
-
-        # Optional: email/phone confirmation
-        try:
-            confirm = page.locator('input[data-testid="ocfEnterTextTextInput"]')
-            await confirm.wait_for(timeout=3_000)
-            print("Filling email/phone confirmation...")
-            await confirm.fill(email)
-            await page.get_by_role("button", name="Next").click()
-            await page.wait_for_timeout(2_000)
-        except PWTimeout:
-            pass
-
-        # Fill password
-        pw_sel = None
-        for sel in ['input[name="password"]', 'input[type="password"]']:
-            try:
-                inp = page.locator(sel).first
-                await inp.wait_for(state="visible", timeout=8_000)
-                pw_sel = sel
-                break
-            except PWTimeout:
-                pass
-
-        if pw_sel:
-            await page.locator(pw_sel).first.fill(password)
-            print("Filled password")
-            # Click Log in
-            for btn_text in ["Log in", "Login", "Sign in"]:
-                try:
-                    btn = page.get_by_role("button", name=btn_text)
-                    await btn.wait_for(state="visible", timeout=3_000)
-                    await btn.click()
-                    print(f"Clicked '{btn_text}'")
-                    break
-                except PWTimeout:
-                    pass
-        else:
-            print("Password field not found — waiting for manual login...")
-
-        # Wait for home feed (up to 40s)
-        print("Waiting for home feed...")
-        for _ in range(40):
-            await page.wait_for_timeout(1_000)
-            if "/home" in page.url:
-                print(f"Logged in — {page.url}")
-                break
-        else:
-            shot = Path(__file__).parent / "x_debug_postlogin.png"
-            await page.screenshot(path=str(shot))
-            print(f"Timed out waiting for home. Current: {page.url}. Screenshot: {shot}")
-
-        await _finish(context, browser, gh_token)
+    return result
 
 
-async def _finish(context, browser, gh_token: str) -> None:
-    state     = await context.storage_state()
-    state_b64 = base64.b64encode(json.dumps(state).encode()).decode()
+# ── build storage state ──────────────────────────────────────────────────────
 
-    out = Path(__file__).parent / "twitter_session_b64.txt"
-    out.write_text(state_b64)
-    print(f"\n✓ Session saved: {out}  ({len(state_b64)} chars)")
-
-    if gh_token:
-        _upload_secret(gh_token, "TWITTER_SESSION", state_b64)
-    else:
-        print("\nNo GITHUB_TOKEN — add secret manually:")
-        print("  Repo → Settings → Secrets → Actions → New secret")
-        print("  Name: TWITTER_SESSION   Value: (contents of above file)")
-
-    await context.close()
-    await browser.close()
+def build_storage_state(cookies: list[dict]) -> dict:
+    return {"cookies": cookies, "origins": []}
 
 
-def _upload_secret(token: str, name: str, value: str) -> None:
-    import base64 as _b64
-    import urllib.request
+# ── GitHub secret upload ──────────────────────────────────────────────────────
 
-    repo = "sifufinds/Sifufinds_Bets"
-
+def _upload_secret(token: str, repo: str, name: str, value: str) -> None:
     req = urllib.request.Request(
         f"https://api.github.com/repos/{repo}/actions/secrets/public-key",
         headers={"Authorization": f"token {token}", "Accept": "application/vnd.github+json"},
@@ -194,13 +144,12 @@ def _upload_secret(token: str, name: str, value: str) -> None:
     try:
         from nacl import encoding, public
     except ImportError:
-        import subprocess, sys
         subprocess.run([sys.executable, "-m", "pip", "install", "PyNaCl", "-q"])
         from nacl import encoding, public
 
     pk  = public.PublicKey(pk_data["key"].encode(), encoding.Base64Encoder)
     box = public.SealedBox(pk)
-    encrypted = _b64.b64encode(box.encrypt(value.encode())).decode()
+    encrypted = base64.b64encode(box.encrypt(value.encode())).decode()
 
     payload = json.dumps({"encrypted_value": encrypted, "key_id": pk_data["key_id"]}).encode()
     req2 = urllib.request.Request(
@@ -216,10 +165,57 @@ def _upload_secret(token: str, name: str, value: str) -> None:
         code = r.getcode()
 
     if code in (201, 204):
-        print(f"✓ GitHub secret '{name}' uploaded OK")
+        print(f"✓ GitHub secret '{name}' uploaded")
     else:
         print(f"✗ Secret upload HTTP {code}")
 
 
+# ── main ──────────────────────────────────────────────────────────────────────
+
+def main() -> None:
+    gh_token = os.getenv("GITHUB_TOKEN", "").strip()
+    if not gh_token:
+        # Try gh CLI
+        result = subprocess.run(["gh", "auth", "token"], capture_output=True, text=True, timeout=5)
+        if result.returncode == 0:
+            gh_token = result.stdout.strip()
+
+    try:
+        from cryptography.hazmat.primitives.ciphers import Cipher
+    except ImportError:
+        print("Installing cryptography...")
+        subprocess.run([sys.executable, "-m", "pip", "install", "cryptography", "-q"])
+
+    print("Extracting X.com cookies from Chrome...")
+    cookies = get_x_cookies()
+    if not cookies:
+        print("\n✗ No X.com / Twitter cookies found in Chrome.")
+        print("Make sure you are logged into x.com in Chrome and try again.")
+        sys.exit(1)
+
+    # Check for auth token
+    names = {c["name"] for c in cookies}
+    print(f"Found {len(cookies)} cookies: {sorted(names)}")
+
+    if "auth_token" not in names:
+        print("\n✗ 'auth_token' cookie not found — Chrome session may not be logged in.")
+        print("Log in to x.com in Chrome, then re-run this script.")
+        sys.exit(1)
+
+    state     = build_storage_state(cookies)
+    state_b64 = base64.b64encode(json.dumps(state).encode()).decode()
+
+    out = Path(__file__).parent / "twitter_session_b64.txt"
+    out.write_text(state_b64)
+    print(f"\n✓ Session file: {out}  ({len(state_b64)} chars)")
+
+    if gh_token:
+        _upload_secret(gh_token, "sifufinds/Sifufinds_Bets", "TWITTER_SESSION", state_b64)
+    else:
+        print("\nNo GITHUB_TOKEN set — add the secret manually:")
+        print("  Repo → Settings → Secrets → Actions → New secret")
+        print("  Name: TWITTER_SESSION   Value: (contents of the file above)")
+
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
