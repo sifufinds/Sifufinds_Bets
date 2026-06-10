@@ -58,3 +58,9 @@ Thumbs.db
 # ── Dev server logs ───────────────────────────────────────────────────────────
 /tmp/ruby-server.log
 *.log
+
+# Twitter session (sensitive — use GitHub Secrets, never commit)
+agents/python/twitter_session_b64.txt
+agents/python/x_landing.png
+agents/python/x_debug*.png
+agents/python/twitter_session.json
