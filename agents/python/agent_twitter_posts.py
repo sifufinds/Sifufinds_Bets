@@ -443,29 +443,54 @@ async def _post_playwright(text: str) -> bool:
         if page.url.rstrip("/") != "https://x.com/home":
             raise Exception(f"Authentication failed — URL: {page.url}")
 
-        # Click the compose button in the left sidebar
-        compose_btn = page.locator('[data-testid="SideNav_NewTweet_Button"]')
-        await compose_btn.wait_for(state="visible", timeout=15_000)
-        await compose_btn.click()
-        await page.wait_for_timeout(1_000)
+        # Try home-feed inline compose box first (always visible, no modal needed)
+        # then fall back to sidebar compose button if inline box not found
+        compose_opened = False
+        for compose_sel in [
+            'div[data-testid="tweetTextarea_0"]',
+            '[data-testid="tweetTextarea_0"]',
+        ]:
+            try:
+                inline_ta = page.locator(compose_sel).first
+                await inline_ta.wait_for(state="visible", timeout=5_000)
+                await inline_ta.click()
+                print(f"Using inline compose box: {compose_sel}")
+                compose_opened = True
+                break
+            except PWTimeout:
+                pass
 
-        # Find the tweet textarea
+        if not compose_opened:
+            # Open the compose modal via sidebar button
+            compose_btn = page.locator('[data-testid="SideNav_NewTweet_Button"]')
+            await compose_btn.wait_for(state="visible", timeout=15_000)
+            await compose_btn.click()
+            await page.wait_for_timeout(1_500)
+            print("Opened compose modal via sidebar button")
+
+        # Find the active contenteditable tweet box
         textarea = page.locator(
-            '[data-testid="tweetTextarea_0"], '
+            '[data-testid="tweetTextarea_0"],'
+            'div[data-testid="tweetTextarea_0"] div[contenteditable="true"],'
             'div[role="textbox"][contenteditable="true"]'
         ).first
         await textarea.wait_for(state="visible", timeout=15_000)
         await textarea.click()
-        await page.keyboard.type(text, delay=25)
-        await page.wait_for_timeout(800)
+        await page.wait_for_timeout(300)
 
-        # Click Post
+        # Type the tweet — use keyboard.type for contenteditable divs
+        await page.keyboard.type(text, delay=30)
+        await page.wait_for_timeout(1_500)
+
+        # Wait for Post button to be enabled (it's disabled until text exists)
         post_btn = page.locator(
-            '[data-testid="tweetButton"], [data-testid="tweetButtonInline"]'
+            '[data-testid="tweetButton"]:not([disabled]),'
+            '[data-testid="tweetButtonInline"]:not([disabled])'
         ).first
-        await post_btn.wait_for(state="visible", timeout=8_000)
+        await post_btn.wait_for(state="visible", timeout=10_000)
+        print("Post button enabled — clicking...")
         await post_btn.click()
-        await page.wait_for_timeout(3_000)
+        await page.wait_for_timeout(4_000)
 
         await context.close()
         await browser.close()
