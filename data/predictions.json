@@ -1,47 +1,48 @@
 {
-  "updated": "2026-06-10T16:14:00.486111+00:00",
+  "updated": "2026-06-10T18:44:01.446352+00:00",
   "source": "forebet.com, predictz.com",
   "count": 38,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-06-10T16:14:00.486111+00:00"
+      "ts": "2026-06-10T18:44:01.446352+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-06-10T16:14:00.486111+00:00"
+      "ts": "2026-06-10T18:44:01.446352+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-06-10T16:14:00.486111+00:00"
+      "ts": "2026-06-10T18:44:01.446352+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-06-10T16:14:00.486111+00:00"
+      "ts": "2026-06-10T18:44:01.446352+00:00"
     },
     {
       "page": "score",
-      "status": "ok",
-      "ts": "2026-06-10T16:14:00.486111+00:00"
+      "status": "error",
+      "error": "All scrapers failed for https://www.predictz.com/predictions/today/correct-score/: firecrawl: HTTP Error 502: Bad Gateway",
+      "ts": "2026-06-10T18:44:01.446352+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-06-10T16:14:00.486111+00:00"
+      "ts": "2026-06-10T18:44:01.446352+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-06-10T16:14:00.486111+00:00"
+      "ts": "2026-06-10T18:44:01.446352+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-06-10T16:14:00.486111+00:00"
+      "ts": "2026-06-10T18:44:01.446352+00:00"
     }
   ],
   "predictions": [
@@ -64,7 +65,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2444913",
@@ -85,7 +86,7 @@
       "over25": "",
       "correct_score": "3-2",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2444914",
@@ -106,7 +107,7 @@
       "over25": "",
       "correct_score": "1-3",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2422956",
@@ -127,7 +128,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2444915",
@@ -148,7 +149,7 @@
       "over25": "",
       "correct_score": "3-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2437896",
@@ -169,7 +170,7 @@
       "over25": "",
       "correct_score": "1-3",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465640",
@@ -190,7 +191,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2464689",
@@ -211,7 +212,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2435222",
@@ -232,7 +233,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2435227",
@@ -253,7 +254,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2435223",
@@ -274,7 +275,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465229",
@@ -295,7 +296,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465621",
@@ -316,7 +317,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465465",
@@ -337,7 +338,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465567",
@@ -358,7 +359,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2440606",
@@ -379,7 +380,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2440609",
@@ -400,7 +401,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2440607",
@@ -421,7 +422,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2440611",
@@ -442,7 +443,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465234",
@@ -463,7 +464,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2440608",
@@ -484,7 +485,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465568",
@@ -505,7 +506,7 @@
       "over25": "",
       "correct_score": "2-2",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2437634",
@@ -526,7 +527,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465732",
@@ -547,7 +548,7 @@
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465632",
@@ -568,7 +569,7 @@
       "over25": "",
       "correct_score": "1-3",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465737",
@@ -589,7 +590,7 @@
       "over25": "",
       "correct_score": "6-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465736",
@@ -610,7 +611,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465734",
@@ -631,7 +632,7 @@
       "over25": "",
       "correct_score": "1-5",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2439650",
@@ -652,7 +653,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465735",
@@ -673,7 +674,7 @@
       "over25": "",
       "correct_score": "1-4",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "fb_2465733",
@@ -694,7 +695,7 @@
       "over25": "",
       "correct_score": "4-1",
       "source": "forebet.com",
-      "scraped_at": "2026-06-10T16:14:06.798710+00:00"
+      "scraped_at": "2026-06-10T18:44:07.023892+00:00"
     },
     {
       "id": "1190565",
@@ -713,9 +714,9 @@
       "btts": "",
       "btts_win": "",
       "over25": "",
-      "correct_score": "1-0",
+      "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-06-10T16:14:06.796827+00:00"
+      "scraped_at": "2026-06-10T18:44:07.022350+00:00"
     },
     {
       "id": "1184250",
@@ -731,12 +732,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "2-0",
+      "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-06-10T16:14:06.796605+00:00"
+      "scraped_at": "2026-06-10T18:44:07.022083+00:00"
     },
     {
       "id": "1190731",
@@ -752,12 +753,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "2-1",
+      "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-06-10T16:14:06.796649+00:00"
+      "scraped_at": "2026-06-10T18:44:07.022135+00:00"
     },
     {
       "id": "1190045",
@@ -773,12 +774,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-06-10T16:14:06.796767+00:00"
+      "scraped_at": "2026-06-10T18:44:07.022283+00:00"
     },
     {
       "id": "1173843",
@@ -797,9 +798,9 @@
       "btts": "",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "1-0",
+      "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-06-10T16:14:06.796696+00:00"
+      "scraped_at": "2026-06-10T18:44:07.022193+00:00"
     },
     {
       "id": "1190078",
@@ -815,12 +816,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "2-0",
+      "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-06-10T16:14:06.796550+00:00"
+      "scraped_at": "2026-06-10T18:44:07.022021+00:00"
     },
     {
       "id": "1173849",
@@ -839,9 +840,9 @@
       "btts": "",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "3-2",
+      "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-06-10T16:14:06.796730+00:00"
+      "scraped_at": "2026-06-10T18:44:07.022241+00:00"
     }
   ]
 }
