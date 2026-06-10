@@ -2,11 +2,12 @@
 X (Twitter) Posts Agent — SifuFinds
 Posts rotating content to @SifuFinds: bookmaker offers, blog news, and betting tips.
 
-Requires GitHub secrets:
-  TWITTER_API_KEY            — Consumer Key (app)
-  TWITTER_API_SECRET         — Consumer Secret (app)
-  TWITTER_ACCESS_TOKEN       — Access Token (@SifuFinds account)
-  TWITTER_ACCESS_TOKEN_SECRET — Access Token Secret
+Requires GitHub secrets (preferred):
+  TWITTER_SESSION — base64-encoded Playwright storage state (cookies + localStorage)
+                    generated once locally by: python save_twitter_session.py
+
+Fallback secrets (only used if session is missing/expired):
+  X_USERNAME / X_PASSWORD / X_EMAIL
 
 Modes:
   python agent_twitter_posts.py --mode offer   # Bookmaker promo
