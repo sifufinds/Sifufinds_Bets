@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-10T23:10:10.259161+00:00",
+  "updated": "2026-06-10T23:12:02.879469+00:00",
   "count": 20,
   "events": [
     {
@@ -9,9 +9,9 @@
       "complete": false,
       "home": "Toronto Tempo",
       "away": "Connecticut Sun",
-      "hScore": "13",
-      "aScore": "9",
-      "time": "6:01",
+      "hScore": "16",
+      "aScore": "13",
+      "time": "5:25",
       "h": 0.0,
       "d": 0.0,
       "a": 0.0,
@@ -94,6 +94,23 @@
       "complete": false,
       "home": "Toronto Blue Jays",
       "away": "Philadelphia Phillies",
+      "hScore": "0",
+      "aScore": "1",
+      "time": "LIVE",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
+    {
+      "league": "MLB",
+      "key": "baseball",
+      "live": true,
+      "complete": false,
+      "home": "New York Mets",
+      "away": "St. Louis Cardinals",
       "hScore": "0",
       "aScore": "0",
       "time": "LIVE",
@@ -236,9 +253,9 @@
       "h": 1.74,
       "d": 0.0,
       "a": 2.14,
-      "hBk": "Draft Kings",
+      "hBk": "DraftKings",
       "dBk": "",
-      "aBk": "Draft Kings"
+      "aBk": "DraftKings"
     },
     {
       "league": "WNBA",
@@ -253,23 +270,6 @@
       "h": 3.45,
       "d": 0.0,
       "a": 1.33,
-      "hBk": "DraftKings",
-      "dBk": "",
-      "aBk": "DraftKings"
-    },
-    {
-      "league": "MLB",
-      "key": "baseball",
-      "live": false,
-      "complete": false,
-      "home": "New York Mets",
-      "away": "St. Louis Cardinals",
-      "hScore": null,
-      "aScore": null,
-      "time": "10 Jun 2026 \u00b7 23:10 UTC",
-      "h": 1.74,
-      "d": 0.0,
-      "a": 2.13,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
