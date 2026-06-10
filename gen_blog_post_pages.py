@@ -999,6 +999,47 @@ def markdown_to_html(md: str) -> str:
     return '\n'.join(html_lines)
 
 
+def extract_faq_schema(body_md: str) -> str:
+    """Extract FAQ entries from markdown and return a FAQPage JSON-LD block, or empty string."""
+    faq_section = re.search(
+        r'##\s*.*?(?:FAQ|Frequently Asked Questions|Common Questions).*?\n(.*?)(?=\n##|\Z)',
+        body_md, re.DOTALL | re.IGNORECASE
+    )
+    if not faq_section:
+        return ''
+
+    text = faq_section.group(1)
+    # Match bold Q: / A: pairs, or ### headings followed by paragraphs
+    pairs = re.findall(r'\*\*(?:Q:|Question:)\s*(.*?)\*\*\s*\n+(?:\*\*(?:A:|Answer:)\s*)?(.*?)(?=\n\*\*(?:Q:|Question:)|\Z)', text, re.DOTALL)
+    if not pairs:
+        pairs = re.findall(r'###\s+(.*?)\n+(.*?)(?=\n###|\Z)', text, re.DOTALL)
+    if not pairs:
+        return ''
+
+    entities = []
+    for q, a in pairs[:8]:
+        q = q.strip().replace('"', '\\"')
+        a = re.sub(r'<[^>]+>', '', a).strip().replace('"', '\\"')[:500]
+        if q and a:
+            entities.append(f'''    {{
+      "@type": "Question",
+      "name": "{q}",
+      "acceptedAnswer": {{"@type": "Answer", "text": "{a}"}}
+    }}''')
+
+    if not entities:
+        return ''
+
+    return f''',
+{{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+{','.join(entities)}
+  ]
+}}'''
+
+
 def build_post_page(post: dict) -> str:
     slug = post['slug']
     title = post['title']
@@ -1011,6 +1052,7 @@ def build_post_page(post: dict) -> str:
     read_time = post.get('read_time', 5)
     featured_bk = post.get('bookmaker_featured', '')
     published_at = post.get('published_at', datetime.now(timezone.utc).isoformat())
+    faq_schema = extract_faq_schema(body_md)
 
     # Format date
     try:
@@ -1064,12 +1106,12 @@ def build_post_page(post: dict) -> str:
 <meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
 
 <script type="application/ld+json">
-{{
+[{{
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "{title}",
   "description": "{excerpt}",
-  "author": {{"@type": "Organization", "name": "{author}", "url": "https://sifufinds.com"}},
+  "author": {{"@type": "Organization", "name": "{author}", "url": "https://sifufinds.com/about/"}},
   "publisher": {{
     "@type": "Organization",
     "name": "SifuFinds",
@@ -1077,11 +1119,12 @@ def build_post_page(post: dict) -> str:
     "logo": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/icon.png"}}
   }},
   "datePublished": "{pub_iso}",
-  "dateModified": "2026-06-07",
+  "dateModified": "{pub_iso}",
   "mainEntityOfPage": "{canonical}",
   "keywords": "{', '.join(tags)}",
-  "articleSection": "{category}"
-}}
+  "articleSection": "{category}",
+  "image": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/og-image.png", "width": 1200, "height": 630}}
+}}{faq_schema}]
 </script>
 
 <link rel="preload" href="../../assets/shared.css?v=7" as="style">
@@ -1151,8 +1194,8 @@ def build_post_page(post: dict) -> str:
   <div class="wrap">
     <h1>{title}</h1>
     <div class="post-meta">
-      <span>📅 {pub_date}</span>
-      <span>✍️ {author}</span>
+      <span>📅 <time datetime="{pub_iso}">{pub_date}</time></span>
+      <span>✍️ <a href="../../about/#team" rel="author" style="color:rgba(255,255,255,.85);text-decoration:none">{author}</a></span>
       <span>⏱️ {read_time} min read</span>
       {'<span>📌 ' + featured_bk + '</span>' if featured_bk else ''}
     </div>
@@ -1171,9 +1214,11 @@ def build_post_page(post: dict) -> str:
 
   <div style="display:grid;grid-template-columns:1fr minmax(0,760px) 1fr;gap:0">
     <div></div>
-    <div class="post-body">
+    <article class="post-body" itemscope itemtype="https://schema.org/Article">
+      <meta itemprop="headline" content="{title}">
+      <meta itemprop="datePublished" content="{pub_iso}">
       {body_html}
-    </div>
+    </article>
     <div></div>
   </div>
 
@@ -1239,6 +1284,9 @@ def main():
     pages_created = 0
     pages_skipped = 0
 
+    import sys
+    force = '--force' in sys.argv
+
     for post in data['posts']:
         slug = post.get('slug')
         if not slug:
@@ -1247,7 +1295,7 @@ def main():
         post_dir = os.path.join(blog_dir, slug)
         out_path = os.path.join(post_dir, 'index.html')
 
-        if os.path.exists(out_path):
+        if os.path.exists(out_path) and not force:
             pages_skipped += 1
             continue
 
@@ -1256,7 +1304,10 @@ def main():
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(html)
         pages_created += 1
-        print(f'  ✓  blog/{slug}/index.html')
+        if force:
+            print(f'  ↻  blog/{slug}/index.html')
+        else:
+            print(f'  ✓  blog/{slug}/index.html')
 
     print(f'\n✅  {pages_created} static blog post pages created ({pages_skipped} already existed).')
     print(f'    Total blog posts in JSON: {len(data["posts"])}')

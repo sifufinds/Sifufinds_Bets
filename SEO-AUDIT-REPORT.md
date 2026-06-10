@@ -1,263 +1,249 @@
 # SifuFinds SEO Audit Report
 **URL:** https://sifufinds.com  
-**Date:** 2026-06-07  
+**Date:** 2026-06-10  
+**Previous Audit:** 2026-06-07  
 **Business Type:** Affiliate/Comparison — Betting bonuses & bookmaker reviews, 23 African countries  
-**Audited by:** Claude SEO (seo-audit v2.0.0)
+**Audited by:** Claude SEO (seo-audit v2.1.0)
 
 ---
 
-## Overall SEO Health Score: 62 / 100
+## Overall SEO Health Score: 68 / 100 ↑ (+6 since June 7)
 
-| Category | Score | Weight | Weighted |
-|----------|-------|--------|---------|
-| Technical SEO | 72/100 | 22% | 15.8 |
-| Content Quality | 55/100 | 23% | 12.7 |
-| On-Page SEO | 68/100 | 20% | 13.6 |
-| Schema / Structured Data | 62/100 | 10% | 6.2 |
-| Performance (CWV) | 58/100 | 10% | 5.8 |
-| AI Search Readiness | 40/100 | 10% | 4.0 |
-| Images | 80/100 | 5% | 4.0 |
-| **TOTAL** | | | **62.1** |
+| Category | Score | Weight | Weighted | Change |
+|----------|-------|--------|---------|--------|
+| Technical SEO | 78/100 | 22% | 17.2 | +1.4 ↑ |
+| Content Quality | 58/100 | 23% | 13.3 | +0.6 ↑ |
+| On-Page SEO | 72/100 | 20% | 14.4 | +0.8 ↑ |
+| Schema / Structured Data | 78/100 | 10% | 7.8 | +1.6 ↑ |
+| Performance (CWV) | 70/100 | 10% | 7.0 | +1.2 ↑ |
+| AI Search Readiness | 45/100 | 10% | 4.5 | +0.5 ↑ |
+| Images | 75/100 | 5% | 3.75 | -0.25 ↓ |
+| **TOTAL** | | | **68.0** | **+5.9** |
+
+---
+
+## What Was Fixed Since June 7 Audit ✅
+
+| Issue | Status |
+|-------|--------|
+| C1 — No hreflang on country pages | ✅ FIXED — en, en-NG, x-default now on all country pages |
+| C2 — Blog page missing H1 | ✅ FIXED — H1 added |
+| M1 — Homepage meta description 208 chars | ✅ FIXED — Now 136 chars |
+| M2 — No preconnect hints | ✅ FIXED — 4 origins preconnected |
+| M3 — HTML cache-control no-cache | ✅ FIXED — Now stale-while-revalidate |
+| H1 — OG/Twitter image was SVG | ✅ FIXED — PNG now served (200 OK) |
+| H4 — No Article schema on blog posts | ✅ FIXED — Article + Person schema present |
+| H5 — No Review/Rating schema on country pages | ✅ FIXED — Review + Rating + ItemList on all country pages |
+
+> **Note on shared.js `defer`:** The previous audit recommended adding `defer` to shared.js. This recommendation is **incorrect for this project** — CLAUDE.md explicitly prohibits it because `init()` runs synchronously and depends on shared.js being available. Do not add defer. The current implementation is correct.
 
 ---
 
 ## Executive Summary
 
-SifuFinds has a solid foundation — correct canonicals, excellent security headers, a clean sitemap, and schema markup on all key pages. However, it is leaving significant ranking potential on the table in four areas:
+Solid progress since June 7 — eight issues resolved, schema overhauled, and cache policy fixed. The site now scores 68/100.
 
-1. **No hreflang** despite targeting 23 distinct countries — Googlebot has no signal to serve the right page to the right country audience.
-2. **Thin country pages** (~820 words) in a high-competition niche that typically rewards 1,500–2,500-word pages.
-3. **Zero E-E-A-T signals** — no named authors, no author bios, no Person schema, no bylines on articles. Google's Quality Rater Guidelines heavily penalise anonymous gambling affiliate sites.
-4. **One render-blocking script** and no resource hints, slowing initial page load on mobile networks common across Africa (3G/4G).
-
-Fix the hreflang, thin content, and render-blocking JS first — these three changes alone could move rankings within 60–90 days.
+The biggest remaining opportunity is **content depth and E-E-A-T**. With 293 blog posts averaging only 645 words, and author names like "Sifu Kai" and "Sport News Desk" with no visible bylines, no bio pages, and no real credentials, the site is vulnerable on Google's YMYL/gambling content quality threshold. Fix this and the title/meta tag lengths across all major pages — those are the highest-ROI remaining tasks.
 
 ---
 
 ## Critical Issues (Fix Immediately)
 
-### C1 — No hreflang tags on any page
-**Impact:** HIGH — Without hreflang, Google may index the wrong version of a country-specific page or merge signals across regions, suppressing rankings in target markets.
+### C1 — Homepage title 76 characters (exceeds 60-char threshold)
+**Impact:** HIGH — Google truncates titles beyond ~60 chars in SERPs. The brand name gets cut off, reducing CTR.
 
-SifuFinds serves country-specific pages for 23 African countries (Nigeria, Kenya, Ghana, South Africa, …) but has **zero hreflang tags** on any page. Every country page should carry a self-referencing hreflang and an `x-default` fallback.
+**Current:** `SifuFinds · Best Betting Bonuses in Africa 2026 | Verified Bookmaker Reviews` (76 chars)
 
-**Fix:**
+**Fix (57 chars):**
 ```html
-<!-- On /countries/nigeria/ -->
-<link rel="alternate" hreflang="en" href="https://sifufinds.com/countries/nigeria/" />
-<link rel="alternate" hreflang="x-default" href="https://sifufinds.com/" />
-```
-Add matching entries in sitemap.xml using `<xhtml:link>` elements. The sitemap already imports the `xhtml` namespace — use it.
-
----
-
-### C2 — Blog page missing H1
-**Impact:** MEDIUM–HIGH — The `/blog/` page has no `<h1>` element. This is a basic on-page signal that affects both rankings and accessibility.
-
-**Fix:** Add one clear H1 to [blog/index.html](blog/index.html):
-```html
-<h1>SifuFinds Blog — Sports News, Betting Tips &amp; iGaming Africa</h1>
+<title>Best Betting Bonuses in Africa 2026 | SifuFinds</title>
 ```
 
 ---
 
-### C3 — Render-blocking JavaScript (`shared.js`)
-**Impact:** HIGH on mobile — `<script src="assets/shared.js?v=7">` loads synchronously in `<head>` without `defer` or `async`, blocking the parser and delaying First Contentful Paint on every page.
+### C2 — Multiple core page titles exceed 60 characters
+**Impact:** HIGH — Title truncation across critical landing pages reduces CTR site-wide.
 
-**Fix:** Add `defer` (preferred — preserves execution order):
-```html
-<script src="assets/shared.js?v=7" defer></script>
-```
-Check that no inline script depends on `shared.js` being available synchronously before the closing `</body>` tag.
+| Page | Current Title | Chars | Suggested Fix |
+|------|--------------|-------|--------------|
+| Blog | `SifuFinds Blog · Sports News, Betting Tips & iGaming Africa 2026` | 64 | `Africa Betting Blog — Tips, News & iGaming \| SifuFinds` (54) |
+| Tips | `SifuKaii Predicts — Free Football Predictions Today · SifuFinds` | 63 | `Free Football Tips Today \| SifuKaii Predicts` (45) |
+| Odds | `Live Betting Odds · Africa & International 2026 · SifuFinds \| Compare Bookmakers` | 80 | `Live African Betting Odds 2026 \| SifuFinds` (43) |
+| Countries | `African Betting Sites by Country · 23 Countries · Licensed Bookmakers · SifuFinds` | 81 | `Best Betting Sites in Africa — 23 Countries \| SifuFinds` (56) |
+| Casino | `Best Casino Bonuses in Africa 2026 · No Deposit, Live Casino & Jackpots · SifuFinds` | 83 | `Best Casino Bonuses Africa 2026 \| SifuFinds` (44) |
+
+---
+
+### C3 — Multiple core page meta descriptions exceed 160 characters
+**Impact:** HIGH — Truncated descriptions reduce CTR and waste keyword space.
+
+| Page | Chars | Issue |
+|------|-------|-------|
+| Blog | 171 | 11 chars over |
+| Tips | 167 | 7 chars over |
+| Odds | 197 | 37 chars over |
+| Countries | 188 | 28 chars over |
+| Casino | 208 | 48 chars over |
+
+**Fix for Odds page (currently 197 chars):**  
+Current: *"Live betting odds for African and international sports. Compare odds from top African bookmakers across Nigeria, Kenya, Ghana and South Africa. Football, AFCON, CAF CL, basketball, tennis and more."*
+
+Suggested (148 chars): *"Compare live betting odds from top African bookmakers. Football, AFCON, CAF CL, basketball & tennis across Nigeria, Kenya, Ghana, South Africa."*
 
 ---
 
 ## High Priority (Fix Within 1 Week)
 
-### H1 — OG/Twitter image is SVG — social sharing is broken
-The `og:image` and `twitter:image` both point to `og-image.svg`. **Facebook, Twitter/X, LinkedIn, and WhatsApp do not render SVG open-graph images.** Link previews will show a blank or broken image card.
+### H1 — No visible author byline in blog post HTML
+**Impact:** HIGH — Author name is in the `<meta name="author">` tag only, invisible to readers and Google's content quality evaluators. For a YMYL/gambling site, visible bylines are a direct E-E-A-T signal.
 
-**Fix:** Convert `og-image.svg` to a 1200×630 PNG (or JPG) and update all meta tags:
+**Current state:** Posts have `<meta name="author" content="Sifu Kai">` but no visible attribution in the page body.
+
+**Fix:** Add a byline element to each generated blog post, inside [gen_blog_post_pages.py](gen_blog_post_pages.py):
 ```html
-<meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
-<meta property="og:image:type" content="image/png">
-<meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
+<div class="post-byline">
+  <span class="post-author">By <a href="/about/">Sifu Kai</a></span>
+  <time class="post-date" datetime="{published_at}">{formatted_date}</time>
+</div>
 ```
 
 ---
 
-### H2 — No E-E-A-T signals (Experience, Expertise, Authoritativeness, Trustworthiness)
-Gambling and iGaming content falls under Google's **Your Money or Your Life (YMYL)** category, which is subject to the strictest quality rater scrutiny. Currently:
-- No named authors or editors on any content
-- No author bios
-- No Person schema
-- Only 2 social links (Twitter + Telegram) — no LinkedIn, no press mentions
-- `foundingDate: "2024"` in Organization schema with no track record signals
+### H2 — No `<article>` HTML element wrapping blog post content
+**Impact:** HIGH — Blog posts render content in `<div>` containers with no semantic `<article>` wrapper. This is a basic semantic signal used by parsers, screen readers, and Google's content extraction.
 
-**Fixes (prioritise in order):**
-1. Add named author bylines to all blog articles and tips pages
-2. Create an `/about/team/` or `/authors/` page with author bios, credentials, and LinkedIn links
-3. Add `Person` schema for each author:
+**Fix:** In [gen_blog_post_pages.py](gen_blog_post_pages.py), wrap the post body:
+```html
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-header">...</header>
+  <div class="post-body" itemprop="articleBody">...</div>
+</article>
+```
+
+---
+
+### H3 — FAQPage schema missing on most blog posts
+**Impact:** HIGH — Only ~10% of blog posts have FAQPage schema. Posts covering bookmaker reviews, country betting guides, and payment methods are prime candidates for FAQ rich results — the most visible snippet type in gambling SERPs.
+
+**Fix:** In [gen_blog_post_pages.py](gen_blog_post_pages.py), extract any `## FAQ` or `**Q:**` sections from the post body and auto-generate FAQPage schema. For posts that have a natural FAQ section, inject:
 ```json
 {
-  "@type": "Person",
-  "@id": "https://sifufinds.com/authors/john-doe/#person",
-  "name": "John Doe",
-  "jobTitle": "Senior Betting Analyst",
-  "url": "https://sifufinds.com/authors/john-doe/",
-  "sameAs": ["https://www.linkedin.com/in/johndoe/"]
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "...",
+      "acceptedAnswer": { "@type": "Answer", "text": "..." }
+    }
+  ]
 }
 ```
-4. Link author schema to articles via `author` property in Article schema
 
 ---
 
-### H3 — Thin country pages (~820 words)
-Country pages (Nigeria, Kenya, Ghana, etc.) average **~820 words** in a niche where top-ranking affiliate pages carry 1,500–2,500 words with original analysis, local regulatory detail, and payment method breakdowns.
+### H4 — E-E-A-T: Author credentials are pen names with no biography
+**Impact:** HIGH — Author names are "Sifu Kai", "Sport News Desk", "Rugby Desk" — none have bio pages, LinkedIn profiles, or stated credentials. Google's quality rater guidelines penalise anonymous gambling content.
 
-**What to add per country page:**
-- Regulatory overview (licensing authority, legal status, compliance notes)
-- Payment method deep-dive (M-Pesa limits, OPay withdrawal times, etc.)
-- Football/sports culture context relevant to that country
-- Updated bonus comparison table with T&C highlights
-- Local FAQ section (at least 4–5 questions specific to that market)
-
-Target: **1,500–2,000 words** per tier-1 country (NG, KE, GH, ZA).
+**Required fixes (in priority order):**
+1. Create an `/about/` section with named experts, their credentials (years betting, markets covered), and photos
+2. Add links from author names to author bio pages
+3. Add `Person` schema with `sameAs` LinkedIn URLs
+4. Consider adding a "Verified by" disclosure for regulatory/legal claims
 
 ---
 
-### H4 — No Article/BlogPosting schema on blog content
-The `/blog/` page has `Blog` schema but individual articles lack `Article` or `BlogPosting` schema with `datePublished`, `dateModified`, `author`, and `headline`. This blocks rich results eligibility.
+### H5 — Blog content average 645 words — well below competitive threshold
+**Impact:** HIGH — 281 blog posts average only 645 words. Top-ranking gambling affiliate content in African markets averages 1,200–2,000 words. Google's Helpful Content system rewards depth.
 
-**Fix:** Add to each article page:
-```json
-{
-  "@type": "BlogPosting",
-  "headline": "Article title here",
-  "datePublished": "2026-06-01",
-  "dateModified": "2026-06-07",
-  "author": { "@id": "https://sifufinds.com/authors/john-doe/#person" },
-  "publisher": { "@id": "https://sifufinds.com/#organization" }
-}
-```
-Also add `<article>` elements wrapping each blog post in the HTML — currently missing.
+**Thin posts requiring urgent expansion:**
+- `senegal-world-cup-2026-lions-teranga-betting-guide` — 275 words
+- `south-africa-bafana-bafana-world-cup-2026-betting-guide` — 297 words
+- `ghana-black-stars-world-cup-2026-betting-guide` — 326 words
+- `nba-playoffs-2026-predictions-betting` — 351 words
 
----
-
-### H5 — No Review/Rating schema for bookmakers
-Country pages list and compare bookmakers but have no `Review` or `AggregateRating` schema. This is one of the highest-value schema types for affiliate comparison sites — it enables star-rating rich snippets in SERPs.
-
-**Fix:** Add per bookmaker on country pages:
-```json
-{
-  "@type": "Review",
-  "itemReviewed": {
-    "@type": "Organization",
-    "name": "Bet9ja"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "4.5",
-    "bestRating": "5"
-  },
-  "author": { "@id": "https://sifufinds.com/#organization" }
-}
-```
+**Action:** Prioritize WC2026 team guides (timely) and major country betting guides. Target 1,000+ words for reviews, 800+ for news posts.
 
 ---
 
 ## Medium Priority (Fix Within 1 Month)
 
-### M1 — Homepage meta description too long (208 chars)
-Google typically truncates descriptions at ~155–160 characters. At 208 chars, the description is being cut off in search results.
+### M1 — All homepage images missing explicit width/height dimensions
+**Impact:** MEDIUM — All 5 `<img>` tags on the homepage lack explicit `width` and `height` attributes, causing Cumulative Layout Shift (CLS) as images load. This directly harms CLS score.
 
-**Current (208 chars):** "Africa's #1 independent betting comparison site. Compare verified bonuses, no-deposit offers and licensed bookmaker reviews across Nigeria, Kenya, South Africa, Ghana and 23+ African countries. Updated daily."
-
-**Suggested (155 chars):** "Africa's #1 betting comparison site. Verified bonuses, no-deposit offers & bookmaker reviews across 23 African countries. Updated daily."
-
----
-
-### M2 — No preconnect hints for third-party origins
-The page connects to `ipapi.co` (geolocation), `fonts.googleapis.com`, `fonts.gstatic.com`, `www.googletagmanager.com`, and `www.google-analytics.com` without preconnect hints. This adds ~100–300ms of DNS + TCP + TLS handshake time per origin on first load.
-
-**Fix:** Add to `<head>` before the stylesheet:
+**Fix:** Add dimensions to [index.html](index.html):
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://www.googletagmanager.com">
-<link rel="preconnect" href="https://ipapi.co">
+<img src="assets/logos/tictacbets.png" alt="TicTacBets" width="120" height="40" loading="lazy">
+<img src="assets/logos/paripesa_hq.png" alt="Paripesa" width="120" height="40" loading="lazy">
+<img src="assets/icon.png" alt="SifuFinds" width="32" height="38">
+<img src="assets/logo.png" alt="SifuFinds" width="180" height="72">
+```
+For dynamically generated bookmaker logos (the `${logoUrl()}` template), add `width="40" height="40"` defaults.
+
+---
+
+### M2 — llms.txt still missing
+**Impact:** MEDIUM — `https://sifufinds.com/llms.txt` returns 404. With Google AI Overviews, ChatGPT browsing, Perplexity, and Claude covering betting queries, AI citability is a growing ranking signal.
+
+**Fix:** Create [`llms.txt`](llms.txt) in the site root:
+```
+# SifuFinds — Africa's Betting Comparison Platform
+> Independent resource for verified betting bonuses, licensed bookmaker reviews,
+> and sports betting guides across 23 African countries.
+
+## Key Resources
+- Bookmaker comparisons by country: https://sifufinds.com/countries/
+- Betting bonuses explained: https://sifufinds.com/blog/
+- Free tips: https://sifufinds.com/tips/
+- Live odds: https://sifufinds.com/odds/
+
+## Countries Covered
+Nigeria, Kenya, South Africa, Ghana, Tanzania, Uganda, Zambia, Ethiopia,
+Ivory Coast, Cameroon, Senegal, Rwanda, Zimbabwe, Malawi, Mozambique,
+Angola, DR Congo, Botswana, Namibia, Egypt, Morocco, Liberia, Sierra Leone
+
+## Data Policy
+All bonus amounts and bookmaker offers verified by editorial team.
+Data updated daily. Affiliate disclosures on all bookmaker links.
 ```
 
 ---
 
-### M3 — HTML cache-control set to `no-cache, must-revalidate`
-HTML pages are served with `Cache-Control: no-cache, must-revalidate`, meaning every visit requires a full server round-trip to revalidate. For a mostly-static site hosted on Hostinger, this adds unnecessary latency.
+### M3 — Sitemap at 597 URLs — should split into Sitemap Index
+**Impact:** MEDIUM — Google recommends splitting sitemaps above 500 URLs. Currently 597 entries in one file.
 
-**Fix:** Use stale-while-revalidate for HTML:
-```
-Cache-Control: public, max-age=300, stale-while-revalidate=86400
-```
-Or at minimum allow a short max-age:
-```
-Cache-Control: public, max-age=600
-```
+**Fix:** Update [`gen_sitemap.py`](gen_sitemap.py) to generate a Sitemap Index:
+- `sitemap-index.xml` → root index
+- `sitemap-core.xml` → homepage, about, contact, tips, odds, casino, countries hub
+- `sitemap-countries.xml` → 107 country/city URLs
+- `sitemap-blog.xml` → 246 blog post URLs
+- `sitemap-betting.xml` → payment/betting method pages
+- `sitemap-guides.xml` → bookmaker guide pages
 
----
-
-### M4 — Homepage image missing explicit dimensions
-One of the 3 homepage images lacks `width` and `height` attributes, which causes layout shifts (CLS score impact).
-
-**Fix:** Add explicit dimensions to all `<img>` tags:
-```html
-<img src="..." alt="..." width="800" height="450">
-```
+Update `robots.txt` to point to `sitemap-index.xml`.
 
 ---
 
-### M5 — Sitemap should split into a Sitemap Index above 500 URLs
-The single sitemap.xml contains 588 URLs (above the recommended threshold). Google recommends splitting large sitemaps with a Sitemap Index file.
+### M4 — Preconnect for fonts.googleapis.com missing (if Google Fonts are used)
+**Impact:** LOW–MEDIUM — No `<link rel="preconnect">` for Google Fonts origins, though no `<link href="https://fonts.googleapis.com">` stylesheet tag was found either. Verify fonts are self-hosted or loaded via CSS @import (which would need a preconnect).
 
-**Fix:** Split into:
-- `sitemap-index.xml` (index pointing to child sitemaps)
-- `sitemap-core.xml` (homepage, about, contact, countries hub)
-- `sitemap-countries.xml` (all `/countries/*/`)
-- `sitemap-blog.xml` (all `/blog/*/`)
-- `sitemap-tips.xml` (all `/tips/*/`)
-- `sitemap-bonuses.xml` (all `/bonuses/*/`)
-- `sitemap-betting.xml` (all `/betting/*/`)
+**Check:** `grep -r "googleapis.com/css\|gstatic.com/fonts" assets/` — if fonts are referenced in CSS, add preconnect to the `<head>`.
 
 ---
 
-### M6 — No `ItemList` schema on country pages for bookmaker listings
-Country pages present ordered lists of bookmakers but don't mark them up as `ItemList`. This misses a rich result opportunity.
-
----
-
-### M7 — `blog/` page: no `<article>` HTML elements
-Blog index renders posts without wrapping `<article>` elements, which are important semantic signals for search engines and screen readers.
+### M5 — Odds and Tips pages lack Article-type schema
+**Impact:** MEDIUM — `/odds/` has WebPage + FAQPage + BreadcrumbList schema. `/tips/` likely similar. These pages would benefit from `SportsEvent` or `ItemList` schema to surface in sports-related rich results.
 
 ---
 
 ## Low Priority (Backlog)
 
-### L1 — Add `llms.txt` for AI search readiness
-With AI overviews (Google SGE), ChatGPT browsing, Perplexity, and Claude increasingly answering betting/gambling queries, being citable by AI systems is a competitive edge.
+### L1 — `robots.txt` still exposes generator script names
+`/gen_eg_ma.py`, `/generate_country_pages.py`, `/geo-content-writer/` are disallowed in `robots.txt`, inadvertently advertising that these files exist. Move all Python generators outside the web root or simply remove specific file disallows (Python files aren't crawlable anyway).
 
-**Fix:** Create `/llms.txt`:
-```
-# SifuFinds — Africa's Betting Comparison Platform
-> Africa's independent resource for verified betting bonuses, licensed bookmaker reviews, and sports betting guides across 23 African countries.
+### L2 — Social presence limited to Telegram only (schema)
+Organization schema links to `https://t.me/sifufinds`. No visible Twitter/X, YouTube, or LinkedIn links in the page footer or Organization schema `sameAs`. Adding these strengthens authority signals.
 
-## Key Resources
-- Bookmaker comparisons: https://sifufinds.com/countries/
-- Betting bonuses explained: https://sifufinds.com/bonuses/
-- Free tips: https://sifufinds.com/tips/
-- Blog: https://sifufinds.com/blog/
-```
-
----
-
-### L2 — Add `SiteLinksSearchBox` schema
+### L3 — `SiteLinksSearchBox` schema not implemented
 ```json
 {
   "@type": "WebSite",
@@ -269,50 +255,63 @@ With AI overviews (Google SGE), ChatGPT browsing, Perplexity, and Claude increas
 }
 ```
 
----
+### L4 — WC2026 content window closing
+World Cup 2026 started June 11, 2026. Tips/prediction pages under `/tips/world-cup-2026/` should be updated daily during the tournament for maximum freshness signals. Consider adding `dateModified` to the schema as matches are played.
 
-### L3 — `robots.txt` exposes internal tool paths
-The robots.txt disallows `/gen_eg_ma.py`, `/generate_country_pages.py`, `/geo-content-writer/` etc., which inadvertently signals that these scripts exist. Move Python generators outside the web root entirely.
-
----
-
-### L4 — WC2026 page: H1 contains raw HTML entity in source
-`<h1>FIFA World Cup 2026 Betting Tips &amp; Predictions</h1>` — the `&amp;` renders correctly in browsers but appears as raw entity in some parsers. Use the literal `&` inside HTML or ensure consistent encoding.
-
----
-
-### L5 — Telegram-only social presence
-Only Twitter/X and Telegram are linked. For a YMYL site building E-E-A-T, adding LinkedIn (for team members), YouTube (analysis videos), and a dedicated Facebook page would strengthen authority signals.
+### L5 — Ethiopia and DR Congo country pages below content threshold
+Ethiopia (1,803 raw words) and DR Congo (1,917 raw words) are the two weakest country pages by volume. Both markets are growing betting markets with limited quality comparison content — add regulatory overview, local payment methods, and city-level sections.
 
 ---
 
 ## What's Working Well
 
-- **Security headers:** Excellent. CSP, HSTS preload, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy — all correctly configured.
-- **HTTP/2 + HTTP/3 (QUIC):** Enabled, giving multiplexing benefits.
-- **Canonical tags:** Correctly set on every page checked.
-- **robots.txt:** Well-structured with appropriate crawl delays for SEO bots.
-- **All homepage images have alt text.**
-- **Sitemap:** No duplicates, all spot-checked URLs return 200. `lastmod` dates are current.
-- **FAQPage schema:** Present on homepage, Nigeria, WC2026 — strong rich result eligibility.
-- **WC2026 time-sensitive page:** Good schema (SportsEvent + FAQPage), appropriate priority in sitemap.
-- **Country coverage breadth:** 23 countries well-mapped in Organization schema `areaServed`.
+| Signal | Status |
+|--------|--------|
+| Security headers (CSP, HSTS, X-Frame-Options, etc.) | ✅ Excellent |
+| HTTP/2 + HTTP/3 (QUIC) | ✅ Active |
+| TTFB | ✅ 48ms — well under 200ms target |
+| Canonical tags | ✅ Correct on all pages checked |
+| Hreflang | ✅ Now on all 23 country pages |
+| OG/Twitter social cards | ✅ PNG, 1200×630, correct dimensions |
+| Review + Rating + ItemList schema on country pages | ✅ Present and comprehensive |
+| Article + Person schema on blog posts | ✅ Present |
+| FAQPage schema on country pages | ✅ Present (5 Q&A each) |
+| Cache-Control | ✅ stale-while-revalidate correctly configured |
+| robots.txt | ✅ Clean, crawl delays for SEO bots |
+| Sitemap freshness | ✅ lastmod dates current |
+| Homepage meta description | ✅ 136 chars — within target |
+| Blog page H1 | ✅ Present |
+| Country page content depth | ✅ Nigeria, Kenya, Ghana, ZA all 2,000+ words |
+| BreadcrumbList schema | ✅ On all major pages |
 
 ---
 
-## Quick Wins Summary (Highest ROI, Lowest Effort)
+## Quick Wins — Highest ROI, Lowest Effort
 
 | # | Fix | Effort | Impact |
 |---|-----|--------|--------|
-| 1 | Add `defer` to `shared.js` | 2 min | Performance ↑↑ |
-| 2 | Add `<h1>` to blog page | 2 min | Rankings ↑ |
-| 3 | Trim homepage meta description to <160 chars | 5 min | CTR ↑ |
-| 4 | Convert `og-image.svg` → PNG | 15 min | Social sharing ↑↑ |
-| 5 | Add preconnect hints (4 origins) | 10 min | LCP ↑ |
-| 6 | Add `llms.txt` | 15 min | AI citability ↑ |
-| 7 | Add hreflang to all country pages + sitemap | 2–4 hrs | Country rankings ↑↑↑ |
-| 8 | Add named authors + bios to blog/tips pages | 1 day | E-E-A-T ↑↑ |
+| 1 | Fix title tags on 5 core pages | 20 min | CTR ↑↑ on every page |
+| 2 | Fix meta descriptions on 5 core pages | 20 min | CTR ↑↑ |
+| 3 | Add `llms.txt` to site root | 10 min | AI citability ↑ |
+| 4 | Add `width`/`height` to 5 homepage images | 10 min | CLS ↑, Images score ↑ |
+| 5 | Add visible byline in blog post template | 1 hr | E-E-A-T ↑↑ |
+| 6 | Add `<article>` wrapper in blog post generator | 1 hr | Semantic HTML ↑ |
+| 7 | Expand 3 thin WC2026 team posts to 1,000+ words | 2–3 hrs | Content quality ↑, rankings ↑ |
+| 8 | Create author bio page for "Sifu Kai" | Half day | E-E-A-T ↑↑↑ |
+| 9 | Add FAQPage schema to top 50 blog posts | 2 hrs | Rich results ↑ |
+| 10 | Split sitemap into index | 1 hr | Crawl efficiency ↑ |
 
 ---
 
-*Report generated 2026-06-07. Re-audit recommended after implementing Critical and High priority fixes (~30–60 days).*
+## Score Progression
+
+| Audit Date | Score | Key Driver |
+|------------|-------|-----------|
+| 2026-06-07 | 62/100 | Baseline |
+| 2026-06-10 | 68/100 | Hreflang, schema, cache, OG image, meta desc fixed |
+| Target (30 days) | 78/100 | Fix titles, meta descs, E-E-A-T, image dims, llms.txt |
+| Target (90 days) | 85/100 | Content depth, author bios, FAQPage rollout |
+
+---
+
+*Report generated 2026-06-10. Re-audit recommended after implementing Critical and High priority fixes (~30 days).*
