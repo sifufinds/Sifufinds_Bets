@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preload" href="../../assets/shared.css?v=8" as="style">
+<link rel="preload" href="../../assets/shared.js?v=8" as="script">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Betting Odds Calculator — Convert & Calculate Payouts | SifuFinds</title>
+<meta name="description" content="Free betting odds calculator. Convert between decimal, fractional, and American odds. Calculate potential payouts for African bookmakers. Supports ₦, KSh, GH₵, R.">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<link rel="canonical" href="https://sifufinds.com/tools/odds-calculator/">
+<meta property="og:title" content="Free Betting Odds Calculator | SifuFinds Africa">
+<meta property="og:description" content="Convert odds formats and calculate payouts. Free tool for African sports bettors.">
+<meta property="og:url" content="https://sifufinds.com/tools/odds-calculator/">
+<meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SifuFinds Betting Odds Calculator",
+  "url": "https://sifufinds.com/tools/odds-calculator/",
+  "description": "Free tool to convert betting odds between decimal, fractional, and American formats and calculate potential payouts.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "publisher": {"@type": "Organization", "name": "SifuFinds", "url": "https://sifufinds.com"}
+}
+</script>
+<link rel="stylesheet" href="../../assets/shared.css?v=8">
+<style>
+.tool-hero{background:linear-gradient(135deg,#0a3d1e 0%,#1a6b35 100%);color:#fff;padding:40px 0 32px}
+.tool-hero h1{font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:8px}
+.tool-hero p{opacity:.85;font-size:15px}
+.calc-card{background:#fff;border-radius:14px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.08);margin-bottom:20px}
+.calc-card h2{font-size:18px;font-weight:800;color:#0a3d1e;margin-bottom:18px}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+@media(max-width:480px){.input-row{grid-template-columns:1fr}}
+label{display:block;font-size:12px;font-weight:700;color:#555;margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
+input,select{width:100%;padding:10px 12px;border:2px solid #e0e0e0;border-radius:8px;font-size:15px;outline:none;transition:border-color .2s;box-sizing:border-box}
+input:focus,select:focus{border-color:#1a6b35}
+.calc-btn{background:linear-gradient(135deg,#0a3d1e,#1a6b35);color:#fff;border:none;padding:13px 28px;border-radius:9px;font-size:15px;font-weight:800;cursor:pointer;width:100%;margin-top:6px;transition:opacity .2s}
+.calc-btn:hover{opacity:.9}
+.result-box{background:#f0faf3;border:2px solid #c8e6c9;border-radius:10px;padding:18px;margin-top:16px;display:none}
+.result-box.show{display:block}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #e0f0e4}
+.result-row:last-child{border:none;font-weight:800;font-size:16px;color:#0a3d1e}
+.result-label{font-size:13px;color:#555}
+.result-value{font-size:14px;font-weight:700;color:#111}
+.currency-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.cur-tab{background:#f0f0eb;border:2px solid transparent;border-radius:7px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.cur-tab.active{background:#0a3d1e;color:#fff;border-color:#0a3d1e}
+.convert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:12px}
+.convert-result{background:#f8f8f6;border:1px solid #e8e8e8;border-radius:8px;padding:12px 14px}
+.convert-result .format{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;margin-bottom:4px}
+.convert-result .value{font-size:18px;font-weight:900;color:#0a3d1e}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:24px}
+.info-card{background:#fff;border-radius:12px;padding:18px;border:1px solid #e8e8e8}
+.info-card h3{font-size:15px;font-weight:800;color:#0a3d1e;margin-bottom:8px}
+.info-card p{font-size:13px;color:#555;line-height:1.6;margin:0}
+</style>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="wrap" style="display:flex;align-items:center;gap:12px">
+    <a href="../../" style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px">
+      <img src="../../assets/icon.png" width="28" height="28" alt="SifuFinds" fetchpriority="high"> SifuFinds
+    </a>
+    <span style="margin-left:auto;font-size:12px;opacity:.7">Free Betting Tools</span>
+  </div>
+</div>
+
+<div class="tool-hero">
+  <div class="wrap">
+    <div style="font-size:12px;opacity:.7;margin-bottom:8px">
+      <a href="../../" style="color:rgba(255,255,255,.7)">Home</a> ›
+      <a href="../" style="color:rgba(255,255,255,.7)">Tools</a> ›
+      Odds Calculator
+    </div>
+    <h1>Betting Odds Calculator</h1>
+    <p>Convert odds formats · Calculate potential payouts · Works with all African bookmakers</p>
+  </div>
+</div>
+
+<div class="sec-bg">
+<div class="wrap" style="padding-top:24px;padding-bottom:40px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+    <!-- Payout Calculator -->
+    <div class="calc-card">
+      <h2>💰 Payout Calculator</h2>
+      <div class="currency-tabs" id="curTabs">
+        <div class="cur-tab active" data-sym="₦" data-name="NGN">🇳🇬 ₦ NGN</div>
+        <div class="cur-tab" data-sym="KSh" data-name="KES">🇰🇪 KSh</div>
+        <div class="cur-tab" data-sym="GH₵" data-name="GHS">🇬🇭 GH₵</div>
+        <div class="cur-tab" data-sym="R" data-name="ZAR">🇿🇦 R</div>
+        <div class="cur-tab" data-sym="$" data-name="USD">$ USD</div>
+      </div>
+      <div class="input-row">
+        <div>
+          <label>Stake Amount</label>
+          <input type="number" id="stake" placeholder="e.g. 1000" min="1" value="1000">
+        </div>
+        <div>
+          <label>Odds Format</label>
+          <select id="oddsFormat" onchange="updateOddsPlaceholder()">
+            <option value="decimal">Decimal (e.g. 2.50)</option>
+            <option value="fractional">Fractional (e.g. 6/4)</option>
+            <option value="american">American (e.g. +150)</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label>Odds</label>
+        <input type="text" id="oddsInput" placeholder="e.g. 2.50">
+      </div>
+      <button class="calc-btn" onclick="calculatePayout()">Calculate Payout</button>
+      <div class="result-box" id="payoutResult">
+        <div class="result-row"><span class="result-label">Stake</span><span class="result-value" id="r-stake"></span></div>
+        <div class="result-row"><span class="result-label">Profit</span><span class="result-value" id="r-profit"></span></div>
+        <div class="result-row"><span class="result-label">Total Return</span><span class="result-value" id="r-total"></span></div>
+        <div class="result-row"><span class="result-label">Implied Probability</span><span class="result-value" id="r-prob"></span></div>
+      </div>
+    </div>
+
+    <!-- Odds Converter -->
+    <div class="calc-card">
+      <h2>🔄 Odds Format Converter</h2>
+      <div>
+        <label>Enter Odds (any format)</label>
+        <input type="text" id="convertInput" placeholder="e.g. 2.50  or  6/4  or  +150" oninput="convertOdds()">
+      </div>
+      <div class="convert-grid" id="convertResults">
+        <div class="convert-result"><div class="format">Decimal</div><div class="value" id="c-decimal">—</div></div>
+        <div class="convert-result"><div class="format">Fractional</div><div class="value" id="c-fractional">—</div></div>
+        <div class="convert-result"><div class="format">American</div><div class="value" id="c-american">—</div></div>
+        <div class="convert-result"><div class="format">Implied Probability</div><div class="value" id="c-prob">—</div></div>
+      </div>
+      <div style="margin-top:20px">
+        <h3 style="font-size:14px;font-weight:800;color:#0a3d1e;margin-bottom:12px">Quick Reference — Common Odds</h3>
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <thead><tr style="background:#0a3d1e;color:#fff">
+            <th style="padding:7px 10px;text-align:left">Decimal</th>
+            <th style="padding:7px 10px;text-align:left">Fractional</th>
+            <th style="padding:7px 10px;text-align:left">American</th>
+            <th style="padding:7px 10px;text-align:left">Probability</th>
+          </tr></thead>
+          <tbody id="quickRef"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Info Section -->
+  <div class="info-grid" style="margin-top:24px">
+    <div class="info-card">
+      <h3>How to Read Decimal Odds</h3>
+      <p>Decimal odds (e.g. 2.50) represent total return per unit staked including your stake. Stake × Odds = Total Return. Most common in Africa — used by Bet9ja, Betway, 1xBet, and SportyBet.</p>
+    </div>
+    <div class="info-card">
+      <h3>How to Read Fractional Odds</h3>
+      <p>Fractional odds (e.g. 6/4) show profit relative to stake. 6/4 means win ₦6 for every ₦4 staked. Common on UK-based bookmakers and historically used in print.</p>
+    </div>
+    <div class="info-card">
+      <h3>How to Read American Odds</h3>
+      <p>Positive (+150) shows profit on ₦100 stake. Negative (-120) shows stake needed to win ₦100. Less common in African markets but used by some international platforms.</p>
+    </div>
+    <div class="info-card">
+      <h3>Implied Probability</h3>
+      <p>The bookmaker's implied win probability = 1 ÷ decimal odds. Odds of 2.00 = 50% implied probability. If your true estimate is higher, you have a value bet.</p>
+    </div>
+  </div>
+
+  <div class="adv" style="margin-top:24px">⚠️ <strong>Responsible Gambling:</strong> This tool is for calculation purposes only. Never bet more than you can afford to lose. 18+ only.</div>
+</div>
+</div>
+
+<div class="footer-bar">
+  <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison<br>
+  <a href="../../">Home</a> · <a href="../../blog/">Blog</a> · <a href="../../tips/">Tips</a> · <a href="../../odds/">Odds</a> · <a href="../../countries/">Countries</a> · <a href="../parlay-calculator/">Parlay Calculator</a><br>
+  © <span id="foot-yr"></span> SifuFinds. Free tools for African bettors. 18+ only.
+</div>
+
+<script src="../../assets/shared.js?v=8"></script>
+<script>
+const SITE={home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'};
+let CUR_SYM = '₦';
+
+document.querySelectorAll('.cur-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.cur-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    CUR_SYM = t.dataset.sym;
+  });
+});
+
+function parseDecimal(input) {
+  const s = String(input).trim();
+  // American: +150 or -120
+  if (/^[+-]\d+$/.test(s)) {
+    const n = parseInt(s);
+    return n > 0 ? (n / 100) + 1 : (100 / Math.abs(n)) + 1;
+  }
+  // Fractional: 6/4 or 6-4
+  if (/^\d+[\/\-]\d+$/.test(s)) {
+    const [a, b] = s.split(/[\/\-]/).map(Number);
+    return (a / b) + 1;
+  }
+  // Decimal
+  const d = parseFloat(s);
+  return isNaN(d) ? null : d;
+}
+
+function decimalToFractional(d) {
+  const profit = d - 1;
+  if (profit <= 0) return 'N/A';
+  const gcd = (a, b) => b < 0.001 ? a : gcd(b, a % b);
+  const denom = 100;
+  const numer = Math.round(profit * denom);
+  const g = gcd(numer, denom);
+  return `${numer/g}/${denom/g}`;
+}
+
+function decimalToAmerican(d) {
+  if (d >= 2) return `+${Math.round((d - 1) * 100)}`;
+  return `${Math.round(-100 / (d - 1))}`;
+}
+
+function fmt(n) { return n.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+function updateOddsPlaceholder() {
+  const f = document.getElementById('oddsFormat').value;
+  const p = {decimal:'e.g. 2.50',fractional:'e.g. 6/4',american:'e.g. +150'};
+  document.getElementById('oddsInput').placeholder = p[f];
+}
+
+function calculatePayout() {
+  const stake = parseFloat(document.getElementById('stake').value);
+  const raw = document.getElementById('oddsInput').value;
+  const decimal = parseDecimal(raw);
+  if (!stake || !decimal || decimal < 1.01) {
+    alert('Please enter a valid stake and odds.');
+    return;
+  }
+  const total = stake * decimal;
+  const profit = total - stake;
+  const prob = (1 / decimal * 100).toFixed(1);
+  document.getElementById('r-stake').textContent = `${CUR_SYM}${fmt(stake)}`;
+  document.getElementById('r-profit').textContent = `${CUR_SYM}${fmt(profit)}`;
+  document.getElementById('r-total').textContent = `${CUR_SYM}${fmt(total)}`;
+  document.getElementById('r-prob').textContent = `${prob}%`;
+  document.getElementById('payoutResult').classList.add('show');
+}
+
+function convertOdds() {
+  const raw = document.getElementById('convertInput').value;
+  const decimal = parseDecimal(raw);
+  if (!decimal || decimal < 1.01) {
+    ['c-decimal','c-fractional','c-american','c-prob'].forEach(id => document.getElementById(id).textContent = '—');
+    return;
+  }
+  document.getElementById('c-decimal').textContent = decimal.toFixed(2);
+  document.getElementById('c-fractional').textContent = decimalToFractional(decimal);
+  document.getElementById('c-american').textContent = decimalToAmerican(decimal);
+  document.getElementById('c-prob').textContent = (1/decimal*100).toFixed(1) + '%';
+}
+
+// Quick reference table
+const QUICK = [1.25,1.50,1.75,2.00,2.50,3.00,4.00,5.00,10.00];
+const tbody = document.getElementById('quickRef');
+QUICK.forEach((d,i) => {
+  const tr = document.createElement('tr');
+  tr.style.background = i%2===0?'#f9f9f7':'#fff';
+  tr.innerHTML = `<td style="padding:5px 10px">${d.toFixed(2)}</td><td style="padding:5px 10px">${decimalToFractional(d)}</td><td style="padding:5px 10px">${decimalToAmerican(d)}</td><td style="padding:5px 10px">${(1/d*100).toFixed(1)}%</td>`;
+  tbody.appendChild(tr);
+});
+
+function init() { H('foot-yr', NOW.getFullYear()); }
+init();
+</script>
+</body>
+</html>

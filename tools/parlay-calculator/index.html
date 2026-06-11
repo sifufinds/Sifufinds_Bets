@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preload" href="../../assets/shared.css?v=8" as="style">
+<link rel="preload" href="../../assets/shared.js?v=8" as="script">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Parlay / Accumulator Calculator — African Betting | SifuFinds</title>
+<meta name="description" content="Free parlay and accumulator calculator for African bettors. Add up to 20 legs, see combined odds, potential payout in ₦ KSh GH₵ R. Works with Bet9ja, Betway, 1xBet.">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<link rel="canonical" href="https://sifufinds.com/tools/parlay-calculator/">
+<meta property="og:title" content="Free Parlay & Accumulator Calculator | SifuFinds Africa">
+<meta property="og:description" content="Calculate your accumulator payout across up to 20 legs. Free tool for African bettors — supports ₦, KSh, GH₵, R.">
+<meta property="og:url" content="https://sifufinds.com/tools/parlay-calculator/">
+<meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SifuFinds Parlay & Accumulator Calculator",
+  "url": "https://sifufinds.com/tools/parlay-calculator/",
+  "description": "Free parlay and accumulator calculator for sports bettors. Add up to 20 legs, see combined decimal odds and potential payout in multiple currencies.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "publisher": {"@type": "Organization", "name": "SifuFinds", "url": "https://sifufinds.com"}
+}
+</script>
+<link rel="stylesheet" href="../../assets/shared.css?v=8">
+<style>
+.tool-hero{background:linear-gradient(135deg,#0a3d1e 0%,#1a6b35 100%);color:#fff;padding:40px 0 32px}
+.tool-hero h1{font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:8px}
+.calc-card{background:#fff;border-radius:14px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.08);margin-bottom:20px}
+.leg-row{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:8px;align-items:center;margin-bottom:8px;padding:10px 12px;background:#f8faf8;border-radius:8px;border:1px solid #e8f0e8}
+@media(max-width:520px){.leg-row{grid-template-columns:auto 1fr;gap:6px}}
+.leg-num{font-size:12px;font-weight:800;color:#888;min-width:24px;text-align:center}
+input.leg-desc{border:1px solid #ddd;border-radius:6px;padding:8px 10px;font-size:13px;outline:none}
+input.leg-odds{border:2px solid #ddd;border-radius:6px;padding:8px 10px;font-size:14px;font-weight:700;outline:none;width:90px}
+input.leg-odds:focus{border-color:#1a6b35}
+.del-btn{background:none;border:none;color:#ccc;font-size:18px;cursor:pointer;padding:4px 8px;line-height:1}
+.del-btn:hover{color:#e53935}
+.add-btn{background:#f0faf3;border:2px dashed #c8e6c9;border-radius:8px;padding:10px;text-align:center;cursor:pointer;color:#1a6b35;font-weight:700;font-size:13px;margin-bottom:16px;transition:background .2s}
+.add-btn:hover{background:#e0f5e8}
+.summary-box{background:linear-gradient(135deg,#0a3d1e 0%,#1a6b35 100%);color:#fff;border-radius:12px;padding:24px;margin-top:16px}
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.summary-row:last-child{border:none;margin-top:8px;padding-top:12px}
+.summary-label{font-size:13px;opacity:.8}
+.summary-value{font-size:15px;font-weight:800}
+.summary-total{font-size:22px;font-weight:900}
+.currency-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.cur-tab{background:#f0f0eb;border:2px solid transparent;border-radius:7px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.cur-tab.active{background:#0a3d1e;color:#fff}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:24px}
+.tip-card{background:#fff;border-radius:12px;padding:18px;border-left:4px solid #1a6b35}
+.tip-card h3{font-size:14px;font-weight:800;color:#0a3d1e;margin-bottom:6px}
+.tip-card p{font-size:13px;color:#555;margin:0;line-height:1.5}
+</style>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="wrap" style="display:flex;align-items:center;gap:12px">
+    <a href="../../" style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px">
+      <img src="../../assets/icon.png" width="28" height="28" alt="SifuFinds" fetchpriority="high"> SifuFinds
+    </a>
+    <span style="margin-left:auto;font-size:12px;opacity:.7">Free Betting Tools</span>
+  </div>
+</div>
+
+<div class="tool-hero">
+  <div class="wrap">
+    <div style="font-size:12px;opacity:.7;margin-bottom:8px">
+      <a href="../../" style="color:rgba(255,255,255,.7)">Home</a> ›
+      <a href="../" style="color:rgba(255,255,255,.7)">Tools</a> ›
+      Parlay Calculator
+    </div>
+    <h1>Parlay / Accumulator Calculator</h1>
+    <p>Add up to 20 legs · See combined odds · Calculate total payout</p>
+  </div>
+</div>
+
+<div class="sec-bg">
+<div class="wrap" style="padding-top:24px;padding-bottom:40px">
+
+  <div class="calc-card">
+    <div class="currency-tabs" id="curTabs">
+      <div class="cur-tab active" data-sym="₦">🇳🇬 ₦ NGN</div>
+      <div class="cur-tab" data-sym="KSh">🇰🇪 KSh</div>
+      <div class="cur-tab" data-sym="GH₵">🇬🇭 GH₵</div>
+      <div class="cur-tab" data-sym="R">🇿🇦 R</div>
+      <div class="cur-tab" data-sym="$">$ USD</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+      <div>
+        <label style="display:block;font-size:12px;font-weight:700;color:#555;margin-bottom:5px;text-transform:uppercase">Stake Amount</label>
+        <input type="number" id="stake" value="1000" min="1" style="width:100%;padding:10px 12px;border:2px solid #1a6b35;border-radius:8px;font-size:16px;font-weight:700;box-sizing:border-box" oninput="recalc()">
+      </div>
+      <div>
+        <label style="display:block;font-size:12px;font-weight:700;color:#555;margin-bottom:5px;text-transform:uppercase">Odds Format</label>
+        <select id="oddsFormat" style="width:100%;padding:10px 12px;border:2px solid #ddd;border-radius:8px;font-size:14px;box-sizing:border-box" onchange="recalc()">
+          <option value="decimal">Decimal</option>
+          <option value="fractional">Fractional</option>
+          <option value="american">American</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="legsList"></div>
+    <div class="add-btn" onclick="addLeg()">+ Add Selection</div>
+
+    <div class="summary-box" id="summary">
+      <div class="summary-row"><span class="summary-label">Selections</span><span class="summary-value" id="s-legs">0</span></div>
+      <div class="summary-row"><span class="summary-label">Combined Odds</span><span class="summary-value" id="s-odds">—</span></div>
+      <div class="summary-row"><span class="summary-label">Stake</span><span class="summary-value" id="s-stake">—</span></div>
+      <div class="summary-row"><span class="summary-label">Potential Profit</span><span class="summary-value" id="s-profit">—</span></div>
+      <div class="summary-row">
+        <span class="summary-label" style="font-size:15px;font-weight:800">Total Return</span>
+        <span class="summary-value summary-total" id="s-total">—</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <h3>Accumulator Strategy</h3>
+      <p>Each leg multiplies the combined odds. A 5-fold accumulator with each leg at 2.00 returns 32× your stake — but ALL selections must win. The break-even probability for each leg is above 50%.</p>
+    </div>
+    <div class="tip-card">
+      <h3>Accumulator Insurance</h3>
+      <p>Betway and SportyBet offer accumulator insurance — refund if one leg fails in a 5+ fold. This changes the mathematics: you can afford to include one moderate-risk selection without total loss.</p>
+    </div>
+    <div class="tip-card">
+      <h3>Best Bookmakers for Accumulators</h3>
+      <p>1xBet offers the highest accumulator odds. Betway offers accumulator insurance on 5+ folds. Bet9ja has the best Nigeria-specific accumulator promotions with boosted payouts for WC2026.</p>
+    </div>
+    <div class="tip-card">
+      <h3>Maximum Odds Cap</h3>
+      <p>All bookmakers cap maximum payout. Bet9ja: ₦50M. Betway: varies. 1xBet: $200K equivalent. If your accumulator total return exceeds this, actual payout is capped — keep this in mind for high-odds multis.</p>
+    </div>
+  </div>
+
+  <div class="adv" style="margin-top:24px">⚠️ <strong>Responsible Gambling:</strong> Accumulators are high-risk bets. Never stake more than you can afford to lose. 18+ only.</div>
+</div>
+</div>
+
+<div class="footer-bar">
+  <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison<br>
+  <a href="../../">Home</a> · <a href="../odds-calculator/">Odds Calculator</a> · <a href="../../tips/">Free Tips</a> · <a href="../../countries/">Countries</a><br>
+  © <span id="foot-yr"></span> SifuFinds. Free tools for African bettors. 18+ only.
+</div>
+
+<script src="../../assets/shared.js?v=8"></script>
+<script>
+const SITE={home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'};
+let legs = [];
+let CUR_SYM = '₦';
+
+document.querySelectorAll('.cur-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.cur-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    CUR_SYM = t.dataset.sym;
+    recalc();
+  });
+});
+
+function parseDecimal(s) {
+  s = String(s).trim();
+  if (/^[+-]\d+$/.test(s)) { const n=parseInt(s); return n>0?(n/100)+1:(100/Math.abs(n))+1; }
+  if (/^\d+[\/\-]\d+$/.test(s)) { const [a,b]=s.split(/[\/\-]/).map(Number); return (a/b)+1; }
+  const d=parseFloat(s); return isNaN(d)?null:d;
+}
+
+function addLeg() {
+  if (legs.length >= 20) return;
+  legs.push({id: Date.now(), desc:'', odds:''});
+  render();
+}
+
+function removeLeg(id) {
+  legs = legs.filter(l => l.id !== id);
+  render();
+}
+
+function render() {
+  const list = document.getElementById('legsList');
+  list.innerHTML = legs.map((l, i) => `
+    <div class="leg-row">
+      <div class="leg-num">${i+1}</div>
+      <input class="leg-desc" placeholder="Team / Selection (optional)" value="${l.desc}"
+        oninput="legs[${i}].desc=this.value">
+      <input class="leg-odds" placeholder="Odds" value="${l.odds}"
+        oninput="legs[${i}].odds=this.value;recalc()">
+      <button class="del-btn" onclick="removeLeg(${l.id})">×</button>
+    </div>
+  `).join('');
+  recalc();
+}
+
+function fmt(n) { return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+function recalc() {
+  const stake = parseFloat(document.getElementById('stake').value) || 0;
+  let combined = 1;
+  let valid = 0;
+  for (const l of legs) {
+    if (!l.odds) continue;
+    const d = parseDecimal(l.odds);
+    if (d && d >= 1.01) { combined *= d; valid++; }
+  }
+  const total = stake * combined;
+  const profit = total - stake;
+  document.getElementById('s-legs').textContent = valid;
+  document.getElementById('s-odds').textContent = valid ? combined.toFixed(2) : '—';
+  document.getElementById('s-stake').textContent = stake ? `${CUR_SYM}${fmt(stake)}` : '—';
+  document.getElementById('s-profit').textContent = valid && stake ? `${CUR_SYM}${fmt(profit)}` : '—';
+  document.getElementById('s-total').textContent = valid && stake ? `${CUR_SYM}${fmt(total)}` : '—';
+}
+
+// Start with 3 legs
+addLeg(); addLeg(); addLeg();
+
+function init() { H('foot-yr', NOW.getFullYear()); }
+init();
+</script>
+</body>
+</html>
