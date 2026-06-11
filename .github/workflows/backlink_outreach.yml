@@ -1,0 +1,111 @@
+name: Backlink Outreach — Reddit, Twitter tools, Email
+
+# Runs every day at 10:00 UTC.
+# Each job handles one channel so failures are isolated.
+# Reddit and Email require secrets to be configured — jobs gracefully
+# skip (exit 0) when credentials are missing.
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (preview only, no sends)"
+        required: false
+        default: "false"
+        type: choice
+        options: ["false", "true"]
+
+concurrency:
+  group: backlink-outreach
+  cancel-in-progress: true
+
+jobs:
+
+  # ── 1. Twitter tool promotion ────────────────────────────────────────────────
+  twitter_tool:
+    name: Post free-tool tweet
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        working-directory: agents/python
+        run: pip install playwright python-dotenv && playwright install chromium --with-deps
+      - name: Post tool tweet
+        working-directory: agents/python
+        env:
+          TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
+          X_USERNAME: ${{ secrets.X_USERNAME }}
+          X_PASSWORD: ${{ secrets.X_PASSWORD }}
+          X_EMAIL: ${{ secrets.X_EMAIL }}
+        run: |
+          DRY="${{ github.event.inputs.dry_run }}"
+          FLAGS=""
+          [ "$DRY" = "true" ] && FLAGS="--dry-run"
+          python agent_twitter_posts.py --mode tool $FLAGS
+
+  # ── 2. Reddit post (free tools / content) ────────────────────────────────────
+  reddit:
+    name: Post to Reddit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        working-directory: agents/python
+        run: pip install praw python-dotenv
+      - name: Post to Reddit
+        working-directory: agents/python
+        env:
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
+        run: |
+          DRY="${{ github.event.inputs.dry_run }}"
+          FLAGS=""
+          [ "$DRY" = "true" ] && FLAGS="--dry-run"
+          python agent_reddit_posts.py $FLAGS || true  # don't fail if creds missing
+
+  # ── 3. Email outreach to backlink prospects ───────────────────────────────────
+  email_outreach:
+    name: Email backlink prospects
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # Only runs Mon/Wed/Fri — 3 days a week to stay natural
+    if: ${{ github.event_name == 'workflow_dispatch' || contains('1,3,5', format('{0}', github.run_number)) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        working-directory: agents/python
+        run: pip install python-dotenv
+      - name: Send outreach emails
+        working-directory: agents/python
+        env:
+          OUTREACH_EMAIL_USER: ${{ secrets.OUTREACH_EMAIL_USER }}
+          OUTREACH_EMAIL_PASS: ${{ secrets.OUTREACH_EMAIL_PASS }}
+        run: |
+          DRY="${{ github.event.inputs.dry_run }}"
+          FLAGS=""
+          [ "$DRY" = "true" ] && FLAGS="--dry-run"
+          python agent_email_outreach.py --limit 5 $FLAGS || true  # don't fail if creds missing
+
+      - name: Commit outreach state
+        run: |
+          git config user.name "sifufinds-bot"
+          git config user.email "bot@sifufinds.com"
+          git add agents/python/email_outreach_state.json agents/python/reddit_state.json || true
+          git diff --cached --quiet || git commit -m "chore: outreach state $(date -u +%Y-%m-%dT%H:%M)Z"
+          git push || true

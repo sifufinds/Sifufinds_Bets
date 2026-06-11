@@ -45,7 +45,7 @@ TWITTER_URL_LEN = 23
 TWEET_MAX = 280
 
 # Content-type rotation for --mode auto: news → offer → tip → offer
-ROTATION = ["news", "offer", "tip", "offer"]
+ROTATION = ["news", "offer", "tip", "tool", "offer", "news", "tip", "offer"]
 
 # ── AFFILIATE BRANDS ─────────────────────────────────────────────────────────
 
@@ -262,6 +262,67 @@ def _build_news_tweet(post: dict) -> str:
         f"{tag} #SifuFinds #AfricanBetting"
     )
     return _trim_to_limit(tweet)
+
+
+# ── TOOL MODE — promote free odds/parlay calculators ─────────────────────────
+
+TOOLS_URL       = f"{SITE_URL}/tools/"
+ODDS_CALC_URL   = f"{SITE_URL}/tools/odds-calculator/"
+PARLAY_CALC_URL = f"{SITE_URL}/tools/parlay-calculator/"
+
+_TOOL_TEMPLATES = [
+    (
+        "🔢 FREE ODDS CALCULATOR — No signup needed\n\n"
+        "Convert decimal ↔ fractional ↔ American odds instantly.\n"
+        "Calculate payouts in ₦ · KSh · GH₵ · R\n\n"
+        "Built for African bettors using Bet9ja, Betway, 1xBet.\n\n"
+        f"👉 Try it free → {ODDS_CALC_URL}\n\n"
+        "#BettingTools #OddsCalculator #Bet9ja #Betway #SifuFinds #AfricanBetting"
+    ),
+    (
+        "📊 FREE PARLAY CALCULATOR — African Bettors\n\n"
+        "Add up to 20 legs.\n"
+        "See combined odds + total payout instantly.\n"
+        "Supports ₦ · KSh · GH₵ · R · $\n\n"
+        "No login. No ads. Just maths.\n\n"
+        f"👉 {PARLAY_CALC_URL}\n\n"
+        "#AccumulatorCalculator #ParlayCalculator #SportsBetting #SifuFinds #FreeTool"
+    ),
+    (
+        "💡 STOP GUESSING YOUR PAYOUT\n\n"
+        "Use SifuFinds free parlay calculator before you place your acca.\n\n"
+        "✅ Up to 20 legs\n"
+        "✅ Decimal, fractional & American odds\n"
+        "✅ Shows profit + total return\n"
+        "✅ Works on mobile\n\n"
+        f"👉 Free tool → {PARLAY_CALC_URL}\n\n"
+        "#BettingTips #Accumulator #Bet9ja #SportyBet #SifuFinds #Africa"
+    ),
+    (
+        "🌍 BUILT FOR AFRICAN BETTORS — Free Tools\n\n"
+        "Odds Calculator + Parlay Calculator\n"
+        "Zero signup · Works on any phone\n\n"
+        "Currencies: ₦ (Nigeria) · KSh (Kenya) · GH₵ (Ghana) · R (South Africa)\n\n"
+        f"👉 {TOOLS_URL}\n\n"
+        "@Bet9jaOfficial @BetwayAfrica @SportyBet\n"
+        "#BettingTools #AfricanBetting #SifuFinds #FreeBettingTools"
+    ),
+    (
+        "📐 ODDS CONVERTER — Decimal to Fractional to American\n\n"
+        "Nigerian bettors: Bet9ja shows decimal odds (e.g. 2.50)\n"
+        "European sites show fractional (3/2)\n"
+        "American shows moneyline (+150)\n\n"
+        "They're all the same bet. Our tool shows all three.\n\n"
+        f"👉 {ODDS_CALC_URL}\n\n"
+        "#OddsConverter #Bet9ja #BettingAfrica #SifuFinds #SmartBetting"
+    ),
+]
+
+
+def _build_tool_tweet(state: dict) -> str:
+    idx = state.get("tool_template_index", 0) % len(_TOOL_TEMPLATES)
+    state["tool_template_index"] = (idx + 1) % len(_TOOL_TEMPLATES)
+    return _trim_to_limit(_TOOL_TEMPLATES[idx])
 
 
 # ── TIP MODE ─────────────────────────────────────────────────────────────────
@@ -596,6 +657,10 @@ def run(mode: str = "auto", dry_run: bool = False, force: bool = False) -> None:
         print("💡 Posting betting tip")
         tweet = _build_tip_tweet(state)
 
+    elif mode == "tool":
+        print("🔢 Posting free tool promotion")
+        tweet = _build_tool_tweet(state)
+
     else:
         print(f"✗ Unknown mode: {mode}")
         sys.exit(1)
@@ -619,7 +684,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SifuFinds X (Twitter) Posts Agent")
     parser.add_argument(
         "--mode",
-        choices=["auto", "offer", "news", "tip"],
+        choices=["auto", "offer", "news", "tip", "tool"],
         default="auto",
         help="Content type to post (default: auto-rotate)",
     )
