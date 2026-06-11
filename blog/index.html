@@ -12,6 +12,8 @@
   gtag('config', 'G-0B51MX2ZKE');
 </script>
 <meta charset="UTF-8">
+<link rel="preload" href="../assets/shared.js?v=8" as="script">
+<link rel="preload" href="../assets/shared.css?v=7" as="style">
 <link rel="preconnect" href="https://ipapi.co">
 <link rel="preconnect" href="https://www.google-analytics.com">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -586,6 +588,12 @@ html,body{max-width:100%;overflow-x:hidden}
   .article-reader-title{font-size:20px}
   .article-card-img{width:100px;min-width:100px;font-size:32px}
 }
+
+/* CWV: content-visibility for below-fold sections */
+.sec-bg~.sec-bg,.cbox2,.footer-bar,[class*="section"]:not(:first-of-type){
+  content-visibility:auto;
+  contain-intrinsic-size:0 500px;
+}
 </style>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
@@ -633,7 +641,7 @@ html,body{max-width:100%;overflow-x:hidden}
 <nav class="mnav">
   <div class="mnav-in">
     <a class="logo" href="../">
-      <img src="../assets/icon.png" height="38" alt="SifuFinds" style="display:block;object-fit:contain">
+      <img src="../assets/icon.png" height="38" alt="SifuFinds" style="display:block;object-fit:contain" fetchpriority="high">
       SifuFinds
     </a>
     <div class="ntabs">

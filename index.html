@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="preload" href="assets/shared.js?v=8" as="script">
 <link rel="preconnect" href="https://ipapi.co">
 <link rel="preconnect" href="https://www.google-analytics.com">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -196,6 +197,12 @@
 .sad-dis{font-size:8px;color:#bbb;text-align:center}
 .sad-x{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.32);border:none;color:#fff;font-size:11px;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;line-height:1;z-index:2}
 .sad-x:hover{background:rgba(0,0,0,.55)}
+
+/* CWV: content-visibility for below-fold sections */
+.sec-bg~.sec-bg,.cbox2,.footer-bar,[class*="section"]:not(:first-of-type){
+  content-visibility:auto;
+  contain-intrinsic-size:0 500px;
+}
 </style>
 </head>
 <body>
@@ -203,7 +210,7 @@
 <!-- SIDEBAR AD LEFT: TicTacBets -->
 <div class="sad sad-l" id="sadL">
   <div class="sad-hd" style="background:#00838F">
-    <img src="assets/logos/tictacbets.png" alt="TicTacBets" class="sad-logo" width="120" height="40" loading="lazy">
+    <img src="assets/logos/tictacbets.png" alt="TicTacBets" class="sad-logo" width="120" height="40" loading="lazy" fetchpriority="high">
   </div>
   <div class="sad-bd">
     <div class="sad-ttl">🔥 No Deposit</div>

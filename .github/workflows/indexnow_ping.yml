@@ -1,0 +1,51 @@
+name: IndexNow — ping Bing/Yandex on every deploy
+
+# Runs after every push to main that changes HTML content.
+# Submits changed URLs to IndexNow (Bing → ChatGPT/Perplexity/Copilot pipeline).
+# Also runs daily at 08:00 UTC to keep all core pages fresh in the index.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.html"
+      - "blog/posts.json"
+      - "data/countries_live.json"
+      - "sitemap*.xml"
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Submission mode"
+        required: false
+        default: "incremental"
+        type: choice
+        options: [incremental, full]
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+jobs:
+  ping:
+    name: Submit URLs to IndexNow
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Submit to IndexNow
+        working-directory: agents/python
+        run: |
+          MODE="${{ github.event.inputs.mode || 'incremental' }}"
+          python indexnow_submit.py $MODE
