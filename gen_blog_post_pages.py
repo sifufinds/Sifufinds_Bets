@@ -1050,12 +1050,152 @@ def extract_faq_schema(body_md: str) -> str:
 }}'''
 
 
+# ── INTERNAL LINKING ─────────────────────────────────────────────────────────
+
+# Country page slugs and keywords that trigger a link to the country page
+COUNTRY_LINKS = {
+    'nigeria':      ('Nigeria betting guide', '../../countries/nigeria/'),
+    'kenyan':       ('Kenya betting guide',   '../../countries/kenya/'),
+    'kenya':        ('Kenya betting guide',   '../../countries/kenya/'),
+    'ghana':        ('Ghana betting guide',   '../../countries/ghana/'),
+    'south africa': ('South Africa guide',    '../../countries/south-africa/'),
+    'tanzania':     ('Tanzania betting guide','../../countries/tanzania/'),
+    'uganda':       ('Uganda betting guide',  '../../countries/uganda/'),
+    'zambia':       ('Zambia betting guide',  '../../countries/zambia/'),
+    'ethiopia':     ('Ethiopia betting guide','../../countries/ethiopia/'),
+    'egypt':        ('Egypt betting guide',   '../../countries/egypt/'),
+    'morocco':      ('Morocco betting guide', '../../countries/morocco/'),
+    'cameroon':     ('Cameroon guide',        '../../countries/cameroon/'),
+    'senegal':      ('Senegal guide',         '../../countries/senegal/'),
+    'zimbabwe':     ('Zimbabwe guide',        '../../countries/zimbabwe/'),
+}
+
+TOOL_LINKS = [
+    ('odds calculator',    '../../tools/odds-calculator/',    'free odds calculator'),
+    ('parlay calculator',  '../../tools/parlay-calculator/',  'free parlay calculator'),
+    ('accumulator',        '../../tools/parlay-calculator/',  'accumulator calculator'),
+]
+
+CORE_LINKS = [
+    ('free tips',          '../../tips/',     'free betting tips'),
+    ('betting tips',       '../../tips/',     'free betting tips'),
+    ('live odds',          '../../odds/',     'live odds comparison'),
+    ('compare odds',       '../../odds/',     'live odds comparison'),
+]
+
+# Score two posts for relatedness: higher = more related
+def _relatedness(a: dict, b: dict) -> int:
+    score = 0
+    if a.get('category') == b.get('category'):
+        score += 3
+    a_tags = set(t.lower() for t in a.get('tags', []))
+    b_tags = set(t.lower() for t in b.get('tags', []))
+    score += len(a_tags & b_tags) * 2
+    # Shared words in titles (4+ chars)
+    a_words = set(w.lower() for w in re.split(r'\W+', a.get('title', '')) if len(w) >= 4)
+    b_words = set(w.lower() for w in re.split(r'\W+', b.get('title', '')) if len(w) >= 4)
+    score += len(a_words & b_words)
+    return score
+
+
+def build_related_html(post: dict, all_posts: list) -> str:
+    """Return a 'Related Articles' section HTML with 4 related post links."""
+    slug = post['slug']
+    scored = [
+        (p, _relatedness(post, p))
+        for p in all_posts
+        if p['slug'] != slug
+    ]
+    scored.sort(key=lambda x: x[1], reverse=True)
+    related = [p for p, s in scored[:4] if s > 0]
+    if not related:
+        related = [p for p, _ in scored[:4]]
+    if not related:
+        return ''
+
+    items = ''.join(
+        f'<li><a href="../../blog/{p["slug"]}/">{p["title"]}</a></li>'
+        for p in related
+    )
+    return f'''
+<div class="related-posts" style="margin:32px 0 0;padding:20px 24px;background:#f0faf3;border-radius:12px;border-left:4px solid #1a6b35">
+  <h3 style="font-size:15px;font-weight:800;color:#0a3d1e;margin:0 0 12px">Related Articles</h3>
+  <ul style="margin:0;padding:0 0 0 18px;font-size:14px;line-height:1.9;color:#333">
+    {items}
+  </ul>
+</div>'''
+
+
+def inject_contextual_links(body_html: str, post: dict) -> str:
+    """Add contextual inline links for country pages, tools, and core pages.
+    Each keyword is linked only on its first occurrence to avoid over-linking."""
+    used = set()
+
+    # Country pages
+    body_lower = body_html.lower()
+    for keyword, (anchor_text, href) in COUNTRY_LINKS.items():
+        if keyword in used:
+            continue
+        idx = body_lower.find(keyword)
+        if idx == -1:
+            continue
+        # Don't link if already inside an <a> tag
+        before = body_html[:idx]
+        if before.count('<a ') > before.count('</a>'):
+            continue
+        actual = body_html[idx:idx + len(keyword)]
+        link = f'<a href="{href}" title="{anchor_text}">{actual}</a>'
+        body_html = body_html[:idx] + link + body_html[idx + len(keyword):]
+        body_lower = body_html.lower()
+        used.add(keyword)
+
+    # Tool links
+    for keyword, href, anchor_title in TOOL_LINKS:
+        if keyword in used:
+            continue
+        idx = body_lower.find(keyword)
+        if idx == -1:
+            continue
+        before = body_html[:idx]
+        if before.count('<a ') > before.count('</a>'):
+            continue
+        actual = body_html[idx:idx + len(keyword)]
+        link = f'<a href="{href}" title="{anchor_title}">{actual}</a>'
+        body_html = body_html[:idx] + link + body_html[idx + len(keyword):]
+        body_lower = body_html.lower()
+        used.add(keyword)
+
+    # Core page links
+    for keyword, href, anchor_title in CORE_LINKS:
+        if keyword in used:
+            continue
+        idx = body_lower.find(keyword)
+        if idx == -1:
+            continue
+        before = body_html[:idx]
+        if before.count('<a ') > before.count('</a>'):
+            continue
+        actual = body_html[idx:idx + len(keyword)]
+        link = f'<a href="{href}" title="{anchor_title}">{actual}</a>'
+        body_html = body_html[:idx] + link + body_html[idx + len(keyword):]
+        body_lower = body_html.lower()
+        used.add(keyword)
+
+    return body_html
+
+
+# Global post list populated by main() before generation
+_ALL_POSTS: list = []
+
+
 def build_post_page(post: dict) -> str:
     slug = post['slug']
     title = post['title']
     excerpt = post['excerpt']
     body_md = post.get('body', '')
     body_html = markdown_to_html(body_md)
+    body_html = inject_contextual_links(body_html, post)
+    related_html = build_related_html(post, _ALL_POSTS)
     author = post.get('author', 'SifuFinds Editorial Team')
     category = post.get('category', 'football')
     tags = post.get('tags', [])
@@ -1228,6 +1368,7 @@ def build_post_page(post: dict) -> str:
       <meta itemprop="headline" content="{title}">
       <meta itemprop="datePublished" content="{pub_iso}">
       {body_html}
+      {related_html}
     </article>
     <div></div>
   </div>
@@ -1288,6 +1429,10 @@ def main():
     with open(POSTS_JSON, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     print(f'  ✓  {posts_added} new posts added to posts.json ({len(data["posts"])} total)')
+
+    # Populate global post list for internal linking
+    global _ALL_POSTS
+    _ALL_POSTS = data['posts']
 
     # Generate static HTML for every post
     blog_dir = os.path.join(BASE, 'blog')
