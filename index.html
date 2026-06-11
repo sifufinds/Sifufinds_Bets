@@ -715,7 +715,7 @@ async function fetchLiveData(){
           const key=keys.find(k=>k===bk.name)||
                      keys.find(k=>bk.name.startsWith(k.split(' ')[0])||k.startsWith(bk.name.split(' ')[0]));
           const ld=key?live.bookmakers[key]:null;
-          if(ld){if(ld.top)bk.top=ld.top;if(ld.off)bk.off=ld.off;bk._live=true;}
+          if(ld){const _sym=COUNTRY_DATA[code]?.symbol;if(ld.top&&_liveTopFits(ld.top,_sym))bk.top=ld.top;if(ld.off&&_liveTopFits(ld.off,_sym))bk.off=ld.off;bk._live=true;}
         });
       });
     }

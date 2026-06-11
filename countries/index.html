@@ -300,11 +300,12 @@ async function fetchLiveData(){
     // Patch BOOKS in-memory with verified live offers
     if(live.bookmakers){
       Object.keys(BOOKS).forEach(code=>{
+        const _sym=COUNTRY_DATA[code]?.symbol;
         BOOKS[code].forEach(bk=>{
           // Match by exact name or by name prefix (e.g. "1xBet" matches "1xBet Nigeria")
           const ld=live.bookmakers[bk.name]||
                     live.bookmakers[Object.keys(live.bookmakers).find(k=>bk.name.startsWith(k)||k.startsWith(bk.name))||''];
-          if(ld&&ld.top){
+          if(ld&&ld.top&&_liveTopFits(ld.top,_sym)){
             bk.top=ld.top;
             bk._live=true;
           }

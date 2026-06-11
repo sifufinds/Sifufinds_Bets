@@ -11,6 +11,21 @@ const SHORT_DATE=NOW.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
 // ── PAYMENT COLORS ─────────────────────────────────────────────────────────────
 const PM_C={'M-Pesa':'#4CAF50|#fff','M-Pesa (Vodacom)':'#4CAF50|#fff','M-Pesa DRC (Vodacom)':'#4CAF50|#fff','M-Pesa Mozambique':'#4CAF50|#fff','MTN MoMo':'#FFC107|#333','MTN MoMo Zambia':'#FFC107|#333','MTN MoMo Rwanda':'#FFC107|#333','Airtel Money':'#E60000|#fff','Airtel Money DRC':'#E60000|#fff','Airtel Money Rwanda':'#00BCD4|#fff','Airtel Money Zambia':'#E60000|#fff','Airtel Money Malawi':'#E60000|#fff','AirtelTigo Money':'#E60000|#fff','AirtelTigo':'#E60000|#fff','Orange Money':'#FF6B00|#fff','Orange Money Botswana':'#FF6B00|#fff','OPay':'#1565C0|#fff','PalmPay':'#00BCD4|#fff','Bank Transfer':'#607D8B|#fff','Visa':'#1A1F71|#fff','Mastercard':'#B0050A|#fff','USSD':'#5D4037|#fff','USSD *644#':'#5D4037|#fff','FNB':'#009E60|#fff','FNB Botswana':'#009E60|#fff','FNB Namibia':'#009E60|#fff','Standard Bank':'#0033A0|#fff','Standard Bank Namibia':'#0033A0|#fff','Nedbank':'#007A4D|#fff','Capitec':'#0070BA|#fff','Instant EFT':'#455A64|#fff','Blue Voucher':'#1565C0|#fff','Vodafone Cash':'#E60000|#fff','Equitel':'#7B1FA2|#fff','Tigo Pesa':'#1565C0|#fff','Halotel Pesa':'#E65100|#fff','Quickteller':'#E91E63|#fff','Wave':'#1FB5FF|#fff','EcoCash (Econet)':'#00853F|#fff','OneMoney (NetOne)':'#1a6b35|#fff','TNM Mpamba':'#0055A4|#fff','e-Mola':'#0055A4|#fff','Unitel Money':'#FF6B00|#fff','Africell Money':'#E60000|#fff','Bank Windhoek':'#003580|#fff','Zamtel Mobile Money':'#009A44|#fff','Betika USSD':'#007A4D|#fff','1Voucher':'#0D47A1|#fff','Ozow':'#6A1B9A|#fff','PayU':'#009688|#fff','FNB eWallet':'#009E60|#fff','Commercial Bank of Ethiopia':'#1a6b35|#fff','Halo (Somtel)':'#E65100|#fff','CIB Bank':'#003580|#fff','Ecocash':'#00853F|#fff'};
 
+// ── LIVE-DATA CURRENCY GUARD ──────────────────────────────────────────────────
+// Returns false when a live offer string contains a currency symbol that belongs
+// to a different country, preventing Nigerian ₦ values from polluting Kenya,
+// Ghana, etc. pages when bookmaker names match across countries.
+function _liveTopFits(val,sym){
+  if(!val||!sym)return true;
+  const known=['₦','KSh','GH₵','TSh','USh','ZK','Br','CFA','RWF','MWK','MZN','AOA','CDF','BWP','NAD','EGP','MAD','Le'];
+  for(const s of known){if(s!==sym&&val.includes(s))return false;}
+  // R-prefix guard (ZA symbol='R'): "R25 Free Bet" must not reach other countries
+  if(sym!=='R'&&/\bR\d/.test(val))return false;
+  // $-prefix guard (ZW/LR symbol='$')
+  if(sym!=='$'&&/\$\d/.test(val))return false;
+  return true;
+}
+
 // ── COUNTRY EMOJI ──────────────────────────────────────────────────────────────
 const CTY_EMOJI={NG:'🇳🇬',KE:'🇰🇪',GH:'🇬🇭',ZA:'🇿🇦',TZ:'🇹🇿',UG:'🇺🇬',ZM:'🇿🇲',ET:'🇪🇹',CI:'🇨🇮',CM:'🇨🇲',SN:'🇸🇳',RW:'🇷🇼',ZW:'🇿🇼',MW:'🇲🇼',MZ:'🇲🇿',AO:'🇦🇴',CD:'🇨🇩',BW:'🇧🇼',NA:'🇳🇦',EG:'🇪🇬',MA:'🇲🇦',SL:'🇸🇱',LR:'🇱🇷'};
 
