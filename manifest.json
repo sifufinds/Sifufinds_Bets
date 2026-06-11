@@ -1,0 +1,23 @@
+{
+  "name": "SifuFinds",
+  "short_name": "SifuFinds",
+  "description": "Africa's #1 betting comparison platform — verified bonuses, live odds, free tips and bookmaker reviews.",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#c9a227",
+  "background_color": "#0d0d0d",
+  "icons": [
+    {
+      "src": "/assets/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
