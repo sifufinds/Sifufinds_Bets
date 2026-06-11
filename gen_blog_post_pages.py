@@ -1217,6 +1217,11 @@ def build_post_page(post: dict) -> str:
         pub_iso = '2026-06-07'
 
     canonical = f'https://sifufinds.com/blog/{slug}/'
+    canonical_override = post.get('canonical_override', '')
+    noindex = post.get('noindex', False)
+    canonical_href = canonical_override if canonical_override else canonical
+    robots_content = ('noindex, follow' if noindex
+                      else 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
     tags_html = ''.join(f'<span class="post-tag">{t}</span>' for t in tags[:6])
 
     return f'''<!DOCTYPE html>
@@ -1236,15 +1241,15 @@ def build_post_page(post: dict) -> str:
 <title>{title} | SifuFinds</title>
 <meta name="description" content="{excerpt}">
 <meta name="keywords" content="{', '.join(tags[:8]).lower()}">
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="robots" content="{robots_content}">
 <meta name="author" content="{author}">
-<link rel="canonical" href="{canonical}">
+<link rel="canonical" href="{canonical_href}">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SifuFinds">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{excerpt}">
-<meta property="og:url" content="{canonical}">
+<meta property="og:url" content="{canonical_href}">
 <meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
