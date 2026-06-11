@@ -1,15 +1,15 @@
 {
-  "checked_at": "2026-06-11T20:38:39.878839+00:00",
-  "healthy": true,
+  "checked_at": "2026-06-11T22:31:57.106899+00:00",
+  "healthy": false,
   "pages": {
-    "Home": true,
-    "Odds": true,
-    "Tips": true,
-    "Casino": true,
-    "Countries": true,
-    "shared.js": true,
-    "shared.css": true,
-    "live.json": true
+    "Home": false,
+    "Odds": false,
+    "Tips": false,
+    "Casino": false,
+    "Countries": false,
+    "shared.js": false,
+    "shared.css": false,
+    "live.json": false
   },
   "fixes_applied": [],
   "fix_count": 0
