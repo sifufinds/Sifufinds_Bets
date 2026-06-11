@@ -1,9 +1,9 @@
-name: SEO Weekly Audit + Auto-Fix
+name: SEO Daily Audit + Auto-Fix
 
 on:
   schedule:
-    # Every Monday at 06:00 UTC
-    - cron: '0 6 * * 1'
+    # Every day at 06:00 UTC
+    - cron: '0 6 * * *'
   push:
     paths:
       - 'blog/posts.json'
