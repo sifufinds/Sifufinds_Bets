@@ -475,36 +475,23 @@ async def _post_playwright(text: str) -> bool:
             'div[role="textbox"][contenteditable="true"]'
         ).first
         await textarea.wait_for(state="visible", timeout=15_000)
+        # Click + explicit JS focus to ensure React receives keyboard events
         await textarea.click()
-        await page.wait_for_timeout(500)
+        await page.evaluate("() => { const el = document.activeElement; if (el) el.focus(); }")
+        await page.wait_for_timeout(400)
 
-        # Insert text via execCommand — handles emojis/Unicode reliably in headless mode
-        import json as _json
-        inserted = await page.evaluate(
-            """(txt) => {
-                const el = document.activeElement;
-                if (!el) return false;
-                el.focus();
-                return document.execCommand('insertText', false, txt);
-            }""",
-            text,
-        )
-        if not inserted:
-            # execCommand failed — fall back to keyboard.type (ASCII-safe)
-            await page.keyboard.type(text, delay=20)
+        # keyboard.type triggers proper React synthetic events (execCommand does not)
+        await page.keyboard.type(text, delay=30)
         await page.wait_for_timeout(1_500)
 
-        # Verify text landed
-        typed = await textarea.inner_text()
-        print(f"Textarea has {len(typed)} chars")
-
-        # Wait for Post button to become enabled (X enables it once text exists)
+        # Find Post button — don't filter by [disabled] since X may use aria-disabled
         post_btn = page.locator(
-            '[data-testid="tweetButton"]:not([disabled]),'
-            '[data-testid="tweetButtonInline"]:not([disabled])'
+            '[data-testid="tweetButton"], [data-testid="tweetButtonInline"]'
         ).first
-        await post_btn.wait_for(state="visible", timeout=20_000)
-        print("Post button enabled — clicking...")
+        await post_btn.wait_for(state="visible", timeout=15_000)
+        # Brief extra wait for X's React state to enable the button
+        await page.wait_for_timeout(500)
+        print("Clicking Post button...")
         # force=True bypasses the #layers overlay that intercepts pointer events on x.com
         await post_btn.click(force=True)
         await page.wait_for_timeout(4_000)
