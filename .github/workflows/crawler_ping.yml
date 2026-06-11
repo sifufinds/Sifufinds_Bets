@@ -1,0 +1,52 @@
+name: Crawler Ping — notify Google, Bing, Yandex on every deploy
+
+# Fires on every push to main that changes HTML, data, or sitemaps.
+# Also runs daily at 07:00 UTC (separate from IndexNow at 08:00 UTC).
+# Together these ensure Google, Bing (→ChatGPT/Perplexity), and Yandex (→Alice)
+# are notified within minutes of any site update.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.html"
+      - "blog/posts.json"
+      - "data/countries_live.json"
+      - "sitemap*.xml"
+      - "robots.txt"
+      - "ai.txt"
+      - "llms.txt"
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: crawler-ping
+  cancel-in-progress: true
+
+jobs:
+  ping:
+    name: Ping Google + Bing + Yandex sitemaps
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Ping crawlers
+        working-directory: agents/python
+        run: python crawler_ping.py
+
+      - name: Commit ping log (if changed)
+        run: |
+          git config user.name "sifufinds-bot"
+          git config user.email "bot@sifufinds.com"
+          git add data/crawler_ping_log.json || true
+          git diff --cached --quiet || git commit -m "chore: crawler ping log $(date -u +%Y-%m-%dT%H:%M)Z"
+          git push || true

@@ -410,6 +410,22 @@ def main():
 
     # Always regenerate to keep everything fresh
     regenerate()
+
+    # Ping all major crawlers so Google/Bing/Yandex learn about fresh content immediately
+    ping_script = Path(__file__).parent / 'crawler_ping.py'
+    if ping_script.exists():
+        print("\n── Crawler Ping ──")
+        result = subprocess.run(
+            [sys.executable, str(ping_script)],
+            cwd=str(ROOT),
+            capture_output=True, text=True
+        )
+        if result.returncode == 0:
+            log_fix("Crawler pings sent (Google, Bing, Yandex)")
+            print(result.stdout.strip())
+        else:
+            log_warn(f"Crawler ping error: {result.stderr[:200]}")
+
     write_health_report()
 
     print(f"\n{'═'*50}")

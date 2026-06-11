@@ -1,23 +1,181 @@
 # robots.txt — sifufinds.com
 # Africa's #1 independent betting comparison platform
+# Updated: 2026-06-11
 
+# ── DEFAULT: allow everything ─────────────────────────────────────────────────
 User-agent: *
 Allow: /
 Disallow: /agents/
-Disallow: /firecrawl/
-Disallow: /analytics.html
-Disallow: /geo-content-writer/
 Disallow: /.github/
 Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
+Disallow: /analytics.html
 
-# Block common bad bots that waste crawl budget
+# ── GOOGLE (all flavours) ─────────────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+# ── BING / MICROSOFT ─────────────────────────────────────────────────────────
+User-agent: Bingbot
+Allow: /
+
+User-agent: MSNBot
+Allow: /
+
+User-agent: MSNBot-Media
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+# ── ChatGPT / OpenAI ──────────────────────────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# ── Perplexity ────────────────────────────────────────────────────────────────
+User-agent: PerplexityBot
+Allow: /
+
+# ── Claude / Anthropic ────────────────────────────────────────────────────────
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# ── Apple (Siri / Apple Intelligence) ────────────────────────────────────────
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── Meta / Facebook / Instagram ──────────────────────────────────────────────
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: meta-externalfetcher
+Allow: /
+
+# ── Twitter / X ──────────────────────────────────────────────────────────────
+User-agent: Twitterbot
+Allow: /
+
+# ── LinkedIn ─────────────────────────────────────────────────────────────────
+User-agent: LinkedInBot
+Allow: /
+
+# ── DuckDuckGo ────────────────────────────────────────────────────────────────
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: DuckDuckGo-Favicons-Bot
+Allow: /
+
+# ── Yahoo (Slurp) ────────────────────────────────────────────────────────────
+User-agent: Slurp
+Allow: /
+
+# ── Yandex ───────────────────────────────────────────────────────────────────
+User-agent: YandexBot
+Allow: /
+
+User-agent: YandexImages
+Allow: /
+
+# ── Baidu ────────────────────────────────────────────────────────────────────
+User-agent: Baiduspider
+Allow: /
+
+# ── Common Crawl (used by GPT-4, Llama, Mistral AI training data) ─────────────
+User-agent: CCBot
+Allow: /
+
+# ── Cohere AI ────────────────────────────────────────────────────────────────
+User-agent: cohere-ai
+Allow: /
+
+# ── ByteDance / TikTok ───────────────────────────────────────────────────────
+User-agent: Bytespider
+Allow: /
+
+# ── Internet Archive (Wayback Machine) ───────────────────────────────────────
+User-agent: ia_archiver
+Allow: /
+
+# ── WhatsApp / Telegram link previews ────────────────────────────────────────
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# ── Slack / Discord unfurl ───────────────────────────────────────────────────
+User-agent: Slackbot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+# ── SEO audit tools (rate-limited to protect crawl budget) ───────────────────
 User-agent: AhrefsBot
 Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 10
 
+User-agent: MajesticBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+# ── Known bad bots (block entirely) ──────────────────────────────────────────
 User-agent: MJ12bot
 Disallow: /
 
+User-agent: PetalBot
+Disallow: /
+
+# ── Sitemaps ──────────────────────────────────────────────────────────────────
 Sitemap: https://sifufinds.com/sitemap.xml
+Sitemap: https://sifufinds.com/sitemap-blog.xml
+Sitemap: https://sifufinds.com/sitemap-countries.xml
+Sitemap: https://sifufinds.com/sitemap-other.xml
+
+# ── Preferred crawl host ──────────────────────────────────────────────────────
+Host: sifufinds.com
