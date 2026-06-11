@@ -47,7 +47,7 @@ jobs:
           ARCHIVE="sifufinds_$(date +%Y%m%d_%H%M%S).zip"
           # Build file list — skip missing optional files gracefully
           FILES=()
-          for f in index.html analytics.html robots.txt ai.txt llms.txt; do
+          for f in index.html analytics.html robots.txt ai.txt llms.txt favicon.ico manifest.json; do
             [ -f "$f" ] && FILES+=("$f")
           done
           for f in sitemap*.xml; do
