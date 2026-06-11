@@ -1,0 +1,60 @@
+name: SEO Weekly Audit + Auto-Fix
+
+on:
+  schedule:
+    # Every Monday at 06:00 UTC
+    - cron: '0 6 * * 1'
+  push:
+    paths:
+      - 'blog/posts.json'
+      - 'gen_blog_post_pages.py'
+      - 'scripts/seo_check.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  seo-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install --quiet lxml
+
+      - name: Regenerate blog pages
+        run: python3 gen_blog_post_pages.py --force
+
+      - name: Run SEO audit + auto-fix
+        run: python3 scripts/seo_check.py --fix --report
+        continue-on-error: true
+
+      - name: Commit fixes and report
+        run: |
+          git config user.name  "seo-bot"
+          git config user.email "bot@sifufinds.com"
+          git add blog/ seo-report.json blog/posts.json
+          git diff --staged --quiet || git commit -m "chore: weekly SEO auto-fix + audit report"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+
+      - name: Upload SEO report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-report-${{ github.run_number }}
+          path: seo-report.json
+          retention-days: 90
+
+      - name: Fail on critical issues
+        run: python3 scripts/seo_check.py --report
