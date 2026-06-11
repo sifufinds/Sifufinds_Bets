@@ -1023,6 +1023,9 @@ def extract_faq_schema(body_md: str) -> str:
     # 5. ### heading + paragraph
     if not pairs:
         pairs = re.findall(r'###\s+(.*?)\n+(.*?)(?=\n###|\Z)', text, re.DOTALL)
+    # 6. **Bold question?** + paragraph answer (common in expanded blog posts)
+    if not pairs:
+        pairs = re.findall(r'\*\*([^*\n]+\?)\*\*\s*\n+(.*?)(?=\n\*\*[^*\n]+\?|\Z)', text, re.DOTALL)
     if not pairs:
         return ''
 
@@ -1261,12 +1264,13 @@ def build_post_page(post: dict) -> str:
   "@type": "Article",
   "headline": "{title}",
   "description": "{excerpt}",
-  "author": {{"@type": "Organization", "name": "{author}", "url": "https://sifufinds.com/about/"}},
+  "author": {{"@type": "Organization", "@id": "https://sifufinds.com/#organization", "name": "{author}", "url": "https://sifufinds.com/about/"}},
   "publisher": {{
     "@type": "Organization",
+    "@id": "https://sifufinds.com/#organization",
     "name": "SifuFinds",
     "url": "https://sifufinds.com",
-    "logo": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/icon.png"}}
+    "logo": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/android-chrome-192x192.png", "width": 192, "height": 192}}
   }},
   "datePublished": "{pub_iso}",
   "dateModified": "{pub_iso}",
@@ -1274,6 +1278,15 @@ def build_post_page(post: dict) -> str:
   "keywords": "{', '.join(tags)}",
   "articleSection": "{category}",
   "image": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/og-image.png", "width": 1200, "height": 630}}
+}},
+{{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sifufinds.com/"}},
+    {{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://sifufinds.com/blog/"}},
+    {{"@type": "ListItem", "position": 3, "name": "{title[:60]}", "item": "{canonical}"}}
+  ]
 }}{faq_schema}]
 </script>
 
