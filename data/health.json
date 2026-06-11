@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-06-11T05:49:40.361274+00:00",
+  "checked_at": "2026-06-11T06:26:25.812096+00:00",
   "healthy": true,
   "pages": {
     "Home": true,
@@ -11,8 +11,6 @@
     "shared.css": true,
     "live.json": true
   },
-  "fixes_applied": [
-    "refreshed stale live.json (250 min old)"
-  ],
-  "fix_count": 1
+  "fixes_applied": [],
+  "fix_count": 0
 }
