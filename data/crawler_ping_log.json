@@ -1,0 +1,164 @@
+[
+  {
+    "ts": "2026-06-11T00:47:12.342519+00:00",
+    "success": 4,
+    "total": 12,
+    "results": [
+      {
+        "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": null,
+        "ok": false,
+        "error": "HTTP Error 404: Sitemaps ping is deprecated. See https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping.",
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "google.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": null,
+        "ok": false,
+        "error": "HTTP Error 410: Gone",
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "bing.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": null,
+        "ok": false,
+        "error": "HTTP Error 404: Sitemaps ping is deprecated. See https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping.",
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "google.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": null,
+        "ok": false,
+        "error": "HTTP Error 410: Gone",
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "bing.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": null,
+        "ok": false,
+        "error": "HTTP Error 404: Sitemaps ping is deprecated. See https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping.",
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "google.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": null,
+        "ok": false,
+        "error": "HTTP Error 410: Gone",
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "bing.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": null,
+        "ok": false,
+        "error": "HTTP Error 404: Sitemaps ping is deprecated. See https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping.",
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "google.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": null,
+        "ok": false,
+        "error": "HTTP Error 410: Gone",
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "bing.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex.com",
+        "ts": "2026-06-11T00:47:12.342519+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-11T00:48:17.774965+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-06-11T00:48:17.774965+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-06-11T00:48:17.774965+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-06-11T00:48:17.774965+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-06-11T00:48:17.774965+00:00"
+      },
+      {
+        "ok": true,
+        "output": "mit: ['https://sifufinds.com/', 'https://sifufinds.com/blog/', 'https://sifufinds.com/tips/', 'https://sifufinds.com/odds/', 'https://sifufinds.com/countries/']\n  \u2705 https://api.indexnow.org/indexnow: HTTP 202\n  \u2705 https://www.bing.com/indexnow: HTTP 202\n\nIndexNow submission complete: 2/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-06-11T00:48:17.774965+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-06-11T00:48:17.774965+00:00"
+      }
+    ]
+  }
+]
