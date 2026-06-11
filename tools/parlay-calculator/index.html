@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Parlay / Accumulator Calculator — African Betting | SifuFinds</title>
 <meta name="description" content="Free parlay and accumulator calculator for African bettors. Add up to 20 legs, see combined odds, potential payout in ₦ KSh GH₵ R. Works with Bet9ja, Betway, 1xBet.">
+<meta name="author" content="Sifu Kai">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <link rel="canonical" href="https://sifufinds.com/tools/parlay-calculator/">
 <meta property="og:title" content="Free Parlay & Accumulator Calculator | SifuFinds Africa">
@@ -87,19 +88,66 @@ input.leg-odds:focus{border-color:#1a6b35}
 .tip-card{background:#fff;border-radius:12px;padding:18px;border-left:4px solid #1a6b35}
 .tip-card h3{font-size:14px;font-weight:800;color:#0a3d1e;margin-bottom:6px}
 .tip-card p{font-size:13px;color:#555;margin:0;line-height:1.5}
+.footer-bar{background:#0a3d1e;color:rgba(255,255,255,.55);text-align:center;padding:18px;font-size:12px;line-height:1.8;margin-top:20px}
+.footer-bar a{color:rgba(255,255,255,.7);text-decoration:none}
+.sec-bg~.sec-bg,.footer-bar{content-visibility:auto;contain-intrinsic-size:0 500px}
 </style>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 
-<div class="top-bar">
-  <div class="wrap" style="display:flex;align-items:center;gap:12px">
-    <a href="../../" style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px">
-      <img src="../../assets/icon.png" width="28" height="28" alt="SifuFinds" fetchpriority="high"> SifuFinds
-    </a>
-    <span style="margin-left:auto;font-size:12px;opacity:.7">Free Betting Tools</span>
+<div class="tbar">
+  <div class="tbar-l">
+    <a href="../../">🏠 Home</a>
+    <a href="../../countries/">🌍 Africa</a>
+    <a href="../">🔧 Tools</a>
+  </div>
+  <div class="tbar-r">
+    <span class="csel-lbl">Your Country:</span>
+    <select class="csel" id="ctySel" onchange="changeCountry(this.value)">
+      <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
+      <option value="KE">🇰🇪 Kenya · KSh KES</option>
+      <option value="GH">🇬🇭 Ghana · GH₵ GHS</option>
+      <option value="ZA">🇿🇦 South Africa · R ZAR</option>
+      <option value="TZ">🇹🇿 Tanzania · TSh TZS</option>
+      <option value="UG">🇺🇬 Uganda · USh UGX</option>
+      <option value="ZM">🇿🇲 Zambia · ZK ZMW</option>
+      <option value="ET">🇪🇹 Ethiopia · Br ETB</option>
+      <option value="CI">🇨🇮 Ivory Coast · CFA XOF</option>
+      <option value="CM">🇨🇲 Cameroon · CFA XAF</option>
+      <option value="SN">🇸🇳 Senegal · CFA XOF</option>
+      <option value="RW">🇷🇼 Rwanda · RWF</option>
+      <option value="ZW">🇿🇼 Zimbabwe · USD</option>
+      <option value="MW">🇲🇼 Malawi · MWK</option>
+      <option value="MZ">🇲🇿 Mozambique · MZN</option>
+      <option value="AO">🇦🇴 Angola · AOA</option>
+      <option value="CD">🇨🇩 DR Congo · CDF</option>
+      <option value="BW">🇧🇼 Botswana · BWP</option>
+      <option value="NA">🇳🇦 Namibia · NAD</option>
+      <option value="EG">🇪🇬 Egypt · EGP</option>
+      <option value="MA">🇲🇦 Morocco · MAD</option>
+      <option value="SL">🇸🇱 Sierra Leone · Le SLL</option>
+      <option value="LR">🇱🇷 Liberia · $ LRD</option>
+    </select>
   </div>
 </div>
+<nav class="mnav">
+  <div class="mnav-in">
+    <a class="logo" href="../../">
+      <img src="../../assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain" fetchpriority="high">
+      SifuFinds
+    </a>
+    <div class="ntabs">
+      <a class="nt" href="../../">⭐ Best Bonuses</a>
+      <a class="nt" href="../../tips/">💡 Tips</a>
+      <a class="nt" href="../../casino/">🎰 Casino</a>
+      <a class="nt" href="../../odds/">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
+      <a class="nt" href="../../countries/">🌍 Countries</a>
+      <a class="nt" href="../../blog/">📰 Blog</a>
+      <a class="nt on" href="../">🔧 Tools</a>
+    </div>
+  </div>
+</nav>
 
 <div class="tool-hero">
   <div class="wrap">
@@ -171,6 +219,94 @@ input.leg-odds:focus{border-color:#1a6b35}
     <div class="tip-card">
       <h3>Maximum Odds Cap</h3>
       <p>All bookmakers cap maximum payout. Bet9ja: ₦50M. Betway: varies. 1xBet: $200K equivalent. If your accumulator total return exceeds this, actual payout is capped — keep this in mind for high-odds multis.</p>
+    </div>
+  </div>
+
+  <!-- How Accumulators Work -->
+  <div class="calc-card" style="margin-top:8px;margin-bottom:20px">
+    <h2>📚 How Accumulator Betting Works in Africa</h2>
+    <p style="font-size:13px;color:#555;margin-bottom:16px;line-height:1.7">An accumulator (called a <em>multi</em> or <em>combo bet</em> on some platforms) multiplies the odds of each selection together. Every leg must win — one loss kills the entire bet. The bigger the accumulator, the higher the potential return and the lower the probability of winning.</p>
+    <div style="background:#f0faf3;border:1px solid #c8e6c9;border-radius:10px;padding:16px;margin-bottom:16px">
+      <div style="font-size:13px;font-weight:800;color:#0a3d1e;margin-bottom:10px">Example — 4-Fold Accumulator:</div>
+      <div style="font-size:13px;color:#333;line-height:2">
+        Arsenal to Win — <strong>1.75</strong><br>
+        Man City to Win — <strong>1.60</strong><br>
+        Barcelona to Win — <strong>1.90</strong><br>
+        Senegal to Win — <strong>2.10</strong><br>
+        <strong>Combined Odds = 1.75 × 1.60 × 1.90 × 2.10 = 11.13</strong><br>
+        ₦1,000 stake → <strong>₦11,130 total return</strong> if all four win
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+      <div class="tip-card" style="border-left-color:#0a3d1e">
+        <h3>3-Fold Sweet Spot</h3>
+        <p>3 legs offers a good balance of enhanced odds and achievable probability. If each leg is 70% likely, your 3-fold still wins 34% of the time. Most consistent accumulator players stick to 3–4 legs.</p>
+      </div>
+      <div class="tip-card" style="border-left-color:#0a3d1e">
+        <h3>Avoid Correlated Legs</h3>
+        <p>Do not combine "Man City to win" with "Man City clean sheet" in the same acca — the outcomes are linked. Bookmakers may also void correlated bets. Keep selections from independent matches.</p>
+      </div>
+      <div class="tip-card" style="border-left-color:#0a3d1e">
+        <h3>Probability Reality Check</h3>
+        <p>5 legs at 60% per leg = only 7.8% chance of winning. 5 legs at 70% per leg = 16.8%. Add those probabilities in the calculator before staking — the numbers don't lie.</p>
+      </div>
+      <div class="tip-card" style="border-left-color:#0a3d1e">
+        <h3>Stake Proportionally</h3>
+        <p>Many successful bettors allocate 1–3% of their bankroll to accumulators. A high-legs acca is entertainment with upside — not a reliable income strategy. Size stakes accordingly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bookmaker Accumulator Offers -->
+  <div class="calc-card" style="margin-bottom:20px">
+    <h2>🏆 Accumulator Bonuses — African Bookmakers 2026</h2>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+        <thead>
+          <tr style="background:#0a3d1e;color:#fff">
+            <th style="padding:9px 12px;text-align:left">Bookmaker</th>
+            <th style="padding:9px 12px;text-align:left">Accumulator Offer</th>
+            <th style="padding:9px 12px;text-align:left">Min Legs</th>
+            <th style="padding:9px 12px;text-align:left">Max Payout</th>
+            <th style="padding:9px 12px;text-align:left">Available</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#f9f9f7"><td style="padding:8px 12px;font-weight:800;color:#0a3d1e">Betway</td><td style="padding:8px 12px">Accumulator insurance — stake refund if 1 leg loses</td><td style="padding:8px 12px">5 legs</td><td style="padding:8px 12px">Varies by country</td><td style="padding:8px 12px">🇳🇬 🇰🇪 🇿🇦 🇬🇭</td></tr>
+          <tr style="background:#fff"><td style="padding:8px 12px;font-weight:800;color:#0a3d1e">1xBet</td><td style="padding:8px 12px">Accumulator boost up to +100% on winnings</td><td style="padding:8px 12px">3 legs</td><td style="padding:8px 12px">$200K equivalent</td><td style="padding:8px 12px">🌍 Pan-Africa</td></tr>
+          <tr style="background:#f9f9f7"><td style="padding:8px 12px;font-weight:800;color:#0a3d1e">Bet9ja</td><td style="padding:8px 12px">WC2026 acca promo — boosted payouts on 4+ folds</td><td style="padding:8px 12px">4 legs</td><td style="padding:8px 12px">₦50,000,000</td><td style="padding:8px 12px">🇳🇬 Nigeria</td></tr>
+          <tr style="background:#fff"><td style="padding:8px 12px;font-weight:800;color:#0a3d1e">SportyBet</td><td style="padding:8px 12px">Multi boost — percentage bonus on acca winnings</td><td style="padding:8px 12px">3 legs</td><td style="padding:8px 12px">Varies</td><td style="padding:8px 12px">🇳🇬 🇬🇭</td></tr>
+          <tr style="background:#f9f9f7"><td style="padding:8px 12px;font-weight:800;color:#0a3d1e">22Bet</td><td style="padding:8px 12px">Express boost up to +100% on 3+ folds</td><td style="padding:8px 12px">3 legs</td><td style="padding:8px 12px">Country limit</td><td style="padding:8px 12px">🌍 Pan-Africa</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:#aaa;margin-top:8px">Check current terms directly with each bookmaker — promotions and minimum odds requirements change.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="calc-card" style="margin-bottom:20px">
+    <h2>❓ Frequently Asked Questions</h2>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <details style="border:1px solid #e0eee4;border-radius:8px;overflow:hidden">
+        <summary style="padding:12px 16px;font-weight:800;font-size:14px;cursor:pointer;background:#f8faf8;color:#0a3d1e">What is an accumulator bet?</summary>
+        <div style="padding:12px 16px;font-size:13px;color:#555;line-height:1.7;border-top:1px solid #e8e8e8">An accumulator (parlay, multi, or combo bet) combines multiple selections into one bet. All selections must win for the bet to pay out. The odds of each leg are multiplied together to give combined odds. They are the most popular bet type across African markets — Bet9ja, SportyBet, 1xBet, and Betway all support them.</div>
+      </details>
+      <details style="border:1px solid #e0eee4;border-radius:8px;overflow:hidden">
+        <summary style="padding:12px 16px;font-weight:800;font-size:14px;cursor:pointer;background:#f8faf8;color:#0a3d1e">How many legs should I put in my accumulator?</summary>
+        <div style="padding:12px 16px;font-size:13px;color:#555;line-height:1.7;border-top:1px solid #e8e8e8">3–5 legs is the sweet spot most value-focused bettors use. Each extra leg multiplies potential return but also compounds the failure probability. A 5-fold where each selection has a 60% win probability has only a 7.8% chance of landing. Focus on quality over quantity — selections you genuinely believe in beat scatter-gun high-leg accas.</div>
+      </details>
+      <details style="border:1px solid #e0eee4;border-radius:8px;overflow:hidden">
+        <summary style="padding:12px 16px;font-weight:800;font-size:14px;cursor:pointer;background:#f8faf8;color:#0a3d1e">Which African bookmaker has the best accumulator bonus?</summary>
+        <div style="padding:12px 16px;font-size:13px;color:#555;line-height:1.7;border-top:1px solid #e8e8e8">Betway's accumulator insurance is the most valuable offer — if exactly one leg fails on a 5+ fold, you get your stake back up to the limit. 1xBet's acca boost (up to +100% extra winnings from 3 legs) is the best pure upside offer. Bet9ja's WC2026 promo offers boosted payouts on 4+ fold accumulators through July 2026.</div>
+      </details>
+      <details style="border:1px solid #e0eee4;border-radius:8px;overflow:hidden">
+        <summary style="padding:12px 16px;font-weight:800;font-size:14px;cursor:pointer;background:#f8faf8;color:#0a3d1e">What is accumulator insurance?</summary>
+        <div style="padding:12px 16px;font-size:13px;color:#555;line-height:1.7;border-top:1px solid #e8e8e8">Accumulator insurance refunds your stake (as a free bet or cash, depending on terms) if exactly one leg of your accumulator loses. Offered by Betway on 5+ folds. It meaningfully changes the risk profile — you can include one moderate-confidence selection without total loss exposure, improving expected value on longer accumulators.</div>
+      </details>
+      <details style="border:1px solid #e0eee4;border-radius:8px;overflow:hidden">
+        <summary style="padding:12px 16px;font-weight:800;font-size:14px;cursor:pointer;background:#f8faf8;color:#0a3d1e">How are accumulator odds calculated?</summary>
+        <div style="padding:12px 16px;font-size:13px;color:#555;line-height:1.7;border-top:1px solid #e8e8e8">Combined odds = Leg 1 × Leg 2 × Leg 3 × … For example: 1.80 × 2.10 × 1.95 = 7.37 combined odds. Total Return = Stake × Combined Odds. The calculator above does this automatically — add each selection's decimal odds into the legs list and the summary updates in real time.</div>
+      </details>
     </div>
   </div>
 
@@ -255,7 +391,11 @@ function recalc() {
 // Start with 3 legs
 addLeg(); addLeg(); addLeg();
 
-function init() { H('foot-yr', NOW.getFullYear()); }
+function init() {
+  const sel=document.getElementById('ctySel');
+  if(sel){const cty=getCurrentCountry();sel.value=cty;}
+  H('foot-yr', NOW.getFullYear());
+}
 init();
 </script>
 </body>
