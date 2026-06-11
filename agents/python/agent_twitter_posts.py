@@ -470,24 +470,40 @@ async def _post_playwright(text: str) -> bool:
 
         # Find the active contenteditable tweet box
         textarea = page.locator(
-            '[data-testid="tweetTextarea_0"],'
             'div[data-testid="tweetTextarea_0"] div[contenteditable="true"],'
+            '[data-testid="tweetTextarea_0"] div[contenteditable="true"],'
             'div[role="textbox"][contenteditable="true"]'
         ).first
         await textarea.wait_for(state="visible", timeout=15_000)
         await textarea.click()
-        await page.wait_for_timeout(300)
+        await page.wait_for_timeout(500)
 
-        # Type the tweet — use keyboard.type for contenteditable divs
-        await page.keyboard.type(text, delay=30)
+        # Insert text via execCommand — handles emojis/Unicode reliably in headless mode
+        import json as _json
+        inserted = await page.evaluate(
+            """(txt) => {
+                const el = document.activeElement;
+                if (!el) return false;
+                el.focus();
+                return document.execCommand('insertText', false, txt);
+            }""",
+            text,
+        )
+        if not inserted:
+            # execCommand failed — fall back to keyboard.type (ASCII-safe)
+            await page.keyboard.type(text, delay=20)
         await page.wait_for_timeout(1_500)
 
-        # Wait for Post button to be enabled (disabled until text is entered)
+        # Verify text landed
+        typed = await textarea.inner_text()
+        print(f"Textarea has {len(typed)} chars")
+
+        # Wait for Post button to become enabled (X enables it once text exists)
         post_btn = page.locator(
             '[data-testid="tweetButton"]:not([disabled]),'
             '[data-testid="tweetButtonInline"]:not([disabled])'
         ).first
-        await post_btn.wait_for(state="visible", timeout=10_000)
+        await post_btn.wait_for(state="visible", timeout=20_000)
         print("Post button enabled — clicking...")
         # force=True bypasses the #layers overlay that intercepts pointer events on x.com
         await post_btn.click(force=True)
