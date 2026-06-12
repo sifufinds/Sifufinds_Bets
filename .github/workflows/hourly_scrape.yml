@@ -1,12 +1,12 @@
-name: Hourly Multi-Source Scrape — Flashscore, Sofascore, Livescore, OddsPortal, BetExplorer, OddsChecker
+name: 15-min Scrape — Tips, Odds & Scores (Predictz, FreeSuperTips, Sofascore, Flashscore)
 
 on:
   schedule:
-    - cron: "5 * * * *"   # :05 past every hour, 24/7 (offset from live_odds at :00)
-  workflow_dispatch:        # manual trigger from GitHub UI
+    - cron: "*/15 * * * *"   # every 15 minutes, 24/7
+  workflow_dispatch:           # manual trigger from GitHub UI
 
 concurrency:
-  group: hourly-scrape
+  group: multi-scrape
   cancel-in-progress: false  # queue runs, never drop
 
 permissions:

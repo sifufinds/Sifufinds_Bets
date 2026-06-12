@@ -422,50 +422,6 @@ def parse_sofascore(text: str) -> list[dict]:
             "hBk": "", "dBk": "", "aBk": "",
             "_src": "sofascore",
         })
-            is_complete = bool(re.search(r"FT|Final|Finished", link_text, re.I))
-            is_live = bool(score_match and not is_complete)
-
-            home, away = slug_to_teams(slug)
-
-            # Skip obviously bad parses (same team twice or single-char names)
-            if home == away or len(home) < 2 or len(away) < 2:
-                continue
-
-            key_str = f"{home.lower()}|{away.lower()}"
-            if key_str in seen:
-                continue
-            seen.add(key_str)
-
-            # Infer league from teams if current_league is still default
-            inferred_league = current_league
-            inferred_key = current_key
-            if current_league == "World / Friendly International":
-                # World Cup teams hint
-                wc_teams = {"nigeria","ghana","senegal","morocco","cameroon","egypt","algeria","tunisia","south africa","mali","ivory coast","democratic republic of congo"}
-                if home.lower() in wc_teams or away.lower() in wc_teams:
-                    inferred_league = "World Cup 2026 · Group Stage"
-                    inferred_key = "world"
-
-            time_display = fmt_time(time_raw) if time_raw else "Today · TBD"
-
-            matches_out.append(
-                {
-                    "league": inferred_league,
-                    "key": inferred_key,
-                    "live": is_live,
-                    "complete": is_complete,
-                    "home": home,
-                    "away": away,
-                    "hScore": h_score,
-                    "aScore": a_score,
-                    "time": time_display,
-                    "h": 0.0, "d": 0.0, "a": 0.0,
-                    "hBk": "", "dBk": "", "aBk": "",
-                    "_src": "sofascore",
-                }
-            )
-
-        i += 1
 
     return matches_out
 
@@ -475,6 +431,7 @@ def parse_sofascore(text: str) -> list[dict]:
 _FS_TEAM_RE = re.compile(r"!\[([^\]]+?)\]\(https://static\.flashscore\.com/[^\)]+\)([A-Za-z].*)")
 _FS_COMP_RE = re.compile(r"\[([A-Z][^\]]{3,60})\]\(https://www\.flashscore\.com/football/[^\)]+\)")
 _FS_SCORE_RE = re.compile(r"^(\d+)\s*[-–]\s*(\d+)$")
+_FS_CONCAT_SCORE_RE = re.compile(r"^(\d)(\d)$")  # Flashscore concatenates: "40" = 4-0
 _FS_TIME_RE = re.compile(r"^(\d{2}:\d{2})$")
 
 
@@ -505,9 +462,9 @@ def parse_flashscore(text: str) -> list[dict]:
             i += 1
             continue
 
-        # Detect LIVE marker
-        if re.search(r"\bLIVE\b", line, re.I) and len(line) < 10:
-            is_live = True
+        # Detect LIVE or Finished status
+        if re.match(r"^(?:LIVE|Finished|FT)$", line, re.I):
+            is_live = line.upper() == "LIVE"
             i += 1
             continue
 
@@ -519,11 +476,19 @@ def parse_flashscore(text: str) -> list[dict]:
             i += 1
             continue
 
-        # Detect score like "1 - 0" on its own line
+        # Detect score: "N - M" format
         score_match = _FS_SCORE_RE.match(line)
         if score_match and pending_home:
             pending_h_score = int(score_match.group(1))
             pending_a_score = int(score_match.group(2))
+            i += 1
+            continue
+
+        # Detect concatenated score: "40" = 4-0, "11" = 1-1 (Flashscore format)
+        concat_m = _FS_CONCAT_SCORE_RE.match(line)
+        if concat_m and pending_home:
+            pending_h_score = int(concat_m.group(1))
+            pending_a_score = int(concat_m.group(2))
             i += 1
             continue
 
