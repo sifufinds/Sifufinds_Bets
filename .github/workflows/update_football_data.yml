@@ -1,11 +1,14 @@
 name: Update Football Data
+# Uses SportAPI7 (sportapi7.p.rapidapi.com).
+# Live mode: 1 API call → ALL today's matches + live scores.
+# Standings mode: 1 call per competition (~20 calls total daily).
 
 on:
   schedule:
-    # Live scores: every 15 minutes during World Cup hours (UTC 11:00–23:00)
-    - cron: '*/15 11-23 * * *'
-    # Standings: once per day at 06:00 UTC (before African prime time)
-    - cron: '0 6 * * *'
+    # Live scores every 15 min during World Cup peak hours (UTC 10:00–23:00)
+    - cron: '*/15 10-23 * * *'
+    # Full update (standings + live) once daily at 05:45 UTC
+    - cron: '45 5 * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -45,15 +48,20 @@ jobs:
         run: |
           EVENT="${{ github.event_name }}"
           INPUT_MODE="${{ github.event.inputs.mode }}"
-          MINUTE=$(date +%M)
           HOUR=$(date +%H)
+          MINUTE=$(date +%M)
           if [ "$EVENT" = "workflow_dispatch" ]; then
-            echo "args=--${INPUT_MODE}" >> $GITHUB_OUTPUT
-          elif [ "$HOUR" = "06" ] && [ "$MINUTE" -lt "15" ]; then
-            # 06:00 run → full update (standings + live)
+            # Manual dispatch: honour chosen mode, default 'full' passes no flag
+            if [ "$INPUT_MODE" = "full" ]; then
+              echo "args=" >> $GITHUB_OUTPUT
+            else
+              echo "args=--${INPUT_MODE}" >> $GITHUB_OUTPUT
+            fi
+          elif [ "$HOUR" = "05" ] && [ "$MINUTE" -ge "45" ]; then
+            # 05:45 scheduled run → full update (live + standings)
             echo "args=" >> $GITHUB_OUTPUT
           else
-            # All other 15-min runs → live scores only
+            # All other 15-min runs → live only (1 API call)
             echo "args=--live-only" >> $GITHUB_OUTPUT
           fi
 
