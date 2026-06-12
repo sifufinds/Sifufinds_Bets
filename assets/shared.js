@@ -552,29 +552,97 @@ const NEWS=[
 // ── ODDS DATA (fallback when live APIs are unavailable) ───────────────────────
 const ODDS_DATA=[
 // ── FIFA World Cup 2026 · Group Stage ─────────────────────────────────────────
-// Jun 13
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Morocco',away:'Argentina',hScore:null,aScore:null,time:'13 Jun · 21:00 UTC',h:5.00,d:3.80,a:1.75,hBk:'Bet9ja',dBk:'1xBet',aBk:'SportyBet',complete:false},
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'France',away:'Belgium',hScore:null,aScore:null,time:'13 Jun · 18:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'1xBet',dBk:'22Bet',aBk:'Melbet',complete:false},
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Portugal',away:'Croatia',hScore:null,aScore:null,time:'13 Jun · 15:00 UTC',h:1.80,d:3.40,a:4.50,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
-// Jun 14
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Germany',away:'Senegal',hScore:null,aScore:null,time:'14 Jun · 15:00 UTC',h:1.75,d:3.40,a:4.50,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'England',away:'Brazil',hScore:null,aScore:null,time:'14 Jun · 18:00 UTC',h:2.80,d:3.10,a:2.50,hBk:'Bet9ja',dBk:'Betway',aBk:'1xBet',complete:false},
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Nigeria',away:'Uruguay',hScore:null,aScore:null,time:'14 Jun · 21:00 UTC',h:3.50,d:3.20,a:2.10,hBk:'Bet9ja',dBk:'SportyBet',aBk:'1xBet',complete:false},
-// Jun 15
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Italy',away:'Algeria',hScore:null,aScore:null,time:'15 Jun · 15:00 UTC',h:1.85,d:3.40,a:4.50,hBk:'Bet9ja',dBk:'1xBet',aBk:'Betway',complete:false},
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Spain',away:'Portugal',hScore:null,aScore:null,time:'15 Jun · 18:00 UTC',h:2.40,d:3.20,a:2.80,hBk:'1xBet',dBk:'Bet9ja',aBk:'Melbet',complete:false},
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'USA',away:'Ghana',hScore:null,aScore:null,time:'15 Jun · 21:00 UTC',h:2.00,d:3.20,a:3.80,hBk:'Betway',dBk:'1xBet',aBk:'Bet9ja',complete:false},
-// Jun 16
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Netherlands',away:'Cameroon',hScore:null,aScore:null,time:'16 Jun · 18:00 UTC',h:1.70,d:3.50,a:5.00,hBk:'1xBet',dBk:'22Bet',aBk:'Bet9ja',complete:false},
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Egypt',away:'Colombia',hScore:null,aScore:null,time:'16 Jun · 21:00 UTC',h:3.20,d:3.10,a:2.20,hBk:'22Bet',dBk:'Betway',aBk:'1xBet',complete:false},
-// Jun 17
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Croatia',away:'Tunisia',hScore:null,aScore:null,time:'17 Jun · 18:00 UTC',h:2.00,d:3.20,a:4.00,hBk:'Bet9ja',dBk:'1xBet',aBk:'Melbet',complete:false},
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Senegal',away:'Austria',hScore:null,aScore:null,time:'17 Jun · 21:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'1xBet',dBk:'Bet9ja',aBk:'22Bet',complete:false},
-// Jun 18
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Argentina',away:'Chile',hScore:null,aScore:null,time:'18 Jun · 18:00 UTC',h:1.65,d:3.50,a:5.00,hBk:'Bet9ja',dBk:'SportyBet',aBk:'1xBet',complete:false},
 {league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Morocco',away:'South Korea',hScore:null,aScore:null,time:'18 Jun · 21:00 UTC',h:2.20,d:3.10,a:3.20,hBk:'1xBet',dBk:'Bet9ja',aBk:'Betway',complete:false},
-// ── Boxing ──
-{league:'WBC Heavyweight Championship',key:'boxing',live:false,home:'Oleksandr Usyk',away:'Daniel Dubois',hScore:null,aScore:null,time:'13 Jun · 21:00 UTC',h:1.45,d:0,a:2.75,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false}
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Japan',away:'DR Congo',hScore:null,aScore:null,time:'19 Jun · 15:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Kenya',away:'Mexico',hScore:null,aScore:null,time:'19 Jun · 21:00 UTC',h:7.50,d:4.50,a:1.45,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'South Africa',away:'Honduras',hScore:null,aScore:null,time:'19 Jun · 18:00 UTC',h:2.30,d:3.10,a:3.00,hBk:'Hollywoodbets',dBk:'Betway',aBk:'1xBet',complete:false},
+// ── AFCON 2027 Qualifiers · Round 3 ──────────────────────────────────────────
+{league:'AFCON 2027 Qualifier · Round 3',key:'afcon',live:false,home:'Nigeria',away:'Rwanda',hScore:null,aScore:null,time:'16 Jun · 16:00 UTC',h:1.65,d:3.90,a:5.50,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
+{league:'AFCON 2027 Qualifier · Round 3',key:'afcon',live:false,home:'Senegal',away:'Ghana',hScore:null,aScore:null,time:'16 Jun · 19:00 UTC',h:2.10,d:3.10,a:3.20,hBk:'1xBet',dBk:'22Bet',aBk:'Betway',complete:false},
+{league:'AFCON 2027 Qualifier · Round 3',key:'afcon',live:false,home:'Cameroon',away:'Algeria',hScore:null,aScore:null,time:'17 Jun · 18:00 UTC',h:2.30,d:3.10,a:3.00,hBk:'22Bet',dBk:'Bet9ja',aBk:'1xBet',complete:false},
+{league:'AFCON 2027 Qualifier · Round 3',key:'afcon',live:false,home:'Morocco',away:'Zambia',hScore:null,aScore:null,time:'17 Jun · 19:00 UTC',h:1.50,d:3.80,a:6.50,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
+{league:'AFCON 2027 Qualifier · Round 3',key:'afcon',live:false,home:'Egypt',away:'Zimbabwe',hScore:null,aScore:null,time:'17 Jun · 16:00 UTC',h:1.55,d:3.60,a:6.00,hBk:'22Bet',dBk:'Betway',aBk:'Bet9ja',complete:false},
+{league:'AFCON 2027 Qualifier · Round 3',key:'afcon',live:false,home:'South Africa',away:'Namibia',hScore:null,aScore:null,time:'18 Jun · 17:00 UTC',h:1.70,d:3.50,a:5.00,hBk:'Hollywoodbets',dBk:'Betway',aBk:'1xBet',complete:false},
+{league:'AFCON 2027 Qualifier · Round 3',key:'afcon',live:false,home:'DR Congo',away:'Kenya',hScore:null,aScore:null,time:'18 Jun · 15:00 UTC',h:1.80,d:3.30,a:4.50,hBk:'Bet9ja',dBk:'1xBet',aBk:'Betway',complete:false},
+{league:'AFCON 2027 Qualifier · Round 3',key:'afcon',live:false,home:'Ivory Coast',away:'Ethiopia',hScore:null,aScore:null,time:'18 Jun · 16:00 UTC',h:1.55,d:3.70,a:5.50,hBk:'1xBet',dBk:'22Bet',aBk:'Betway',complete:false},
+// ── CAF Confederation Cup ─────────────────────────────────────────────────────
+{league:'CAF Confederation Cup · Final',key:'cafl',live:false,home:'Zamalek',away:'Petro de Luanda',hScore:null,aScore:null,time:'14 Jun · 19:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'Betway',dBk:'Bet9ja',aBk:'22Bet',complete:false},
+{league:'CAF Champions League 2026-27 · Prelim',key:'cafl',live:false,home:'TP Mazembe',away:'USM Alger',hScore:null,aScore:null,time:'18 Jun · 17:00 UTC',h:1.95,d:3.20,a:3.80,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
+{league:'CAF Champions League 2026-27 · Prelim',key:'cafl',live:false,home:'Al Ahly',away:'Wydad Casablanca',hScore:null,aScore:null,time:'19 Jun · 18:00 UTC',h:2.00,d:3.20,a:3.60,hBk:'Bet9ja',dBk:'Betway',aBk:'1xBet',complete:false},
+// ── Local Football · Nigeria (NPFL) ──────────────────────────────────────────
+{league:'Nigeria Premier Football League',key:'local',live:false,home:'Enyimba',away:'Rangers International',hScore:null,aScore:null,time:'14 Jun · 15:00 UTC',h:2.10,d:3.10,a:3.40,hBk:'Bet9ja',dBk:'SportyBet',aBk:'Betking',complete:false},
+{league:'Nigeria Premier Football League',key:'local',live:false,home:'Remo Stars',away:'Kano Pillars',hScore:null,aScore:null,time:'15 Jun · 15:00 UTC',h:2.30,d:3.00,a:3.20,hBk:'Bet9ja',dBk:'SportyBet',aBk:'1xBet',complete:false},
+{league:'Nigeria Premier Football League',key:'local',live:false,home:'Shooting Stars',away:'Sunshine Stars',hScore:null,aScore:null,time:'15 Jun · 16:00 UTC',h:2.20,d:3.10,a:3.30,hBk:'SportyBet',dBk:'Bet9ja',aBk:'Betking',complete:false},
+// ── Local Football · Kenya (KPL) ──────────────────────────────────────────────
+{league:'Kenya Premier League',key:'local',live:false,home:'Gor Mahia',away:'AFC Leopards',hScore:null,aScore:null,time:'14 Jun · 14:00 UTC',h:2.00,d:3.10,a:3.60,hBk:'SportPesa',dBk:'Betika',aBk:'Odibets',complete:false},
+{league:'Kenya Premier League',key:'local',live:false,home:'Kakamega Homeboyz',away:'Bandari',hScore:null,aScore:null,time:'15 Jun · 14:00 UTC',h:2.40,d:3.10,a:2.90,hBk:'Betika',dBk:'SportPesa',aBk:'1xBet',complete:false},
+{league:'Kenya Premier League',key:'local',live:false,home:'Kenya Police FC',away:'Tusker FC',hScore:null,aScore:null,time:'16 Jun · 13:00 UTC',h:2.50,d:3.10,a:2.80,hBk:'SportPesa',dBk:'Betika',aBk:'1xBet',complete:false},
+// ── Local Football · Ghana (GPL) ──────────────────────────────────────────────
+{league:'Ghana Premier League',key:'local',live:false,home:'Asante Kotoko',away:'Hearts of Oak',hScore:null,aScore:null,time:'15 Jun · 16:00 UTC',h:2.10,d:3.10,a:3.40,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
+{league:'Ghana Premier League',key:'local',live:false,home:'Medeama',away:'Legon Cities',hScore:null,aScore:null,time:'16 Jun · 16:00 UTC',h:2.30,d:3.00,a:3.20,hBk:'1xBet',dBk:'Betway',aBk:'22Bet',complete:false},
+{league:'Ghana Premier League',key:'local',live:false,home:'Dreams FC',away:'Bechem United',hScore:null,aScore:null,time:'17 Jun · 15:00 UTC',h:2.20,d:3.10,a:3.30,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
+// ── Local Football · South Africa (PSL) ──────────────────────────────────────
+{league:'Betway Premiership',key:'local',live:false,home:'Mamelodi Sundowns',away:'Orlando Pirates',hScore:null,aScore:null,time:'14 Jun · 17:00 UTC',h:1.80,d:3.30,a:4.00,hBk:'Betway',dBk:'Hollywoodbets',aBk:'1xBet',complete:false},
+{league:'Betway Premiership',key:'local',live:false,home:'Kaizer Chiefs',away:'Cape Town City',hScore:null,aScore:null,time:'15 Jun · 17:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'Hollywoodbets',dBk:'Betway',aBk:'1xBet',complete:false},
+{league:'Betway Premiership',key:'local',live:false,home:'Stellenbosch FC',away:'AmaZulu',hScore:null,aScore:null,time:'17 Jun · 17:00 UTC',h:2.30,d:3.10,a:3.00,hBk:'Betway',dBk:'Hollywoodbets',aBk:'1xBet',complete:false},
+// ── Local Football · Egypt (EPL) ──────────────────────────────────────────────
+{league:'Egyptian Premier League',key:'local',live:false,home:'Al Ahly',away:'Zamalek',hScore:null,aScore:null,time:'16 Jun · 17:00 UTC',h:1.90,d:3.30,a:3.90,hBk:'22Bet',dBk:'Betway',aBk:'1xBet',complete:false},
+{league:'Egyptian Premier League',key:'local',live:false,home:'Pyramids FC',away:'Smouha',hScore:null,aScore:null,time:'17 Jun · 16:00 UTC',h:1.80,d:3.30,a:4.20,hBk:'1xBet',dBk:'22Bet',aBk:'Betway',complete:false},
+// ── Local Football · Morocco (Botola Pro) ────────────────────────────────────
+{league:'Botola Pro',key:'local',live:false,home:'Wydad Casablanca',away:'Raja Casablanca',hScore:null,aScore:null,time:'15 Jun · 18:00 UTC',h:2.00,d:3.20,a:3.70,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
+{league:'Botola Pro',key:'local',live:false,home:'FAR Rabat',away:'Moghreb Tetouan',hScore:null,aScore:null,time:'16 Jun · 18:00 UTC',h:2.10,d:3.10,a:3.40,hBk:'1xBet',dBk:'Betway',aBk:'22Bet',complete:false},
+// ── Local Football · Tanzania ─────────────────────────────────────────────────
+{league:'NBC Premier League',key:'local',live:false,home:'Simba SC',away:'Young Africans',hScore:null,aScore:null,time:'14 Jun · 13:00 UTC',h:2.20,d:3.10,a:3.20,hBk:'Betway',dBk:'SportPesa',aBk:'1xBet',complete:false},
+// ── Local Football · Uganda ───────────────────────────────────────────────────
+{league:'FUFA Premier League',key:'local',live:false,home:'KCCA FC',away:'Express FC',hScore:null,aScore:null,time:'15 Jun · 13:00 UTC',h:2.10,d:3.10,a:3.50,hBk:'Betway',dBk:'SportPesa',aBk:'1xBet',complete:false},
+// ── Basketball · NBA Finals 2026 ──────────────────────────────────────────────
+{league:'NBA Finals 2026 · Game 4',key:'basketball',live:false,home:'Oklahoma City Thunder',away:'New York Knicks',hScore:null,aScore:null,time:'14 Jun · 01:00 UTC',h:2.10,d:0,a:1.75,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
+{league:'NBA Finals 2026 · Game 5',key:'basketball',live:false,home:'New York Knicks',away:'Oklahoma City Thunder',hScore:null,aScore:null,time:'17 Jun · 01:00 UTC',h:1.90,d:0,a:2.00,hBk:'1xBet',dBk:'',aBk:'Betway',complete:false},
+{league:'NBA Finals 2026 · Game 6',key:'basketball',live:false,home:'Oklahoma City Thunder',away:'New York Knicks',hScore:null,aScore:null,time:'20 Jun · 01:00 UTC',h:2.00,d:0,a:1.90,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
+// ── Tennis · ATP Queen's Club Championship ───────────────────────────────────
+{league:"ATP · Queen's Club Championship",key:'tennis',live:false,home:'Carlos Alcaraz',away:'Tommy Paul',hScore:null,aScore:null,time:'13 Jun · 13:00 UTC',h:1.55,d:0,a:2.50,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
+{league:"ATP · Queen's Club Championship",key:'tennis',live:false,home:'Novak Djokovic',away:'Alex de Minaur',hScore:null,aScore:null,time:'14 Jun · 14:00 UTC',h:1.70,d:0,a:2.20,hBk:'1xBet',dBk:'',aBk:'22Bet',complete:false},
+{league:"ATP · Queen's Club Championship · Final",key:'tennis',live:false,home:'Carlos Alcaraz',away:'Jannik Sinner',hScore:null,aScore:null,time:'15 Jun · 14:00 UTC',h:1.80,d:0,a:2.05,hBk:'Betway',dBk:'',aBk:'1xBet',complete:false},
+// ── Tennis · WTA Eastbourne International ────────────────────────────────────
+{league:'WTA · Eastbourne International',key:'tennis',live:false,home:'Iga Swiatek',away:'Elena Rybakina',hScore:null,aScore:null,time:'14 Jun · 12:00 UTC',h:1.65,d:0,a:2.30,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
+{league:'WTA · Eastbourne International',key:'tennis',live:false,home:'Coco Gauff',away:'Barbora Krejcikova',hScore:null,aScore:null,time:'15 Jun · 11:00 UTC',h:1.70,d:0,a:2.20,hBk:'1xBet',dBk:'',aBk:'Betway',complete:false},
+{league:'WTA · Eastbourne International · Final',key:'tennis',live:false,home:'Iga Swiatek',away:'Coco Gauff',hScore:null,aScore:null,time:'16 Jun · 13:00 UTC',h:1.55,d:0,a:2.50,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
+// ── Cricket · Test Series ────────────────────────────────────────────────────
+{league:'England vs India · 2nd Test',key:'cricket',live:false,home:'England',away:'India',hScore:null,aScore:null,time:'14 Jun · 10:00 UTC',h:2.30,d:3.00,a:2.10,hBk:'Hollywoodbets',dBk:'Betway',aBk:'1xBet',complete:false},
+{league:'South Africa vs Pakistan · 1st T20',key:'cricket',live:false,home:'South Africa',away:'Pakistan',hScore:null,aScore:null,time:'15 Jun · 17:00 UTC',h:1.85,d:0,a:2.00,hBk:'Hollywoodbets',dBk:'',aBk:'Betway',complete:false},
+{league:'South Africa vs Pakistan · 2nd T20',key:'cricket',live:false,home:'South Africa',away:'Pakistan',hScore:null,aScore:null,time:'18 Jun · 17:00 UTC',h:1.80,d:0,a:2.05,hBk:'Hollywoodbets',dBk:'',aBk:'Betway',complete:false},
+{league:'Zimbabwe vs Ireland · ODI',key:'cricket',live:false,home:'Zimbabwe',away:'Ireland',hScore:null,aScore:null,time:'17 Jun · 08:00 UTC',h:2.40,d:0,a:1.65,hBk:'Betway',dBk:'',aBk:'1xBet',complete:false},
+// ── Rugby · NRL Round 15 ─────────────────────────────────────────────────────
+{league:'NRL · Round 15',key:'rugby',live:false,home:'Melbourne Storm',away:'Penrith Panthers',hScore:null,aScore:null,time:'14 Jun · 09:00 UTC',h:2.20,d:0,a:1.75,hBk:'Betway',dBk:'',aBk:'1xBet',complete:false},
+{league:'NRL · Round 15',key:'rugby',live:false,home:'Sydney Roosters',away:'Parramatta Eels',hScore:null,aScore:null,time:'14 Jun · 11:00 UTC',h:2.00,d:0,a:1.90,hBk:'1xBet',dBk:'',aBk:'Betway',complete:false},
+{league:'NRL · Round 15',key:'rugby',live:false,home:'Brisbane Broncos',away:'South Sydney Rabbitohs',hScore:null,aScore:null,time:'13 Jun · 09:30 UTC',h:1.90,d:0,a:2.00,hBk:'Betway',dBk:'',aBk:'1xBet',complete:false},
+{league:'NRL · Round 15',key:'rugby',live:false,home:'Canterbury Bulldogs',away:'Manly Sea Eagles',hScore:null,aScore:null,time:'15 Jun · 09:30 UTC',h:2.10,d:0,a:1.80,hBk:'1xBet',dBk:'',aBk:'Betway',complete:false},
+// ── International Rugby Tests ────────────────────────────────────────────────
+{league:'Rugby June Internationals',key:'rugby',live:false,home:'South Africa',away:'Scotland',hScore:null,aScore:null,time:'13 Jun · 15:00 UTC',h:1.45,d:0,a:2.80,hBk:'Hollywoodbets',dBk:'',aBk:'Betway',complete:false},
+{league:'Rugby June Internationals',key:'rugby',live:false,home:'New Zealand',away:'Italy',hScore:null,aScore:null,time:'14 Jun · 10:00 UTC',h:1.25,d:0,a:4.50,hBk:'Betway',dBk:'',aBk:'1xBet',complete:false},
+// ── Baseball · MLB Regular Season ────────────────────────────────────────────
+{league:'MLB · Regular Season',key:'baseball',live:false,home:'New York Yankees',away:'Boston Red Sox',hScore:null,aScore:null,time:'13 Jun · 23:05 UTC',h:1.90,d:0,a:2.00,hBk:'1xBet',dBk:'',aBk:'22Bet',complete:false},
+{league:'MLB · Regular Season',key:'baseball',live:false,home:'Los Angeles Dodgers',away:'San Francisco Giants',hScore:null,aScore:null,time:'14 Jun · 02:10 UTC',h:1.75,d:0,a:2.15,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
+{league:'MLB · Regular Season',key:'baseball',live:false,home:'Chicago Cubs',away:'St Louis Cardinals',hScore:null,aScore:null,time:'14 Jun · 23:20 UTC',h:1.95,d:0,a:1.95,hBk:'Betway',dBk:'',aBk:'1xBet',complete:false},
+{league:'MLB · Regular Season',key:'baseball',live:false,home:'Houston Astros',away:'Texas Rangers',hScore:null,aScore:null,time:'15 Jun · 00:10 UTC',h:1.95,d:0,a:1.95,hBk:'1xBet',dBk:'',aBk:'22Bet',complete:false},
+{league:'MLB · Regular Season',key:'baseball',live:false,home:'Atlanta Braves',away:'New York Mets',hScore:null,aScore:null,time:'15 Jun · 22:20 UTC',h:1.85,d:0,a:2.05,hBk:'Betway',dBk:'',aBk:'1xBet',complete:false},
+// ── Boxing ───────────────────────────────────────────────────────────────────
+{league:'WBC Heavyweight Championship',key:'boxing',live:false,home:'Oleksandr Usyk',away:'Daniel Dubois',hScore:null,aScore:null,time:'13 Jun · 21:00 UTC',h:1.45,d:0,a:2.75,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
+{league:'WBO Super Middleweight',key:'boxing',live:false,home:'Canelo Alvarez',away:'David Benavidez',hScore:null,aScore:null,time:'21 Jun · 02:00 UTC',h:1.75,d:0,a:2.10,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false}
 ];
 
 // ── PAGE CONTENT (modals) ─────────────────────────────────────────────────────
