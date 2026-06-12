@@ -356,9 +356,11 @@ def parse_sofascore(text: str) -> list[dict]:
     # Find all competition headers in the full text
     for m in _SOFA_COMP_RE.finditer(text):
         candidate = m.group(1).strip()
+        # Filter out page-level navigation titles (contain multiple league names separated by comma+space)
         bad = (
             " - " in candidate or " vs " in candidate.lower()
-            or "," in candidate or len(candidate) < 4 or len(candidate) > 65
+            or (", " in candidate and re.search(r"League.*League|Cup.*League", candidate))
+            or len(candidate) < 4 or len(candidate) > 70
             or re.search(r"\d{4}$", candidate)
         )
         if not bad:
