@@ -246,12 +246,98 @@ def fmt_time(raw_time: str, is_live: bool = False) -> str:
 
 
 # ── Sofascore parser ──────────────────────────────────────────────────────────
+# Real Firecrawl format observed from live scrape:
+#
+#   [League](tournament_url) [Country](country_url)
+#   N   ← number of matches
+#   [HH:MM\
+#   \
+#   FT/LIVE/N'\
+#   \
+#   ![Team1](img)\
+#   \
+#   Team1\
+#   \
+#   ![Team2](img)\
+#   \
+#   Team2\
+#   \
+#   HScore\
+#   \
+#   AScore](match_url)
+#
+# Each match is a single multi-line link with `\` as row separators.
+# Team names appear after their badge image link, separated by `\` + newline.
 
-_SOFA_MATCH_RE = re.compile(
-    r"\[([^\]]+?)\]\(https://www\.sofascore\.com/football/match/([a-z0-9-]+)/[^\)]+\)",
-    re.I,
+# Match link: captures full content inside [...](sofascore_match_url)
+_SOFA_MATCH_LINK = re.compile(
+    r'\[([\s\S]{30,600}?)\]\(https://www\.sofascore\.com/football/match/[^\)]+\)',
+    re.S,
 )
-_SOFA_TIME_RE = re.compile(r"^(\d{2}:\d{2})$")
+# Competition header link
+_SOFA_COMP_RE = re.compile(
+    r'\[([A-Z][^\]]{3,60})\]\(https://www\.sofascore\.com/football/(?:tournament|category)/[^\)]+\)',
+)
+# Team name after image: ![...](img_url)\<newline>\<newline>TeamName
+_SOFA_TEAM_RE = re.compile(r'!\[[^\]]*\]\([^\)]+\)\\?\s*\\?\s*([A-Za-z][^\n\\]{1,50}?)\\?\s*(?=\\|$|\n)', re.M)
+
+
+def _parse_sofa_link(content: str) -> tuple[str, str, str, int | None, int | None, bool, bool]:
+    """Parse the inside of a Sofascore match link.
+
+    Returns (time, home, away, h_score, a_score, is_live, is_complete).
+    Firecrawl renders each row separated by backslash + newline sequences.
+    """
+    # Normalise: replace `\\\n\\` sequences (backslash-newline-backslash) to a delimiter
+    normalised = re.sub(r'\\\s*\\\s*', '|', content)
+    # Also handle single `\` followed by whitespace
+    normalised = re.sub(r'\\\s+', '|', normalised)
+    parts = [p.strip() for p in normalised.split('|') if p.strip()]
+
+    time_str = ""
+    status = ""
+    teams: list[str] = []
+    raw_scores: list[str] = []
+
+    for part in parts:
+        # Time: HH:MM
+        if re.match(r'^\d{2}:\d{2}$', part) and not time_str:
+            time_str = part
+        # Status: FT, LIVE, N' (minute)
+        elif re.match(r'^(?:FT|Final|Finished|LIVE|\d+\'?)$', part, re.I):
+            status = part
+        # Image link — skip
+        elif part.startswith('!['):
+            continue
+        # Score string: digits only (e.g. "33" = 3-3, "10" = 1-0, "21" = 2-1)
+        elif re.match(r'^\d{1,2}$', part) and len(teams) >= 2:
+            raw_scores.append(part)
+        # Team name: not starting with [ or ! or digit, length 2-50
+        elif (not part.startswith('[') and not part.startswith('!')
+              and not re.match(r'^\d', part)
+              and 2 <= len(part) <= 50 and len(teams) < 2):
+            teams.append(part)
+
+    home = teams[0] if len(teams) > 0 else ""
+    away = teams[1] if len(teams) > 1 else ""
+
+    # Scores: raw_scores may be ["33", "22"] meaning [3, 3] then [2, 2]
+    # Sofascore concatenates home+away digits: "33" = 3-3, "10" = 1-0
+    h_score: int | None = None
+    a_score: int | None = None
+    if raw_scores:
+        s = raw_scores[0]
+        if len(s) == 2:
+            try:
+                h_score = int(s[0])
+                a_score = int(s[1])
+            except ValueError:
+                pass
+
+    is_complete = bool(re.match(r'^(?:FT|Final|Finished)$', status, re.I))
+    is_live = bool(status and not is_complete and status != "")
+
+    return time_str, home, away, h_score, a_score, is_live, is_complete
 
 
 def parse_sofascore(text: str) -> list[dict]:
@@ -261,50 +347,81 @@ def parse_sofascore(text: str) -> list[dict]:
     current_league = "World / Friendly International"
     current_key = "world"
 
+    # Process line by line to track competition context
+    # Competition headers appear as: [League Name](tournament_url) [Country](country_url)
     lines = text.split("\n")
-    i = 0
-    while i < len(lines):
-        line = lines[i].strip()
+    # Build a position→league map so match links inherit the most recent header
+    comp_positions: list[tuple[int, str, str]] = []  # (char_offset, league, key)
 
-        # Detect competition headers from /tournament/ or /category/ links only
-        league_link = re.search(
-            r"\[([A-Z][^\]]{3,60})\]\(https://www\.sofascore\.com/football/(?:tournament|category)/([^/]+)/([^/]+)/",
-            line,
+    # Find all competition headers in the full text
+    for m in _SOFA_COMP_RE.finditer(text):
+        candidate = m.group(1).strip()
+        bad = (
+            " - " in candidate or " vs " in candidate.lower()
+            or "," in candidate or len(candidate) < 4 or len(candidate) > 65
+            or re.search(r"\d{4}$", candidate)
         )
-        if league_link:
-            candidate = league_link.group(1).strip()
-            # Skip page titles (contain multiple leagues), match names, or year suffixes
-            bad = (
-                " - " in candidate
-                or " vs " in candidate.lower()
-                or "," in candidate
-                or "Premier League, Champions" in candidate
-                or re.search(r"\d{4}$", candidate)
-                or len(candidate) < 4
-                or len(candidate) > 60
-            )
-            if not bad:
-                current_league = candidate
-                current_key = league_key(candidate)
+        if not bad:
+            k = league_key(candidate)
+            comp_positions.append((m.start(), candidate, k))
 
-        # Find match links: [TIME\nEXTRA](https://www.sofascore.com/football/match/SLUG/...)
-        for m in _SOFA_MATCH_RE.finditer(line):
-            link_text = m.group(1).strip()
-            slug = m.group(2).lower()
+    def comp_at(pos: int) -> tuple[str, str]:
+        league, key = "World / Friendly International", "world"
+        for cp_pos, cp_league, cp_key in comp_positions:
+            if cp_pos <= pos:
+                league, key = cp_league, cp_key
+            else:
+                break
+        return league, key
 
-            # Require at least two parts separated by hyphen
-            parts = slug.split("-")
-            if len(parts) < 2 or "/" in slug:
-                continue
+    AFRICAN_BKS = ["Bet9ja", "Betway", "1xBet", "Sportybet", "Betika", "22Bet", "Melbet"]
 
-            # Extract time from link text (format: "07:30\n..." or just "07:30")
-            time_match = re.match(r"(\d{2}:\d{2})", link_text)
-            time_raw = time_match.group(1) if time_match else ""
+    for m in _SOFA_MATCH_LINK.finditer(text):
+        content = m.group(1)
+        match_pos = m.start()
 
-            # Score detection
-            score_match = re.search(r"(\d+)\s*[-–]\s*(\d+)", link_text)
-            h_score = int(score_match.group(1)) if score_match else None
-            a_score = int(score_match.group(2)) if score_match else None
+        time_raw, home, away, h_score, a_score, is_live, is_complete = _parse_sofa_link(content)
+
+        if not home or not away or len(home) < 2 or len(away) < 2:
+            continue
+        if home.lower() == away.lower():
+            continue
+
+        key_str = f"{home.lower()}|{away.lower()}"
+        if key_str in seen:
+            continue
+        seen.add(key_str)
+
+        league, key = comp_at(match_pos)
+
+        # Infer WC2026 teams
+        if league == "World / Friendly International":
+            wc_teams = {
+                "nigeria", "ghana", "senegal", "morocco", "cameroon", "egypt",
+                "algeria", "tunisia", "south africa", "mali", "ivory coast",
+                "democratic republic of congo", "dr congo", "mexico", "usa",
+                "canada", "brazil", "argentina", "france", "spain", "england",
+            }
+            if home.lower() in wc_teams or away.lower() in wc_teams:
+                league = "World Cup 2026 · Group Stage"
+                key = "world"
+
+        time_display = fmt_time(time_raw, is_live) if time_raw else "Today · TBD"
+
+        matches_out.append({
+            "league": league,
+            "key": key,
+            "live": is_live and h_score is not None,
+            "complete": is_complete,
+            "home": home,
+            "away": away,
+            "hScore": h_score,
+            "aScore": a_score,
+            "time": time_display,
+            "h": 0.0, "d": 0.0, "a": 0.0,
+            "hBk": "", "dBk": "", "aBk": "",
+            "_src": "sofascore",
+        })
             is_complete = bool(re.search(r"FT|Final|Finished", link_text, re.I))
             is_live = bool(score_match and not is_complete)
 

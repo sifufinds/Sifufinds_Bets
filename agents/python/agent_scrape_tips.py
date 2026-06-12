@@ -1,17 +1,15 @@
 """
 agent_scrape_tips.py — Hourly tips scraper for SifuFinds
-Scrapes all 6 Best Free Betting Tips Websites:
-  - TipsterBattle  (tipsterbattle.com/football/africa)
-  - 1960Tips       (1960tips.com)
-  - FreeSuperTips  (freesupertips.com/football-tips)
-  - Forebet        (forebet.com/en/football-tips-and-predictions-for-today)
-  - Predictz       (predictz.com/predictions)
-  - EaglePredict   (eaglepredict.com/predictions)
 
-Writes parsed tips to data/tips.json which the tips page loads as a
-fallback when Supabase is unavailable.
+Scrapes best free betting tips websites and writes data/tips.json.
 
-Run hourly via GitHub Actions. Requires FIRECRAWL_API_KEY.
+Sources (in priority order):
+  1. Predictz       — predictz.com/predictions/  (today + tomorrow)
+  2. FreeSuperTips  — freesupertips.com/football-tips/
+  3. EaglePredict   — eaglepredict.com/predictions/league/international-world-cup/
+  4. Forebet        — forebet.com today 1X2 predictions
+
+Runs hourly (or every 15 min) via GitHub Actions. Requires FIRECRAWL_API_KEY.
 """
 
 from __future__ import annotations
@@ -32,17 +30,52 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 TIPS_JSON = REPO_ROOT / "data" / "tips.json"
 
 TODAY_UTC = datetime.now(timezone.utc)
-DATE_LABEL = TODAY_UTC.strftime("%-d %b")   # e.g. "5 Jun"
+DATE_LABEL = TODAY_UTC.strftime("%-d %b")  # e.g. "12 Jun"
 
-# African bookmakers used when attributing tips
 AFRICAN_BKS = ["1xBet", "Betway", "Bet9ja", "22Bet", "Melbet", "Sportybet", "Betika"]
 
-# Sport key map
+SOURCES = [
+    {
+        "name": "predictz_today",
+        "url": "https://www.predictz.com/predictions/",
+        "wait": 5000,
+        "priority": 1,
+    },
+    {
+        "name": "predictz_tomorrow",
+        "url": "https://www.predictz.com/predictions/tomorrow/",
+        "wait": 5000,
+        "priority": 2,
+    },
+    {
+        "name": "freesupertips",
+        "url": "https://www.freesupertips.com/football-tips/",
+        "wait": 4000,
+        "priority": 3,
+    },
+    {
+        "name": "eaglepredict_wc",
+        "url": "https://eaglepredict.com/predictions/league/international-world-cup/",
+        "wait": 5000,
+        "priority": 4,
+    },
+    {
+        "name": "forebet",
+        "url": "https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-1x2",
+        "wait": 6000,
+        "priority": 5,
+    },
+]
+
+
+# ── League key mapper ─────────────────────────────────────────────────────────
+
 def league_key(label: str) -> str:
     l = label.lower()
     if any(w in l for w in ["world cup", "wc2026", "group a", "group b", "group c",
-                             "group d", "group e", "group f", "group g", "group h",
-                             "group i", "group j", "group k", "group l", "friendly"]):
+                              "group d", "group e", "group f", "group g", "group h",
+                              "group i", "group j", "group k", "group l",
+                              "international friendly", "friendly"]):
         return "world"
     if any(w in l for w in ["caf champions", "caf cl", "champions league africa"]):
         return "cafl"
@@ -67,67 +100,26 @@ def league_key(label: str) -> str:
     return "local"
 
 
-SOURCES = [
-    {
-        "name": "tipsterbattle",
-        "url": "https://www.tipsterbattle.com/football/africa",
-        "wait": 3000,
-        "priority": 1,
-    },
-    {
-        "name": "1960tips",
-        "url": "https://www.1960tips.com/",
-        "wait": 3000,
-        "priority": 2,
-    },
-    {
-        "name": "freesupertips",
-        "url": "https://www.freesupertips.com/football-tips/",
-        "wait": 4000,
-        "priority": 3,
-    },
-    {
-        "name": "forebet",
-        "url": "https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-1x2",
-        "wait": 5000,
-        "priority": 4,
-    },
-    {
-        "name": "eaglepredict",
-        "url": "https://eaglepredict.com/predictions/league/africa/",
-        "wait": 4000,
-        "priority": 4,
-    },
-    {
-        "name": "predictz",
-        "url": "https://www.predictz.com/predictions/",
-        "wait": 4000,
-        "priority": 5,
-    },
-]
-
-# ── Firecrawl ─────────────────────────────────────────────────────────────────
+# ── Firecrawl helper ──────────────────────────────────────────────────────────
 
 def scrape(url: str, wait_ms: int, name: str) -> str:
-    # Build env: only inject FIRECRAWL_API_KEY if it looks like a real key (not empty/placeholder)
     env = dict(os.environ)
     if FIRECRAWL_API_KEY and len(FIRECRAWL_API_KEY) > 20:
         env["FIRECRAWL_API_KEY"] = FIRECRAWL_API_KEY
     try:
         r = subprocess.run(
             ["firecrawl", "scrape", url, "--wait-for", str(wait_ms), "--only-main-content"],
-            capture_output=True, text=True, timeout=90, env=env,
+            capture_output=True, text=True, timeout=120, env=env,
         )
         if r.stdout and len(r.stdout) > 300:
             return r.stdout
         if r.stderr:
-            print(f"    cli [{name}]: {r.stderr[:120]}")
+            print(f"    cli [{name}]: {r.stderr[:200]}")
     except FileNotFoundError:
-        print(f"    firecrawl CLI not found — install with: npm i -g firecrawl-js")
+        print(f"    firecrawl CLI not found")
     except Exception as e:
         print(f"    cli error [{name}]: {e}")
 
-    # Python SDK fallback (only if key is real)
     if FIRECRAWL_API_KEY and len(FIRECRAWL_API_KEY) > 20:
         try:
             from firecrawl import FirecrawlApp  # type: ignore
@@ -140,236 +132,364 @@ def scrape(url: str, wait_ms: int, name: str) -> str:
             print(f"    sdk error [{name}]: {e}")
     return ""
 
-# ── Parsers ───────────────────────────────────────────────────────────────────
 
 def clean(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip()
 
 
-# ── TipsterBattle ─────────────────────────────────────────────────────────────
-# Table format:
-# | Event | Betting tip | Tipster | Bookmaker |
-# | [Match\nDate - Time] | **Tip** Odds **X.XX** Stake **Y**/10 | ... | ... |
+# ── Predictz parser ───────────────────────────────────────────────────────────
+# Real structure observed from Firecrawl scrape:
+#
+#   ## [Competition Name Tips](url)
+#   HomeTeam
+#   W/D/L (form letters, one per line)
+#   Home N-N   ← TIP (Home/Away/Draw + predicted score)
+#   [MATCH PREVIEW](url "Go to HomeTeam vs AwayTeam Betting Tip")
+#   AwayTeam
+#   W/D/L (form letters)
+#   [HomeTeam v AwayTeam](url "Go to HomeTeam vs AwayTeam Betting Tip")
+#
+# We extract the tip from the line before [MATCH PREVIEW],
+# and the match name from the "Go to X vs Y Betting Tip" title.
 
-# Single-line regex: each TipsterBattle row is one long line
-_TB_ROW = re.compile(
-    r"\|\s*\[([^\]]+)\]\(https://www\.tipsterbattle\.com/betting-tips/[^\)]+\)"
-    r"\s*<br>(\d{2}\.\d{2}\.\d{4})\s*-\s*(\d{2}:\d{2})"   # date + time
-    r"[^|]+\|\s*\*\*([^*]+)\*\*"                            # prediction (bold)
-    r"\s*<br>Odds\s*\*\*(\d+\.\d+)\*\*"                    # odds
-    r"Stake\s*\*\*(\d+)\*\*/10"                             # stake/10
+_PZ_COMP_HDR = re.compile(r'^##\s+\[([^\]]+?)(?: Tips)?\]', re.M)
+_PZ_PREVIEW = re.compile(
+    r'((?:Home|Away|Draw)\s+\d+[-–]\d+)\s*\n+\[MATCH PREVIEW\]\([^"]*"Go to ([^"]+) Betting Tip"\)',
+    re.S,
+)
+_PZ_MATCH_LINK = re.compile(
+    r'\[([A-Z][^\]]+? v [^\]]+?)\]\([^"]*"Go to ([^"]+) Betting Tip"\)'
 )
 
-
-def parse_tipsterbattle(text: str) -> list[dict]:
-    tips = []
+def parse_predictz(text: str, date_override: str = "") -> list[dict]:
+    tips: list[dict] = []
     seen: set[str] = set()
+    date = date_override or DATE_LABEL
     bk_cycle = 0
 
-    for m in _TB_ROW.finditer(text):
-        raw_match = clean(m.group(1))
-        # Normalise separators: " vs ", " Vs ", " - ", " – "
-        match_name = re.sub(r"\s+(vs|Vs|VS|–)\s+", " vs ", raw_match)
-        match_name = re.sub(r"\s+-\s+", " vs ", match_name)
+    # Build a map of match_name → competition from section headers
+    comp_map: dict[str, str] = {}
+    # Split text into sections by competition headers
+    sections = _PZ_COMP_HDR.split(text)
+    # sections[0] = content before first header
+    # sections[1] = first competition name, sections[2] = content for that comp, etc.
+    current_comps: list[str] = []
+    for i, seg in enumerate(sections):
+        if i % 2 == 1:
+            current_comps.append(clean(seg))
+        else:
+            # content block: record all match previews in this block
+            for m in _PZ_PREVIEW.finditer(seg):
+                match_name_raw = m.group(2)
+                if current_comps:
+                    comp_map[match_name_raw.lower()] = current_comps[-1]
 
-        time_str = m.group(3)      # HH:MM
-        pred_text = clean(m.group(4))
-        odds_val = m.group(5)
-        stake = int(m.group(6))
+    # Now extract all tips globally
+    for m in _PZ_PREVIEW.finditer(text):
+        tip_raw = clean(m.group(1))      # e.g. "Home 1-0" or "Draw 1-1" or "Away 0-2"
+        match_raw = clean(m.group(2))    # e.g. "Mexico vs South Africa"
 
-        if match_name in seen:
+        # Normalise "vs" separator
+        match_name = re.sub(r"\s+v\s+", " vs ", match_raw, flags=re.I)
+        match_name = clean(match_name)
+
+        key_str = match_name.lower()
+        if key_str in seen:
             continue
-        seen.add(match_name)
+        seen.add(key_str)
 
-        # confidence: stake 10/10 → 80%, 5/10 → 65%
-        conf = min(85, 55 + stake * 3)
+        # Parse prediction
+        parts = tip_raw.split(maxsplit=1)
+        direction = parts[0].lower()  # "home", "away", "draw"
+        score_part = parts[1] if len(parts) > 1 else ""
+
+        teams = re.split(r"\s+vs\s+", match_name, maxsplit=1, flags=re.I)
+        if len(teams) == 2:
+            home, away = teams[0].strip(), teams[1].strip()
+        else:
+            home, away = match_name, ""
+
+        if direction == "home":
+            pred = f"{home} Win"
+            conf = 72
+        elif direction == "away":
+            pred = f"{away} Win"
+            conf = 68
+        else:
+            pred = "Draw"
+            conf = 62
+
+        # Lookup competition
+        league = comp_map.get(match_raw.lower(), "Football · PredictZ Pick")
+        key = league_key(league + " " + match_name)
+
         bk = AFRICAN_BKS[bk_cycle % len(AFRICAN_BKS)]
         bk_cycle += 1
-
-        # Try to detect Algeria / CAF league from context
-        league = "Algeria · Football"
-        key = "local"
-        if any(w in match_name for w in ["Kabylie", "Belouizdad", "Mostaganem", "Saoura",
-                                          "Constantine", "Rouissat", "khenchela", "Baydh"]):
-            league = "Algeria Ligue Professionnelle"
 
         tips.append({
             "league": league,
             "key": key,
             "match": match_name,
-            "pred": pred_text,
+            "pred": pred,
             "analysis": (
-                f"TipsterBattle community pick: {pred_text} at odds {odds_val}. "
-                f"Tipster stake rating {stake}/10. Verify latest odds before placing."
+                f"PredictZ statistical model: {pred}. "
+                f"Predicted score: {score_part}. Based on form, H2H, and league data."
             ),
-            "odds": odds_val,
+            "odds": "1.85",
             "via": bk,
             "conf": conf,
-            "time": f"{time_str} UTC",
-            "date": DATE_LABEL,
+            "time": "TBD",
+            "date": date,
             "isAI": False,
-            "source": "tipsterbattle",
+            "source": "predictz",
         })
 
     return tips
 
 
-# ── 1960Tips ──────────────────────────────────────────────────────────────────
-# Pattern visible in scrape:
-# "GRP A Mexico vs South Africa TIP: 1|GRP A South Korea vs Czech Republic TIP: 2|..."
-# "87%1%12%  OUR TIPMexico WIN"
+# ── FreeSuperTips parser ──────────────────────────────────────────────────────
+# Real structure from Firecrawl:
+#
+#   HH:MM
+#   [Prediction type]   (e.g. "Both Teams To Score", "Canada to Win",
+#                        "Over 2.5 Match Goals", "St Patricks and Both Teams To Score")
+#   TeamA vs TeamB      (or "vs TeamB" when home is inside the prediction)
+#   Reason for tip
+#   [paragraph analysis]
+#
+# Variations:
+#   - "TeamA to Win" → match line is "vs TeamB"
+#   - "TeamA and Both Teams To Score" → match line is "vs TeamB"
+#   - Standard: "Both Teams To Score" → match line is "TeamA vs TeamB"
 
-def parse_1960tips(text: str) -> list[dict]:
-    tips = []
+_FST_TIME = re.compile(r"^(\d{2}:\d{2})$", re.M)
+
+def parse_freesupertips(text: str) -> list[dict]:
+    tips: list[dict] = []
     seen: set[str] = set()
+    bk_cycle = 0
 
-    # Extract from ticker line: "GRP X TEAM1 vs TEAM2 TIP: N"
-    ticker = re.findall(
-        r"GRP\s+([A-L])\s+([A-Za-z\s]+)\s+vs\s+([A-Za-z\s]+)\s+TIP:\s*([12X])",
-        text,
-    )
-    # Extract probability sections: "87%1%12%  OUR TIPMexico WIN"
-    prob_sections = re.findall(
-        r"(\d+)%(\d+)%(\d+)%\s*OUR\s*TIP\s*([A-Za-z\s]+(?:WIN|DRAW|win|draw))",
-        text,
-    )
-
-    for idx, (grp, home, away, tip_code) in enumerate(ticker):
-        home = clean(home)
-        away = clean(away)
-        match_name = f"{home} vs {away}"
-        if match_name in seen:
+    # Split into blocks by time stamps
+    lines = [l.strip() for l in text.split("\n")]
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        time_m = _FST_TIME.match(line)
+        if not time_m:
+            i += 1
             continue
-        seen.add(match_name)
 
-        # Match with probability section by index
-        if idx < len(prob_sections):
-            h_pct, d_pct, a_pct, tip_text = prob_sections[idx]
-            h_pct, d_pct, a_pct = int(h_pct), int(d_pct), int(a_pct)
-            pred = clean(tip_text)
-            conf = max(h_pct, d_pct, a_pct)
+        time_str = time_m.group(1)
+        # Look ahead up to 6 lines for prediction and match
+        pred_txt = ""
+        match_name = ""
+        analysis_txt = ""
+
+        j = i + 1
+        while j < min(i + 10, len(lines)):
+            l = lines[j]
+            if not l or l.startswith("[![") or l.startswith("[View") or l.startswith("[Advertisement"):
+                j += 1
+                continue
+
+            # Skip lines that are clearly navigation/ads
+            if l.startswith("Reason for tip") or l.startswith("- "):
+                j += 1
+                continue
+
+            # Match line: "TeamA vs TeamB" or "vs TeamB"
+            if re.match(r'^vs?\s+[A-Z]', l) or re.match(r'^[A-Z][a-zA-Z\s\'-]+\s+vs?\s+[A-Z]', l):
+                raw = l
+                # "vs TeamB" → extract away team
+                away_only_m = re.match(r'^vs?\s+(.+)', raw)
+                both_m = re.match(r'^([A-Z][a-zA-Z\s\'-]+?)\s+vs?\s+([A-Z][a-zA-Z\s\'-]+)$', raw)
+
+                if both_m:
+                    home_t = clean(both_m.group(1))
+                    away_t = clean(both_m.group(2))
+                    match_name = f"{home_t} vs {away_t}"
+                elif away_only_m and pred_txt:
+                    away_t = clean(away_only_m.group(1))
+                    # Extract home team from prediction text
+                    home_extract = re.match(r'^([A-Z][a-zA-Z\s\'-]+?)(?:\s+(?:to\s+Win|and\s+Both|BTTS|Over|Under))', pred_txt, re.I)
+                    if home_extract:
+                        home_t = clean(home_extract.group(1))
+                        match_name = f"{home_t} vs {away_t}"
+                    else:
+                        match_name = f"Home vs {away_t}"
+                j += 1
+                break
+
+            # Prediction type line (must come before match line)
+            if not pred_txt and len(l) > 3 and not re.match(r'^\d', l):
+                pred_txt = clean(l)
+            j += 1
+
+        if not match_name or not pred_txt:
+            i += 1
+            continue
+
+        key_str = match_name.lower()
+        if key_str in seen:
+            i += 1
+            continue
+        seen.add(key_str)
+
+        # Normalise prediction
+        if re.search(r'both teams to score|btts', pred_txt, re.I):
+            norm_pred = "Both Teams To Score"
+        elif re.search(r'over 2\.5|over2\.5', pred_txt, re.I):
+            norm_pred = "Over 2.5 Goals"
+        elif re.search(r'under 2\.5|under2\.5', pred_txt, re.I):
+            norm_pred = "Under 2.5 Goals"
+        elif re.search(r'\bto win\b', pred_txt, re.I):
+            # "Canada to Win" → extract team
+            win_m = re.match(r'^([A-Z][a-zA-Z\s\'-]+?)\s+to\s+Win', pred_txt, re.I)
+            norm_pred = f"{win_m.group(1)} Win" if win_m else "Home Win"
         else:
-            pred = "Home Win" if tip_code == "1" else ("Draw" if tip_code == "X" else "Away Win")
-            conf = 68
+            norm_pred = pred_txt[:50]
+
+        bk = AFRICAN_BKS[bk_cycle % len(AFRICAN_BKS)]
+        bk_cycle += 1
 
         tips.append({
-            "league": f"World Cup 2026 · Group {grp}",
+            "league": "Football · FreeSuperTips",
+            "key": league_key(match_name),
+            "match": match_name,
+            "pred": norm_pred,
+            "analysis": (
+                f"FreeSuperTips expert pick: {norm_pred} for {match_name}. "
+                f"Professional tipster analysis based on form and statistics."
+            ),
+            "odds": "1.80",
+            "via": bk,
+            "conf": 68,
+            "time": f"{time_str} UTC",
+            "date": DATE_LABEL,
+            "isAI": False,
+            "source": "freesupertips",
+        })
+
+        i = j
+
+    return tips
+
+
+# ── EaglePredict WC2026 parser ────────────────────────────────────────────────
+# EaglePredict predictions page renders cards like:
+#   [Time] [HomeTeam vs AwayTeam] [Prediction] [Odds] [Confidence%]
+# The markdown shows team names and predictions in structured blocks.
+
+def parse_eaglepredict(text: str) -> list[dict]:
+    tips: list[dict] = []
+    seen: set[str] = set()
+    bk_cycle = 0
+
+    # Blocks separated by blank lines
+    blocks = re.split(r"\n{2,}", text)
+    for block in blocks:
+        block_text = block.strip()
+        if not block_text or len(block_text) < 20:
+            continue
+
+        # Match pattern: HomeTeam vs AwayTeam (anywhere in block)
+        match_m = re.search(
+            r'([A-Z][a-zA-Z\s\'-]{2,30})\s+vs?\s+([A-Z][a-zA-Z\s\'-]{2,30})',
+            block_text,
+        )
+        if not match_m:
+            continue
+
+        home = clean(match_m.group(1))
+        away = clean(match_m.group(2))
+        if len(home) < 3 or len(away) < 3 or home.lower() == away.lower():
+            continue
+
+        match_name = f"{home} vs {away}"
+        if match_name.lower() in seen:
+            continue
+
+        # Look for prediction keywords
+        pred_m = re.search(
+            r'(Home Win|Away Win|Draw|Both Teams To Score|BTTS|Over 2\.5|Under 2\.5)',
+            block_text, re.I,
+        )
+        if not pred_m:
+            continue
+
+        seen.add(match_name.lower())
+
+        odds_m = re.search(r'(\d+\.\d{2})', block_text)
+        pct_m = re.search(r'(\d{2,3})%', block_text)
+        time_m = re.search(r'(\d{2}:\d{2})', block_text)
+
+        pred = clean(pred_m.group(0))
+        odds = odds_m.group(1) if odds_m else "1.85"
+        conf = int(pct_m.group(1)) if pct_m else 65
+        time_str = f"{time_m.group(1)} UTC" if time_m else "TBD"
+
+        bk = AFRICAN_BKS[bk_cycle % len(AFRICAN_BKS)]
+        bk_cycle += 1
+
+        tips.append({
+            "league": "World Cup 2026 · International",
             "key": "world",
             "match": match_name,
             "pred": pred,
             "analysis": (
-                f"1960Tips professional analysts predict {pred} for this World Cup 2026 "
-                f"Group {grp} clash. Statistical model confidence: {conf}%."
+                f"EaglePredict WC2026 tip: {pred} for {match_name}. "
+                f"Expert analysts, confidence {conf}%."
             ),
-            "odds": "1.85",
-            "via": "1xBet",
-            "conf": conf,
-            "time": "19:00 UTC",
-            "date": "11 Jun",
+            "odds": odds,
+            "via": bk,
+            "conf": min(conf, 85),
+            "time": time_str,
+            "date": DATE_LABEL,
             "isAI": False,
-            "source": "1960tips",
+            "source": "eaglepredict",
         })
 
-    return tips
+    return tips[:10]
 
 
-# ── FreeSuperTips ─────────────────────────────────────────────────────────────
-# Pattern: time on one line, tip type on next, match name on next
-# "12:30\nBoth Teams To Score\nSlovakia vs Montenegro"
+# ── Forebet parser ────────────────────────────────────────────────────────────
+# Forebet 1X2 page structure (after JS render):
+#   Probability percentages on same line as team names in link format.
+#   [TeamA - TeamB](url)
+#   1.45  3.40  2.90  55%  28%  17%
 
-def parse_freesupertips(text: str) -> list[dict]:
-    tips = []
-    seen: set[str] = set()
-    lines = [l.strip() for l in text.split("\n") if l.strip()]
-
-    TIP_TYPES = [
-        "Both Teams To Score", "BTTS", "Over 2.5", "Under 2.5",
-        "Home Win", "Away Win", "Draw", "1X2", "Correct Score",
-        "Double Chance", "Asian Handicap", "First Goal",
-    ]
-    tip_pattern = re.compile(
-        r"^(" + "|".join(re.escape(t) for t in TIP_TYPES) + r")",
-        re.I,
-    )
-    time_pattern = re.compile(r"^(\d{2}:\d{2})$")
-    match_pattern = re.compile(r"^([A-Z][a-zA-Z\s'-]+)\s+vs?\s+([A-Z][a-zA-Z\s'-]+)$")
-
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        time_m = time_pattern.match(line)
-        if time_m:
-            time_str = time_m.group(1)
-            # Look ahead for tip type and match
-            pred_txt = ""
-            match_name = ""
-            league_txt = "World / Friendly International"
-            for j in range(i + 1, min(i + 6, len(lines))):
-                if tip_pattern.match(lines[j]) and not pred_txt:
-                    pred_txt = clean(lines[j])
-                elif match_pattern.match(lines[j]) and not match_name:
-                    match_name = clean(lines[j])
-                elif lines[j] and not lines[j].startswith("[") and not lines[j].startswith("!") and len(lines[j]) > 5:
-                    if not pred_txt:
-                        league_txt = lines[j]
-
-            if pred_txt and match_name and match_name not in seen:
-                seen.add(match_name)
-                tips.append({
-                    "league": league_txt,
-                    "key": league_key(league_txt + " " + match_name),
-                    "match": match_name,
-                    "pred": pred_txt,
-                    "analysis": (
-                        f"FreeSuperTips expert pick: {pred_txt} for {match_name}. "
-                        f"Professional tipster analysis based on team form and statistics."
-                    ),
-                    "odds": "1.80",
-                    "via": "Betway",
-                    "conf": 68,
-                    "time": f"{time_str} UTC",
-                    "date": DATE_LABEL,
-                    "isAI": False,
-                    "source": "freesupertips",
-                })
-        i += 1
-
-    return tips
-
-
-# ── Forebet ───────────────────────────────────────────────────────────────────
-# Forebet renders via JS; what we get is mostly navigation.
-# We parse any visible match lines: "TEAM1 - TEAM2 ... 1 ... XX% ..."
+_FB_MATCH_LINK = re.compile(
+    r'\[([A-Z][a-zA-Z\s\-\'\.]{1,30})\s*[-–]\s*([A-Z][a-zA-Z\s\-\'\.]{1,30})\]'
+    r'\(https://www\.forebet\.com/[^\)]+\)'
+)
+_FB_PROBS = re.compile(
+    r'(\d+\.\d{2})\s+(\d+\.\d{2})\s+(\d+\.\d{2})\s+(\d+)%\s+(\d+)%\s+(\d+)%'
+)
 
 def parse_forebet(text: str) -> list[dict]:
-    tips = []
+    tips: list[dict] = []
     seen: set[str] = set()
 
-    # Pattern: odds values followed by percentage, then team names in a link
-    match_links = re.findall(
-        r"\[([A-Z][a-zA-Z\s\-'\.]+)\s*[-–]\s*([A-Z][a-zA-Z\s\-'\.]+)\]\(https://www\.forebet\.com/[^\)]+\)",
-        text,
-    )
-    # Also look for probability-style data: home% draw% away%
-    # "1.45  3.40  2.90  55%  28%  17%"
-    prob_lines = re.findall(
-        r"(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+)%\s+(\d+)%\s+(\d+)%",
-        text,
-    )
+    matches = list(_FB_MATCH_LINK.finditer(text))
+    probs = list(_FB_PROBS.finditer(text))
 
-    for idx, (home, away) in enumerate(match_links[:len(prob_lines)]):
-        home, away = clean(home), clean(away)
-        match_name = f"{home} vs {away}"
-        if match_name in seen or len(home) < 2 or len(away) < 2:
+    for idx, m in enumerate(matches[:8]):
+        home = clean(m.group(1))
+        away = clean(m.group(2))
+        if len(home) < 2 or len(away) < 2:
             continue
-        seen.add(match_name)
+        match_name = f"{home} vs {away}"
+        if match_name.lower() in seen:
+            continue
+        seen.add(match_name.lower())
 
-        if idx < len(prob_lines):
-            h_odds, d_odds, a_odds, h_pct, d_pct, a_pct = prob_lines[idx]
-            h_pct, d_pct, a_pct = int(h_pct), int(d_pct), int(a_pct)
+        if idx < len(probs):
+            p = probs[idx]
+            h_odds, d_odds, a_odds = p.group(1), p.group(2), p.group(3)
+            h_pct, d_pct, a_pct = int(p.group(4)), int(p.group(5)), int(p.group(6))
             if h_pct >= d_pct and h_pct >= a_pct:
                 pred, odds, conf = f"{home} Win", h_odds, h_pct
-            elif a_pct >= d_pct:
+            elif a_pct > d_pct:
                 pred, odds, conf = f"{away} Win", a_odds, a_pct
             else:
                 pred, odds, conf = "Draw", d_odds, d_pct
@@ -377,13 +497,13 @@ def parse_forebet(text: str) -> list[dict]:
             pred, odds, conf = "Home Win", "1.80", 60
 
         tips.append({
-            "league": "Football · Forebet Pick",
-            "key": "local",
+            "league": "Football · Forebet",
+            "key": league_key(match_name),
             "match": match_name,
             "pred": pred,
             "analysis": (
-                f"Forebet mathematical model predicts {pred}. "
-                f"Statistical confidence: {conf}%. Based on 500+ data points."
+                f"Forebet mathematical model: {pred} for {match_name}. "
+                f"Statistical confidence {conf}%."
             ),
             "odds": str(odds),
             "via": AFRICAN_BKS[idx % len(AFRICAN_BKS)],
@@ -394,136 +514,42 @@ def parse_forebet(text: str) -> list[dict]:
             "source": "forebet",
         })
 
-    return tips[:5]  # cap forebet at 5 (navigation data is noisy)
-
-
-# ── EaglePredict ──────────────────────────────────────────────────────────────
-
-def parse_eaglepredict(text: str) -> list[dict]:
-    tips = []
-    seen: set[str] = set()
-
-    # Look for match prediction blocks:
-    # "TEAM1 vs TEAM2 ... prediction ... odds ... %"
-    blocks = re.split(r"\n{2,}", text)
-    for block in blocks:
-        match_m = re.search(
-            r"([A-Z][a-zA-Z\s'-]+)\s+vs?\s+([A-Z][a-zA-Z\s'-]+)",
-            block,
-        )
-        if not match_m:
-            continue
-        home, away = clean(match_m.group(1)), clean(match_m.group(2))
-        if len(home) < 2 or len(away) < 2 or home == away:
-            continue
-        match_name = f"{home} vs {away}"
-        if match_name in seen:
-            continue
-
-        odds_m = re.search(r"(\d+\.\d{2})", block)
-        pct_m = re.search(r"(\d{2,3})%", block)
-        pred_m = re.search(
-            r"(Home Win|Away Win|Draw|Over \d+\.?\d*|Under \d+\.?\d*|BTTS|Both Teams)",
-            block, re.I,
-        )
-
-        if not pred_m:
-            continue
-
-        seen.add(match_name)
-        conf = int(pct_m.group(1)) if pct_m else 65
-        odds = odds_m.group(1) if odds_m else "1.85"
-
-        tips.append({
-            "league": "Africa · Football",
-            "key": "local",
-            "match": match_name,
-            "pred": clean(pred_m.group(0)),
-            "analysis": (
-                f"EaglePredict expert analysis: {clean(pred_m.group(0))} for {match_name}. "
-                f"Africa-specialist tipsters with strong track record."
-            ),
-            "odds": odds,
-            "via": AFRICAN_BKS[len(seen) % len(AFRICAN_BKS)],
-            "conf": min(conf, 85),
-            "time": "TBD",
-            "date": DATE_LABEL,
-            "isAI": False,
-            "source": "eaglepredict",
-        })
-
-    return tips[:6]
-
-
-# ── Predictz ──────────────────────────────────────────────────────────────────
-
-def parse_predictz(text: str) -> list[dict]:
-    tips = []
-    seen: set[str] = set()
-
-    # Predictz format: varies, look for pattern:
-    # TEAM1 vs TEAM2 ... Win/Draw/BTTS ... odds
-    rows = re.findall(
-        r"([A-Z][a-zA-Z\s'-]+)\s+vs?\s+([A-Z][a-zA-Z\s'-]+)"
-        r".*?(Home Win|Away Win|Draw|Over \d+\.?\d*|Under \d+\.?\d*|BTTS)"
-        r".*?(\d+\.\d{2})",
-        text,
-        re.I | re.S,
-    )
-    for home, away, pred, odds in rows[:6]:
-        home, away = clean(home), clean(away)
-        match_name = f"{home} vs {away}"
-        if match_name in seen or len(home) < 2:
-            continue
-        seen.add(match_name)
-        tips.append({
-            "league": "Football · Predictz Pick",
-            "key": league_key(home + " " + away),
-            "match": match_name,
-            "pred": clean(pred),
-            "analysis": (
-                f"PredictZ free prediction: {clean(pred)} for {match_name}. "
-                f"Based on current form, head-to-head, and team statistics."
-            ),
-            "odds": odds,
-            "via": AFRICAN_BKS[len(seen) % len(AFRICAN_BKS)],
-            "conf": 65,
-            "time": "TBD",
-            "date": DATE_LABEL,
-            "isAI": False,
-            "source": "predictz",
-        })
     return tips
 
 
 PARSERS = {
-    "tipsterbattle": parse_tipsterbattle,
-    "1960tips": parse_1960tips,
+    "predictz_today": lambda t: parse_predictz(t, DATE_LABEL),
+    "predictz_tomorrow": lambda t: parse_predictz(t, _tomorrow_label()),
     "freesupertips": parse_freesupertips,
+    "eaglepredict_wc": parse_eaglepredict,
     "forebet": parse_forebet,
-    "eaglepredict": parse_eaglepredict,
-    "predictz": parse_predictz,
 }
+
+
+def _tomorrow_label() -> str:
+    from datetime import timedelta
+    tomorrow = TODAY_UTC + timedelta(days=1)
+    return tomorrow.strftime("%-d %b")
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def scrape_source(source: dict) -> tuple[str, list[dict]]:
     name = source["name"]
-    print(f"  → {name}")
+    print(f"  → {name} ({source['url'][:55]}...)")
     text = scrape(source["url"], source["wait"], name)
     if len(text) < 200:
-        print(f"    ⚠ too little content — skip")
+        print(f"    ⚠ too little content ({len(text)} chars) — skip")
         return name, []
     parser = PARSERS.get(name)
     if not parser:
         return name, []
     tips = parser(text)
-    print(f"    ✓ {len(tips)} tips")
+    print(f"    ✓ {len(tips)} tips parsed")
     return name, tips
 
 
-def main():
+def main() -> None:
     if not FIRECRAWL_API_KEY:
         print("ℹ FIRECRAWL_API_KEY not set — using CLI stored credentials")
 
@@ -531,14 +557,13 @@ def main():
     print(f"\n[{ts}] Tips scraper starting ({len(SOURCES)} sources)...")
 
     all_tips: list[dict] = []
-    # Scrape in priority order, 3 concurrent
     with ThreadPoolExecutor(max_workers=3) as ex:
         futs = {ex.submit(scrape_source, s): s for s in SOURCES}
         for fut in as_completed(futs):
             _, tips = fut.result()
             all_tips.extend(tips)
 
-    # Deduplicate by match name
+    # Deduplicate by match name, keeping highest-confidence entry
     seen: set[str] = set()
     deduped: list[dict] = []
     for t in sorted(all_tips, key=lambda x: x.get("conf", 0), reverse=True):
@@ -547,8 +572,8 @@ def main():
             seen.add(k)
             deduped.append(t)
 
-    # Sort: highest confidence first, then by key priority
-    KEY_ORDER = ["world", "cafl", "afcon", "local", "epl", "ucl", "basketball", "tennis", "cricket"]
+    KEY_ORDER = ["world", "cafl", "afcon", "local", "epl", "ucl", "laliga",
+                 "basketball", "tennis", "cricket", "rugby"]
     deduped.sort(key=lambda t: (
         -(t.get("conf", 0)),
         KEY_ORDER.index(t.get("key", "local")) if t.get("key") in KEY_ORDER else 99,
@@ -563,8 +588,12 @@ def main():
     TIPS_JSON.parent.mkdir(parents=True, exist_ok=True)
     TIPS_JSON.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\n  ✅ data/tips.json: {len(deduped)} tips written")
-    for t in deduped[:6]:
-        print(f"     [{t['source']:14}] {t['match']:35} → {t['pred']} ({t['conf']}%)")
+    for t in deduped[:8]:
+        print(f"     [{t['source']:20}] {t['match']:35} → {t['pred']} ({t['conf']}%)")
+
+    if not deduped:
+        print("  ⚠ WARNING: 0 tips written — check parsers or Firecrawl API key")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
