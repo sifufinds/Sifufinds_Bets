@@ -1,24 +1,7 @@
 {
-  "updated": "2026-06-12T03:27:03.027736+00:00",
+  "updated": "2026-06-12T05:06:09.506584+00:00",
   "count": 20,
   "events": [
-    {
-      "league": "WNBA",
-      "key": "basketball",
-      "live": true,
-      "complete": false,
-      "home": "Portland Fire",
-      "away": "Las Vegas Aces",
-      "hScore": "60",
-      "aScore": "71",
-      "time": "4:48",
-      "h": 0.0,
-      "d": 0.0,
-      "a": 0.0,
-      "hBk": "",
-      "dBk": "",
-      "aBk": ""
-    },
     {
       "league": "International Friendly",
       "key": "world",
@@ -151,9 +134,9 @@
       "h": 1.51,
       "d": 0.0,
       "a": 2.64,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "MLB",
@@ -215,6 +198,23 @@
       "away": "Phoenix Mercury",
       "hScore": "85",
       "aScore": "70",
+      "time": "FT",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
+    {
+      "league": "WNBA",
+      "key": "basketball",
+      "live": false,
+      "complete": true,
+      "home": "Portland Fire",
+      "away": "Las Vegas Aces",
+      "hScore": "89",
+      "aScore": "105",
       "time": "FT",
       "h": 0.0,
       "d": 0.0,
