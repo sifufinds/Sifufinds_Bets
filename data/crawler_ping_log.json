@@ -211,5 +211,56 @@
         "ts": "2026-06-11T10:20:10.288565+00:00"
       }
     ]
+  },
+  {
+    "ts": "2026-06-12T10:08:28.934236+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-06-12T10:08:28.934236+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-06-12T10:08:28.934236+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-06-12T10:08:28.934236+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-06-12T10:08:28.934236+00:00"
+      },
+      {
+        "ok": true,
+        "output": ":/sifufinds.com/blog/world-cup-2026-qualifiers-and-news/', 'https:/sifufinds.com/blog/world-cup-2026-england-v-costa-rica-delayed/']\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-06-12T10:08:28.934236+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-06-12T10:08:28.934236+00:00"
+      }
+    ]
   }
 ]

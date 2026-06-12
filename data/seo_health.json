@@ -1,15 +1,17 @@
 {
-  "date": "2026-06-11",
-  "fixes_applied": 3,
+  "date": "2026-06-12",
+  "fixes_applied": 5,
   "warnings": 2,
   "fixes": [
-    "Blog HTML regenerated:     Total blog posts in JSON: 305",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 658 total URLs",
+    "llms.txt: Last Updated \u2192 2026-06-12",
+    "Blog HTML: refreshed dateModified on 1 stale pages",
+    "Blog HTML regenerated:     Total blog posts in JSON: 314",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 667 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "5 posts below 900 words: world-cup-2026-betting-guide-africa, world-cup-buzz-tuchel-england-picks-ghana-team-guide-man-utd-transfer-news, englands-world-cup-preparations-nba-finals-transfer-news-whats-hot-in-sports-betting-africa, world-cup-2026-knockout-stage-bets, england-breeze-past-costa-rica",
-    "4 posts missing FAQ section: world-cup-2026-betting-guide-africa, world-cup-buzz-tuchel-england-picks-ghana-team-guide-man-utd-transfer-news, englands-world-cup-preparations-nba-finals-transfer-news-whats-hot-in-sports-betting-africa, world-cup-2026-knockout-stage-bets"
+    "6 posts below 900 words: world-cup-2026-mexico-wins, world-cup-2026-betting-guide, world-cup-2026-south-korea-v-czechia-preview, mexico-beats-south-africa-world-cup, world-cup-2026-betting-guide-africa...",
+    "1 posts missing FAQ section: world-cup-buzz-tuchel-england-picks-ghana-team-guide-man-utd-transfer-news"
   ],
   "status": "warnings"
 }
