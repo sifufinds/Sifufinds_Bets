@@ -41,7 +41,7 @@ jobs:
           git config user.name  "seo-bot"
           git config user.email "bot@sifufinds.com"
           git add blog/ seo-report.json blog/posts.json
-          git diff --staged --quiet || git commit -m "chore: weekly SEO auto-fix + audit report"
+          git diff --staged --quiet || git commit -m "chore: daily SEO auto-fix + audit report"
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.8.0
