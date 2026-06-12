@@ -90,6 +90,12 @@ for p in posts:
     if not noindex and '"BreadcrumbList"' not in html:
         issue(MEDIUM, 'missing_breadcrumb', slug, 'No BreadcrumbList JSON-LD found')
 
+    # 3f. Article author must be Person, not Organization
+    if not noindex and '"Article"' in html:
+        if '"@type": "Organization"' in html.split('"author"')[1][:150] if '"author"' in html else False:
+            issue(HIGH, 'author_schema_org_not_person', slug,
+                  'Article author @type is Organization — must be Person for Google Rich Results')
+
     # 3d. noindex posts must have canonical_override
     if noindex and not p.get('canonical_override'):
         issue(CRITICAL, 'noindex_without_canonical', slug,
@@ -156,6 +162,10 @@ for rel_path, label in STATIC_CHECKS:
         issue(HIGH, 'missing_canonical', label, f'No canonical link on {rel_path}')
     if 'og:image' not in html:
         issue(MEDIUM, 'missing_og_image', label, f'No og:image on {rel_path}')
+    if 'og:image:secure_url' in html:
+        issue(HIGH, 'og_image_secure_url', label, f'Deprecated og:image:secure_url on {rel_path} — remove it')
+    if 'og-image.png?v=' in html:
+        issue(HIGH, 'og_image_versioned', label, f'Versioned ?v= suffix on og:image in {rel_path} — remove version string')
     if 'shared.js' in html and 'shared.js" defer' in html:
         issue(CRITICAL, 'shared_js_defer', label, f'shared.js has defer attribute — BREAKS the page')
 

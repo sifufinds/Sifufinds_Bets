@@ -1269,7 +1269,7 @@ def build_post_page(post: dict) -> str:
   "@type": "Article",
   "headline": "{title}",
   "description": "{excerpt}",
-  "author": {{"@type": "Organization", "@id": "https://sifufinds.com/#organization", "name": "{author}", "url": "https://sifufinds.com/about/"}},
+  "author": {{"@type": "Person", "@id": "https://sifufinds.com/about/#sifu-kai", "name": "{author}", "url": "https://sifufinds.com/about/", "image": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/android-chrome-192x192.png", "width": 192, "height": 192}}}},
   "publisher": {{
     "@type": "Organization",
     "@id": "https://sifufinds.com/#organization",
