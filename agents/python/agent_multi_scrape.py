@@ -128,55 +128,44 @@ MULTI_WORD_TEAMS: list[tuple[str, str]] = [
 
 
 def scrape_url(url: str, wait_ms: int = 3000, name: str = "") -> str:
-    """Scrape a URL via Firecrawl CLI (or Python SDK fallback)."""
-    env = dict(os.environ)
+    """Scrape a URL via Firecrawl REST API (primary) or CLI (local fallback)."""
+    # Primary: REST API — reliable in CI without CLI toolchain
     if FIRECRAWL_API_KEY and len(FIRECRAWL_API_KEY) > 20:
-        env["FIRECRAWL_API_KEY"] = FIRECRAWL_API_KEY
+        try:
+            import requests as _req  # type: ignore
+            resp = _req.post(
+                "https://api.firecrawl.dev/v1/scrape",
+                headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}", "Content-Type": "application/json"},
+                json={"url": url, "formats": ["markdown"], "waitFor": wait_ms, "onlyMainContent": True},
+                timeout=90,
+            )
+            if resp.ok:
+                data = resp.json()
+                md = (data.get("data") or data).get("markdown", "")
+                if md and len(md) > 200:
+                    return md
+                print(f"    api [{name}]: short response ({len(md)} chars) — {resp.status_code}")
+            else:
+                print(f"    api [{name}]: HTTP {resp.status_code} — {resp.text[:120]}")
+        except Exception as exc:
+            print(f"    api error [{name}]: {exc}")
+
+    # Fallback: CLI (works locally with stored creds)
+    env = dict(os.environ)
     try:
         result = subprocess.run(
-            [
-                "firecrawl",
-                "scrape",
-                url,
-                "--wait-for",
-                str(wait_ms),
-                "--only-main-content",
-            ],
-            capture_output=True,
-            text=True,
-            timeout=90,
-            env=env,
+            ["firecrawl", "scrape", url, "--wait-for", str(wait_ms), "--only-main-content"],
+            capture_output=True, text=True, timeout=90, env=env,
         )
         if result.stdout and len(result.stdout) > 200:
             return result.stdout
         if result.stderr:
-            print(f"    firecrawl cli stderr [{name}]: {result.stderr[:150]}")
+            print(f"    cli [{name}]: {result.stderr[:150]}")
     except FileNotFoundError:
-        pass  # CLI not installed, fall through to SDK
+        pass
     except Exception as exc:
         print(f"    cli error [{name}]: {exc}")
-
-    # SDK fallback
-    return _sdk_scrape(url, wait_ms, name)
-
-
-def _sdk_scrape(url: str, wait_ms: int, name: str) -> str:
-    try:
-        from firecrawl import FirecrawlApp  # type: ignore
-
-        app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
-        result = app.scrape_url(
-            url,
-            params={
-                "formats": ["markdown"],
-                "waitFor": wait_ms,
-                "onlyMainContent": True,
-            },
-        )
-        return result.get("markdown", "")
-    except Exception as exc:
-        print(f"    sdk error [{name}]: {exc}")
-        return ""
+    return ""
 
 
 # ── Parsers ───────────────────────────────────────────────────────────────────

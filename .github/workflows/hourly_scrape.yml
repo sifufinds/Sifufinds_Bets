@@ -44,10 +44,7 @@ jobs:
           restore-keys: ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        run: |
-          pip install requests firecrawl-py
-          # Install Firecrawl CLI (best-effort — Python SDK is the reliable fallback)
-          npm install -g @mendable/firecrawl-js 2>/dev/null || echo "CLI install skipped"
+        run: pip install requests firecrawl-py
 
       - name: Step 1 — Run ESPN live odds agent (fast, no API key needed)
         working-directory: agents/python
@@ -59,6 +56,7 @@ jobs:
 
       - name: Step 3 — Scrape all 6 tips sites (TipsterBattle, 1960Tips, FreeSuperTips, Forebet, EaglePredict, Predictz)
         working-directory: agents/python
+        continue-on-error: true
         run: python agent_scrape_tips.py
 
       - name: Commit and push if data changed
