@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<!-- sifufinds.com/tables/ — Global Football Tables & Live Standings -->
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0B51MX2ZKE');</script>
+<meta charset="UTF-8">
+<link rel="preload" href="../assets/shared.js?v=10" as="script">
+<link rel="preload" href="../assets/shared.css?v=8" as="style">
+<link rel="preconnect" href="https://ipapi.co">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Football Tables & Live Standings 2026 | SifuFinds</title>
+<meta name="description" content="Live football tables, standings and group stages for FIFA World Cup 2026, Premier League, LaLiga, Bundesliga, AFCON, CAF Champions League and all major competitions. Updated in real time.">
+<meta name="keywords" content="football tables 2026, World Cup 2026 groups standings, Premier League table, AFCON standings, CAF Champions League table, live football results, football league tables Africa">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Sifu Kai">
+<link rel="canonical" href="https://sifufinds.com/tables/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SifuFinds">
+<meta property="og:title" content="Football Tables & Live Standings 2026 | SifuFinds">
+<meta property="og:description" content="Live football standings for World Cup 2026, Premier League, AFCON, CAF CL and 200+ competitions worldwide. Updated every 15 minutes.">
+<meta property="og:url" content="https://sifufinds.com/tables/">
+<meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@sifufinds">
+<meta name="twitter:title" content="Football Tables & Live Standings | SifuFinds">
+<meta name="twitter:description" content="Live football standings for World Cup 2026 groups, Premier League, AFCON and 200+ competitions.">
+<meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"WebPage","@id":"https://sifufinds.com/tables/#webpage","name":"Football Tables & Live Standings 2026","description":"Real-time football standings, group tables, fixtures and results for 200+ competitions worldwide","url":"https://sifufinds.com/tables/","inLanguage":"en-GB","isPartOf":{"@id":"https://sifufinds.com/#website"}},
+  {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sifufinds.com/"},{"@type":"ListItem","position":2,"name":"Football Tables","item":"https://sifufinds.com/tables/"}]}
+]}
+</script>
+<link rel="stylesheet" href="../assets/shared.css?v=8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link rel="manifest" href="/manifest.json">
+<style>
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+.tb-wrap{display:flex;max-width:1260px;margin:0 auto;gap:0;min-height:80vh}
+.tb-sidebar{width:248px;flex-shrink:0;background:#fff;border-right:1px solid #e8e8e8;overflow-y:auto;max-height:calc(100vh - 112px);position:sticky;top:0;align-self:flex-start}
+.tb-main{flex:1;min-width:0;padding:12px}
+@media(max-width:767px){.tb-wrap{flex-direction:column}.tb-sidebar{width:100%;border-right:none;border-bottom:1px solid #e8e8e8;max-height:240px;position:static}.tb-main{padding:8px}}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.tb-hero{background:linear-gradient(135deg,var(--dk) 0%,var(--g) 55%,#2d9a52 100%);padding:20px 0 16px;border-bottom:3px solid #4ade80}
+.tb-hero h1{font-size:21px;font-weight:900;color:#fff;margin-bottom:4px;letter-spacing:-.3px;line-height:1.2}
+.tb-hero h1 em{color:#4ade80;font-style:normal}
+.tb-hero p{font-size:13px;color:rgba(255,255,255,.78);line-height:1.6;margin-bottom:12px;max-width:640px}
+.tb-stats{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:4px}
+.tb-stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:8px 14px}
+.tb-stat-n{font-size:21px;font-weight:800;color:#fff;line-height:1}
+.tb-stat-l{font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;text-transform:uppercase;letter-spacing:.3px}
+.tb-update{font-size:11px;color:rgba(255,255,255,.45);margin-top:5px;display:flex;align-items:center;gap:6px}
+.tb-live-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;animation:pulse 1s infinite}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+.sb-sec{border-bottom:1px solid #f0f0f0}
+.sb-sec-hdr{display:flex;align-items:center;gap:7px;width:100%;background:none;border:none;padding:10px 14px;font-size:12.5px;font-weight:700;color:#1a1a1a;cursor:pointer;text-align:left;font-family:inherit}
+.sb-sec-hdr:hover{background:#f6f6f6}
+.sb-chev{margin-left:auto;font-size:10px;color:#bbb;transition:transform .2s}
+.sb-open>.sb-sec-hdr .sb-chev{transform:rotate(180deg)}
+.sb-body{display:none}.sb-open>.sb-body{display:block}
+.sb-region{border-left:2px solid #eee;margin:0 0 3px 26px}
+.sb-region-lbl{font-size:9px;font-weight:800;color:#bbb;text-transform:uppercase;letter-spacing:.6px;padding:7px 10px 2px}
+.sb-item{display:flex;align-items:center;gap:7px;width:100%;background:none;border:none;padding:5px 10px 5px 10px;font-size:12px;color:#555;cursor:pointer;text-align:left;font-family:inherit;transition:all .12s;border-left:2px solid transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}
+.sb-item:hover{background:#f0f7f2;color:#1a6b35}
+.sb-item.on{background:#edf7f0;color:#1a6b35;border-left-color:#4ade80;font-weight:600}
+.sb-live-badge{background:#ef4444;color:#fff;font-size:8.5px;font-weight:800;padding:1px 5px;border-radius:3px;margin-left:auto;flex-shrink:0}
+.sb-sep{height:1px;background:#f0f0f0;margin:4px 14px}
+
+/* ── Live Ticker ──────────────────────────────────────────────────────────── */
+.live-ticker{background:linear-gradient(90deg,#0a3d1e,#1a6b35);border-radius:10px;margin-bottom:10px;overflow:hidden;display:none}
+.live-ticker.show{display:block}
+.lt-hdr{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.lt-hdr-txt{font-size:12px;font-weight:700;color:#fff}
+.lt-count{background:#ef4444;color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:10px}
+.lt-matches{display:flex;gap:8px;padding:8px 14px;overflow-x:auto;scrollbar-width:none}
+.lt-matches::-webkit-scrollbar{display:none}
+.lt-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:8px 12px;flex-shrink:0;min-width:180px}
+.lt-comp{font-size:9px;color:rgba(255,255,255,.6);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.lt-score{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#fff}
+.lt-team{font-size:11px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lt-goals{background:rgba(0,0,0,.35);border-radius:5px;padding:2px 8px;font-size:14px;font-weight:900;color:#4ade80;min-width:42px;text-align:center}
+.lt-min{font-size:10px;color:#4ade80;font-weight:700;text-align:center;margin-top:4px}
+
+/* ── Competition cards ────────────────────────────────────────────────────── */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px;margin-bottom:14px}
+.comp-card{background:#fff;border:1px solid #e8e8e8;border-radius:11px;padding:13px 14px;cursor:pointer;transition:all .18s;display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden}
+.comp-card:hover{box-shadow:0 5px 18px rgba(0,0,0,.11);transform:translateY(-2px);border-color:#ccc}
+.comp-card.active{border-color:var(--g);box-shadow:0 0 0 2px rgba(26,107,53,.2)}
+.comp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.comp-emoji{font-size:22px;line-height:1;margin-bottom:3px}
+.comp-name{font-size:12.5px;font-weight:700;color:#111;line-height:1.3}
+.comp-sub{font-size:11px;color:#999}
+.comp-live-pill{display:inline-flex;align-items:center;gap:4px;background:#fef2f2;color:#ef4444;border:1px solid #fecaca;border-radius:4px;font-size:9.5px;font-weight:700;padding:2px 7px;margin-top:3px;width:fit-content}
+.comp-live-dot{width:5px;height:5px;background:#ef4444;border-radius:50%;animation:pulse 1s infinite}
+
+/* ── Section header ───────────────────────────────────────────────────────── */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #eee}
+.sec-hdr h2{font-size:15px;font-weight:800;color:#111;display:flex;align-items:center;gap:7px}
+.sec-hdr-meta{font-size:11px;color:#aaa;font-weight:500}
+
+/* ── Standing table ───────────────────────────────────────────────────────── */
+.st-panel{background:#fff;border:1px solid #e8e8e8;border-radius:12px;overflow:hidden;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.st-head{background:linear-gradient(135deg,var(--dk),var(--g));padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.st-head-title{font-size:13px;font-weight:800;color:#fff;display:flex;align-items:center;gap:6px}
+.st-head-stage{font-size:10px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.15);border-radius:4px;padding:2px 8px}
+.st-tabs{display:flex;gap:1px;background:#f4f4f0;border-bottom:1px solid #e8e8e8}
+.st-tab{padding:7px 14px;font-size:12px;font-weight:600;color:#888;background:none;border:none;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;transition:all .15s}
+.st-tab:hover{color:#555}
+.st-tab.on{color:var(--g);border-bottom-color:var(--g);background:#fff}
+.st-content{padding:0}
+.st-pane{display:none}.st-pane.on{display:block}
+
+/* Standing table rows */
+.stt{width:100%;border-collapse:collapse;font-size:12.5px}
+.stt thead th{background:#f8f8f6;padding:6px 8px;text-align:center;font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #eee}
+.stt thead th:first-child,.stt thead th:nth-child(2){text-align:left}
+.stt tbody tr{border-bottom:1px solid #f4f4f0;transition:background .12s}
+.stt tbody tr:last-child{border:none}
+.stt tbody tr:hover{background:#fafaf8}
+.stt td{padding:7px 8px;text-align:center;vertical-align:middle}
+.stt td:first-child{width:30px;font-size:13px;font-weight:800;color:#ccc;text-align:center}
+.stt td:nth-child(2){text-align:left;font-weight:700;color:#111;min-width:130px}
+.stt td:last-child{font-size:14px;font-weight:900;color:var(--g)}
+.stt-pos{display:inline-block;width:22px;height:22px;border-radius:5px;font-size:11px;font-weight:800;line-height:22px;text-align:center;color:#fff;background:#bbb}
+.stt-pos.q{background:var(--g)}.stt-pos.q3{background:#3b82f6}.stt-pos.rel{background:#ef4444}
+.stt-team{display:flex;align-items:center;gap:6px}
+.stt-flag{font-size:16px;line-height:1}
+.stt-form{display:flex;gap:2px}
+.stt-form span{width:15px;height:15px;border-radius:3px;font-size:8px;font-weight:800;line-height:15px;text-align:center;color:#fff;display:inline-block}
+.stt-form .w{background:#16a34a}.stt-form .d{background:#d97706}.stt-form .l{background:#dc2626}
+
+/* ── Groups layout ────────────────────────────────────────────────────────── */
+.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+@media(max-width:600px){.groups-grid{grid-template-columns:1fr}}
+
+/* ── Fixtures list ────────────────────────────────────────────────────────── */
+.fix-list{padding:8px 0}
+.fix-day{font-size:10px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:.5px;padding:6px 14px 3px}
+.fix-row{display:flex;align-items:center;padding:8px 14px;border-bottom:1px solid #f4f4f0;gap:8px;cursor:default;transition:background .12s}
+.fix-row:hover{background:#fafaf8}
+.fix-row:last-child{border:none}
+.fix-time{font-size:11px;font-weight:700;color:#888;width:60px;flex-shrink:0;text-align:right}
+.fix-time.live{color:#ef4444;animation:pulse 1s infinite}
+.fix-time.ft{color:#bbb}
+.fix-teams{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:700}
+.fix-home,.fix-away{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fix-home{text-align:right}
+.fix-away{text-align:left}
+.fix-score{font-size:14px;font-weight:900;color:#111;background:#f4f4f0;border-radius:6px;padding:3px 10px;min-width:48px;text-align:center;flex-shrink:0}
+.fix-score.live{background:#fef2f2;color:#ef4444}
+.fix-score.ns{background:#f4f4f0;color:#bbb;font-size:12px;font-weight:700}
+.fix-venue{font-size:10px;color:#bbb;width:80px;flex-shrink:0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ── Filter bar ───────────────────────────────────────────────────────────── */
+.flt-bar{background:#fff;border:1px solid #e8e8e8;border-radius:10px;padding:9px 12px;margin-bottom:10px;display:flex;align-items:center;flex-wrap:wrap;gap:7px}
+.flt-search{flex:1;min-width:160px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:12.5px;font-family:inherit;outline:none}
+.flt-search:focus{border-color:var(--g)}
+.flt-btn{padding:5px 11px;border:1px solid #ddd;border-radius:6px;font-size:12px;font-weight:600;background:#fff;color:#555;cursor:pointer;transition:all .15s;font-family:inherit;white-space:nowrap}
+.flt-btn:hover{border-color:var(--g);color:var(--g)}
+.flt-btn.on{background:var(--g);color:#fff;border-color:var(--g)}
+
+/* ── Loading / empty states ───────────────────────────────────────────────── */
+.tb-loading{text-align:center;padding:48px 20px;color:#888;font-size:14px}
+.tb-spinner{display:inline-block;width:30px;height:30px;border:3px solid #e8e8e8;border-top-color:var(--g);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:10px}
+.tb-empty{background:#fff;border:2px dashed #e0e0e0;border-radius:12px;padding:36px;text-align:center;color:#bbb;font-size:14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ── Refresh bar ──────────────────────────────────────────────────────────── */
+.ref-bar{font-size:11px;color:#888;display:flex;align-items:center;gap:5px;margin-bottom:8px}
+.ref-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block}
+.ref-dot.stale{background:#f59e0b}
+
+/* CWV */
+.sec-bg~.sec-bg{content-visibility:auto;contain-intrinsic-size:0 400px}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="tbar">
+  <div class="tbar-l">
+    <a href="../">🏠 Home</a>
+    <a href="../countries/">🌍 Africa</a>
+    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <button onclick="openPage('about')">18+ Only</button>
+  </div>
+  <div class="tbar-r">
+    <span class="csel-lbl">Your Country:</span>
+    <select class="csel" id="ctySel" onchange="changeCountry(this.value)">
+      <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
+      <option value="KE">🇰🇪 Kenya · KSh KES</option>
+      <option value="GH">🇬🇭 Ghana · GH₵ GHS</option>
+      <option value="ZA">🇿🇦 South Africa · R ZAR</option>
+      <option value="TZ">🇹🇿 Tanzania · TSh TZS</option>
+      <option value="UG">🇺🇬 Uganda · USh UGX</option>
+      <option value="ZM">🇿🇲 Zambia · ZK ZMW</option>
+      <option value="ET">🇪🇹 Ethiopia · Br ETB</option>
+      <option value="CI">🇨🇮 Ivory Coast · CFA XOF</option>
+      <option value="CM">🇨🇲 Cameroon · CFA XAF</option>
+      <option value="SN">🇸🇳 Senegal · CFA XOF</option>
+      <option value="RW">🇷🇼 Rwanda · RWF</option>
+      <option value="ZW">🇿🇼 Zimbabwe · USD</option>
+      <option value="MW">🇲🇼 Malawi · MWK</option>
+      <option value="MZ">🇲🇿 Mozambique · MZN</option>
+      <option value="AO">🇦🇴 Angola · AOA</option>
+      <option value="CD">🇨🇩 DR Congo · CDF</option>
+      <option value="BW">🇧🇼 Botswana · BWP</option>
+      <option value="NA">🇳🇦 Namibia · NAD</option>
+      <option value="EG">🇪🇬 Egypt · EGP</option>
+      <option value="MA">🇲🇦 Morocco · MAD</option>
+      <option value="SL">🇸🇱 Sierra Leone · Le SLL</option>
+      <option value="LR">🇱🇷 Liberia · $ LRD</option>
+    </select>
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="mnav">
+  <div class="mnav-in">
+    <a class="logo" href="../">
+      <img src="../assets/icon.png" height="38" alt="SifuFinds" style="display:block;object-fit:contain" fetchpriority="high">
+      SifuFinds
+    </a>
+    <div class="ntabs">
+      <a class="nt" href="../">⭐ Bonuses</a>
+      <a class="nt" href="../tips/">💡 Predict</a>
+      <a class="nt" href="../odds/">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
+      <a class="nt on" href="./">📋 Tables</a>
+      <a class="nt" href="../countries/">🌍 Countries</a>
+      <a class="nt" href="../casino/">🎰 Casino</a>
+      <a class="nt" href="../blog/">📰 Blog</a>
+    </div>
+    <div class="srch-wrap">
+      <input class="srch-inp" id="globalSrch" type="text" placeholder="Search competition…" oninput="filterCompetitions(this.value)" autocomplete="off">
+      <button class="srch-clear" id="srchClear" onclick="clearGlobalSearch()" title="Clear">×</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="tb-hero">
+  <div class="wrap">
+    <h1>⚽ Football Tables &amp; <em>Live Standings</em></h1>
+    <p>Real-time group tables, league standings, knockout brackets and live scores for every major football competition worldwide — from the FIFA World Cup to the NPFL.</p>
+    <div class="tb-stats">
+      <div class="tb-stat"><div class="tb-stat-n" id="statComp">200+</div><div class="tb-stat-l">competitions tracked</div></div>
+      <div class="tb-stat"><div class="tb-stat-n" id="statLive">–</div><div class="tb-stat-l">live matches now</div></div>
+      <div class="tb-stat"><div class="tb-stat-n" id="statToday">–</div><div class="tb-stat-l">matches today</div></div>
+    </div>
+    <div class="tb-update"><span class="tb-live-dot"></span><span id="heroUpdated">Loading live data…</span></div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="tb-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="tb-sidebar" id="sidebar">
+
+    <!-- International -->
+    <div class="sb-sec sb-open" id="sec-intl">
+      <button class="sb-sec-hdr" onclick="toggleSec('sec-intl')">
+        🌐 International <span class="sb-chev">▾</span>
+      </button>
+      <div class="sb-body">
+        <div class="sb-region">
+          <div class="sb-region-lbl">FIFA</div>
+          <button class="sb-item on" data-comp="world-cup-2026" onclick="selectComp('world-cup-2026',this)">🏆 World Cup 2026<span class="sb-live-badge">LIVE</span></button>
+          <button class="sb-item" data-comp="wwc-2023" onclick="selectComp('wwc-2023',this)">🏆 Women's WC</button>
+        </div>
+        <div class="sb-region">
+          <div class="sb-region-lbl">UEFA</div>
+          <button class="sb-item" data-comp="champions-league" onclick="selectComp('champions-league',this)">⭐ Champions League</button>
+          <button class="sb-item" data-comp="europa-league" onclick="selectComp('europa-league',this)">🏅 Europa League</button>
+          <button class="sb-item" data-comp="conference-league" onclick="selectComp('conference-league',this)">🥉 Conference League</button>
+          <button class="sb-item" data-comp="euro-nations-league" onclick="selectComp('euro-nations-league',this)">🌍 Nations League</button>
+          <button class="sb-item" data-comp="wsl" onclick="selectComp('wsl',this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Women's Super League</button>
+        </div>
+        <div class="sb-region">
+          <div class="sb-region-lbl">CAF / Africa</div>
+          <button class="sb-item" data-comp="afcon" onclick="selectComp('afcon',this)">🌍 AFCON 2025</button>
+          <button class="sb-item" data-comp="caf-champions-league" onclick="selectComp('caf-champions-league',this)">🏆 CAF Champions League<span class="sb-live-badge">LIVE</span></button>
+          <button class="sb-item" data-comp="caf-confederation-cup" onclick="selectComp('caf-confederation-cup',this)">🏅 CAF Confederation Cup</button>
+          <button class="sb-item" data-comp="wafcon" onclick="selectComp('wafcon',this)">🌍 WAFCON</button>
+        </div>
+        <div class="sb-region">
+          <div class="sb-region-lbl">CONMEBOL</div>
+          <button class="sb-item" data-comp="copa-libertadores" onclick="selectComp('copa-libertadores',this)">🏆 Copa Libertadores<span class="sb-live-badge">ON</span></button>
+          <button class="sb-item" data-comp="copa-sudamericana" onclick="selectComp('copa-sudamericana',this)">🏅 Copa Sudamericana</button>
+        </div>
+        <div class="sb-region">
+          <div class="sb-region-lbl">CONCACAF</div>
+          <button class="sb-item" data-comp="concacaf-champions-cup" onclick="selectComp('concacaf-champions-cup',this)">🏆 Champions Cup</button>
+          <button class="sb-item" data-comp="gold-cup" onclick="selectComp('gold-cup',this)">🏅 Gold Cup</button>
+        </div>
+        <div class="sb-region">
+          <div class="sb-region-lbl">AFC</div>
+          <button class="sb-item" data-comp="afc-champions-league" onclick="selectComp('afc-champions-league',this)">🏆 AFC Champions League</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Africa -->
+    <div class="sb-sec" id="sec-africa">
+      <button class="sb-sec-hdr" onclick="toggleSec('sec-africa')">
+        🌍 Africa <span class="sb-chev">▾</span>
+      </button>
+      <div class="sb-body">
+        <button class="sb-item" data-comp="npfl" onclick="selectComp('npfl',this)">🇳🇬 NPFL — Nigeria<span class="sb-live-badge">ON</span></button>
+        <button class="sb-item" data-comp="psl" onclick="selectComp('psl',this)">🇿🇦 PSL — South Africa</button>
+        <button class="sb-item" data-comp="kpl" onclick="selectComp('kpl',this)">🇰🇪 KPL — Kenya<span class="sb-live-badge">ON</span></button>
+        <button class="sb-item" data-comp="gpl" onclick="selectComp('gpl',this)">🇬🇭 GPL — Ghana<span class="sb-live-badge">ON</span></button>
+        <button class="sb-item" data-comp="botola" onclick="selectComp('botola',this)">🇲🇦 Botola — Morocco<span class="sb-live-badge">ON</span></button>
+        <button class="sb-item" data-comp="egyptian-pl" onclick="selectComp('egyptian-pl',this)">🇪🇬 Egyptian PL</button>
+        <button class="sb-item" data-comp="mtn-ligue1-ci" onclick="selectComp('mtn-ligue1-ci',this)">🇨🇮 MTN Ligue 1</button>
+        <button class="sb-item" data-comp="elite-one-cm" onclick="selectComp('elite-one-cm',this)">🇨🇲 MTN Elite One</button>
+        <button class="sb-item" data-comp="nbc-pl-tz" onclick="selectComp('nbc-pl-tz',this)">🇹🇿 NBC Premier League</button>
+        <button class="sb-item" data-comp="supl-ug" onclick="selectComp('supl-ug',this)">🇺🇬 StarTimes Uganda PL</button>
+        <button class="sb-item" data-comp="castle-zw" onclick="selectComp('castle-zw',this)">🇿🇼 Castle Lager PL</button>
+        <button class="sb-item" data-comp="super-league-zm" onclick="selectComp('super-league-zm',this)">🇿🇲 Zambia Super League</button>
+        <button class="sb-item" data-comp="algerian-pl" onclick="selectComp('algerian-pl',this)">🇩🇿 Ligue Pro (Algeria)</button>
+        <button class="sb-item" data-comp="senegal-pl" onclick="selectComp('senegal-pl',this)">🇸🇳 Ligue 1 (Senegal)</button>
+      </div>
+    </div>
+
+    <!-- Europe -->
+    <div class="sb-sec" id="sec-europe">
+      <button class="sb-sec-hdr" onclick="toggleSec('sec-europe')">
+        🌍 Europe <span class="sb-chev">▾</span>
+      </button>
+      <div class="sb-body">
+        <button class="sb-item" data-comp="premier-league" onclick="selectComp('premier-league',this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
+        <button class="sb-item" data-comp="championship" onclick="selectComp('championship',this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Championship</button>
+        <button class="sb-item" data-comp="fa-cup" onclick="selectComp('fa-cup',this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 FA Cup</button>
+        <div class="sb-sep"></div>
+        <button class="sb-item" data-comp="laliga" onclick="selectComp('laliga',this)">🇪🇸 LaLiga</button>
+        <button class="sb-item" data-comp="copa-del-rey" onclick="selectComp('copa-del-rey',this)">🇪🇸 Copa del Rey</button>
+        <div class="sb-sep"></div>
+        <button class="sb-item" data-comp="bundesliga" onclick="selectComp('bundesliga',this)">🇩🇪 Bundesliga</button>
+        <button class="sb-item" data-comp="2-bundesliga" onclick="selectComp('2-bundesliga',this)">🇩🇪 2. Bundesliga</button>
+        <div class="sb-sep"></div>
+        <button class="sb-item" data-comp="serie-a" onclick="selectComp('serie-a',this)">🇮🇹 Serie A</button>
+        <button class="sb-item" data-comp="serie-b" onclick="selectComp('serie-b',this)">🇮🇹 Serie B</button>
+        <div class="sb-sep"></div>
+        <button class="sb-item" data-comp="ligue-1" onclick="selectComp('ligue-1',this)">🇫🇷 Ligue 1</button>
+        <div class="sb-sep"></div>
+        <button class="sb-item" data-comp="eredivisie" onclick="selectComp('eredivisie',this)">🇳🇱 Eredivisie</button>
+        <button class="sb-item" data-comp="primeira-liga" onclick="selectComp('primeira-liga',this)">🇵🇹 Primeira Liga</button>
+        <button class="sb-item" data-comp="pro-league" onclick="selectComp('pro-league',this)">🇧🇪 Pro League</button>
+        <button class="sb-item" data-comp="super-lig" onclick="selectComp('super-lig',this)">🇹🇷 Süper Lig</button>
+        <button class="sb-item" data-comp="scottish-pl" onclick="selectComp('scottish-pl',this)">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scottish PL</button>
+      </div>
+    </div>
+
+    <!-- Americas -->
+    <div class="sb-sec" id="sec-americas">
+      <button class="sb-sec-hdr" onclick="toggleSec('sec-americas')">
+        🌎 Americas <span class="sb-chev">▾</span>
+      </button>
+      <div class="sb-body">
+        <button class="sb-item" data-comp="mls" onclick="selectComp('mls',this)">🇺🇸 MLS<span class="sb-live-badge">ON</span></button>
+        <button class="sb-item" data-comp="liga-mx" onclick="selectComp('liga-mx',this)">🇲🇽 Liga MX</button>
+        <button class="sb-item" data-comp="brasileirao" onclick="selectComp('brasileirao',this)">🇧🇷 Brasileirão<span class="sb-live-badge">ON</span></button>
+        <button class="sb-item" data-comp="liga-profesional" onclick="selectComp('liga-profesional',this)">🇦🇷 Liga Profesional</button>
+        <button class="sb-item" data-comp="primera-division-cl" onclick="selectComp('primera-division-cl',this)">🇨🇱 Primera División</button>
+        <button class="sb-item" data-comp="nwsl" onclick="selectComp('nwsl',this)">🇺🇸 NWSL (Women)</button>
+      </div>
+    </div>
+
+    <!-- Asia / Pacific -->
+    <div class="sb-sec" id="sec-asia">
+      <button class="sb-sec-hdr" onclick="toggleSec('sec-asia')">
+        🌏 Asia &amp; Pacific <span class="sb-chev">▾</span>
+      </button>
+      <div class="sb-body">
+        <button class="sb-item" data-comp="j-league" onclick="selectComp('j-league',this)">🇯🇵 J.League</button>
+        <button class="sb-item" data-comp="k-league" onclick="selectComp('k-league',this)">🇰🇷 K League 1</button>
+        <button class="sb-item" data-comp="saudi-pl" onclick="selectComp('saudi-pl',this)">🇸🇦 Saudi Pro League</button>
+        <button class="sb-item" data-comp="a-league" onclick="selectComp('a-league',this)">🇦🇺 A-League</button>
+        <button class="sb-item" data-comp="ipl-india" onclick="selectComp('ipl-india',this)">🇮🇳 ISL (India)</button>
+      </div>
+    </div>
+
+    <!-- Women's -->
+    <div class="sb-sec" id="sec-womens">
+      <button class="sb-sec-hdr" onclick="toggleSec('sec-womens')">
+        ⚽ Women's Football <span class="sb-chev">▾</span>
+      </button>
+      <div class="sb-body">
+        <button class="sb-item" data-comp="wwc-2023" onclick="selectComp('wwc-2023',this)">🏆 FIFA Women's WC</button>
+        <button class="sb-item" data-comp="wafcon" onclick="selectComp('wafcon',this)">🌍 WAFCON</button>
+        <button class="sb-item" data-comp="wsl" onclick="selectComp('wsl',this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Women's Super League</button>
+        <button class="sb-item" data-comp="liga-f" onclick="selectComp('liga-f',this)">🇪🇸 Liga F</button>
+        <button class="sb-item" data-comp="frauen-bl" onclick="selectComp('frauen-bl',this)">🇩🇪 Frauen-Bundesliga</button>
+        <button class="sb-item" data-comp="division-1-feminine" onclick="selectComp('division-1-feminine',this)">🇫🇷 Division 1 Féminine</button>
+        <button class="sb-item" data-comp="nwsl" onclick="selectComp('nwsl',this)">🇺🇸 NWSL</button>
+        <button class="sb-item" data-comp="a-league-women" onclick="selectComp('a-league-women',this)">🇦🇺 A-League Women</button>
+        <button class="sb-item" data-comp="caf-women-cl" onclick="selectComp('caf-women-cl',this)">🌍 CAF Women's CL</button>
+        <button class="sb-item" data-comp="libertadores-femenina" onclick="selectComp('libertadores-femenina',this)">🏆 Libertadores Fem.</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="tb-main">
+
+    <!-- LIVE TICKER -->
+    <div class="live-ticker" id="liveTicker">
+      <div class="lt-hdr">
+        <span class="tb-live-dot"></span>
+        <span class="lt-hdr-txt">LIVE NOW</span>
+        <span class="lt-count" id="liveCount">0</span>
+      </div>
+      <div class="lt-matches" id="liveMatches"></div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="flt-bar" id="filterBar">
+      <input class="flt-search" id="compSearch" type="text" placeholder="🔍 Search competitions, teams, countries…" oninput="filterCompetitions(this.value)" autocomplete="off">
+      <button class="flt-btn on" data-filter="all" onclick="setFilter('all',this)">All</button>
+      <button class="flt-btn" data-filter="live" onclick="setFilter('live',this)">🔴 Live</button>
+      <button class="flt-btn" data-filter="international" onclick="setFilter('international',this)">International</button>
+      <button class="flt-btn" data-filter="africa" onclick="setFilter('africa',this)">🌍 Africa</button>
+      <button class="flt-btn" data-filter="europe" onclick="setFilter('europe',this)">🌍 Europe</button>
+      <button class="flt-btn" data-filter="americas" onclick="setFilter('americas',this)">🌎 Americas</button>
+    </div>
+
+    <!-- FEATURED COMPETITIONS -->
+    <div id="featuredSection">
+      <div class="sec-hdr">
+        <h2>⭐ Featured Competitions</h2>
+        <span class="sec-hdr-meta" id="featuredMeta">Loading…</span>
+      </div>
+      <div class="comp-grid" id="compGrid">
+        <div class="tb-loading"><div class="tb-spinner"></div><br>Loading competitions…</div>
+      </div>
+    </div>
+
+    <!-- STANDINGS PANEL -->
+    <div id="standingsPanel" style="display:none">
+      <div class="ref-bar"><span class="ref-dot" id="refDot"></span><span id="refText">–</span></div>
+      <div id="standingsContent">
+        <div class="tb-loading"><div class="tb-spinner"></div><br>Loading standings…</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER (standard) -->
+<div style="background:#1a1a1a;color:#888;text-align:center;padding:14px 18px;font-size:11px;margin-top:auto">
+  <p>⚽ Football data refreshed automatically every 15 minutes via GitHub Actions · Data sourced from api-sports.io</p>
+  <p style="margin-top:4px">🔞 18+ · Gambling can be addictive. Please gamble responsibly. <a href="../about/" style="color:#4ade80">T&amp;Cs</a></p>
+</div>
+
+<script src="../assets/shared.js?v=10"></script>
+<script>
+const SITE={home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'};
+
+// ── State ──────────────────────────────────────────────────────────────────
+let activeComp='world-cup-2026';
+let activeFilter='all';
+let allComps=[];
+let liveRefreshTimer=null;
+
+// ── Sidebar toggle ─────────────────────────────────────────────────────────
+function toggleSec(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('sb-open');
+}
+
+// ── Select competition ─────────────────────────────────────────────────────
+function selectComp(id,btn){
+  activeComp=id;
+  document.querySelectorAll('.sb-item').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.comp-card').forEach(c=>c.classList.remove('active'));
+  if(btn) btn.classList.add('on');
+  document.querySelectorAll('[data-comp="'+id+'"]').forEach(el=>el.classList.add('on','active'));
+  loadStandings(id);
+}
+
+// ── Load standings ─────────────────────────────────────────────────────────
+async function loadStandings(id){
+  const panel=document.getElementById('standingsPanel');
+  const featured=document.getElementById('featuredSection');
+  const content=document.getElementById('standingsContent');
+  panel.style.display='block';
+  featured.style.display='none';
+  content.innerHTML='<div class="tb-loading"><div class="tb-spinner"></div><br>Loading '+id+' standings…</div>';
+
+  try{
+    const r=await fetch('../data/football/standings/'+id+'.json?t='+Date.now());
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    renderStandings(d);
+    updateRefBar(d.updated,'Standings updated');
+  }catch(e){
+    content.innerHTML='<div class="tb-empty"><strong>Standings not yet available</strong><br><span style="font-size:12px;color:#bbb">Data refreshes every 15 minutes via GitHub Actions.<br>Check back soon or browse another competition.</span></div>';
+  }
+}
+
+// ── Render standings (groups or league table) ──────────────────────────────
+function renderStandings(d){
+  const content=document.getElementById('standingsContent');
+  if(d.type==='groups') renderGroups(d,content);
+  else if(d.type==='league') renderLeague(d,content);
+  else content.innerHTML='<div class="tb-empty">No data available yet.</div>';
+}
+
+function renderGroups(d,el){
+  const nGroups=d.groups||[];
+  // summary header
+  const allFix=nGroups.flatMap(g=>g.fixtures||[]);
+  const played=allFix.filter(f=>f.status==='FT').length;
+  const upcoming=allFix.filter(f=>f.status==='NS').length;
+
+  el.innerHTML=`
+    <div class="st-panel">
+      <div class="st-head">
+        <div class="st-head-title">🏆 ${H(d.competition)} — Group Stage</div>
+        <div class="st-head-stage">${H(d.stage||'Group Stage')}</div>
+      </div>
+      <div class="st-tabs" id="grpTabsBar">
+        <button class="st-tab on" onclick="showGrpPane('grp-tables')">📊 Tables</button>
+        <button class="st-tab" onclick="showGrpPane('grp-fixtures')">📅 Fixtures</button>
+        <button class="st-tab" onclick="showGrpPane('grp-results')">✅ Results</button>
+      </div>
+      <div class="st-content">
+        <div class="st-pane on" id="grp-tables">
+          <div class="groups-grid" style="padding:12px">${nGroups.map(renderGroupTable).join('')}</div>
+        </div>
+        <div class="st-pane" id="grp-fixtures">
+          <div style="padding:8px 0">${renderFixturesList(allFix.filter(f=>f.status==='NS'))}</div>
+        </div>
+        <div class="st-pane" id="grp-results">
+          <div style="padding:8px 0">${renderFixturesList(allFix.filter(f=>f.status==='FT'))}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function showGrpPane(id){
+  document.querySelectorAll('.st-pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('#grpTabsBar .st-tab').forEach((t,i)=>{
+    const panes=['grp-tables','grp-fixtures','grp-results'];
+    t.classList.toggle('on',panes[i]===id);
+  });
+  const el=document.getElementById(id);
+  if(el) el.classList.add('on');
+}
+
+function renderGroupTable(g){
+  const teams=g.teams||[];
+  const totalPld=teams.reduce((a,t)=>a+(t.played||0),0);
+  const matchesPlayed=Math.round(totalPld/2);
+  return `<div class="st-panel">
+    <div class="st-head" style="padding:8px 12px">
+      <div class="st-head-title" style="font-size:12px">${H(g.name)}</div>
+      <div style="font-size:10px;color:rgba(255,255,255,.55)">${matchesPlayed} match${matchesPlayed!==1?'es':''} played</div>
+    </div>
+    <table class="stt">
+      <thead><tr>
+        <th>#</th><th>Team</th><th title="Played">P</th><th title="Won">W</th><th title="Drawn">D</th><th title="Lost">L</th><th title="Goals For">GF</th><th title="Goals Against">GA</th><th title="Goal Difference">GD</th><th title="Form">Form</th><th title="Points">Pts</th>
+      </tr></thead>
+      <tbody>${teams.map((t,i)=>renderTeamRow(t,i,teams.length)).join('')}</tbody>
+    </table>
+    ${g.fixtures&&g.fixtures.length?`<div style="padding:6px 12px 10px;border-top:1px solid #f0f0f0">
+      <div style="font-size:10px;color:#aaa;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px">Next Fixtures</div>
+      ${g.fixtures.filter(f=>f.status==='NS').slice(0,2).map(f=>`
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px;padding:3px 0;border-bottom:1px solid #f8f8f8">
+          <span style="color:#bbb;font-size:10px;min-width:48px">${H(f.date)}</span>
+          <span style="flex:1;text-align:right">${H(f.hFlag)} ${H(f.home)}</span>
+          <span style="background:#f4f4f0;border-radius:4px;padding:2px 7px;font-size:10px;font-weight:700;color:#aaa">vs</span>
+          <span style="flex:1">${H(f.away)} ${H(f.aFlag)}</span>
+          <span style="color:#bbb;font-size:10px;min-width:48px;text-align:right">${H(f.time)}</span>
+        </div>`).join('')}
+    </div>`:''}`+
+  `</div>`;
+}
+
+function renderTeamRow(t,i,total){
+  const q = i < 2 ? 'q' : (i === 2 ? 'q3' : '');
+  const form=(t.form||[]).slice(-5).map(r=>`<span class="${r.toLowerCase()}">${r}</span>`).join('');
+  const gd=(t.gd||0)>0?'+'+t.gd:(t.gd||0);
+  return `<tr>
+    <td><span class="stt-pos ${q}">${t.pos}</span></td>
+    <td><div class="stt-team"><span class="stt-flag">${H(t.flag||'')}</span><span>${H(t.team)}</span></div></td>
+    <td>${t.played||0}</td><td>${t.won||0}</td><td>${t.drawn||0}</td><td>${t.lost||0}</td>
+    <td>${t.gf||0}</td><td>${t.ga||0}</td>
+    <td style="font-weight:700;color:${(t.gd||0)>0?'var(--g)':(t.gd||0)<0?'var(--red)':'#888'}">${gd}</td>
+    <td><div class="stt-form">${form}</div></td>
+    <td>${t.points||0}</td>
+  </tr>`;
+}
+
+function renderLeague(d,el){
+  const teams=d.standings||[];
+  el.innerHTML=`
+    <div class="st-panel">
+      <div class="st-head">
+        <div class="st-head-title">${H(d.competition)}</div>
+        <div class="st-head-stage">${H(d.stage||'League Table')}</div>
+      </div>
+      <div class="st-tabs" id="lgeTabsBar">
+        <button class="st-tab on" onclick="showLgePane('lge-table')">📊 Table</button>
+        <button class="st-tab" onclick="showLgePane('lge-fixtures')">📅 Fixtures</button>
+        <button class="st-tab" onclick="showLgePane('lge-results')">✅ Results</button>
+      </div>
+      <div class="st-content">
+        <div class="st-pane on" id="lge-table">
+          <table class="stt">
+            <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Form</th><th>Pts</th></tr></thead>
+            <tbody>${teams.map((t,i)=>renderTeamRow(t,i,teams.length)).join('')}</tbody>
+          </table>
+        </div>
+        <div class="st-pane" id="lge-fixtures">
+          <div class="fix-list">${renderFixturesList(d.fixtures||[])}</div>
+        </div>
+        <div class="st-pane" id="lge-results">
+          <div class="fix-list">${renderFixturesList((d.results||[]))}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderFixturesList(fixtures){
+  if(!fixtures||!fixtures.length) return '<div class="tb-empty" style="margin:12px">No fixtures to display.</div>';
+  return fixtures.map(f=>{
+    const isLive=f.status==='LIVE'||f.status==='1H'||f.status==='2H'||f.status==='HT';
+    const isFt=f.status==='FT';
+    const scoreClass=isLive?'live':isFt?'':'ns';
+    const scoreLabel=isFt?(f.hScore+'-'+f.aScore):isLive?('<span style="animation:pulse 1s infinite;display:inline-block">'+(f.hScore||0)+'-'+(f.aScore||0)+'</span>'):H(f.time||'TBD');
+    return `<div class="fix-row">
+      <span class="fix-time ${isLive?'live':isFt?'ft':''}">${isFt?'FT':isLive?(f.minute||'–')+"'":H(f.time||'TBD')}</span>
+      <div class="fix-teams">
+        <span class="fix-home">${H(f.hFlag||'')} ${H(f.home)}</span>
+        <span class="fix-score ${scoreClass}">${isFt?(f.hScore+' – '+f.aScore):isLive?((f.hScore||0)+' – '+(f.aScore||0)):H(f.time||'vs')}</span>
+        <span class="fix-away">${H(f.away)} ${H(f.aFlag||'')}</span>
+      </div>
+      <span class="fix-venue" title="${H(f.date||'')+' · '+(f.venue||'')}">${H(f.date||'')}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── Featured competitions grid ─────────────────────────────────────────────
+function renderFeaturedGrid(comps){
+  const grid=document.getElementById('compGrid');
+  const meta=document.getElementById('featuredMeta');
+  const featured=comps.filter(c=>['world-cup-2026','champions-league','afcon','caf-champions-league','premier-league','laliga','bundesliga','serie-a','ligue-1','copa-libertadores','mls','brasileirao','npfl'].includes(c.id));
+  meta.textContent=`${comps.filter(c=>c.live||c.current).length} live / active right now`;
+  if(!featured.length){grid.innerHTML='<div class="tb-empty">No competitions found.</div>';return;}
+  grid.innerHTML=featured.map(c=>`
+    <div class="comp-card ${c.id===activeComp?'active':''}" data-comp="${c.id}" data-region="${c.region||''}" data-type="${c.type||''}" data-live="${c.live||c.current?'1':'0'}" onclick="selectComp('${c.id}',this)" style="--card-color:${c.color||'var(--g)'}">
+      <style>.comp-card[data-comp="${c.id}"]::before{background:${c.color||'var(--g)'}}</style>
+      <div class="comp-emoji">${c.emoji||'⚽'}</div>
+      <div class="comp-name">${H(c.shortName||c.name)}</div>
+      <div class="comp-sub">${H(c.stage||'')} · ${c.season||2026}</div>
+      ${c.live?'<div class="comp-live-pill"><span class="comp-live-dot"></span> LIVE</div>':c.current?'<div class="comp-live-pill" style="color:#d97706;border-color:#fcd34d;background:#fffbeb">● In Progress</div>':''}
+    </div>`).join('');
+  allComps=comps;
+}
+
+// ── Filter competitions ────────────────────────────────────────────────────
+function setFilter(f,btn){
+  activeFilter=f;
+  document.querySelectorAll('.flt-btn').forEach(b=>b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  filterCompetitions(document.getElementById('compSearch').value||document.getElementById('globalSrch').value);
+}
+
+function filterCompetitions(q=''){
+  const cards=document.querySelectorAll('.comp-card');
+  const lq=(q||'').toLowerCase();
+  cards.forEach(c=>{
+    const name=(c.querySelector('.comp-name')||{}).textContent||'';
+    const sub=(c.querySelector('.comp-sub')||{}).textContent||'';
+    const region=c.dataset.region||'';
+    const type=c.dataset.type||'';
+    const isLive=c.dataset.live==='1';
+    let show=true;
+    if(lq) show=name.toLowerCase().includes(lq)||sub.toLowerCase().includes(lq)||region.includes(lq);
+    if(show&&activeFilter!=='all'){
+      if(activeFilter==='live') show=isLive;
+      else if(activeFilter==='africa') show=region==='africa'||region==='nigeria'||region==='kenya'||region==='south-africa'||region==='ghana'||region==='morocco'||region==='egypt'||region==='tanzania'||region==='uganda'||region==='zambia'||region==='zimbabwe';
+      else if(activeFilter==='europe') show=region==='england'||region==='spain'||region==='germany'||region==='italy'||region==='france'||region==='europe'||region==='netherlands'||region==='portugal';
+      else if(activeFilter==='americas') show=region==='usa'||region==='brazil'||region==='mexico'||region==='argentina'||region==='south-america';
+      else if(activeFilter==='international') show=type==='international';
+    }
+    c.style.display=show?'':'none';
+  });
+  // show/hide global search clear
+  const clr=document.getElementById('srchClear');
+  if(clr) clr.classList.toggle('show',!!(q&&q.length));
+}
+
+function clearGlobalSearch(){
+  document.getElementById('globalSrch').value='';
+  document.getElementById('compSearch').value='';
+  filterCompetitions('');
+}
+
+// ── Live data ──────────────────────────────────────────────────────────────
+async function loadLiveData(){
+  try{
+    const r=await fetch('../data/football/live.json?t='+Date.now());
+    if(!r.ok) return;
+    const d=await r.json();
+    const matches=d.matches||[];
+    const live=matches.filter(m=>m.status==='LIVE'||m.status==='1H'||m.status==='2H'||m.status==='HT');
+    document.getElementById('statLive').textContent=live.length||'0';
+    document.getElementById('statToday').textContent=matches.length||'0';
+    const ticker=document.getElementById('liveTicker');
+    const liveMatchesEl=document.getElementById('liveMatches');
+    document.getElementById('liveCount').textContent=live.length;
+    if(live.length){
+      ticker.classList.add('show');
+      liveMatchesEl.innerHTML=live.map(m=>`
+        <div class="lt-card">
+          <div class="lt-comp">${H(m.competition||'Football')}</div>
+          <div class="lt-score">
+            <span class="lt-team">${H(m.home)}</span>
+            <span class="lt-goals">${m.hScore||0}–${m.aScore||0}</span>
+            <span class="lt-team" style="text-align:right">${H(m.away)}</span>
+          </div>
+          <div class="lt-min">${m.minute||'–'}'</div>
+        </div>`).join('');
+    } else {
+      ticker.classList.remove('show');
+    }
+    const upd=d.updated?new Date(d.updated):null;
+    if(upd) document.getElementById('heroUpdated').textContent='Updated '+upd.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' · '+upd.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  }catch(_){}
+}
+
+function updateRefBar(iso,label){
+  const dot=document.getElementById('refDot');
+  const txt=document.getElementById('refText');
+  if(!iso){if(txt)txt.textContent='–';return;}
+  const d=new Date(iso);
+  const age=(Date.now()-d.getTime())/1000/60;
+  if(dot) dot.classList.toggle('stale',age>20);
+  if(txt) txt.textContent=(label||'Updated')+' '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})+' · '+d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})+(age<1?' (just now)':age<60?' ('+Math.round(age)+'m ago)':'');
+}
+
+// ── Bootstrap ──────────────────────────────────────────────────────────────
+async function initTables(){
+  // Load competitions registry
+  try{
+    const r=await fetch('../data/football/competitions.json?t='+Date.now());
+    if(r.ok){
+      const d=await r.json();
+      renderFeaturedGrid(d.competitions||[]);
+    }
+  }catch(_){
+    document.getElementById('compGrid').innerHTML='<div class="tb-empty">Could not load competitions list.</div>';
+  }
+  // Auto-load WC2026 standings on arrival
+  await loadStandings('world-cup-2026');
+  // Load live matches
+  await loadLiveData();
+  // Refresh live data every 60 seconds
+  liveRefreshTimer=setInterval(loadLiveData,60000);
+}
+
+// ── Escape helper (use shared H() if available, fallback) ──────────────────
+if(typeof H==='undefined') window.H=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+initTables();
+</script>
+</body>
+</html>

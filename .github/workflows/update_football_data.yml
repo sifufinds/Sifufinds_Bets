@@ -1,0 +1,93 @@
+name: Update Football Data
+
+on:
+  schedule:
+    # Live scores: every 15 minutes during World Cup hours (UTC 11:00–23:00)
+    - cron: '*/15 11-23 * * *'
+    # Standings: once per day at 06:00 UTC (before African prime time)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Update mode'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - live-only
+          - standings
+
+jobs:
+  update-football:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Determine mode
+        id: mode
+        run: |
+          EVENT="${{ github.event_name }}"
+          INPUT_MODE="${{ github.event.inputs.mode }}"
+          MINUTE=$(date +%M)
+          HOUR=$(date +%H)
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            echo "args=--${INPUT_MODE}" >> $GITHUB_OUTPUT
+          elif [ "$HOUR" = "06" ] && [ "$MINUTE" -lt "15" ]; then
+            # 06:00 run → full update (standings + live)
+            echo "args=" >> $GITHUB_OUTPUT
+          else
+            # All other 15-min runs → live scores only
+            echo "args=--live-only" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run football data update
+        env:
+          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
+        run: |
+          python3 update_football_data.py ${{ steps.mode.outputs.args }}
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add data/football/
+          if git diff --staged --quiet; then
+            echo "No football data changes to commit"
+          else
+            CHANGED=$(git diff --staged --name-only | wc -l | tr -d ' ')
+            git commit -m "football: live data update $(date -u '+%Y-%m-%d %H:%M UTC') [${CHANGED} files]"
+            git push
+          fi
+
+  # Safety net: retry on failure after 10 minutes (per CLAUDE.md standing rule)
+  retry-on-failure:
+    needs: update-football
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait before retry
+        run: sleep 600
+      - name: Trigger retry
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: update_football_data.yml
+          inputs: '{"mode":"live-only"}'
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}

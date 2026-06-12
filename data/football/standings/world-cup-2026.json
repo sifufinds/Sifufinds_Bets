@@ -1,0 +1,213 @@
+{
+  "updated": "2026-06-12T11:00:00Z",
+  "competition": "FIFA World Cup 2026",
+  "stage": "Group Stage",
+  "type": "groups",
+  "note": "Live data — refreshed every 15 minutes by GitHub Actions",
+  "groups": [
+    {
+      "name": "Group A",
+      "teams": [
+        {"pos": 1, "team": "Mexico", "flag": "🇲🇽", "played": 1, "won": 1, "drawn": 0, "lost": 0, "gf": 2, "ga": 0, "gd": 2, "points": 3, "form": ["W"], "qualified": false},
+        {"pos": 2, "team": "South Korea", "flag": "🇰🇷", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Honduras", "flag": "🇭🇳", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "South Africa", "flag": "🇿🇦", "played": 1, "won": 0, "drawn": 0, "lost": 1, "gf": 0, "ga": 2, "gd": -2, "points": 0, "form": ["L"], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "Mexico", "hFlag": "🇲🇽", "away": "South Africa", "aFlag": "🇿🇦", "date": "11 Jun", "time": "20:00 UTC", "hScore": 2, "aScore": 0, "status": "FT"},
+        {"home": "South Korea", "hFlag": "🇰🇷", "away": "Honduras", "aFlag": "🇭🇳", "date": "11 Jun", "time": "23:00 UTC", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Mexico", "hFlag": "🇲🇽", "away": "South Korea", "aFlag": "🇰🇷", "date": "15 Jun", "time": "20:00 UTC", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "South Africa", "hFlag": "🇿🇦", "away": "Honduras", "aFlag": "🇭🇳", "date": "15 Jun", "time": "23:00 UTC", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Mexico", "hFlag": "🇲🇽", "away": "Honduras", "aFlag": "🇭🇳", "date": "19 Jun", "time": "21:00 UTC", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "South Korea", "hFlag": "🇰🇷", "away": "South Africa", "aFlag": "🇿🇦", "date": "19 Jun", "time": "21:00 UTC", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group B",
+      "teams": [
+        {"pos": 1, "team": "Canada", "flag": "🇨🇦", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Switzerland", "flag": "🇨🇭", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Bosnia-Herzegovina", "flag": "🇧🇦", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Qatar", "flag": "🇶🇦", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "Canada", "hFlag": "🇨🇦", "away": "Bosnia-Herzegovina", "aFlag": "🇧🇦", "date": "12 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Qatar", "hFlag": "🇶🇦", "away": "Switzerland", "aFlag": "🇨🇭", "date": "13 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Canada", "hFlag": "🇨🇦", "away": "Switzerland", "aFlag": "🇨🇭", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Bosnia-Herzegovina", "hFlag": "🇧🇦", "away": "Qatar", "aFlag": "🇶🇦", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Canada", "hFlag": "🇨🇦", "away": "Qatar", "aFlag": "🇶🇦", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Switzerland", "hFlag": "🇨🇭", "away": "Bosnia-Herzegovina", "aFlag": "🇧🇦", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group C",
+      "teams": [
+        {"pos": 1, "team": "Brazil", "flag": "🇧🇷", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Morocco", "flag": "🇲🇦", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Serbia", "flag": "🇷🇸", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Croatia", "flag": "🇭🇷", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "Brazil", "hFlag": "🇧🇷", "away": "Morocco", "aFlag": "🇲🇦", "date": "13 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Serbia", "hFlag": "🇷🇸", "away": "Croatia", "aFlag": "🇭🇷", "date": "13 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Brazil", "hFlag": "🇧🇷", "away": "Serbia", "aFlag": "🇷🇸", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Morocco", "hFlag": "🇲🇦", "away": "Croatia", "aFlag": "🇭🇷", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Brazil", "hFlag": "🇧🇷", "away": "Croatia", "aFlag": "🇭🇷", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Serbia", "hFlag": "🇷🇸", "away": "Morocco", "aFlag": "🇲🇦", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group D",
+      "teams": [
+        {"pos": 1, "team": "USA", "flag": "🇺🇸", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Turkey", "flag": "🇹🇷", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Paraguay", "flag": "🇵🇾", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Australia", "flag": "🇦🇺", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "USA", "hFlag": "🇺🇸", "away": "Paraguay", "aFlag": "🇵🇾", "date": "12 Jun", "time": "21:00 UTC", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Turkey", "hFlag": "🇹🇷", "away": "Australia", "aFlag": "🇦🇺", "date": "13 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "USA", "hFlag": "🇺🇸", "away": "Turkey", "aFlag": "🇹🇷", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Paraguay", "hFlag": "🇵🇾", "away": "Australia", "aFlag": "🇦🇺", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "USA", "hFlag": "🇺🇸", "away": "Australia", "aFlag": "🇦🇺", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Turkey", "hFlag": "🇹🇷", "away": "Paraguay", "aFlag": "🇵🇾", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group E",
+      "teams": [
+        {"pos": 1, "team": "Spain", "flag": "🇪🇸", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Japan", "flag": "🇯🇵", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Nigeria", "flag": "🇳🇬", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Costa Rica", "flag": "🇨🇷", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "Spain", "hFlag": "🇪🇸", "away": "Nigeria", "aFlag": "🇳🇬", "date": "14 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Japan", "hFlag": "🇯🇵", "away": "Costa Rica", "aFlag": "🇨🇷", "date": "14 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Spain", "hFlag": "🇪🇸", "away": "Japan", "aFlag": "🇯🇵", "date": "18 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Nigeria", "hFlag": "🇳🇬", "away": "Costa Rica", "aFlag": "🇨🇷", "date": "18 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Spain", "hFlag": "🇪🇸", "away": "Costa Rica", "aFlag": "🇨🇷", "date": "22 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Japan", "hFlag": "🇯🇵", "away": "Nigeria", "aFlag": "🇳🇬", "date": "22 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group F",
+      "teams": [
+        {"pos": 1, "team": "Germany", "flag": "🇩🇪", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Belgium", "flag": "🇧🇪", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Egypt", "flag": "🇪🇬", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Iran", "flag": "🇮🇷", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "Germany", "hFlag": "🇩🇪", "away": "Egypt", "aFlag": "🇪🇬", "date": "14 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Belgium", "hFlag": "🇧🇪", "away": "Iran", "aFlag": "🇮🇷", "date": "14 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Germany", "hFlag": "🇩🇪", "away": "Belgium", "aFlag": "🇧🇪", "date": "18 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Egypt", "hFlag": "🇪🇬", "away": "Iran", "aFlag": "🇮🇷", "date": "18 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Germany", "hFlag": "🇩🇪", "away": "Iran", "aFlag": "🇮🇷", "date": "22 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Belgium", "hFlag": "🇧🇪", "away": "Egypt", "aFlag": "🇪🇬", "date": "22 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group G",
+      "teams": [
+        {"pos": 1, "team": "France", "flag": "🇫🇷", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Poland", "flag": "🇵🇱", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Senegal", "flag": "🇸🇳", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "New Zealand", "flag": "🇳🇿", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "France", "hFlag": "🇫🇷", "away": "New Zealand", "aFlag": "🇳🇿", "date": "15 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Senegal", "hFlag": "🇸🇳", "away": "Poland", "aFlag": "🇵🇱", "date": "15 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "France", "hFlag": "🇫🇷", "away": "Senegal", "aFlag": "🇸🇳", "date": "19 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Poland", "hFlag": "🇵🇱", "away": "New Zealand", "aFlag": "🇳🇿", "date": "19 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "France", "hFlag": "🇫🇷", "away": "Poland", "aFlag": "🇵🇱", "date": "23 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Senegal", "hFlag": "🇸🇳", "away": "New Zealand", "aFlag": "🇳🇿", "date": "23 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group H",
+      "teams": [
+        {"pos": 1, "team": "Argentina", "flag": "🇦🇷", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Saudi Arabia", "flag": "🇸🇦", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Ghana", "flag": "🇬🇭", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Slovenia", "flag": "🇸🇮", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "Argentina", "hFlag": "🇦🇷", "away": "Ghana", "aFlag": "🇬🇭", "date": "15 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Saudi Arabia", "hFlag": "🇸🇦", "away": "Slovenia", "aFlag": "🇸🇮", "date": "15 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Argentina", "hFlag": "🇦🇷", "away": "Saudi Arabia", "aFlag": "🇸🇦", "date": "19 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Ghana", "hFlag": "🇬🇭", "away": "Slovenia", "aFlag": "🇸🇮", "date": "19 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Argentina", "hFlag": "🇦🇷", "away": "Slovenia", "aFlag": "🇸🇮", "date": "23 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Saudi Arabia", "hFlag": "🇸🇦", "away": "Ghana", "aFlag": "🇬🇭", "date": "23 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group I",
+      "teams": [
+        {"pos": 1, "team": "England", "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Colombia", "flag": "🇨🇴", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Algeria", "flag": "🇩🇿", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Iraq", "flag": "🇮🇶", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "England", "hFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "away": "Algeria", "aFlag": "🇩🇿", "date": "16 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Colombia", "hFlag": "🇨🇴", "away": "Iraq", "aFlag": "🇮🇶", "date": "16 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "England", "hFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "away": "Colombia", "aFlag": "🇨🇴", "date": "20 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Algeria", "hFlag": "🇩🇿", "away": "Iraq", "aFlag": "🇮🇶", "date": "20 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "England", "hFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "away": "Iraq", "aFlag": "🇮🇶", "date": "24 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Colombia", "hFlag": "🇨🇴", "away": "Algeria", "aFlag": "🇩🇿", "date": "24 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group J",
+      "teams": [
+        {"pos": 1, "team": "Portugal", "flag": "🇵🇹", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Netherlands", "flag": "🇳🇱", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Cameroon", "flag": "🇨🇲", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Panama", "flag": "🇵🇦", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "Portugal", "hFlag": "🇵🇹", "away": "Cameroon", "aFlag": "🇨🇲", "date": "16 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Netherlands", "hFlag": "🇳🇱", "away": "Panama", "aFlag": "🇵🇦", "date": "16 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Portugal", "hFlag": "🇵🇹", "away": "Netherlands", "aFlag": "🇳🇱", "date": "20 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Cameroon", "hFlag": "🇨🇲", "away": "Panama", "aFlag": "🇵🇦", "date": "20 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Portugal", "hFlag": "🇵🇹", "away": "Panama", "aFlag": "🇵🇦", "date": "24 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Netherlands", "hFlag": "🇳🇱", "away": "Cameroon", "aFlag": "🇨🇲", "date": "24 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group K",
+      "teams": [
+        {"pos": 1, "team": "Italy", "flag": "🇮🇹", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Uruguay", "flag": "🇺🇾", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "DR Congo", "flag": "🇨🇩", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Uzbekistan", "flag": "🇺🇿", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "Italy", "hFlag": "🇮🇹", "away": "DR Congo", "aFlag": "🇨🇩", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Uruguay", "hFlag": "🇺🇾", "away": "Uzbekistan", "aFlag": "🇺🇿", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Italy", "hFlag": "🇮🇹", "away": "Uruguay", "aFlag": "🇺🇾", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "DR Congo", "hFlag": "🇨🇩", "away": "Uzbekistan", "aFlag": "🇺🇿", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Italy", "hFlag": "🇮🇹", "away": "Uzbekistan", "aFlag": "🇺🇿", "date": "25 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Uruguay", "hFlag": "🇺🇾", "away": "DR Congo", "aFlag": "🇨🇩", "date": "25 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    },
+    {
+      "name": "Group L",
+      "teams": [
+        {"pos": 1, "team": "Ukraine", "flag": "🇺🇦", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 2, "team": "Venezuela", "flag": "🇻🇪", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 3, "team": "Scotland", "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false},
+        {"pos": 4, "team": "Indonesia", "flag": "🇮🇩", "played": 0, "won": 0, "drawn": 0, "lost": 0, "gf": 0, "ga": 0, "gd": 0, "points": 0, "form": [], "qualified": false}
+      ],
+      "fixtures": [
+        {"home": "Ukraine", "hFlag": "🇺🇦", "away": "Scotland", "aFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Venezuela", "hFlag": "🇻🇪", "away": "Indonesia", "aFlag": "🇮🇩", "date": "17 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Ukraine", "hFlag": "🇺🇦", "away": "Venezuela", "aFlag": "🇻🇪", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Scotland", "hFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "away": "Indonesia", "aFlag": "🇮🇩", "date": "21 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Ukraine", "hFlag": "🇺🇦", "away": "Indonesia", "aFlag": "🇮🇩", "date": "25 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"},
+        {"home": "Venezuela", "hFlag": "🇻🇪", "away": "Scotland", "aFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "date": "25 Jun", "time": "TBD", "hScore": null, "aScore": null, "status": "NS"}
+      ]
+    }
+  ]
+}
