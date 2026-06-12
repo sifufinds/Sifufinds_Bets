@@ -1,10 +1,9 @@
 # robots.txt — sifufinds.com
 # Africa's #1 independent betting comparison platform
-# Updated: 2026-06-11
+# Updated: 2026-06-12
 
-# ── DEFAULT: allow everything ─────────────────────────────────────────────────
+# ── DEFAULT ───────────────────────────────────────────────────────────────────
 User-agent: *
-Allow: /
 Disallow: /agents/
 Disallow: /.github/
 Disallow: /.venv/
@@ -13,29 +12,80 @@ Disallow: /geo-content-writer/
 Disallow: /analytics.html
 
 # ── GOOGLE (all flavours) ─────────────────────────────────────────────────────
+# Explicit rules per bot — prevents ambiguity with the * group above.
+# Public pages: allow. Dev/internal directories: disallow.
+
 User-agent: Googlebot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
+Disallow: /analytics.html
 
 User-agent: Googlebot-Image
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
+Disallow: /analytics.html
 
 User-agent: Googlebot-Video
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
+Disallow: /analytics.html
 
 User-agent: Googlebot-News
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
+Disallow: /analytics.html
 
 User-agent: AdsBot-Google
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
+Disallow: /analytics.html
 
 User-agent: AdsBot-Google-Mobile
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
+Disallow: /analytics.html
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
+Disallow: /analytics.html
 
 User-agent: Google-InspectionTool
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
+Disallow: /analytics.html
 
 # ── BING / MICROSOFT ─────────────────────────────────────────────────────────
 User-agent: Bingbot

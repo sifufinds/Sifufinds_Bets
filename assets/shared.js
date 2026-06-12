@@ -551,23 +551,30 @@ const NEWS=[
 
 // ── ODDS DATA (fallback when live APIs are unavailable) ───────────────────────
 const ODDS_DATA=[
-// ── Football · 8 Jun 2026 (Today) — BBC Sport confirmed ──
-{league:'International Friendly',key:'world',live:false,home:'Mauritania',away:'Niger',hScore:null,aScore:null,time:'8 Jun 2026 · 20:00 UTC',h:2.00,d:3.20,a:3.80,hBk:'Bet9ja',dBk:'1xBet',aBk:'22Bet',complete:false},
-{league:'Women\'s International Friendly',key:'afcon',live:false,home:'Senegal',away:'Nigeria',hScore:null,aScore:null,time:'8 Jun 2026 · 16:00 UTC',h:2.20,d:3.10,a:2.90,hBk:'1xBet',dBk:'Melbet',aBk:'Betway',complete:false},
-{league:'Women\'s International Friendly',key:'afcon',live:false,home:'Egypt',away:'Tunisia',hScore:null,aScore:null,time:'8 Jun 2026 · 17:00 UTC',h:1.90,d:3.20,a:4.00,hBk:'22Bet',dBk:'Betway',aBk:'1xBet',complete:false},
-// ── Football · 9 Jun 2026 ──
-{league:'CAF Champions League · Final',key:'cafl',live:false,home:'Mamelodi Sundowns',away:'Al Ahly',hScore:null,aScore:null,time:'9 Jun 2026 · 20:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'Betway',dBk:'Bet9ja',aBk:'Hollywoodbets',complete:false},
-{league:'AFCON 2027 Qualifier',key:'afcon',live:false,home:'Nigeria',away:'Rwanda',hScore:null,aScore:null,time:'9 Jun 2026 · 16:00 UTC',h:1.65,d:3.90,a:5.50,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
-{league:'AFCON 2027 Qualifier',key:'afcon',live:false,home:'Senegal',away:'DR Congo',hScore:null,aScore:null,time:'9 Jun 2026 · 19:00 UTC',h:1.70,d:3.30,a:5.00,hBk:'1xBet',dBk:'22Bet',aBk:'Melbet',complete:false},
-{league:'CAF Confederation Cup · Semi-Final',key:'cafl',live:false,home:'Étoile du Sahel',away:'Zamalek',hScore:null,aScore:null,time:'9 Jun 2026 · 18:00 UTC',h:2.40,d:3.10,a:2.90,hBk:'Betway',dBk:'Bet9ja',aBk:'22Bet',complete:false},
-// ── Football · 10 Jun 2026 — BBC Sport confirmed ──
-{league:'International Friendly',key:'world',live:false,home:'Portugal',away:'Nigeria',hScore:null,aScore:null,time:'10 Jun 2026 · 20:45 UTC',h:1.60,d:3.50,a:5.50,hBk:'Bet9ja',dBk:'1xBet',aBk:'22Bet',complete:false},
-// ── Football · 11 Jun 2026 · World Cup — BBC Sport confirmed ──
-{league:'FIFA World Cup 2026 · Group A',key:'world',live:false,home:'Mexico',away:'South Africa',hScore:null,aScore:null,time:'11 Jun 2026 · 20:00 UTC',h:1.70,d:3.50,a:4.50,hBk:'Bet9ja',dBk:'SportPesa',aBk:'1xBet',complete:false},
-// ── Cricket ──
-{league:'SA vs India · 1st Test',key:'cricket',live:false,home:'South Africa',away:'India',hScore:null,aScore:null,time:'10 Jun 2026 · 09:00 UTC',h:2.20,d:3.10,a:2.10,hBk:'Hollywoodbets',dBk:'Betway',aBk:'1xBet',complete:false},
+// ── FIFA World Cup 2026 · Group Stage ─────────────────────────────────────────
+// Jun 13
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Morocco',away:'Argentina',hScore:null,aScore:null,time:'13 Jun · 21:00 UTC',h:5.00,d:3.80,a:1.75,hBk:'Bet9ja',dBk:'1xBet',aBk:'SportyBet',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'France',away:'Belgium',hScore:null,aScore:null,time:'13 Jun · 18:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'1xBet',dBk:'22Bet',aBk:'Melbet',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Portugal',away:'Croatia',hScore:null,aScore:null,time:'13 Jun · 15:00 UTC',h:1.80,d:3.40,a:4.50,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
+// Jun 14
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Germany',away:'Senegal',hScore:null,aScore:null,time:'14 Jun · 15:00 UTC',h:1.75,d:3.40,a:4.50,hBk:'Betway',dBk:'1xBet',aBk:'22Bet',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'England',away:'Brazil',hScore:null,aScore:null,time:'14 Jun · 18:00 UTC',h:2.80,d:3.10,a:2.50,hBk:'Bet9ja',dBk:'Betway',aBk:'1xBet',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Nigeria',away:'Uruguay',hScore:null,aScore:null,time:'14 Jun · 21:00 UTC',h:3.50,d:3.20,a:2.10,hBk:'Bet9ja',dBk:'SportyBet',aBk:'1xBet',complete:false},
+// Jun 15
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Italy',away:'Algeria',hScore:null,aScore:null,time:'15 Jun · 15:00 UTC',h:1.85,d:3.40,a:4.50,hBk:'Bet9ja',dBk:'1xBet',aBk:'Betway',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Spain',away:'Portugal',hScore:null,aScore:null,time:'15 Jun · 18:00 UTC',h:2.40,d:3.20,a:2.80,hBk:'1xBet',dBk:'Bet9ja',aBk:'Melbet',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'USA',away:'Ghana',hScore:null,aScore:null,time:'15 Jun · 21:00 UTC',h:2.00,d:3.20,a:3.80,hBk:'Betway',dBk:'1xBet',aBk:'Bet9ja',complete:false},
+// Jun 16
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Netherlands',away:'Cameroon',hScore:null,aScore:null,time:'16 Jun · 18:00 UTC',h:1.70,d:3.50,a:5.00,hBk:'1xBet',dBk:'22Bet',aBk:'Bet9ja',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Egypt',away:'Colombia',hScore:null,aScore:null,time:'16 Jun · 21:00 UTC',h:3.20,d:3.10,a:2.20,hBk:'22Bet',dBk:'Betway',aBk:'1xBet',complete:false},
+// Jun 17
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Croatia',away:'Tunisia',hScore:null,aScore:null,time:'17 Jun · 18:00 UTC',h:2.00,d:3.20,a:4.00,hBk:'Bet9ja',dBk:'1xBet',aBk:'Melbet',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Senegal',away:'Austria',hScore:null,aScore:null,time:'17 Jun · 21:00 UTC',h:2.10,d:3.20,a:3.40,hBk:'1xBet',dBk:'Bet9ja',aBk:'22Bet',complete:false},
+// Jun 18
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Argentina',away:'Chile',hScore:null,aScore:null,time:'18 Jun · 18:00 UTC',h:1.65,d:3.50,a:5.00,hBk:'Bet9ja',dBk:'SportyBet',aBk:'1xBet',complete:false},
+{league:'FIFA World Cup 2026 · Group Stage',key:'world',live:false,home:'Morocco',away:'South Korea',hScore:null,aScore:null,time:'18 Jun · 21:00 UTC',h:2.20,d:3.10,a:3.20,hBk:'1xBet',dBk:'Bet9ja',aBk:'Betway',complete:false},
 // ── Boxing ──
-{league:'WBC Heavyweight Championship',key:'boxing',live:false,home:'Oleksandr Usyk',away:'Daniel Dubois',hScore:null,aScore:null,time:'13 Jun 2026 · 21:00 UTC',h:1.45,d:0,a:2.75,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false}
+{league:'WBC Heavyweight Championship',key:'boxing',live:false,home:'Oleksandr Usyk',away:'Daniel Dubois',hScore:null,aScore:null,time:'13 Jun · 21:00 UTC',h:1.45,d:0,a:2.75,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false}
 ];
 
 // ── PAGE CONTENT (modals) ─────────────────────────────────────────────────────
