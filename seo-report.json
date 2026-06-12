@@ -1,18 +1,11 @@
 {
   "date": "2026-06-12",
-  "total": 1,
+  "total": 0,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 0
   },
-  "issues": [
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "knicks-stage-historic-comeback",
-      "detail": "Excerpt 170 chars (max 155)"
-    }
-  ]
+  "issues": []
 }
