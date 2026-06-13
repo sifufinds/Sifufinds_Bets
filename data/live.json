@@ -1,24 +1,7 @@
 {
-  "updated": "2026-06-13T03:41:28.835402+00:00",
+  "updated": "2026-06-13T04:46:00.284294+00:00",
   "count": 20,
   "events": [
-    {
-      "league": "WNBA",
-      "key": "basketball",
-      "live": true,
-      "complete": false,
-      "home": "Seattle Storm",
-      "away": "Golden State Valkyries",
-      "hScore": "51",
-      "aScore": "63",
-      "time": "33.1",
-      "h": 0.0,
-      "d": 0.0,
-      "a": 0.0,
-      "hBk": "",
-      "dBk": "",
-      "aBk": ""
-    },
     {
       "league": "International Friendly",
       "key": "world",
@@ -151,9 +134,9 @@
       "h": 1.52,
       "d": 0.0,
       "a": 2.6,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "WNBA",
@@ -164,6 +147,23 @@
       "away": "Toronto Tempo",
       "hScore": "86",
       "aScore": "85",
+      "time": "FT",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
+    {
+      "league": "WNBA",
+      "key": "basketball",
+      "live": false,
+      "complete": true,
+      "home": "Seattle Storm",
+      "away": "Golden State Valkyries",
+      "hScore": "72",
+      "aScore": "76",
       "time": "FT",
       "h": 0.0,
       "d": 0.0,
