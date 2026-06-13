@@ -1,11 +1,24 @@
 {
-  "date": "2026-06-12",
-  "total": 0,
+  "date": "2026-06-13",
+  "total": 2,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 0,
     "INFO": 0
   },
-  "issues": []
+  "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "knicks-and-spurs-show-why-basketball-is-the-ultimate-thrill-ride",
+      "detail": "Title 64 chars (max 60): 'Knicks and Spurs Show Why Basketball is the Ultimate Thrill Ride'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "knicks-and-spurs-show-why-basketball-is-the-ultimate-thrill-ride",
+      "detail": "Excerpt 178 chars (max 155)"
+    }
+  ]
 }
