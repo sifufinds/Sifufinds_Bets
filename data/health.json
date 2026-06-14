@@ -1,18 +1,18 @@
 {
-  "checked_at": "2026-06-14T20:00:35.967824+00:00",
-  "healthy": true,
+  "checked_at": "2026-06-14T21:42:23.966516+00:00",
+  "healthy": false,
   "pages": {
-    "Home": true,
-    "Odds": true,
-    "Tips": true,
-    "Casino": true,
-    "Countries": true,
-    "shared.js": true,
-    "shared.css": true,
-    "live.json": true
+    "Home": false,
+    "Odds": false,
+    "Tips": false,
+    "Casino": false,
+    "Countries": false,
+    "shared.js": false,
+    "shared.css": false,
+    "live.json": false
   },
   "fixes_applied": [
-    "refreshed stale live.json (63 min old)"
+    "refreshed stale live.json (86 min old)"
   ],
   "fix_count": 1
 }
