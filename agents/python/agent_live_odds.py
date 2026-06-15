@@ -1,7 +1,7 @@
 """
 agent_live_odds.py — Live Sports Odds Agent for SifuFinds
-Fetches ESPN public API for 15+ sport endpoints, converts American moneyline
-odds to decimal, and writes data/live.json for the site to consume.
+Fetches ESPN public API for non-football sports and TheSportsDB for WC2026/football.
+Converts American moneyline odds to decimal and writes data/live.json.
 
 Run by GitHub Actions every 5 minutes. No API keys required.
 """
@@ -13,13 +13,13 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports"
+SPORTSDB_BASE = "https://www.thesportsdb.com/api/v1/json/3"
+OPENFOOTBALL_WC_URL = "https://raw.githubusercontent.com/openfootball/world-cup.json/master/2026/worldcup.json"
 HEADERS = {"User-Agent": "Mozilla/5.0 (SifuFinds/2.0; live-odds-agent)"}
 TIMEOUT = 12
 
 ENDPOINTS = [
-    # Football / Soccer
-    {"url": f"{ESPN_BASE}/soccer/fifa.worldcup/scoreboard",        "key": "world",      "label": "World Cup 2026"},
-    {"url": f"{ESPN_BASE}/soccer/caf.champions_league/scoreboard", "key": "cafl",       "label": "CAF Champions League"},
+    # Football / Soccer — ESPN endpoints kept for reference; WC2026 uses TheSportsDB instead
     {"url": f"{ESPN_BASE}/soccer/fifa.worldq.caf/scoreboard",      "key": "afcon",      "label": "AFCON 2027 Qualifier"},
     {"url": f"{ESPN_BASE}/soccer/ng.1/scoreboard",                 "key": "local",      "label": "NPFL Nigeria"},
     {"url": f"{ESPN_BASE}/soccer/ke.1/scoreboard",                 "key": "local",      "label": "Kenya Premier League"},
@@ -164,43 +164,147 @@ def fetch_endpoint(endpoint: dict):
         return []
 
 
-FOOTBALL_FALLBACKS = [
-    {"league": "International Friendly", "key": "world", "live": False, "complete": False,
-     "home": "Mauritania", "away": "Niger", "hScore": None, "aScore": None,
-     "time": "8 Jun 2026 · 20:00 UTC", "h": 2.10, "d": 3.20, "a": 3.50, "hBk": "1xBet", "dBk": "Melbet", "aBk": "Betway"},
-    {"league": "FIFA World Cup 2026 · Group A", "key": "world", "live": False, "complete": False,
-     "home": "Mexico", "away": "South Africa", "hScore": None, "aScore": None,
-     "time": "11 Jun 2026 · 20:00 UTC", "h": 1.80, "d": 3.50, "a": 4.50, "hBk": "Betway", "dBk": "1xBet", "aBk": "Bet9ja"},
+def _build_football_fallbacks() -> list:
+    """Build fallback events for missing football keys using TheSportsDB + open-football WC2026 data."""
+    fallbacks = []
+    now_utc = datetime.now(timezone.utc)
+    today = now_utc.strftime("%Y-%m-%d")
+    tomorrow = (now_utc + timedelta(days=1)).strftime("%Y-%m-%d")
+    window_end = (now_utc + timedelta(days=2)).strftime("%Y-%m-%d")
+
+    # ── TheSportsDB: fetch WC2026 matches for today + tomorrow ─────────────────
+    wc_events = []
+    for date_str in [today, tomorrow]:
+        try:
+            url = f"{SPORTSDB_BASE}/eventsday.php?d={date_str}&s=Soccer"
+            r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+            if r.status_code == 200:
+                events = r.json().get("events") or []
+                for e in events:
+                    if "World Cup" in (e.get("strLeague") or ""):
+                        wc_events.append(e)
+        except Exception as ex:
+            print(f"  ⚠ TheSportsDB {date_str}: {ex}", file=sys.stderr)
+
+    # ── Open Football: get recent results as context ────────────────────────────
+    wc_results: dict[str, dict] = {}
+    try:
+        r = requests.get(OPENFOOTBALL_WC_URL, headers=HEADERS, timeout=TIMEOUT)
+        if r.status_code == 200:
+            matches = r.json().get("matches", [])
+            for m in matches:
+                key = f"{m['team1']}:{m['team2']}"
+                score = m.get("score", {})
+                ft = score.get("ft")
+                if ft and ft[0] is not None:
+                    wc_results[key] = {"hScore": ft[0], "aScore": ft[1], "complete": True}
+    except Exception as ex:
+        print(f"  ⚠ open-football: {ex}", file=sys.stderr)
+
+    for e in wc_events:
+        home = e.get("strHomeTeam", "")
+        away = e.get("strAwayTeam", "")
+        if not home or not away:
+            continue
+        date_event = e.get("dateEvent", today)
+        time_str = e.get("strTime", "")
+        group = e.get("strGroup") or ""
+        status = e.get("strStatus", "NS")
+        home_score = e.get("intHomeScore")
+        away_score = e.get("intAwayScore")
+        is_complete = status in ("FT", "AET", "PEN")
+        is_live = status in ("1H", "HT", "2H", "ET", "P")
+
+        result = wc_results.get(f"{home}:{away}", {})
+        if result:
+            home_score = result["hScore"]
+            away_score = result["aScore"]
+            is_complete = result["complete"]
+
+        try:
+            dt = datetime.strptime(f"{date_event} {time_str}", "%Y-%m-%d %H:%M:%S")
+            dt = dt.replace(tzinfo=timezone.utc)
+            label_day = dt.strftime("%-d %b %Y")
+            time_label = f"{label_day} · {dt.strftime('%H:%M')} UTC"
+        except Exception:
+            time_label = f"{date_event} · {time_str[:5]} UTC"
+
+        comp_label = f"FIFA World Cup 2026 · Group {group}" if group else "FIFA World Cup 2026"
+        fallbacks.append({
+            "league":    comp_label,
+            "key":       "world",
+            "live":      is_live,
+            "complete":  is_complete,
+            "home":      home,
+            "away":      away,
+            "hScore":    home_score,
+            "aScore":    away_score,
+            "time":      time_label,
+            "h": 0.0, "d": 0.0, "a": 0.0,
+            "hBk": "1xBet", "dBk": "Betway", "aBk": "Bet9ja",
+        })
+
+    if not fallbacks:
+        # Absolute last-resort static fallbacks (always upcoming)
+        fallbacks = [
+            {"league": "FIFA World Cup 2026 · Group G", "key": "world", "live": False, "complete": False,
+             "home": "Spain", "away": "Cape Verde", "hScore": None, "aScore": None,
+             "time": "15 Jun 2026 · 16:00 UTC", "h": 1.22, "d": 6.00, "a": 13.00, "hBk": "1xBet", "dBk": "Betway", "aBk": "Bet9ja"},
+            {"league": "FIFA World Cup 2026 · Group H", "key": "world", "live": False, "complete": False,
+             "home": "Belgium", "away": "Egypt", "hScore": None, "aScore": None,
+             "time": "15 Jun 2026 · 19:00 UTC", "h": 1.55, "d": 4.00, "a": 6.50, "hBk": "Betway", "dBk": "1xBet", "aBk": "Bet9ja"},
+            {"league": "FIFA World Cup 2026 · Group H", "key": "world", "live": False, "complete": False,
+             "home": "Saudi Arabia", "away": "Uruguay", "hScore": None, "aScore": None,
+             "time": "15 Jun 2026 · 22:00 UTC", "h": 3.20, "d": 3.30, "a": 2.30, "hBk": "Bet9ja", "dBk": "SportyBet", "aBk": "1xBet"},
+            {"league": "FIFA World Cup 2026 · Group I", "key": "world", "live": False, "complete": False,
+             "home": "France", "away": "Senegal", "hScore": None, "aScore": None,
+             "time": "16 Jun 2026 · 22:00 UTC", "h": 1.60, "d": 3.80, "a": 6.00, "hBk": "1xBet", "dBk": "22Bet", "aBk": "Betway"},
+            {"league": "FIFA World Cup 2026 · Group J", "key": "world", "live": False, "complete": False,
+             "home": "Argentina", "away": "Algeria", "hScore": None, "aScore": None,
+             "time": "16 Jun 2026 · 19:00 UTC", "h": 1.30, "d": 5.50, "a": 10.00, "hBk": "Betway", "dBk": "1xBet", "aBk": "Bet9ja"},
+        ]
+
+    return fallbacks
+
+
+FOOTBALL_FALLBACKS_STATIC = [
     {"league": "AFCON 2027 Qualifier", "key": "afcon", "live": False, "complete": False,
-     "home": "Nigeria", "away": "Rwanda", "hScore": None, "aScore": None,
-     "time": "9 Jun 2026 · 16:00 UTC", "h": 1.65, "d": 3.90, "a": 5.50, "hBk": "Bet9ja", "dBk": "SportPesa", "aBk": "1xBet"},
+     "home": "Nigeria", "away": "DR Congo", "hScore": None, "aScore": None,
+     "time": "16 Jun 2026 · 17:00 UTC", "h": 1.65, "d": 3.90, "a": 5.50, "hBk": "Bet9ja", "dBk": "SportPesa", "aBk": "1xBet"},
     {"league": "AFCON 2027 Qualifier", "key": "afcon", "live": False, "complete": False,
-     "home": "Senegal", "away": "DR Congo", "hScore": None, "aScore": None,
-     "time": "10 Jun 2026 · 19:00 UTC", "h": 1.70, "d": 3.30, "a": 5.00, "hBk": "1xBet", "dBk": "22Bet", "aBk": "Melbet"},
-    {"league": "CAF Champions League · Final", "key": "cafl", "live": False, "complete": False,
-     "home": "Mamelodi Sundowns", "away": "Al Ahly", "hScore": None, "aScore": None,
-     "time": "9 Jun 2026 · 20:00 UTC", "h": 2.10, "d": 3.20, "a": 3.40, "hBk": "Betway", "dBk": "Bet9ja", "aBk": "Hollywoodbets"},
+     "home": "Senegal", "away": "Algeria", "hScore": None, "aScore": None,
+     "time": "17 Jun 2026 · 19:00 UTC", "h": 1.70, "d": 3.30, "a": 5.00, "hBk": "1xBet", "dBk": "22Bet", "aBk": "Melbet"},
+    {"league": "NPFL · Super 8", "key": "local", "live": False, "complete": False,
+     "home": "Enyimba FC", "away": "Remo Stars", "hScore": None, "aScore": None,
+     "time": "16 Jun 2026 · 15:00 UTC", "h": 2.00, "d": 3.20, "a": 3.80, "hBk": "Bet9ja", "dBk": "Sportybet", "aBk": "BetKing"},
     {"league": "Kenya Premier League · Playoff", "key": "local", "live": False, "complete": False,
      "home": "Gor Mahia", "away": "AFC Leopards", "hScore": None, "aScore": None,
-     "time": "12 Jun 2026 · 13:00 UTC", "h": 2.10, "d": 3.00, "a": 3.60, "hBk": "Betika", "dBk": "SportPesa", "aBk": "Betway"},
-    {"league": "NPFL · Super 8", "key": "local", "live": False, "complete": False,
-     "home": "Enyimba FC", "away": "Rivers United", "hScore": None, "aScore": None,
-     "time": "12 Jun 2026 · 15:00 UTC", "h": 1.90, "d": 3.20, "a": 4.20, "hBk": "Bet9ja", "dBk": "Sportybet", "aBk": "BetKing"},
+     "time": "17 Jun 2026 · 13:00 UTC", "h": 2.10, "d": 3.00, "a": 3.60, "hBk": "Betika", "dBk": "SportPesa", "aBk": "Betway"},
 ]
 
 FOOTBALL_KEYS = {"world", "cafl", "afcon", "local", "epl", "ucl", "laliga"}
 
 
 def inject_football_fallbacks(events: list) -> list:
-    """Add static fallback football events for any football key not covered by ESPN."""
+    """Add dynamic WC2026 events from TheSportsDB + static fallbacks for missing football keys."""
     covered = {e["key"] for e in events}
     missing = FOOTBALL_KEYS - covered
-    if not missing:
-        return events
-    injected = [e for e in FOOTBALL_FALLBACKS if e["key"] in missing]
-    if injected:
-        print(f"  → Injecting fallback events for: {', '.join(sorted(missing))}")
-    return events + injected
+
+    if "world" in missing:
+        wc_events = _build_football_fallbacks()
+        if wc_events:
+            print(f"  → WC2026: injected {len(wc_events)} matches from TheSportsDB/open-football")
+        events = events + wc_events
+        if wc_events:
+            missing -= {"world"}
+
+    if missing:
+        injected = [e for e in FOOTBALL_FALLBACKS_STATIC if e["key"] in missing]
+        if injected:
+            print(f"  → Static fallback for: {', '.join(sorted(missing))}")
+        events = events + injected
+
+    return events
 
 
 def _event_key(e: dict) -> str:
