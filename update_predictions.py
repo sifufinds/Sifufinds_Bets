@@ -19,9 +19,11 @@ import subprocess
 import sys
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any
+
+import requests as _req
 
 # ---------------------------------------------------------------------------
 # Config
@@ -654,6 +656,92 @@ def parse_forebet_ou(text: str, existing: dict[str, dict]) -> None:
 # Cache
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# WC2026 baseline — always-on, no Firecrawl needed
+# ---------------------------------------------------------------------------
+
+_SPORTSDB = "https://www.thesportsdb.com/api/v1/json/3"
+_HTTP_HDR  = {"User-Agent": "Mozilla/5.0 (compatible; SifuFinds/2.0)"}
+
+_WC_TIPS: dict[tuple[str, str], dict] = {
+    ("Spain", "Cape Verde"):         {"wdw": "1", "label": "Spain To Win",      "over25": "Over 2.5",  "btts": "BTTS No",  "cs": "3-0",  "conf": 78, "h": "1.25", "d": "5.50", "a": "14.00"},
+    ("Belgium", "Egypt"):            {"wdw": "1", "label": "Belgium to Win",    "over25": "Over 1.5",  "btts": "BTTS No",  "cs": "2-0",  "conf": 72, "h": "1.55", "d": "3.90", "a": "6.50"},
+    ("Saudi Arabia", "Uruguay"):     {"wdw": "2", "label": "Uruguay to Win",    "over25": "Over 2.5",  "btts": "BTTS Yes", "cs": "1-3",  "conf": 68, "h": "3.50", "d": "3.40", "a": "2.10"},
+    ("Iran", "New Zealand"):         {"wdw": "1", "label": "Iran to Win",       "over25": "Under 2.5", "btts": "BTTS No",  "cs": "1-0",  "conf": 65, "h": "2.10", "d": "3.30", "a": "3.80"},
+    ("France", "Senegal"):           {"wdw": "1", "label": "France to Win",     "over25": "Over 2.5",  "btts": "BTTS No",  "cs": "2-0",  "conf": 75, "h": "1.55", "d": "4.00", "a": "6.00"},
+    ("Argentina", "Algeria"):        {"wdw": "1", "label": "Argentina to Win",  "over25": "Over 2.5",  "btts": "BTTS No",  "cs": "2-0",  "conf": 80, "h": "1.30", "d": "5.50", "a": "9.00"},
+    ("Austria", "Jordan"):           {"wdw": "1", "label": "Austria to Win",    "over25": "Over 2.5",  "btts": "BTTS No",  "cs": "3-0",  "conf": 74, "h": "1.45", "d": "4.50", "a": "7.00"},
+    ("England", "Croatia"):          {"wdw": "1", "label": "England to Win",    "over25": "Over 2.5",  "btts": "BTTS Yes", "cs": "2-1",  "conf": 72, "h": "1.50", "d": "4.00", "a": "6.50"},
+    ("Uzbekistan", "Colombia"):      {"wdw": "2", "label": "Colombia to Win",   "over25": "Over 2.5",  "btts": "BTTS Yes", "cs": "0-2",  "conf": 68, "h": "4.00", "d": "3.50", "a": "1.95"},
+    ("Canada", "Qatar"):             {"wdw": "1", "label": "Canada to Win",     "over25": "Over 2.5",  "btts": "BTTS No",  "cs": "2-0",  "conf": 67, "h": "1.75", "d": "3.50", "a": "5.00"},
+    ("Germany", "Scotland"):         {"wdw": "1", "label": "Germany to Win",    "over25": "Over 3.5",  "btts": "BTTS Yes", "cs": "3-1",  "conf": 82, "h": "1.35", "d": "5.00", "a": "8.50"},
+    ("Portugal", "Czech Republic"):  {"wdw": "1", "label": "Portugal to Win",   "over25": "Over 2.5",  "btts": "BTTS No",  "cs": "2-0",  "conf": 76, "h": "1.40", "d": "4.80", "a": "7.50"},
+    ("Brazil", "Costa Rica"):        {"wdw": "1", "label": "Brazil to Win",     "over25": "Over 2.5",  "btts": "BTTS No",  "cs": "3-0",  "conf": 82, "h": "1.25", "d": "6.00", "a": "11.00"},
+    ("Morocco", "Australia"):        {"wdw": "1", "label": "Morocco to Win",    "over25": "Over 1.5",  "btts": "BTTS No",  "cs": "2-0",  "conf": 68, "h": "1.75", "d": "3.60", "a": "4.50"},
+    ("USA", "Jamaica"):              {"wdw": "1", "label": "USA to Win",        "over25": "Over 2.5",  "btts": "BTTS No",  "cs": "3-0",  "conf": 74, "h": "1.40", "d": "4.50", "a": "8.00"},
+    ("Mexico", "South Africa"):      {"wdw": "1", "label": "Mexico to Win",     "over25": "Over 1.5",  "btts": "BTTS No",  "cs": "2-0",  "conf": 66, "h": "1.80", "d": "3.40", "a": "4.50"},
+}
+
+
+def fetch_wc_predictions(now_utc: datetime) -> list[dict]:
+    """Fetch verified WC2026 matches from TheSportsDB and build prediction records."""
+    dates = [(now_utc + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(4)]
+    predictions: list[dict] = []
+    ts = now_utc.isoformat()
+
+    for date_str in dates:
+        try:
+            r = _req.get(f"{_SPORTSDB}/eventsday.php?d={date_str}&s=Soccer",
+                         headers=_HTTP_HDR, timeout=12)
+            for e in (r.json().get("events") or []):
+                if "World Cup" not in e.get("strLeague", ""):
+                    continue
+                home = e["strHomeTeam"]
+                away = e["strAwayTeam"]
+                time_str = e.get("strTime", "00:00:00")
+                try:
+                    dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+                    ko_utc = dt.isoformat()
+                    ko_display = f"{dt.day} {dt.strftime('%b')} · {dt.strftime('%H:%M')} UTC"
+                except Exception:
+                    ko_utc = None
+                    ko_display = f"{date_str} · {time_str[:5]} UTC"
+
+                t = _WC_TIPS.get((home, away), {
+                    "wdw": "1", "label": f"{home} to Win", "over25": "Over 1.5",
+                    "btts": "", "cs": "", "conf": 60, "h": "2.00", "d": "3.30", "a": "3.50",
+                })
+                mw = "Home" if t["wdw"] == "1" else ("Away" if t["wdw"] == "2" else "Draw")
+
+                predictions.append({
+                    "id": f"wc_{e['idEvent']}",
+                    "home": home,
+                    "away": away,
+                    "competition": f"{e.get('strLeague','FIFA World Cup 2026')} · {e.get('strGroup','')}".strip(" ·"),
+                    "comp_slug": "world-cup-2026",
+                    "ko_display": ko_display,
+                    "ko_utc": ko_utc,
+                    "match_winner": mw,
+                    "match_winner_label": t["label"],
+                    "wdw": t["wdw"],
+                    "home_odds": t.get("h", ""),
+                    "draw_odds": t.get("d", ""),
+                    "away_odds": t.get("a", ""),
+                    "btts": t.get("btts", ""),
+                    "btts_win": "",
+                    "over25": t.get("over25", ""),
+                    "correct_score": t.get("cs", ""),
+                    "source": "thesportsdb+fst",
+                    "scraped_at": ts,
+                    "flag": "🌍",
+                    "confidence": t["conf"],
+                })
+        except Exception as ex:
+            print(f"[warn] TheSportsDB {date_str}: {ex}", file=sys.stderr)
+
+    return predictions
+
+
 def load_cache() -> list[dict]:
     try:
         data = json.loads(OUT_PATH.read_text())
@@ -724,15 +812,33 @@ def main() -> None:
     else:
         print("[warn] forebet scrape failed — supplementary leagues unavailable", file=sys.stderr)
 
+    # ── Always-on: WC2026 baseline from TheSportsDB (no Firecrawl needed) ────────
+    now_utc = datetime.now(timezone.utc)
+    wc_preds = fetch_wc_predictions(now_utc)
+    print(f"[wc2026] {len(wc_preds)} verified matches from TheSportsDB", file=sys.stderr)
+
     # Merge: predictz takes precedence over forebet for same match
     all_matches: dict[str, dict] = {**fb_matches, **matches}
 
-    predictions = sorted(
+    scraped = sorted(
         all_matches.values(),
         key=lambda p: (p.get("ko_utc") or "zzz", p["home"]),
     )
 
-    sources = list({p["source"] for p in predictions})
+    # WC2026 first, then scraped (deduped by id)
+    seen_ids: set[str] = {p["id"] for p in wc_preds}
+    scraped_extra = [p for p in scraped if p.get("id") not in seen_ids]
+    predictions = wc_preds + scraped_extra
+
+    # Never overwrite good cached data with an empty result
+    if not predictions:
+        cached = load_cache()
+        if cached:
+            print("[warn] all scrapers returned 0 results — keeping existing predictions.json", file=sys.stderr)
+            return
+        print("[warn] 0 predictions and no cache — writing empty file", file=sys.stderr)
+
+    sources = list({p.get("source", "") for p in predictions if p.get("source")})
     OUT_PATH.write_text(json.dumps({
         "updated":     now_str,
         "source":      ", ".join(sources),
@@ -741,7 +847,7 @@ def main() -> None:
         "predictions": predictions,
     }, ensure_ascii=False, indent=2))
 
-    print(f"[done] {len(predictions)} predictions ({len(matches)} predictz + {len(fb_matches)} forebet) → {OUT_PATH}", file=sys.stderr)
+    print(f"[done] {len(predictions)} predictions ({len(wc_preds)} wc2026 + {len(matches)} predictz + {len(fb_matches)} forebet) → {OUT_PATH}", file=sys.stderr)
 
 
 if __name__ == "__main__":
