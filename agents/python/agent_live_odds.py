@@ -19,15 +19,8 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (SifuFinds/2.0; live-odds-agent)"}
 TIMEOUT = 12
 
 ENDPOINTS = [
-    # Football / Soccer — ESPN endpoints kept for reference; WC2026 uses TheSportsDB instead
-    {"url": f"{ESPN_BASE}/soccer/fifa.worldq.caf/scoreboard",      "key": "afcon",      "label": "AFCON 2027 Qualifier"},
-    {"url": f"{ESPN_BASE}/soccer/ng.1/scoreboard",                 "key": "local",      "label": "NPFL Nigeria"},
-    {"url": f"{ESPN_BASE}/soccer/ke.1/scoreboard",                 "key": "local",      "label": "Kenya Premier League"},
-    {"url": f"{ESPN_BASE}/soccer/za.1/scoreboard",                 "key": "local",      "label": "PSL South Africa"},
-    {"url": f"{ESPN_BASE}/soccer/gh.1/scoreboard",                 "key": "local",      "label": "Ghana Premier League"},
-    {"url": f"{ESPN_BASE}/soccer/eng.1/scoreboard",                "key": "epl",        "label": "Premier League"},
-    {"url": f"{ESPN_BASE}/soccer/esp.1/scoreboard",                "key": "laliga",     "label": "La Liga"},
-    {"url": f"{ESPN_BASE}/soccer/uefa.champions/scoreboard",       "key": "ucl",        "label": "UEFA Champions League"},
+    # Soccer — African leagues return HTTP 400 from ESPN; WC2026 handled by TheSportsDB below
+    # EPL/La Liga/UCL are in off-season; omitted to avoid stale data
     # Basketball
     {"url": f"{ESPN_BASE}/basketball/nba/scoreboard",              "key": "basketball", "label": "NBA"},
     {"url": f"{ESPN_BASE}/basketball/wnba/scoreboard",             "key": "basketball", "label": "WNBA"},
@@ -165,16 +158,17 @@ def fetch_endpoint(endpoint: dict):
 
 
 def _build_football_fallbacks() -> list:
-    """Build fallback events for missing football keys using TheSportsDB + open-football WC2026 data."""
+    """Fetch verified WC2026 matches from TheSportsDB for next 4 days.
+    Never injects fabricated data — if API returns nothing, returns empty list.
+    """
     fallbacks = []
     now_utc = datetime.now(timezone.utc)
-    today = now_utc.strftime("%Y-%m-%d")
-    tomorrow = (now_utc + timedelta(days=1)).strftime("%Y-%m-%d")
-    window_end = (now_utc + timedelta(days=2)).strftime("%Y-%m-%d")
+    dates = [(now_utc + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(4)]
 
-    # ── TheSportsDB: fetch WC2026 matches for today + tomorrow ─────────────────
+    today = dates[0]
+    # ── TheSportsDB: fetch WC2026 matches for next 4 days ──────────────────────
     wc_events = []
-    for date_str in [today, tomorrow]:
+    for date_str in dates:
         try:
             url = f"{SPORTSDB_BASE}/eventsday.php?d={date_str}&s=Soccer"
             r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
@@ -245,65 +239,19 @@ def _build_football_fallbacks() -> list:
         })
 
     if not fallbacks:
-        # Absolute last-resort static fallbacks (always upcoming)
-        fallbacks = [
-            {"league": "FIFA World Cup 2026 · Group G", "key": "world", "live": False, "complete": False,
-             "home": "Spain", "away": "Cape Verde", "hScore": None, "aScore": None,
-             "time": "15 Jun 2026 · 16:00 UTC", "h": 1.22, "d": 6.00, "a": 13.00, "hBk": "1xBet", "dBk": "Betway", "aBk": "Bet9ja"},
-            {"league": "FIFA World Cup 2026 · Group H", "key": "world", "live": False, "complete": False,
-             "home": "Belgium", "away": "Egypt", "hScore": None, "aScore": None,
-             "time": "15 Jun 2026 · 19:00 UTC", "h": 1.55, "d": 4.00, "a": 6.50, "hBk": "Betway", "dBk": "1xBet", "aBk": "Bet9ja"},
-            {"league": "FIFA World Cup 2026 · Group H", "key": "world", "live": False, "complete": False,
-             "home": "Saudi Arabia", "away": "Uruguay", "hScore": None, "aScore": None,
-             "time": "15 Jun 2026 · 22:00 UTC", "h": 3.20, "d": 3.30, "a": 2.30, "hBk": "Bet9ja", "dBk": "SportyBet", "aBk": "1xBet"},
-            {"league": "FIFA World Cup 2026 · Group I", "key": "world", "live": False, "complete": False,
-             "home": "France", "away": "Senegal", "hScore": None, "aScore": None,
-             "time": "16 Jun 2026 · 22:00 UTC", "h": 1.60, "d": 3.80, "a": 6.00, "hBk": "1xBet", "dBk": "22Bet", "aBk": "Betway"},
-            {"league": "FIFA World Cup 2026 · Group J", "key": "world", "live": False, "complete": False,
-             "home": "Argentina", "away": "Algeria", "hScore": None, "aScore": None,
-             "time": "16 Jun 2026 · 19:00 UTC", "h": 1.30, "d": 5.50, "a": 10.00, "hBk": "Betway", "dBk": "1xBet", "aBk": "Bet9ja"},
-        ]
+        print("  ⚠ TheSportsDB returned no WC2026 matches — live.json will have no football", file=sys.stderr)
 
     return fallbacks
 
 
-FOOTBALL_FALLBACKS_STATIC = [
-    {"league": "AFCON 2027 Qualifier", "key": "afcon", "live": False, "complete": False,
-     "home": "Nigeria", "away": "DR Congo", "hScore": None, "aScore": None,
-     "time": "16 Jun 2026 · 17:00 UTC", "h": 1.65, "d": 3.90, "a": 5.50, "hBk": "Bet9ja", "dBk": "SportPesa", "aBk": "1xBet"},
-    {"league": "AFCON 2027 Qualifier", "key": "afcon", "live": False, "complete": False,
-     "home": "Senegal", "away": "Algeria", "hScore": None, "aScore": None,
-     "time": "17 Jun 2026 · 19:00 UTC", "h": 1.70, "d": 3.30, "a": 5.00, "hBk": "1xBet", "dBk": "22Bet", "aBk": "Melbet"},
-    {"league": "NPFL · Super 8", "key": "local", "live": False, "complete": False,
-     "home": "Enyimba FC", "away": "Remo Stars", "hScore": None, "aScore": None,
-     "time": "16 Jun 2026 · 15:00 UTC", "h": 2.00, "d": 3.20, "a": 3.80, "hBk": "Bet9ja", "dBk": "Sportybet", "aBk": "BetKing"},
-    {"league": "Kenya Premier League · Playoff", "key": "local", "live": False, "complete": False,
-     "home": "Gor Mahia", "away": "AFC Leopards", "hScore": None, "aScore": None,
-     "time": "17 Jun 2026 · 13:00 UTC", "h": 2.10, "d": 3.00, "a": 3.60, "hBk": "Betika", "dBk": "SportPesa", "aBk": "Betway"},
-]
-
-FOOTBALL_KEYS = {"world", "cafl", "afcon", "local", "epl", "ucl", "laliga"}
-
-
 def inject_football_fallbacks(events: list) -> list:
-    """Add dynamic WC2026 events from TheSportsDB + static fallbacks for missing football keys."""
-    covered = {e["key"] for e in events}
-    missing = FOOTBALL_KEYS - covered
-
-    if "world" in missing:
+    """Add verified WC2026 events from TheSportsDB. Never injects fabricated data."""
+    has_football = any(e["key"] == "world" for e in events)
+    if not has_football:
         wc_events = _build_football_fallbacks()
         if wc_events:
-            print(f"  → WC2026: injected {len(wc_events)} matches from TheSportsDB/open-football")
+            print(f"  → WC2026: injected {len(wc_events)} verified matches from TheSportsDB")
         events = events + wc_events
-        if wc_events:
-            missing -= {"world"}
-
-    if missing:
-        injected = [e for e in FOOTBALL_FALLBACKS_STATIC if e["key"] in missing]
-        if injected:
-            print(f"  → Static fallback for: {', '.join(sorted(missing))}")
-        events = events + injected
-
     return events
 
 
@@ -365,6 +313,38 @@ def main():
         all_events.extend(events)
 
     all_events = inject_football_fallbacks(all_events)
+
+    # Drop non-live events whose kickoff was more than 3 hours ago
+    # (catches ESPN returning yesterday's games not yet marked complete)
+    now_utc = datetime.now(timezone.utc)
+    stale_cutoff = now_utc - timedelta(hours=3)
+
+    def _parse_event_time(e: dict):
+        """Parse an event's time string to UTC datetime, or None if unparseable."""
+        t = e.get("time", "")
+        for fmt in ("%d %b %Y · %H:%M UTC", "%d %b · %H:%M UTC"):
+            try:
+                raw = datetime.strptime(t, fmt)
+                if raw.year == 1900:
+                    raw = raw.replace(year=now_utc.year)
+                return raw.replace(tzinfo=timezone.utc)
+            except ValueError:
+                pass
+        return None
+
+    def _keep_event(e: dict) -> bool:
+        if e.get("live") or e.get("complete"):
+            return True
+        dt = _parse_event_time(e)
+        if dt and dt < stale_cutoff:
+            return False
+        return True
+
+    before = len(all_events)
+    all_events = [e for e in all_events if _keep_event(e)]
+    dropped = before - len(all_events)
+    if dropped:
+        print(f"  → Dropped {dropped} stale non-live events (kickoff >3h ago)")
 
     # Sort: live first, then by key priority
     KEY_ORDER = ["world", "cafl", "afcon", "local", "basketball", "tennis", "cricket", "rugby", "epl", "ucl", "laliga", "baseball"]
