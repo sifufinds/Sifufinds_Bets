@@ -3,11 +3,24 @@
 
 import os
 import json
-from datetime import date
+from datetime import date, datetime
 
 BASE    = os.path.dirname(os.path.abspath(__file__))
 DOMAIN  = 'https://sifufinds.com'
 TODAY   = date.today().isoformat()
+
+
+def file_lastmod(url: str) -> str:
+    """Return the ISO date of the index.html for this URL, falling back to TODAY."""
+    path = url.replace(DOMAIN, '').strip('/')
+    candidates = [
+        os.path.join(BASE, path, 'index.html'),
+        os.path.join(BASE, path + '.html'),
+    ]
+    for fp in candidates:
+        if os.path.exists(fp):
+            return datetime.fromtimestamp(os.path.getmtime(fp)).strftime('%Y-%m-%d')
+    return TODAY
 
 # Directories to exclude from crawl
 EXCLUDED_DIRS = {
@@ -97,10 +110,11 @@ CHILD_SITEMAPS = [
 
 def _url_block(url: str) -> list[str]:
     priority, changefreq = classify(url)
+    lastmod = file_lastmod(url)
     return [
         '  <url>',
         f'    <loc>{url}</loc>',
-        f'    <lastmod>{TODAY}</lastmod>',
+        f'    <lastmod>{lastmod}</lastmod>',
         f'    <changefreq>{changefreq}</changefreq>',
         f'    <priority>{priority}</priority>',
         '  </url>',

@@ -929,6 +929,20 @@ function renderBrandsBar(){
 }
 document.addEventListener('DOMContentLoaded',renderBrandsBar);
 
+// Inject About link into nav on every page (E-E-A-T trust signal)
+document.addEventListener('DOMContentLoaded',function(){
+  const tabs=document.querySelector('.ntabs');
+  if(tabs&&!tabs.querySelector('[href*="about"]')){
+    const depth=(location.pathname.match(/\//g)||[]).length-1;
+    const root=depth>1?'../'.repeat(depth-1):(depth===1?'../':'');
+    const a=document.createElement('a');
+    a.className='nt';
+    a.href=root+'about/';
+    a.textContent='ℹ️ About';
+    tabs.appendChild(a);
+  }
+});
+
 // Mobile hamburger nav
 document.addEventListener('DOMContentLoaded',function(){
   const mnavIn=document.querySelector('.mnav-in');

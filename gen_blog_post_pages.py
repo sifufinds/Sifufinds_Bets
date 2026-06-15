@@ -916,6 +916,23 @@ Al-Ahly of Egypt have won the CAF Champions League 11 times — more than any ot
 ]
 
 
+def seo_title(title: str, max_len: int = 60) -> str:
+    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix."""
+    suffix = "| SifuFinds"
+    full = f"{title} {suffix}"
+    if len(full) <= max_len:
+        return full
+    for sep in [" — ", " - ", ": "]:
+        idx = title.find(sep)
+        if idx > 10:
+            candidate = f"{title[:idx]} {suffix}"
+            if len(candidate) <= max_len:
+                return candidate
+    available = max_len - len(suffix) - 4
+    truncated = title[:available].rsplit(' ', 1)[0]
+    return f"{truncated}... {suffix}"
+
+
 def slugify(text: str) -> str:
     text = text.lower()
     text = re.sub(r'[^\w\s-]', '', text)
@@ -1245,7 +1262,7 @@ def build_post_page(post: dict) -> str:
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{title} | SifuFinds</title>
+<title>{seo_title(title)}</title>
 <meta name="description" content="{excerpt}">
 <meta name="keywords" content="{', '.join(tags[:8]).lower()}">
 <meta name="robots" content="{robots_content}">
