@@ -1,129 +1,56 @@
 {
-  "updated": "2026-06-15T09:43:40.100895+00:00",
-  "source": "thesportsdb.com + freesupertips.com",
-  "count": 5,
+  "updated": "2026-06-15T10:20:42.614754+00:00",
+  "source": "",
+  "count": 0,
   "scrape_log": [
     {
-      "page": "wc2026",
-      "status": "ok",
-      "ts": "2026-06-15T09:42:51.200299+00:00"
+      "page": "main",
+      "status": "error",
+      "error": "All scrapers failed for https://www.predictz.com/predictions/: firecrawl: HTTP Error 402: Payment Required",
+      "ts": "2026-06-15T10:20:42.614754+00:00"
+    },
+    {
+      "page": "btts",
+      "status": "error",
+      "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score/: firecrawl: HTTP Error 402: Payment Required",
+      "ts": "2026-06-15T10:20:42.614754+00:00"
+    },
+    {
+      "page": "ou25",
+      "status": "error",
+      "error": "All scrapers failed for https://www.predictz.com/predictions/today/over-under-25-goals/: firecrawl: HTTP Error 402: Payment Required",
+      "ts": "2026-06-15T10:20:42.614754+00:00"
+    },
+    {
+      "page": "bw",
+      "status": "error",
+      "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score-and-win/: firecrawl: HTTP Error 402: Payment Required",
+      "ts": "2026-06-15T10:20:42.614754+00:00"
+    },
+    {
+      "page": "score",
+      "status": "error",
+      "error": "All scrapers failed for https://www.predictz.com/predictions/today/correct-score/: firecrawl: HTTP Error 402: Payment Required",
+      "ts": "2026-06-15T10:20:42.614754+00:00"
+    },
+    {
+      "page": "forebet_1x2",
+      "status": "error",
+      "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-1x2: firecrawl: HTTP Error 402: Payment Required",
+      "ts": "2026-06-15T10:20:42.614754+00:00"
+    },
+    {
+      "page": "forebet_btts",
+      "status": "error",
+      "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-both-to-score: firecrawl: HTTP Error 402: Payment Required",
+      "ts": "2026-06-15T10:20:42.614754+00:00"
+    },
+    {
+      "page": "forebet_ou",
+      "status": "error",
+      "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-under-over-goals: firecrawl: HTTP Error 402: Payment Required",
+      "ts": "2026-06-15T10:20:42.614754+00:00"
     }
   ],
-  "predictions": [
-    {
-      "id": "wc_2391736",
-      "home": "Belgium",
-      "away": "Egypt",
-      "competition": "FIFA World Cup · G",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "15 Jun · 19:00 UTC",
-      "ko_utc": "2026-06-15T19:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "Belgium to Win",
-      "wdw": "1",
-      "home_odds": "1.55",
-      "draw_odds": "3.90",
-      "away_odds": "6.50",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Over 1.5",
-      "correct_score": "2-0",
-      "source": "freesupertips.com",
-      "scraped_at": "2026-06-15T09:42:51.317604+00:00",
-      "flag": "🌍",
-      "confidence": 72
-    },
-    {
-      "id": "wc_2391738",
-      "home": "Saudi Arabia",
-      "away": "Uruguay",
-      "competition": "FIFA World Cup · H",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "15 Jun · 22:00 UTC",
-      "ko_utc": "2026-06-15T22:00:00+00:00",
-      "match_winner": "Away",
-      "match_winner_label": "Uruguay to Win",
-      "wdw": "2",
-      "home_odds": "3.50",
-      "draw_odds": "3.40",
-      "away_odds": "2.10",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "1-3",
-      "source": "freesupertips.com",
-      "scraped_at": "2026-06-15T09:42:51.317604+00:00",
-      "flag": "🌍",
-      "confidence": 68
-    },
-    {
-      "id": "wc_2391739",
-      "home": "Spain",
-      "away": "Cape Verde",
-      "competition": "FIFA World Cup · H",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "15 Jun · 16:00 UTC",
-      "ko_utc": "2026-06-15T16:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "Spain To Win",
-      "wdw": "1",
-      "home_odds": "1.25",
-      "draw_odds": "5.50",
-      "away_odds": "14.00",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "3-0",
-      "source": "freesupertips.com",
-      "scraped_at": "2026-06-15T09:42:51.317604+00:00",
-      "flag": "🌍",
-      "confidence": 78
-    },
-    {
-      "id": "wc_2391737",
-      "home": "Iran",
-      "away": "New Zealand",
-      "competition": "FIFA World Cup · G",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "16 Jun · 01:00 UTC",
-      "ko_utc": "2026-06-16T01:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "Iran to Win",
-      "wdw": "1",
-      "home_odds": "2.10",
-      "draw_odds": "3.30",
-      "away_odds": "3.80",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "1-0",
-      "source": "freesupertips.com",
-      "scraped_at": "2026-06-15T09:42:51.317604+00:00",
-      "flag": "🌍",
-      "confidence": 65
-    },
-    {
-      "id": "wc_2391742",
-      "home": "France",
-      "away": "Senegal",
-      "competition": "FIFA World Cup · I",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "16 Jun · 19:00 UTC",
-      "ko_utc": "2026-06-16T19:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "France to Win",
-      "wdw": "1",
-      "home_odds": "1.55",
-      "draw_odds": "4.00",
-      "away_odds": "6.00",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "2-0",
-      "source": "freesupertips.com",
-      "scraped_at": "2026-06-15T09:42:51.317604+00:00",
-      "flag": "🌍",
-      "confidence": 75
-    }
-  ]
+  "predictions": []
 }
