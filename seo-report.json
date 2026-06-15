@@ -1,9 +1,9 @@
 {
   "date": "2026-06-15",
-  "total": 62,
+  "total": 66,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 58,
+    "HIGH": 62,
     "MEDIUM": 4,
     "INFO": 0
   },
@@ -97,6 +97,24 @@
       "check": "title_length",
       "page": "nigeria-world-cup-2026-betting-guide-super-eagles",
       "detail": "Title 80 chars (max 60): 'Nigeria World Cup 2026 Betting Guide \u2014 Super Eagles Odds, Tips & Best '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "tennis-betting-guide-queens-club-champion-donna-vekic-and-emma-raducanu",
+      "detail": "Title 73 chars (max 60): \"Tennis Betting Guide: Queen's Club Champion Donna Vekic and Emma Raduc\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "world-cup-2026-group-stage-betting-markets",
+      "detail": "Title 63 chars (max 60): 'Group Stage Betting Markets for World Cup 2026: Expert Analysis'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "spanish-world-cup-sweden-wolves-preview",
+      "detail": "Title 64 chars (max 60): 'Spain, Sweden, and Wolves: Key Talking Points Ahead of World Cup'"
     },
     {
       "severity": "HIGH",
@@ -259,6 +277,12 @@
       "check": "meta_desc_length",
       "page": "nigeria-world-cup-2026-betting-guide-super-eagles",
       "detail": "Excerpt 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tennis-betting-guide-queens-club-champion-donna-vekic-and-emma-raducanu",
+      "detail": "Excerpt 173 chars (max 155)"
     },
     {
       "severity": "HIGH",
