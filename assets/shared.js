@@ -995,7 +995,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var gcs=document.createElement('script');
     gcs.async=true;
     gcs.setAttribute('data-goatcounter','https://'+GC_SITE+'.goatcounter.com/count');
-    gcs.src='//gc.zgo.at/count.js';
+    gcs.src='https://gc.zgo.at/count.js';
     document.head.appendChild(gcs);
   }
   function gcEvent(path,title){

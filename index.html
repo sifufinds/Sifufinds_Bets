@@ -4,12 +4,16 @@
 <head>
 <meta charset="UTF-8">
 <link rel="preload" href="assets/shared.js?v=10" as="script">
-<link rel="preconnect" href="https://ipapi.co">
-<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preload" href="assets/shared.css?v=7" as="style">
+<!-- Critical-path connections -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<link rel="preconnect" href="https://ipapi.co" crossorigin>
+<!-- Secondary connections — dns-prefetch is enough -->
+<link rel="dns-prefetch" href="https://gc.zgo.at">
+<link rel="dns-prefetch" href="https://connect.facebook.net">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- Preconnect to external origins -->
-<link rel="preconnect" href="https://www.googletagmanager.com">
-<link rel="preconnect" href="https://gc.zgo.at">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
 <script>
@@ -18,13 +22,14 @@
   gtag('js', new Date());
   gtag('config', 'G-0B51MX2ZKE');
 </script>
-<!-- Facebook Pixel — replace YOUR_PIXEL_ID with your actual Pixel ID from Meta Business Suite -->
+<!-- Facebook Pixel loads after page is interactive — replace YOUR_PIXEL_ID in Meta Business Suite -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','YOUR_PIXEL_ID');
-fbq('track','PageView');
+window.addEventListener('load',function(){
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','YOUR_PIXEL_ID');
+  fbq('track','PageView');
+});
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" alt=""></noscript>
 <title>Best Sports Betting Bonuses in Africa 2026 | SifuFinds</title>
 <meta name="description" content="Africa's #1 betting comparison site. Verified bonuses, no-deposit offers & bookmaker reviews across 23 African countries. Updated daily.">
 <meta name="keywords" content="betting bonuses Africa, best bookmakers Nigeria, Kenya betting sites, South Africa sports betting, no deposit bonus Africa, free bets Africa, AFCON betting, M-Pesa betting, betting comparison Africa">
@@ -54,6 +59,9 @@ fbq('track','PageView');
 <meta name="twitter:description" content="Verified bonuses, live odds, free tips and bookmaker reviews across 23 African countries. Updated daily.">
 <meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
 
+<!-- Social verification -->
+<meta property="fb:app_id" content="YOUR_FB_APP_ID">
+<meta name="pinterest-rich-pin" content="true">
 <!-- Geo & Language -->
 <meta name="geo.region" content="NG">
 <meta name="geo.placename" content="Nigeria">
@@ -237,7 +245,6 @@ fbq('track','PageView');
 }
 </script>
 
-<link rel="preload" href="assets/shared.css?v=7" as="style">
 <link rel="stylesheet" href="assets/shared.css?v=7">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
@@ -346,7 +353,7 @@ fbq('track','PageView');
 <nav class="mnav">
   <div class="mnav-in">
     <a class="logo" href="/">
-      <img src="assets/icon.png" width="38" height="38" alt="SifuFinds" class="logo-icon">
+      <img src="assets/icon.png" width="38" height="38" alt="SifuFinds" class="logo-icon" fetchpriority="high" loading="eager">
       SifuFinds
     </a>
     <div class="ntabs">
@@ -375,12 +382,12 @@ fbq('track','PageView');
 
 <!-- HERO -->
 <div class="hero"><div class="wrap">
-  <h1 id="hero-h1">Best Betting Bonuses in Africa · <span id="hero-mon"></span></h1>
+  <h1 id="hero-h1">Best Betting Bonuses in Africa · <span id="hero-mon">June 2026</span></h1>
   <p>SifuFinds brings you verified, up-to-date betting bonuses from licensed bookmakers across all of Africa. All offers shown in your local currency and checked daily.</p>
   <div class="ctrs">
-    <div class="ctr"><div class="ctr-n" id="top-bonus">–</div><div class="ctr-l">largest welcome bonus</div></div>
-    <div class="ctr"><div class="ctr-n" id="bk-count">–</div><div class="ctr-l">licensed bookmakers</div></div>
-    <div class="ctr"><div class="ctr-n" id="today-d">–</div><div class="ctr-l">last updated</div></div>
+    <div class="ctr"><div class="ctr-n" id="top-bonus">₦1.2M</div><div class="ctr-l">largest welcome bonus</div></div>
+    <div class="ctr"><div class="ctr-n" id="bk-count">14</div><div class="ctr-l">licensed bookmakers</div></div>
+    <div class="ctr"><div class="ctr-n" id="today-d">15 Jun</div><div class="ctr-l">last updated</div></div>
   </div>
   <div class="trust">
     <div class="tb">✅ Licensed &amp; Verified</div>
@@ -442,6 +449,26 @@ fbq('track','PageView');
 
   <div class="mc" id="mcount"></div>
   <div id="bk-cards"></div>
+
+  <!-- Static bookmaker table for search engines and LLMs (hidden visually, not from crawlers) -->
+  <noscript>
+    <h2>Top Sports Betting Bonuses in Nigeria 2026</h2>
+    <table>
+      <thead><tr><th>Bookmaker</th><th>Welcome Bonus</th><th>Min Deposit</th><th>Licence</th><th>Payment Methods</th></tr></thead>
+      <tbody>
+        <tr><td>Bet9ja</td><td>₦2,500 Free Bet + 170% ACCA Boost</td><td>₦100</td><td>NLRC Licensed</td><td>OPay, PalmPay, Bank Transfer</td></tr>
+        <tr><td>SportyBet Nigeria</td><td>150% Up to ₦30,000 Free Bet</td><td>₦100</td><td>NLRC Licensed</td><td>OPay, Quickteller, Bank Transfer</td></tr>
+        <tr><td>BetKing</td><td>₦100 Free Bets – No Deposit Required</td><td>₦0</td><td>NLRC Licensed</td><td>OPay, PalmPay, Bank Transfer</td></tr>
+        <tr><td>1xBet Nigeria</td><td>300% Up to ₦1,200,000</td><td>₦100</td><td>NLRC Licensed</td><td>OPay, PalmPay, MTN MoMo</td></tr>
+        <tr><td>Betway Nigeria</td><td>Up to ₦100,000 in Free Bets</td><td>₦1,000</td><td>NLRC Licensed</td><td>OPay, Bank Transfer, Visa</td></tr>
+        <tr><td>Melbet Nigeria</td><td>200% Up to ₦480,000</td><td>₦100</td><td>NLRC Licensed</td><td>OPay, Bank Transfer, MTN MoMo</td></tr>
+        <tr><td>22Bet Nigeria</td><td>100% Up to ₦207,500</td><td>₦100</td><td>NLRC Licensed</td><td>OPay, Bank Transfer, Mastercard</td></tr>
+        <tr><td>Paripesa Nigeria</td><td>200% Up to ₦200,000</td><td>₦100</td><td>NLRC Licensed</td><td>OPay, PalmPay, Bank Transfer</td></tr>
+      </tbody>
+    </table>
+    <p>All bookmakers listed above are licensed by the National Lottery Regulatory Commission (NLRC) of Nigeria. T&amp;Cs apply. 18+ only. Bet responsibly.</p>
+    <p>Compare betting bonuses for Kenya, Ghana, South Africa and 20 more African countries at <a href="https://sifufinds.com/countries/">SifuFinds Country Pages</a>.</p>
+  </noscript>
 
   <!-- FAQ -->
   <div class="cbox2">
@@ -554,12 +581,12 @@ fbq('track','PageView');
   </div>
   <div class="fbot">
     <div class="fsoc">
-      <a href="https://www.facebook.com/sifufinds" target="_blank" rel="noopener noreferrer" aria-label="SifuFinds on Facebook">📘 Facebook</a>
-      <a href="https://www.instagram.com/sifufinds" target="_blank" rel="noopener noreferrer" aria-label="SifuFinds on Instagram">📸 Instagram</a>
-      <a href="https://www.youtube.com/@sifufinds" target="_blank" rel="noopener noreferrer" aria-label="SifuFinds on YouTube">▶️ YouTube</a>
-      <a href="https://www.linkedin.com/company/sifufinds" target="_blank" rel="noopener noreferrer" aria-label="SifuFinds on LinkedIn">💼 LinkedIn</a>
-      <a href="https://x.com/sifufinds" target="_blank" rel="noopener noreferrer" aria-label="SifuFinds on X">🐦 X / Twitter</a>
-      <a href="https://t.me/sifufinds" target="_blank" rel="noopener noreferrer" aria-label="SifuFinds Telegram">✈️ Telegram</a>
+      <a href="https://www.facebook.com/sifufinds" target="_blank" rel="noopener noreferrer me" aria-label="SifuFinds on Facebook">📘 Facebook</a>
+      <a href="https://www.instagram.com/sifufinds" target="_blank" rel="noopener noreferrer me" aria-label="SifuFinds on Instagram">📸 Instagram</a>
+      <a href="https://www.youtube.com/@sifufinds" target="_blank" rel="noopener noreferrer me" aria-label="SifuFinds on YouTube">▶️ YouTube</a>
+      <a href="https://www.linkedin.com/company/sifufinds" target="_blank" rel="noopener noreferrer me" aria-label="SifuFinds on LinkedIn">💼 LinkedIn</a>
+      <a href="https://x.com/sifufinds" target="_blank" rel="noopener noreferrer me" aria-label="SifuFinds on X">🐦 X / Twitter</a>
+      <a href="https://t.me/sifufinds" target="_blank" rel="noopener noreferrer me" aria-label="SifuFinds Telegram">✈️ Telegram</a>
     </div>
     <p class="faddr">📧 hello@sifufinds.com · Online Business · Africa's Betting Comparison Platform</p>
     <p>SifuFinds is an independent affiliate comparison site. Bonus information verified as of <span id="foot-date"></span>. Always check the bookmaker's official site for current offers and T&Cs.</p>
