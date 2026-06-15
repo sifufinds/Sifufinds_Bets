@@ -1709,7 +1709,21 @@ function renderOdds(){
   const matchKey=m=>`${m.key}|${(m.home||'').toLowerCase()}|${(m.away||'').toLowerCase()}`;
   const seen=new Map();
   liveAll.forEach(m=>{if(m.key)seen.set(matchKey(m),m);});
+
+  // Build odds lookup before adding ODDS_DATA to seen
+  const oddsLookup=new Map();
+  ODDS_DATA.forEach(m=>{const k=matchKey(m);if(!oddsLookup.has(k))oddsLookup.set(k,m);});
+
   ODDS_DATA.forEach(m=>{if(!seen.has(matchKey(m)))seen.set(matchKey(m),m);});
+
+  // Backfill odds into live entries that have no odds (h=0, a=0)
+  seen.forEach((m,k)=>{
+    if(!m.h&&!m.a){
+      const od=oddsLookup.get(k);
+      if(od&&(od.h>0||od.a>0))seen.set(k,{...m,h:od.h,d:od.d,a:od.a,hBk:od.hBk,dBk:od.dBk,aBk:od.aBk});
+    }
+  });
+
   const all=[...seen.values()];
 
   const isFiltered=_activeLG!=='all';
