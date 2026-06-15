@@ -784,15 +784,24 @@ def main() -> None:
 
     # ── Write data/predictions.json (read by tips/index.html) ───────────────
     if wc_predictions:
-        # Merge with any existing non-WC predictions to keep variety
+        # Merge with existing non-WC predictions that have valid future ko_utc
+        cutoff = now_utc - timedelta(hours=6)
         existing_preds: list[dict] = []
         if PRED_JSON.exists():
             try:
                 old = json.loads(PRED_JSON.read_text())
-                existing_preds = [
-                    p for p in old.get("predictions", [])
-                    if p.get("comp_slug") != "world-cup-2026"
-                ]
+                for p in old.get("predictions", []):
+                    if p.get("comp_slug") == "world-cup-2026":
+                        continue
+                    ko = p.get("ko_utc")
+                    if not ko:
+                        continue  # skip null-date predictions — they may be stale
+                    try:
+                        ko_dt = datetime.fromisoformat(ko.replace("Z", "+00:00"))
+                        if ko_dt > cutoff:
+                            existing_preds.append(p)
+                    except Exception:
+                        pass
             except Exception:
                 pass
 
