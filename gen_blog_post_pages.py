@@ -923,8 +923,24 @@ def slugify(text: str) -> str:
     return text.strip('-')
 
 
+def _inline_md(text: str) -> str:
+    """Apply inline Markdown → HTML: links, bold, italic, code, images."""
+    # Images before links (![alt](src))
+    text = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', r'<img src="\2" alt="\1" loading="lazy">', text)
+    # Hyperlinks [text](url) — internal and external
+    text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2">\1</a>', text)
+    # Bare markdown-style url shorthand [url](url) produced by some generators
+    text = re.sub(r'\[(https?://[^\]]+)\]\(\1\)', r'<a href="\1">\1</a>', text)
+    # Bold / italic
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
+    # Inline code
+    text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
+    return text
+
+
 def markdown_to_html(md: str) -> str:
-    """Very basic Markdown → HTML for blog post bodies."""
+    """Markdown → HTML for blog post bodies."""
     lines = md.split('\n')
     html_lines = []
     in_table = False
@@ -936,26 +952,25 @@ def markdown_to_html(md: str) -> str:
         if line.startswith('### '):
             if in_ul: html_lines.append('</ul>'); in_ul = False
             if in_ol: html_lines.append('</ol>'); in_ol = False
-            html_lines.append(f'<h3>{line[4:]}</h3>')
+            html_lines.append(f'<h3>{_inline_md(line[4:])}</h3>')
         elif line.startswith('## '):
             if in_ul: html_lines.append('</ul>'); in_ul = False
             if in_ol: html_lines.append('</ol>'); in_ol = False
-            html_lines.append(f'<h2>{line[3:]}</h2>')
+            html_lines.append(f'<h2>{_inline_md(line[3:])}</h2>')
         elif line.startswith('# '):
-            html_lines.append(f'<h1>{line[2:]}</h1>')
+            html_lines.append(f'<h1>{_inline_md(line[2:])}</h1>')
         # Tables
         elif line.startswith('|'):
             if not in_table:
                 html_lines.append('<div class="table-wrap"><table class="blog-table">')
                 in_table = True
-                # header row
                 cells = [c.strip() for c in line.strip('|').split('|')]
-                html_lines.append('<thead><tr>' + ''.join(f'<th>{c}</th>' for c in cells) + '</tr></thead><tbody>')
+                html_lines.append('<thead><tr>' + ''.join(f'<th>{_inline_md(c)}</th>' for c in cells) + '</tr></thead><tbody>')
             elif set(line.replace('|', '').replace('-', '').replace(':', '').strip()) == set():
                 pass  # separator row — skip
             else:
                 cells = [c.strip() for c in line.strip('|').split('|')]
-                html_lines.append('<tr>' + ''.join(f'<td>{c}</td>' for c in cells) + '</tr>')
+                html_lines.append('<tr>' + ''.join(f'<td>{_inline_md(c)}</td>' for c in cells) + '</tr>')
         else:
             if in_table:
                 html_lines.append('</tbody></table></div>')
@@ -967,11 +982,7 @@ def markdown_to_html(md: str) -> str:
                     if in_ol: html_lines.append('</ol>'); in_ol = False
                     html_lines.append('<ul>')
                     in_ul = True
-                # inline formatting
-                item = line[2:]
-                item = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', item)
-                item = re.sub(r'\*(.+?)\*', r'<em>\1</em>', item)
-                html_lines.append(f'<li>{item}</li>')
+                html_lines.append(f'<li>{_inline_md(line[2:])}</li>')
             # Numbered list
             elif re.match(r'^\d+\. ', line):
                 if not in_ol:
@@ -979,18 +990,14 @@ def markdown_to_html(md: str) -> str:
                     html_lines.append('<ol>')
                     in_ol = True
                 item = re.sub(r'^\d+\. ', '', line)
-                item = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', item)
-                html_lines.append(f'<li>{item}</li>')
+                html_lines.append(f'<li>{_inline_md(item)}</li>')
             else:
                 if in_ul: html_lines.append('</ul>'); in_ul = False
                 if in_ol: html_lines.append('</ol>'); in_ol = False
 
                 if line.strip() == '':
                     continue
-                # Inline formatting
-                line = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', line)
-                line = re.sub(r'\*(.+?)\*', r'<em>\1</em>', line)
-                html_lines.append(f'<p>{line}</p>')
+                html_lines.append(f'<p>{_inline_md(line)}</p>')
 
     if in_table: html_lines.append('</tbody></table></div>')
     if in_ul: html_lines.append('</ul>')
