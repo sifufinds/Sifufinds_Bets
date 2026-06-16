@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<!-- leagues/index.html — Football Leagues Hub — SifuFinds -->
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0B51MX2ZKE');
+</script>
+<meta charset="UTF-8">
+<link rel="preload" href="../assets/shared.js?v=10" as="script">
+<link rel="preload" href="../assets/shared.css?v=8" as="style">
+<link rel="preconnect" href="https://ipapi.co">
+<link rel="preconnect" href="https://www.google-analytics.com">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Football Leagues — Live Matches &amp; Scores 2026 | SifuFinds</title>
+<meta name="description" content="Live football match scores and schedules across all major leagues — World Cup 2026, Premier League, La Liga, Bundesliga, Serie A, CAF Champions League, AFCON and more. Updated every minute.">
+<meta name="keywords" content="football leagues live scores, World Cup 2026 scores, Premier League schedule, La Liga matches, CAF Champions League live, AFCON 2026, football scores Africa">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Sifu Kai">
+<link rel="canonical" href="https://sifufinds.com/leagues/">
+<link rel="alternate" hreflang="en" href="https://sifufinds.com/leagues/">
+<link rel="alternate" hreflang="x-default" href="https://sifufinds.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SifuFinds">
+<meta property="og:title" content="Football Leagues — Live Scores &amp; Schedules · SifuFinds">
+<meta property="og:description" content="Live football scores across all major leagues. World Cup 2026, Premier League, La Liga, CAF CL, AFCON and more. Place bets with top African bookmakers.">
+<meta property="og:url" content="https://sifufinds.com/leagues/">
+<meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@sifufinds">
+<meta name="twitter:title" content="Football Leagues — Live Scores · SifuFinds">
+<meta name="twitter:description" content="Live football scores: World Cup 2026, Premier League, La Liga, CAF CL, AFCON and more.">
+<meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
+
+<link rel="stylesheet" href="../assets/shared.css?v=8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
+<link rel="manifest" href="/manifest.json">
+
+<style>
+/* ================================================================
+   leagues/index.html — Football Leagues Hub
+   ================================================================ */
+
+/* Page header */
+.lg-page-header {
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 12px 18px;
+}
+.lg-page-header h1 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+.lg-page-header p {
+  font-size: 12px;
+  color: #777;
+}
+
+/* ── Three-column layout ── */
+.lg-layout {
+  display: grid;
+  grid-template-columns: 206px 1fr 206px;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 14px 10px;
+  gap: 12px;
+  align-items: start;
+}
+
+/* ── Brand sidebars ── */
+.lg-side {
+  position: sticky;
+  top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.lg-side-label {
+  font-size: 9px;
+  font-weight: 800;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+  text-align: center;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.lg-brand-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,.09);
+  transition: transform .15s, box-shadow .15s;
+}
+.lg-brand-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.16);
+}
+.lg-brand-head {
+  padding: 10px 9px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lg-brand-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: rgba(255,255,255,.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 900;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+.lg-brand-logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 3px;
+}
+.lg-brand-title { min-width: 0; }
+.lg-brand-name {
+  font-size: 12.5px;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lg-brand-sub {
+  font-size: 8.5px;
+  opacity: .65;
+  margin-top: 1px;
+  white-space: nowrap;
+}
+.lg-brand-offer {
+  padding: 6px 9px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(0,0,0,.18);
+  line-height: 1.35;
+}
+.lg-brand-cta {
+  padding: 7px 9px;
+  background: rgba(255,255,255,.22);
+  font-size: 10.5px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: .3px;
+  border-top: 1px solid rgba(255,255,255,.18);
+}
+
+/* ── Main content column ── */
+.lg-main { min-width: 0; }
+
+/* Status bar */
+.lg-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 8px 13px;
+  margin-bottom: 11px;
+  font-size: 12px;
+  color: #666;
+  flex-wrap: wrap;
+}
+.lg-upd-time { font-size: 11px; color: #888; }
+.lg-api-st { font-size: 11px; color: #aaa; margin-left: auto; }
+
+/* Date filter tabs */
+.lg-date-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.lg-date-tabs::-webkit-scrollbar { display: none; }
+.lg-date-tab {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 5px 11px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: all .12s;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.lg-date-tab:hover { border-color: var(--g); color: var(--g); }
+.lg-date-tab.on { background: var(--g); color: #fff; border-color: var(--g); font-weight: 700; }
+
+/* ── League section card ── */
+.lg-section {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.lg-section-hdr {
+  background: var(--g);
+  color: #fff;
+  padding: 9px 13px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  user-select: none;
+  transition: background .12s;
+}
+.lg-section-hdr:hover { background: var(--dg); }
+.lg-comp-emblem {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+.lg-comp-name {
+  font-size: 13px;
+  font-weight: 800;
+  flex: 1;
+}
+.lg-comp-count {
+  font-size: 10px;
+  opacity: .72;
+  background: rgba(255,255,255,.22);
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.lg-section-chev {
+  font-size: 10px;
+  opacity: .6;
+  margin-left: 2px;
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+.lg-section.collapsed .lg-section-chev { transform: rotate(-90deg); }
+.lg-section.collapsed .lg-section-body { display: none; }
+
+/* ── Match row ── */
+.lg-match {
+  display: grid;
+  grid-template-columns: 74px 1fr 56px 1fr 88px;
+  gap: 6px;
+  align-items: center;
+  padding: 9px 13px;
+  border-bottom: 1px solid #f2f2f2;
+  transition: background .1s;
+}
+.lg-match:last-child { border-bottom: none; }
+.lg-match:hover { background: #f7fffe; }
+
+/* Time column */
+.lg-time-col { text-align: center; }
+.lg-time {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.2;
+}
+.lg-matchday {
+  display: block;
+  font-size: 9px;
+  color: #bbb;
+  margin-top: 1px;
+}
+
+/* Status badge */
+.lg-status-badge {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-top: 3px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+.badge-live    { background: #fee2e2; color: #dc2626; }
+.badge-sch     { background: #f0f0f0; color: #777; }
+.badge-fin     { background: #e8f5e9; color: #2e7d32; }
+.badge-ht      { background: #fff3cd; color: #856404; }
+.badge-ppd     { background: #f3e5f5; color: #6a1b9a; }
+.badge-can     { background: #fce4ec; color: #c62828; }
+
+/* Team columns */
+.lg-team-home {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  min-width: 0;
+}
+.lg-team-away {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
+.lg-team-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lg-team-home .lg-team-name { text-align: right; }
+.lg-team-away .lg-team-name { text-align: left; }
+.lg-crest {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Score column */
+.lg-score-col {
+  text-align: center;
+  flex-shrink: 0;
+}
+.lg-score {
+  font-size: 14.5px;
+  font-weight: 900;
+  color: #111;
+  letter-spacing: 1.5px;
+}
+.lg-vs {
+  font-size: 11px;
+  color: #ccc;
+  font-weight: 500;
+}
+
+/* Bet CTA column */
+.lg-cta-col {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.lg-bet-btn {
+  background: var(--g);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 9px;
+  font-size: 10.5px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: background .12s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.lg-bet-btn:hover { background: var(--dg); }
+.lg-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ef4444;
+  border-radius: 50%;
+  animation: pulse 1s infinite;
+  flex-shrink: 0;
+}
+
+/* Loading & empty states */
+.lg-loading {
+  text-align: center;
+  padding: 44px 20px;
+  color: #aaa;
+  font-size: 13px;
+}
+.lg-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #e0e0e0;
+  border-top-color: var(--g);
+  border-radius: 50%;
+  animation: spin .72s linear infinite;
+  margin: 0 auto 12px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.lg-error-retry {
+  background: var(--g);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 11px;
+  font-family: inherit;
+}
+
+/* ── Bottom brand strip ── */
+.lg-bottom-brands {
+  background: #0f0f0f;
+  padding: 18px 0 20px;
+  margin-top: 6px;
+}
+.lg-bottom-brands-in {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+.lg-bottom-lbl {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: rgba(255,255,255,.35);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: 11px;
+}
+.lg-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  gap: 8px;
+}
+.lg-bottom-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 11px;
+  border-radius: 8px;
+  text-decoration: none;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.09);
+  transition: border-color .14s, background .14s;
+}
+.lg-bottom-card:hover {
+  border-color: rgba(255,255,255,.28);
+  background: rgba(255,255,255,.08);
+}
+.lg-bottom-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 900;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.lg-bottom-logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 3px;
+}
+.lg-bottom-name { font-size: 12px; font-weight: 800; color: #fff; }
+.lg-bottom-offer { font-size: 10px; color: rgba(255,255,255,.55); margin-top: 2px; line-height: 1.35; }
+.lg-bottom-arrow {
+  font-size: 12px;
+  color: rgba(255,255,255,.3);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1140px) {
+  .lg-layout { grid-template-columns: 1fr; }
+  .lg-side { display: none; }
+}
+@media (max-width: 700px) {
+  .lg-match { grid-template-columns: 62px 1fr 48px 1fr 70px; gap: 4px; padding: 8px 10px; }
+  .lg-team-name { font-size: 11.5px; }
+  .lg-score { font-size: 13px; }
+  .lg-bet-btn { font-size: 9.5px; padding: 4px 7px; }
+  .lg-bottom-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 440px) {
+  .lg-match { grid-template-columns: 56px 1fr 44px 1fr; }
+  .lg-cta-col { display: none; }
+  .lg-bottom-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="tbar">
+  <div class="tbar-l">
+    <a href="../">🏠 Home</a>
+    <a href="../countries/">🌍 Africa</a>
+    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <button onclick="openPage('about')">18+ Only</button>
+  </div>
+  <div class="tbar-r">
+    <span class="csel-lbl">Your Country:</span>
+    <select class="csel" id="ctySel" onchange="changeCountry(this.value)">
+      <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
+      <option value="KE">🇰🇪 Kenya · KSh KES</option>
+      <option value="GH">🇬🇭 Ghana · GH₵ GHS</option>
+      <option value="ZA">🇿🇦 South Africa · R ZAR</option>
+      <option value="TZ">🇹🇿 Tanzania · TSh TZS</option>
+      <option value="UG">🇺🇬 Uganda · USh UGX</option>
+      <option value="ZM">🇿🇲 Zambia · ZK ZMW</option>
+      <option value="ET">🇪🇹 Ethiopia · Br ETB</option>
+      <option value="CI">🇨🇮 Ivory Coast · CFA XOF</option>
+      <option value="CM">🇨🇲 Cameroon · CFA XAF</option>
+      <option value="SN">🇸🇳 Senegal · CFA XOF</option>
+      <option value="RW">🇷🇼 Rwanda · RWF</option>
+      <option value="ZW">🇿🇼 Zimbabwe · USD</option>
+      <option value="MW">🇲🇼 Malawi · MWK</option>
+      <option value="MZ">🇲🇿 Mozambique · MZN</option>
+      <option value="AO">🇦🇴 Angola · AOA</option>
+      <option value="CD">🇨🇩 DR Congo · CDF</option>
+      <option value="BW">🇧🇼 Botswana · BWP</option>
+      <option value="NA">🇳🇦 Namibia · NAD</option>
+      <option value="EG">🇪🇬 Egypt · EGP</option>
+      <option value="MA">🇲🇦 Morocco · MAD</option>
+      <option value="SL">🇸🇱 Sierra Leone · Le SLL</option>
+      <option value="LR">🇱🇷 Liberia · $ LRD</option>
+    </select>
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="mnav">
+  <div class="mnav-in">
+    <a class="logo" href="../">
+      <img src="../assets/icon.png" height="38" alt="SifuFinds" style="display:block;object-fit:contain" fetchpriority="high">
+      SifuFinds
+    </a>
+    <div class="ntabs">
+      <a class="nt" href="../">⭐ Best Bonuses</a>
+      <a class="nt" href="../tips/">💡 Tips</a>
+      <a class="nt" href="../casino/">🎰 Casino</a>
+      <a class="nt" href="../odds/">📊 Live Odds</a>
+      <a class="nt on" href="./">⚽ Leagues<span class="lpulse" style="margin-left:4px"></span></a>
+      <a class="nt" href="../countries/">🌍 Countries</a>
+      <a class="nt" href="../blog/">📰 Blog</a>
+      <a class="nt" href="../contact/">✉️ Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER BRANDS BAR -->
+<div id="hbrands" class="hbrands"></div>
+
+<!-- PAGE HEADING -->
+<div class="lg-page-header">
+  <h1>⚽ Football Leagues — Live Matches &amp; Scores</h1>
+  <p>Real-time match schedules and scores across all major competitions. Auto-refreshes every 60 seconds.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     THREE-COLUMN LAYOUT
+     Left sidebar | Matches | Right sidebar
+     ══════════════════════════════════════════════════ -->
+<div class="lg-layout">
+
+  <!-- LEFT BRAND SIDEBAR -->
+  <aside class="lg-side" id="side-left" aria-label="Featured bookmakers"></aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="lg-main">
+
+    <!-- Status bar -->
+    <div class="lg-status">
+      <div class="op-live-badge"><span class="lpulse" style="width:5px;height:5px;margin-right:2px"></span>LIVE</div>
+      <span class="lg-upd-time" id="lg-upd">Loading...</span>
+      <span class="lg-api-st" id="lg-api-st">🔄 Connecting to football-data.org...</span>
+    </div>
+
+    <!-- Date tabs -->
+    <div class="lg-date-tabs" id="lg-date-tabs" role="tablist" aria-label="Select match date"></div>
+
+    <!-- Matches output -->
+    <div id="lg-matches" role="main">
+      <div class="lg-loading">
+        <div class="lg-spinner"></div>
+        Loading matches from all leagues...
+      </div>
+    </div>
+
+  </main>
+
+  <!-- RIGHT BRAND SIDEBAR -->
+  <aside class="lg-side" id="side-right" aria-label="Top African bookmakers"></aside>
+
+</div><!-- /.lg-layout -->
+
+<!-- BOTTOM BRAND STRIP -->
+<div class="lg-bottom-brands">
+  <div class="lg-bottom-brands-in">
+    <div class="lg-bottom-lbl">🔥 Bet on These Matches — Top African Bookmakers</div>
+    <div class="lg-bottom-grid" id="lg-bottom-grid"></div>
+  </div>
+</div>
+
+<!-- RESPONSIBLE GAMBLING -->
+<div class="wrap" style="padding:10px 18px">
+  <div class="resp">⚠️ Betting involves risk. Never bet more than you can afford to lose. 18+ only.
+    <button onclick="openPage('responsible')">Learn more</button>
+  </div>
+</div>
+
+<!-- PAGE MODAL (shared.js) -->
+<div class="page-overlay" onclick="closePage()">
+  <div class="page-modal">
+    <button class="page-modal-close" onclick="closePage()">×</button>
+    <div class="pm" id="page-content"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer"><div class="footer-in">
+  <div class="flogo"><img src="../assets/logo.png" alt="SifuFinds" height="72" style="display:block;object-fit:contain"></div>
+  <div class="fgrid">
+    <div class="fc4"><h4>Betting</h4>
+      <a href="../">Best Bonuses</a>
+      <a href="../odds/">Live Odds</a>
+      <a href="./">Football Leagues</a>
+    </div>
+    <div class="fc4"><h4>Predictions</h4>
+      <a href="../tips/">Free Tips Today</a>
+      <a href="../tips/?tf=cafl">CAF CL Tips</a>
+    </div>
+    <div class="fc4"><h4>Countries</h4>
+      <a href="../countries/?sel=NG">Nigeria ₦</a>
+      <a href="../countries/?sel=KE">Kenya KSh</a>
+      <a href="../countries/?sel=ZA">South Africa R</a>
+    </div>
+    <div class="fc4"><h4>About</h4>
+      <button onclick="openPage('about')">About SifuFinds</button>
+      <a href="../contact/">Contact Us</a>
+      <button onclick="openPage('privacy')">Privacy Policy</button>
+      <button onclick="openPage('responsible')">Responsible Gambling</button>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>Match data provided by football-data.org. For informational purposes only. Always verify directly with your bookmaker. Bet responsibly. 18+ only.</p>
+    <p style="margin-top:5px">© <span id="foot-yr"></span> SifuFinds ·
+      <button onclick="openPage('privacy')">Privacy Policy</button> ·
+      <button onclick="openPage('terms')">Terms of Use</button>
+    </p>
+  </div>
+</div></footer>
+
+<!-- ══════════════════════════════════════════════════
+     SCRIPTS
+     ══════════════════════════════════════════════════ -->
+<script>
+const SITE={home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'};
+</script>
+<script src="../assets/shared.js?v=10"></script>
+<script>
+/* ─────────────────────────────────────────────────────────────
+   Football Leagues Hub — football-data.org v4 integration
+   ───────────────────────────────────────────────────────────── */
+
+const FD_TOKEN = '530624f0ac724d53ad5ef067d9739ef5';
+const FD_BASE  = 'https://api.football-data.org/v4';
+
+/* Competition priority order for display (lower = higher) */
+const COMP_PRIORITY = {
+  2000: 1,  // FIFA World Cup
+  2001: 2,  // UEFA Champions League
+  2021: 3,  // Premier League
+  2014: 4,  // La Liga
+  2002: 5,  // Bundesliga
+  2019: 6,  // Serie A
+  2015: 7,  // Ligue 1
+  2017: 8,  // Primeira Liga
+  2003: 9,  // Eredivisie
+  2016: 10, // Championship
+};
+
+/* Brand data for sidebars / bottom strip — affiliate links where available */
+const SIDE_BRANDS = [
+  {name:'1xBet',       abbr:'1X',  bg:'#E60000', tc:'#fff', url:'https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97',                               offer:'300% First Deposit — Up to ₦1,200,000',  logo:'../assets/logos/1xbet_hq.png'},
+  {name:'Melbet',      abbr:'MB',  bg:'#FD1B26', tc:'#fff', url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559',                      offer:'200% Bonus — Up to ₦480,000',             logo:'../assets/logos/melbet_hq.png'},
+  {name:'BetWinner',   abbr:'BW',  bg:'#0055A4', tc:'#fff', url:'https://bwredir.com/1Lvf?p=%2Fregistration%2F',                                            offer:'200% Bonus — Up to ₦130,000',             logo:'../assets/logos/betwinner_hq.png'},
+  {name:'Paripesa',    abbr:'PP',  bg:'#2E7D32', tc:'#fff', url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',                       offer:'200% First Deposit — Up to ₦200,000',     logo:'../assets/logos/paripesa_hq.png'},
+  {name:'HelaBet',     abbr:'HB',  bg:'#1565C0', tc:'#fff', url:'https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235',                     offer:'100% Welcome Bonus + Free Bets',          logo:'../assets/logos/helabet.png'},
+  {name:'TicTacBets',  abbr:'TTC', bg:'#00838F', tc:'#fff', url:'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023',                                    offer:'25 Free Spins + 100% Up to R5,000',       logo:'../assets/logos/tictacbets.png'},
+  {name:'Bet9ja',      abbr:'B9',  bg:'#00875A', tc:'#fff', url:'https://www.bet9ja.com',                                                                    offer:'₦2,500 Free Bet + 170% ACCA Boost',      logo:'../assets/logos/bet9ja_hq.png'},
+  {name:'SportyBet',   abbr:'SB',  bg:'#00C851', tc:'#fff', url:'https://www.sportybet.com/ng/',                                                             offer:'150% Welcome — Up to ₦30,000',            logo:'../assets/logos/sportybet_hq.png'},
+  {name:'Betway',      abbr:'BW2', bg:'#00aeef', tc:'#000', url:'https://www.betway.com/en-ng/',                                                             offer:'Up to ₦100,000 in Free Bets',             logo:'../assets/logos/betway_hq.png'},
+  {name:'Betika',      abbr:'BTK', bg:'#007A4D', tc:'#fff', url:'https://www.betika.com',                                                                    offer:'Free Bet on Signup + Jackpot Daily',      logo:'../assets/logos/betika_hq.png'},
+];
+
+/* Primary bet CTA on every match row — uses top affiliate */
+const PRIMARY_BET_URL = 'https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97';
+
+/* ── Date utilities ── */
+function toDateParam(d) {
+  return d.toISOString().split('T')[0];
+}
+function fmtTime(utcDate) {
+  return new Date(utcDate).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC';
+}
+function dayLabel(d, idx) {
+  if (idx === 0) return 'Today';
+  if (idx === 1) return 'Tomorrow';
+  return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+}
+
+/* Build 7-day date array starting from today */
+const TODAY = new Date();
+const DATES = Array.from({ length: 7 }, (_, i) => {
+  const d = new Date(TODAY);
+  d.setDate(TODAY.getDate() + i);
+  return d;
+});
+
+/* Cache: { dateIdx -> matches[] } */
+const matchCache = {};
+let activeDateIdx = 0;
+let refreshTimer = null;
+
+/* ── Date tabs ── */
+function buildDateTabs() {
+  const el = document.getElementById('lg-date-tabs');
+  el.innerHTML = DATES.map((d, i) =>
+    `<button class="lg-date-tab${i === 0 ? ' on' : ''}" onclick="selectDate(${i})" role="tab" aria-selected="${i === 0}">${dayLabel(d, i)}</button>`
+  ).join('');
+}
+
+function selectDate(idx) {
+  activeDateIdx = idx;
+  document.querySelectorAll('.lg-date-tab').forEach((t, i) => {
+    t.classList.toggle('on', i === idx);
+    t.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+  });
+  if (matchCache[idx] !== undefined) {
+    renderMatches(matchCache[idx]);
+  } else {
+    fetchMatches(idx);
+  }
+}
+
+/* ── API fetch ── */
+async function fetchMatches(idx) {
+  const dateStr = toDateParam(DATES[idx]);
+  document.getElementById('lg-matches').innerHTML =
+    '<div class="lg-loading"><div class="lg-spinner"></div>Loading matches...</div>';
+  document.getElementById('lg-api-st').textContent = '🔄 Fetching...';
+
+  try {
+    const res = await fetch(`${FD_BASE}/matches?dateFrom=${dateStr}&dateTo=${dateStr}`, {
+      headers: { 'X-Auth-Token': FD_TOKEN }
+    });
+    if (!res.ok) throw new Error(`API ${res.status}`);
+    const data = await res.json();
+    matchCache[idx] = data.matches || [];
+
+    const count = matchCache[idx].length;
+    document.getElementById('lg-api-st').textContent = `✅ ${count} match${count !== 1 ? 'es' : ''}`;
+    document.getElementById('lg-upd').textContent =
+      'Updated ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+    if (idx === activeDateIdx) renderMatches(matchCache[idx]);
+  } catch (err) {
+    document.getElementById('lg-api-st').textContent = '⚠️ Error — will retry';
+    document.getElementById('lg-matches').innerHTML =
+      `<div class="lg-loading">
+        Could not load matches. Check your connection.<br>
+        <button class="lg-error-retry" onclick="fetchMatches(${idx})">Retry</button>
+      </div>`;
+  }
+}
+
+/* ── Status badge ── */
+function statusBadge(status, minute) {
+  switch (status) {
+    case 'IN_PLAY':          return `<span class="lg-status-badge badge-live">${minute != null ? minute + "'" : 'LIVE'}</span>`;
+    case 'PAUSED':           return '<span class="lg-status-badge badge-ht">HT</span>';
+    case 'EXTRA_TIME':       return '<span class="lg-status-badge badge-live">ET</span>';
+    case 'PENALTY_SHOOTOUT': return '<span class="lg-status-badge badge-live">PEN</span>';
+    case 'FINISHED':         return '<span class="lg-status-badge badge-fin">FT</span>';
+    case 'AWARDED':          return '<span class="lg-status-badge badge-fin">AWD</span>';
+    case 'SUSPENDED':        return '<span class="lg-status-badge badge-ppd">SUSP</span>';
+    case 'POSTPONED':        return '<span class="lg-status-badge badge-ppd">PPD</span>';
+    case 'CANCELLED':        return '<span class="lg-status-badge badge-can">CANC</span>';
+    case 'TIMED':
+    case 'SCHEDULED':
+    default:                 return '<span class="lg-status-badge badge-sch">SCH</span>';
+  }
+}
+
+/* ── Team cell HTML ── */
+function teamCell(team, side) {
+  const name = `<span class="lg-team-name">${team.shortName || team.name || '—'}</span>`;
+  const crest = team.crest
+    ? `<img class="lg-crest" src="${team.crest}" alt="" loading="lazy" onerror="this.style.display='none'">`
+    : '';
+  return side === 'home'
+    ? `<div class="lg-team-home">${name}${crest}</div>`
+    : `<div class="lg-team-away">${crest}${name}</div>`;
+}
+
+/* ── Score cell HTML ── */
+function scoreCell(match) {
+  const live = ['IN_PLAY', 'PAUSED', 'EXTRA_TIME', 'PENALTY_SHOOTOUT', 'FINISHED', 'AWARDED'].includes(match.status);
+  const ft = match.score && match.score.fullTime;
+  if (live && ft && ft.home !== null) {
+    return `<div class="lg-score-col"><span class="lg-score">${ft.home}&nbsp;–&nbsp;${ft.away}</span></div>`;
+  }
+  return `<div class="lg-score-col"><span class="lg-vs">vs</span></div>`;
+}
+
+/* ── Group matches by competition ── */
+function groupByComp(matches) {
+  const map = {};
+  matches.forEach(m => {
+    const key = m.competition.id;
+    if (!map[key]) map[key] = { comp: m.competition, matches: [] };
+    map[key].matches.push(m);
+  });
+  return Object.values(map).sort((a, b) => {
+    const pa = COMP_PRIORITY[a.comp.id] || 99;
+    const pb = COMP_PRIORITY[b.comp.id] || 99;
+    return pa !== pb ? pa - pb : a.comp.name.localeCompare(b.comp.name);
+  });
+}
+
+/* ── Render all matches ── */
+function renderMatches(matches) {
+  const groups = groupByComp(matches);
+
+  if (!groups.length) {
+    document.getElementById('lg-matches').innerHTML =
+      '<div class="lg-loading">No matches found for this date.</div>';
+    return;
+  }
+
+  const html = groups.map(({ comp, matches: ms }) => {
+    const emblem = comp.emblem
+      ? `<img class="lg-comp-emblem" src="${comp.emblem}" alt="${comp.name}" loading="lazy" onerror="this.style.display='none'">`
+      : '<span style="font-size:16px">⚽</span>';
+
+    const rows = ms.map(m => {
+      const isLive = ['IN_PLAY', 'PAUSED', 'EXTRA_TIME', 'PENALTY_SHOOTOUT'].includes(m.status);
+      const mdLabel = m.matchday ? `MD ${m.matchday}` : '';
+      return `<div class="lg-match">
+        <div class="lg-time-col">
+          <span class="lg-time">${isLive ? '<span class="lg-live-dot"></span> ' : ''}${fmtTime(m.utcDate)}</span>
+          ${mdLabel ? `<span class="lg-matchday">${mdLabel}</span>` : ''}
+          ${statusBadge(m.status, m.minute)}
+        </div>
+        ${teamCell(m.homeTeam, 'home')}
+        ${scoreCell(m)}
+        ${teamCell(m.awayTeam, 'away')}
+        <div class="lg-cta-col">
+          <a class="lg-bet-btn" href="${PRIMARY_BET_URL}" target="_blank" rel="noopener noreferrer sponsored">Bet →</a>
+        </div>
+      </div>`;
+    }).join('');
+
+    return `<div class="lg-section" id="comp-${comp.id}">
+      <div class="lg-section-hdr" onclick="toggleSection('comp-${comp.id}')">
+        ${emblem}
+        <span class="lg-comp-name">${comp.name}</span>
+        <span class="lg-comp-count">${ms.length} match${ms.length !== 1 ? 'es' : ''}</span>
+        <span class="lg-section-chev">▾</span>
+      </div>
+      <div class="lg-section-body">${rows}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('lg-matches').innerHTML = html;
+}
+
+/* Toggle league section open/closed */
+function toggleSection(id) {
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+/* ── Render left / right brand sidebars ── */
+function renderBrandSidebars() {
+  function cardHtml(b) {
+    return `<a class="lg-brand-card" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored" style="background:${b.bg};color:${b.tc}">
+      <div class="lg-brand-head">
+        <div class="lg-brand-logo">
+          <img src="${b.logo}" alt="${b.name}" onerror="this.style.display='none'">
+          <span style="font-size:8px;font-weight:900;color:${b.tc}">${b.abbr}</span>
+        </div>
+        <div class="lg-brand-title">
+          <div class="lg-brand-name">${b.name}</div>
+          <div class="lg-brand-sub">Licensed Bookmaker</div>
+        </div>
+      </div>
+      <div class="lg-brand-offer">${b.offer}</div>
+      <div class="lg-brand-cta">Bet Now →</div>
+    </a>`;
+  }
+
+  const left  = document.getElementById('side-left');
+  const right = document.getElementById('side-right');
+
+  if (left) {
+    left.innerHTML = '<div class="lg-side-label">Featured Bookmakers</div>' +
+      SIDE_BRANDS.slice(0, 4).map(cardHtml).join('');
+  }
+  if (right) {
+    right.innerHTML = '<div class="lg-side-label">Top Bookmakers</div>' +
+      SIDE_BRANDS.slice(4, 8).map(cardHtml).join('');
+  }
+}
+
+/* ── Render bottom brand grid ── */
+function renderBottomBrands() {
+  const el = document.getElementById('lg-bottom-grid');
+  if (!el) return;
+  el.innerHTML = SIDE_BRANDS.map(b =>
+    `<a class="lg-bottom-card" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored">
+      <div class="lg-bottom-logo" style="background:${b.bg}">
+        <img src="${b.logo}" alt="${b.name}" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <div class="lg-bottom-name">${b.name}</div>
+        <div class="lg-bottom-offer">${b.offer}</div>
+      </div>
+      <span class="lg-bottom-arrow">→</span>
+    </a>`
+  ).join('');
+}
+
+/* ── Auto-refresh every 60 seconds ── */
+function scheduleRefresh() {
+  clearTimeout(refreshTimer);
+  refreshTimer = setTimeout(() => {
+    delete matchCache[activeDateIdx];
+    fetchMatches(activeDateIdx);
+    scheduleRefresh();
+  }, 60_000);
+}
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('foot-yr').textContent = new Date().getFullYear();
+  buildDateTabs();
+  renderBrandSidebars();
+  renderBottomBrands();
+  fetchMatches(0);
+  scheduleRefresh();
+});
+</script>
+</body>
+</html>
