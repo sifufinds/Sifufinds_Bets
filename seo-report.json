@@ -1,55 +1,13 @@
 {
   "date": "2026-06-16",
-  "total": 9,
+  "total": 2,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 0,
     "MEDIUM": 2,
     "INFO": 0
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "new-york-knicks-nba-offseason-drama-betting-guide",
-      "detail": "Title 84 chars (max 60): \"New York Knicks' Historic Win & NBA Offseason Drama - Betting Guide fo\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "world-cup-2026-news-outrights-shock-goalkeeping-mistake",
-      "detail": "Title 78 chars (max 60): 'World Cup 2026 News: Outright Winner Odds, Shock Goalkeeping Mistake, '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "cape-verdes-shocking-draw-against-spain-world-cup-2026-betting-insights",
-      "detail": "Title 74 chars (max 60): \"Cape Verde's Shocking Draw against Spain | World Cup 2026 Betting Insi\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "worldcup2026-week-1-outright-winner-odds-sacking-big-transfers",
-      "detail": "Title 69 chars (max 60): 'Worldcup2026 Week 1: Outright Winner Odds, Sacking, and Big Transfers'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "world-cup-2026-news-outrights-shock-goalkeeping-mistake",
-      "detail": "Excerpt 157 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "igaming-trends-africa",
-      "detail": "Excerpt 181 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "worldcup2026-week-1-outright-winner-odds-sacking-big-transfers",
-      "detail": "Excerpt 181 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
