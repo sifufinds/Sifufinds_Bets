@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-16T00:09:47.902896+00:00",
+  "updated": "2026-06-16T05:32:06.300005+00:00",
   "source": "thesportsdb+fst",
   "count": 10,
   "scrape_log": [
@@ -7,49 +7,49 @@
       "page": "main",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-16T00:09:47.902896+00:00"
+      "ts": "2026-06-16T05:32:06.300005+00:00"
     },
     {
       "page": "btts",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-16T00:09:47.902896+00:00"
+      "ts": "2026-06-16T05:32:06.300005+00:00"
     },
     {
       "page": "ou25",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/over-under-25-goals/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-16T00:09:47.902896+00:00"
+      "ts": "2026-06-16T05:32:06.300005+00:00"
     },
     {
       "page": "bw",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score-and-win/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-16T00:09:47.902896+00:00"
+      "ts": "2026-06-16T05:32:06.300005+00:00"
     },
     {
       "page": "score",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/correct-score/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-16T00:09:47.902896+00:00"
+      "ts": "2026-06-16T05:32:06.300005+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "error",
       "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-1x2: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-16T00:09:47.902896+00:00"
+      "ts": "2026-06-16T05:32:06.300005+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "error",
       "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-both-to-score: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-16T00:09:47.902896+00:00"
+      "ts": "2026-06-16T05:32:06.300005+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "error",
       "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-under-over-goals: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-16T00:09:47.902896+00:00"
+      "ts": "2026-06-16T05:32:06.300005+00:00"
     }
   ],
   "predictions": [
@@ -72,7 +72,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-0",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 65
     },
@@ -95,7 +95,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-0",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 75
     },
@@ -118,7 +118,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-0",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 80
     },
@@ -141,7 +141,7 @@
       "over25": "Over 2.5",
       "correct_score": "3-0",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 74
     },
@@ -164,7 +164,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 72
     },
@@ -187,7 +187,7 @@
       "over25": "Over 2.5",
       "correct_score": "0-2",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 68
     },
@@ -210,7 +210,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-0",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 67
     },
@@ -233,7 +233,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -256,7 +256,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -279,7 +279,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-16T00:09:50.342669+00:00",
+      "scraped_at": "2026-06-16T05:32:09.144481+00:00",
       "flag": "🌍",
       "confidence": 60
     }
