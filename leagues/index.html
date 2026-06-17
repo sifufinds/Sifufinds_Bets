@@ -698,9 +698,6 @@ const SITE={home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',count
    Football Leagues Hub — football-data.org v4 integration
    ───────────────────────────────────────────────────────────── */
 
-const FD_TOKEN = '530624f0ac724d53ad5ef067d9739ef5';
-const FD_BASE  = 'https://api.football-data.org/v4';
-
 /* Competition priority order for display (lower = higher) */
 const COMP_PRIORITY = {
   2000: 1,  // FIFA World Cup
@@ -736,9 +733,6 @@ const PRIMARY_BET_URL = 'https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&a
 function toDateParam(d) {
   return d.toISOString().split('T')[0];
 }
-function fmtTime(utcDate) {
-  return new Date(utcDate).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC';
-}
 function dayLabel(d, idx) {
   if (idx === 0) return 'Today';
   if (idx === 1) return 'Tomorrow';
@@ -752,6 +746,9 @@ const DATES = Array.from({ length: 7 }, (_, i) => {
   d.setDate(TODAY.getDate() + i);
   return d;
 });
+
+/* Full static JSON, fetched once per refresh cycle */
+let liveData = null;
 
 /* Cache: { dateIdx -> matches[] } */
 const matchCache = {};
@@ -779,27 +776,31 @@ function selectDate(idx) {
   }
 }
 
-/* ── API fetch ── */
+/* ── Static JSON fetch — server-side cached by GitHub Actions every 30 min ── */
 async function fetchMatches(idx) {
-  const dateStr = toDateParam(DATES[idx]);
   document.getElementById('lg-matches').innerHTML =
     '<div class="lg-loading"><div class="lg-spinner"></div>Loading matches...</div>';
-  document.getElementById('lg-api-st').textContent = '🔄 Fetching...';
+  document.getElementById('lg-api-st').textContent = '🔄 Loading...';
 
   try {
-    const res = await fetch(`${FD_BASE}/matches?dateFrom=${dateStr}&dateTo=${dateStr}`, {
-      headers: { 'X-Auth-Token': FD_TOKEN }
-    });
-    if (!res.ok) throw new Error(`API ${res.status}`);
-    const data = await res.json();
-    matchCache[idx] = data.matches || [];
+    if (!liveData) {
+      const res = await fetch('../data/matches_live.json');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      liveData = await res.json();
+    }
 
-    const count = matchCache[idx].length;
+    const key = toDateParam(DATES[idx]);
+    const matches = (liveData.byDate && liveData.byDate[key]) || [];
+    matchCache[idx] = matches;
+
+    const count = matches.length;
     document.getElementById('lg-api-st').textContent = `✅ ${count} match${count !== 1 ? 'es' : ''}`;
-    document.getElementById('lg-upd').textContent =
-      'Updated ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    const updStr = liveData.updated
+      ? new Date(liveData.updated).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
+      : new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('lg-upd').textContent = 'Updated ' + updStr;
 
-    if (idx === activeDateIdx) renderMatches(matchCache[idx]);
+    if (idx === activeDateIdx) renderMatches(matches);
   } catch (err) {
     document.getElementById('lg-api-st').textContent = '⚠️ Error — will retry';
     document.getElementById('lg-matches').innerHTML =
@@ -828,33 +829,37 @@ function statusBadge(status, minute) {
   }
 }
 
-/* ── Team cell HTML ── */
-function teamCell(team, side) {
-  const name = `<span class="lg-team-name">${team.shortName || team.name || '—'}</span>`;
-  const crest = team.crest
-    ? `<img class="lg-crest" src="${team.crest}" alt="" loading="lazy" onerror="this.style.display='none'">`
+/* ── Team cell HTML — uses normalised match object ── */
+function teamCell(m, side) {
+  if (side === 'home') {
+    const name  = `<span class="lg-team-name">${m.home || '—'}</span>`;
+    const crest = m.homeCrest
+      ? `<img class="lg-crest" src="${m.homeCrest}" alt="" loading="lazy" onerror="this.style.display='none'">`
+      : '';
+    return `<div class="lg-team-home">${name}${crest}</div>`;
+  }
+  const name  = `<span class="lg-team-name">${m.away || '—'}</span>`;
+  const crest = m.awayCrest
+    ? `<img class="lg-crest" src="${m.awayCrest}" alt="" loading="lazy" onerror="this.style.display='none'">`
     : '';
-  return side === 'home'
-    ? `<div class="lg-team-home">${name}${crest}</div>`
-    : `<div class="lg-team-away">${crest}${name}</div>`;
+  return `<div class="lg-team-away">${crest}${name}</div>`;
 }
 
-/* ── Score cell HTML ── */
-function scoreCell(match) {
-  const live = ['IN_PLAY', 'PAUSED', 'EXTRA_TIME', 'PENALTY_SHOOTOUT', 'FINISHED', 'AWARDED'].includes(match.status);
-  const ft = match.score && match.score.fullTime;
-  if (live && ft && ft.home !== null) {
-    return `<div class="lg-score-col"><span class="lg-score">${ft.home}&nbsp;–&nbsp;${ft.away}</span></div>`;
+/* ── Score cell HTML — uses normalised match object ── */
+function scoreCell(m) {
+  const live = ['IN_PLAY', 'PAUSED', 'EXTRA_TIME', 'PENALTY_SHOOTOUT', 'FINISHED', 'AWARDED'].includes(m.status);
+  if (live && m.hScore !== null && m.hScore !== undefined) {
+    return `<div class="lg-score-col"><span class="lg-score">${m.hScore}&nbsp;–&nbsp;${m.aScore}</span></div>`;
   }
   return `<div class="lg-score-col"><span class="lg-vs">vs</span></div>`;
 }
 
-/* ── Group matches by competition ── */
+/* ── Group matches by competition — uses normalised match object ── */
 function groupByComp(matches) {
   const map = {};
   matches.forEach(m => {
-    const key = m.competition.id;
-    if (!map[key]) map[key] = { comp: m.competition, matches: [] };
+    const key = m.compId;
+    if (!map[key]) map[key] = { comp: { id: m.compId, name: m.compName, emblem: m.emblem }, matches: [] };
     map[key].matches.push(m);
   });
   return Object.values(map).sort((a, b) => {
@@ -884,13 +889,13 @@ function renderMatches(matches) {
       const mdLabel = m.matchday ? `MD ${m.matchday}` : '';
       return `<div class="lg-match">
         <div class="lg-time-col">
-          <span class="lg-time">${isLive ? '<span class="lg-live-dot"></span> ' : ''}${fmtTime(m.utcDate)}</span>
+          <span class="lg-time">${isLive ? '<span class="lg-live-dot"></span> ' : ''}${m.time}</span>
           ${mdLabel ? `<span class="lg-matchday">${mdLabel}</span>` : ''}
           ${statusBadge(m.status, m.minute)}
         </div>
-        ${teamCell(m.homeTeam, 'home')}
+        ${teamCell(m, 'home')}
         ${scoreCell(m)}
-        ${teamCell(m.awayTeam, 'away')}
+        ${teamCell(m, 'away')}
         <div class="lg-cta-col">
           <a class="lg-bet-btn" href="${PRIMARY_BET_URL}" target="_blank" rel="noopener noreferrer sponsored">Bet →</a>
         </div>
@@ -966,11 +971,12 @@ function renderBottomBrands() {
   ).join('');
 }
 
-/* ── Auto-refresh every 60 seconds ── */
+/* ── Auto-refresh every 60 seconds — clears cache so JSON is re-fetched ── */
 function scheduleRefresh() {
   clearTimeout(refreshTimer);
   refreshTimer = setTimeout(() => {
-    delete matchCache[activeDateIdx];
+    liveData = null;
+    Object.keys(matchCache).forEach(k => delete matchCache[k]);
     fetchMatches(activeDateIdx);
     scheduleRefresh();
   }, 60_000);
