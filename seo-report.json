@@ -1,9 +1,9 @@
 {
-  "date": "2026-06-18",
-  "total": 11,
+  "date": "2026-06-19",
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 9,
+    "HIGH": 4,
     "MEDIUM": 2,
     "INFO": 0
   },
@@ -11,56 +11,26 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "nba-news-roundup-playstation-nba-creator-cup-nike-caitlin-clark-shoe-nba-draft-projections",
-      "detail": "Title 99 chars (max 60): \"NBA News Roundup: PlayStation NBA Creator Cup, Nike's Caitlin Clark Sh\""
+      "page": "european-qualifiers-world-cup-2026-updates-transfer-news-match-highlights",
+      "detail": "Title 77 chars (max 60): 'European Qualifiers & World Cup 2026 Updates: Transfer News, Match Hig'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "world-cup-2026-kane-summerville-south-africa",
-      "detail": "Title 81 chars (max 60): \"World Cup 2026: Kane's Heroics, Summerville Transfer Talk, and South A\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "england-croatia-world-cup-betting-2026",
-      "detail": "Title 71 chars (max 60): \"England & Croatia's Thrilling Draw: What it Means for World Cup Bettin\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "f1-news-adrian-neweys-amr26b-challenge-indias-priority-market",
-      "detail": "Title 68 chars (max 60): \"F1 News: Adrian Newey's AMR26B Challenge and India's Priority Market\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sportnews-crunch-time-england-portugal-ireland",
-      "detail": "Title 90 chars (max 60): 'Top Story: Crunch Time in England, Portugal, and Ireland as World Cup '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "cricket-betting-insights-womens-t20-world-cup-test-matches-and-injury-updates",
-      "detail": "Title 81 chars (max 60): \"Cricket Betting Insights: Women's T20 World Cup, Test Matches, and Inj\""
+      "page": "world-cup-transfer-title-defences",
+      "detail": "Title 87 chars (max 60): 'World Cup Play-Offs, Transfer Drama, and Title Defences: A Week of Thr'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "nba-news-roundup-playstation-nba-creator-cup-nike-caitlin-clark-shoe-nba-draft-projections",
-      "detail": "Excerpt 215 chars (max 155)"
+      "page": "european-qualifiers-world-cup-2026-updates-transfer-news-match-highlights",
+      "detail": "Excerpt 173 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "f1-news-adrian-neweys-amr26b-challenge-indias-priority-market",
-      "detail": "Excerpt 223 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "cricket-betting-insights-womens-t20-world-cup-test-matches-and-injury-updates",
-      "detail": "Excerpt 157 chars (max 155)"
+      "page": "world-cup-transfer-title-defences",
+      "detail": "Excerpt 190 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
