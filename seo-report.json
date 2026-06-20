@@ -1,9 +1,9 @@
 {
-  "date": "2026-06-19",
-  "total": 6,
+  "date": "2026-06-20",
+  "total": 8,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 4,
+    "HIGH": 6,
     "MEDIUM": 2,
     "INFO": 0
   },
@@ -11,26 +11,38 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "european-qualifiers-world-cup-2026-updates-transfer-news-match-highlights",
-      "detail": "Title 77 chars (max 60): 'European Qualifiers & World Cup 2026 Updates: Transfer News, Match Hig'"
+      "page": "knicks-nba-expansion-player-prop-betting",
+      "detail": "Title 90 chars (max 60): 'Knicks Mania, NBA Expansion & Player Prop Betting: A Thrilling Weekend'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "world-cup-transfer-title-defences",
-      "detail": "Title 87 chars (max 60): 'World Cup Play-Offs, Transfer Drama, and Title Defences: A Week of Thr'"
+      "page": "boxing-news-roundup-talent-densities-fight-cards-high-stakes-matches",
+      "detail": "Title 75 chars (max 60): 'Boxing News Roundup: Talent Densities, Fight Cards, and High-Stakes Ma'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "cricket-betting-series-winner-top-performer",
+      "detail": "Title 65 chars (max 60): 'Cricket Betting: Value in Series Winner and Top Performer Markets'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "africas-football-pulse-from-hakimi-to-balogun-whats-hot-in-the-beautiful-game",
+      "detail": "Title 81 chars (max 60): \"Africa's Football Pulse: From Hakimi to Balogun, What's Hot in the Bea\""
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "european-qualifiers-world-cup-2026-updates-transfer-news-match-highlights",
-      "detail": "Excerpt 173 chars (max 155)"
+      "page": "global-sports-spotlight-world-cup-2026-updates",
+      "detail": "Excerpt 161 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "world-cup-transfer-title-defences",
-      "detail": "Excerpt 190 chars (max 155)"
+      "page": "cricket-betting-series-winner-top-performer",
+      "detail": "Excerpt 179 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
