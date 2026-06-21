@@ -1,9 +1,9 @@
 {
-  "date": "2026-06-20",
-  "total": 8,
+  "date": "2026-06-21",
+  "total": 11,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 6,
+    "HIGH": 9,
     "MEDIUM": 2,
     "INFO": 0
   },
@@ -11,38 +11,56 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "knicks-nba-expansion-player-prop-betting",
-      "detail": "Title 90 chars (max 60): 'Knicks Mania, NBA Expansion & Player Prop Betting: A Thrilling Weekend'"
+      "page": "kalshi-canadian-deal-impact-on-african-igaming",
+      "detail": "Title 69 chars (max 60): \"Kalshi Lands Canadian Deal, But What's the Impact on African iGaming?\""
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "boxing-news-roundup-talent-densities-fight-cards-high-stakes-matches",
-      "detail": "Title 75 chars (max 60): 'Boxing News Roundup: Talent Densities, Fight Cards, and High-Stakes Ma'"
+      "page": "world-cup-2026-africa",
+      "detail": "Title 102 chars (max 60): 'World Cup 2026: African Fans Gear Up for Action as USA, Canada, and Me'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "cricket-betting-series-winner-top-performer",
-      "detail": "Title 65 chars (max 60): 'Cricket Betting: Value in Series Winner and Top Performer Markets'"
+      "page": "tennis-insights-zverev-fritz-sabalenka",
+      "detail": "Title 74 chars (max 60): 'Tennis Insights: Analyzing the Latest Form of Zverev, Fritz, and Sabal'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "africas-football-pulse-from-hakimi-to-balogun-whats-hot-in-the-beautiful-game",
-      "detail": "Title 81 chars (max 60): \"Africa's Football Pulse: From Hakimi to Balogun, What's Hot in the Bea\""
+      "page": "viral-world-cup-stories-betting-implications-and-african-insights",
+      "detail": "Title 67 chars (max 60): 'Viral World Cup Stories, Betting Implications, and African Insights'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "global-sports-spotlight-world-cup-2026-updates",
+      "page": "kalshi-canadian-deal-impact-on-african-igaming",
+      "detail": "Excerpt 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-buzz-world-cup-2026-us-open-2026",
+      "detail": "Excerpt 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "world-cup-2026-africa",
+      "detail": "Excerpt 229 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "world-cup-2026-latest-news-betting-insights",
       "detail": "Excerpt 161 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "cricket-betting-series-winner-top-performer",
-      "detail": "Excerpt 179 chars (max 155)"
+      "page": "tennis-insights-zverev-fritz-sabalenka",
+      "detail": "Excerpt 184 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
