@@ -1,22 +1,41 @@
-name: Leagues — Update match data every 30 minutes
+name: Leagues — Live football data (FD + ESPN)
+# Two schedules:
+#   1. Every 5 min during 09-23 UTC — ESPN-only live patch (no FD quota used)
+#   2. Every 30 min all hours       — Full update (FD + ESPN, throttled internally)
+#
+# The script self-throttles FD calls to max once per 25 min.
+# ESPN (unofficial, free, no auth) covers live scores between FD calls.
 
 on:
   schedule:
+    # ── 5-min ESPN live patch — peak match hours ──────────────────────────────
+    - cron: "*/5 9-23 * * *"
+    # ── 30-min full update — all hours ───────────────────────────────────────
     - cron: "*/30 * * * *"
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "Update mode"
+        required: false
+        default: "full"
+        type: choice
+        options:
+          - full
+          - espn-only
+          - force-fd
 
 concurrency:
   group: update-leagues
-  cancel-in-progress: false
+  cancel-in-progress: true   # cancel queued runs; never pile up
 
 permissions:
   contents: write
 
 jobs:
   update:
-    name: Fetch leagues data from football-data.org
+    name: Fetch leagues data
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 8
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -24,23 +43,49 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: Pull latest
+      - name: Pull latest (avoid push conflicts)
         run: git pull --rebase origin main
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
 
       - name: Install dependencies
         run: pip install requests
 
-      - name: Fetch matches
+      # ── Determine mode ────────────────────────────────────────────────────
+      - name: Determine script mode
+        id: mode
+        run: |
+          EVENT="${{ github.event_name }}"
+          INPUT="${{ github.event.inputs.mode }}"
+          MINUTE=$(date -u +%M)
+          HOUR=$(date -u +%H)
+          HOUR_INT=$((10#$HOUR))
+
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            case "$INPUT" in
+              espn-only)  echo "args=--espn-only" >> $GITHUB_OUTPUT ;;
+              force-fd)   echo "args=--force-fd"  >> $GITHUB_OUTPUT ;;
+              *)          echo "args="             >> $GITHUB_OUTPUT ;;
+            esac
+          elif [ "$((MINUTE % 30))" != "0" ]; then
+            # Not a 30-min boundary → this is a 5-min live-patch run
+            echo "args=--espn-only" >> $GITHUB_OUTPUT
+          else
+            # 30-min boundary → full update (FD throttle handled in script)
+            echo "args=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run football data update
         env:
           FD_TOKEN: ${{ secrets.FD_TOKEN }}
-        run: python3 update_leagues.py
+        run: |
+          python3 update_leagues.py ${{ steps.mode.outputs.args }}
 
       - name: Commit and push if changed
         run: |
@@ -48,8 +93,26 @@ jobs:
           git config --local user.name "LeaguesBot"
           git add data/matches_live.json
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "No changes"
           else
-            git commit -m "leagues: match data $(date -u +'%Y-%m-%d %H:%M UTC')"
+            MODE="${{ steps.mode.outputs.args }}"
+            LABEL="${MODE:+[$MODE] }"
+            git commit -m "leagues: ${LABEL}$(date -u +'%Y-%m-%d %H:%M UTC')"
             git push origin main
           fi
+
+  # Safety net — retry on failure after 8 min (CLAUDE.md standing rule)
+  retry-on-failure:
+    needs: update
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait before retry
+        run: sleep 480
+      - name: Trigger retry (espn-only to avoid quota burn)
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: update_leagues.yml
+          inputs: '{"mode":"espn-only"}'
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
