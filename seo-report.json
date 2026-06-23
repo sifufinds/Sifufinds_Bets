@@ -1,9 +1,9 @@
 {
-  "date": "2026-06-22",
-  "total": 7,
+  "date": "2026-06-23",
+  "total": 8,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
+    "HIGH": 6,
     "MEDIUM": 2,
     "INFO": 0
   },
@@ -11,32 +11,38 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "stokes-atkinson-england-spotlight",
-      "detail": "Title 71 chars (max 60): \"Stokes & Atkinson in the Spotlight: What's Next for England's Star Duo\""
+      "page": "2026-austrian-gp-betting-guide",
+      "detail": "Title 72 chars (max 60): '2026 Austrian GP Betting Guide: Lewis Hamilton Dominates, Haas Struggl'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "world-cup-subplots-betting-implications",
-      "detail": "Title 77 chars (max 60): \"The World Cup Subplots and Betting Implications: What's Happening in F\""
+      "page": "world-cup-2026-messi-missed-penalty-african-teams",
+      "detail": "Title 74 chars (max 60): \"World Cup 2026: Messi's Missed Penalty, African Teams' Struggles, and \""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "cricket-betting-insights-county-cricket",
+      "detail": "Title 68 chars (max 60): 'Cricket Betting Insights: Analyzing the Latest County Cricket Action'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-talk-mccloskey-signs-new-contract-world-cup-update-more",
+      "detail": "Title 71 chars (max 60): 'Transfer Talk: McCloskey Signs New Contract, World Cup Update, and Mor'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "igaming-news-update",
-      "detail": "Excerpt 159 chars (max 155)"
+      "page": "2026-austrian-gp-betting-guide",
+      "detail": "Excerpt 176 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "world-cup-subplots-betting-implications",
-      "detail": "Excerpt 254 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "world-cup-2026-updates",
-      "detail": "Excerpt 185 chars (max 155)"
+      "page": "cricket-betting-insights-county-cricket",
+      "detail": "Excerpt 162 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
