@@ -478,8 +478,6 @@
 .lg-view-tab.on { background: var(--g); color: #fff; border-color: var(--g); }
 
 /* ── WC2026 group tables ── */
-#lg-standings { display: none; }
-
 .wc-header {
   display: flex;
   align-items: center;
@@ -781,13 +779,17 @@
 
     <!-- MATCHES VIEW -->
     <div id="lg-matches-view">
-      <!-- Date tabs -->
       <div class="lg-date-tabs" id="lg-date-tabs" role="tablist" aria-label="Select match date"></div>
-      <!-- Matches output -->
+      <div id="lg-matches" role="main">
+        <div class="lg-loading">
+          <div class="lg-spinner"></div>
+          Loading matches from all leagues...
+        </div>
+      </div>
     </div>
 
     <!-- STANDINGS VIEW -->
-    <div id="lg-standings">
+    <div id="lg-standings" style="display:none">
       <div class="wc-header">
         <span class="wc-trophy">🏆</span>
         <div>
@@ -799,13 +801,6 @@
       <div class="wc-group-tabs" id="wc-group-tabs"></div>
       <div id="wc-group-body"></div>
     </div>
-
-      <div id="lg-matches" role="main">
-        <div class="lg-loading">
-          <div class="lg-spinner"></div>
-          Loading matches from all leagues...
-        </div>
-      </div>
 
   </main>
 
@@ -1220,8 +1215,8 @@ function switchView(view) {
   document.getElementById('tab-standings').classList.toggle('on', view === 'standings');
   document.getElementById('tab-matches').setAttribute('aria-selected', view === 'matches');
   document.getElementById('tab-standings').setAttribute('aria-selected', view === 'standings');
-  document.getElementById('lg-matches-view').style.display = view === 'matches' ? '' : 'none';
-  document.getElementById('lg-standings').style.display    = view === 'standings' ? '' : 'none';
+  document.getElementById('lg-matches-view').style.display = view === 'matches'   ? 'block' : 'none';
+  document.getElementById('lg-standings').style.display    = view === 'standings' ? 'block' : 'none';
   if (view === 'standings' && !wcStandingsData) fetchStandings();
 }
 
