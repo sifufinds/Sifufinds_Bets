@@ -42,9 +42,21 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Validate deploy token
+        env:
+          HOSTINGER_API_TOKEN: ${{ secrets.HOSTINGER_API_TOKEN }}
+        run: |
+          if [ -z "$HOSTINGER_API_TOKEN" ]; then
+            echo "❌ HOSTINGER_API_TOKEN secret is not set or is empty"
+            exit 1
+          fi
+          echo "✅ HOSTINGER_API_TOKEN is present (${#HOSTINGER_API_TOKEN} chars)"
+
       - name: Build deployment archive
         run: |
-          ARCHIVE="sifufinds_$(date +%Y%m%d_%H%M%S).zip"
+          ARCHIVE_NAME="sifufinds_$(date +%Y%m%d_%H%M%S).zip"
+          ARCHIVE_PATH="$(pwd)/$ARCHIVE_NAME"
+
           # Build file list — skip missing optional files gracefully
           FILES=()
           for f in index.html analytics.html robots.txt ai.txt llms.txt favicon.ico manifest.json; do
@@ -63,17 +75,20 @@ jobs:
             [ -d "$d" ] && FILES+=("$d")
           done
 
-          zip -r "$ARCHIVE" "${FILES[@]}" \
+          zip -r "$ARCHIVE_PATH" "${FILES[@]}" \
             -x "*/.git/*" "*/node_modules/*" "*/agents/*"
-          echo "ARCHIVE=$ARCHIVE" >> "$GITHUB_ENV"
-          echo "Archive created: $ARCHIVE ($(du -sh "$ARCHIVE" | cut -f1))"
+          echo "ARCHIVE_PATH=$ARCHIVE_PATH" >> "$GITHUB_ENV"
+          echo "Archive created: $ARCHIVE_PATH ($(du -sh "$ARCHIVE_PATH" | cut -f1))"
 
       - name: Deploy to Hostinger via MCP (with retry)
         env:
           HOSTINGER_API_TOKEN: ${{ secrets.HOSTINGER_API_TOKEN }}
         run: |
           INIT='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"gh-actions","version":"1.0"}}}'
-          DEPLOY=$(printf '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"hosting_deployStaticWebsite","arguments":{"domain":"sifufinds.com","archivePath":"%s","removeArchive":true}}}' "$ARCHIVE")
+          DEPLOY=$(printf '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"hosting_deployStaticWebsite","arguments":{"domain":"sifufinds.com","archivePath":"%s","removeArchive":true}}}' "$ARCHIVE_PATH")
+
+          echo "Archive path: $ARCHIVE_PATH"
+          ls -lh "$ARCHIVE_PATH"
 
           MAX_ATTEMPTS=3
           SUCCESS=false
@@ -81,8 +96,9 @@ jobs:
           for attempt in 1 2 3; do
             echo "━━ Deploy attempt $attempt/$MAX_ATTEMPTS ━━"
 
+            MCP_STDERR_LOG="$(mktemp)"
             RESULT=$(printf '%s\n%s\n' "$INIT" "$DEPLOY" \
-              | npx --yes hostinger-api-mcp@latest --stdio 2>/dev/null \
+              | npx --yes hostinger-api-mcp@latest --stdio 2>"$MCP_STDERR_LOG" \
               | python3 -c "
           import sys, json
           for line in sys.stdin:
@@ -94,6 +110,11 @@ jobs:
                       print(json.dumps(d))
               except: pass
           ")
+
+            if [ -s "$MCP_STDERR_LOG" ]; then
+              echo "MCP stderr: $(cat "$MCP_STDERR_LOG")"
+            fi
+            rm -f "$MCP_STDERR_LOG"
 
             echo "Deploy result: $RESULT"
 
