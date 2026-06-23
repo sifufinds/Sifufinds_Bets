@@ -1,13 +1,43 @@
 {
-  "date": "2026-06-17",
-  "total": 2,
+  "date": "2026-06-22",
+  "total": 7,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 5,
     "MEDIUM": 2,
     "INFO": 0
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "stokes-atkinson-england-spotlight",
+      "detail": "Title 71 chars (max 60): \"Stokes & Atkinson in the Spotlight: What's Next for England's Star Duo\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "world-cup-subplots-betting-implications",
+      "detail": "Title 77 chars (max 60): \"The World Cup Subplots and Betting Implications: What's Happening in F\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "igaming-news-update",
+      "detail": "Excerpt 159 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "world-cup-subplots-betting-implications",
+      "detail": "Excerpt 254 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "world-cup-2026-updates",
+      "detail": "Excerpt 185 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
