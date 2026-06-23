@@ -98,7 +98,15 @@ jobs:
             MODE="${{ steps.mode.outputs.args }}"
             LABEL="${MODE:+[$MODE] }"
             git commit -m "leagues: ${LABEL}$(date -u +'%Y-%m-%d %H:%M UTC')"
-            git push origin main
+            # Retry push up to 3× to survive concurrent workflow pushes
+            for attempt in 1 2 3; do
+              if git push origin main; then
+                break
+              fi
+              echo "Push attempt $attempt failed — pulling and retrying…"
+              git pull --rebase origin main
+              sleep $((attempt * 8))
+            done
           fi
 
   # Safety net — retry on failure after 8 min (CLAUDE.md standing rule)

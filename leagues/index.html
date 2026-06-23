@@ -973,15 +973,17 @@ function selectDate(idx) {
   }
 }
 
-/* ── Static JSON fetch — server-side cached by GitHub Actions every 30 min ── */
-async function fetchMatches(idx) {
-  document.getElementById('lg-matches').innerHTML =
-    '<div class="lg-loading"><div class="lg-spinner"></div>Loading matches...</div>';
+/* ── JSON fetch — cache-busted so every call gets the freshest server data ── */
+async function fetchMatches(idx, silent = false) {
+  if (!silent) {
+    document.getElementById('lg-matches').innerHTML =
+      '<div class="lg-loading"><div class="lg-spinner"></div>Loading matches...</div>';
+  }
   document.getElementById('lg-api-st').textContent = '🔄 Loading...';
 
   try {
     if (!liveData) {
-      const res = await fetch('../data/matches_live.json');
+      const res = await fetch('../data/matches_live.json?t=' + Date.now());
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       liveData = await res.json();
     }
@@ -994,20 +996,31 @@ async function fetchMatches(idx) {
     const lc    = liveData.liveCount || 0;
     document.getElementById('lg-api-st').textContent =
       `✅ ${count} match${count !== 1 ? 'es' : ''} · ${lc} live`;
+
+    const updEl  = document.getElementById('lg-upd');
     const updStr = liveData.updated
       ? new Date(liveData.updated).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
       : new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-    document.getElementById('lg-upd').textContent = 'Updated ' + updStr;
+    updEl.textContent = 'Updated ' + updStr;
+
+    // Amber warning when data is stale (> 8 min since last server write)
+    const ageMin = liveData.updated
+      ? (Date.now() - new Date(liveData.updated).getTime()) / 60000
+      : 0;
+    updEl.style.color = ageMin > 8 ? '#d97706' : '';
+    updEl.title       = ageMin > 8 ? `Data is ${Math.round(ageMin)} min old — refreshing soon` : '';
 
     renderWcBanner(liveData.wcLive, lc);
     if (idx === activeDateIdx) renderMatches(matches);
   } catch (err) {
     document.getElementById('lg-api-st').textContent = '⚠️ Error — will retry';
-    document.getElementById('lg-matches').innerHTML =
-      `<div class="lg-loading">
-        Could not load matches. Check your connection.<br>
-        <button class="lg-error-retry" onclick="fetchMatches(${idx})">Retry</button>
-      </div>`;
+    if (!silent) {
+      document.getElementById('lg-matches').innerHTML =
+        `<div class="lg-loading">
+          Could not load matches. Check your connection.<br>
+          <button class="lg-error-retry" onclick="fetchMatches(${idx})">Retry</button>
+        </div>`;
+    }
   }
 }
 
@@ -1217,18 +1230,20 @@ function switchView(view) {
   document.getElementById('tab-standings').setAttribute('aria-selected', view === 'standings');
   document.getElementById('lg-matches-view').style.display = view === 'matches'   ? 'block' : 'none';
   document.getElementById('lg-standings').style.display    = view === 'standings' ? 'block' : 'none';
-  if (view === 'standings' && !wcStandingsData) fetchStandings();
+  if (view === 'standings' && !wcStandingsData) fetchStandings(false);
 }
 
 /* ── WC2026 group standings ── */
 let wcStandingsData = null;
 let activeGroup     = 'all';
 
-async function fetchStandings() {
-  document.getElementById('wc-group-body').innerHTML =
-    '<div class="lg-loading"><div class="lg-spinner"></div>Loading group tables...</div>';
+async function fetchStandings(silent = false) {
+  if (!silent) {
+    document.getElementById('wc-group-body').innerHTML =
+      '<div class="lg-loading"><div class="lg-spinner"></div>Loading group tables...</div>';
+  }
   try {
-    const res = await fetch('../data/wc_standings.json');
+    const res = await fetch('../data/wc_standings.json?t=' + Date.now());
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     wcStandingsData = await res.json();
 
@@ -1337,8 +1352,8 @@ function scheduleRefresh() {
     liveData = null;
     wcStandingsData = null;
     Object.keys(matchCache).forEach(k => delete matchCache[k]);
-    fetchMatches(activeDateIdx);
-    if (activeView === 'standings') fetchStandings();
+    fetchMatches(activeDateIdx, true);   // true = silent refresh
+    if (activeView === 'standings') fetchStandings(true);
     scheduleRefresh();
   }, 60_000);
 }
