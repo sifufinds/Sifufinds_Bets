@@ -405,6 +405,25 @@
   flex-shrink: 0;
 }
 
+/* ── World Cup / live banner ── */
+#lg-wc-banner {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: #dc2626;
+  color: #fff;
+  border-radius: 8px;
+  padding: 9px 14px;
+  margin-bottom: 11px;
+  font-size: 12.5px;
+  font-weight: 700;
+  animation: wc-pulse-bg 2s ease-in-out infinite;
+}
+@keyframes wc-pulse-bg {
+  0%, 100% { background: #dc2626; }
+  50%       { background: #b91c1c; }
+}
+
 /* Loading & empty states */
 .lg-loading {
   text-align: center;
@@ -434,6 +453,146 @@
   margin-top: 11px;
   font-family: inherit;
 }
+
+/* ── View toggle tabs (Matches / Standings) ── */
+.lg-view-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.lg-view-tab {
+  flex: 1;
+  background: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 7px;
+  padding: 8px 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #555;
+  cursor: pointer;
+  transition: all .14s;
+  font-family: inherit;
+  text-align: center;
+}
+.lg-view-tab:hover { border-color: var(--g); color: var(--g); }
+.lg-view-tab.on { background: var(--g); color: #fff; border-color: var(--g); }
+
+/* ── WC2026 group tables ── */
+#lg-standings { display: none; }
+
+.wc-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.wc-trophy  { font-size: 24px; line-height: 1; }
+.wc-title   { font-size: 15px; font-weight: 800; color: #111; }
+.wc-sub     { font-size: 11px; color: #888; margin-top: 2px; }
+.wc-upd     { font-size: 10.5px; color: #aaa; margin-left: auto; white-space: nowrap; }
+
+/* Group navigation tabs */
+.wc-group-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.wc-group-tabs::-webkit-scrollbar { display: none; }
+.wc-gtab {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 5px 13px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #555;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .12s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.wc-gtab:hover { border-color: var(--g); color: var(--g); }
+.wc-gtab.on    { background: var(--g); color: #fff; border-color: var(--g); }
+
+/* Individual group card */
+.wc-group-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  display: none;
+}
+.wc-group-card.visible { display: block; }
+
+.wc-group-hdr {
+  background: var(--g);
+  color: #fff;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wc-group-name { font-size: 13px; font-weight: 800; }
+.wc-group-note { font-size: 10px; opacity: .72; }
+
+/* Standings table */
+.wc-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.wc-table thead tr   { background: #f9f9f9; border-bottom: 1px solid #eee; }
+.wc-table thead th   { padding: 6px 8px 6px 0; font-size: 9.5px; font-weight: 800; text-transform: uppercase; color: #aaa; letter-spacing: .4px; text-align: right; }
+.wc-table thead th:first-child  { padding-left: 10px; text-align: center; width: 26px; }
+.wc-table thead th:nth-child(2) { text-align: left; }
+
+.wc-row { border-bottom: 1px solid #f2f2f2; transition: background .1s; }
+.wc-row:last-child  { border-bottom: none; }
+.wc-row:hover       { background: #f7fffe; }
+.wc-row.qualify     { background: #f0fdf4; }
+.wc-row.qualify:hover { background: #dcfce7; }
+
+.wc-row td { padding: 8px 8px 8px 0; text-align: right; color: #444; }
+.wc-row td:first-child  { padding-left: 10px; text-align: center; font-size: 10.5px; font-weight: 700; color: #bbb; }
+.wc-row td:nth-child(2) { text-align: left; }
+
+.wc-team-cell { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.wc-crest     { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
+.wc-team-name { font-size: 12.5px; font-weight: 600; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wc-pts       { font-size: 13px; font-weight: 900; color: #111; }
+
+/* Form badges */
+.wc-form { display: flex; gap: 2px; justify-content: flex-end; }
+.wc-form-dot { width: 14px; height: 14px; border-radius: 3px; font-size: 8px; font-weight: 900; display: flex; align-items: center; justify-content: center; color: #fff; }
+.form-w { background: #22c55e; }
+.form-d { background: #f59e0b; }
+.form-l { background: #ef4444; }
+
+/* All-groups overview grid */
+.wc-all-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 700px) { .wc-all-grid { grid-template-columns: 1fr; } }
+
+.wc-mini-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 9px; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,.05); }
+.wc-mini-hdr  { background: var(--g); color: #fff; padding: 7px 11px; font-size: 11.5px; font-weight: 800; }
+.wc-mini-row  { display: flex; align-items: center; gap: 6px; padding: 6px 11px; border-bottom: 1px solid #f2f2f2; font-size: 11.5px; }
+.wc-mini-row:last-child { border-bottom: none; }
+.wc-mini-row.qualify { background: #f0fdf4; }
+.wc-mini-pos   { width: 14px; font-size: 10px; color: #bbb; font-weight: 700; text-align: center; flex-shrink: 0; }
+.wc-mini-crest { width: 16px; height: 16px; object-fit: contain; flex-shrink: 0; }
+.wc-mini-name  { flex: 1; font-weight: 600; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wc-mini-pts   { font-weight: 900; color: #111; font-size: 12px; }
+.wc-mini-gd    { font-size: 10px; color: #888; width: 30px; text-align: right; }
 
 /* ── Bottom brand strip ── */
 .lg-bottom-brands {
@@ -608,19 +767,45 @@
     <div class="lg-status">
       <div class="op-live-badge"><span class="lpulse" style="width:5px;height:5px;margin-right:2px"></span>LIVE</div>
       <span class="lg-upd-time" id="lg-upd">Loading...</span>
-      <span class="lg-api-st" id="lg-api-st">🔄 Connecting to football-data.org...</span>
+      <span class="lg-api-st" id="lg-api-st">🔄 Loading matches…</span>
     </div>
 
-    <!-- Date tabs -->
-    <div class="lg-date-tabs" id="lg-date-tabs" role="tablist" aria-label="Select match date"></div>
+    <!-- WC / live now banner (shown dynamically) -->
+    <div id="lg-wc-banner" role="status" aria-live="polite"></div>
 
-    <!-- Matches output -->
-    <div id="lg-matches" role="main">
-      <div class="lg-loading">
-        <div class="lg-spinner"></div>
-        Loading matches from all leagues...
+    <!-- View toggle -->
+    <div class="lg-view-tabs" role="tablist">
+      <button class="lg-view-tab on" id="tab-matches"   onclick="switchView('matches')"   role="tab" aria-selected="true">⚽ Matches</button>
+      <button class="lg-view-tab"    id="tab-standings" onclick="switchView('standings')" role="tab" aria-selected="false">🏆 WC2026 Group Tables</button>
+    </div>
+
+    <!-- MATCHES VIEW -->
+    <div id="lg-matches-view">
+      <!-- Date tabs -->
+      <div class="lg-date-tabs" id="lg-date-tabs" role="tablist" aria-label="Select match date"></div>
+      <!-- Matches output -->
+    </div>
+
+    <!-- STANDINGS VIEW -->
+    <div id="lg-standings">
+      <div class="wc-header">
+        <span class="wc-trophy">🏆</span>
+        <div>
+          <div class="wc-title">FIFA World Cup 2026 — Group Stage</div>
+          <div class="wc-sub">Top 2 from each group advance to Round of 32</div>
+        </div>
+        <span class="wc-upd" id="wc-upd-time"></span>
       </div>
+      <div class="wc-group-tabs" id="wc-group-tabs"></div>
+      <div id="wc-group-body"></div>
     </div>
+
+      <div id="lg-matches" role="main">
+        <div class="lg-loading">
+          <div class="lg-spinner"></div>
+          Loading matches from all leagues...
+        </div>
+      </div>
 
   </main>
 
@@ -654,7 +839,7 @@
 
 <!-- FOOTER -->
 <footer class="site-footer"><div class="footer-in">
-  <div class="flogo"><img src="../assets/logo.png" alt="SifuFinds" height="72" style="display:block;object-fit:contain"></div>
+  <div class="flogo"><a href="../"><img src="../assets/logo.png" alt="SifuFinds" height="72" style="display:block;object-fit:contain"></a></div>
   <div class="fgrid">
     <div class="fc4"><h4>Betting</h4>
       <a href="../">Best Bonuses</a>
@@ -678,7 +863,7 @@
     </div>
   </div>
   <div class="fbot">
-    <p>Match data provided by football-data.org. For informational purposes only. Always verify directly with your bookmaker. Bet responsibly. 18+ only.</p>
+    <p>Match data sourced from football-data.org and ESPN. For informational purposes only. Always verify directly with your bookmaker. Bet responsibly. 18+ only.</p>
     <p style="margin-top:5px">© <span id="foot-yr"></span> SifuFinds ·
       <button onclick="openPage('privacy')">Privacy Policy</button> ·
       <button onclick="openPage('terms')">Terms of Use</button>
@@ -698,18 +883,35 @@ const SITE={home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',count
    Football Leagues Hub — football-data.org v4 integration
    ───────────────────────────────────────────────────────────── */
 
-/* Competition priority order for display (lower = higher) */
+/* Competition priority — mirrors update_leagues.py COMP_PRIORITY */
 const COMP_PRIORITY = {
-  2000: 1,  // FIFA World Cup
-  2001: 2,  // UEFA Champions League
-  2021: 3,  // Premier League
-  2014: 4,  // La Liga
-  2002: 5,  // Bundesliga
-  2019: 6,  // Serie A
-  2015: 7,  // Ligue 1
-  2017: 8,  // Primeira Liga
-  2003: 9,  // Eredivisie
-  2016: 10, // Championship
+  2000:               1,   // FIFA World Cup 2026
+  2001:               2,   // UEFA Champions League
+  2021:               3,   // Premier League
+  2014:               4,   // La Liga
+  2002:               5,   // Bundesliga
+  2019:               6,   // Serie A
+  2015:               7,   // Ligue 1
+  2017:               8,   // Primeira Liga
+  2003:               9,   // Eredivisie
+  2016:               10,  // Championship
+  2013:               11,  // Brasileirao
+  2018:               12,  // EURO
+  2152:               13,  // Copa Libertadores
+  'espn:caf.afcon':   14,  // AFCON
+  'espn:caf.cl':      15,  // CAF Champions League
+  'espn:caf.cc':      16,  // CAF Confederation Cup
+  'espn:rsa.1':       17,  // PSL (South Africa)
+  'espn:nig.1':       18,  // NPFL (Nigeria)
+  'espn:gha.1':       19,  // Ghana Premier League
+  'espn:ken.1':       20,  // Kenyan Premier League
+  'espn:uga.1':       21,  // Uganda Premier League
+  'espn:tan.1':       22,  // Tanzania Premier League
+  'espn:zim.1':       23,  // Zimbabwe PSL
+  'espn:zam.1':       24,  // Zambia Super League
+  'espn:eth.1':       25,  // Ethiopian Premier League
+  'espn:mar.1':       26,  // Botola Pro (Morocco)
+  'espn:egy.1':       27,  // Egyptian Premier League
 };
 
 /* Brand data for sidebars / bottom strip — affiliate links where available */
@@ -794,12 +996,15 @@ async function fetchMatches(idx) {
     matchCache[idx] = matches;
 
     const count = matches.length;
-    document.getElementById('lg-api-st').textContent = `✅ ${count} match${count !== 1 ? 'es' : ''}`;
+    const lc    = liveData.liveCount || 0;
+    document.getElementById('lg-api-st').textContent =
+      `✅ ${count} match${count !== 1 ? 'es' : ''} · ${lc} live`;
     const updStr = liveData.updated
       ? new Date(liveData.updated).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
       : new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
     document.getElementById('lg-upd').textContent = 'Updated ' + updStr;
 
+    renderWcBanner(liveData.wcLive, lc);
     if (idx === activeDateIdx) renderMatches(matches);
   } catch (err) {
     document.getElementById('lg-api-st').textContent = '⚠️ Error — will retry';
@@ -811,7 +1016,7 @@ async function fetchMatches(idx) {
   }
 }
 
-/* ── Status badge ── */
+/* ── Status badge — covers football-data.org + ESPN statuses ── */
 function statusBadge(status, minute) {
   switch (status) {
     case 'IN_PLAY':          return `<span class="lg-status-badge badge-live">${minute != null ? minute + "'" : 'LIVE'}</span>`;
@@ -827,6 +1032,32 @@ function statusBadge(status, minute) {
     case 'SCHEDULED':
     default:                 return '<span class="lg-status-badge badge-sch">SCH</span>';
   }
+}
+
+/* ── Live WC banner ── */
+function renderWcBanner(wcLive, liveCount) {
+  const el = document.getElementById('lg-wc-banner');
+  if (!el) return;
+  if (wcLive) {
+    el.style.display = 'flex';
+    el.innerHTML = `
+      <span class="lg-live-dot" style="width:8px;height:8px"></span>
+      <strong>World Cup 2026 — LIVE NOW</strong>
+      <span style="opacity:.75;font-size:11px">${liveCount} match${liveCount !== 1 ? 'es' : ''} in progress</span>
+      <button onclick="scrollToComp(2000)" style="margin-left:auto;background:rgba(255,255,255,.22);border:none;border-radius:4px;color:#fff;padding:3px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">View →</button>`;
+  } else if (liveCount > 0) {
+    el.style.display = 'flex';
+    el.innerHTML = `
+      <span class="lg-live-dot" style="width:8px;height:8px"></span>
+      <strong>${liveCount} match${liveCount !== 1 ? 'es' : ''} live now</strong>`;
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+function scrollToComp(compId) {
+  const el = document.getElementById('comp-' + compId);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 /* ── Team cell HTML — uses normalised match object ── */
@@ -845,26 +1076,35 @@ function teamCell(m, side) {
   return `<div class="lg-team-away">${crest}${name}</div>`;
 }
 
-/* ── Score cell HTML — uses normalised match object ── */
+/* ── Score cell HTML ── */
 function scoreCell(m) {
-  const live = ['IN_PLAY', 'PAUSED', 'EXTRA_TIME', 'PENALTY_SHOOTOUT', 'FINISHED', 'AWARDED'].includes(m.status);
-  if (live && m.hScore !== null && m.hScore !== undefined) {
+  const hasScore = m.hScore !== null && m.hScore !== undefined;
+  const started  = ['IN_PLAY','PAUSED','EXTRA_TIME','PENALTY_SHOOTOUT','FINISHED','AWARDED'].includes(m.status);
+  if (started && hasScore) {
     return `<div class="lg-score-col"><span class="lg-score">${m.hScore}&nbsp;–&nbsp;${m.aScore}</span></div>`;
   }
   return `<div class="lg-score-col"><span class="lg-vs">vs</span></div>`;
 }
 
-/* ── Group matches by competition — uses normalised match object ── */
+/* ── Group matches by competition ── */
 function groupByComp(matches) {
   const map = {};
   matches.forEach(m => {
-    const key = m.compId;
-    if (!map[key]) map[key] = { comp: { id: m.compId, name: m.compName, emblem: m.emblem }, matches: [] };
+    // Use string key to handle both numeric FD ids and string ESPN ids
+    const key = String(m.compId);
+    if (!map[key]) {
+      map[key] = {
+        comp: { id: m.compId, name: m.compName, emblem: m.emblem || '' },
+        matches: [],
+      };
+    }
+    // Keep best emblem (FD has proper emblem URLs; ESPN often doesn't)
+    if (!map[key].comp.emblem && m.emblem) map[key].comp.emblem = m.emblem;
     map[key].matches.push(m);
   });
   return Object.values(map).sort((a, b) => {
-    const pa = COMP_PRIORITY[a.comp.id] || 99;
-    const pb = COMP_PRIORITY[b.comp.id] || 99;
+    const pa = COMP_PRIORITY[a.comp.id] ?? 99;
+    const pb = COMP_PRIORITY[b.comp.id] ?? 99;
     return pa !== pb ? pa - pb : a.comp.name.localeCompare(b.comp.name);
   });
 }
@@ -885,8 +1125,8 @@ function renderMatches(matches) {
       : '<span style="font-size:16px">⚽</span>';
 
     const rows = ms.map(m => {
-      const isLive = ['IN_PLAY', 'PAUSED', 'EXTRA_TIME', 'PENALTY_SHOOTOUT'].includes(m.status);
-      const mdLabel = m.matchday ? `MD ${m.matchday}` : '';
+      const isLive  = ['IN_PLAY', 'PAUSED', 'EXTRA_TIME', 'PENALTY_SHOOTOUT'].includes(m.status);
+      const mdLabel = m.matchday ? `MD ${m.matchday}` : (m.stage && m.stage !== 'REGULAR_SEASON' ? m.stage.replace(/_/g,' ') : '');
       return `<div class="lg-match">
         <div class="lg-time-col">
           <span class="lg-time">${isLive ? '<span class="lg-live-dot"></span> ' : ''}${m.time}</span>
@@ -971,13 +1211,139 @@ function renderBottomBrands() {
   ).join('');
 }
 
+/* ── View toggle ── */
+let activeView = 'matches';
+
+function switchView(view) {
+  activeView = view;
+  document.getElementById('tab-matches').classList.toggle('on', view === 'matches');
+  document.getElementById('tab-standings').classList.toggle('on', view === 'standings');
+  document.getElementById('tab-matches').setAttribute('aria-selected', view === 'matches');
+  document.getElementById('tab-standings').setAttribute('aria-selected', view === 'standings');
+  document.getElementById('lg-matches-view').style.display = view === 'matches' ? '' : 'none';
+  document.getElementById('lg-standings').style.display    = view === 'standings' ? '' : 'none';
+  if (view === 'standings' && !wcStandingsData) fetchStandings();
+}
+
+/* ── WC2026 group standings ── */
+let wcStandingsData = null;
+let activeGroup     = 'all';
+
+async function fetchStandings() {
+  document.getElementById('wc-group-body').innerHTML =
+    '<div class="lg-loading"><div class="lg-spinner"></div>Loading group tables...</div>';
+  try {
+    const res = await fetch('../data/wc_standings.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    wcStandingsData = await res.json();
+
+    const upd = wcStandingsData.updated
+      ? new Date(wcStandingsData.updated).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })
+      : '';
+    document.getElementById('wc-upd-time').textContent = upd ? 'Updated ' + upd : '';
+
+    buildGroupTabs(wcStandingsData.groups);
+    renderGroup(activeGroup);
+  } catch (err) {
+    document.getElementById('wc-group-body').innerHTML =
+      '<div class="lg-loading">Could not load standings.<br><button class="lg-error-retry" onclick="fetchStandings()">Retry</button></div>';
+  }
+}
+
+function buildGroupTabs(groups) {
+  const el = document.getElementById('wc-group-tabs');
+  const allBtn = `<button class="wc-gtab on" onclick="renderGroup('all')">All Groups</button>`;
+  const groupBtns = groups.map(g =>
+    `<button class="wc-gtab" onclick="renderGroup('${g.group}')">${g.group}</button>`
+  ).join('');
+  el.innerHTML = allBtn + groupBtns;
+}
+
+function renderGroup(groupName) {
+  activeGroup = groupName;
+  // Update tab active states
+  document.querySelectorAll('.wc-gtab').forEach((btn, i) => {
+    const isAll   = (i === 0 && groupName === 'all');
+    const isMatch = btn.textContent.trim() === groupName;
+    btn.classList.toggle('on', isAll || isMatch);
+  });
+
+  if (!wcStandingsData) return;
+  const body = document.getElementById('wc-group-body');
+
+  if (groupName === 'all') {
+    // Overview: 2-column mini cards
+    const grid = wcStandingsData.groups.map(g => `
+      <div class="wc-mini-card">
+        <div class="wc-mini-hdr">${g.group}</div>
+        ${g.table.map((r, i) => `
+          <div class="wc-mini-row${i < 2 ? ' qualify' : ''}">
+            <span class="wc-mini-pos">${r.pos}</span>
+            ${r.crest ? `<img class="wc-mini-crest" src="${r.crest}" alt="${r.tla}" loading="lazy" onerror="this.style.display='none'">` : ''}
+            <span class="wc-mini-name">${r.team}</span>
+            <span class="wc-mini-gd">${r.gd > 0 ? '+' : ''}${r.gd}</span>
+            <span class="wc-mini-pts">${r.points}pts</span>
+          </div>`).join('')}
+      </div>`).join('');
+    body.innerHTML = `<div class="wc-all-grid">${grid}</div>`;
+    return;
+  }
+
+  // Single group detailed table
+  const g = wcStandingsData.groups.find(x => x.group === groupName);
+  if (!g) return;
+
+  const rows = g.table.map((r, i) => {
+    const qualify = i < 2;
+    const formDots = (r.form || '').split('').slice(-5).map(f => {
+      const cls = f === 'W' ? 'form-w' : f === 'D' ? 'form-d' : 'form-l';
+      return `<span class="wc-form-dot ${cls}">${f}</span>`;
+    }).join('');
+    return `<tr class="wc-row${qualify ? ' qualify' : ''}">
+      <td>${qualify ? '<span style="color:#22c55e;font-size:9px">●</span>' : r.pos}</td>
+      <td>
+        <div class="wc-team-cell">
+          ${r.crest ? `<img class="wc-crest" src="${r.crest}" alt="${r.tla}" loading="lazy" onerror="this.style.display='none'">` : ''}
+          <span class="wc-team-name">${r.team}</span>
+        </div>
+      </td>
+      <td>${r.played}</td>
+      <td>${r.won}</td>
+      <td>${r.draw}</td>
+      <td>${r.lost}</td>
+      <td>${r.gf}:${r.ga}</td>
+      <td>${r.gd > 0 ? '+' : ''}${r.gd}</td>
+      <td class="wc-pts">${r.points}</td>
+      <td><div class="wc-form">${formDots}</div></td>
+    </tr>`;
+  }).join('');
+
+  body.innerHTML = `
+    <div class="wc-group-card visible">
+      <div class="wc-group-hdr">
+        <span class="wc-group-name">${g.group}</span>
+        <span class="wc-group-note">● Top 2 advance</span>
+      </div>
+      <table class="wc-table">
+        <thead><tr>
+          <th>#</th><th>Team</th>
+          <th>P</th><th>W</th><th>D</th><th>L</th>
+          <th>GF:GA</th><th>GD</th><th>Pts</th><th>Form</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
 /* ── Auto-refresh every 60 seconds — clears cache so JSON is re-fetched ── */
 function scheduleRefresh() {
   clearTimeout(refreshTimer);
   refreshTimer = setTimeout(() => {
     liveData = null;
+    wcStandingsData = null;
     Object.keys(matchCache).forEach(k => delete matchCache[k]);
     fetchMatches(activeDateIdx);
+    if (activeView === 'standings') fetchStandings();
     scheduleRefresh();
   }, 60_000);
 }
