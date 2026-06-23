@@ -1,5 +1,36 @@
 # SifuFinds — Project Instructions
 
+## STANDING RULE — Agent Intelligence & Self-Learning
+
+**Every agent and Claude session must read `AGENT-KNOWLEDGE.md` before starting work and update it after completing significant tasks.**
+
+### On Start (MANDATORY)
+- Read `AGENT-KNOWLEDGE.md` in full before any significant task
+- Check **"Errors to Never Repeat"** first — do not re-make documented mistakes
+- Apply all documented code patterns and market intelligence
+
+### On Completion (MANDATORY)
+- Append new learnings to `AGENT-KNOWLEDGE.md` before ending the session
+- Capture: bugs fixed, patterns that worked, research findings, market insights, errors avoided
+- Date every entry. Keep it specific — exact fix, not just the problem.
+- Categories: SEO Learnings · Code Patterns · Market Intelligence · Errors to Never Repeat
+
+### Memory Tools (use proactively)
+- `/claude-mem:learn-codebase` — after significant codebase changes
+- `/claude-mem:knowledge-agent` — query stored memory before deep research tasks
+- `/claude-mem:standup` — summarize what was accomplished across recent sessions
+- `/claude-mem:make-plan` — use stored knowledge to plan the next session
+
+### What Counts as a Learning Worth Capturing
+- A bug found and fixed (especially if it could recur)
+- A generator/code pattern that worked and should be reused
+- A research finding that changes content strategy
+- A market insight about African betting audiences
+- A mistake that caused a deployment issue, blank page, or broken feature
+- A tool or command that saved significant time
+
+---
+
 ## STANDING RULE — Auto-Retry on Failure
 
 **Any job, run, agent, or task that fails must be automatically retried after 5–15 minutes. No exceptions.**
@@ -32,27 +63,45 @@ Static HTML site targeting African sports betting markets. Blog posts live in `b
 
 ### Step 4 — Write the Post
 Only after completing Steps 1–3, draft the post with:
-- **Title tag**: ≤ 60 chars, keyword-first
+- **Title tag**: ≤ 60 chars, keyword-first — the `seo_title()` function in `gen_blog_post_pages.py` enforces this automatically
 - **Meta description**: ≤ 155 chars, includes keyword + CTA
-- **H1**: matches title intent, includes primary keyword
-- **H2/H3 structure**: mirrors or improves on competitor heading architecture
-- **Word count**: exceeds top-3 average by ≥ 20%
+- **H1**: one static H1 only — matches title intent, includes primary keyword. Never inject H1 via JavaScript only.
+- **H2/H3 structure**: mirrors or improves on competitor heading architecture. Never use more than one H1 per page.
+- **Word count**: exceeds top-3 average by ≥ 20%, minimum 1,000 words
 - **Tables**: include at least one comparison table (odds, bookmakers, methods)
-- **FAQs section**: answer the PAA questions found in Step 3
-- **Internal links**: 3–5 links to relevant existing SifuFinds pages
-- **Schema**: Article + FAQPage JSON-LD
+- **FAQs section**: answer the PAA questions found in Step 3 (minimum 3 Q&As)
+- **Internal links (auto)**: mention country names (Nigeria, Kenya, Ghana…) and bookmaker names (Bet9ja, SportyBet, Betway, Hollywoodbets, 1xBet, BetKing…) naturally in the body — the generator auto-links the first occurrence to country guides and bookmaker review pages. Also use "betting tips", "live odds", "odds calculator" to trigger core page links.
+- **External links (auto)**: mention FIFA, UEFA, AFCON, CAF, Premier League, Champions League, World Cup 2026, NBA, Bundesliga, Serie A, Ligue 1, La Liga, NLRC, BCLB, GCA, WCGRB, BeGambleAware, or Gambling Therapy — the generator auto-links the first mention to the official authority site with `target="_blank" rel="noopener noreferrer"`.
+- **Resources box (guaranteed)**: every post gets a "📌 Useful Resources" panel injected automatically after the body. It always contains: up to 2 country page links (from `tags`), 1 bookmaker review link (from `bookmaker_featured`), 1 core page link (tips/odds), 1 external sport-authority link (from `category`), and BeGambleAware. You do not need to add these manually.
+- **Schema**: Article + FAQPage JSON-LD are generated automatically by `gen_blog_post_pages.py` — do not skip the `body` field in `posts.json`
 - **CTA**: bookmaker affiliate link with country-specific currency context
 
 ### Step 5 — Pre-Publish SEO Checklist
 - [ ] Primary keyword in title, H1, first 100 words, and at least 2 H2s
 - [ ] Secondary/LSI keywords distributed naturally throughout
-- [ ] Word count > top-3 SERP average + 20%
-- [ ] At least one table
-- [ ] FAQs section answering ≥ 3 PAA questions
-- [ ] 3–5 internal links to existing blog posts or country pages
-- [ ] Article + FAQPage schema in the HTML
+- [ ] Word count > top-3 SERP average + 20% (min 1,000 words)
+- [ ] At least one comparison table
+- [ ] FAQs section answering ≥ 3 PAA questions (use `## FAQ` or `## Frequently Asked Questions` heading)
+- [ ] Body text mentions at least 2 country names or bookmaker names so internal auto-linker fires
+- [ ] Body text mentions at least 1 authority term (FIFA, UEFA, AFCON, Premier League, NLRC…) so external auto-linker fires
+- [ ] After generation, verify resources box present: `grep -c "resources-box" blog/SLUG/index.html` (should be 1)
+- [ ] Run `python3 scripts/audit_titles.py` — must exit 0 after page generation
+- [ ] Article + FAQPage schema generated automatically — verify with `grep -c "@type.*Article" blog/SLUG/index.html` (should be ≥ 1)
 - [ ] Mobile-readable (no wall-of-text paragraphs > 3 sentences)
 - [ ] 18+ / Responsible Gambling disclaimer at bottom
+
+### SEO Rules That Apply to Every Page (Not Just Blog Posts)
+- **Titles**: always ≤ 60 chars. Use `seo_title()` in every generator. Run `python3 scripts/audit_titles.py` after any generator run — it must exit 0.
+- **One H1 per page**: static HTML, never JS-only. Check with `grep -c '<h1' page/index.html` — must be 1.
+- **Meta descriptions**: every page needs one, 50–155 chars, keyword + CTA.
+- **Sitemaps**: regenerate with `python3 gen_sitemap.py` after adding new pages. The generator uses per-file `os.path.getmtime()` — `lastmod` dates are accurate automatically.
+- **shared.js**: NEVER add `defer`. It must stay synchronous at bottom of `<body>`.
+- **New pages with bookmakers**: always add `fetchLiveData()` before first render.
+- **Internal links auto-generated by**: `COUNTRY_LINKS`, `BOOKMAKER_LINKS`, `TOOL_LINKS`, `CORE_LINKS` in `gen_blog_post_pages.py`. To add a new bookmaker review page: (1) add to `bookmakers/` directory, (2) add entry to `BOOKMAKER_LINKS` and `_BK_SLUG_TO_LINK` in the generator.
+- **External links auto-generated by**: `EXTERNAL_LINKS` table + `inject_external_links()` in `gen_blog_post_pages.py`. To add a new authority source: add a tuple to `EXTERNAL_LINKS`.
+- **Resources box auto-generated by**: `build_resources_box()` in `gen_blog_post_pages.py`. It uses `_TAG_COUNTRY`, `_BK_SLUG_TO_LINK`, and `_SPORT_ORG` — update those dicts when adding new countries, bookmakers, or sport categories.
+- **After any generator change**: always run `python3 gen_blog_post_pages.py --force` to rebuild all 65+ posts with the new logic.
+- **No Facebook Pixel placeholders**: if no real Pixel ID exists, remove the `fbq()` init and `fb:app_id` meta entirely.
 
 ## Content Focus
 - African betting markets: Nigeria, Kenya, Ghana, South Africa, Tanzania, Uganda, Zambia, Ethiopia, Ivory Coast, Cameroon, Senegal, Rwanda, Zimbabwe, Malawi, Mozambique, Angola, DR Congo, Botswana, Namibia, Egypt, Morocco

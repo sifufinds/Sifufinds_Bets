@@ -1081,21 +1081,44 @@ def extract_faq_schema(body_md: str) -> str:
 
 # Country page slugs and keywords that trigger a link to the country page
 COUNTRY_LINKS = {
-    'nigeria':      ('Nigeria betting guide', '../../countries/nigeria/'),
-    'kenyan':       ('Kenya betting guide',   '../../countries/kenya/'),
-    'kenya':        ('Kenya betting guide',   '../../countries/kenya/'),
-    'ghana':        ('Ghana betting guide',   '../../countries/ghana/'),
-    'south africa': ('South Africa guide',    '../../countries/south-africa/'),
-    'tanzania':     ('Tanzania betting guide','../../countries/tanzania/'),
-    'uganda':       ('Uganda betting guide',  '../../countries/uganda/'),
-    'zambia':       ('Zambia betting guide',  '../../countries/zambia/'),
-    'ethiopia':     ('Ethiopia betting guide','../../countries/ethiopia/'),
-    'egypt':        ('Egypt betting guide',   '../../countries/egypt/'),
-    'morocco':      ('Morocco betting guide', '../../countries/morocco/'),
-    'cameroon':     ('Cameroon guide',        '../../countries/cameroon/'),
-    'senegal':      ('Senegal guide',         '../../countries/senegal/'),
-    'zimbabwe':     ('Zimbabwe guide',        '../../countries/zimbabwe/'),
+    'nigeria':       ('Nigeria betting guide',      '../../countries/nigeria/'),
+    'nigerian':      ('Nigeria betting guide',      '../../countries/nigeria/'),
+    'kenyan':        ('Kenya betting guide',        '../../countries/kenya/'),
+    'kenya':         ('Kenya betting guide',        '../../countries/kenya/'),
+    'ghana':         ('Ghana betting guide',        '../../countries/ghana/'),
+    'ghanaian':      ('Ghana betting guide',        '../../countries/ghana/'),
+    'south africa':  ('South Africa guide',         '../../countries/south-africa/'),
+    'south african': ('South Africa guide',         '../../countries/south-africa/'),
+    'tanzania':      ('Tanzania betting guide',     '../../countries/tanzania/'),
+    'uganda':        ('Uganda betting guide',       '../../countries/uganda/'),
+    'zambia':        ('Zambia betting guide',       '../../countries/zambia/'),
+    'ethiopia':      ('Ethiopia betting guide',     '../../countries/ethiopia/'),
+    'ethiopia':      ('Ethiopia betting guide',     '../../countries/ethiopia/'),
+    'egypt':         ('Egypt betting guide',        '../../countries/egypt/'),
+    'morocco':       ('Morocco betting guide',      '../../countries/morocco/'),
+    'cameroon':      ('Cameroon guide',             '../../countries/cameroon/'),
+    'senegal':       ('Senegal guide',              '../../countries/senegal/'),
+    'zimbabwe':      ('Zimbabwe guide',             '../../countries/zimbabwe/'),
+    'ivory coast':   ('Ivory Coast betting guide',  '../../countries/ivory-coast/'),
+    "côte d'ivoire": ('Ivory Coast betting guide',  '../../countries/ivory-coast/'),
+    'rwanda':        ('Rwanda betting guide',       '../../countries/rwanda/'),
+    'angola':        ('Angola betting guide',       '../../countries/angola/'),
+    'dr congo':      ('DR Congo betting guide',     '../../countries/dr-congo/'),
+    'mozambique':    ('Mozambique betting guide',   '../../countries/mozambique/'),
+    'botswana':      ('Botswana betting guide',     '../../countries/botswana/'),
+    'namibia':       ('Namibia betting guide',      '../../countries/namibia/'),
+    'malawi':        ('Malawi betting guide',       '../../countries/malawi/'),
 }
+
+BOOKMAKER_LINKS = [
+    ('bet9ja',         '../../bookmakers/bet9ja/',        'Bet9ja review'),
+    ('sportybet',      '../../bookmakers/sportybet/',     'SportyBet review'),
+    ('betway',         '../../bookmakers/betway-africa/', 'Betway Africa review'),
+    ('hollywoodbets',  '../../bookmakers/hollywoodbets/', 'Hollywoodbets review'),
+    ('sportpesa',      '../../bookmakers/sportpesa/',     'SportPesa review'),
+    ('1xbet',          '../../bookmakers/1xbet-africa/',  '1xBet Africa review'),
+    ('betking',        '../../bookmakers/betking/',       'BetKing review'),
+]
 
 TOOL_LINKS = [
     ('odds calculator',    '../../tools/odds-calculator/',    'free odds calculator'),
@@ -1109,6 +1132,151 @@ CORE_LINKS = [
     ('live odds',          '../../odds/',     'live odds comparison'),
     ('compare odds',       '../../odds/',     'live odds comparison'),
 ]
+
+# External authority links — improve E-E-A-T and make content more citable.
+# Each tuple: (regex_pattern, url, anchor_title, re_flags)
+# Only the FIRST match per pattern is linked. All use target="_blank" rel="noopener noreferrer".
+# Maps tag / category values to internal country page links for the resources box
+_TAG_COUNTRY: dict[str, tuple[str, str]] = {
+    'nigeria':      ('Nigeria Betting Guide',     '../../countries/nigeria/'),
+    'kenya':        ('Kenya Betting Guide',       '../../countries/kenya/'),
+    'ghana':        ('Ghana Betting Guide',       '../../countries/ghana/'),
+    'south africa': ('South Africa Betting Guide','../../countries/south-africa/'),
+    'tanzania':     ('Tanzania Betting Guide',    '../../countries/tanzania/'),
+    'uganda':       ('Uganda Betting Guide',      '../../countries/uganda/'),
+    'zambia':       ('Zambia Betting Guide',      '../../countries/zambia/'),
+    'ethiopia':     ('Ethiopia Betting Guide',    '../../countries/ethiopia/'),
+    'ivory coast':  ('Ivory Coast Betting Guide', '../../countries/ivory-coast/'),
+    'cameroon':     ('Cameroon Betting Guide',    '../../countries/cameroon/'),
+    'senegal':      ('Senegal Betting Guide',     '../../countries/senegal/'),
+    'zimbabwe':     ('Zimbabwe Betting Guide',    '../../countries/zimbabwe/'),
+    'rwanda':       ('Rwanda Betting Guide',      '../../countries/rwanda/'),
+    'egypt':        ('Egypt Betting Guide',       '../../countries/egypt/'),
+    'morocco':      ('Morocco Betting Guide',     '../../countries/morocco/'),
+}
+
+# Maps sport category to one authoritative external link
+_SPORT_ORG: dict[str, tuple[str, str, str]] = {
+    'football':    ('FIFA',          'https://www.fifa.com',            'FIFA – world governing body for football'),
+    'basketball':  ('NBA',           'https://www.nba.com',             'NBA official site'),
+    'cricket':     ('ICC',           'https://www.icc-cricket.com',     'International Cricket Council'),
+    'tennis':      ('ATP Tour',      'https://www.atptour.com',         'ATP Tour official site'),
+    'rugby':       ('World Rugby',   'https://www.world.rugby',         'World Rugby official site'),
+    'motorsport':  ('FIA',           'https://www.fia.com',             'FIA official site'),
+    'boxing':      ('WBC',           'https://www.wbcboxing.com',       'World Boxing Council'),
+}
+
+_BK_SLUG_TO_LINK: dict[str, tuple[str, str]] = {
+    'bet9ja':        ('Bet9ja Review',       '../../bookmakers/bet9ja/'),
+    'sportybet':     ('SportyBet Review',    '../../bookmakers/sportybet/'),
+    'betway':        ('Betway Review',       '../../bookmakers/betway-africa/'),
+    'hollywoodbets': ('Hollywoodbets Review','../../bookmakers/hollywoodbets/'),
+    'sportpesa':     ('SportPesa Review',    '../../bookmakers/sportpesa/'),
+    '1xbet':         ('1xBet Review',        '../../bookmakers/1xbet-africa/'),
+    'betking':       ('BetKing Review',      '../../bookmakers/betking/'),
+}
+
+
+def build_resources_box(post: dict) -> str:
+    """Build a 'Useful Resources' panel guaranteed to appear on every post.
+
+    Always contains:
+    - 1-2 internal country-page links (from post tags)
+    - 1 internal bookmaker review link (from bookmaker_featured)
+    - 1 internal core page (tips or odds)
+    - 1 external sport-authority link (from category)
+    - 1 external responsible-gambling link (always)
+    """
+    items: list[str] = []
+
+    # Country pages (up to 2, from tags)
+    tags_lower = [t.lower() for t in post.get('tags', [])]
+    for tag, (label, href) in _TAG_COUNTRY.items():
+        if tag in tags_lower:
+            items.append(f'<li><a href="{href}">{label}</a></li>')
+        if len(items) >= 2:
+            break
+
+    # Bookmaker review page
+    bk_key = post.get('bookmaker_featured', '').lower()
+    if bk_key and bk_key in _BK_SLUG_TO_LINK:
+        label, href = _BK_SLUG_TO_LINK[bk_key]
+        items.append(f'<li><a href="{href}">{label}</a></li>')
+
+    # Core page (tips if football category, else odds)
+    if post.get('category') == 'football':
+        items.append('<li><a href="../../tips/">Free Football Betting Tips</a></li>')
+    else:
+        items.append('<li><a href="../../odds/">Live Odds Comparison</a></li>')
+
+    # External: sport authority
+    cat = post.get('category', 'football')
+    if cat in _SPORT_ORG:
+        name, url, title = _SPORT_ORG[cat]
+        items.append(
+            f'<li><a href="{url}" title="{title}" '
+            f'target="_blank" rel="noopener noreferrer">{name} — Official Site ↗</a></li>'
+        )
+
+    # External: responsible gambling (always present)
+    items.append(
+        '<li><a href="https://www.begambleaware.org" title="BeGambleAware – responsible gambling help" '
+        'target="_blank" rel="noopener noreferrer">BeGambleAware — Responsible Gambling ↗</a></li>'
+    )
+
+    list_html = '\n    '.join(items)
+    return (
+        '<div class="resources-box" style="margin:28px 0 0;padding:16px 20px;'
+        'background:#f0faf3;border-radius:10px;border-left:4px solid #1a6b35">'
+        '<p style="margin:0 0 10px;font-size:13px;font-weight:700;color:#0a3d1e">📌 Useful Resources</p>'
+        f'<ul style="margin:0;padding-left:18px;font-size:13px;color:#333;line-height:1.9">'
+        f'\n    {list_html}\n  </ul></div>'
+    )
+
+
+EXTERNAL_LINKS = [
+    # Regulators (highest E-E-A-T value for gambling content)
+    (r'\bNLRC\b',   'https://nlrc.gov.ng',           'Nigeria Lottery Regulatory Commission', 0),
+    (r'\bBCLB\b',   'https://bclb.go.ke',            'Betting Control and Licensing Board Kenya', 0),
+    (r'\bGCA\b',    'https://www.gca.gov.gh',         'Gaming Commission of Ghana', 0),
+    (r'\bWCGRB\b',  'https://www.wcgrb.co.za',        'Western Cape Gambling and Racing Board', 0),
+    # Sports organisations
+    (r'\bFIFA\b',          'https://www.fifa.com',                                'FIFA official site', 0),
+    (r'\bUEFA\b',          'https://www.uefa.com',                                'UEFA official site', 0),
+    (r'\bAFCON\b',         'https://www.cafonline.com',                           'Africa Cup of Nations – CAF', 0),
+    (r'\bCAF\b',           'https://www.cafonline.com',                           'Confederation of African Football', 0),
+    (r'World Cup 2026',    'https://www.fifa.com/worldcup/',                      'FIFA World Cup 2026', re.IGNORECASE),
+    (r'Premier League',    'https://www.premierleague.com',                       'Premier League official site', re.IGNORECASE),
+    (r'Champions League',  'https://www.uefa.com/uefachampionsleague/',           'UEFA Champions League', re.IGNORECASE),
+    (r'\bNBA\b',           'https://www.nba.com',                                 'NBA official site', 0),
+    (r'\bBundesliga\b',    'https://www.bundesliga.com/en/bundesliga',            'Bundesliga official site', re.IGNORECASE),
+    (r'\bSerie A\b',       'https://www.legaseriea.it/en',                        'Serie A official site', re.IGNORECASE),
+    (r'\bLigue 1\b',       'https://www.ligue1.com/en',                          'Ligue 1 official site', re.IGNORECASE),
+    (r'\bLa Liga\b',       'https://www.laliga.com/en-GB',                        'La Liga official site', re.IGNORECASE),
+    # Responsible gambling
+    (r'\bBeGambleAware\b', 'https://www.begambleaware.org',  'BeGambleAware – responsible gambling help', re.IGNORECASE),
+    (r'Gambling Therapy',  'https://www.gamblingtherapy.org','Gambling Therapy – free support', re.IGNORECASE),
+]
+
+
+def inject_external_links(body_html: str) -> str:
+    """Auto-link first occurrence of authority terms to their external sources.
+
+    Skips matches already inside an <a> tag.
+    All external links open in a new tab with rel='noopener noreferrer'."""
+    for pattern, url, title, flags in EXTERNAL_LINKS:
+        m = re.search(pattern, body_html, flags)
+        if not m:
+            continue
+        # Skip if already inside an anchor
+        before = body_html[:m.start()]
+        if before.count('<a ') > before.count('</a>'):
+            continue
+        matched = m.group(0)
+        link = (f'<a href="{url}" title="{title}" '
+                f'target="_blank" rel="noopener noreferrer">{matched}</a>')
+        body_html = body_html[:m.start()] + link + body_html[m.end():]
+    return body_html
 
 # Score two posts for relatedness: higher = more related
 def _relatedness(a: dict, b: dict) -> int:
@@ -1208,6 +1376,22 @@ def inject_contextual_links(body_html: str, post: dict) -> str:
         body_lower = body_html.lower()
         used.add(keyword)
 
+    # Bookmaker review links (first mention only per bookmaker)
+    for keyword, href, anchor_title in BOOKMAKER_LINKS:
+        if keyword in used:
+            continue
+        idx = body_lower.find(keyword)
+        if idx == -1:
+            continue
+        before = body_html[:idx]
+        if before.count('<a ') > before.count('</a>'):
+            continue
+        actual = body_html[idx:idx + len(keyword)]
+        link = f'<a href="{href}" title="{anchor_title}">{actual}</a>'
+        body_html = body_html[:idx] + link + body_html[idx + len(keyword):]
+        body_lower = body_html.lower()
+        used.add(keyword)
+
     return body_html
 
 
@@ -1222,6 +1406,8 @@ def build_post_page(post: dict) -> str:
     body_md = post.get('body', '')
     body_html = markdown_to_html(body_md)
     body_html = inject_contextual_links(body_html, post)
+    body_html = inject_external_links(body_html)
+    resources_html = build_resources_box(post)
     related_html = build_related_html(post, _ALL_POSTS)
     author = post.get('author', 'SifuFinds Editorial Team')
     category = post.get('category', 'football')
@@ -1410,6 +1596,7 @@ def build_post_page(post: dict) -> str:
       <meta itemprop="headline" content="{title}">
       <meta itemprop="datePublished" content="{pub_iso}">
       {body_html}
+      {resources_html}
       {related_html}
     </article>
     <div></div>

@@ -10,6 +10,23 @@ import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
+
+def seo_title(title: str, max_len: int = 60) -> str:
+    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix."""
+    suffix = "| SifuFinds"
+    full = f"{title} {suffix}"
+    if len(full) <= max_len:
+        return full
+    for sep in [" — ", " - ", ": ", " | "]:
+        idx = title.find(sep)
+        if idx > 10:
+            candidate = f"{title[:idx]} {suffix}"
+            if len(candidate) <= max_len:
+                return candidate
+    available = max_len - len(suffix) - 2
+    truncated = title[:available].rsplit(" ", 1)[0]
+    return f"{truncated}… {suffix}"
+
 SELECTOR = """\
       <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
       <option value="KE">🇰🇪 Kenya · KSh KES</option>
@@ -289,7 +306,7 @@ def build_page(payment, country_slug, country_data):
     assets = '../../../'
     canonical = f'https://sifufinds.com/betting/{pm_slug}/{country_slug}/'
 
-    title = f'Best {pm_name} Betting Sites {cname} 2026 | Deposit & Withdraw | SifuFinds'
+    title = seo_title(f'Best {pm_name} Betting Sites {cname} 2026')
     description = f'Best {pm_name} betting sites in {cname} 2026. Deposit and withdraw instantly via {pm_name} ({provider_local}) at licensed bookmakers. Min deposit {min_dep}. Updated daily.'
     keywords = f'{pm_name.lower()} betting sites {cname.lower()}, bet with {pm_name.lower()} {cname.lower()}, {pm_name.lower()} bookmakers {cname.lower()}, {pm_name.lower()} sports betting {cname.lower()} 2026'
 

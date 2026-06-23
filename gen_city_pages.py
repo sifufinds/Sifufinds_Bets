@@ -5,6 +5,23 @@ import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
+
+def seo_title(title: str, max_len: int = 60) -> str:
+    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix."""
+    suffix = "| SifuFinds"
+    full = f"{title} {suffix}"
+    if len(full) <= max_len:
+        return full
+    for sep in [" — ", " - ", ": ", " | "]:
+        idx = title.find(sep)
+        if idx > 10:
+            candidate = f"{title[:idx]} {suffix}"
+            if len(candidate) <= max_len:
+                return candidate
+    available = max_len - len(suffix) - 2
+    truncated = title[:available].rsplit(" ", 1)[0]
+    return f"{truncated}… {suffix}"
+
 SELECTOR = """\
       <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
       <option value="KE">🇰🇪 Kenya · KSh KES</option>
@@ -135,7 +152,7 @@ def make_city_page(c):
     ap = c['assets_prefix']
     cp = c['country_prefix']
 
-    title = f"Betting Sites in {c['city']} {c['country']} 2026 | Licensed Bookmakers | SifuFinds"
+    title = seo_title(f"Betting Sites in {c['city']}, {c['country']} 2026")
     meta_desc = f"Best licensed betting sites in {c['city']}, {c['country']} 2026. Compare verified bonuses from {c['regulator']} regulated bookmakers. {', '.join(c['payments'][:2])} accepted. Updated daily."
     canonical = f"https://sifufinds.com/countries/{c['country_slug']}/{c['slug']}/"
     h1 = f"Betting Sites in {c['city']}, {c['country']} &middot; 2026"

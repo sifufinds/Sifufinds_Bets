@@ -9,6 +9,23 @@ import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
+
+def seo_title(title: str, max_len: int = 60) -> str:
+    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix."""
+    suffix = "| SifuFinds"
+    full = f"{title} {suffix}"
+    if len(full) <= max_len:
+        return full
+    for sep in [" — ", " - ", ": ", " | "]:
+        idx = title.find(sep)
+        if idx > 10:
+            candidate = f"{title[:idx]} {suffix}"
+            if len(candidate) <= max_len:
+                return candidate
+    available = max_len - len(suffix) - 2
+    truncated = title[:available].rsplit(" ", 1)[0]
+    return f"{truncated}… {suffix}"
+
 SELECTOR = """\
       <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
       <option value="KE">🇰🇪 Kenya · KSh KES</option>
@@ -152,7 +169,7 @@ def build_page(sport, country_slug, country_data):
     assets = '../../../'
     canonical = f'https://sifufinds.com/betting/{sport_slug}/{country_slug}/'
 
-    title = f'Best {sport_sport} Betting Sites {cname} 2026 | Odds, Tips & Bonuses | SifuFinds'
+    title = seo_title(f'Best {sport_sport} Betting Sites {cname} 2026')
     description = f'Best {sport_sport.lower()} betting sites in {cname} 2026. Compare verified bonuses, {sport_sport.lower()} odds and bookmaker reviews. All bookmakers licensed by {regulator}. Updated daily.'
     keywords = f'{sport_sport.lower()} betting {cname.lower()}, {sport_sport.lower()} betting sites {cname.lower()} 2026, best {sport_sport.lower()} bookmakers {cname.lower()}, {sport_sport.lower()} odds {cname.lower()}'
 

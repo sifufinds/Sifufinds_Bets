@@ -5,6 +5,23 @@ import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
+
+def seo_title(title: str, max_len: int = 60) -> str:
+    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix."""
+    suffix = "| SifuFinds"
+    full = f"{title} {suffix}"
+    if len(full) <= max_len:
+        return full
+    for sep in [" — ", " - ", ": ", " | "]:
+        idx = title.find(sep)
+        if idx > 10:
+            candidate = f"{title[:idx]} {suffix}"
+            if len(candidate) <= max_len:
+                return candidate
+    available = max_len - len(suffix) - 2
+    truncated = title[:available].rsplit(" ", 1)[0]
+    return f"{truncated}… {suffix}"
+
 COUNTRY_SELECTOR = """\
       <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
       <option value="KE">🇰🇪 Kenya · KSh KES</option>
@@ -186,6 +203,7 @@ def make_html(bk):
     )
     compare_cty = bk['country_code']
     pay_str = ', '.join(bk['payments'][:3])
+    page_title = seo_title(f"{bk['name']} Review 2026 | {bk['tagline']}")
 
     return f"""<!DOCTYPE html>
 <!-- sifufinds.com/bookmakers/{slug}/ — {bk['name']} Review 2026 -->
@@ -193,7 +211,7 @@ def make_html(bk):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{bk['name']} Review 2026 | {bk['tagline']} | SifuFinds</title>
+<title>{page_title}</title>
 <meta name="description" content="Comprehensive {bk['name']} review 2026. {bk['tagline']} — {bk['bonus_desc']} {bk['licence']}. Updated June 2026.">
 <meta name="keywords" content="{bk['name'].lower()} review 2026, {bk['name'].lower()} bonus, {bk['name'].lower()} {bk['country_name'].lower()}, is {bk['name'].lower()} legit, {bk['name'].lower()} withdrawal, {bk['name'].lower()} app">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
