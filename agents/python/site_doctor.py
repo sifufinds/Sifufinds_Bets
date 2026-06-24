@@ -7,11 +7,13 @@ Checks every run:
   3. Critical HTML pages returning 200
   4. Key asset files (shared.js, shared.css) loading correctly
   5. shared.js data integrity (BOOKS object present and non-empty)
+  6. Blog post pages — every post in posts.json must have a static index.html
 
 Auto-fixes without human input:
   - Stale or missing live.json  → re-runs agent_live_odds.py
   - Missing football categories → patches live.json with fallback events
   - Cache-bust version mismatch → updates ?v= tokens across all HTML files
+  - Missing blog post pages     → runs gen_blog_post_pages.py to regenerate
   - Marks health status in data/health.json for dashboard visibility
 
 Exit codes: 0 = healthy (or successfully healed), 1 = critical unrecoverable failure
@@ -197,6 +199,58 @@ def check_shared_js_integrity() -> bool:
     return ok
 
 
+def check_and_fix_blog_pages() -> tuple[bool, list[str]]:
+    """
+    Detects posts in blog/posts.json that are missing their static index.html.
+    If any are found, runs gen_blog_post_pages.py to regenerate all missing pages.
+    Returns (is_healthy, fixes_applied).
+    """
+    fixes: list[str] = []
+    posts_path = REPO_ROOT / "blog" / "posts.json"
+
+    if not posts_path.exists():
+        print("  ⚠ blog/posts.json not found — skipping blog check")
+        return True, fixes
+
+    try:
+        posts = json.loads(posts_path.read_text()).get("posts", [])
+    except Exception as e:
+        print(f"  ✗ blog/posts.json parse error: {e}")
+        return False, fixes
+
+    missing = [
+        p["slug"] for p in posts
+        if p.get("slug") and not (REPO_ROOT / "blog" / p["slug"] / "index.html").exists()
+    ]
+
+    if not missing:
+        print(f"  ✓ All {len(posts)} blog post pages present")
+        return True, fixes
+
+    print(f"  ✗ {len(missing)} post(s) missing static page(s) — running generator")
+    gen_script = REPO_ROOT / "gen_blog_post_pages.py"
+    try:
+        result = subprocess.run(
+            [sys.executable, str(gen_script)],
+            capture_output=True, text=True, timeout=180,
+            cwd=str(REPO_ROOT),
+        )
+        if result.returncode == 0:
+            still_missing = [s for s in missing if not (REPO_ROOT / "blog" / s / "index.html").exists()]
+            if still_missing:
+                print(f"  ⚠ {len(still_missing)} page(s) still missing after generation")
+            else:
+                label = ", ".join(missing[:5]) + ("…" if len(missing) > 5 else "")
+                print(f"  ✓ Generated {len(missing)} missing blog page(s)")
+                fixes.append(f"generated {len(missing)} missing blog page(s): {label}")
+        else:
+            print(f"  ✗ gen_blog_post_pages.py failed:\n{result.stderr[:400]}", file=sys.stderr)
+    except Exception as e:
+        print(f"  ✗ Could not run gen_blog_post_pages.py: {e}", file=sys.stderr)
+
+    return True, fixes
+
+
 def write_health_report(page_results: dict, fixes: list[str], all_ok: bool) -> None:
     DATA_DIR.mkdir(exist_ok=True)
     report = {
@@ -221,25 +275,29 @@ def main() -> int:
     all_fixes: list[str] = []
     critical_failure = False
 
-    print("\n[1/4] Checking critical pages...")
+    print("\n[1/5] Checking critical pages...")
     page_results = check_pages()
     down_pages = [k for k, v in page_results.items() if not v]
     if down_pages:
         print(f"  ⚠ Down: {', '.join(down_pages)}")
 
-    print("\n[2/4] Checking live.json freshness and football coverage...")
+    print("\n[2/5] Checking live.json freshness and football coverage...")
     live_ok, live_fixes = check_and_fix_live_json()
     all_fixes.extend(live_fixes)
     if not live_ok:
         print("  ✗ Could not recover live.json — marking critical")
         critical_failure = True
 
-    print("\n[3/4] Checking shared.js integrity...")
+    print("\n[3/5] Checking shared.js integrity...")
     js_ok = check_shared_js_integrity()
     if not js_ok:
         critical_failure = True
 
-    print("\n[4/4] Writing health report...")
+    print("\n[4/5] Checking blog post static pages...")
+    _, blog_fixes = check_and_fix_blog_pages()
+    all_fixes.extend(blog_fixes)
+
+    print("\n[5/5] Writing health report...")
     healthy = not critical_failure and len(down_pages) == 0
     write_health_report(page_results, all_fixes, healthy)
 
