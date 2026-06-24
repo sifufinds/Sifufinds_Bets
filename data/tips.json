@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-24T13:35:35.659644+00:00",
+  "updated": "2026-06-24T16:02:01.960741+00:00",
   "count": 30,
   "tips": [
     {
@@ -129,20 +129,6 @@
       "source": "predictz"
     },
     {
-      "league": "World Cup 2026 Group C",
-      "key": "world",
-      "match": "Scotland vs Brazil",
-      "pred": "Brazil Win",
-      "analysis": "PredictZ statistical model: Brazil Win. Predicted score: 1-2. Based on form, H2H, and league data.",
-      "odds": "1.85",
-      "via": "22Bet",
-      "conf": 68,
-      "time": "TBD",
-      "date": "25 Jun",
-      "isAI": false,
-      "source": "predictz"
-    },
-    {
       "league": "World Cup 2026 Group L",
       "key": "world",
       "match": "Panama vs Croatia",
@@ -157,18 +143,18 @@
       "source": "predictz"
     },
     {
-      "league": "Brazil Serie B",
+      "league": "Football · FreeSuperTips",
       "key": "local",
-      "match": "America Mineiro vs Criciuma SC",
-      "pred": "Criciuma SC Win",
-      "analysis": "PredictZ statistical model: Criciuma SC Win. Predicted score: 0-1. Based on form, H2H, and league data.",
-      "odds": "1.85",
-      "via": "Betika",
+      "match": "Scotland vs Brazil",
+      "pred": "Scotland Win",
+      "analysis": "FreeSuperTips expert pick: Scotland Win for Scotland vs Brazil. Professional tipster analysis based on form and statistics.",
+      "odds": "1.80",
+      "via": "1xBet",
       "conf": 68,
-      "time": "TBD",
-      "date": "25 Jun",
+      "time": "22:00 UTC",
+      "date": "24 Jun",
       "isAI": false,
-      "source": "predictz"
+      "source": "freesupertips"
     },
     {
       "league": "Football · FreeSuperTips",
@@ -281,6 +267,20 @@
       "date": "24 Jun",
       "isAI": false,
       "source": "freesupertips"
+    },
+    {
+      "league": "Brazil Serie B",
+      "key": "local",
+      "match": "America Mineiro vs Criciuma SC",
+      "pred": "Criciuma SC Win",
+      "analysis": "PredictZ statistical model: Criciuma SC Win. Predicted score: 0-1. Based on form, H2H, and league data.",
+      "odds": "1.85",
+      "via": "Betika",
+      "conf": 68,
+      "time": "TBD",
+      "date": "25 Jun",
+      "isAI": false,
+      "source": "predictz"
     },
     {
       "league": "Tanzania Premier League",
