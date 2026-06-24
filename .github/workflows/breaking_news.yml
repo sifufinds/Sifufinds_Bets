@@ -86,11 +86,14 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python agent_sports_blog.py --ticker-only
 
+      - name: Generate static blog post pages
+        run: python3 gen_blog_post_pages.py
+
       - name: Commit and push new articles
         run: |
           git config --local user.email "newsbot@sifufinds.com"
           git config --local user.name "SifuFinds Breaking News Bot"
-          git add blog/posts.json blog/posts-data.js blog/ticker.json blog/ticker-data.js
+          git add blog/posts.json blog/posts-data.js blog/ticker.json blog/ticker-data.js blog/
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
@@ -112,9 +115,11 @@ jobs:
             git fetch origin main
             # Smart-merge posts.json so no posts are lost from either side
             python3 agents/python/merge_posts.py
+            # Regenerate pages on top of merged posts
+            python3 gen_blog_post_pages.py
             # Reset our commit, re-apply on top of remote, re-stage merged file
             git reset --soft HEAD~1
             git rebase FETCH_HEAD || git rebase --abort
-            git add blog/posts.json blog/posts-data.js
+            git add blog/posts.json blog/posts-data.js blog/
             git diff --cached --quiet || git commit --amend --no-edit
           done
