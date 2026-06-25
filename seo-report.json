@@ -1,19 +1,13 @@
 {
-  "date": "2026-06-24",
-  "total": 3,
+  "date": "2026-06-25",
+  "total": 2,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 2,
     "INFO": 0
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "england-0-0-ghana-world-cup-2026-boston",
-      "detail": "Excerpt 185 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
