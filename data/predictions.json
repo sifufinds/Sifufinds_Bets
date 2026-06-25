@@ -1,127 +1,58 @@
 {
-  "updated": "2026-06-24T22:53:58.027004+00:00",
+  "updated": "2026-06-25T00:07:01.722882+00:00",
   "source": "predictz.com, thesportsdb+fst",
-  "count": 24,
+  "count": 23,
   "scrape_log": [
     {
       "page": "main",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-24T22:53:58.027004+00:00"
+      "ts": "2026-06-25T00:07:01.722882+00:00"
     },
     {
       "page": "btts",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-24T22:53:58.027004+00:00"
+      "ts": "2026-06-25T00:07:01.722882+00:00"
     },
     {
       "page": "ou25",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/over-under-25-goals/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-24T22:53:58.027004+00:00"
+      "ts": "2026-06-25T00:07:01.722882+00:00"
     },
     {
       "page": "bw",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score-and-win/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-24T22:53:58.027004+00:00"
+      "ts": "2026-06-25T00:07:01.722882+00:00"
     },
     {
       "page": "score",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/correct-score/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-24T22:53:58.027004+00:00"
+      "ts": "2026-06-25T00:07:01.722882+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "error",
       "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-1x2: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-24T22:53:58.027004+00:00"
+      "ts": "2026-06-25T00:07:01.722882+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "error",
       "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-both-to-score: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-24T22:53:58.027004+00:00"
+      "ts": "2026-06-25T00:07:01.722882+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "error",
       "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-under-over-goals: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-24T22:53:58.027004+00:00"
+      "ts": "2026-06-25T00:07:01.722882+00:00"
     }
   ],
   "predictions": [
-    {
-      "id": "wc_2391764",
-      "home": "Morocco",
-      "away": "Haiti",
-      "competition": "FIFA World Cup · C",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "24 Jun · 22:00 UTC",
-      "ko_utc": "2026-06-24T22:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "Morocco to Win",
-      "wdw": "1",
-      "home_odds": "2.00",
-      "draw_odds": "3.30",
-      "away_odds": "3.50",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 1.5",
-      "correct_score": "",
-      "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
-      "flag": "🌍",
-      "confidence": 60
-    },
-    {
-      "id": "wc_2391765",
-      "home": "Scotland",
-      "away": "Brazil",
-      "competition": "FIFA World Cup · C",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "24 Jun · 22:00 UTC",
-      "ko_utc": "2026-06-24T22:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "Scotland to Win",
-      "wdw": "1",
-      "home_odds": "2.00",
-      "draw_odds": "3.30",
-      "away_odds": "3.50",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 1.5",
-      "correct_score": "",
-      "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
-      "flag": "🌍",
-      "confidence": 60
-    },
-    {
-      "id": "wc_2391767",
-      "home": "Switzerland",
-      "away": "Canada",
-      "competition": "FIFA World Cup · B",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "24 Jun · 19:00 UTC",
-      "ko_utc": "2026-06-24T19:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "Switzerland to Win",
-      "wdw": "1",
-      "home_odds": "2.00",
-      "draw_odds": "3.30",
-      "away_odds": "3.50",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 1.5",
-      "correct_score": "",
-      "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
-      "flag": "🌍",
-      "confidence": 60
-    },
     {
       "id": "wc_2391766",
       "home": "South Africa",
@@ -141,7 +72,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -164,7 +95,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -187,7 +118,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -210,7 +141,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -233,7 +164,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -256,7 +187,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -279,7 +210,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -302,7 +233,53 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-24T22:53:59.576116+00:00",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
+      "flag": "🌍",
+      "confidence": 60
+    },
+    {
+      "id": "wc_2391777",
+      "home": "Algeria",
+      "away": "Austria",
+      "competition": "FIFA World Cup · J",
+      "comp_slug": "world-cup-2026",
+      "ko_display": "28 Jun · 02:00 UTC",
+      "ko_utc": "2026-06-28T02:00:00+00:00",
+      "match_winner": "Home",
+      "match_winner_label": "Algeria to Win",
+      "wdw": "1",
+      "home_odds": "2.00",
+      "draw_odds": "3.30",
+      "away_odds": "3.50",
+      "btts": "",
+      "btts_win": "",
+      "over25": "Over 1.5",
+      "correct_score": "",
+      "source": "thesportsdb+fst",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
+      "flag": "🌍",
+      "confidence": 60
+    },
+    {
+      "id": "wc_2391780",
+      "home": "Jordan",
+      "away": "Argentina",
+      "competition": "FIFA World Cup · J",
+      "comp_slug": "world-cup-2026",
+      "ko_display": "28 Jun · 02:00 UTC",
+      "ko_utc": "2026-06-28T02:00:00+00:00",
+      "match_winner": "Home",
+      "match_winner_label": "Jordan to Win",
+      "wdw": "1",
+      "home_odds": "2.00",
+      "draw_odds": "3.30",
+      "away_odds": "3.50",
+      "btts": "",
+      "btts_win": "",
+      "over25": "Over 1.5",
+      "correct_score": "",
+      "source": "thesportsdb+fst",
+      "scraped_at": "2026-06-25T00:07:07.172764+00:00",
       "flag": "🌍",
       "confidence": 60
     },
