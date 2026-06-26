@@ -1,13 +1,49 @@
 {
-  "date": "2026-06-25",
-  "total": 2,
+  "date": "2026-06-26",
+  "total": 8,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 6,
     "MEDIUM": 2,
     "INFO": 0
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-draft-shakeup-lamelo-ball-traded-to-wolves-tobi-lawal-nba-dreams",
+      "detail": "Title 72 chars (max 60): \"NBA Draft Shakeup: LaMelo Ball Traded to Wolves, Tobi Lawal's NBA Drea\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "wimbledon-drama-odds-on-top-seeds-fashion-and-player-protests",
+      "detail": "Title 64 chars (max 60): 'Wimbledon Drama: Odds on Top Seeds, Fashion, and Player Protests'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "scotland-world-cup-hopes-brazil-england-commonwealth-squad",
+      "detail": "Title 82 chars (max 60): \"Scotland's World Cup Hopes Hinge on Brazil, England's Commonwealth Squ\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-draft-shakeup-lamelo-ball-traded-to-wolves-tobi-lawal-nba-dreams",
+      "detail": "Excerpt 237 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "wimbledon-drama-odds-on-top-seeds-fashion-and-player-protests",
+      "detail": "Excerpt 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "scotland-world-cup-hopes-brazil-england-commonwealth-squad",
+      "detail": "Excerpt 172 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
