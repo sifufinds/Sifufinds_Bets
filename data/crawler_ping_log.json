@@ -976,5 +976,56 @@
         "ts": "2026-06-27T08:33:24.052749+00:00"
       }
     ]
+  },
+  {
+    "ts": "2026-06-28T08:48:28.202634+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "ok": true,
+        "output": "tting-2026/', 'https:/sifufinds.com/blog/sporting-gossip-red-bull-f1-qualifying-showdown-cricket-update-wimbledon-injury-fears/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      }
+    ]
   }
 ]
