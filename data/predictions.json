@@ -1,127 +1,58 @@
 {
-  "updated": "2026-06-27T23:44:07.358628+00:00",
-  "source": "predictz.com, thesportsdb+fst",
-  "count": 18,
+  "updated": "2026-06-28T01:54:06.285738+00:00",
+  "source": "thesportsdb+fst, predictz.com",
+  "count": 15,
   "scrape_log": [
     {
       "page": "main",
       "status": "error",
-      "error": "All scrapers failed for https://www.predictz.com/predictions/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-27T23:44:07.358628+00:00"
+      "error": "All scrapers failed for https://www.predictz.com/predictions/: firecrawl: The read operation timed out",
+      "ts": "2026-06-28T01:54:06.285738+00:00"
     },
     {
       "page": "btts",
       "status": "error",
-      "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-27T23:44:07.358628+00:00"
+      "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score/: firecrawl: The read operation timed out",
+      "ts": "2026-06-28T01:54:06.285738+00:00"
     },
     {
       "page": "ou25",
       "status": "error",
-      "error": "All scrapers failed for https://www.predictz.com/predictions/today/over-under-25-goals/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-27T23:44:07.358628+00:00"
+      "error": "All scrapers failed for https://www.predictz.com/predictions/today/over-under-25-goals/: firecrawl: The read operation timed out",
+      "ts": "2026-06-28T01:54:06.285738+00:00"
     },
     {
       "page": "bw",
       "status": "error",
-      "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score-and-win/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-27T23:44:07.358628+00:00"
+      "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score-and-win/: firecrawl: The read operation timed out",
+      "ts": "2026-06-28T01:54:06.285738+00:00"
     },
     {
       "page": "score",
       "status": "error",
-      "error": "All scrapers failed for https://www.predictz.com/predictions/today/correct-score/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-27T23:44:07.358628+00:00"
+      "error": "All scrapers failed for https://www.predictz.com/predictions/today/correct-score/: firecrawl: The read operation timed out",
+      "ts": "2026-06-28T01:54:06.285738+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "error",
-      "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-1x2: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-27T23:44:07.358628+00:00"
+      "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-1x2: firecrawl: The read operation timed out",
+      "ts": "2026-06-28T01:54:06.285738+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "error",
-      "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-both-to-score: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-27T23:44:07.358628+00:00"
+      "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-both-to-score: firecrawl: The read operation timed out",
+      "ts": "2026-06-28T01:54:06.285738+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "error",
-      "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-under-over-goals: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-06-27T23:44:07.358628+00:00"
+      "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-under-over-goals: firecrawl: The read operation timed out",
+      "ts": "2026-06-28T01:54:06.285738+00:00"
     }
   ],
   "predictions": [
-    {
-      "id": "wc_2391772",
-      "home": "Cape Verde",
-      "away": "Saudi Arabia",
-      "competition": "FIFA World Cup · H",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "27 Jun · 00:00 UTC",
-      "ko_utc": "2026-06-27T00:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "Cape Verde to Win",
-      "wdw": "1",
-      "home_odds": "2.00",
-      "draw_odds": "3.30",
-      "away_odds": "3.50",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 1.5",
-      "correct_score": "",
-      "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-27T23:44:09.935476+00:00",
-      "flag": "🌍",
-      "confidence": 60
-    },
-    {
-      "id": "wc_2391773",
-      "home": "Egypt",
-      "away": "Iran",
-      "competition": "FIFA World Cup · G",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "27 Jun · 03:00 UTC",
-      "ko_utc": "2026-06-27T03:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "Egypt to Win",
-      "wdw": "1",
-      "home_odds": "2.00",
-      "draw_odds": "3.30",
-      "away_odds": "3.50",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 1.5",
-      "correct_score": "",
-      "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-27T23:44:09.935476+00:00",
-      "flag": "🌍",
-      "confidence": 60
-    },
-    {
-      "id": "wc_2391774",
-      "home": "New Zealand",
-      "away": "Belgium",
-      "competition": "FIFA World Cup · G",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "27 Jun · 03:00 UTC",
-      "ko_utc": "2026-06-27T03:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "New Zealand to Win",
-      "wdw": "1",
-      "home_odds": "2.00",
-      "draw_odds": "3.30",
-      "away_odds": "3.50",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 1.5",
-      "correct_score": "",
-      "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-27T23:44:09.935476+00:00",
-      "flag": "🌍",
-      "confidence": 60
-    },
     {
       "id": "wc_2391777",
       "home": "Algeria",
@@ -141,7 +72,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-27T23:44:09.935476+00:00",
+      "scraped_at": "2026-06-28T02:02:08.335975+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -164,7 +95,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "thesportsdb+fst",
-      "scraped_at": "2026-06-27T23:44:09.935476+00:00",
+      "scraped_at": "2026-06-28T02:02:08.335975+00:00",
       "flag": "🌍",
       "confidence": 60
     },
