@@ -1,66 +1,36 @@
 {
-  "date": "2026-06-30",
-  "total": 11,
+  "date": "2026-07-01",
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 9,
-    "MEDIUM": 2,
+    "HIGH": 3,
+    "MEDIUM": 3,
     "INFO": 0
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "breaking-down-nba-news-lebron-james-ja-morant-trade",
-      "detail": "Title 74 chars (max 60): \"Breaking Down NBA News: Heat's LeBron Pursuit, Ja Morant's Trade, and \""
+      "page": "serena-williams-wimbledon-2026-uefa-fines-villa",
+      "detail": "Title 97 chars (max 60): \"Wimbledon 2026: Serena Williams' Return Falls Short; Uefa Fines Villa \""
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "boxing-insights-zuffa-betting",
-      "detail": "Title 67 chars (max 60): \"Fury's Return & Zuffa Boxing 08: Betting Insights & Expert Analysis\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sport-news-weekly-roundup",
-      "detail": "Title 74 chars (max 60): \"Key Takeaways from This Week's Sport News: World Cup, Tennis, and Foot\""
+      "page": "boxing-underdog-factor-usyk-fury",
+      "detail": "Title 66 chars (max 60): \"Boxing's Heavyweight Showdown: Usyk, Fury, and the Underdog Factor\""
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "breaking-down-nba-news-lebron-james-ja-morant-trade",
-      "detail": "Excerpt 196 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "world-cup-drama-germany-heartbreak-transfer-frenzy",
-      "detail": "Excerpt 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "world-cup-2026-paraguay-stuns-germany",
-      "detail": "Excerpt 159 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "boxing-insights-zuffa-betting",
+      "page": "boxing-underdog-factor-usyk-fury",
       "detail": "Excerpt 165 chars (max 155)"
     },
     {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "cricket-retirement-leadership-changes-betting-insights",
-      "detail": "Excerpt 184 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sport-news-weekly-roundup",
-      "detail": "Excerpt 167 chars (max 155)"
+      "severity": "MEDIUM",
+      "check": "missing_faqpage_schema",
+      "page": "boxing-underdog-factor-usyk-fury",
+      "detail": "Post has FAQ content but no FAQPage JSON-LD"
     },
     {
       "severity": "MEDIUM",
