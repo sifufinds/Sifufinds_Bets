@@ -1,17 +1,18 @@
 {
-  "date": "2026-07-01",
-  "fixes_applied": 5,
+  "date": "2026-07-02",
+  "fixes_applied": 6,
   "warnings": 2,
   "fixes": [
-    "llms.txt: Last Updated \u2192 2026-07-01",
-    "index.html: dateModified \u2192 2026-07-01",
-    "Blog HTML regenerated:     Total blog posts in JSON: 143",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 804 total URLs",
+    "llms.txt: Last Updated \u2192 2026-07-02",
+    "index.html: dateModified \u2192 2026-07-02",
+    "Blog HTML: refreshed dateModified on 8 stale pages",
+    "Blog HTML regenerated:     Total blog posts in JSON: 146",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 807 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "139 posts below 900 words: serena-williams-wimbledon-2026-uefa-fines-villa, boxing-underdog-factor-usyk-fury, world-cup-2026-cote-divoire-v-norway, breaking-down-nba-news-lebron-james-ja-morant-trade, world-cup-drama-germany-heartbreak-transfer-frenzy...",
-    "123 posts missing FAQ section: serena-williams-wimbledon-2026-uefa-fines-villa, boxing-underdog-factor-usyk-fury, world-cup-2026-cote-divoire-v-norway, breaking-down-nba-news-lebron-james-ja-morant-trade, world-cup-drama-germany-heartbreak-transfer-frenzy"
+    "142 posts below 900 words: jaylen-brown-traded-to-76ers-blockbuster-deal, england-mexico-world-cup-betting-odds, wimbledon-2026-day-three-odds-and-insights, serena-williams-wimbledon-2026-uefa-fines-villa, boxing-underdog-factor-usyk-fury...",
+    "126 posts missing FAQ section: jaylen-brown-traded-to-76ers-blockbuster-deal, england-mexico-world-cup-betting-odds, wimbledon-2026-day-three-odds-and-insights, serena-williams-wimbledon-2026-uefa-fines-villa, boxing-underdog-factor-usyk-fury"
   ],
   "status": "warnings"
 }
