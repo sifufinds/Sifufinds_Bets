@@ -1,9 +1,9 @@
 {
-  "date": "2026-07-01",
-  "total": 6,
+  "date": "2026-07-02",
+  "total": 5,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 2,
     "MEDIUM": 3,
     "INFO": 0
   },
@@ -11,20 +11,14 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "serena-williams-wimbledon-2026-uefa-fines-villa",
-      "detail": "Title 97 chars (max 60): \"Wimbledon 2026: Serena Williams' Return Falls Short; Uefa Fines Villa \""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "boxing-underdog-factor-usyk-fury",
-      "detail": "Title 66 chars (max 60): \"Boxing's Heavyweight Showdown: Usyk, Fury, and the Underdog Factor\""
+      "page": "england-mexico-world-cup-betting-odds",
+      "detail": "Title 79 chars (max 60): 'England Face Mexico in World Cup Last 16, Betting Odds Shift with Squa'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "boxing-underdog-factor-usyk-fury",
-      "detail": "Excerpt 165 chars (max 155)"
+      "page": "england-mexico-world-cup-betting-odds",
+      "detail": "Excerpt 164 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
