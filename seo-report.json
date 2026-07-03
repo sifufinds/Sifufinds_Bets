@@ -1,9 +1,9 @@
 {
-  "date": "2026-07-02",
-  "total": 5,
+  "date": "2026-07-03",
+  "total": 10,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 7,
     "MEDIUM": 3,
     "INFO": 0
   },
@@ -11,14 +11,44 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "england-mexico-world-cup-betting-odds",
-      "detail": "Title 79 chars (max 60): 'England Face Mexico in World Cup Last 16, Betting Odds Shift with Squa'"
+      "page": "africa-online-gambling-landscape-new-laws-regulations-responsible-betting",
+      "detail": "Title 82 chars (max 60): \"Africa's Online Gambling Landscape: New Laws, Regulations, and Respons\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "britains-fery-keeps-hope-alive-at-wimbledon-england-seeks-redemption-in-the-world-cup",
+      "detail": "Title 93 chars (max 60): \"Britain's Fery Keeps Hope Alive at Wimbledon, While England Seeks Rede\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "wimbledon-2026-grand-slam-match-betting-guide",
+      "detail": "Title 87 chars (max 60): 'Wimbledon 2026: Grand Slam Match Betting Guide with Set Betting and To'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-mania-fernandes-tonali-and-more",
+      "detail": "Title 73 chars (max 60): 'Transfer Mania: Fernandes joins Spurs, Tonali signs with Spurs, and mo'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "england-mexico-world-cup-betting-odds",
-      "detail": "Excerpt 164 chars (max 155)"
+      "page": "britains-fery-keeps-hope-alive-at-wimbledon-england-seeks-redemption-in-the-world-cup",
+      "detail": "Excerpt 200 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "wimbledon-2026-grand-slam-match-betting-guide",
+      "detail": "Excerpt 211 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-mania-fernandes-tonali-and-more",
+      "detail": "Excerpt 184 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
