@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T13:10:42.596328+00:00",
+  "updated": "2026-07-03T15:25:05.877400+00:00",
   "source": "predictz.com",
   "count": 13,
   "scrape_log": [
@@ -7,49 +7,49 @@
       "page": "main",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-07-03T13:10:42.596328+00:00"
+      "ts": "2026-07-03T15:25:05.877400+00:00"
     },
     {
       "page": "btts",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-07-03T13:10:42.596328+00:00"
+      "ts": "2026-07-03T15:25:05.877400+00:00"
     },
     {
       "page": "ou25",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/over-under-25-goals/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-07-03T13:10:42.596328+00:00"
+      "ts": "2026-07-03T15:25:05.877400+00:00"
     },
     {
       "page": "bw",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/both-teams-to-score-and-win/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-07-03T13:10:42.596328+00:00"
+      "ts": "2026-07-03T15:25:05.877400+00:00"
     },
     {
       "page": "score",
       "status": "error",
       "error": "All scrapers failed for https://www.predictz.com/predictions/today/correct-score/: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-07-03T13:10:42.596328+00:00"
+      "ts": "2026-07-03T15:25:05.877400+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "error",
       "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-1x2: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-07-03T13:10:42.596328+00:00"
+      "ts": "2026-07-03T15:25:05.877400+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "error",
       "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-both-to-score: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-07-03T13:10:42.596328+00:00"
+      "ts": "2026-07-03T15:25:05.877400+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "error",
       "error": "All scrapers failed for https://www.forebet.com/en/football-tips-and-predictions-for-today/predictions-under-over-goals: firecrawl: HTTP Error 402: Payment Required",
-      "ts": "2026-07-03T13:10:42.596328+00:00"
+      "ts": "2026-07-03T15:25:05.877400+00:00"
     }
   ],
   "predictions": [
