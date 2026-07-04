@@ -1,25 +1,26 @@
 """
 agent_live_odds.py — Live Sports Odds Agent for SifuFinds
-Fetches ESPN public API for non-football sports and TheSportsDB for WC2026/football.
+Fetches ESPN public API for non-football sports and openfootball's WC2026 schedule
+for football (TheSportsDB's free tier does not carry World Cup 2026 fixtures).
 Converts American moneyline odds to decimal and writes data/live.json.
 
 Run by GitHub Actions every 5 minutes. No API keys required.
 """
 
 import json
+import re
 import sys
 import requests
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports"
-SPORTSDB_BASE = "https://www.thesportsdb.com/api/v1/json/3"
 OPENFOOTBALL_WC_URL = "https://raw.githubusercontent.com/openfootball/world-cup.json/master/2026/worldcup.json"
 HEADERS = {"User-Agent": "Mozilla/5.0 (SifuFinds/2.0; live-odds-agent)"}
 TIMEOUT = 12
 
 ENDPOINTS = [
-    # Soccer — African leagues return HTTP 400 from ESPN; WC2026 handled by TheSportsDB below
+    # Soccer — African leagues return HTTP 400 from ESPN; WC2026 handled by openfootball below
     # EPL/La Liga/UCL are in off-season; omitted to avoid stale data
     # Basketball
     {"url": f"{ESPN_BASE}/basketball/nba/scoreboard",              "key": "basketball", "label": "NBA"},
@@ -157,73 +158,76 @@ def fetch_endpoint(endpoint: dict):
         return []
 
 
+_OF_TIME_RE = re.compile(r"(\d{1,2}):(\d{2})\s*UTC([+-]\d+)?")
+_PLACEHOLDER_TEAM_RE = re.compile(r"^[WL]\d+$")
+
+
+def _parse_openfootball_kickoff(date_str: str, time_str: str):
+    """Parse openfootball's 'HH:MM UTC±N' local kickoff time into a UTC datetime."""
+    m = _OF_TIME_RE.match(time_str or "")
+    if not m:
+        return None
+    hh, mm, offset = m.groups()
+    offset_hours = int(offset) if offset else 0
+    try:
+        local_dt = datetime.strptime(f"{date_str} {hh}:{mm}", "%Y-%m-%d %H:%M")
+    except ValueError:
+        return None
+    # "UTC-4" means local = UTC - 4h, so UTC = local + 4h
+    return (local_dt - timedelta(hours=offset_hours)).replace(tzinfo=timezone.utc)
+
+
 def _build_football_fallbacks() -> list:
-    """Fetch verified WC2026 matches from TheSportsDB for next 4 days.
-    Never injects fabricated data — if API returns nothing, returns empty list.
+    """Build verified WC2026 fixtures/results directly from the openfootball schedule.
+
+    TheSportsDB's free tier does not carry World Cup 2026 fixtures (verified: eventsday.php
+    returns only minor US leagues for WC2026 match dates), so it cannot be used as the
+    schedule source. openfootball/world-cup.json ships the full fixture list with
+    date/time/round and is updated with live scores as the tournament progresses.
+    Never injects fabricated data — if the feed returns nothing, returns an empty list.
     """
-    fallbacks = []
     now_utc = datetime.now(timezone.utc)
-    dates = [(now_utc + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(4)]
+    window_start = now_utc - timedelta(hours=3)
+    window_end = now_utc + timedelta(days=8)
 
-    today = dates[0]
-    # ── TheSportsDB: fetch WC2026 matches for next 4 days ──────────────────────
-    wc_events = []
-    for date_str in dates:
-        try:
-            url = f"{SPORTSDB_BASE}/eventsday.php?d={date_str}&s=Soccer"
-            r = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
-            if r.status_code == 200:
-                events = r.json().get("events") or []
-                for e in events:
-                    if "World Cup" in (e.get("strLeague") or ""):
-                        wc_events.append(e)
-        except Exception as ex:
-            print(f"  ⚠ TheSportsDB {date_str}: {ex}", file=sys.stderr)
-
-    # ── Open Football: get recent results as context ────────────────────────────
-    wc_results: dict[str, dict] = {}
     try:
         r = requests.get(OPENFOOTBALL_WC_URL, headers=HEADERS, timeout=TIMEOUT)
-        if r.status_code == 200:
-            matches = r.json().get("matches", [])
-            for m in matches:
-                key = f"{m['team1']}:{m['team2']}"
-                score = m.get("score", {})
-                ft = score.get("ft")
-                if ft and ft[0] is not None:
-                    wc_results[key] = {"hScore": ft[0], "aScore": ft[1], "complete": True}
+        if r.status_code != 200:
+            print(f"  ⚠ open-football: HTTP {r.status_code}", file=sys.stderr)
+            return []
+        matches = r.json().get("matches", [])
     except Exception as ex:
         print(f"  ⚠ open-football: {ex}", file=sys.stderr)
+        return []
 
-    for e in wc_events:
-        home = e.get("strHomeTeam", "")
-        away = e.get("strAwayTeam", "")
+    fallbacks = []
+    for m in matches:
+        home = m.get("team1", "")
+        away = m.get("team2", "")
         if not home or not away:
             continue
-        date_event = e.get("dateEvent", today)
-        time_str = e.get("strTime", "")
-        group = e.get("strGroup") or ""
-        status = e.get("strStatus", "NS")
-        home_score = e.get("intHomeScore")
-        away_score = e.get("intAwayScore")
-        is_complete = status in ("FT", "AET", "PEN")
-        is_live = status in ("1H", "HT", "2H", "ET", "P")
+        if _PLACEHOLDER_TEAM_RE.match(home) or _PLACEHOLDER_TEAM_RE.match(away):
+            continue  # bracket slot not yet resolved (e.g. "W89 vs W90")
 
-        result = wc_results.get(f"{home}:{away}", {})
-        if result:
-            home_score = result["hScore"]
-            away_score = result["aScore"]
-            is_complete = result["complete"]
+        kickoff = _parse_openfootball_kickoff(m.get("date", ""), m.get("time", ""))
+        if kickoff is None or not (window_start <= kickoff <= window_end):
+            continue
 
-        try:
-            dt = datetime.strptime(f"{date_event} {time_str}", "%Y-%m-%d %H:%M:%S")
-            dt = dt.replace(tzinfo=timezone.utc)
-            label_day = dt.strftime("%-d %b %Y")
-            time_label = f"{label_day} · {dt.strftime('%H:%M')} UTC"
-        except Exception:
-            time_label = f"{date_event} · {time_str[:5]} UTC"
+        score = m.get("score") or {}
+        final = score.get("p") or score.get("et") or score.get("ft")
+        is_complete = final is not None
+        home_score = final[0] if final else None
+        away_score = final[1] if final else None
+        is_live = not is_complete and kickoff <= now_utc <= kickoff + timedelta(minutes=130)
 
-        comp_label = f"FIFA World Cup 2026 · Group {group}" if group else "FIFA World Cup 2026"
+        if is_live or is_complete:
+            time_label = "FT" if is_complete else "LIVE"
+        else:
+            label_day = kickoff.strftime("%-d %b %Y")
+            time_label = f"{label_day} · {kickoff.strftime('%H:%M')} UTC"
+
+        round_name = m.get("round") or ""
+        comp_label = f"FIFA World Cup 2026 · {round_name}" if round_name else "FIFA World Cup 2026"
         fallbacks.append({
             "league":    comp_label,
             "key":       "world",
@@ -239,18 +243,18 @@ def _build_football_fallbacks() -> list:
         })
 
     if not fallbacks:
-        print("  ⚠ TheSportsDB returned no WC2026 matches — live.json will have no football", file=sys.stderr)
+        print("  ⚠ open-football returned no WC2026 matches in window — live.json will have no football", file=sys.stderr)
 
     return fallbacks
 
 
 def inject_football_fallbacks(events: list) -> list:
-    """Add verified WC2026 events from TheSportsDB. Never injects fabricated data."""
+    """Add verified WC2026 events from openfootball. Never injects fabricated data."""
     has_football = any(e["key"] == "world" for e in events)
     if not has_football:
         wc_events = _build_football_fallbacks()
         if wc_events:
-            print(f"  → WC2026: injected {len(wc_events)} verified matches from TheSportsDB")
+            print(f"  → WC2026: injected {len(wc_events)} verified matches from openfootball")
         events = events + wc_events
     return events
 
