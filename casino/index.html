@@ -13,7 +13,7 @@
 </script>
 <meta charset="UTF-8">
 <link rel="preload" href="../assets/shared.js?v=10" as="script">
-<link rel="preload" href="../assets/shared.css?v=7" as="style">
+<link rel="preload" href="../assets/shared.css?v=8" as="style">
 <link rel="preconnect" href="https://ipapi.co">
 <link rel="preconnect" href="https://www.google-analytics.com">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -70,7 +70,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="../assets/shared.css?v=7">
+<link rel="stylesheet" href="../assets/shared.css?v=8">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
@@ -196,7 +196,7 @@
 
 <!-- FOOTER -->
 <footer class="site-footer"><div class="footer-in">
-  <div class="flogo"><a href="../"><img src="../assets/logo.png" alt="SifuFinds" height="72" style="display:block;object-fit:contain"></a></div>
+  <div class="flogo"><a href="../"><img src="../assets/logo.png" alt="SifuFinds" height="72" loading="lazy" style="display:block;object-fit:contain"></a></div>
   <div class="fgrid">
     <div class="fc4"><h4>Bonuses</h4>
       <a href="../">Best Bonuses</a>
@@ -270,7 +270,7 @@ function casCard(c,i){
     </div>
     <div class="bk-act">
       <div class="bk-stars">${stars(c.stars)}</div>
-      <a class="gbtn${c.nodep?' gold':''}" href="${c.url}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a>
+      <a class="gbtn${c.nodep?' gold':''}" href="${c.url}" target="_blank" rel="noopener noreferrer sponsored">Claim Bonus →</a>
       <div class="tc-n">T&Cs Apply · 18+</div>
     </div>
   </div>
@@ -284,7 +284,7 @@ function casCard(c,i){
       <div class="xi"><div class="xl">No Deposit</div><div class="xv ${c.nodep?'yes':'no'}">${c.nodep?'✓ Yes':'✗ No'}</div></div>
     </div>
     <div class="trms">${c.terms}</div>
-    <a class="gbtn" href="${c.url}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a>
+    <a class="gbtn" href="${c.url}" target="_blank" rel="noopener noreferrer sponsored">Claim Bonus →</a>
   </div>
 </div>`;
 }
@@ -311,7 +311,7 @@ function renderFeatCasinos(){
     <div class="fc-body">
       <div class="fc-stars">${stars(c.stars)}</div>
       <div class="fc-off">${c.off}</div>
-      <a class="gbtn" href="${c.url}" target="_blank" rel="noopener noreferrer">Claim →</a>
+      <a class="gbtn" href="${c.url}" target="_blank" rel="noopener noreferrer sponsored">Claim →</a>
     </div>
   </div>`).join(''));
 }

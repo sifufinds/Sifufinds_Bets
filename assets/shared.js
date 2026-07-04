@@ -924,7 +924,7 @@ function renderBrandsBar(){
   const el=document.getElementById('hbrands');
   if(!el)return;
   el.innerHTML=`<div class="hbrands-in"><span class="hbrands-lbl">🔥 Featured</span><div class="hbrands-list">${
-    HEADER_BRANDS.map(b=>{const logoSrc=b.domain?`https://${b.domain}`:b.url;return`<a class="hbrand" href="${b.url}" target="_blank" rel="noopener noreferrer" style="background:${b.bg};color:${b.tc}"><div class="hbrand-logo">${logoImg(logoSrc,b.name,b.abbr,b.tc,22,3,true)}</div><div class="hbrand-body"><span class="hbrand-name">${b.name}</span><span class="hbrand-tag">${b.tag}</span></div><span class="hbrand-cta">Bet Now →</span></a>`;}).join('')
+    HEADER_BRANDS.map(b=>{const logoSrc=b.domain?`https://${b.domain}`:b.url;return`<a class="hbrand" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored" style="background:${b.bg};color:${b.tc}"><div class="hbrand-logo">${logoImg(logoSrc,b.name,b.abbr,b.tc,22,3,true)}</div><div class="hbrand-body"><span class="hbrand-name">${b.name}</span><span class="hbrand-tag">${b.tag}</span></div><span class="hbrand-cta">Bet Now →</span></a>`;}).join('')
   }</div></div>`;
 }
 document.addEventListener('DOMContentLoaded',renderBrandsBar);

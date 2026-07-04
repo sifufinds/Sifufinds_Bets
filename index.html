@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="preload" href="assets/shared.js?v=10" as="script">
-<link rel="preload" href="assets/shared.css?v=7" as="style">
+<link rel="preload" href="assets/shared.css?v=8" as="style">
 <!-- Critical-path connections -->
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
@@ -247,7 +247,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="assets/shared.css?v=7">
+<link rel="stylesheet" href="assets/shared.css?v=8">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
@@ -513,7 +513,7 @@
 
 <!-- FOOTER -->
 <footer class="site-footer"><div class="footer-in">
-  <div class="flogo"><a href="/"><img src="assets/logo.png" alt="SifuFinds" width="180" height="72"></a></div>
+  <div class="flogo"><a href="/"><img src="assets/logo.png" alt="SifuFinds" width="180" height="72" loading="lazy"></a></div>
   <div class="fgrid">
     <div class="fc4"><h3>Bonuses</h3>
       <button onclick="setFiltByName('all')">Best Bonuses</button>
@@ -659,7 +659,7 @@ function bookCard(b,i,rank){
     <div class="bk-act">
       <div class="bk-stars">${stars(b.stars)}</div>
       <label class="cmp-wrap"><input type="checkbox" onchange="toggleCmp(${i},'${b.name.replace(/'/g,"\\'")}','${b.bg}','${b.tc}','${b.abbr}','${b.url}')"> Compare</label>
-      <a class="gbtn${b.nodep?' gold':''}" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a>
+      <a class="gbtn${b.nodep?' gold':''}" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored">Claim Bonus →</a>
       <div class="tc-n">T&Cs Apply · 18+</div>
     </div>
   </div>
@@ -675,7 +675,7 @@ function bookCard(b,i,rank){
       <div class="xi"><div class="xl">Sports</div><div class="xv">${b.sports}+</div></div>
     </div>
     <div class="trms">${b.terms}</div>
-    <a class="gbtn" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a>
+    <a class="gbtn" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored">Claim Bonus →</a>
   </div>
 </div>`;
 }
@@ -709,7 +709,7 @@ function renderFeatCards(){
     <div class="fc-body">
       <div class="fc-stars">${stars(b.stars)}</div>
       <div class="fc-off">${b.off}</div>
-      <a class="gbtn" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a>
+      <a class="gbtn" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored">Claim →</a>
     </div>
   </div>`).join(''));
 }
@@ -773,7 +773,7 @@ function srchBooks(q){
   box.style.display='block';
   const qSafe=escHtml(q);
   if(!results.length){box.innerHTML=`<div class="no-results">No results for "${qSafe}"</div>`;box.scrollIntoView({behavior:'smooth',block:'start'});return;}
-  box.innerHTML=`<div class="gs-box"><div class="gs-hd"><span>🔍 Results for "${qSafe}" – ${results.length} found</span><button style="background:none;border:none;color:#fff;cursor:pointer" onclick="clearSearch()">×</button></div>${results.slice(0,12).map(b=>`<div class="gs-item"><div class="gs-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,30,4,false)}</div><div><div class="gs-name">${escHtml(b.name)} <span style="font-size:10px;color:#bbb">${CTY_EMOJI[b.cty]||''} ${escHtml(COUNTRY_DATA[b.cty]?.name||b.cty)}</span></div><div class="gs-off">${escHtml(b.off)}</div></div><a class="gs-sw" href="${encodeURI(b.url)}" target="_blank" rel="noopener noreferrer">Claim →</a></div>`).join('')}</div>`;
+  box.innerHTML=`<div class="gs-box"><div class="gs-hd"><span>🔍 Results for "${qSafe}" – ${results.length} found</span><button style="background:none;border:none;color:#fff;cursor:pointer" onclick="clearSearch()">×</button></div>${results.slice(0,12).map(b=>`<div class="gs-item"><div class="gs-logo" style="background:#fff">${logoImg(b.url,b.name,b.abbr,b.tc,30,4,false)}</div><div><div class="gs-name">${escHtml(b.name)} <span style="font-size:10px;color:#bbb">${CTY_EMOJI[b.cty]||''} ${escHtml(COUNTRY_DATA[b.cty]?.name||b.cty)}</span></div><div class="gs-off">${escHtml(b.off)}</div></div><a class="gs-sw" href="${encodeURI(b.url)}" target="_blank" rel="noopener noreferrer sponsored">Claim →</a></div>`).join('')}</div>`;
   box.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function clearSearch(){

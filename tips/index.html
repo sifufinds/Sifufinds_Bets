@@ -453,7 +453,7 @@
 
 <!-- FOOTER -->
 <footer class="site-footer"><div class="footer-in">
-  <div class="flogo"><a href="../"><img src="../assets/logo.png" alt="SifuFinds" height="72" style="display:block;object-fit:contain"></a></div>
+  <div class="flogo"><a href="../"><img src="../assets/logo.png" alt="SifuFinds" height="72" loading="lazy" style="display:block;object-fit:contain"></a></div>
   <div class="fgrid">
     <div class="fc4"><h4>Bonuses</h4>
       <a href="../">Best Bonuses</a>
@@ -765,7 +765,7 @@ function predCard(pred, tab) {
   </div>
   <div class="pred-footer">
     <span class="pred-via">via ${escHtml(book.name)} · source: predictz.com</span>
-    <a href="${escHtml(book.url)}" target="_blank" rel="noopener noreferrer" style="font-size:11px;color:var(--g);font-weight:700">Claim ${escHtml(book.top || 'Bonus')} →</a>
+    <a href="${escHtml(book.url)}" target="_blank" rel="noopener noreferrer sponsored" style="font-size:11px;color:var(--g);font-weight:700">Claim ${escHtml(book.top || 'Bonus')} →</a>
   </div>
 </div>`;
 }

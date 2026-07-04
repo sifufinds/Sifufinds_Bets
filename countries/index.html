@@ -13,7 +13,7 @@
 </script>
 <meta charset="UTF-8">
 <link rel="preload" href="../assets/shared.js?v=10" as="script">
-<link rel="preload" href="../assets/shared.css?v=7" as="style">
+<link rel="preload" href="../assets/shared.css?v=8" as="style">
 <link rel="preconnect" href="https://ipapi.co">
 <link rel="preconnect" href="https://www.google-analytics.com">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -100,7 +100,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="../assets/shared.css?v=7">
+<link rel="stylesheet" href="../assets/shared.css?v=8">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
@@ -226,7 +226,7 @@
 
 <!-- FOOTER -->
 <footer class="site-footer"><div class="footer-in">
-  <div class="flogo"><a href="../"><img src="../assets/logo.png" alt="SifuFinds" height="72" style="display:block;object-fit:contain"></a></div>
+  <div class="flogo"><a href="../"><img src="../assets/logo.png" alt="SifuFinds" height="72" loading="lazy" style="display:block;object-fit:contain"></a></div>
   <div class="fgrid">
     <div class="fc4"><h4>West Africa</h4>
       <button onclick="selectCountry('NG')">🇳🇬 Nigeria</button>
@@ -404,7 +404,7 @@ function renderDetail(){
       <div style="width:36px;height:36px;border-radius:6px;background:${b.bg};display:flex;align-items:center;justify-content:center;margin:0 auto 6px;overflow:hidden;position:relative">${logoImg(b.url,b.name,b.abbr,b.tc,32,5)}</div>
       <div class="lbnm">${b.name}</div>
       <div class="lbof">${b.top}${b._live?'<span style="font-size:9px;opacity:.6;margin-left:4px">✓ live</span>':''}</div>
-      <a class="gbtn" style="font-size:11px;padding:6px 8px" href="${b.url}" target="_blank" rel="noopener noreferrer">Claim →</a>
+      <a class="gbtn" style="font-size:11px;padding:6px 8px" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored">Claim →</a>
     </div>`).join('')}</div>
   <div style="margin-top:12px">
     <a class="gbtn" style="max-width:280px;margin:0 auto" href="${CTY_SLUG[_selectedCty]||_selectedCty.toLowerCase()}/">View All ${books.length} Bookmakers for ${cd.name} →</a>
