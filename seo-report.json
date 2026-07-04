@@ -1,48 +1,36 @@
 {
   "date": "2026-07-04",
-  "total": 9,
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 6,
-    "MEDIUM": 3,
+    "HIGH": 4,
+    "MEDIUM": 2,
     "INFO": 0
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "nba-trade-frenzy-lakers-wizards-celtics",
-      "detail": "Title 68 chars (max 60): 'NBA Trade Frenzy: Lakers, Wizards, and Celtics News You Need to Know'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "usyk-in-talks-for-wilder-fight",
-      "detail": "Title 74 chars (max 60): \"Deontay Wilder's Next Opponent? Oleksandr Usyk in Talks for Farewell F\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
       "page": "biggest-world-sport-stories-this-week",
-      "detail": "Title 66 chars (max 60): 'Biggest World Sport Stories This Week: Betting Angles and Insights'"
+      "detail": "Title 69 chars (max 60): 'Biggest World Sport Stories This Week: Wimbledon, F1, Rugby, and More'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "germany-coach-exit-man-utd-loan-altitude-concerns",
-      "detail": "Title 63 chars (max 60): 'Germany Coach Exit, Man Utd Loan, and English Altitude Concerns'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "eala-wimbledon-run-betting-insights",
-      "detail": "Title 76 chars (max 60): \"Eala's Historic Wimbledon Run Thrills: Betting Insights and In-Play St\""
+      "page": "world-cup-2026-update-argentina-stunned-england-faces-pressure",
+      "detail": "Title 64 chars (max 60): 'World Cup 2026 Update: Argentina Stunned, England Faces Pressure'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "eala-wimbledon-run-betting-insights",
-      "detail": "Excerpt 209 chars (max 155)"
+      "page": "biggest-world-sport-stories-this-week",
+      "detail": "Excerpt 198 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "world-cup-2026-update-argentina-stunned-england-faces-pressure",
+      "detail": "Excerpt 157 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
@@ -54,12 +42,6 @@
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
       "page": "igaming-trends-africa-regulators-operators",
-      "detail": "Post has FAQ content but no FAQPage JSON-LD"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "missing_faqpage_schema",
-      "page": "world-cup-2026-group-stage-betting-markets-and-best-odds",
       "detail": "Post has FAQ content but no FAQPage JSON-LD"
     }
   ]
