@@ -1,9 +1,9 @@
 {
-  "date": "2026-07-03",
-  "total": 10,
+  "date": "2026-07-04",
+  "total": 9,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 6,
     "MEDIUM": 3,
     "INFO": 0
   },
@@ -11,44 +11,38 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "africa-online-gambling-landscape-new-laws-regulations-responsible-betting",
-      "detail": "Title 82 chars (max 60): \"Africa's Online Gambling Landscape: New Laws, Regulations, and Respons\""
+      "page": "nba-trade-frenzy-lakers-wizards-celtics",
+      "detail": "Title 68 chars (max 60): 'NBA Trade Frenzy: Lakers, Wizards, and Celtics News You Need to Know'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "britains-fery-keeps-hope-alive-at-wimbledon-england-seeks-redemption-in-the-world-cup",
-      "detail": "Title 93 chars (max 60): \"Britain's Fery Keeps Hope Alive at Wimbledon, While England Seeks Rede\""
+      "page": "usyk-in-talks-for-wilder-fight",
+      "detail": "Title 74 chars (max 60): \"Deontay Wilder's Next Opponent? Oleksandr Usyk in Talks for Farewell F\""
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "wimbledon-2026-grand-slam-match-betting-guide",
-      "detail": "Title 87 chars (max 60): 'Wimbledon 2026: Grand Slam Match Betting Guide with Set Betting and To'"
+      "page": "biggest-world-sport-stories-this-week",
+      "detail": "Title 66 chars (max 60): 'Biggest World Sport Stories This Week: Betting Angles and Insights'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "transfer-mania-fernandes-tonali-and-more",
-      "detail": "Title 73 chars (max 60): 'Transfer Mania: Fernandes joins Spurs, Tonali signs with Spurs, and mo'"
+      "page": "germany-coach-exit-man-utd-loan-altitude-concerns",
+      "detail": "Title 63 chars (max 60): 'Germany Coach Exit, Man Utd Loan, and English Altitude Concerns'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "eala-wimbledon-run-betting-insights",
+      "detail": "Title 76 chars (max 60): \"Eala's Historic Wimbledon Run Thrills: Betting Insights and In-Play St\""
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "britains-fery-keeps-hope-alive-at-wimbledon-england-seeks-redemption-in-the-world-cup",
-      "detail": "Excerpt 200 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "wimbledon-2026-grand-slam-match-betting-guide",
-      "detail": "Excerpt 211 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "transfer-mania-fernandes-tonali-and-more",
-      "detail": "Excerpt 184 chars (max 155)"
+      "page": "eala-wimbledon-run-betting-insights",
+      "detail": "Excerpt 209 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
