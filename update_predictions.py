@@ -660,8 +660,29 @@ def parse_forebet_ou(text: str, existing: dict[str, dict]) -> None:
 # WC2026 baseline — always-on, no Firecrawl needed
 # ---------------------------------------------------------------------------
 
-_SPORTSDB = "https://www.thesportsdb.com/api/v1/json/3"
+# TheSportsDB's free tier carries no World Cup 2026 fixtures at all (verified:
+# eventsday.php returns only minor US leagues for WC2026 match dates), so the
+# schedule comes from openfootball instead — it ships the full fixture list
+# with date/time/round and is updated with live scores as the tournament progresses.
+OPENFOOTBALL_WC_URL = "https://raw.githubusercontent.com/openfootball/world-cup.json/master/2026/worldcup.json"
 _HTTP_HDR  = {"User-Agent": "Mozilla/5.0 (compatible; SifuFinds/2.0)"}
+_OF_TIME_RE = re.compile(r"(\d{1,2}):(\d{2})\s*UTC([+-]\d+)?")
+_PLACEHOLDER_TEAM_RE = re.compile(r"^[WL]\d+$")
+
+
+def _parse_openfootball_kickoff(date_str: str, time_str: str) -> datetime | None:
+    """Parse openfootball's 'HH:MM UTC±N' local kickoff time into a UTC datetime."""
+    m = _OF_TIME_RE.match(time_str or "")
+    if not m:
+        return None
+    hh, mm, offset = m.groups()
+    offset_hours = int(offset) if offset else 0
+    try:
+        local_dt = datetime.strptime(f"{date_str} {hh}:{mm}", "%Y-%m-%d %H:%M")
+    except ValueError:
+        return None
+    # "UTC-4" means local = UTC - 4h, so UTC = local + 4h
+    return (local_dt - timedelta(hours=offset_hours)).replace(tzinfo=timezone.utc)
 
 _WC_TIPS: dict[tuple[str, str], dict] = {
     ("Spain", "Cape Verde"):         {"wdw": "1", "label": "Spain To Win",      "over25": "Over 2.5",  "btts": "BTTS No",  "cs": "3-0",  "conf": 78, "h": "1.25", "d": "5.50", "a": "14.00"},
@@ -684,60 +705,68 @@ _WC_TIPS: dict[tuple[str, str], dict] = {
 
 
 def fetch_wc_predictions(now_utc: datetime) -> list[dict]:
-    """Fetch verified WC2026 matches from TheSportsDB and build prediction records."""
-    dates = [(now_utc + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(4)]
-    predictions: list[dict] = []
+    """Build verified WC2026 prediction records from the openfootball fixture schedule."""
     ts = now_utc.isoformat()
+    window_start = now_utc - timedelta(minutes=90)
+    window_end = now_utc + timedelta(days=8)
+    predictions: list[dict] = []
 
-    for date_str in dates:
-        try:
-            r = _req.get(f"{_SPORTSDB}/eventsday.php?d={date_str}&s=Soccer",
-                         headers=_HTTP_HDR, timeout=12)
-            for e in (r.json().get("events") or []):
-                if "World Cup" not in e.get("strLeague", ""):
-                    continue
-                home = e["strHomeTeam"]
-                away = e["strAwayTeam"]
-                time_str = e.get("strTime", "00:00:00")
-                try:
-                    dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-                    ko_utc = dt.isoformat()
-                    ko_display = f"{dt.day} {dt.strftime('%b')} · {dt.strftime('%H:%M')} UTC"
-                except Exception:
-                    ko_utc = None
-                    ko_display = f"{date_str} · {time_str[:5]} UTC"
+    try:
+        r = _req.get(OPENFOOTBALL_WC_URL, headers=_HTTP_HDR, timeout=12)
+        matches = r.json().get("matches", [])
+    except Exception as ex:
+        print(f"[warn] open-football: {ex}", file=sys.stderr)
+        return predictions
 
-                t = _WC_TIPS.get((home, away), {
-                    "wdw": "1", "label": f"{home} to Win", "over25": "Over 1.5",
-                    "btts": "", "cs": "", "conf": 60, "h": "2.00", "d": "3.30", "a": "3.50",
-                })
-                mw = "Home" if t["wdw"] == "1" else ("Away" if t["wdw"] == "2" else "Draw")
+    for m in matches:
+        home = m.get("team1", "")
+        away = m.get("team2", "")
+        if not home or not away:
+            continue
+        if _PLACEHOLDER_TEAM_RE.match(home) or _PLACEHOLDER_TEAM_RE.match(away):
+            continue  # bracket slot not yet resolved (e.g. "W89 vs W90")
 
-                predictions.append({
-                    "id": f"wc_{e['idEvent']}",
-                    "home": home,
-                    "away": away,
-                    "competition": f"{e.get('strLeague','FIFA World Cup 2026')} · {e.get('strGroup','')}".strip(" ·"),
-                    "comp_slug": "world-cup-2026",
-                    "ko_display": ko_display,
-                    "ko_utc": ko_utc,
-                    "match_winner": mw,
-                    "match_winner_label": t["label"],
-                    "wdw": t["wdw"],
-                    "home_odds": t.get("h", ""),
-                    "draw_odds": t.get("d", ""),
-                    "away_odds": t.get("a", ""),
-                    "btts": t.get("btts", ""),
-                    "btts_win": "",
-                    "over25": t.get("over25", ""),
-                    "correct_score": t.get("cs", ""),
-                    "source": "thesportsdb+fst",
-                    "scraped_at": ts,
-                    "flag": "🌍",
-                    "confidence": t["conf"],
-                })
-        except Exception as ex:
-            print(f"[warn] TheSportsDB {date_str}: {ex}", file=sys.stderr)
+        kickoff = _parse_openfootball_kickoff(m.get("date", ""), m.get("time", ""))
+        if kickoff is None or not (window_start <= kickoff <= window_end):
+            continue  # already played or too far out
+
+        score = m.get("score") or {}
+        if score.get("p") or score.get("et") or score.get("ft"):
+            continue  # final result already in — nothing left to predict
+
+        ko_display = f"{kickoff.day} {kickoff.strftime('%b')} · {kickoff.strftime('%H:%M')} UTC"
+        round_name = m.get("round") or ""
+        comp_label = f"FIFA World Cup 2026 · {round_name}" if round_name else "FIFA World Cup 2026"
+
+        t = _WC_TIPS.get((home, away), {
+            "wdw": "1", "label": f"{home} to Win", "over25": "Over 1.5",
+            "btts": "", "cs": "", "conf": 60, "h": "2.00", "d": "3.30", "a": "3.50",
+        })
+        mw = "Home" if t["wdw"] == "1" else ("Away" if t["wdw"] == "2" else "Draw")
+
+        predictions.append({
+            "id": f"wc_{m.get('num')}",
+            "home": home,
+            "away": away,
+            "competition": comp_label,
+            "comp_slug": "world-cup-2026",
+            "ko_display": ko_display,
+            "ko_utc": kickoff.isoformat(),
+            "match_winner": mw,
+            "match_winner_label": t["label"],
+            "wdw": t["wdw"],
+            "home_odds": t.get("h", ""),
+            "draw_odds": t.get("d", ""),
+            "away_odds": t.get("a", ""),
+            "btts": t.get("btts", ""),
+            "btts_win": "",
+            "over25": t.get("over25", ""),
+            "correct_score": t.get("cs", ""),
+            "source": "openfootball+fst",
+            "scraped_at": ts,
+            "flag": "🌍",
+            "confidence": t["conf"],
+        })
 
     return predictions
 
@@ -748,6 +777,24 @@ def load_cache() -> list[dict]:
         return data.get("predictions", [])
     except Exception:
         return []
+
+
+_MAX_CACHE_AGE = timedelta(hours=6)
+
+
+def _is_recent(scraped_at: str) -> bool:
+    """Guard against resurrecting week-old cached picks when a scrape fails.
+
+    predictz.com never exposes a real kickoff time (ko_utc is always None for its
+    matches), so isUpcoming() on the frontend can't filter stale predictz entries by
+    itself — without this cap, a single successful scrape's matches get replayed as
+    "current" tips indefinitely every time predictz.com scraping fails afterward.
+    """
+    try:
+        scraped = datetime.fromisoformat(scraped_at)
+    except (TypeError, ValueError):
+        return False
+    return datetime.now(timezone.utc) - scraped < _MAX_CACHE_AGE
 
 # ---------------------------------------------------------------------------
 # Entry point
@@ -792,7 +839,7 @@ def main() -> None:
     else:
         print("[warn] predictz main scrape failed — using cache for predictz matches", file=sys.stderr)
         for m in load_cache():
-            if m.get("source") == "predictz.com":
+            if m.get("source") == "predictz.com" and _is_recent(m.get("scraped_at", "")):
                 matches[m["id"]] = m
 
     # ── Forebet: supplementary matches from 60+ leagues ───────────────────────
@@ -815,7 +862,7 @@ def main() -> None:
     # ── Always-on: WC2026 baseline from TheSportsDB (no Firecrawl needed) ────────
     now_utc = datetime.now(timezone.utc)
     wc_preds = fetch_wc_predictions(now_utc)
-    print(f"[wc2026] {len(wc_preds)} verified matches from TheSportsDB", file=sys.stderr)
+    print(f"[wc2026] {len(wc_preds)} verified matches from openfootball", file=sys.stderr)
 
     # Merge: predictz takes precedence over forebet for same match
     all_matches: dict[str, dict] = {**fb_matches, **matches}

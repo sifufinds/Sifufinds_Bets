@@ -823,5 +823,515 @@
         "ts": "2026-06-24T09:25:07.462589+00:00"
       }
     ]
+  },
+  {
+    "ts": "2026-06-25T08:58:31.519663+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-06-25T08:58:31.519663+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-06-25T08:58:31.519663+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-06-25T08:58:31.519663+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-06-25T08:58:31.519663+00:00"
+      },
+      {
+        "ok": true,
+        "output": "Incremental submission: 1 changed/key URLs\nURLs to submit: ['https:/sifufinds.com/blog/england-0-0-ghana-world-cup-2026-boston/']\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-06-25T08:58:31.519663+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-06-25T08:58:31.519663+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-26T09:21:26.471334+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-06-26T09:21:26.471334+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-06-26T09:21:26.471334+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-06-26T09:21:26.471334+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-06-26T09:21:26.471334+00:00"
+      },
+      {
+        "ok": true,
+        "output": "orld-cup-sweden-wolves-preview/', 'https:/sifufinds.com/blog/viral-world-cup-stories-betting-implications-and-african-insights/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-06-26T09:21:26.471334+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-06-26T09:21:26.471334+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-27T08:33:24.052749+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-06-27T08:33:24.052749+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-06-27T08:33:24.052749+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-06-27T08:33:24.052749+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-06-27T08:33:24.052749+00:00"
+      },
+      {
+        "ok": true,
+        "output": "/world-cup-2026-african-football-shifting-power-dynamics/', 'https:/sifufinds.com/blog/spanish-world-cup-sweden-wolves-preview/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-06-27T08:33:24.052749+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-06-27T08:33:24.052749+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-28T08:48:28.202634+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "ok": true,
+        "output": "tting-2026/', 'https:/sifufinds.com/blog/sporting-gossip-red-bull-f1-qualifying-showdown-cricket-update-wimbledon-injury-fears/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-06-28T08:48:28.202634+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-29T10:53:27.004449+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-06-29T10:53:27.004449+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-06-29T10:53:27.004449+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-06-29T10:53:27.004449+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-06-29T10:53:27.004449+00:00"
+      },
+      {
+        "ok": true,
+        "output": "he-most-talked-about-trends/', 'https:/sifufinds.com/blog/boxing-news-roundup-talent-densities-fight-cards-high-stakes-matches/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-06-29T10:53:27.004449+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-06-29T10:53:27.004449+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-06-30T09:30:35.580477+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-06-30T09:30:35.580477+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-06-30T09:30:35.580477+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-06-30T09:30:35.580477+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-06-30T09:30:35.580477+00:00"
+      },
+      {
+        "ok": true,
+        "output": "tting-2026/', 'https:/sifufinds.com/blog/sporting-gossip-red-bull-f1-qualifying-showdown-cricket-update-wimbledon-injury-fears/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-06-30T09:30:35.580477+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-06-30T09:30:35.580477+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-07-01T09:41:35.531543+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-07-01T09:41:35.531543+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-07-01T09:41:35.531543+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-07-01T09:41:35.531543+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-07-01T09:41:35.531543+00:00"
+      },
+      {
+        "ok": true,
+        "output": ".com/blog/wimbledon-2026-sinner-survives/', 'https:/sifufinds.com/blog/world-cup-2026-african-football-shifting-power-dynamics/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-07-01T09:41:35.531543+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-07-01T09:41:35.531543+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-07-02T08:53:01.326828+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-07-02T08:53:01.326828+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-07-02T08:53:01.326828+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-07-02T08:53:01.326828+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-07-02T08:53:01.326828+00:00"
+      },
+      {
+        "ok": true,
+        "output": "log/wimbledon-2026-sinner-survives/', 'https:/sifufinds.com/blog/africas-top-sports-betting-stories-world-cup-cricket-and-more/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-07-02T08:53:01.326828+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-07-02T08:53:01.326828+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-07-03T08:59:07.250867+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-07-03T08:59:07.250867+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-07-03T08:59:07.250867+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-07-03T08:59:07.250867+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-07-03T08:59:07.250867+00:00"
+      },
+      {
+        "ok": true,
+        "output": "g/igaming-regulatory-woes-responsible-gaming-future-africa-mobile-betting/', 'https:/sifufinds.com/blog/boks-face-england-test/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-07-03T08:59:07.250867+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-07-03T08:59:07.250867+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-07-04T08:33:47.067716+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-07-04T08:33:47.067716+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-07-04T08:33:47.067716+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-07-04T08:33:47.067716+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-07-04T08:33:47.067716+00:00"
+      },
+      {
+        "ok": true,
+        "output": "/blog/real-madrid-marc-cucurella-morocco-world-cup-football-news/', 'https:/sifufinds.com/blog/world-cup-2026-match-value-bets/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-07-04T08:33:47.067716+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-07-04T08:33:47.067716+00:00"
+      }
+    ]
   }
 ]
