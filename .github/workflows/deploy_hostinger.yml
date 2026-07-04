@@ -81,8 +81,17 @@ jobs:
           for f in .htaccess .nojekyll; do
             [ -f "$f" ] && FILES+=("$f")
           done
-          for d in assets about betting blog bonuses bookmakers casino contact countries data guides leagues odds tips brands tools press; do
-            [ -d "$d" ] && FILES+=("$d")
+          # Deploy every top-level content directory by default (exclude-list, not
+          # allow-list) so a new public section is never silently dropped from the
+          # archive just because nobody remembered to add it here.
+          EXCLUDE_DIRS=(agents scripts supabase firecrawl geo-content-writer node_modules ".git" ".github" ".venv" ".vscode" "__pycache__" ".firecrawl" ".claude")
+          for d in */; do
+            d="${d%/}"
+            skip=false
+            for ex in "${EXCLUDE_DIRS[@]}"; do
+              [ "$d" == "$ex" ] && skip=true && break
+            done
+            [ "$skip" == false ] && [ -d "$d" ] && FILES+=("$d")
           done
 
           zip -r "$ARCHIVE_PATH" "${FILES[@]}" \
