@@ -42,6 +42,16 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Set up Python (for validators)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate site — check for 403/404 issues
+        run: |
+          python3 scripts/validate_site.py
+          python3 scripts/audit_titles.py
+
       - name: Validate deploy token
         env:
           HOSTINGER_API_TOKEN: ${{ secrets.HOSTINGER_API_TOKEN }}
