@@ -276,8 +276,8 @@ def build_page(sport, country_slug, country_data):
 }}
 </script>
 
-<link rel="preload" href="{assets}assets/shared.css?v=7" as="style">
-<link rel="stylesheet" href="{assets}assets/shared.css?v=7">
+<link rel="preload" href="{assets}assets/shared.css?v=8" as="style">
+<link rel="stylesheet" href="{assets}assets/shared.css?v=8">
 <style>
 .sport-hero{{background:linear-gradient(135deg,#0a3d1e 0%,#1a6b35 100%);color:#fff;padding:28px 0}}
 .sport-hero h1{{font-size:clamp(20px,3.5vw,28px);font-weight:900;margin-bottom:8px;letter-spacing:-.5px}}
@@ -406,7 +406,7 @@ def build_page(sport, country_slug, country_data):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{assets}assets/shared.js?v=7"></script>
+<script src="{assets}assets/shared.js?v=10"></script>
 <script>
 const SITE={{home:'{assets}',tips:'{assets}tips/',casino:'{assets}casino/',odds:'{assets}odds/',countries:'{assets}countries/'}};
 const _PAGE_CTY='{code}';

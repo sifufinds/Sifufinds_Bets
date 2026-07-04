@@ -274,8 +274,10 @@ def make_html(bk):
 }}
 </script>
 
-<link rel="icon" href="../../assets/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="../../assets/favicon.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
 <link rel="preload" href="../../assets/shared.css" as="style">
 <link rel="stylesheet" href="../../assets/shared.css">
 <style>
@@ -374,7 +376,7 @@ def make_html(bk):
   <div class="claim-box">
     <h3>🎁 {bk['name']} Bonus — June 2026</h3>
     <p>{bk['bonus']} · {bk['acca_boost']}</p>
-    <a class="claim-btn" href="{bk['url']}" target="_blank" rel="noopener noreferrer">Claim {bk['name']} Bonus →</a>
+    <a class="claim-btn" href="{bk['url']}" target="_blank" rel="noopener noreferrer sponsored">Claim {bk['name']} Bonus →</a>
     <p style="font-size:11px;color:#888;margin-top:8px;margin-bottom:0">{bk['bonus_code']} · T&Cs apply · 18+ only</p>
   </div>
 
@@ -409,7 +411,7 @@ def make_html(bk):
     <h2>SifuFinds Verdict — Is {bk['name']} Worth It?</h2>
     <p style="font-size:13.5px;color:#333;line-height:1.75">{bk['verdict']}</p>
     <div style="text-align:center;margin-top:12px">
-      <a class="claim-btn" style="display:inline-block" href="{bk['url']}" target="_blank" rel="noopener noreferrer">Claim {bk['name']} Bonus →</a>
+      <a class="claim-btn" style="display:inline-block" href="{bk['url']}" target="_blank" rel="noopener noreferrer sponsored">Claim {bk['name']} Bonus →</a>
     </div>
   </div>
 

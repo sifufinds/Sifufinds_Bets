@@ -1,4 +1,8 @@
 Options -Indexes
+# When a directory has no index.html, return 404 (not 403) so Google treats it
+# as "not found" rather than "forbidden" — prevents stuck GSC 403 errors.
+ErrorDocument 403 /404.html
+ErrorDocument 404 /404.html
 
 # ── SECURITY HEADERS ──────────────────────────────────────────────────────────
 <IfModule mod_headers.c>
@@ -7,9 +11,6 @@ Options -Indexes
 
   # Prevent MIME sniffing
   Header always set X-Content-Type-Options "nosniff"
-
-  # XSS protection for older browsers
-  Header always set X-XSS-Protection "1; mode=block"
 
   # Don't send referrer to third-party sites
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
@@ -38,14 +39,98 @@ RedirectMatch 404 /\.(git|env|github|venv|claude)/
 
 # ── REDIRECTS ────────────────────────────────────────────────────────────────
 RewriteEngine On
+
+# Force apex domain (www served identical content with a 200 — avoid duplicate content)
+RewriteCond %{HTTP_HOST} ^www\.sifufinds\.com$ [NC]
+RewriteRule ^(.*)$ https://sifufinds.com/$1 [R=301,L]
+
 RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
 RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 
+# ── 301 REDIRECTS — FIX BROKEN INTERNAL LINKS ────────────────────────────────
+# Plain mod_alias "Redirect 301" directives were not firing on the live host
+# (LiteSpeed/Hostinger) despite mod_rewrite rules working — using RewriteRule
+# for every legacy slug instead, since that mechanism is confirmed working live.
+# Bookmakers
+RewriteRule ^bet9ja-review/?$ /bookmakers/bet9ja/ [R=301,L]
+RewriteRule ^sportybet-review/?$ /bookmakers/sportybet/ [R=301,L]
+RewriteRule ^bookmaker-reviews/?$ /bookmakers/ [R=301,L]
+RewriteRule ^bookmaker-comparison/?$ /bookmakers/ [R=301,L]
+RewriteRule ^best-bookmakers-africa/?$ /bookmakers/ [R=301,L]
+RewriteRule ^best-bookmakers-in-africa/?$ /bookmakers/ [R=301,L]
+RewriteRule ^top-african-bookmakers/?$ /bookmakers/ [R=301,L]
+# Tips
+RewriteRule ^betting-tips/?$ /tips/ [R=301,L]
+RewriteRule ^football-betting-tips/?$ /tips/ [R=301,L]
+RewriteRule ^nba-betting-tips/?$ /tips/ [R=301,L]
+RewriteRule ^cricket-betting-tips-africa/?$ /tips/ [R=301,L]
+RewriteRule ^npfl-betting-tips/?$ /tips/ [R=301,L]
+RewriteRule ^tennis-betting-tips-french-open/?$ /tips/ [R=301,L]
+RewriteRule ^betting-tips-faq/?$ /tips/ [R=301,L]
+# Guides
+RewriteRule ^betting-guide/?$ /guides/ [R=301,L]
+RewriteRule ^africa-sports-betting-guide/?$ /guides/ [R=301,L]
+RewriteRule ^football-betting-guide/?$ /guides/how-to-bet-on-football/ [R=301,L]
+RewriteRule ^football-betting-tips-for-beginners/?$ /guides/how-to-bet-on-football/ [R=301,L]
+RewriteRule ^how-to-bet-on-football/?$ /guides/how-to-bet-on-football/ [R=301,L]
+RewriteRule ^african-football-betting-guide/?$ /guides/how-to-bet-on-football/ [R=301,L]
+# Responsible gambling
+RewriteRule ^responsible-gambling/?$ /guides/responsible-gambling/ [R=301,L]
+RewriteRule ^responsible-betting/?$ /guides/responsible-gambling/ [R=301,L]
+RewriteRule ^responsible-gambling-guide/?$ /guides/responsible-gambling/ [R=301,L]
+RewriteRule ^bet-responsibly/?$ /guides/responsible-gambling/ [R=301,L]
+RewriteRule ^guides/responsible-football-betting/?$ /guides/responsible-gambling/ [R=301,L]
+# Odds
+RewriteRule ^odds-comparison/?$ /odds/ [R=301,L]
+RewriteRule ^betting-odds-comparison/?$ /odds/ [R=301,L]
+RewriteRule ^world-cup-2026-odds/?$ /odds/ [R=301,L]
+RewriteRule ^transfer-odds-comparison/?$ /odds/ [R=301,L]
+RewriteRule ^caf-champions-league-odds/?$ /odds/ [R=301,L]
+# Sports sections
+RewriteRule ^football-betting/?$ /betting/football-betting/ [R=301,L]
+RewriteRule ^african-football/?$ /betting/football-betting/ [R=301,L]
+RewriteRule ^cricket/?$ /betting/cricket-betting/ [R=301,L]
+RewriteRule ^f1/?$ /blog/ [R=301,L]
+# Payment methods / live scores / news
+RewriteRule ^payment-methods/?$ /betting/ [R=301,L]
+RewriteRule ^live-scores/?$ /odds/ [R=301,L]
+RewriteRule ^sports-betting-news/?$ /blog/ [R=301,L]
+RewriteRule ^football-news/?$ /blog/ [R=301,L]
+# WC2026 and AFCON
+RewriteRule ^world-cup-2026/?$ /blog/world-cup-2026-preview/ [R=301,L]
+RewriteRule ^world-cup-2026-team-guides-and-predictions/?$ /blog/africas-hopefuls-in-world-cup-2026-analyzing-the-competition-and-betting-markets/ [R=301,L]
+RewriteRule ^afcon/?$ /blog/afcon-2026-betting-guide-african-cup-nations-odds-tips/ [R=301,L]
+RewriteRule ^african-football-leagues/?$ /blog/ [R=301,L]
+RewriteRule ^africas-top-leagues-npfl-kpl-psl/?$ /blog/ [R=301,L]
+RewriteRule ^betting-guide-group-stage/?$ /blog/wc2026-group-stage-tips-all-9-african-teams/ [R=301,L]
+RewriteRule ^betting-tips-knockout-stage/?$ /blog/world-cup-2026-preview/ [R=301,L]
+# Person/event blog slugs with no matching page
+RewriteRule ^alexander-zverev-next-big-thing-tennis/?$ /blog/ [R=301,L]
+RewriteRule ^serena-williams-queen-tennis-returns/?$ /blog/ [R=301,L]
+RewriteRule ^england-vs-new-zealand-test-match-preview-and-odds/?$ /blog/ [R=301,L]
+RewriteRule ^india-vs-afghanistan-series-preview-and-odds/?$ /blog/ [R=301,L]
+RewriteRule ^rugby-betting-strategies-for-african-bettors/?$ /betting/rugby-betting/ [R=301,L]
+RewriteRule ^rugby-betting-tips-for-beginners/?$ /betting/rugby-betting/ [R=301,L]
+RewriteRule ^top-rugby-bookmakers-in-africa/?$ /bookmakers/ [R=301,L]
+
 # ── CACHE CONTROL ────────────────────────────────────────────────────────────
-# Data files must never be cached — they update every 15 minutes
-<FilesMatch "\.(json|js|css)$">
+# Live/content data files must never be cached — they regenerate without a
+# version bump (JSON updates every few hours; blog data.js files regenerate
+# from posts.json whenever a post is added).
+<FilesMatch "\.json$|^(posts-data|banners-data|ticker-data)\.js$">
   <IfModule mod_headers.c>
     Header always set Cache-Control "no-cache, must-revalidate"
+  </IfModule>
+</FilesMatch>
+
+# Core app shell only: shared.js / shared.css are served with a ?v=N
+# cache-busting query param bumped on every content change — safe to cache
+# far-future since a version bump changes the URL, not the file. This avoids
+# a revalidation round trip on every page view, which matters most on
+# high-latency mobile networks.
+<FilesMatch "^(shared\.js|shared\.css)$">
+  <IfModule mod_headers.c>
+    Header always set Cache-Control "public, max-age=31536000, immutable"
   </IfModule>
 </FilesMatch>
 

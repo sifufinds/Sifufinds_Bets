@@ -1,6 +1,6 @@
 # robots.txt — sifufinds.com
 # Africa's #1 independent betting comparison platform
-# Updated: 2026-06-12
+# Updated: 2026-06-24
 
 # ── DEFAULT ───────────────────────────────────────────────────────────────────
 User-agent: *
@@ -20,9 +20,10 @@ Allow: /
 Disallow: /agents/
 Disallow: /.github/
 Disallow: /.venv/
-Disallow: /firecrawl/
 Disallow: /geo-content-writer/
-Disallow: /analytics.html
+# /firecrawl/ and analytics.html carry noindex,nofollow in their pages.
+# Googlebot is allowed to crawl them so it can read the noindex directive
+# and properly remove any previously-indexed URLs from the index.
 
 User-agent: Googlebot-Image
 Allow: /
@@ -31,16 +32,13 @@ Disallow: /.github/
 Disallow: /.venv/
 Disallow: /firecrawl/
 Disallow: /geo-content-writer/
-Disallow: /analytics.html
 
 User-agent: Googlebot-Video
 Allow: /
 Disallow: /agents/
 Disallow: /.github/
 Disallow: /.venv/
-Disallow: /firecrawl/
 Disallow: /geo-content-writer/
-Disallow: /analytics.html
 
 User-agent: Googlebot-News
 Allow: /
@@ -49,7 +47,6 @@ Disallow: /.github/
 Disallow: /.venv/
 Disallow: /firecrawl/
 Disallow: /geo-content-writer/
-Disallow: /analytics.html
 
 User-agent: AdsBot-Google
 Allow: /
@@ -58,7 +55,6 @@ Disallow: /.github/
 Disallow: /.venv/
 Disallow: /firecrawl/
 Disallow: /geo-content-writer/
-Disallow: /analytics.html
 
 User-agent: AdsBot-Google-Mobile
 Allow: /
@@ -67,7 +63,6 @@ Disallow: /.github/
 Disallow: /.venv/
 Disallow: /firecrawl/
 Disallow: /geo-content-writer/
-Disallow: /analytics.html
 
 User-agent: Google-Extended
 Allow: /
@@ -76,7 +71,6 @@ Disallow: /.github/
 Disallow: /.venv/
 Disallow: /firecrawl/
 Disallow: /geo-content-writer/
-Disallow: /analytics.html
 
 User-agent: Google-InspectionTool
 Allow: /
@@ -85,7 +79,6 @@ Disallow: /.github/
 Disallow: /.venv/
 Disallow: /firecrawl/
 Disallow: /geo-content-writer/
-Disallow: /analytics.html
 
 # ── BING / MICROSOFT ─────────────────────────────────────────────────────────
 User-agent: Bingbot

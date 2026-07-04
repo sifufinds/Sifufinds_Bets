@@ -21,6 +21,15 @@
 | 2026-06-17 | Stale matches shown on odds/tips pages | Never use `date: T_TODAY` for matches — use `T_TMR` or `T_IN2`. Never hardcode `live: true` with fake scores |
 | 2026-06-17 | CORS block on leagues page | Leagues data must be served from static JSON cache, not fetched cross-origin from external API |
 | 2026-06-17 | `lastmod` dates wrong in sitemap | `gen_sitemap.py` uses `os.path.getmtime()` per file — let it run automatically rather than hardcoding dates |
+| 2026-06-24 | 23 country pages had titles ending with `\|` (e.g. `...Bookmakers \|`) | Title template `f'...Licensed Bookmakers \| SifuFinds'` was 64–68 chars. `seo_title()` truncated at 60, cutting off `SifuFinds` and leaving a trailing `\|`. Fix: change template to `f'Best Betting Sites in {name} {YEAR} \| SifuFinds'` (44–51 chars). Applies to `generate_country_pages.py`, `gen_eg_ma.py`, `gen_sl_lr.py`, `gen_all_cities.py`. |
+| 2026-06-24 | `analytics.html` showing as "Indexed, though blocked by robots.txt" in GSC | `robots.txt` blocked Googlebot from crawling it, so Google couldn't read the `noindex` meta tag in the page. Fix: remove `Disallow: /analytics.html` from Googlebot section — allow crawling so Google reads noindex and deindexes. Keep the `noindex` in the HTML. |
+| 2026-06-24 | `firecrawl/apps/ui/ingestion-ui/index.html` accessible on GitHub Pages, showing in GSC as blocked-but-indexed | 3rd-party HTML file in `/firecrawl/` was reachable at `sifufinds.com/firecrawl/...` and blocked by robots.txt. Fix: added `<meta name="robots" content="noindex,nofollow">` to the file AND removed `/firecrawl/` from Googlebot disallow (main bot only) so Google can crawl and read the noindex. |
+| 2026-06-24 | `tools/index.html` missing `<meta name="robots">` and `<meta property="og:url">` | Manually added both tags. All public pages must have robots meta and og:url. Check new pages with the audit script. |
+| 2026-07-04 | 11 tracked directories (betting/rugby-betting/, bookmakers/, guides/, etc.) returned 403 because `Options -Indexes` is set and they had no `index.html` | Created proper SEO hub pages for all 11 directories + added `ErrorDocument 403 /404.html` to `.htaccess` as a safety net |
+| 2026-07-04 | 52 absolute `https://sifufinds.com/SLUG` links in blog post bodies pointed to pages that don't exist (e.g. `/bet9ja-review`, `/responsible-gambling`, `/world-cup-2026`) | Added 52 `Redirect 301` rules to `.htaccess`. The auto-linker in `gen_blog_post_pages.py` uses correct relative paths — broken links came from raw markdown body text in `posts.json` with hardcoded wrong URLs. Use `.htaccess` redirects rather than regenerating all posts. |
+| 2026-07-04 | `generate_country_pages.py`, `gen_city_pages.py`, `gen_payment_pages.py`, `gen_bk_reviews.py`, `gen_guide_pages.py`, `gen_bonus_pages.py` all had `<link rel="icon" href="assets/favicon.png">` in their `<head>` template — `assets/favicon.png` is a 1536×1024, 2.1MB PNG (never resized after export). All 23 live country pages were serving a 2.1MB "favicon" on every load — a huge mobile-data hit for an African-mobile-first audience. | Replaced with the standard 4-line favicon block used elsewhere on the site (`favicon.ico` + `favicon-32x32.png` + `favicon-16x16.png` + `apple-touch-icon.png`, all `?v=2`, absolute `/assets/...` paths) in all 6 generator templates, then reran `generate_country_pages.py --force`, `gen_eg_ma.py`, `gen_sl_lr.py` to flush the 23 live pages. Verify with `grep -rl 'assets/favicon\.png' --include="*.html" .` — must return nothing. **Never reference `assets/favicon.png` directly** — it's a source/export artifact, not a servable asset. |
+| 2026-07-04 | `.htaccess` bundled `\.(json\|js\|css)$` under one `Cache-Control: no-cache, must-revalidate` rule. That forces a revalidation round-trip for `shared.js`/`shared.css` on *every single page view* even though they're already cache-busted via `?v=N` query strings bumped on every deploy — wasted latency on high-RTT mobile networks. | Split into two `FilesMatch` blocks: `^(shared\.js\|shared\.css)$` → `public, max-age=31536000, immutable` (safe because the `?v=N` query string, not the filename, is the freshness signal); everything else matching `\.json$` or the un-versioned `posts-data.js\|banners-data.js\|ticker-data.js` → stays `no-cache, must-revalidate` since those regenerate content without a version bump. **Do not blanket-apply long-cache to all `.js`/`.css`** — only the two versioned core-shell files qualify; `blog/*-data.js` files are not version-busted and would go stale for a year if cached long. |
+| 2026-07-04 | `scripts/validate_site.py` Check 2 only recognized `Redirect 301 /path` (mod_alias) lines when building its "known redirect" allowlist. At some point `.htaccess` redirects were migrated to `RewriteRule ^slug/?$ /target [R=301,L]` (mod_rewrite) because plain `Redirect 301` wasn't firing on the live Hostinger/LiteSpeed host — this silently broke the validator, making it report all 52 legitimately-redirected links as broken. | Added a second regex to the redirect-scanning loop in `validate_site.py` that parses `RewriteRule ^slug/?$ /target [R=301...]` lines (strip trailing `/?` from the captured slug with `.rstrip("/?")` before rebuilding the target URL — the literal `?` in `/?$` is easy to accidentally capture into the slug and breaks matching). Whenever `.htaccess` redirect syntax changes, `validate_site.py`'s parser must be updated in the same change, or the pre-deploy gate silently stops working. |
 
 ---
 
@@ -135,6 +144,63 @@ Promise.all([waitForCountry(), fetchLiveData()]).then(([country, _]) => init(cou
 
 ---
 
+## Google Indexing Rules (Permanent — Apply to Every Page)
+
+> Set 2026-06-24 after fixing 273 non-indexed / "Indexed, though blocked by robots.txt" issues.
+
+### The Golden Rules
+1. **Title ≤ 60 chars on every page.** Use `seo_title()`. Never put "Licensed Bookmakers" AND "SifuFinds" in the same title template — it will exceed 60 chars and seo_title() will truncate, leaving a trailing `|`.
+2. **Never block Googlebot from pages that have `noindex` meta tags.** If a page has `noindex` in the HTML, Googlebot must be ALLOWED to crawl it so it can READ the noindex directive. Blocking it in robots.txt AND putting noindex in the page = Google keeps it indexed forever with "Indexed, though blocked by robots.txt" in GSC.
+3. **Every page needs `<meta name="robots" content="index, follow ...">`, `<link rel="canonical">`, and `<meta name="description">`.** No exceptions for any public page.
+4. **Every page must be in a sitemap.** Run `python3 gen_sitemap.py` after adding any new page. Verify with `grep 'SLUG' sitemap-blog.xml`.
+5. **robots.txt pattern for pages with noindex:** Allow crawling in robots.txt → put noindex in the HTML. Google crawls, reads noindex, deindexes. Do NOT block + noindex simultaneously.
+
+### Generator Title Template Rules
+- `generate_country_pages.py`: ✅ Fixed to `f'Best Betting Sites in {name} {YEAR} | SifuFinds'` (44–51 chars)
+- `gen_eg_ma.py` / `gen_sl_lr.py`: ✅ Inherit from `generate_country_pages.py` — auto-fixed
+- `gen_all_cities.py`: ✅ Fixed to `f'Betting Sites in {city}, {country} 2026 | SifuFinds'`
+- All blog generators: ✅ Use `seo_title()` correctly
+- **When adding a new generator: NEVER put more than one `|` separator before `SifuFinds`. Total title length including suffix must be ≤ 60 chars for ALL possible inputs.**
+
+### robots.txt Architecture (sifufinds.com)
+```
+User-agent: *          → blocks /agents/, /.github/, /.venv/, /firecrawl/, /geo-content-writer/, /analytics.html
+User-agent: Googlebot  → Allow: / + blocks /agents/, /.github/, /.venv/, /geo-content-writer/ ONLY
+                         (firecrawl and analytics.html are NOT blocked for Googlebot — they carry noindex in the HTML)
+```
+- `/firecrawl/apps/ui/ingestion-ui/index.html` has `<meta name="robots" content="noindex,nofollow">` ✅
+- `/analytics.html` has `<meta name="robots" content="noindex,nofollow">` ✅
+- Googlebot can crawl both → will read noindex → will remove from index
+
+### Canonical Tag Rules
+- Canonical must always point to the page's own URL (self-referencing)
+- Exception: old/renamed slugs deliberately pointing to the new canonical slug is CORRECT
+- 10 blog posts intentionally point to newer-slug canonicals — do NOT "fix" these, they are intentional de-duplication
+- Check for broken canonicals with: `python3 -c "import os,re; [print(p) for root,_,fs in os.walk('blog') for p in [os.path.join(root,f) for f in fs if f=='index.html'] if (m:=re.search(r'canonical href=\"(https://sifufinds\.com[^\"]*)', open(p).read())) and m.group(1).rstrip('/').split('/')[-1] != root.split('/')[-1]]"`
+
+### GSC "Indexed, though blocked by robots.txt" Fix
+- This appears when: URL is blocked in robots.txt BUT Google found it via links → can't read noindex
+- Fix: ALLOW Googlebot to crawl the page so it reads noindex → Google deindexes it over next few crawl cycles
+- Never rely on robots.txt alone to deindex a page — Google keeps known URLs indexed even when blocked
+
+### Sitemap Health
+- Total URLs as of 2026-07-04: **776** across 7 child sitemaps (added 11 new hub pages)
+- sitemap-core.xml: 8 | sitemap-countries.xml: 106 | sitemap-blog.xml: 408
+- sitemap-tips.xml: 51 | sitemap-betting.xml: 181 | sitemap-guides.xml: 12 | sitemap-other.xml: 6
+- Run `python3 gen_sitemap.py` to regenerate — it auto-detects all public index.html files
+- Excluded dirs in gen_sitemap.py: agents, firecrawl, geo-content-writer, supabase, .git, .github, .venv, __pycache__, node_modules, .claude, data
+
+---
+
+### 403/404 Architecture Rules (set 2026-07-04)
+- **Every public directory MUST have an `index.html`** — `Options -Indexes` returns 403 for any directory without one
+- **New section/category directories**: always create a hub `index.html` before adding child pages
+- **Redirect broken internal links via `.htaccess`** using `Redirect 301 /old-path /correct/path/` — faster than regenerating 400+ blog posts
+- **`.htaccess` ErrorDocument fallback**: `ErrorDocument 403 /404.html` and `ErrorDocument 404 /404.html` catch any missed directories
+- **52 redirect rules** now in `.htaccess` covering bookmaker aliases, tips, guides, responsible gambling, odds, sport sections, WC2026/AFCON aliases
+
+---
+
 ## Scheduled Routines
 
 | Routine | Frequency | Script |
@@ -184,4 +250,8 @@ Promise.all([waitForCountry(), fetchLiveData()]).then(([country, _]) => init(cou
 | Live match shown as IN_PLAY after final whistle | Sync ESPN FINISHED → override FD IN_PLAY in merge |
 | ESPN clock = 5400.0 → minute = 90, not 5400 | Divide by 60: `int(float(clock) / 60)` capped at 120 |
 
-*Last updated: 2026-06-22 by Claude Code*
+### Code Patterns (2026-07-04)
+- **Mandatory backlink/reference on every blog post**: `build_resources_box()` in `gen_blog_post_pages.py` now always injects a reference/backlink to `https://bettingbrainiac.com/african-betting-sites/` alongside the existing BeGambleAware link. This is guaranteed on every post — do not remove it. Verify with `grep -c "bettingbrainiac.com/african-betting-sites" blog/SLUG/index.html` (should be ≥ 1). Rule documented in `CLAUDE.md` Step 4 / resources-box sections.
+- Note: `blog/*/index.html` has ~408 directories on disk but `posts.json` only tracks 104 as "official" posts — the other ~300 are legacy/orphaned dirs not touched by the generator. Only the 104 in `posts.json` get resources-box/backlink updates on `--force` rebuild.
+
+*Last updated: 2026-07-04 by Claude Code*

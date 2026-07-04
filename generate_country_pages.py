@@ -291,7 +291,7 @@ def generate_page(code, c):
         f'Compare the {books_count} best licensed betting sites in {name} {YEAR}. '
         f'Verified bonuses, {pay_str} payments and expert bookmaker reviews. Updated daily.'
     )
-    title = f'Best Betting Sites in {name} {YEAR} | Licensed Bookmakers | SifuFinds'
+    title = f'Best Betting Sites in {name} {YEAR} | SifuFinds'
     canonical = f'{DOMAIN}/countries/{slug}/'
     h1 = f'Best Betting Sites in {name} &middot; {MONTH_YEAR}'
 
@@ -368,8 +368,10 @@ def generate_page(code, c):
 }}
 </script>
 
-<link rel="icon" href="../../assets/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="../../assets/favicon.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
 <link rel="preload" href="../../assets/shared.css" as="style">
 <link rel="stylesheet" href="../../assets/shared.css">
 <style>
@@ -585,7 +587,7 @@ const bookCard=(b,i,rank)=>{{
     </div>
     <div class="bk-act">
       <div class="bk-stars">${{stars(b.stars)}}</div>
-      <a class="gbtn${{b.nodep?' gold':''}}" href="${{b.url}}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a>
+      <a class="gbtn${{b.nodep?' gold':''}}" href="${{b.url}}" target="_blank" rel="noopener noreferrer sponsored">Claim Bonus →</a>
       <div class="tc-n">T&amp;Cs Apply · 18+</div>
     </div>
   </div>
@@ -601,7 +603,7 @@ const bookCard=(b,i,rank)=>{{
       <div class="xi"><div class="xl">Sports</div><div class="xv">${{b.sports}}+</div></div>
     </div>
     <div class="trms">${{b.terms}}</div>
-    <a class="gbtn" href="${{b.url}}" target="_blank" rel="noopener noreferrer">Claim Bonus →</a>
+    <a class="gbtn" href="${{b.url}}" target="_blank" rel="noopener noreferrer sponsored">Claim Bonus →</a>
   </div>
 </div>`;
 }};

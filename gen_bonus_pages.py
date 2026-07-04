@@ -194,8 +194,10 @@ def make_bonus_page(p):
 }}
 </script>
 
-<link rel="icon" href="../../assets/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="../../assets/favicon.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
 <link rel="preload" href="../../assets/shared.css" as="style">
 <link rel="stylesheet" href="../../assets/shared.css">
 <style>

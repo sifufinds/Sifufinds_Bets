@@ -1185,6 +1185,7 @@ def build_resources_box(post: dict) -> str:
     - 1 internal bookmaker review link (from bookmaker_featured)
     - 1 internal core page (tips or odds)
     - 1 external sport-authority link (from category)
+    - 1 external reference/backlink to bettingbrainiac.com/african-betting-sites/ (always)
     - 1 external responsible-gambling link (always)
     """
     items: list[str] = []
@@ -1217,6 +1218,12 @@ def build_resources_box(post: dict) -> str:
             f'<li><a href="{url}" title="{title}" '
             f'target="_blank" rel="noopener noreferrer">{name} — Official Site ↗</a></li>'
         )
+
+    # External: reference/backlink (always present)
+    items.append(
+        '<li><a href="https://bettingbrainiac.com/african-betting-sites/" title="BettingBrainiac – African betting sites reference" '
+        'target="_blank" rel="noopener noreferrer">BettingBrainiac — African Betting Sites ↗</a></li>'
+    )
 
     # External: responsible gambling (always present)
     items.append(
@@ -1410,6 +1417,16 @@ def build_post_page(post: dict) -> str:
     resources_html = build_resources_box(post)
     related_html = build_related_html(post, _ALL_POSTS)
     author = post.get('author', 'SifuFinds Editorial Team')
+    # Only attribute Person/#sifu-kai schema to posts actually bylined as Sifu Kai —
+    # "Desk" bylines (Football Desk, Cricket Desk, etc.) get an Organization author
+    # instead, since attributing them to his named identity would misrepresent authorship.
+    if author.strip() == 'Sifu Kai':
+        author_schema = ('{"@type": "Person", "@id": "https://sifufinds.com/about/#sifu-kai", '
+                          '"name": "Sifu Kai", "url": "https://sifufinds.com/about/", '
+                          '"image": {"@type": "ImageObject", "url": "https://sifufinds.com/assets/android-chrome-192x192.png", "width": 192, "height": 192}}')
+    else:
+        author_schema = (f'{{"@type": "Organization", "@id": "https://sifufinds.com/#organization", '
+                          f'"name": "{author}", "url": "https://sifufinds.com/about/#team"}}')
     category = post.get('category', 'football')
     tags = post.get('tags', [])
     read_time = post.get('read_time', 5)
@@ -1479,7 +1496,7 @@ def build_post_page(post: dict) -> str:
   "@type": "Article",
   "headline": "{title}",
   "description": "{excerpt}",
-  "author": {{"@type": "Person", "@id": "https://sifufinds.com/about/#sifu-kai", "name": "{author}", "url": "https://sifufinds.com/about/", "image": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/android-chrome-192x192.png", "width": 192, "height": 192}}}},
+  "author": {author_schema},
   "publisher": {{
     "@type": "Organization",
     "@id": "https://sifufinds.com/#organization",
@@ -1505,8 +1522,8 @@ def build_post_page(post: dict) -> str:
 }}{faq_schema}]
 </script>
 
-<link rel="preload" href="../../assets/shared.css?v=7" as="style">
-<link rel="stylesheet" href="../../assets/shared.css?v=7">
+<link rel="preload" href="../../assets/shared.css?v=8" as="style">
+<link rel="stylesheet" href="../../assets/shared.css?v=8">
 <style>
 .post-hero{{background:linear-gradient(135deg,#0a3d1e 0%,#1a6b35 100%);color:#fff;padding:32px 0}}
 .post-hero h1{{font-size:clamp(20px,3.5vw,30px);font-weight:900;margin-bottom:10px;letter-spacing:-.5px;line-height:1.3}}
@@ -1621,7 +1638,7 @@ def build_post_page(post: dict) -> str:
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=7"></script>
+<script src="../../assets/shared.js?v=10"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 function init(){{
