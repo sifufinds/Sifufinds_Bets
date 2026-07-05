@@ -1076,3 +1076,229 @@ document.addEventListener('DOMContentLoaded',function(){
     },900);
   });
 })();
+
+// ── LANGUAGE (I18N) ────────────────────────────────────────────────────────────
+// Client-side chrome translator: nav/footer/filters/disclaimers repeat verbatim
+// across every page, so one dictionary + one DOM pass covers the whole site
+// with no per-page edits. Page-specific prose (blog bodies, FAQ answers) is out
+// of scope here — it needs real translated content, not a phrase swap.
+const _LANGS=[
+  {code:'en',label:'English',flag:'🇬🇧'},
+  {code:'fr',label:'Français',flag:'🇫🇷'},
+  {code:'de',label:'Deutsch',flag:'🇩🇪'},
+  {code:'es',label:'Español',flag:'🇪🇸'},
+  {code:'pt',label:'Português',flag:'🇵🇹'},
+  {code:'sw',label:'Kiswahili',flag:'🇰🇪'}
+];
+const _LANG_LS='sf_lang';
+// Default UI language per country — the visitor can always override via the switcher.
+const COUNTRY_LANG={NG:'en',KE:'en',GH:'en',ZA:'en',TZ:'sw',UG:'en',ZM:'en',ET:'en',CI:'fr',CM:'fr',SN:'fr',RW:'fr',ZW:'en',MW:'en',MZ:'pt',AO:'pt',CD:'fr',BW:'en',NA:'en',EG:'en',MA:'fr',SL:'en',LR:'en'};
+
+function getCurrentLang(){
+  return new URLSearchParams(window.location.search).get('lang')
+    ||localStorage.getItem(_LANG_LS)
+    ||COUNTRY_LANG[getCurrentCountry()]
+    ||'en';
+}
+function changeLang(code){
+  localStorage.setItem(_LANG_LS,code);
+  const u=new URL(window.location.href);
+  u.searchParams.set('lang',code);
+  window.location.href=u.toString();
+}
+function injectLangSelector(){
+  const bar=document.querySelector('.tbar-r');
+  if(!bar||document.getElementById('langSel'))return;
+  const sel=document.createElement('select');
+  sel.className='csel';
+  sel.id='langSel';
+  sel.setAttribute('aria-label','Language / Langue / Sprache / Idioma / Idioma / Lugha');
+  sel.innerHTML=_LANGS.map(l=>`<option value="${l.code}">${l.flag} ${l.label}</option>`).join('');
+  sel.value=getCurrentLang();
+  sel.onchange=function(){changeLang(this.value);};
+  bar.insertBefore(sel,bar.firstChild);
+}
+function syncLangUI(){
+  const sel=document.getElementById('langSel');
+  if(sel)sel.value=getCurrentLang();
+}
+
+// English source string -> translation per language. Keys must match a text
+// node's *trimmed* content exactly (see applyI18n) so partial-sentence swaps
+// inside unique page prose never happen by accident.
+const I18N_UI={
+'⭐ Best Bonuses':{fr:'⭐ Meilleurs Bonus',de:'⭐ Beste Boni',es:'⭐ Mejores Bonos',pt:'⭐ Melhores Bônus',sw:'⭐ Zawadi Bora'},
+'💡 Tips':{fr:'💡 Pronostics',de:'💡 Tipps',es:'💡 Pronósticos',pt:'💡 Palpites',sw:'💡 Vidokezo'},
+'🎰 Casino':{fr:'🎰 Casino',de:'🎰 Casino',es:'🎰 Casino',pt:'🎰 Cassino',sw:'🎰 Kasino'},
+'📊 Live Odds':{fr:'📊 Cotes en Direct',de:'📊 Live-Quoten',es:'📊 Cuotas en Vivo',pt:'📊 Odds ao Vivo',sw:'📊 Vigezo vya Moja kwa Moja'},
+'⚽ Leagues':{fr:'⚽ Ligues',de:'⚽ Ligen',es:'⚽ Ligas',pt:'⚽ Ligas',sw:'⚽ Ligi'},
+'🌍 Countries':{fr:'🌍 Pays',de:'🌍 Länder',es:'🌍 Países',pt:'🌍 Países',sw:'🌍 Nchi'},
+'📰 Blog':{fr:'📰 Blog',de:'📰 Blog',es:'📰 Blog',pt:'📰 Blog',sw:'📰 Blogu'},
+'✉️ Contact':{fr:'✉️ Contact',de:'✉️ Kontakt',es:'✉️ Contacto',pt:'✉️ Contato',sw:'✉️ Wasiliana'},
+'🏠 Home':{fr:'🏠 Accueil',de:'🏠 Startseite',es:'🏠 Inicio',pt:'🏠 Início',sw:'🏠 Nyumbani'},
+'🌍 Africa':{fr:'🌍 Afrique',de:'🌍 Afrika',es:'🌍 África',pt:'🌍 África',sw:'🌍 Afrika'},
+'Responsible Gambling':{fr:'Jeu Responsable',de:'Verantwortungsvolles Spielen',es:'Juego Responsable',pt:'Jogo Responsável',sw:'Kamari yenye Uwajibikaji'},
+'18+ Only':{fr:'18 ans et +',de:'Nur 18+',es:'Solo 18+',pt:'Apenas 18+',sw:'Miaka 18+ Pekee'},
+'Your Country:':{fr:'Votre pays :',de:'Ihr Land:',es:'Tu país:',pt:'Seu país:',sw:'Nchi Yako:'},
+'Search bookmakers...':{fr:'Rechercher un bookmaker...',de:'Wettanbieter suchen...',es:'Buscar casas de apuestas...',pt:'Buscar casas de apostas...',sw:'Tafuta kampuni za kubeti...'},
+'✅ Licensed & Verified':{fr:'✅ Agréé et Vérifié',de:'✅ Lizenziert & Geprüft',es:'✅ Licenciado y Verificado',pt:'✅ Licenciado e Verificado',sw:'✅ Ina Leseni na Imethibitishwa'},
+'📱 Mobile-First':{fr:'📱 Optimisé Mobile',de:'📱 Mobil-Optimiert',es:'📱 Optimizado para Móvil',pt:'📱 Otimizado para Celular',sw:'📱 Rafiki wa Simu'},
+'🔄 Updated Daily':{fr:'🔄 Mis à Jour Chaque Jour',de:'🔄 Täglich Aktualisiert',es:'🔄 Actualizado a Diario',pt:'🔄 Atualizado Diariamente',sw:'🔄 Inasasishwa Kila Siku'},
+'💳 Local Payments':{fr:'💳 Paiements Locaux',de:'💳 Lokale Zahlungen',es:'💳 Pagos Locales',pt:'💳 Pagamentos Locais',sw:'💳 Malipo ya Ndani'},
+'largest welcome bonus':{fr:'plus gros bonus de bienvenue',de:'größter Willkommensbonus',es:'mayor bono de bienvenida',pt:'maior bônus de boas-vindas',sw:'zawadi kubwa zaidi ya kujiunga'},
+'licensed bookmakers':{fr:'bookmakers agréés',de:'lizenzierte Wettanbieter',es:'casas de apuestas licenciadas',pt:'casas de apostas licenciadas',sw:'kampuni za kubeti zenye leseni'},
+'last updated':{fr:'dernière mise à jour',de:'zuletzt aktualisiert',es:'última actualización',pt:'última atualização',sw:'ilisasishwa mara ya mwisho'},
+'⭐ Top Picks ·':{fr:'⭐ Meilleurs Choix ·',de:'⭐ Top-Auswahl ·',es:'⭐ Mejores Opciones ·',pt:'⭐ Melhores Escolhas ·',sw:'⭐ Chaguo Bora ·'},
+'📢 Advertiser Disclosure: We may earn commission from bookmaker links. All bonuses independently verified. Always check the bookmaker\'s official site for current T&Cs.':{
+  fr:'📢 Avis publicitaire : Nous pouvons percevoir une commission sur les liens des bookmakers. Tous les bonus sont vérifiés indépendamment. Consultez toujours le site officiel du bookmaker pour les conditions en vigueur.',
+  de:'📢 Werbehinweis: Wir können eine Provision über Wettanbieter-Links verdienen. Alle Boni werden unabhängig geprüft. Prüfen Sie stets die offizielle Website des Anbieters für aktuelle Bedingungen.',
+  es:'📢 Divulgación publicitaria: Podemos recibir comisión por los enlaces a casas de apuestas. Todos los bonos se verifican de forma independiente. Consulta siempre el sitio oficial de la casa de apuestas para conocer los términos vigentes.',
+  pt:'📢 Divulgação de publicidade: Podemos receber comissão pelos links das casas de apostas. Todos os bônus são verificados de forma independente. Consulte sempre o site oficial da casa de apostas para os termos atuais.',
+  sw:'📢 Ufichuzi wa Matangazo: Tunaweza kupata kamisheni kutoka kwa viungo vya kampuni za kubeti. Zawadi zote zimethibitishwa kwa uhuru. Daima angalia tovuti rasmi ya kampuni ya kubeti kwa masharti ya sasa.'},
+'How We Rank the Best Betting Sites in Africa':{fr:'Comment Nous Classons les Meilleurs Sites de Paris en Afrique',de:'Wie Wir die Besten Wettseiten Afrikas Bewerten',es:'Cómo Clasificamos los Mejores Sitios de Apuestas en África',pt:'Como Classificamos os Melhores Sites de Apostas na África',sw:'Jinsi Tunavyopanga Tovuti Bora za Kubeti Afrika'},
+'Every bookmaker listed on SifuFinds is scored across four factors, not just bonus size:':{
+  fr:'Chaque bookmaker répertorié sur SifuFinds est noté selon quatre critères, pas seulement la taille du bonus :',
+  de:'Jeder auf SifuFinds gelistete Wettanbieter wird nach vier Kriterien bewertet, nicht nur nach der Bonushöhe:',
+  es:'Cada casa de apuestas listada en SifuFinds se puntúa según cuatro factores, no solo el tamaño del bono:',
+  pt:'Cada casa de apostas listada no SifuFinds é avaliada em quatro fatores, não apenas o tamanho do bônus:',
+  sw:'Kila kampuni ya kubeti iliyoorodheshwa kwenye SifuFinds inapimwa kwa vigezo vinne, si ukubwa wa zawadi tu:'},
+'🛡️ Licensing & Trust':{fr:'🛡️ Licence et Confiance',de:'🛡️ Lizenz & Vertrauen',es:'🛡️ Licencia y Confianza',pt:'🛡️ Licença e Confiança',sw:'🛡️ Leseni na Uaminifu'},
+'Only operators licensed by a recognised African regulator (NLRC, BCLB, GCA, WCGRB and others) are listed.':{
+  fr:'Seuls les opérateurs agréés par un régulateur africain reconnu (NLRC, BCLB, GCA, WCGRB, etc.) sont répertoriés.',
+  de:'Nur Anbieter mit Lizenz einer anerkannten afrikanischen Aufsichtsbehörde (NLRC, BCLB, GCA, WCGRB u. a.) werden gelistet.',
+  es:'Solo se incluyen operadores licenciados por un regulador africano reconocido (NLRC, BCLB, GCA, WCGRB y otros).',
+  pt:'Somente operadores licenciados por um regulador africano reconhecido (NLRC, BCLB, GCA, WCGRB e outros) são listados.',
+  sw:'Waendeshaji walio na leseni kutoka kwa mdhibiti wa Kiafrika anayetambulika (NLRC, BCLB, GCA, WCGRB na wengine) pekee ndio wameorodheshwa.'},
+'📊 Odds Quality':{fr:'📊 Qualité des Cotes',de:'📊 Quotenqualität',es:'📊 Calidad de Cuotas',pt:'📊 Qualidade das Odds',sw:'📊 Ubora wa Vigezo'},
+'How competitive a bookmaker\'s odds are on African football, CAF competitions, and major global leagues.':{
+  fr:'À quel point les cotes d\'un bookmaker sont compétitives sur le football africain, les compétitions de la CAF et les grands championnats mondiaux.',
+  de:'Wie wettbewerbsfähig die Quoten eines Anbieters bei afrikanischem Fußball, CAF-Wettbewerben und großen internationalen Ligen sind.',
+  es:'Qué tan competitivas son las cuotas de una casa de apuestas en el fútbol africano, las competiciones de la CAF y las principales ligas mundiales.',
+  pt:'O quão competitivas são as odds de uma casa de apostas no futebol africano, competições da CAF e principais ligas mundiais.',
+  sw:'Jinsi vigezo vya kampuni ya kubeti vinavyoshindana katika soka la Afrika, mashindano ya CAF, na ligi kuu za dunia.'},
+'⚡ Payout Speed':{fr:'⚡ Rapidité des Paiements',de:'⚡ Auszahlungsgeschwindigkeit',es:'⚡ Velocidad de Pago',pt:'⚡ Velocidade de Pagamento',sw:'⚡ Kasi ya Malipo'},
+'How quickly verified withdrawals process via local payment methods like OPay, M-Pesa, and MTN MoMo.':{
+  fr:'La rapidité de traitement des retraits vérifiés via des moyens de paiement locaux comme OPay, M-Pesa et MTN MoMo.',
+  de:'Wie schnell verifizierte Auszahlungen über lokale Zahlungsmethoden wie OPay, M-Pesa und MTN MoMo abgewickelt werden.',
+  es:'Qué tan rápido se procesan los retiros verificados a través de métodos de pago locales como OPay, M-Pesa y MTN MoMo.',
+  pt:'A rapidez com que os saques verificados são processados via métodos de pagamento locais como OPay, M-Pesa e MTN MoMo.',
+  sw:'Jinsi utoaji fedha ulioidhinishwa unavyochakatwa haraka kupitia njia za malipo za ndani kama OPay, M-Pesa, na MTN MoMo.'},
+'🎁 Welcome Bonus':{fr:'🎁 Bonus de Bienvenue',de:'🎁 Willkommensbonus',es:'🎁 Bono de Bienvenida',pt:'🎁 Bônus de Boas-Vindas',sw:'🎁 Zawadi ya Kujiunga'},
+'Real, verified sign-up offers and ongoing promotions — one factor among several, not the only one.':{
+  fr:'Des offres d\'inscription réelles et vérifiées ainsi que des promotions continues — un critère parmi d\'autres, pas le seul.',
+  de:'Echte, geprüfte Anmeldeangebote und laufende Aktionen — ein Faktor unter mehreren, nicht der einzige.',
+  es:'Ofertas de registro reales y verificadas, y promociones continuas: un factor entre varios, no el único.',
+  pt:'Ofertas de cadastro reais e verificadas, além de promoções contínuas — um fator entre vários, não o único.',
+  sw:'Ofa halisi, zilizothibitishwa za kujisajili na matangazo yanayoendelea — ni kigezo kimoja kati ya vingi, si pekee.'},
+'Showing':{fr:'Affichage',de:'Anzeige',es:'Mostrando',pt:'Mostrando',sw:'Inaonyesha'},
+'bookmakers':{fr:'bookmakers',de:'Wettanbieter',es:'casas de apuestas',pt:'casas de apostas',sw:'kampuni za kubeti'},
+'· Use dropdown above or quick-switch below':{fr:'· Utilisez le menu ci-dessus ou les raccourcis ci-dessous',de:'· Nutzen Sie das Menü oben oder die Schnellauswahl unten',es:'· Usa el menú de arriba o el acceso rápido de abajo',pt:'· Use o menu acima ou a troca rápida abaixo',sw:'· Tumia menyu iliyo juu au ubadilishaji wa haraka hapa chini'},
+'Sort:':{fr:'Trier :',de:'Sortieren:',es:'Ordenar:',pt:'Ordenar:',sw:'Panga:'},
+'Editors\' Picks':{fr:'Sélection de la Rédaction',de:'Redaktionsauswahl',es:'Selección del Editor',pt:'Seleção do Editor',sw:'Chaguo za Wahariri'},
+'Highest Rated':{fr:'Mieux Notés',de:'Bestbewertet',es:'Mejor Valorados',pt:'Mais Bem Avaliados',sw:'Zilizopimwa Juu Zaidi'},
+'Highest Bonus':{fr:'Bonus le Plus Élevé',de:'Höchster Bonus',es:'Mayor Bono',pt:'Maior Bônus',sw:'Zawadi Kubwa Zaidi'},
+'Most Sports':{fr:'Plus de Sports',de:'Meiste Sportarten',es:'Más Deportes',pt:'Mais Esportes',sw:'Michezo Mingi Zaidi'},
+'Filter:':{fr:'Filtrer :',de:'Filtern:',es:'Filtrar:',pt:'Filtrar:',sw:'Chuja:'},
+'All':{fr:'Tous',de:'Alle',es:'Todos',pt:'Todos',sw:'Zote'},
+'No Deposit':{fr:'Sans Dépôt',de:'Ohne Einzahlung',es:'Sin Depósito',pt:'Sem Depósito',sw:'Bila Amana'},
+'Cash Out':{fr:'Cash Out',de:'Cash Out',es:'Cash Out',pt:'Cash Out',sw:'Cash Out'},
+'Live Stream':{fr:'Diffusion en Direct',de:'Live-Stream',es:'Transmisión en Vivo',pt:'Transmissão ao Vivo',sw:'Utiririshaji wa Moja kwa Moja'},
+'Instant Pay':{fr:'Paiement Instantané',de:'Sofortzahlung',es:'Pago Instantáneo',pt:'Pagamento Instantâneo',sw:'Malipo ya Papo Hapo'},
+'M-Pesa':{fr:'M-Pesa',de:'M-Pesa',es:'M-Pesa',pt:'M-Pesa',sw:'M-Pesa'},
+'MTN MoMo':{fr:'MTN MoMo',de:'MTN MoMo',es:'MTN MoMo',pt:'MTN MoMo',sw:'MTN MoMo'},
+'⚠️ Gambling involves risk. Only bet what you can afford to lose.':{
+  fr:'⚠️ Les paris comportent des risques. Ne pariez que ce que vous pouvez vous permettre de perdre.',
+  de:'⚠️ Wetten sind mit Risiko verbunden. Setzen Sie nur, was Sie sich zu verlieren leisten können.',
+  es:'⚠️ Apostar implica riesgo. Apuesta solo lo que puedas permitirte perder.',
+  pt:'⚠️ Apostar envolve risco. Aposte apenas o que você pode perder.',
+  sw:'⚠️ Kubeti kuna hatari. Weka dau kiasi unachoweza kumudu kupoteza.'},
+'GamCare':{fr:'GamCare',de:'GamCare',es:'GamCare',pt:'GamCare',sw:'GamCare'},
+'BeGambleAware':{fr:'BeGambleAware',de:'BeGambleAware',es:'BeGambleAware',pt:'BeGambleAware',sw:'BeGambleAware'},
+'NCPG Africa':{fr:'NCPG Afrique',de:'NCPG Afrika',es:'NCPG África',pt:'NCPG África',sw:'NCPG Afrika'},
+'18+ only.':{fr:'18 ans et + uniquement.',de:'Nur 18+.',es:'Solo mayores de 18.',pt:'Apenas 18+.',sw:'Miaka 18+ pekee.'},
+'Compare:':{fr:'Comparer :',de:'Vergleichen:',es:'Comparar:',pt:'Comparar:',sw:'Linganisha:'},
+'Compare Now →':{fr:'Comparer Maintenant →',de:'Jetzt Vergleichen →',es:'Comparar Ahora →',pt:'Comparar Agora →',sw:'Linganisha Sasa →'},
+'Clear':{fr:'Effacer',de:'Löschen',es:'Borrar',pt:'Limpar',sw:'Futa'},
+'Compare Sports Betting Bonuses — Side by Side':{fr:'Comparer les Bonus de Paris Sportifs — Côte à Côte',de:'Sportwetten-Boni Vergleichen — Nebeneinander',es:'Comparar Bonos de Apuestas Deportivas — Lado a Lado',pt:'Comparar Bônus de Apostas Esportivas — Lado a Lado',sw:'Linganisha Zawadi za Kubeti Michezo — Bega kwa Bega'},
+'Bonuses':{fr:'Bonus',de:'Boni',es:'Bonos',pt:'Bônus',sw:'Zawadi'},
+'Payments':{fr:'Paiements',de:'Zahlungen',es:'Pagos',pt:'Pagamentos',sw:'Malipo'},
+'Tips':{fr:'Pronostics',de:'Tipps',es:'Pronósticos',pt:'Palpites',sw:'Vidokezo'},
+'Countries':{fr:'Pays',de:'Länder',es:'Países',pt:'Países',sw:'Nchi'},
+'More Countries':{fr:'Plus de Pays',de:'Weitere Länder',es:'Más Países',pt:'Mais Países',sw:'Nchi Zaidi'},
+'Odds':{fr:'Cotes',de:'Quoten',es:'Cuotas',pt:'Odds',sw:'Vigezo'},
+'Guides':{fr:'Guides',de:'Ratgeber',es:'Guías',pt:'Guias',sw:'Miongozo'},
+'Free Tools':{fr:'Outils Gratuits',de:'Kostenlose Tools',es:'Herramientas Gratis',pt:'Ferramentas Grátis',sw:'Zana za Bure'},
+'About':{fr:'À Propos',de:'Über Uns',es:'Acerca de',pt:'Sobre',sw:'Kuhusu'},
+'Best Bonuses':{fr:'Meilleurs Bonus',de:'Beste Boni',es:'Mejores Bonos',pt:'Melhores Bônus',sw:'Zawadi Bora'},
+'No Deposit Bonus':{fr:'Bonus Sans Dépôt',de:'Bonus Ohne Einzahlung',es:'Bono Sin Depósito',pt:'Bônus Sem Depósito',sw:'Zawadi Bila Amana'},
+'Cash Out Sites':{fr:'Sites avec Cash Out',de:'Cash-Out-Seiten',es:'Sitios con Cash Out',pt:'Sites com Cash Out',sw:'Tovuti za Cash Out'},
+'Live Streaming':{fr:'Diffusion en Direct',de:'Live-Streaming',es:'Transmisión en Vivo',pt:'Transmissão ao Vivo',sw:'Utiririshaji wa Moja kwa Moja'},
+'M-Pesa Betting':{fr:'Paris M-Pesa',de:'M-Pesa Wetten',es:'Apuestas M-Pesa',pt:'Apostas M-Pesa',sw:'Kubeti kwa M-Pesa'},
+'MTN MoMo Betting':{fr:'Paris MTN MoMo',de:'MTN MoMo Wetten',es:'Apuestas MTN MoMo',pt:'Apostas MTN MoMo',sw:'Kubeti kwa MTN MoMo'},
+'Instant Pay Sites':{fr:'Sites à Paiement Instantané',de:'Sofortzahlungs-Seiten',es:'Sitios de Pago Instantáneo',pt:'Sites de Pagamento Instantâneo',sw:'Tovuti za Malipo ya Papo Hapo'},
+'Free Tips Today':{fr:'Pronostics Gratuits du Jour',de:'Kostenlose Tipps Heute',es:'Pronósticos Gratis de Hoy',pt:'Palpites Grátis de Hoje',sw:'Vidokezo vya Bure Leo'},
+'AFCON Tips':{fr:'Pronostics CAN',de:'AFCON-Tipps',es:'Pronósticos CAN',pt:'Palpites CAN',sw:'Vidokezo vya AFCON'},
+'CAF CL Tips':{fr:'Pronostics Ligue des Champions CAF',de:'CAF-CL-Tipps',es:'Pronósticos Liga de Campeones CAF',pt:'Palpites Liga dos Campeões CAF',sw:'Vidokezo vya CAF CL'},
+'Best Casinos':{fr:'Meilleurs Casinos',de:'Beste Casinos',es:'Mejores Casinos',pt:'Melhores Cassinos',sw:'Kasino Bora'},
+'No Deposit Casino':{fr:'Casino Sans Dépôt',de:'Casino Ohne Einzahlung',es:'Casino Sin Depósito',pt:'Cassino Sem Depósito',sw:'Kasino Bila Amana'},
+'Live Casino':{fr:'Casino en Direct',de:'Live-Casino',es:'Casino en Vivo',pt:'Cassino ao Vivo',sw:'Kasino ya Moja kwa Moja'},
+'Jackpots':{fr:'Jackpots',de:'Jackpots',es:'Jackpots',pt:'Jackpots',sw:'Jackpot'},
+'All Leagues':{fr:'Toutes les Ligues',de:'Alle Ligen',es:'Todas las Ligas',pt:'Todas as Ligas',sw:'Ligi Zote'},
+'CAF CL Odds':{fr:'Cotes Ligue des Champions CAF',de:'CAF-CL-Quoten',es:'Cuotas Liga de Campeones CAF',pt:'Odds Liga dos Campeões CAF',sw:'Vigezo vya CAF CL'},
+'AFCON Odds':{fr:'Cotes CAN',de:'AFCON-Quoten',es:'Cuotas CAN',pt:'Odds CAN',sw:'Vigezo vya AFCON'},
+'Premier League':{fr:'Premier League',de:'Premier League',es:'Premier League',pt:'Premier League',sw:'Premier League'},
+'How to Bet on Football':{fr:'Comment Parier sur le Football',de:'Wie Man auf Fußball Wettet',es:'Cómo Apostar en Fútbol',pt:'Como Apostar em Futebol',sw:'Jinsi ya Kubeti Soka'},
+'What is an Accumulator?':{fr:'Qu\'est-ce qu\'un Pari Combiné ?',de:'Was ist eine Kombiwette?',es:'¿Qué es una Apuesta Combinada?',pt:'O que é uma Aposta Múltipla?',sw:'Accumulator ni Nini?'},
+'M-Pesa Betting Sites':{fr:'Sites de Paris M-Pesa',de:'M-Pesa Wettseiten',es:'Sitios de Apuestas M-Pesa',pt:'Sites de Apostas M-Pesa',sw:'Tovuti za Kubeti za M-Pesa'},
+'No Deposit Bonuses':{fr:'Bonus Sans Dépôt',de:'Boni Ohne Einzahlung',es:'Bonos Sin Depósito',pt:'Bônus Sem Depósito',sw:'Zawadi Bila Amana'},
+'World Cup 2026 Tips':{fr:'Pronostics Coupe du Monde 2026',de:'WM-2026-Tipps',es:'Pronósticos Mundial 2026',pt:'Palpites Copa do Mundo 2026',sw:'Vidokezo vya Kombe la Dunia 2026'},
+'World Cup 2026':{fr:'Coupe du Monde 2026',de:'WM 2026',es:'Mundial 2026',pt:'Copa do Mundo 2026',sw:'Kombe la Dunia 2026'},
+'Odds Calculator':{fr:'Calculateur de Cotes',de:'Quotenrechner',es:'Calculadora de Cuotas',pt:'Calculadora de Odds',sw:'Kikokotoo cha Vigezo'},
+'Parlay Calculator':{fr:'Calculateur de Paris Combinés',de:'Kombiwetten-Rechner',es:'Calculadora de Combinadas',pt:'Calculadora de Múltiplas',sw:'Kikokotoo cha Parlay'},
+'Press & Media Kit':{fr:'Kit Presse et Médias',de:'Presse- & Medienkit',es:'Kit de Prensa y Medios',pt:'Kit de Imprensa e Mídia',sw:'Kifurushi cha Vyombo vya Habari'},
+'About SifuFinds':{fr:'À Propos de SifuFinds',de:'Über SifuFinds',es:'Acerca de SifuFinds',pt:'Sobre o SifuFinds',sw:'Kuhusu SifuFinds'},
+'Contact Us':{fr:'Nous Contacter',de:'Kontaktieren Sie Uns',es:'Contáctanos',pt:'Fale Conosco',sw:'Wasiliana Nasi'},
+'Privacy Policy':{fr:'Politique de Confidentialité',de:'Datenschutzrichtlinie',es:'Política de Privacidad',pt:'Política de Privacidade',sw:'Sera ya Faragha'}
+};
+
+function applyI18n(lang){
+  lang=lang||getCurrentLang();
+  document.documentElement.lang=lang;
+  if(lang==='en')return;
+  const dict=I18N_UI;
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+    acceptNode(node){
+      const p=node.parentElement;
+      if(!p)return NodeFilter.FILTER_REJECT;
+      const tag=p.tagName;
+      if(tag==='SCRIPT'||tag==='STYLE'||tag==='NOSCRIPT'||tag==='TEXTAREA')return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const nodes=[];
+  let n;
+  while(n=walker.nextNode())nodes.push(n);
+  nodes.forEach(node=>{
+    const raw=node.nodeValue;
+    const trimmed=raw.trim();
+    if(!trimmed)return;
+    const entry=dict[trimmed];
+    if(entry&&entry[lang])node.nodeValue=raw.replace(trimmed,entry[lang]);
+  });
+  document.querySelectorAll('[placeholder],[aria-label],[title]').forEach(el=>{
+    ['placeholder','aria-label','title'].forEach(attr=>{
+      const v=el.getAttribute(attr);
+      const entry=v&&dict[v];
+      if(entry&&entry[lang])el.setAttribute(attr,entry[lang]);
+    });
+  });
+}
+
+// Runs once the static chrome for this page has parsed (shared.js sits at the
+// bottom of <body>, so everything above it — nav, topbar, footer — is already
+// in the DOM). A second pass on window 'load' catches anything a page's own
+// init() renders afterwards.
+injectLangSelector();
+applyI18n();
+syncLangUI();
+window.addEventListener('load',function(){applyI18n();syncLangUI();});
