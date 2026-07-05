@@ -1,18 +1,19 @@
 {
-  "date": "2026-07-04",
-  "fixes_applied": 6,
+  "date": "2026-07-05",
+  "fixes_applied": 7,
   "warnings": 2,
   "fixes": [
-    "llms.txt: Last Updated \u2192 2026-07-04",
-    "index.html: dateModified \u2192 2026-07-04",
-    "Blog HTML: refreshed dateModified on 12 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 160",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 820 total URLs",
+    "llms.txt: Last Updated \u2192 2026-07-05",
+    "index.html: dateModified \u2192 2026-07-05",
+    "Country pages: fixed 12 pages (title/meta/dateModified)",
+    "Blog HTML: refreshed dateModified on 17 stale pages",
+    "Blog HTML regenerated:     Total blog posts in JSON: 164",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 836 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "156 posts below 900 words: nba-trade-frenzy-lakers-wizards-celtics, egypt-makes-history-in-world-cup, egypt-make-history-in-world-cup, usyk-in-talks-for-wilder-fight, biggest-world-sport-stories-this-week...",
-    "140 posts missing FAQ section: nba-trade-frenzy-lakers-wizards-celtics, egypt-makes-history-in-world-cup, egypt-make-history-in-world-cup, usyk-in-talks-for-wilder-fight, biggest-world-sport-stories-this-week"
+    "156 posts below 900 words: wimbledon-2026-world-cup-2026-betting-insights, biggest-world-sport-stories-this-week, world-cup-2026-update-argentina-stunned-england-faces-pressure, world-cup-2026-cape-verde-argentina, nba-trade-frenzy-lakers-wizards-celtics...",
+    "109 posts missing FAQ section: wimbledon-2026-world-cup-2026-betting-insights, biggest-world-sport-stories-this-week, world-cup-2026-update-argentina-stunned-england-faces-pressure, world-cup-2026-cape-verde-argentina, nba-trade-frenzy-lakers-wizards-celtics"
   ],
   "status": "warnings"
 }
