@@ -157,6 +157,56 @@ jobs:
           echo "hacked=$HACKED" >> "$GITHUB_OUTPUT"
           exit 0
 
+      - name: Check Google can still crawl the site
+        id: indexability
+        run: |
+          set +eo pipefail
+          BLOCKED=0
+
+          ROBOTS=$(curl -s -A "Googlebot" --max-time 15 "https://sifufinds.com/robots.txt" -w "\n__STATUS__%{http_code}" 2>/dev/null) || ROBOTS=""
+          ROBOTS_STATUS=$(echo "$ROBOTS" | grep -o '__STATUS__[0-9]*' | grep -o '[0-9]*$')
+          ROBOTS_BODY=$(echo "$ROBOTS" | sed 's/__STATUS__[0-9]*$//')
+
+          if [ "$ROBOTS_STATUS" != "200" ]; then
+            echo "FAIL robots.txt returned HTTP ${ROBOTS_STATUS:-ERR} to Googlebot"
+            BLOCKED=$((BLOCKED+1))
+          elif echo "$ROBOTS_BODY" | python3 -c "
+          import sys, re
+          content = sys.stdin.read()
+          current = []
+          for line in content.splitlines():
+              s = line.strip()
+              m = re.match(r'User-agent:\s*(.+)', s, re.IGNORECASE)
+              if m:
+                  current = [m.group(1).strip()]
+                  continue
+              m = re.match(r'Disallow:\s*(.*)', s, re.IGNORECASE)
+              if m and m.group(1).strip() == '/' and any(a in ('*', 'Googlebot') for a in current):
+                  sys.exit(0)
+          sys.exit(1)
+          " 2>/dev/null; then
+            echo "FAIL robots.txt disallows all crawling for '*' or Googlebot"
+            BLOCKED=$((BLOCKED+1))
+          else
+            echo "OK   robots.txt reachable and does not block Googlebot"
+          fi
+
+          HOME_HEADERS=$(curl -sI -A "Googlebot" --max-time 15 "https://sifufinds.com/" 2>/dev/null) || HOME_HEADERS=""
+          HOME_STATUS=$(echo "$HOME_HEADERS" | head -1 | grep -o '[0-9][0-9][0-9]')
+
+          if [ "$HOME_STATUS" != "200" ]; then
+            echo "FAIL homepage returned HTTP ${HOME_STATUS:-ERR} to Googlebot UA"
+            BLOCKED=$((BLOCKED+1))
+          elif echo "$HOME_HEADERS" | grep -qi "^X-Robots-Tag:.*noindex"; then
+            echo "FAIL homepage sends X-Robots-Tag: noindex to Googlebot"
+            BLOCKED=$((BLOCKED+1))
+          else
+            echo "OK   homepage reachable to Googlebot UA, no noindex header"
+          fi
+
+          echo "blocked=$BLOCKED" >> "$GITHUB_OUTPUT"
+          exit 0
+
       - name: Trigger site-doctor if data issues found
         if: steps.content.outputs.issues != '0'
         continue-on-error: true
@@ -171,6 +221,23 @@ jobs:
             echo "✅ site_doctor.yml triggered"
           else
             echo "⚠️ Could not trigger site_doctor.yml — it runs on its own 15-min schedule and will self-correct"
+          fi
+          exit 0
+
+      - name: Trigger indexability auto-heal if Google is blocked
+        if: steps.indexability.outputs.blocked != '0'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +eo pipefail
+          echo "🚨 Something is blocking Google from crawling the site (${{ steps.indexability.outputs.blocked }} issue(s)) — triggering auto-heal now"
+          if gh workflow run daily_seo_doctor.yml \
+            --repo "${{ github.repository }}" \
+            --ref main 2>&1; then
+            echo "✅ daily_seo_doctor.yml triggered — will auto-fix and redeploy"
+          else
+            echo "⚠️ Could not trigger daily_seo_doctor.yml — it also runs daily at 06:00 UTC and will self-correct"
           fi
           exit 0
 
@@ -203,5 +270,6 @@ jobs:
           echo "Pages failed : ${{ steps.check.outputs.failed || '0' }}"
           echo "Content issues: ${{ steps.content.outputs.issues || '0' }}"
           echo "Hack indicators: ${{ steps.hack_check.outputs.hacked || '0' }}"
+          echo "Google blocked: ${{ steps.indexability.outputs.blocked || '0' }}"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           exit 0

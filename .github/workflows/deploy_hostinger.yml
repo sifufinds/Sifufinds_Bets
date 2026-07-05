@@ -52,6 +52,10 @@ jobs:
           python3 scripts/validate_site.py
           python3 scripts/audit_titles.py
 
+      - name: Validate site — check nothing blocks Google indexing
+        run: |
+          python3 scripts/check_indexability.py
+
       - name: Validate deploy token
         env:
           HOSTINGER_API_TOKEN: ${{ secrets.HOSTINGER_API_TOKEN }}

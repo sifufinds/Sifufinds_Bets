@@ -43,6 +43,15 @@ jobs:
       - name: Install dependencies
         run: pip install requests 2>/dev/null || true
 
+      - name: Run indexability guard (auto-fix)
+        id: indexability
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/check_indexability.py --fix --live --report
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
       - name: Run SEO Doctor
         id: doctor
         working-directory: agents/python
@@ -98,6 +107,13 @@ jobs:
       - name: Report outcome
         if: always()
         run: |
+          IDX_CODE="${{ steps.indexability.outputs.exit_code }}"
+          if [ -z "$IDX_CODE" ] || [ "$IDX_CODE" = "0" ]; then
+            echo "✅ Indexability guard — nothing is stopping Google from crawling the site"
+          else
+            echo "🚨 Indexability guard found issues it could NOT auto-fix — see 'Run indexability guard' step above and indexability-report.json"
+          fi
+
           CODE="${{ steps.doctor.outputs.exit_code }}"
           if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
             echo "✅ SEO Doctor completed — site is healthy"
