@@ -9,9 +9,13 @@ to do it by hand.
 
 Progress is durable: agents/python/content_backfill_state.json tracks which
 slugs have already been successfully expanded (so they're never reprocessed)
-and how many attempts a stubborn post has had (so a post the LLM can't fix
-after 3 tries is skipped, not retried forever, but stays visible in the
-state file for manual follow-up).
+and how many attempts a stubborn post has had (so a post the LLM keeps
+returning non-compliant output for is skipped after 3 tries, not retried
+forever, but stays visible in the state file for manual follow-up). Attempts
+only count LLM calls that actually returned content that failed validation —
+a call that fails outright (quota/rate-limit/provider outage) doesn't burn
+an attempt, since that's an infrastructure problem, not a sign the post
+itself can't be fixed.
 
 Called by .github/workflows/content_backfill.yml on a schedule.
 """
@@ -175,8 +179,12 @@ def run() -> int:
 
         new_body = _expand_post(post)
         if not new_body:
-            state["attempts"][slug] = state["attempts"].get(slug, 0) + 1
-            print(f"    ✗ expansion failed (attempt {state['attempts'][slug]}/{MAX_ATTEMPTS})")
+            # The LLM call itself failed (quota/rate-limit/provider outage) —
+            # this is an infrastructure problem, not a sign this post can't be
+            # fixed. Don't burn an attempt on it, or every post in the batch
+            # gets permanently benched the day the shared Groq/Gemini quota
+            # happens to be exhausted, rather than just retried next run.
+            print(f"    ✗ expansion failed (infrastructure/quota — not counted against attempt budget)")
             continue
 
         words_after = _word_count(new_body)
