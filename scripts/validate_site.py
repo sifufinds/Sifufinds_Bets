@@ -26,6 +26,7 @@ SKIP_DIRS = {
     "__pycache__", "node_modules",
     "agents", "firecrawl", "geo-content-writer", "supabase",
     "data", "assets", "scripts", "brands",
+    "translations",  # blog/translations/ — build-time source JSON, never a served page
 }
 
 
