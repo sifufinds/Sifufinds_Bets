@@ -113,13 +113,19 @@ jobs:
             echo "Push rejected (attempt $_attempt/5) — merging posts and retrying in 5s..."
             sleep 5
             git fetch origin main
+            # Plain merge instead of reset+rebase: rebase requires a clean
+            # working tree, but regenerating pages below always leaves one
+            # dirty (regenerated files differ from whatever a reset staged)
+            # — that combination reliably fails with "cannot rebase: you
+            # have unstaged changes" (seen repeatedly in run history). A
+            # merge has no such requirement; conflicts it leaves in
+            # generated files (blog/*/index.html) are moot because
+            # regenerating overwrites them from scratch anyway.
+            git merge --no-edit origin/main || true
             # Smart-merge posts.json so no posts are lost from either side
             python3 agents/python/merge_posts.py
             # Regenerate pages on top of merged posts
             python3 gen_blog_post_pages.py
-            # Reset our commit, re-apply on top of remote, re-stage merged file
-            git reset --soft HEAD~1
-            git rebase FETCH_HEAD || git rebase --abort
-            git add blog/posts.json blog/posts-data.js blog/
-            git diff --cached --quiet || git commit --amend --no-edit
+            git add -A
+            git commit -m "🔴 Breaking news: $(date -u '+%Y-%m-%d %H:%M') UTC (merged)" --allow-empty
           done

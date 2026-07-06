@@ -103,13 +103,20 @@ jobs:
             echo "Push rejected (attempt $attempt/5) — merging posts and retrying..."
             sleep 5
             git fetch origin main
+            # Plain merge instead of reset+rebase: rebase requires a clean
+            # working tree, but the regeneration scripts below always leave
+            # one dirty (regenerated files differ from whatever got staged
+            # by a reset) — that combination reliably fails with "cannot
+            # rebase: you have unstaged changes". A merge has no such
+            # requirement; any conflicts it leaves in generated files
+            # (blog/*/index.html, sitemap*.xml) are moot because the
+            # regeneration step below overwrites them from scratch anyway.
+            git merge --no-edit origin/main || true
             python3 agents/python/merge_posts.py
             python3 gen_blog_post_pages.py --force
             python3 gen_sitemap.py
-            git reset --soft HEAD~1
-            git rebase FETCH_HEAD || git rebase --abort
-            git add blog/posts.json blog/ sitemap*.xml agents/python/content_backfill_state.json
-            git diff --cached --quiet || git commit --amend --no-edit
+            git add -A
+            git commit -m "content: backfill thin/no-FAQ posts $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
           done
 
       - name: Trigger deploy if content changed
