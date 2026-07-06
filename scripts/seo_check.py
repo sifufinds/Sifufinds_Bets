@@ -104,11 +104,19 @@ for p in posts:
     if not noindex and '"BreadcrumbList"' not in html:
         issue(MEDIUM, 'missing_breadcrumb', slug, 'No BreadcrumbList JSON-LD found')
 
-    # 3f. Article author must be Person, not Organization
-    if not noindex and '"Article"' in html:
-        if '"@type": "Organization"' in html.split('"author"')[1][:150] if '"author"' in html else False:
+    # 3f. Posts genuinely bylined to Sifu Kai must get Person schema, not
+    # Organization — gen_blog_post_pages.py only assigns Person/#sifu-kai for
+    # author == 'Sifu Kai' exactly (desk bylines like "Football Desk"
+    # correctly get Organization, since attributing those to his named
+    # identity would misrepresent authorship — that's not a defect).
+    # Look for the JSON-LD author object specifically (`"author": {...`),
+    # not the unrelated `<meta name="author" content="...">` tag that
+    # appears earlier in every page and would otherwise be matched first.
+    if not noindex and '"Article"' in html and p.get('author', '').strip() == 'Sifu Kai':
+        m = re.search(r'"author":\s*\{[^}]*\}', html)
+        if m and '"@type": "Person"' not in m.group(0):
             issue(HIGH, 'author_schema_org_not_person', slug,
-                  'Article author @type is Organization — must be Person for Google Rich Results')
+                  'Post is bylined to Sifu Kai but author schema is not Person — check gen_blog_post_pages.py author_schema logic')
 
     # 3d. noindex posts must have canonical_override
     if noindex and not p.get('canonical_override'):
