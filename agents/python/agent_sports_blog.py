@@ -34,7 +34,7 @@ from utils.serp_research import research, build_keyword_from_category
 CATEGORIES = {
     "football":   {"icon": "⚽", "color": "#1a6b35", "author": "SifuFinds Football Desk"},
     "sportnews":  {"icon": "🗞️", "color": "#7c3aed", "author": "Sport News Desk"},
-    "betting":    {"icon": "📊", "color": "#d4af37", "author": "SifuFinds Analytics"},
+    "betting":    {"icon": "📊", "color": "#d4af37", "author": "Sifu Kai"},
     "igaming":    {"icon": "🎮", "color": "#0055a4", "author": "iGaming Desk"},
     "basketball": {"icon": "🏀", "color": "#c2410c", "author": "Basketball Desk"},
     "tennis":     {"icon": "🎾", "color": "#b45309", "author": "Tennis Desk"},

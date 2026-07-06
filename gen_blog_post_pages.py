@@ -307,7 +307,7 @@ After depositing, navigate to "My Account" → "Bonuses" and opt in to the welco
 Betway Nigeria's 100% match up to ₦100,000 is one of the most generous verified bonuses in Nigeria. The 5x rollover is lower than most competitors (1xBet requires 35x), making it genuinely achievable. We rate it **4.7/5 — Recommended**.
 
 *18+ | T&Cs Apply | Licensed by NLRC | Gamble Responsibly*''',
-        'author': 'SifuFinds Nigeria Desk',
+        'author': 'Sifu Kai',
         'image_color': '#005CA9',
         'image_icon': '🎁',
         'tags': ['Betway Nigeria', 'Betway Bonus', 'Nigeria Betting', 'How to Bet', 'Welcome Bonus'],
@@ -361,7 +361,7 @@ Bet9ja offers better odds on NPFL and Nigerian football markets due to their dee
 Both are excellent NLRC-licensed options. For value and fast withdrawals, SportyBet edges it in 2026. For local football expertise, Bet9ja is unbeatable.
 
 *18+ | Bet Responsibly | T&Cs Apply | NLRC Licensed*''',
-        'author': 'SifuFinds Nigeria Desk',
+        'author': 'Sifu Kai',
         'image_color': '#006600',
         'image_icon': '⚔️',
         'tags': ['Bet9ja', 'SportyBet', 'Nigeria', 'Bookmaker Comparison', 'Best Betting Sites Nigeria'],
@@ -410,7 +410,7 @@ Betway has the best-rated betting app in Africa — consistently rated 4.7+ star
 - **Choose Betway if**: You want local licensing, faster withdrawals, and a simpler premium experience
 
 *18+ | Bet Responsibly | T&Cs Apply*''',
-        'author': 'SifuFinds Africa Desk',
+        'author': 'Sifu Kai',
         'image_color': '#1565C0',
         'image_icon': '⚔️',
         'tags': ['1xBet', 'Betway', 'Africa Betting', 'Bookmaker Comparison', '2026'],
@@ -462,7 +462,7 @@ All top Kenya bookmakers accept M-Pesa deposits and withdrawals. Minimum M-Pesa 
 Yes. Sports betting is legal in Kenya under the Betting, Lotteries and Gaming Act. All bookmakers listed above are licensed by the **BCLB (Betting Control and Licensing Board)**. Only use BCLB-licensed bookmakers.
 
 *18+ | Bet Responsibly | T&Cs Apply | BCLB Licensed*''',
-        'author': 'SifuFinds Kenya Desk',
+        'author': 'Sifu Kai',
         'image_color': '#006600',
         'image_icon': '🦁',
         'tags': ['Kenya Betting', 'Best Betting Sites Kenya', 'BCLB', 'M-Pesa Betting', '2026'],
@@ -512,7 +512,7 @@ Dial *170# → "Mobile Money" → "Pay Bills" → Enter bookmaker merchant code 
 Yes. All bookmakers above are licensed by the **Ghana Gaming Commission (GCA)**. Betting is regulated and legal for Ghanaians aged 18+.
 
 *18+ | Bet Responsibly | T&Cs Apply | GCA Licensed*''',
-        'author': 'SifuFinds Ghana Desk',
+        'author': 'Sifu Kai',
         'image_color': '#FCD116',
         'image_icon': '⭐',
         'tags': ['Ghana Betting', 'Best Betting Sites Ghana', 'GCA', 'MTN MoMo Betting', '2026'],
@@ -554,7 +554,7 @@ Meridianbet offers consistently competitive odds on football and has been growin
 Dial *150*00# → "Lipa Bili" (Pay Bill) → Enter bookmaker number → Enter betting account → Confirm.
 
 *18+ | Bet Responsibly | T&Cs Apply | GBT Licensed*''',
-        'author': 'SifuFinds East Africa Desk',
+        'author': 'Sifu Kai',
         'image_color': '#1EB53A',
         'image_icon': '🦒',
         'tags': ['Tanzania Betting', 'Best Betting Sites Tanzania', 'GBT', 'M-Pesa Betting Tanzania', '2026'],
@@ -622,7 +622,7 @@ Accas are high-risk by nature. Always:
 - Treat each acca as entertainment, not income
 
 *18+ | Bet Responsibly | T&Cs Apply*''',
-        'author': 'SifuFinds Betting Strategy Desk',
+        'author': 'Sifu Kai',
         'image_color': '#1a6b35',
         'image_icon': '📊',
         'tags': ['Accumulator Tips', 'Betting Strategy', 'Acca Tips Africa', 'SportyBet', 'Football Betting'],
@@ -689,7 +689,7 @@ Request in "Cashier" → M-Pesa. Processing takes 1–24 hours. Complete KYC ver
 3. Contact support with your withdrawal request ID
 
 *18+ | Bet Responsibly | BCLB Licensed*''',
-        'author': 'SifuFinds Kenya Desk',
+        'author': 'Sifu Kai',
         'image_color': '#4CAF50',
         'image_icon': '📱',
         'tags': ['M-Pesa Betting', 'Kenya Betting', 'How to Use M-Pesa', 'M-Pesa Deposit', 'Betway Kenya'],
@@ -752,7 +752,7 @@ Both OPay and PalmPay are excellent for Nigerian betting deposits and withdrawal
 3. Contact the bookmaker's live chat with your OPay transaction reference number
 
 *18+ | Bet Responsibly | NLRC Licensed Bookmakers*''',
-        'author': 'SifuFinds Nigeria Desk',
+        'author': 'Sifu Kai',
         'image_color': '#00AA55',
         'image_icon': '💚',
         'tags': ['OPay Betting', 'Nigeria Betting', 'How to Deposit OPay', 'Nigerian Bookmakers', 'OPay Guide'],
@@ -808,7 +808,7 @@ Common reasons for pending withdrawals:
 - **Daily limit**: ₦5,000,000 (verified accounts)
 
 *18+ | Bet Responsibly | NLRC Licensed*''',
-        'author': 'SifuFinds Nigeria Desk',
+        'author': 'Sifu Kai',
         'image_color': '#005CA9',
         'image_icon': '💰',
         'tags': ['Betway Nigeria Withdrawal', 'How to Withdraw Betway', 'Nigeria Betting', 'OPay Withdrawal'],
