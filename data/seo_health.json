@@ -1,19 +1,18 @@
 {
-  "date": "2026-07-05",
-  "fixes_applied": 7,
+  "date": "2026-07-06",
+  "fixes_applied": 6,
   "warnings": 2,
   "fixes": [
-    "llms.txt: Last Updated \u2192 2026-07-05",
-    "index.html: dateModified \u2192 2026-07-05",
-    "Country pages: fixed 12 pages (title/meta/dateModified)",
-    "Blog HTML: refreshed dateModified on 17 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 164",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 836 total URLs",
+    "llms.txt: Last Updated \u2192 2026-07-06",
+    "index.html: dateModified \u2192 2026-07-06",
+    "Blog HTML: refreshed dateModified on 52 stale pages",
+    "Blog HTML regenerated:     Total blog posts in JSON: 171",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 842 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "156 posts below 900 words: wimbledon-2026-world-cup-2026-betting-insights, biggest-world-sport-stories-this-week, world-cup-2026-update-argentina-stunned-england-faces-pressure, world-cup-2026-cape-verde-argentina, nba-trade-frenzy-lakers-wizards-celtics...",
-    "109 posts missing FAQ section: wimbledon-2026-world-cup-2026-betting-insights, biggest-world-sport-stories-this-week, world-cup-2026-update-argentina-stunned-england-faces-pressure, world-cup-2026-cape-verde-argentina, nba-trade-frenzy-lakers-wizards-celtics"
+    "163 posts below 900 words: nba-buzz-bal-odds, viral-world-cup-upsets-norway-beats-brazil-haaland-shines, haaland-stuns-brazil-england-faces-mexico, boxing-news-terragno-survives-firefight-mason-vs-bell-delivers-thrills, africas-biggest-sports-stories-world-cup-wimbledon-f1-and-more...",
+    "116 posts missing FAQ section: nba-buzz-bal-odds, viral-world-cup-upsets-norway-beats-brazil-haaland-shines, haaland-stuns-brazil-england-faces-mexico, boxing-news-terragno-survives-firefight-mason-vs-bell-delivers-thrills, africas-biggest-sports-stories-world-cup-wimbledon-f1-and-more"
   ],
   "status": "warnings"
 }
