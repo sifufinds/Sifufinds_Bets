@@ -39,6 +39,19 @@
 - Local tasks / scripts: re-run the failed command after a short wait. If a git push fails, retry up to 3 times before stopping.
 - Never leave a failed job unaddressed. If a retry also fails, flag it and keep retrying on schedule.
 
+## STANDING RULE — SEO Health Is Continuously Self-Healing (added 2026-07-05)
+
+**Nothing about SEO health is a one-time fix. Every category below has a permanent, automated guard so it never silently regresses.**
+
+| Category | Guard | Runs |
+|---|---|---|
+| Google indexability (robots.txt, noindex, Event schema, sitemap/robots conflicts) | `scripts/check_indexability.py --fix` | Pre-deploy gate (blocking) + daily auto-heal + hourly live probe |
+| Duplicate blog slugs (silently shadows/overwrites another post's page — see Errors to Never Repeat below) | `dedupe_slugs()` in `gen_blog_post_pages.py` (auto-fixes every run) + `scripts/seo_check.py` (CRITICAL tripwire) | Every `gen_blog_post_pages.py --force` run + pre-deploy gate + daily auto-heal |
+| Title/meta length | `scripts/seo_check.py --fix` | Daily auto-heal (`daily_seo_doctor.yml`) |
+| Thin content (<1,000 words) / missing FAQ section | `agents/python/agent_content_backfill.py` — expands a batch of legacy posts per run, tracked in `agents/python/content_backfill_state.json` so progress is never lost | Daily (`content_backfill.yml`, 00:15 UTC) |
+
+**Do not hand-patch an SEO issue and call it done.** If you fix something in this list manually, also check whether the corresponding automated guard caught it — if it didn't, that guard has a bug and needs fixing so the same issue can't recur silently. If a new category of SEO issue is found, add a permanent automated check for it here, in one of the scripts above, and add a row to this table.
+
 ## Stack
 Static HTML site targeting African sports betting markets. Blog posts live in `blog/posts.json`; static pages are generated via `gen_blog_post_pages.py`.
 

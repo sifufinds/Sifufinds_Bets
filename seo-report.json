@@ -1,9 +1,9 @@
 {
   "date": "2026-07-05",
-  "total": 4,
+  "total": 9,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 7,
     "MEDIUM": 2,
     "INFO": 0
   },
@@ -11,8 +11,38 @@
     {
       "severity": "HIGH",
       "check": "title_length",
+      "page": "boxing-news-terragno-survives-firefight-mason-vs-bell-delivers-thrills",
+      "detail": "Title 72 chars (max 60): 'Boxing News: Terragno Survives Firefight, Mason vs Bell Delivers Thril'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "africas-biggest-sports-stories-world-cup-wimbledon-f1-and-more",
+      "detail": "Title 67 chars (max 60): \"Africa's Biggest Sports Stories: World Cup, Wimbledon, F1, and More\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "world-cup-2026-updates",
+      "detail": "Title 70 chars (max 60): \"World Cup 2026: What's Next for England, Morocco, and Manchester City?\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
       "page": "biggest-world-sport-stories-this-week",
       "detail": "Title 69 chars (max 60): 'Biggest World Sport Stories This Week: Wimbledon, F1, Rugby, and More'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "wimbledon-2026-value-spotted",
+      "detail": "Excerpt 163 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "world-cup-2026-updates",
+      "detail": "Excerpt 166 chars (max 155)"
     },
     {
       "severity": "HIGH",

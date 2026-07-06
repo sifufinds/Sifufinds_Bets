@@ -1094,14 +1094,28 @@ const _LANG_LS='sf_lang';
 // Default UI language per country — the visitor can always override via the switcher.
 const COUNTRY_LANG={NG:'en',KE:'en',GH:'en',ZA:'en',TZ:'sw',UG:'en',ZM:'en',ET:'en',CI:'fr',CM:'fr',SN:'fr',RW:'fr',ZW:'en',MW:'en',MZ:'pt',AO:'pt',CD:'fr',BW:'en',NA:'en',EG:'en',MA:'fr',SL:'en',LR:'en'};
 
+// Real translated pages (see gen_blog_post_pages.py) mark themselves with
+// <html data-locale="fr">. That fixes the chrome language for *this page only* —
+// it deliberately isn't persisted to localStorage, so following a link back to
+// an English page doesn't leave the visitor's actual preference clobbered by
+// a single article they happened to land on.
+function _pageLocale(){
+  const dl=document.documentElement.getAttribute('data-locale');
+  return dl&&_LANGS.some(l=>l.code===dl&&l.code!=='en')?dl:null;
+}
 function getCurrentLang(){
   return new URLSearchParams(window.location.search).get('lang')
+    ||_pageLocale()
     ||localStorage.getItem(_LANG_LS)
     ||COUNTRY_LANG[getCurrentCountry()]
     ||'en';
 }
 function changeLang(code){
   localStorage.setItem(_LANG_LS,code);
+  // If this page declares a real translated version (hreflang alternate),
+  // jump straight to it instead of just re-skinning the chrome on the same URL.
+  const alt=document.querySelector(`link[rel="alternate"][hreflang="${code}"]`);
+  if(alt){window.location.href=alt.href;return;}
   const u=new URL(window.location.href);
   u.searchParams.set('lang',code);
   window.location.href=u.toString();
@@ -1258,7 +1272,24 @@ const I18N_UI={
 'Press & Media Kit':{fr:'Kit Presse et Médias',de:'Presse- & Medienkit',es:'Kit de Prensa y Medios',pt:'Kit de Imprensa e Mídia',sw:'Kifurushi cha Vyombo vya Habari'},
 'About SifuFinds':{fr:'À Propos de SifuFinds',de:'Über SifuFinds',es:'Acerca de SifuFinds',pt:'Sobre o SifuFinds',sw:'Kuhusu SifuFinds'},
 'Contact Us':{fr:'Nous Contacter',de:'Kontaktieren Sie Uns',es:'Contáctanos',pt:'Fale Conosco',sw:'Wasiliana Nasi'},
-'Privacy Policy':{fr:'Politique de Confidentialité',de:'Datenschutzrichtlinie',es:'Política de Privacidad',pt:'Política de Privacidade',sw:'Sera ya Faragha'}
+'Privacy Policy':{fr:'Politique de Confidentialité',de:'Datenschutzrichtlinie',es:'Política de Privacidad',pt:'Política de Privacidade',sw:'Sera ya Faragha'},
+'Home':{fr:'Accueil',de:'Startseite',es:'Inicio',pt:'Início',sw:'Nyumbani'},
+'Blog':{fr:'Blog',de:'Blog',es:'Blog',pt:'Blog',sw:'Blogu'},
+'Bookmakers':{fr:'Bookmakers',de:'Wettanbieter',es:'Casas de Apuestas',pt:'Casas de Apostas',sw:'Kampuni za Kubeti'},
+'Compare Bookmakers — Start Betting Today':{fr:'Comparer les Bookmakers — Commencez à Parier Aujourd\'hui',de:'Wettanbieter Vergleichen — Heute Loslegen',es:'Comparar Casas de Apuestas — Empieza a Apostar Hoy',pt:'Comparar Casas de Apostas — Comece a Apostar Hoje',sw:'Linganisha Kampuni za Kubeti — Anza Kubeti Leo'},
+'Compare All Bookmakers →':{fr:'Comparer Tous les Bookmakers →',de:'Alle Wettanbieter Vergleichen →',es:'Comparar Todas las Casas →',pt:'Comparar Todas as Casas →',sw:'Linganisha Kampuni Zote →'},
+'📢 Advertiser Disclosure: SifuFinds may earn commission from bookmaker links. All bonuses verified. 18+.':{
+  fr:'📢 Avis publicitaire : SifuFinds peut percevoir une commission sur les liens des bookmakers. Tous les bonus sont vérifiés. 18 ans et +.',
+  de:'📢 Werbehinweis: SifuFinds kann eine Provision über Wettanbieter-Links verdienen. Alle Boni geprüft. Nur 18+.',
+  es:'📢 Divulgación publicitaria: SifuFinds puede recibir comisión por los enlaces a casas de apuestas. Todos los bonos verificados. Solo 18+.',
+  pt:'📢 Divulgação de publicidade: o SifuFinds pode receber comissão pelos links das casas de apostas. Todos os bônus verificados. Apenas 18+.',
+  sw:'📢 Ufichuzi wa Matangazo: SifuFinds inaweza kupata kamisheni kutoka kwa viungo vya kampuni za kubeti. Zawadi zote zimethibitishwa. Miaka 18+ pekee.'},
+'⚠️ Gambling involves risk. Only bet what you can afford to lose. 18+ only. If gambling is causing harm, seek help.':{
+  fr:'⚠️ Les paris comportent des risques. Ne pariez que ce que vous pouvez vous permettre de perdre. 18 ans et + uniquement. Si le jeu vous cause du tort, demandez de l\'aide.',
+  de:'⚠️ Wetten sind mit Risiko verbunden. Setzen Sie nur, was Sie sich zu verlieren leisten können. Nur 18+. Wenn Glücksspiel Schaden verursacht, holen Sie sich Hilfe.',
+  es:'⚠️ Apostar implica riesgo. Apuesta solo lo que puedas permitirte perder. Solo mayores de 18. Si el juego te está causando daño, busca ayuda.',
+  pt:'⚠️ Apostar envolve risco. Aposte apenas o que você pode perder. Apenas 18+. Se o jogo estiver causando danos, procure ajuda.',
+  sw:'⚠️ Kubeti kuna hatari. Weka dau kiasi unachoweza kumudu kupoteza. Miaka 18+ pekee. Ikiwa kamari inasababisha madhara, tafuta msaada.'}
 };
 
 function applyI18n(lang){

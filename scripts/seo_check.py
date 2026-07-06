@@ -39,6 +39,20 @@ with open(POSTS_JSON) as f:
     raw = json.load(f)
 posts = raw['posts'] if isinstance(raw, dict) else raw
 
+# ── 0. Duplicate slugs ─────────────────────────────────────────────────────────
+# gen_blog_post_pages.py writes blog/<slug>/index.html in array order, so two
+# posts sharing a slug silently collide — the later one overwrites the earlier
+# one's page and its content becomes unreachable at its own URL. The generator
+# now self-heals this (see dedupe_slugs() in gen_blog_post_pages.py), but this
+# check exists as a permanent, independent tripwire in case that ever changes.
+from collections import Counter
+slug_counts = Counter(p.get('slug', '') for p in posts)
+for slug, count in slug_counts.items():
+    if slug and count > 1:
+        issue(CRITICAL, 'duplicate_slug', slug,
+              f"{count} posts share this slug — {count - 1} post(s) are silently shadowed and unreachable. "
+              f"Run 'python3 gen_blog_post_pages.py --force' to auto-heal.")
+
 # ── 1. Title length (10–60 chars) ─────────────────────────────────────────────
 for p in posts:
     t = p.get('title', '')

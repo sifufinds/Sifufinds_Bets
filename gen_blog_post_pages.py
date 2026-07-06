@@ -6,6 +6,7 @@ for each post instead of a single JS-rendered blog index.
 
 Also generates 50+ new SEO-targeted posts and appends them to posts.json.
 """
+from __future__ import annotations
 
 import os, json, re
 from datetime import datetime, timezone
@@ -1406,11 +1407,39 @@ def inject_contextual_links(body_html: str, post: dict) -> str:
 _ALL_POSTS: list = []
 
 
-def build_post_page(post: dict) -> str:
+# ── TRANSLATIONS ──────────────────────────────────────────────────────────────
+# Locale pages live at blog/{slug}-{locale}/ (same directory depth as blog/{slug}/,
+# not blog/{locale}/{slug}/) so every hardcoded '../../' relative link in this file
+# — country pages, bookmaker reviews, tools, external authority links — keeps
+# working unmodified for translated pages too.
+LOCALES = ['fr', 'de', 'es', 'pt', 'sw']
+OG_LOCALE = {'en': 'en_GB', 'fr': 'fr_FR', 'de': 'de_DE', 'es': 'es_ES', 'pt': 'pt_PT', 'sw': 'sw_KE'}
+TRANSLATIONS_DIR = os.path.join(BASE, 'blog', 'translations')
+
+
+def load_translations(locale: str) -> dict:
+    """slug -> {title, excerpt, body} for the given locale, or {} if none exist yet."""
+    path = os.path.join(TRANSLATIONS_DIR, f'{locale}.json')
+    if not os.path.exists(path):
+        return {}
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+
+def build_post_page(post: dict, locale: str = 'en', translations: dict | None = None,
+                     available_locales: list[str] | None = None) -> str:
     slug = post['slug']
-    title = post['title']
-    excerpt = post['excerpt']
-    body_md = post.get('body', '')
+    tr = (translations or {}).get(slug) if locale != 'en' else None
+    title = tr['title'] if tr else post['title']
+    excerpt = tr['excerpt'] if tr else post['excerpt']
+    body_md = tr['body'] if tr else post.get('body', '')
+    out_slug = slug if locale == 'en' else f'{slug}-{locale}'
+    hreflang_links = '\n'.join(
+        f'<link rel="alternate" hreflang="{lg}" href="https://sifufinds.com/blog/{slug if lg == "en" else slug + "-" + lg}/">'
+        for lg in ['en'] + (available_locales or [])
+    )
+    hreflang_links += f'\n<link rel="alternate" hreflang="x-default" href="https://sifufinds.com/blog/{slug}/">'
+    html_lang_attr = f'lang="{locale}"' + ('' if locale == 'en' else f' data-locale="{locale}"')
     body_html = markdown_to_html(body_md)
     body_html = inject_contextual_links(body_html, post)
     body_html = inject_external_links(body_html)
@@ -1443,8 +1472,8 @@ def build_post_page(post: dict) -> str:
         pub_date = 'June 2026'
         pub_iso = '2026-06-07'
 
-    canonical = f'https://sifufinds.com/blog/{slug}/'
-    canonical_override = post.get('canonical_override', '')
+    canonical = f'https://sifufinds.com/blog/{out_slug}/'
+    canonical_override = post.get('canonical_override', '') if locale == 'en' else ''
     noindex = post.get('noindex', False)
     canonical_href = canonical_override if canonical_override else canonical
     robots_content = ('noindex, follow' if noindex
@@ -1452,8 +1481,8 @@ def build_post_page(post: dict) -> str:
     tags_html = ''.join(f'<span class="post-tag">{t}</span>' for t in tags[:6])
 
     return f'''<!DOCTYPE html>
-<!-- sifufinds.com/blog/{slug}/ — {title} -->
-<html lang="en">
+<!-- sifufinds.com/blog/{out_slug}/ — {title} -->
+<html {html_lang_attr}>
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
@@ -1471,6 +1500,7 @@ def build_post_page(post: dict) -> str:
 <meta name="robots" content="{robots_content}">
 <meta name="author" content="{author}">
 <link rel="canonical" href="{canonical_href}">
+{hreflang_links}
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SifuFinds">
@@ -1480,7 +1510,7 @@ def build_post_page(post: dict) -> str:
 <meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="en_GB">
+<meta property="og:locale" content="{OG_LOCALE.get(locale, 'en_GB')}">
 <meta property="article:published_time" content="{published_at}">
 <meta property="article:section" content="{category}">
 
@@ -1653,10 +1683,50 @@ init();
 </html>'''
 
 
+def dedupe_slugs(posts: list) -> bool:
+    """Ensure every post has a unique slug.
+
+    The generation loop below writes blog/<slug>/index.html for every post in
+    array order, so two posts sharing a slug silently collide — the later
+    array entry overwrites the earlier one's page and its content is never
+    reachable at its own URL. When a collision is found, the later entry (the
+    one that actually ends up live) keeps the original slug; every earlier
+    entry gets a fresh slug derived from its own title so its content gets
+    its own page instead of being shadowed.
+    """
+    from collections import defaultdict
+    by_slug = defaultdict(list)
+    for i, p in enumerate(posts):
+        by_slug[p.get('slug', '')].append(i)
+
+    existing = {p.get('slug', '') for p in posts}
+    changed = False
+    for slug, idxs in by_slug.items():
+        if not slug or len(idxs) <= 1:
+            continue
+        for i in idxs[:-1]:
+            post = posts[i]
+            base = slugify(post.get('title', slug)) or slug
+            new_slug, n = base, 2
+            while new_slug in existing:
+                new_slug = f'{base}-{n}'
+                n += 1
+            print(f"  ⚠  duplicate slug '{slug}' — renaming post {post.get('id', '?')} → '{new_slug}'")
+            post['slug'] = new_slug
+            existing.add(new_slug)
+            changed = True
+    return changed
+
+
 def main():
     # Load existing posts
     with open(POSTS_JSON, 'r', encoding='utf-8') as f:
         data = json.load(f)
+
+    if dedupe_slugs(data.get('posts', [])):
+        with open(POSTS_JSON, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print('  ✓  Fixed duplicate slugs — posts.json updated')
 
     existing_slugs = {p['slug'] for p in data.get('posts', [])}
 
@@ -1680,7 +1750,9 @@ def main():
     global _ALL_POSTS
     _ALL_POSTS = data['posts']
 
-    # Generate static HTML for every post
+    # Generate static HTML for every post, plus a locale-suffixed page
+    # (blog/{slug}-fr/, blog/{slug}-de/, ...) for every language that has a
+    # translation on file in blog/translations/{locale}.json.
     blog_dir = os.path.join(BASE, 'blog')
     pages_created = 0
     pages_skipped = 0
@@ -1688,27 +1760,33 @@ def main():
     import sys
     force = '--force' in sys.argv
 
+    locale_translations = {lg: load_translations(lg) for lg in LOCALES}
+
     for post in data['posts']:
         slug = post.get('slug')
         if not slug:
             continue
 
-        post_dir = os.path.join(blog_dir, slug)
-        out_path = os.path.join(post_dir, 'index.html')
+        available_locales = [lg for lg in LOCALES if slug in locale_translations[lg]]
 
-        if os.path.exists(out_path) and not force:
-            pages_skipped += 1
-            continue
+        for locale in ['en'] + available_locales:
+            out_slug = slug if locale == 'en' else f'{slug}-{locale}'
+            post_dir = os.path.join(blog_dir, out_slug)
+            out_path = os.path.join(post_dir, 'index.html')
 
-        os.makedirs(post_dir, exist_ok=True)
-        html = build_post_page(post)
-        with open(out_path, 'w', encoding='utf-8') as f:
-            f.write(html)
-        pages_created += 1
-        if force:
-            print(f'  ↻  blog/{slug}/index.html')
-        else:
-            print(f'  ✓  blog/{slug}/index.html')
+            if os.path.exists(out_path) and not force:
+                pages_skipped += 1
+                continue
+
+            os.makedirs(post_dir, exist_ok=True)
+            html = build_post_page(post, locale=locale,
+                                    translations=locale_translations.get(locale),
+                                    available_locales=available_locales)
+            with open(out_path, 'w', encoding='utf-8') as f:
+                f.write(html)
+            pages_created += 1
+            marker = '↻' if force else '✓'
+            print(f'  {marker}  blog/{out_slug}/index.html')
 
     print(f'\n✅  {pages_created} static blog post pages created ({pages_skipped} already existed).')
     print(f'    Total blog posts in JSON: {len(data["posts"])}')
