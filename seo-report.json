@@ -1,13 +1,25 @@
 {
   "date": "2026-07-07",
-  "total": 2,
+  "total": 4,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 2,
     "INFO": 0
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "africas-sports-news-round-up-world-cup-drama-trans-athlete-ruling-transfer-gossip",
+      "detail": "Title 89 chars (max 60): \"Africa's Sports News Round-Up: World Cup Drama, Trans Athlete Ruling, \""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "africas-sports-news-round-up-world-cup-drama-trans-athlete-ruling-transfer-gossip",
+      "detail": "Excerpt 183 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
