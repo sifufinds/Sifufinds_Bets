@@ -1,13 +1,31 @@
 {
   "date": "2026-07-08",
-  "total": 3,
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 3,
     "MEDIUM": 3,
     "INFO": 0
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "sports-news-roundup-2026",
+      "detail": "Title 63 chars (max 60): \"Roundup of the Week's Biggest Sports Stories and Betting Angles\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "wimbledon-2026-ferys-quest",
+      "detail": "Excerpt 159 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "sports-news-roundup-2026",
+      "detail": "Excerpt 169 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
