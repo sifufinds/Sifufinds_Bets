@@ -1,9 +1,9 @@
 {
   "date": "2026-07-08",
-  "total": 6,
+  "total": 4,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 1,
     "MEDIUM": 3,
     "INFO": 0
   },
@@ -11,20 +11,8 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "sports-news-roundup-2026",
-      "detail": "Title 63 chars (max 60): \"Roundup of the Week's Biggest Sports Stories and Betting Angles\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "wimbledon-2026-ferys-quest",
-      "detail": "Excerpt 159 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sports-news-roundup-2026",
-      "detail": "Excerpt 169 chars (max 155)"
+      "page": "world-cup-sportnews-betting-implications",
+      "detail": "Title 62 chars (max 60): 'Viral World Cup News: Betting Implications for African Punters'"
     },
     {
       "severity": "MEDIUM",
