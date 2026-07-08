@@ -1,43 +1,13 @@
 {
-  "date": "2026-07-07",
-  "total": 8,
+  "date": "2026-07-08",
+  "total": 3,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
+    "HIGH": 0,
     "MEDIUM": 3,
     "INFO": 0
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "stunning-upsets-and-record-defeats-in-global-sports",
-      "detail": "Title 83 chars (max 60): \"Stunning Upsets and Record Defeats in Global Sports - What's Next for \""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "world-cup-2026-updates-argentina-comeback-pochettino-future-and-value-bets",
-      "detail": "Title 81 chars (max 60): \"World Cup 2026 Updates: Argentina's Comeback, Pochettino's Future, and\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-news-roundup-2026",
-      "detail": "Title 68 chars (max 60): 'Global Sports News Roundup: Wimbledon 2026, World Cup 2026, and More'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "stunning-upsets-and-record-defeats-in-global-sports",
-      "detail": "Excerpt 169 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "world-cup-2026-updates-argentina-comeback-pochettino-future-and-value-bets",
-      "detail": "Excerpt 180 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
