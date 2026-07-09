@@ -1,73 +1,50 @@
 {
-  "updated": "2026-07-09T20:44:30.024542+00:00",
-  "source": "openfootball+fst, predictz.com, forebet.com",
-  "count": 52,
+  "updated": "2026-07-09T22:08:31.981603+00:00",
+  "source": "predictz.com, openfootball+fst, forebet.com",
+  "count": 51,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-07-09T20:44:30.024542+00:00"
+      "ts": "2026-07-09T22:08:31.981603+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-07-09T20:44:30.024542+00:00"
+      "ts": "2026-07-09T22:08:31.981603+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-07-09T20:44:30.024542+00:00"
+      "ts": "2026-07-09T22:08:31.981603+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-07-09T20:44:30.024542+00:00"
+      "ts": "2026-07-09T22:08:31.981603+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-07-09T20:44:30.024542+00:00"
+      "ts": "2026-07-09T22:08:31.981603+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-07-09T20:44:30.024542+00:00"
+      "ts": "2026-07-09T22:08:31.981603+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-07-09T20:44:30.024542+00:00"
+      "ts": "2026-07-09T22:08:31.981603+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-07-09T20:44:30.024542+00:00"
+      "ts": "2026-07-09T22:08:31.981603+00:00"
     }
   ],
   "predictions": [
-    {
-      "id": "wc_97",
-      "home": "France",
-      "away": "Morocco",
-      "competition": "FIFA World Cup 2026 · Quarter-final",
-      "comp_slug": "world-cup-2026",
-      "ko_display": "9 Jul · 20:00 UTC",
-      "ko_utc": "2026-07-09T20:00:00+00:00",
-      "match_winner": "Home",
-      "match_winner_label": "France to Win",
-      "wdw": "1",
-      "home_odds": "2.00",
-      "draw_odds": "3.30",
-      "away_odds": "3.50",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 1.5",
-      "correct_score": "",
-      "source": "openfootball+fst",
-      "scraped_at": "2026-07-09T20:44:38.124391+00:00",
-      "flag": "🌍",
-      "confidence": 60
-    },
     {
       "id": "wc_98",
       "home": "Spain",
@@ -87,7 +64,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "openfootball+fst",
-      "scraped_at": "2026-07-09T20:44:38.124391+00:00",
+      "scraped_at": "2026-07-09T22:08:34.665411+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -110,7 +87,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "openfootball+fst",
-      "scraped_at": "2026-07-09T20:44:38.124391+00:00",
+      "scraped_at": "2026-07-09T22:08:34.665411+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -133,7 +110,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "openfootball+fst",
-      "scraped_at": "2026-07-09T20:44:38.124391+00:00",
+      "scraped_at": "2026-07-09T22:08:34.665411+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -156,7 +133,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467473",
@@ -177,7 +154,7 @@
       "over25": "",
       "correct_score": "2-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467475",
@@ -198,7 +175,7 @@
       "over25": "",
       "correct_score": "1-3",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467474",
@@ -219,7 +196,7 @@
       "over25": "",
       "correct_score": "1-3",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2464819",
@@ -240,7 +217,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467442",
@@ -261,7 +238,7 @@
       "over25": "",
       "correct_score": "2-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467443",
@@ -282,7 +259,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467476",
@@ -303,7 +280,7 @@
       "over25": "",
       "correct_score": "3-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467441",
@@ -324,7 +301,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467477",
@@ -345,7 +322,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467478",
@@ -366,7 +343,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467480",
@@ -387,7 +364,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467483",
@@ -408,7 +385,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467482",
@@ -429,7 +406,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2467531",
@@ -450,7 +427,7 @@
       "over25": "",
       "correct_score": "3-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2440909",
@@ -471,7 +448,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2460274",
@@ -492,7 +469,7 @@
       "over25": "",
       "correct_score": "2-3",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2464826",
@@ -513,7 +490,7 @@
       "over25": "",
       "correct_score": "2-3",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "fb_2460276",
@@ -534,7 +511,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-09T20:44:38.086345+00:00"
+      "scraped_at": "2026-07-09T22:08:34.650395+00:00"
     },
     {
       "id": "1195762",
@@ -555,7 +532,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083804+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647883+00:00"
     },
     {
       "id": "1195738",
@@ -576,7 +553,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083768+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647844+00:00"
     },
     {
       "id": "1195782",
@@ -597,7 +574,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083977+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648067+00:00"
     },
     {
       "id": "1195801",
@@ -618,7 +595,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083652+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647725+00:00"
     },
     {
       "id": "1195780",
@@ -639,7 +616,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084155+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648281+00:00"
     },
     {
       "id": "1195760",
@@ -660,7 +637,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084184+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648312+00:00"
     },
     {
       "id": "1195766",
@@ -681,7 +658,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083834+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647916+00:00"
     },
     {
       "id": "1195781",
@@ -702,7 +679,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084010+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648130+00:00"
     },
     {
       "id": "1195775",
@@ -723,7 +700,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084368+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648503+00:00"
     },
     {
       "id": "1195800",
@@ -744,7 +721,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083536+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647642+00:00"
     },
     {
       "id": "1195734",
@@ -765,7 +742,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083870+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647952+00:00"
     },
     {
       "id": "1195774",
@@ -786,7 +763,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084406+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648542+00:00"
     },
     {
       "id": "1204243",
@@ -807,7 +784,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084467+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648602+00:00"
     },
     {
       "id": "1195778",
@@ -828,7 +805,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084248+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648377+00:00"
     },
     {
       "id": "1195802",
@@ -849,7 +826,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083691+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647765+00:00"
     },
     {
       "id": "1195759",
@@ -870,7 +847,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083907+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647993+00:00"
     },
     {
       "id": "1195768",
@@ -891,7 +868,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084043+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648166+00:00"
     },
     {
       "id": "1195764",
@@ -912,7 +889,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084118+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648243+00:00"
     },
     {
       "id": "1195777",
@@ -933,7 +910,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084272+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648402+00:00"
     },
     {
       "id": "1195767",
@@ -954,7 +931,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083947+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648034+00:00"
     },
     {
       "id": "1195761",
@@ -975,7 +952,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084300+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648429+00:00"
     },
     {
       "id": "1195771",
@@ -996,7 +973,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084332+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648466+00:00"
     },
     {
       "id": "1195797",
@@ -1017,7 +994,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083449+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647585+00:00"
     },
     {
       "id": "1174357",
@@ -1038,7 +1015,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084527+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648638+00:00"
     },
     {
       "id": "1195798",
@@ -1059,7 +1036,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083598+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647684+00:00"
     },
     {
       "id": "1195755",
@@ -1080,7 +1057,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084443+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648576+00:00"
     },
     {
       "id": "1195772",
@@ -1101,7 +1078,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084085+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648209+00:00"
     },
     {
       "id": "1195773",
@@ -1122,7 +1099,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.084214+00:00"
+      "scraped_at": "2026-07-09T22:08:34.648343+00:00"
     },
     {
       "id": "1195799",
@@ -1143,7 +1120,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-09T20:44:38.083732+00:00"
+      "scraped_at": "2026-07-09T22:08:34.647807+00:00"
     }
   ]
 }
