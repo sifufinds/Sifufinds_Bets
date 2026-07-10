@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-07-10T16:26:07.677793+00:00",
+  "checked_at": "2026-07-10T17:27:28.061748+00:00",
   "healthy": true,
   "pages": {
     "Home": true,
@@ -12,7 +12,8 @@
     "live.json": true
   },
   "fixes_applied": [
-    "patched missing football keys: afcon, cafl"
+    "refreshed stale live.json (81 min old)",
+    "patched missing football keys: afcon, cafl, local"
   ],
-  "fix_count": 1
+  "fix_count": 2
 }
