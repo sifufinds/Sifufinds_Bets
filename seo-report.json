@@ -1,13 +1,25 @@
 {
-  "date": "2026-07-09",
-  "total": 3,
+  "date": "2026-07-10",
+  "total": 5,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 3,
     "INFO": 0
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "boxing-news-ruiz-jr-signs-with-matchroom",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "world-cup-2026-france-v-morocco",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
