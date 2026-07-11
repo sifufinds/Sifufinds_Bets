@@ -303,7 +303,8 @@ ZM:[
 {abbr:'GSZ',bg:'#2E7D32',tc:'#fff',name:'GSB Zambia',url:'https://www.gsbet.co.tz',tag:'Great Sports Betting – Multi-Country',off:'100% Welcome Bonus',top:'100% Match',stars:3,min:'ZK 5',instant:true,cashout:true,stream:false,sports:18,lic:'GLB Licensed',nodep:false,badge:'',terms:'100% match on first deposit. MTN MoMo. T&Cs. 18+.',pms:['MTN MoMo Zambia','Airtel Money Zambia','Bank Transfer']}
 ],
 ET:[
-{abbr:'1X',bg:'#E60000',tc:'#fff',name:'1xBet Ethiopia',url:'https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97',tag:'International Bookmaker – EPL & AFCON Markets',off:'200% First Deposit Bonus – Up to Br 10,000',top:'Br 10,000',stars:4,min:'Br 50',instant:true,cashout:true,stream:true,sports:50,lic:'International',nodep:false,badge:'',terms:'200% match up to Br 10,000. Wager x5 at min odds 1.40. 30 days. T&Cs apply. 18+.',pms:['Bank Transfer','Visa','Mastercard']}
+{abbr:'1X',bg:'#E60000',tc:'#fff',name:'1xBet Ethiopia',url:'https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97',tag:'International Bookmaker – EPL & AFCON Markets',off:'200% First Deposit Bonus – Up to Br 10,000',top:'Br 10,000',stars:4,min:'Br 50',instant:true,cashout:true,stream:true,sports:50,lic:'International',nodep:false,badge:'',terms:'200% match up to Br 10,000. Wager x5 at min odds 1.40. 30 days. T&Cs apply. 18+.',pms:['Bank Transfer','Visa','Mastercard']},
+{abbr:'RB',bg:'#1B5E20',tc:'#fff',name:'Rasbet',url:'https://rasbet.goaffnk.com/t/MTRfMQ==/',tag:'Rising Sportsbook for the Ethiopian Market',off:'Welcome Bonus on First Deposit',top:'Deposit Bonus',stars:3,min:'Br 50',instant:true,cashout:true,stream:false,sports:20,lic:'Licensed',nodep:false,badge:'new',terms:'Welcome bonus on first deposit. T&Cs apply. 18+.',pms:['Bank Transfer']}
 ],
 CI:[
 {abbr:'1X',bg:'#E60000',tc:'#fff',name:'1xBet Côte d\'Ivoire',url:'https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97',tag:'200% Bonus – Highest in Ivory Coast',off:'200% First Deposit Bonus – Up to CFA 200,000',top:'CFA 200,000',stars:5,min:'CFA 200',instant:true,cashout:true,stream:true,sports:50,lic:'ARJEL Licensed',nodep:false,badge:'hot',terms:'200% match up to CFA 200,000. Wager x5. Min odds 1.40. 30 days. T&Cs. 18+.',pms:['Orange Money','MTN MoMo','Wave','Visa','Mastercard']},
@@ -722,7 +723,7 @@ const BRAND_DOMAINS={
   'SCH':'soccershop.co.za','1BT':'firstbet.co.za','BX':'betxchange.co.za',
   'TBB':'thababet.co.za','SP+':'supabets.com','PB':'premierbet.com',
   'BTA':'betano.com','BLB':'bolabet.com',
-  'PB':'premierbet.com','BNZ':'bonanzabet.co.zm'
+  'PB':'premierbet.com','BNZ':'bonanzabet.co.zm','RB':'rasbet.bet'
 };
 // Local logo assets — served from /assets/logos/ on the site root.
 // These take priority over any remote service. Add new entries as logos are downloaded.

@@ -131,8 +131,14 @@ ARTICLE REQUIREMENTS:
 - 700-900 words, grounded in the real news provided
 - Compare odds across at least 2 African bookmakers per market
 - Include a responsible gambling section
-- End with a CTA linking to {SITE_URL}
+- End with a CTA mentioning {SITE_URL} as plain text — do NOT wrap it in a markdown link
 - FINAL LINE must be: *18+ | Bet Responsibly | T&Cs Apply*
+
+LINKING RULES — NON-NEGOTIABLE:
+- NEVER write a markdown link to any {SITE_URL}/<path> page (e.g. do not write "[African Bookmakers]({SITE_URL}/african-bookmakers)")
+- The site automatically hyperlinks bookmaker names, country names, and key terms for you after you submit the article — you only need to MENTION them in plain text, never link them yourself
+- You may mention {SITE_URL} as bare plain text (no brackets, no parentheses) in the CTA, nothing else
+- External links (FIFA, UEFA, CAF, etc.) are also auto-inserted — mention the organisation by name in plain text only, do not add markdown links for them either
 
 OUTPUT FORMAT — return EXACTLY this structure, nothing outside the markers:
 
