@@ -1,48 +1,47 @@
 {
-  "updated": "2026-07-11T11:00:19.592363+00:00",
-  "source": "predictz.com, openfootball+fst, forebet.com",
-  "count": 98,
+  "updated": "2026-07-11T12:03:54.347987+00:00",
+  "source": "forebet.com, predictz.com, openfootball+fst",
+  "count": 100,
   "scrape_log": [
     {
       "page": "main",
-      "status": "error",
-      "error": "All scrapers failed for https://www.predictz.com/predictions/: firecrawl: The read operation timed out",
-      "ts": "2026-07-11T11:00:19.592363+00:00"
+      "status": "ok",
+      "ts": "2026-07-11T12:03:54.347987+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-07-11T11:00:19.592363+00:00"
+      "ts": "2026-07-11T12:03:54.347987+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-07-11T11:00:19.592363+00:00"
+      "ts": "2026-07-11T12:03:54.347987+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-07-11T11:00:19.592363+00:00"
+      "ts": "2026-07-11T12:03:54.347987+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-07-11T11:00:19.592363+00:00"
+      "ts": "2026-07-11T12:03:54.347987+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-07-11T11:00:19.592363+00:00"
+      "ts": "2026-07-11T12:03:54.347987+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-07-11T11:00:19.592363+00:00"
+      "ts": "2026-07-11T12:03:54.347987+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-07-11T11:00:19.592363+00:00"
+      "ts": "2026-07-11T12:03:54.347987+00:00"
     }
   ],
   "predictions": [
@@ -65,7 +64,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "openfootball+fst",
-      "scraped_at": "2026-07-11T11:01:24.602584+00:00",
+      "scraped_at": "2026-07-11T12:03:57.597856+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -88,7 +87,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "openfootball+fst",
-      "scraped_at": "2026-07-11T11:01:24.602584+00:00",
+      "scraped_at": "2026-07-11T12:03:57.597856+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -111,7 +110,7 @@
       "over25": "",
       "correct_score": "2-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464829",
@@ -132,7 +131,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2467738",
@@ -153,7 +152,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464823",
@@ -174,7 +173,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2468044",
@@ -195,7 +194,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464822",
@@ -216,7 +215,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464832",
@@ -237,7 +236,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2467735",
@@ -258,7 +257,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464831",
@@ -279,7 +278,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464833",
@@ -300,7 +299,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464828",
@@ -321,7 +320,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464821",
@@ -342,7 +341,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464820",
@@ -363,7 +362,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2467736",
@@ -384,7 +383,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464825",
@@ -405,7 +404,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2464830",
@@ -426,7 +425,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2467737",
@@ -447,7 +446,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2424078",
@@ -468,7 +467,7 @@
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2424077",
@@ -489,7 +488,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2424080",
@@ -510,7 +509,7 @@
       "over25": "",
       "correct_score": "3-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2424081",
@@ -531,7 +530,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2424079",
@@ -552,7 +551,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2467730",
@@ -573,7 +572,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2420905",
@@ -594,7 +593,7 @@
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2456926",
@@ -615,7 +614,7 @@
       "over25": "",
       "correct_score": "1-3",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2456928",
@@ -636,7 +635,7 @@
       "over25": "",
       "correct_score": "1-3",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2456925",
@@ -657,7 +656,7 @@
       "over25": "",
       "correct_score": "3-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2456927",
@@ -678,7 +677,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2468009",
@@ -699,7 +698,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2442821",
@@ -720,7 +719,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2428051",
@@ -741,7 +740,7 @@
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2435860",
@@ -762,7 +761,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2460277",
@@ -783,7 +782,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "fb_2442822",
@@ -804,7 +803,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-11T11:01:24.585863+00:00"
+      "scraped_at": "2026-07-11T12:03:57.581363+00:00"
     },
     {
       "id": "1172125",
@@ -825,7 +824,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103546+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576947+00:00"
     },
     {
       "id": "1181458",
@@ -846,7 +845,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103853+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577254+00:00"
     },
     {
       "id": "1181474",
@@ -867,28 +866,28 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104321+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577690+00:00"
     },
     {
-      "id": "1179941",
-      "home": "Ansan Greeners",
-      "away": "Suwon Bluewings",
-      "competition": "South Korea K League 2",
-      "comp_slug": "south-korea/k-league-2",
+      "id": "1191150",
+      "home": "Annan Athletic",
+      "away": "Ross County",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
       "ko_display": "Today",
       "ko_utc": null,
       "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
+      "match_winner_label": "Away 0-2",
       "wdw": "2",
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "BTTS No",
+      "btts": "",
       "btts_win": "",
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105424+00:00"
+      "scraped_at": "2026-07-11T12:03:57.575629+00:00"
     },
     {
       "id": "1181457",
@@ -909,7 +908,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103899+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577299+00:00"
     },
     {
       "id": "1195244",
@@ -930,7 +929,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.102819+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576316+00:00"
     },
     {
       "id": "1181460",
@@ -951,7 +950,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103964+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577346+00:00"
     },
     {
       "id": "1174771",
@@ -972,7 +971,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104010+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577390+00:00"
     },
     {
       "id": "1181468",
@@ -993,7 +992,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104050+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577429+00:00"
     },
     {
       "id": "1174770",
@@ -1014,7 +1013,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104093+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577472+00:00"
     },
     {
       "id": "1198229",
@@ -1035,7 +1034,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104437+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577787+00:00"
     },
     {
       "id": "1185883",
@@ -1056,7 +1055,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104474+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577822+00:00"
     },
     {
       "id": "1181472",
@@ -1077,7 +1076,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104357+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577726+00:00"
     },
     {
       "id": "1183904",
@@ -1098,49 +1097,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104898+00:00"
-    },
-    {
-      "id": "1179938",
-      "home": "Daegu FC",
-      "away": "Seongnam FC",
-      "competition": "South Korea K League 2",
-      "comp_slug": "south-korea/k-league-2",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105470+00:00"
-    },
-    {
-      "id": "1185444",
-      "home": "Dalian Kun City",
-      "away": "Nanjing City",
-      "competition": "China League One",
-      "comp_slug": "china/league-one",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105011+00:00"
+      "scraped_at": "2026-07-11T12:03:57.578187+00:00"
     },
     {
       "id": "1204175",
@@ -1161,7 +1118,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104731+00:00"
+      "scraped_at": "2026-07-11T12:03:57.578116+00:00"
     },
     {
       "id": "1190741",
@@ -1182,7 +1139,91 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104136+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577512+00:00"
+    },
+    {
+      "id": "1191154",
+      "home": "Dumbarton",
+      "away": "St Mirren",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Away",
+      "match_winner_label": "Away 0-2",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.575675+00:00"
+    },
+    {
+      "id": "1191162",
+      "home": "Dundee",
+      "away": "Airdrie Utd",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 2-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.575717+00:00"
+    },
+    {
+      "id": "1191148",
+      "home": "East Kilbride",
+      "away": "Dunfermline",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Away",
+      "match_winner_label": "Away 1-2",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.575760+00:00"
+    },
+    {
+      "id": "1191149",
+      "home": "Edinburgh City",
+      "away": "Falkirk",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Away",
+      "match_winner_label": "Away 0-2",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.575806+00:00"
     },
     {
       "id": "1175649",
@@ -1203,7 +1244,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103271+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576663+00:00"
     },
     {
       "id": "1183017",
@@ -1224,7 +1265,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.102994+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576407+00:00"
     },
     {
       "id": "1172126",
@@ -1245,7 +1286,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103500+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576883+00:00"
     },
     {
       "id": "1171192",
@@ -1266,91 +1307,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103401+00:00"
-    },
-    {
-      "id": "1176584",
-      "home": "Gimcheon Sangmu",
-      "away": "Bucheon 1995",
-      "competition": "South Korea K League 1",
-      "comp_slug": "south-korea/k-league-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105284+00:00"
-    },
-    {
-      "id": "1185446",
-      "home": "Guandong GZ-Power",
-      "away": "Shijiazhuang Gongfu",
-      "competition": "China League One",
-      "comp_slug": "china/league-one",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105096+00:00"
-    },
-    {
-      "id": "1176586",
-      "home": "Gwangju FC",
-      "away": "Pohang Steelers",
-      "competition": "South Korea K League 1",
-      "comp_slug": "south-korea/k-league-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105330+00:00"
-    },
-    {
-      "id": "1179940",
-      "home": "Hwaseong",
-      "away": "Paju Frontier",
-      "competition": "South Korea K League 2",
-      "comp_slug": "south-korea/k-league-2",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105515+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576793+00:00"
     },
     {
       "id": "1173141",
@@ -1371,7 +1328,28 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103180+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576569+00:00"
+    },
+    {
+      "id": "1191159",
+      "home": "Inverness CT",
+      "away": "East Fife",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 3-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.575849+00:00"
     },
     {
       "id": "1184815",
@@ -1392,7 +1370,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105143+00:00"
+      "scraped_at": "2026-07-11T12:03:57.578235+00:00"
     },
     {
       "id": "1204176",
@@ -1413,7 +1391,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104693+00:00"
+      "scraped_at": "2026-07-11T12:03:57.578055+00:00"
     },
     {
       "id": "1184817",
@@ -1434,7 +1412,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105231+00:00"
+      "scraped_at": "2026-07-11T12:03:57.578335+00:00"
     },
     {
       "id": "1194177",
@@ -1455,7 +1433,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103449+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576838+00:00"
     },
     {
       "id": "1175651",
@@ -1476,7 +1454,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103358+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576744+00:00"
     },
     {
       "id": "1173139",
@@ -1497,7 +1475,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103134+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576525+00:00"
     },
     {
       "id": "1198197",
@@ -1518,7 +1496,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103041+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576447+00:00"
     },
     {
       "id": "1181463",
@@ -1539,7 +1517,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104183+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577559+00:00"
     },
     {
       "id": "1182555",
@@ -1560,7 +1538,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104604+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577968+00:00"
     },
     {
       "id": "1173615",
@@ -1581,7 +1559,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103761+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577162+00:00"
     },
     {
       "id": "1204174",
@@ -1602,7 +1580,28 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104764+00:00"
+      "scraped_at": "2026-07-11T12:03:57.578147+00:00"
+    },
+    {
+      "id": "1191156",
+      "home": "Morton",
+      "away": "Linlithgow Rose",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 2-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.575885+00:00"
     },
     {
       "id": "1182556",
@@ -1623,7 +1622,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104649+00:00"
+      "scraped_at": "2026-07-11T12:03:57.578011+00:00"
     },
     {
       "id": "1206493",
@@ -1644,7 +1643,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103714+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577118+00:00"
     },
     {
       "id": "1180478",
@@ -1665,7 +1664,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.102908+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576359+00:00"
     },
     {
       "id": "1206293",
@@ -1686,7 +1685,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.102763+00:00"
+      "scraped_at": "2026-07-11T12:03:57.575562+00:00"
     },
     {
       "id": "1173613",
@@ -1707,7 +1706,49 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103805+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577206+00:00"
+    },
+    {
+      "id": "1191161",
+      "home": "Partick",
+      "away": "Brechin",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 3-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.575947+00:00"
+    },
+    {
+      "id": "1191153",
+      "home": "Peterhead",
+      "away": "Hamilton",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Draw",
+      "match_winner_label": "Draw 1-1",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.575990+00:00"
     },
     {
       "id": "1202519",
@@ -1728,7 +1769,49 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104521+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577869+00:00"
+    },
+    {
+      "id": "1191157",
+      "home": "Queen of South",
+      "away": "Kelty Hearts",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 2-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.576034+00:00"
+    },
+    {
+      "id": "1191152",
+      "home": "Queens Park",
+      "away": "Brora Rangers",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 3-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.576072+00:00"
     },
     {
       "id": "1181473",
@@ -1749,7 +1832,28 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104403+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577755+00:00"
+    },
+    {
+      "id": "1191160",
+      "home": "Raith",
+      "away": "Elgin",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 3-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.576112+00:00"
     },
     {
       "id": "1175650",
@@ -1770,7 +1874,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103318+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576707+00:00"
     },
     {
       "id": "1181464",
@@ -1791,56 +1895,14 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104228+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577604+00:00"
     },
     {
-      "id": "1185445",
-      "home": "Shaanxi Union",
-      "away": "Meizhou Hakka",
-      "competition": "China League One",
-      "comp_slug": "china/league-one",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105057+00:00"
-    },
-    {
-      "id": "1183902",
-      "home": "Shanghai Shenhua",
-      "away": "Beijing Guoan",
-      "competition": "China Super League",
-      "comp_slug": "china/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 2-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104808+00:00"
-    },
-    {
-      "id": "1183903",
-      "home": "Sichuan Jiuniu",
-      "away": "Qingdao Youth Island",
-      "competition": "China Super League",
-      "comp_slug": "china/super-league",
+      "id": "1191151",
+      "home": "Spartans",
+      "away": "Arbroath",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
       "ko_display": "Today",
       "ko_utc": null,
       "match_winner": "Away",
@@ -1849,12 +1911,75 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "BTTS No",
+      "btts": "",
       "btts_win": "",
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104855+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576154+00:00"
+    },
+    {
+      "id": "1191158",
+      "home": "Stenhousemuir",
+      "away": "Forfar",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 2-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.576200+00:00"
+    },
+    {
+      "id": "1191146",
+      "home": "Stirling",
+      "away": "Dundee Utd",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Away",
+      "match_winner_label": "Away 0-2",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.576278+00:00"
+    },
+    {
+      "id": "1191155",
+      "home": "Stranraer",
+      "away": "Ayr",
+      "competition": "Scottish League Cup",
+      "comp_slug": "scotland/scottish-league-cup",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Away",
+      "match_winner_label": "Away 0-2",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-07-11T12:03:57.576241+00:00"
     },
     {
       "id": "1173140",
@@ -1875,7 +2000,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103223+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576611+00:00"
     },
     {
       "id": "1181462",
@@ -1896,7 +2021,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104278+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577648+00:00"
     },
     {
       "id": "1172123",
@@ -1917,7 +2042,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103584+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576986+00:00"
     },
     {
       "id": "1206491",
@@ -1938,49 +2063,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103631+00:00"
-    },
-    {
-      "id": "1176585",
-      "home": "Ulsan Hyundai",
-      "away": "Jeonbuk Motors",
-      "competition": "South Korea K League 1",
-      "comp_slug": "south-korea/k-league-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105374+00:00"
-    },
-    {
-      "id": "1180479",
-      "home": "Vaprus",
-      "away": "Tammeka",
-      "competition": "Estonia Meistriliiga",
-      "comp_slug": "estonia/meistriliiga",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.102868+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577032+00:00"
     },
     {
       "id": "1183015",
@@ -2001,7 +2084,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103082+00:00"
+      "scraped_at": "2026-07-11T12:03:57.576481+00:00"
     },
     {
       "id": "1206492",
@@ -2022,7 +2105,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.103676+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577078+00:00"
     },
     {
       "id": "1202511",
@@ -2043,49 +2126,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104559+00:00"
-    },
-    {
-      "id": "1185442",
-      "home": "Yanbian Longding",
-      "away": "Suzhou Dongwu",
-      "competition": "China League One",
-      "comp_slug": "china/league-one",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.104964+00:00"
-    },
-    {
-      "id": "1197747",
-      "home": "Yongin FC",
-      "away": "Chungbuk Cheongju",
-      "competition": "South Korea K League 2",
-      "comp_slug": "south-korea/k-league-2",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105577+00:00"
+      "scraped_at": "2026-07-11T12:03:57.577922+00:00"
     },
     {
       "id": "1184814",
@@ -2106,7 +2147,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-11T09:49:46.105189+00:00"
+      "scraped_at": "2026-07-11T12:03:57.578280+00:00"
     }
   ]
 }
