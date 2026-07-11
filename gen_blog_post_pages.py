@@ -1683,6 +1683,69 @@ init();
 </html>'''
 
 
+def _load_htaccess_redirect_targets() -> set[str]:
+    """Mirror scripts/validate_site.py's redirect-target parsing so this
+    generator and the pre-deploy validator agree on what counts as 'covered'.
+    """
+    targets: set[str] = set()
+    htaccess_path = os.path.join(BASE, '.htaccess')
+    try:
+        with open(htaccess_path, encoding='utf-8') as f:
+            for line in f:
+                m = re.match(r'^\s*Redirect\s+30[12]\s+(/\S+)', line)
+                if m:
+                    targets.add('https://sifufinds.com' + m.group(1).rstrip('/'))
+                    continue
+                m = re.match(r'^\s*RewriteRule\s+\^(.+?)\$\s+(/\S+?)\s+\[R=30[12]', line)
+                if m:
+                    slug = m.group(1).rstrip('/?')
+                    targets.add('https://sifufinds.com/' + slug.lstrip('/'))
+    except OSError:
+        pass
+    return targets
+
+
+_INTERNAL_LINK_RE = re.compile(r'\[([^\]]+)\]\(https://sifufinds\.com/([^)#?]+)\)')
+
+
+def sanitize_internal_links(posts: list) -> bool:
+    """Strip markdown links to sifufinds.com paths that don't resolve to a
+    real page and aren't covered by an .htaccess redirect.
+
+    The AI blog-writer agent occasionally hallucinates internal URLs (e.g.
+    "[African Bookmakers](https://sifufinds.com/african-bookmakers)") that
+    don't exist. Left in place these 404 on the live site and trip
+    scripts/validate_site.py CHECK 2, which blocks every deploy until fixed
+    by hand — this silently stopped new posts reaching production for days
+    (see AGENT-KNOWLEDGE.md, 2026-07-12). Converting them to plain text
+    keeps the deploy pipeline moving automatically; the auto-linker below
+    (COUNTRY_LINKS / BOOKMAKER_LINKS / CORE_LINKS) still hyperlinks the same
+    terms correctly on its own pass.
+    """
+    redirect_targets = _load_htaccess_redirect_targets()
+    changed = False
+
+    def resolve(match: re.Match) -> str:
+        text, path = match.group(1), match.group(2).rstrip('/')
+        target = f'https://sifufinds.com/{path}'
+        index_file = os.path.join(BASE, path, 'index.html')
+        html_file = os.path.join(BASE, path + '.html')
+        if os.path.exists(index_file) or os.path.exists(html_file) or target in redirect_targets:
+            return match.group(0)
+        return text
+
+    for post in posts:
+        body = post.get('body', '')
+        if 'sifufinds.com/' not in body:
+            continue
+        new_body = _INTERNAL_LINK_RE.sub(resolve, body)
+        if new_body != body:
+            post['body'] = new_body
+            changed = True
+            print(f"  ⚠  stripped broken internal link(s) from post '{post.get('slug', '?')}'")
+    return changed
+
+
 def dedupe_slugs(posts: list) -> bool:
     """Ensure every post has a unique slug.
 
@@ -1727,6 +1790,11 @@ def main():
         with open(POSTS_JSON, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
         print('  ✓  Fixed duplicate slugs — posts.json updated')
+
+    if sanitize_internal_links(data.get('posts', [])):
+        with open(POSTS_JSON, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print('  ✓  Stripped broken internal links — posts.json updated')
 
     existing_slugs = {p['slug'] for p in data.get('posts', [])}
 

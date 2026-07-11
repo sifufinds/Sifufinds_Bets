@@ -112,6 +112,10 @@ RewriteRule ^india-vs-afghanistan-series-preview-and-odds/?$ /blog/ [R=301,L]
 RewriteRule ^rugby-betting-strategies-for-african-bettors/?$ /betting/rugby-betting/ [R=301,L]
 RewriteRule ^rugby-betting-tips-for-beginners/?$ /betting/rugby-betting/ [R=301,L]
 RewriteRule ^top-rugby-bookmakers-in-africa/?$ /bookmakers/ [R=301,L]
+RewriteRule ^african-bookmakers/?$ /bookmakers/ [R=301,L]
+RewriteRule ^african-leagues/?$ /leagues/ [R=301,L]
+RewriteRule ^football-betting-nigeria/?$ /countries/nigeria/ [R=301,L]
+RewriteRule ^sports-news/?$ /blog/ [R=301,L]
 
 # ── CACHE CONTROL ────────────────────────────────────────────────────────────
 # Live/content data files must never be cached — they regenerate without a
