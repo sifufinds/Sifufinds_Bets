@@ -75,7 +75,7 @@ def _is_daily_limit(err: str) -> bool:
     return any(k in el for k in _TPD_KEYWORDS) and "limit: 0" in el
 
 
-def _parse_retry_seconds(err: str, cap: int = 120) -> int:
+def _parse_retry_seconds(err: str, cap: int = 60) -> int:
     """Extract retry-after seconds from error text; return 0 if not found."""
     # Groq: "Please try again in 46m26.4s"
     m = re.search(r"try again in\s+(?:(\d+)m)?(\d+(?:\.\d+)?)s", err)

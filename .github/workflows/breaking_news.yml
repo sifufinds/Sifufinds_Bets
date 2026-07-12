@@ -19,7 +19,11 @@ permissions:
 jobs:
   publish-breaking-news:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # 15 min (was 10): 3 sequential generate_post() calls can each burn up to
+    # ~2min in Groq RPM-limit retry waits (see llm.py _parse_retry_seconds cap)
+    # before falling through to Gemini — 10min was tight enough that legitimate
+    # runs got killed mid-write by the job timeout rather than failing cleanly.
+    timeout-minutes: 15
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
