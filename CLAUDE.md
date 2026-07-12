@@ -91,6 +91,24 @@ Only after completing Steps 1–3, draft the post with:
 - **Schema**: Article + FAQPage JSON-LD are generated automatically by `gen_blog_post_pages.py` — do not skip the `body` field in `posts.json`
 - **CTA**: bookmaker affiliate link with country-specific currency context
 
+### Voice & Language Rules — MANDATORY for Every Post (added 2026-07-12)
+Every blog post must read as if written by a real UK-based sports journalist, not an LLM. This applies whether the post is written by a human, Claude, or one of the automated agents (`agent_sports_blog.py`, `agent_content_backfill.py`).
+
+- **UK English throughout**: favourite not favorite, colour not color, organise not organize, side/squad not "team" every time, "boot" not "cleat", "pitch" not "field", "kit" not "jersey", full stops not periods, single quotes as the default. Spell-check every post against UK spelling before publishing.
+- **No dashes joining words as an AI tell**: do not use em dashes or en dashes to connect clauses (e.g. "the striker — who scored twice — impressed"). Rewrite as separate sentences, commas, or parentheses instead. This is one of the most obvious AI writing tells and readers/Google both penalise it.
+- **Sound human, not generated**: vary sentence length deliberately (mix short punchy sentences with longer ones), avoid formulaic openers ("In the world of...", "When it comes to...", "In today's fast-paced..."), avoid stock transition words used repeatedly ("Furthermore", "Moreover", "Additionally"), avoid symmetrical three-item lists in every paragraph, avoid ending every section with a neat summary sentence. Real football writing has opinions, mild tangents, and rhythm — not uniform paragraph shapes.
+- **No AI-detectable patterns**: don't over-hedge ("it could be argued that", "some might say"), don't stack adjectives, don't repeat the exact same sentence structure across FAQ answers, don't use the same 2-3 sentence openers across posts. Read the draft back and cut anything that sounds like a template being filled in.
+- **Still 100% accurate**: none of the above licenses inventing facts, scores, transfers, or quotes. Every named event still must come from real research (Steps 1-3). Human-sounding and factually grounded are not in tension.
+
+### GEO (Generative Engine Optimisation) Rules — MANDATORY for Every Post (added 2026-07-12)
+Every post must also be structured to get cited by AI answer engines (Google AI Overviews, ChatGPT, Perplexity, Bing Copilot), not just rank in classic SERPs:
+
+- **Answer the core question in the first 2-3 sentences** of the article, in plain, quotable, self-contained language — don't bury the direct answer under scene-setting.
+- **Write extractable passages**: each FAQ answer and each key stat/odds callout should stand alone as a complete sentence that makes sense with zero surrounding context, since AI engines lift isolated passages.
+- **Use clear declarative statements for facts and numbers** (odds, dates, scorelines) rather than vague qualifiers, so they're easy for a model to cite precisely.
+- **Keep the FAQ section genuinely structured** (`## FAQ` heading, one `###`-level question per entry, one direct answer per entry) since this is what both FAQPage schema and AI crawlers parse most reliably.
+- **Named-entity precision**: use full correct names for people, teams, and competitions on first mention (e.g. "Jude Bellingham", "World Cup 2026", not "the midfielder" or "the tournament") so entity-matching engines can ground the passage correctly.
+
 ### Step 5 — Pre-Publish SEO Checklist
 - [ ] Primary keyword in title, H1, first 100 words, and at least 2 H2s
 - [ ] Secondary/LSI keywords distributed naturally throughout
@@ -105,6 +123,10 @@ Only after completing Steps 1–3, draft the post with:
 - [ ] Article + FAQPage schema generated automatically — verify with `grep -c "@type.*Article" blog/SLUG/index.html` (should be ≥ 1)
 - [ ] Mobile-readable (no wall-of-text paragraphs > 3 sentences)
 - [ ] 18+ / Responsible Gambling disclaimer at bottom
+- [ ] UK English spelling throughout (favourite, colour, organise…) — no US spellings
+- [ ] No em/en dashes joining clauses — rewrite as separate sentences or commas
+- [ ] Sentence length varies; no formulaic AI openers or repeated transition words
+- [ ] Direct, quotable answer to the core question appears in the first 2-3 sentences (GEO)
 
 ### SEO Rules That Apply to Every Page (Not Just Blog Posts)
 - **Titles**: always ≤ 60 chars. Use `seo_title()` in every generator. Run `python3 scripts/audit_titles.py` after any generator run — it must exit 0.
