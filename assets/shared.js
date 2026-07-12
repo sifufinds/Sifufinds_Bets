@@ -738,6 +738,7 @@ const LOCAL_LOGOS={
   'SP':'/assets/logos/sportpesa.png','OD':'/assets/logos/odibets.png',
   'BG':'/assets/logos/bangbet.png','BB':'/assets/logos/bangbet.png',
   'HW':'/assets/logos/hollywoodbets.png','BTA':'/assets/logos/betano.png',
+  'RB':'/assets/logos/rasbet.png',
 };
 const LOGO_DEV_TOKEN='pk_LOpmKYtCS3q3rhYX_rDd9A';
 const logoDomain=(url,abbr='')=>{try{const brand=abbr&&BRAND_DOMAINS[abbr];return brand||new URL(url).hostname.replace(/^www\./,'');}catch(e){return '';}};
