@@ -147,6 +147,19 @@ def build_keyword_from_category(category: str) -> str:
     return _CATEGORY_KEYWORDS.get(category, f"{category} betting tips Africa 2026")
 
 
+# ── Public wrappers (for agents that need raw search/scrape, not the full
+#    research() block — e.g. agent_brand_discovery.py's legitimacy checks) ──
+
+def fc_search(query: str, limit: int = 8) -> list[dict]:
+    """Public wrapper around Firecrawl search. See _fc_search for return shape."""
+    return _fc_search(query, limit)
+
+
+def fc_scrape(url: str) -> str:
+    """Public wrapper around Firecrawl scrape. Returns markdown, '' on failure."""
+    return _fc_scrape(url)
+
+
 # ── Main entry point ─────────────────────────────────────────────────────────
 
 def research(keyword: str, country_name: str = "") -> str:

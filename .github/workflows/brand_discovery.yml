@@ -1,0 +1,171 @@
+name: Brand Discovery — weekly new-brand research & defunct-brand check
+
+# Weekly agent with two jobs (agents/python/agent_brand_discovery.py):
+#
+#   1. DISCOVER — search for African betting brands not yet reviewed on
+#      sifufinds.com, run each candidate through a legitimacy research gate
+#      (official site reachable, reads as a real betting operator, has an
+#      African-market signal, isn't drowning in scam complaints), and only
+#      if it passes, publish a full review blog post + a standalone
+#      bookmakers/<slug>/ page. Capped at 1 new brand per run by design —
+#      one well-researched brand a week beats several shallow ones.
+#
+#   2. VERIFY — re-research every active bookmaker for signs it has shut
+#      down. Removal is two-strike: flagged as suspected-defunct on one
+#      run, only actually removed if still suspected-defunct on a LATER
+#      run (this is naturally a week apart since the job is weekly). A
+#      "removed" brand's page becomes a live discontinued notice, never a
+#      404 and never deleted — see agents/python/utils/bookmaker_page_template.py.
+#
+# Progress is tracked in agents/python/brand_discovery_state.json and
+# agents/python/brand_discovery_changelog.json, both committed, so nothing
+# is re-researched or re-flagged from scratch on the next run.
+#
+# This workflow never exits with a failure code — a quota-exhausted or
+# API-limited run just means 0 changes this time; it tries again next week.
+
+on:
+  schedule:
+    - cron: "30 3 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Research only, write nothing (debugging)"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: brand-discovery
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  brand_discovery:
+    name: Discover new brands + verify existing ones are still operating
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run brand discovery agent
+        id: discovery
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: |
+          set +e
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="--dry-run"
+          fi
+          python agent_brand_discovery.py $ARGS
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Regenerate static blog + bookmaker link pages
+        run: python3 gen_blog_post_pages.py --force
+
+      - name: Regenerate sitemap
+        run: python3 gen_sitemap.py
+
+      - name: Validate site before publishing
+        id: validate
+        run: |
+          set +e
+          python3 scripts/validate_site.py --strict
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push (only if validation passed)
+        if: steps.validate.outputs.exit_code == '0'
+        run: |
+          git config --local user.email "brand-discovery@sifufinds.com"
+          git config --local user.name "SifuFinds Brand Discovery"
+          git add blog/posts.json blog/ bookmakers/ data/bookmaker_links.json \
+                  sitemap*.xml agents/python/brand_discovery_state.json \
+                  agents/python/brand_discovery_changelog.json
+          if git diff --cached --quiet; then
+            echo "No brand changes this run — nothing to commit"
+            exit 0
+          fi
+          git commit -m "brand-discovery: weekly research run $(date -u '+%Y-%m-%d') UTC"
+
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "Push rejected (attempt $attempt/5) — merging and retrying..."
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            python3 agents/python/merge_posts.py
+            python3 gen_blog_post_pages.py --force
+            python3 gen_sitemap.py
+            git add -A
+            git commit -m "brand-discovery: weekly research run $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
+          done
+
+      - name: Skip commit — validation failed
+        if: steps.validate.outputs.exit_code != '0'
+        run: |
+          echo "⚠️ scripts/validate_site.py failed on this run's output — not publishing."
+          echo "This is the same safety gate that already protects every other deploy;"
+          echo "it's just enforced as a hard stop here specifically because this agent"
+          echo "publishes brand-new, previously-unreviewed pages every run. Nothing is"
+          echo "committed, so the working tree resets on the next checkout and the"
+          echo "candidate (if any) will simply be re-evaluated next week."
+
+      - name: Trigger deploy if content changed
+        if: steps.validate.outputs.exit_code == '0'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          gh workflow run deploy_hostinger.yml \
+            --repo "${{ github.repository }}" \
+            --ref main && echo "✅ Deploy triggered" || echo "⚠️ Deploy trigger failed (will self-correct on next push)"
+          exit 0
+
+      - name: Report outcome
+        if: always()
+        run: |
+          CODE="${{ steps.discovery.outputs.exit_code }}"
+          if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
+            echo "✅ Brand discovery agent ran — see logs above for what was added/flagged/removed"
+          else
+            echo "⚠️ Brand discovery agent exit code $CODE — check logs above"
+          fi

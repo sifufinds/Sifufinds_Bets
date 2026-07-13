@@ -32,6 +32,7 @@ jobs:
 
           WORKFLOWS=(
             "brand_scraper.yml"
+            "brand_discovery.yml"
             "breaking_news.yml"
             "deploy_hostinger.yml"
             "firecrawl_odds.yml"

@@ -9,6 +9,7 @@ on:
   workflow_run:
     workflows:
       - "Brand Bonus Scraper — Daily Update"
+      - "Brand Discovery — weekly new-brand research & defunct-brand check"
       - "Breaking News Bot — Auto-publish 3x daily"
       - "Deploy to Hostinger — sifufinds.com"
       - "Firecrawl Odds — Daily African match data"
@@ -60,6 +61,7 @@ jobs:
           set +e
           case "$WORKFLOW_NAME" in
             "Brand Bonus Scraper — Daily Update")                                         WF=brand_scraper.yml ;;
+            "Brand Discovery — weekly new-brand research & defunct-brand check")          WF=brand_discovery.yml ;;
             "Breaking News Bot — Auto-publish 3x daily")                                  WF=breaking_news.yml ;;
             "Deploy to Hostinger — sifufinds.com")                                        WF=deploy_hostinger.yml ;;
             "Firecrawl Odds — Daily African match data")                                  WF=firecrawl_odds.yml ;;

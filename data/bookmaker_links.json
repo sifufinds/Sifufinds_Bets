@@ -1,0 +1,82 @@
+{
+  "_comment": "Single source of truth for standalone bookmakers/<slug>/ review pages. Loaded by gen_blog_post_pages.py (BOOKMAKER_LINKS, _BK_SLUG_TO_LINK) and read/written by agents/python/agent_brand_discovery.py. Only status=active entries are linked from blog posts and the resources box. status=removed keeps the row (and its evidence trail) instead of deleting it, since the page at href still exists as a discontinued notice rather than a 404.",
+  "bookmakers": [
+    {
+      "keyword": "bet9ja",
+      "brand_name": "Bet9ja",
+      "href": "../../bookmakers/bet9ja/",
+      "anchor_title": "Bet9ja review",
+      "resource_label": "Bet9ja Review",
+      "status": "active",
+      "official_url": "https://www.bet9ja.com",
+      "discovered_by": "manual",
+      "added_at": "2026-06-01T00:00:00+00:00"
+    },
+    {
+      "keyword": "sportybet",
+      "brand_name": "SportyBet",
+      "href": "../../bookmakers/sportybet/",
+      "anchor_title": "SportyBet review",
+      "resource_label": "SportyBet Review",
+      "status": "active",
+      "official_url": "https://www.sportybet.com",
+      "discovered_by": "manual",
+      "added_at": "2026-06-01T00:00:00+00:00"
+    },
+    {
+      "keyword": "betway",
+      "brand_name": "Betway Africa",
+      "href": "../../bookmakers/betway-africa/",
+      "anchor_title": "Betway Africa review",
+      "resource_label": "Betway Review",
+      "status": "active",
+      "official_url": "https://www.betway.co.za",
+      "discovered_by": "manual",
+      "added_at": "2026-06-01T00:00:00+00:00"
+    },
+    {
+      "keyword": "hollywoodbets",
+      "brand_name": "Hollywoodbets",
+      "href": "../../bookmakers/hollywoodbets/",
+      "anchor_title": "Hollywoodbets review",
+      "resource_label": "Hollywoodbets Review",
+      "status": "active",
+      "official_url": "https://www.hollywoodbets.net",
+      "discovered_by": "manual",
+      "added_at": "2026-06-01T00:00:00+00:00"
+    },
+    {
+      "keyword": "sportpesa",
+      "brand_name": "SportPesa",
+      "href": "../../bookmakers/sportpesa/",
+      "anchor_title": "SportPesa review",
+      "resource_label": "SportPesa Review",
+      "status": "active",
+      "official_url": "https://www.sportpesa.com",
+      "discovered_by": "manual",
+      "added_at": "2026-06-01T00:00:00+00:00"
+    },
+    {
+      "keyword": "1xbet",
+      "brand_name": "1xBet Africa",
+      "href": "../../bookmakers/1xbet-africa/",
+      "anchor_title": "1xBet Africa review",
+      "resource_label": "1xBet Review",
+      "status": "active",
+      "official_url": "https://1xbet.com",
+      "discovered_by": "manual",
+      "added_at": "2026-06-01T00:00:00+00:00"
+    },
+    {
+      "keyword": "betking",
+      "brand_name": "BetKing",
+      "href": "../../bookmakers/betking/",
+      "anchor_title": "BetKing review",
+      "resource_label": "BetKing Review",
+      "status": "active",
+      "official_url": "https://www.betking.com",
+      "discovered_by": "manual",
+      "added_at": "2026-06-01T00:00:00+00:00"
+    }
+  ]
+}
