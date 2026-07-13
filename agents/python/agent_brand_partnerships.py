@@ -141,7 +141,7 @@ Hi there,
 
 {opener}
 
-I'll be straight with you. You already appear on {countries_line} on our site, sitting in our bonus tables with a direct link through to your own site. {prospect.angle} None of that sends anything back to you commercially right now. It's free exposure, and it has been for a while.
+I'll be straight with you. You already appear on {countries_line}, with a direct link straight through to your own site. {prospect.angle} None of that sends anything back to you commercially right now. It's free exposure, and it has been for a while.
 
 We've been growing steadily. The site now runs over 200 articles, live bonus data that updates daily, and free tools like an odds calculator and an accumulator calculator that bettors actually use before picking a bookmaker. That traffic keeps building as we add more countries and more content, and you're already in front of a good share of it.
 
