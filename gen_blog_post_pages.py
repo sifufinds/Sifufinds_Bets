@@ -1111,14 +1111,26 @@ COUNTRY_LINKS = {
     'malawi':        ('Malawi betting guide',       '../../countries/malawi/'),
 }
 
+def _load_bookmaker_entries() -> list[dict]:
+    """Load the bookmaker link registry from data/bookmaker_links.json.
+
+    This is the single source of truth for standalone bookmakers/<slug>/
+    review pages — also read/written by agents/python/agent_brand_discovery.py
+    when it adds a newly-researched brand or marks one as removed. Only
+    status=='active' rows feed BOOKMAKER_LINKS/_BK_SLUG_TO_LINK below, so a
+    removed brand stops being linked from new content without deleting its
+    history or its (still-live, non-404) page.
+    """
+    path = os.path.join(BASE, 'data', 'bookmaker_links.json')
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f).get('bookmakers', [])
+
+
+_BOOKMAKER_ENTRIES = _load_bookmaker_entries()
+
 BOOKMAKER_LINKS = [
-    ('bet9ja',         '../../bookmakers/bet9ja/',        'Bet9ja review'),
-    ('sportybet',      '../../bookmakers/sportybet/',     'SportyBet review'),
-    ('betway',         '../../bookmakers/betway-africa/', 'Betway Africa review'),
-    ('hollywoodbets',  '../../bookmakers/hollywoodbets/', 'Hollywoodbets review'),
-    ('sportpesa',      '../../bookmakers/sportpesa/',     'SportPesa review'),
-    ('1xbet',          '../../bookmakers/1xbet-africa/',  '1xBet Africa review'),
-    ('betking',        '../../bookmakers/betking/',       'BetKing review'),
+    (e['keyword'], e['href'], e['anchor_title'])
+    for e in _BOOKMAKER_ENTRIES if e.get('status') == 'active'
 ]
 
 TOOL_LINKS = [
@@ -1168,13 +1180,8 @@ _SPORT_ORG: dict[str, tuple[str, str, str]] = {
 }
 
 _BK_SLUG_TO_LINK: dict[str, tuple[str, str]] = {
-    'bet9ja':        ('Bet9ja Review',       '../../bookmakers/bet9ja/'),
-    'sportybet':     ('SportyBet Review',    '../../bookmakers/sportybet/'),
-    'betway':        ('Betway Review',       '../../bookmakers/betway-africa/'),
-    'hollywoodbets': ('Hollywoodbets Review','../../bookmakers/hollywoodbets/'),
-    'sportpesa':     ('SportPesa Review',    '../../bookmakers/sportpesa/'),
-    '1xbet':         ('1xBet Review',        '../../bookmakers/1xbet-africa/'),
-    'betking':       ('BetKing Review',      '../../bookmakers/betking/'),
+    e['keyword']: (e['resource_label'], e['href'])
+    for e in _BOOKMAKER_ENTRIES if e.get('status') == 'active'
 }
 
 
