@@ -23,6 +23,15 @@ name: Brand Discovery — weekly new-brand research & defunct-brand check
 #
 # This workflow never exits with a failure code — a quota-exhausted or
 # API-limited run just means 0 changes this time; it tries again next week.
+#
+# Every brand actually added or removed (never on --dry-run) triggers a
+# summary email to BRAND_DISCOVERY_NOTIFY_EMAIL (default: the site owner —
+# see agent_brand_discovery.py), sent via Gmail SMTP using the
+# OUTREACH_EMAIL_USER/OUTREACH_EMAIL_PASS secrets (the only email
+# credentials actually configured in this repo as of 2026-07-13 — see
+# agents/python/utils/notify.py for why SMTP_HOST/SMTP_USER/etc. are
+# supported but not what's active). No email is sent on a run where
+# nothing changed.
 
 on:
   schedule:
@@ -81,6 +90,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          OUTREACH_EMAIL_USER: ${{ secrets.OUTREACH_EMAIL_USER }}
+          OUTREACH_EMAIL_PASS: ${{ secrets.OUTREACH_EMAIL_PASS }}
         run: |
           set +e
           ARGS=""

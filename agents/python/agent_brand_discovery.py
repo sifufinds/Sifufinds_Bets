@@ -52,6 +52,7 @@ from llm import ask, ask_long
 from config import SITE_URL
 from utils.serp_research import fc_search, fc_scrape, research
 from utils.bookmaker_page_template import render_bookmaker_page, render_discontinued_page
+from utils.notify import send_email
 from gen_blog_post_pages import slugify
 
 # ── PATHS ──────────────────────────────────────────────────────────────────
@@ -71,6 +72,10 @@ MAX_CHANGELOG_ENTRIES = 500
 MIN_NEW_BRAND_SCORE = 3.3
 MAX_NEW_BRAND_SCORE = 4.3
 
+# Who gets the "brands added/removed this run" summary email. Overridable
+# without touching source via a repo secret; defaults to the site owner.
+NOTIFY_EMAIL = os.getenv("BRAND_DISCOVERY_NOTIFY_EMAIL", "kai.s.manyeh@gmail.com")
+
 AFRICAN_COUNTRIES = [
     "Nigeria", "Kenya", "Ghana", "South Africa", "Tanzania", "Uganda",
     "Zambia", "Ethiopia", "Ivory Coast", "Cameroon", "Senegal", "Rwanda",
@@ -86,6 +91,13 @@ _AFRICAN_SIGNAL_KEYWORDS = (
 ) + tuple(c.lower() for c in AFRICAN_COUNTRIES)
 
 _last_rejection_reason = "unknown"
+
+# Every brand actually added or removed this run (dry-run additions/removals
+# are never appended here) — drained into one summary email at the end of
+# main(). Kept as a plain module-level list rather than threaded through
+# every function signature since this script is a single-shot CLI process,
+# not a long-lived service where that state could leak across runs.
+_run_events: list[dict] = []
 
 
 # ── LLM PROMPTS ───────────────────────────────────────────────────────────
@@ -511,6 +523,14 @@ def add_brand(gate: dict, facts: dict, dry_run: bool) -> None:
 
     _log_change("added", slug, name, evidence=gate["evidence_urls"])
     _remember_known_brand(name)
+    _run_events.append({
+        "type": "added",
+        "brand_name": name,
+        "country": gate["primary_country"],
+        "rating": facts["rating"],
+        "blog_url": f"{SITE_URL}/blog/{post['slug']}/",
+        "page_url": f"{SITE_URL}/bookmakers/{slug}/",
+    })
     print(f"  ✓ Added {name} ({slug}) — blog post '{post['title']}' + bookmakers/{slug}/")
 
 
@@ -605,6 +625,12 @@ def _remove_brand(entry: dict, evidence: str) -> None:
         save_posts(posts)
 
     _log_change("removed", slug, name, evidence=evidence)
+    _run_events.append({
+        "type": "removed",
+        "brand_name": name,
+        "evidence": evidence,
+        "page_url": f"{SITE_URL}/bookmakers/{slug}/",
+    })
     print(f"  ✓ Removed {name} ({slug}) — page replaced with discontinued notice, blog post annotated")
 
 
@@ -656,6 +682,44 @@ def verify_existing_brands(dry_run: bool) -> None:
         save_state(state)
 
 
+# ── NOTIFICATION ──────────────────────────────────────────────────────────
+
+def _send_run_summary_email() -> None:
+    """Email NOTIFY_EMAIL a summary of every brand added/removed this run.
+    No-op if nothing changed (dry runs, or a run where every candidate was
+    rejected and every active brand stayed active never send anything) —
+    "always email me the brands you add or remove" means never skip it
+    when something happened, not a weekly empty inbox ping."""
+    if not _run_events:
+        return
+
+    added = [e for e in _run_events if e["type"] == "added"]
+    removed = [e for e in _run_events if e["type"] == "removed"]
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    subject = f"SifuFinds Brand Discovery — {len(added)} added, {len(removed)} removed ({today})"
+
+    lines = [f"Weekly brand discovery run — {today} UTC", ""]
+
+    if added:
+        lines.append(f"ADDED ({len(added)}):")
+        for e in added:
+            lines.append(f"  • {e['brand_name']} ({e['country']}) — rating {e['rating']}/5")
+            lines.append(f"    Review: {e['blog_url']}")
+            lines.append(f"    Page:   {e['page_url']}")
+        lines.append("")
+
+    if removed:
+        lines.append(f"REMOVED ({len(removed)}):")
+        for e in removed:
+            lines.append(f"  • {e['brand_name']}")
+            lines.append(f"    Evidence: {e['evidence']}")
+            lines.append(f"    Page: {e['page_url']} (now shows a discontinued notice, kept live, not deleted)")
+        lines.append("")
+
+    lines.append("— SifuFinds Brand Discovery Agent (agents/python/agent_brand_discovery.py)")
+    send_email(NOTIFY_EMAIL, subject, "\n".join(lines))
+
+
 # ── CLI ───────────────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -678,6 +742,8 @@ def main() -> None:
     if args.verify:
         print("\n\U0001fa7a Brand Verification — checking active bookmakers for signs of closure...")
         verify_existing_brands(args.dry_run)
+
+    _send_run_summary_email()
 
 
 if __name__ == "__main__":
