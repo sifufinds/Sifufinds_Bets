@@ -1,19 +1,13 @@
 {
-  "date": "2026-07-12",
-  "total": 4,
+  "date": "2026-07-13",
+  "total": 3,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 3,
     "INFO": 0
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "world-cup-2026-england-set-up-argentina-semi-final",
-      "detail": "Excerpt 167 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
