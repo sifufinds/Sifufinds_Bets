@@ -69,8 +69,8 @@ OPENERS = [
 ]
 
 CLOSERS = [
-    "If there's someone on the affiliate or partnerships side I should be speaking to, a pointer in the right direction would be appreciated. Happy to jump on a call or just carry on over email, whichever's easier for you.\n\nThanks for your time.\n\nKai\nSifuFinds\n{site_url}",
-    "Let me know if there's a better contact for this on your end, or if you'd rather just reply here to get things moving. Either works for me.\n\nCheers,\nKai\nSifuFinds\n{site_url}",
+    "If there's someone on the affiliate or partnerships side I should be speaking to, a pointer in the right direction would be appreciated. Happy to jump on a call, carry on over email, or you can message me directly on Telegram at @SifuKai, whichever's easier for you. Our channel's at t.me/sifufinds too if you want to see the kind of audience we're putting bookmakers in front of.\n\nThanks for your time.\n\nKai\nSifuFinds\n{site_url}\nTelegram: @SifuKai · t.me/sifufinds",
+    "Let me know if there's a better contact for this on your end, or if you'd rather just reply here to get things moving. I'm also on Telegram as @SifuKai if that's quicker for you, and our channel's at t.me/sifufinds.\n\nCheers,\nKai\nSifuFinds\n{site_url}\nTelegram: @SifuKai · t.me/sifufinds",
 ]
 
 
