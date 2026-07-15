@@ -1,47 +1,47 @@
 {
-  "updated": "2026-07-15T11:09:53.683979+00:00",
+  "updated": "2026-07-15T12:42:04.425035+00:00",
   "source": "openfootball+fst, predictz.com, forebet.com",
   "count": 32,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-07-15T11:09:53.683979+00:00"
+      "ts": "2026-07-15T12:42:04.425035+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-07-15T11:09:53.683979+00:00"
+      "ts": "2026-07-15T12:42:04.425035+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-07-15T11:09:53.683979+00:00"
+      "ts": "2026-07-15T12:42:04.425035+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-07-15T11:09:53.683979+00:00"
+      "ts": "2026-07-15T12:42:04.425035+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-07-15T11:09:53.683979+00:00"
+      "ts": "2026-07-15T12:42:04.425035+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-07-15T11:09:53.683979+00:00"
+      "ts": "2026-07-15T12:42:04.425035+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-07-15T11:09:53.683979+00:00"
+      "ts": "2026-07-15T12:42:04.425035+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-07-15T11:09:53.683979+00:00"
+      "ts": "2026-07-15T12:42:04.425035+00:00"
     }
   ],
   "predictions": [
@@ -64,7 +64,7 @@
       "over25": "Over 1.5",
       "correct_score": "",
       "source": "openfootball+fst",
-      "scraped_at": "2026-07-15T11:09:58.213003+00:00",
+      "scraped_at": "2026-07-15T12:42:25.718308+00:00",
       "flag": "🌍",
       "confidence": 60
     },
@@ -87,7 +87,7 @@
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470187",
@@ -108,7 +108,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470179",
@@ -129,7 +129,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470188",
@@ -145,12 +145,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470181",
@@ -171,7 +171,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470115",
@@ -192,7 +192,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470191",
@@ -213,7 +213,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470183",
@@ -234,7 +234,7 @@
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470178",
@@ -255,7 +255,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470189",
@@ -276,7 +276,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470184",
@@ -297,7 +297,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470193",
@@ -318,7 +318,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470192",
@@ -334,12 +334,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470697",
@@ -355,12 +355,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470700",
@@ -376,12 +376,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470699",
@@ -397,12 +397,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470698",
@@ -423,7 +423,7 @@
       "over25": "",
       "correct_score": "1-3",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2467485",
@@ -439,12 +439,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470174",
@@ -460,12 +460,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470210",
@@ -481,12 +481,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "3-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2453939",
@@ -502,12 +502,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "3-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2447210",
@@ -523,12 +523,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470134",
@@ -544,12 +544,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-3",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2467434",
@@ -565,12 +565,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "3-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2470196",
@@ -586,12 +586,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2457683",
@@ -607,12 +607,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2457680",
@@ -628,12 +628,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "0-2",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2467435",
@@ -649,12 +649,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-4",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "fb_2467486",
@@ -670,12 +670,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-07-15T11:09:58.189038+00:00"
+      "scraped_at": "2026-07-15T12:42:25.688930+00:00"
     },
     {
       "id": "1198233",
@@ -691,12 +691,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "BTTS Yes",
+      "btts": "",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-15T11:09:58.186381+00:00"
+      "scraped_at": "2026-07-15T12:42:25.686848+00:00"
     },
     {
       "id": "1182561",
@@ -712,12 +712,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "BTTS No",
+      "btts": "",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-07-15T11:09:58.186482+00:00"
+      "scraped_at": "2026-07-15T12:42:25.686919+00:00"
     }
   ]
 }
