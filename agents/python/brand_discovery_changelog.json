@@ -1,1 +1,65 @@
-[]
+[
+  {
+    "type": "flagged",
+    "slug": "betking",
+    "brand_name": "BetKing",
+    "at": "2026-07-17T14:08:53.216561+00:00",
+    "evidence": "The brand BetKing might be associated with BetOnSports, which shut down its U.S.-focused operations, however, this is not a direct confirmation of BetKing's status and the current official site remains reachable."
+  },
+  {
+    "type": "flagged",
+    "slug": "1xbet",
+    "brand_name": "1xBet Africa",
+    "at": "2026-07-17T14:07:40.000753+00:00",
+    "evidence": "Although the main 1xBet site is still reachable, there are reports of the brand closing business operations in Uganda and a 1xBet site being closed by the Ukraine regulator, as well as a report that 1xBet has been declared bankrupt for failing to reimburse customers."
+  },
+  {
+    "type": "flagged",
+    "slug": "sportybet",
+    "brand_name": "SportyBet",
+    "at": "2026-07-17T14:03:44.424165+00:00",
+    "evidence": "A petition exists to shut down the company due to alleged fraud, and the official site is unreachable."
+  },
+  {
+    "type": "flagged",
+    "slug": "bet9ja",
+    "brand_name": "Bet9ja",
+    "at": "2026-07-17T14:02:38.955311+00:00",
+    "evidence": "A search result reports that the Enugu State Government has shut down the operations of KC Gaming Networks, operators of the Bet9ja brand, although the official website is still reachable."
+  },
+  {
+    "type": "rejected",
+    "slug": "fansport",
+    "brand_name": "Fansport",
+    "at": "2026-07-17T14:01:30.920716+00:00",
+    "evidence": "official site content doesn't read as a betting/casino operator"
+  },
+  {
+    "type": "rejected",
+    "slug": "betwinner",
+    "brand_name": "Betwinner",
+    "at": "2026-07-17T14:01:01.413266+00:00",
+    "evidence": "official site https://betwinner.com/en unreachable or returned near-empty content"
+  },
+  {
+    "type": "rejected",
+    "slug": "22bet",
+    "brand_name": "22Bet",
+    "at": "2026-07-17T14:00:45.694328+00:00",
+    "evidence": "no discoverable official site"
+  },
+  {
+    "type": "rejected",
+    "slug": "1win",
+    "brand_name": "1Win",
+    "at": "2026-07-17T14:00:20.557320+00:00",
+    "evidence": "no African market signal found (country name, local currency, or local payment method)"
+  },
+  {
+    "type": "rejected",
+    "slug": "1xbet",
+    "brand_name": "1XBET",
+    "at": "2026-07-17T13:59:53.766001+00:00",
+    "evidence": "no African market signal found (country name, local currency, or local payment method)"
+  }
+]
