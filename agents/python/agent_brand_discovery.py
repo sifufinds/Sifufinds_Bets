@@ -163,11 +163,15 @@ OUTPUT FORMAT — return EXACTLY this structure, nothing outside the markers:
 [Full article in plain markdown, 1000+ words, following every rule above]
 ===END==="""
 
-_LIVENESS_SYSTEM = """You assess whether a sports betting brand is still operating, from search results about it.
+_LIVENESS_SYSTEM = """You assess whether a specific sports betting brand's operation in its primary African market is still running, from search results about it.
 
 Respond with ONLY one JSON object: {"status": "active" or "suspected_defunct", "evidence": "one sentence citing what you found"}.
 
-Default to "active" unless there is clear, specific evidence of closure (a news article about the site shutting down, a licence being revoked, or the operator publicly announcing it stopped operating). An unreachable official website is a real signal but should be described accurately in the evidence field, not overstated. Do not guess or assume closure just because search results are sparse."""
+Default to "active" unless there is clear, specific evidence of closure (a news article about THIS operator's site shutting down, a licence being revoked, or the operator publicly announcing it stopped operating). An unreachable official website is a real signal but should be described accurately in the evidence field, not overstated.
+
+CRITICAL — brands like 1xBet, Betwinner, Melbet, and 22Bet operate as many separate regional entities/licensees worldwide under the same name. A closure, lawsuit, or regulatory action reported for the brand in a DIFFERENT country, or against a similarly-named but distinct company, is NOT evidence this operator's African market presence has closed. Only count evidence that specifically names the brand's operation in or serving its primary African market.
+
+If your evidence sentence contains hedging language ("might be", "could be related to", "possibly", "not a direct confirmation", "unclear if"), that means the evidence is NOT clear and specific — you must return "active" in that case, never "suspected_defunct". Do not guess or assume closure just because search results are sparse or mention the brand name in an unrelated context."""
 
 
 # ── PARSING HELPERS (same marker format as agent_sports_blog.py) ──────────
@@ -231,7 +235,12 @@ def _log_change(event_type: str, slug: str, name: str, evidence) -> None:
 
 def load_known_brand_names() -> set[str]:
     entries = _load_bookmaker_entries()
-    known = {_normalize_name(e.get("brand_name", e["keyword"])) for e in entries}
+    # Match on BOTH the registry keyword ("1xbet") and the display brand_name
+    # ("1xBet Africa") — a discovered candidate like "1XBET" normalizes to
+    # "1xbet", which matches the keyword but not "1xbetafrica", so checking
+    # brand_name alone let an already-listed brand get re-evaluated as new.
+    known = {_normalize_name(e["keyword"]) for e in entries}
+    known |= {_normalize_name(e.get("brand_name", e["keyword"])) for e in entries}
     state = load_state()
     known |= {_normalize_name(n) for n in state.get("known_brand_names", [])}
     known |= {_normalize_name(n) for n in state.get("rejected_candidates", {}).keys()}
@@ -570,17 +579,32 @@ def run_discovery(dry_run: bool) -> None:
 
 # ── DEFUNCT VERIFICATION (two-strike) ────────────────────────────────────
 
+_HEDGE_PHRASES = (
+    "might be", "may be", "could be", "possibly", "not a direct confirmation",
+    "unclear if", "unclear whether", "not confirmed", "unconfirmed",
+    "appears to be associated", "seems to be related",
+)
+
+
 def _check_liveness(name: str, official_url: str) -> tuple[str, str]:
     reachable = True
     if official_url:
+        # A single Firecrawl timeout/empty response is common transient
+        # noise (seen firsthand: a 25s read timeout on an unrelated
+        # candidate in the same run that flagged 4 real, still-operating
+        # bookmakers as suspected-defunct). One retry before concluding
+        # "unreachable" avoids treating a network hiccup as evidence of
+        # closure.
         md = fc_scrape(official_url)
+        if len(md) <= 200:
+            md = fc_scrape(official_url)
         reachable = len(md) > 200
 
     signal_results = fc_search(f"{name} shut down OR closed OR ceased operations OR licence revoked", limit=5)
     signal_text = "\n".join(f"- {r.get('title', '')}: {r.get('description', '')}" for r in signal_results)
 
     if not reachable and not signal_results:
-        return "suspected_defunct", f"official site {official_url} unreachable/empty and no recent search coverage found"
+        return "suspected_defunct", f"official site {official_url} unreachable/empty after 2 attempts and no recent search coverage found"
 
     raw = ask(_LIVENESS_SYSTEM, f"BRAND: {name}\nOFFICIAL SITE REACHABLE: {reachable}\n\nSEARCH RESULTS:\n{signal_text or '(none found)'}")
     try:
@@ -592,8 +616,20 @@ def _check_liveness(name: str, official_url: str) -> tuple[str, str]:
 
     if status not in ("active", "suspected_defunct"):
         status = "active"
+
+    # Deterministic backstop: don't just trust the model followed the
+    # "hedged evidence means active" instruction in the prompt — a weaker
+    # fallback-tier model (Groq 8B, reached when the 70B tier is
+    # rate-limited) has already been observed returning suspected_defunct
+    # with self-hedging evidence text in production. Force it back to
+    # active if the evidence reads as uncertain, regardless of what status
+    # field the model actually returned.
+    if status == "suspected_defunct" and any(p in evidence.lower() for p in _HEDGE_PHRASES):
+        status = "active"
+        evidence = f"evidence was hedged/uncertain, treated as active: {evidence}"
+
     if not reachable and status == "active":
-        status, evidence = "suspected_defunct", evidence or f"official site {official_url} unreachable"
+        status, evidence = "suspected_defunct", evidence or f"official site {official_url} unreachable after 2 attempts"
     return status, evidence
 
 
