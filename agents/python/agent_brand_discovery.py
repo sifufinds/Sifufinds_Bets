@@ -330,10 +330,16 @@ def discover_candidate_names(count: int = MAX_CANDIDATES_EVALUATED_PER_RUN) -> l
         if not results:
             continue
         snippet_block = "\n".join(f"- {r.get('title', '')}: {r.get('description', '')}" for r in results)
-        raw = ask(_EXTRACT_BRAND_NAMES_SYSTEM, f"Country: {country}\n\nSearch results:\n{snippet_block}")
         try:
+            raw = ask(_EXTRACT_BRAND_NAMES_SYSTEM, f"Country: {country}\n\nSearch results:\n{snippet_block}")
             names = json.loads(_clean_json(raw))
-        except Exception:
+        except Exception as e:
+            # Every LLM tier exhausted (llm.py raises RuntimeError when Groq/
+            # Claude/Gemini are all rate-limited/unavailable) is expected and
+            # common on this repo's shared keys — skip this country's
+            # extraction rather than letting it crash the whole run and, with
+            # it, silently skip the entire --verify phase that runs after.
+            print(f"  [discover] brand-name extraction failed for {country}: {e}")
             continue
         if not isinstance(names, list):
             continue
@@ -452,7 +458,19 @@ RESEARCH — excerpt from the operator's own homepage:
 Write the review now, following every rule in the system prompt exactly."""
 
     for _attempt in range(2):
-        raw = ask_long(_BRAND_REVIEW_SYSTEM, user_message)
+        try:
+            raw = ask_long(_BRAND_REVIEW_SYSTEM, user_message)
+        except Exception as e:
+            # Every LLM tier exhausted (llm.py raises RuntimeError — seen in
+            # production when Groq 70B/8B, Claude, and both Gemini tiers were
+            # all rate-limited/unavailable in the same run). This isn't
+            # retryable within the same run, so stop immediately rather than
+            # looping, and — critically — return instead of letting this
+            # propagate uncaught, which previously crashed the whole script
+            # mid-discovery and silently skipped the entire --verify phase
+            # that runs after it.
+            print(f"  [content] LLM call failed for {name}: {e}")
+            return None
         facts_raw = _extract(raw, "===FACTS===", "===BLOG===")
         blog_body = _extract(raw, "===BLOG===", "===END===", end_required=False)
 
@@ -606,8 +624,8 @@ def _check_liveness(name: str, official_url: str) -> tuple[str, str]:
     if not reachable and not signal_results:
         return "suspected_defunct", f"official site {official_url} unreachable/empty after 2 attempts and no recent search coverage found"
 
-    raw = ask(_LIVENESS_SYSTEM, f"BRAND: {name}\nOFFICIAL SITE REACHABLE: {reachable}\n\nSEARCH RESULTS:\n{signal_text or '(none found)'}")
     try:
+        raw = ask(_LIVENESS_SYSTEM, f"BRAND: {name}\nOFFICIAL SITE REACHABLE: {reachable}\n\nSEARCH RESULTS:\n{signal_text or '(none found)'}")
         verdict = json.loads(_clean_json(raw))
         status = str(verdict.get("status", "active")).lower()
         evidence = str(verdict.get("evidence", ""))[:300]
