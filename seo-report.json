@@ -1,13 +1,19 @@
 {
-  "date": "2026-07-17",
-  "total": 3,
+  "date": "2026-07-18",
+  "total": 4,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 1,
     "MEDIUM": 3,
     "INFO": 0
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tuchel-stays-ederson-extends-and-more",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
