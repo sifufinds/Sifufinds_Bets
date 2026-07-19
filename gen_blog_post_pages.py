@@ -1482,6 +1482,13 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     featured_bk = post.get('bookmaker_featured', '')
     published_at = post.get('published_at', datetime.now(timezone.utc).isoformat())
     faq_schema = extract_faq_schema(body_md)
+    # Per-post OG/social preview image (scripts/generate_review_og_images.py) —
+    # falls back to the sitewide logo graphic when a post has no dedicated one.
+    # Every post shared one identical image until 2026-07-19; unique previews
+    # raise AI-search multi-modal selection rates (see GEO audit notes).
+    og_image_url = (f'https://sifufinds.com/assets/og/{slug}.png'
+                     if os.path.exists(f'assets/og/{slug}.png')
+                     else 'https://sifufinds.com/assets/og-image.png')
     # JSON-safe variants for JSON-LD contexts — a raw quote in a title/excerpt
     # (e.g. a translated pull-quote) otherwise breaks the whole ld+json block.
     title_json = json.dumps(title)
@@ -1532,7 +1539,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{excerpt}">
 <meta property="og:url" content="{canonical_href}">
-<meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
+<meta property="og:image" content="{og_image_url}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="{OG_LOCALE.get(locale, 'en_GB')}">
@@ -1543,7 +1550,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 <meta name="twitter:site" content="@sifufinds">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{excerpt}">
-<meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
+<meta name="twitter:image" content="{og_image_url}">
 
 <script type="application/ld+json">
 [{{
@@ -1564,7 +1571,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
   "mainEntityOfPage": "{canonical}",
   "keywords": "{', '.join(tags)}",
   "articleSection": "{category}",
-  "image": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/og-image.png", "width": 1200, "height": 630}}
+  "image": {{"@type": "ImageObject", "url": "{og_image_url}", "width": 1200, "height": 630}}
 }},
 {{
   "@context": "https://schema.org",
