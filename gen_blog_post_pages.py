@@ -1056,13 +1056,18 @@ def extract_faq_schema(body_md: str) -> str:
 
     entities = []
     for q, a in pairs[:8]:
-        q = q.strip().replace('"', '\\"')
-        a = re.sub(r'<[^>]+>', '', a).strip().replace('"', '\\"')[:500]
+        # json.dumps handles quotes/backslashes/newlines/unicode correctly —
+        # manual .replace('"', '\\"') left raw newlines in answer text un-escaped,
+        # producing invalid JSON-LD (silently unparseable by Google/AI crawlers)
+        # on ~20% of posts whose FAQ answers spanned multiple source lines.
+        q = re.sub(r'\s+', ' ', q).strip()
+        a = re.sub(r'<[^>]+>', '', a)
+        a = re.sub(r'\s+', ' ', a).strip()[:500]
         if q and a:
             entities.append(f'''    {{
       "@type": "Question",
-      "name": "{q}",
-      "acceptedAnswer": {{"@type": "Answer", "text": "{a}"}}
+      "name": {json.dumps(q)},
+      "acceptedAnswer": {{"@type": "Answer", "text": {json.dumps(a)}}}
     }}''')
 
     if not entities:
@@ -1456,6 +1461,11 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     # Only attribute Person/#sifu-kai schema to posts actually bylined as Sifu Kai —
     # "Desk" bylines (Football Desk, Cricket Desk, etc.) get an Organization author
     # instead, since attributing them to his named identity would misrepresent authorship.
+    # reviewedBy: every "Desk" byline is edited under Sifu Kai's stated editorial
+    # oversight (see llms.txt "Content reviewed by" claim) — surfacing that as
+    # Person-entity schema gives AI engines a named, credentialed signal without
+    # misattributing authorship the way relabeling the byline itself would.
+    reviewed_by_schema = ''
     if author.strip() == 'Sifu Kai':
         author_schema = ('{"@type": "Person", "@id": "https://sifufinds.com/about/#sifu-kai", '
                           '"name": "Sifu Kai", "url": "https://sifufinds.com/about/", '
@@ -1463,12 +1473,20 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     else:
         author_schema = (f'{{"@type": "Organization", "@id": "https://sifufinds.com/#organization", '
                           f'"name": "{author}", "url": "https://sifufinds.com/about/#team"}}')
+        reviewed_by_schema = (',\n  "reviewedBy": {"@type": "Person", "@id": "https://sifufinds.com/about/#sifu-kai", '
+                               '"name": "Sifu Kai", "jobTitle": "Lead Betting Analyst & Editor-in-Chief", '
+                               '"url": "https://sifufinds.com/about/"}')
     category = post.get('category', 'football')
     tags = post.get('tags', [])
     read_time = post.get('read_time', 5)
     featured_bk = post.get('bookmaker_featured', '')
     published_at = post.get('published_at', datetime.now(timezone.utc).isoformat())
     faq_schema = extract_faq_schema(body_md)
+    # JSON-safe variants for JSON-LD contexts — a raw quote in a title/excerpt
+    # (e.g. a translated pull-quote) otherwise breaks the whole ld+json block.
+    title_json = json.dumps(title)
+    excerpt_json = json.dumps(excerpt)
+    title_short_json = json.dumps(title[:60])
 
     # Format date
     try:
@@ -1531,9 +1549,9 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 [{{
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "{title}",
-  "description": "{excerpt}",
-  "author": {author_schema},
+  "headline": {title_json},
+  "description": {excerpt_json},
+  "author": {author_schema}{reviewed_by_schema},
   "publisher": {{
     "@type": "Organization",
     "@id": "https://sifufinds.com/#organization",
@@ -1554,7 +1572,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
   "itemListElement": [
     {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sifufinds.com/"}},
     {{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://sifufinds.com/blog/"}},
-    {{"@type": "ListItem", "position": 3, "name": "{title[:60]}", "item": "{canonical}"}}
+    {{"@type": "ListItem", "position": 3, "name": {title_short_json}, "item": "{canonical}"}}
   ]
 }}{faq_schema}]
 </script>

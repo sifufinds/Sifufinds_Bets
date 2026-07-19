@@ -4,6 +4,7 @@
 Checks:
   1. Public directories without index.html  → would 403 with Options -Indexes
   2. Broken absolute internal links          → would 404 on the live site
+  3. Invalid JSON-LD structured data         → schema silently unparseable by Google/AI crawlers
 
 Usage:
     python3 scripts/validate_site.py            # report only
@@ -14,6 +15,7 @@ Exit codes:
     1 — one or more errors (deploy should be blocked)
 """
 
+import json
 import os
 import re
 import sys
@@ -101,6 +103,43 @@ def find_broken_links(root: str) -> dict[str, list[str]]:
     return broken
 
 
+# ── CHECK 3: invalid JSON-LD ────────────────────────────────────────────────────
+# Found 2026-07-19: extract_faq_schema() left raw newlines un-escaped inside FAQ
+# answer text, and title/excerpt were interpolated into JSON-LD without escaping
+# quote characters — both produced JSON-LD that silently failed to parse (~20%
+# of blog posts were affected) while the page itself rendered fine, so nothing
+# else caught it. Root cause fixed in gen_blog_post_pages.py via json.dumps();
+# this check exists so a future regression can't hide the same way again.
+
+def find_invalid_jsonld(root: str) -> dict[str, str]:
+    invalid: dict[str, str] = {}
+
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames
+                       if d not in SKIP_DIRS and not d.startswith(".")]
+        for fname in filenames:
+            if fname != "index.html":
+                continue
+            fpath = os.path.join(dirpath, fname)
+            rel_src = os.path.relpath(fpath, root)
+            try:
+                content = open(fpath, encoding="utf-8", errors="ignore").read()
+            except OSError:
+                continue
+
+            for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', content, re.S):
+                block = block.strip()
+                if not block:
+                    continue
+                try:
+                    json.loads(block)
+                except json.JSONDecodeError as e:
+                    invalid[rel_src] = str(e)
+                    break
+
+    return invalid
+
+
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -167,6 +206,22 @@ def main() -> None:
         print(f"\n✅ CHECK 2 PASSED — {covered} broken link(s) covered by .htaccess redirects")
     else:
         print("\n✅ CHECK 2 PASSED — no broken internal links found")
+
+    # Check 3 — invalid JSON-LD
+    invalid_jsonld = find_invalid_jsonld(SITE_ROOT)
+    if invalid_jsonld:
+        print(f"\n🚨 CHECK 3 FAILED — {len(invalid_jsonld)} page(s) have invalid JSON-LD\n")
+        for src, err in sorted(invalid_jsonld.items())[:15]:
+            print(f"   ✗  {src}")
+            print(f"         {err}")
+        if len(invalid_jsonld) > 15:
+            print(f"   … (+{len(invalid_jsonld) - 15} more)")
+        print()
+        print("   Fix: ensure all JSON-LD string values are built with json.dumps(),")
+        print("   never manual .replace('\"', '\\\\\"') — that misses newlines and re-runs.\n")
+        errors += len(invalid_jsonld)
+    else:
+        print("\n✅ CHECK 3 PASSED — all JSON-LD blocks are valid")
 
     # Summary
     print("=" * 70)
