@@ -58,21 +58,28 @@ Static HTML site targeting African sports betting markets. Blog posts live in `b
 
 ## Blog Post Creation — MANDATORY Research Protocol
 
-**Every time a blog post is created or written**, run the full SEO research workflow below using BOTH Firecrawl AND Apify before writing a single word of content. No exceptions.
+**Every time a blog post is created or written**, run the full SEO research workflow below before writing a single word of content. No exceptions.
 
-### Step 1 — SERP Recon with Firecrawl (firecrawl-search)
+### Crawl agent is free-first (added 2026-07-18 — do not burn Firecrawl credits)
+`agents/python/utils/serp_research.py` is the crawl agent all blog/content agents call for research (`research()`, `fc_search()`, `fc_scrape()`). It runs a **combined free pipeline with no login and no API key**, and never touches Firecrawl/Apify credits automatically:
+- **Search**: `html.duckduckgo.com/html` (plain requests + BeautifulSoup, reliable) combined with the `ddgs` library (richer results when it works — it has a known intermittent SSL bug on some Python/LibreSSL builds, non-fatal, silently skipped on failure), deduplicated by URL, ad-click redirects filtered out.
+- **Scrape**: `trafilatura` direct-fetch first; if content comes back under 300 chars (JS-rendered/blocked page), falls back to **Jina AI Reader** (`https://r.jina.ai/<url>`, free, no key/login, handles JS rendering).
+- **PAA/FAQ hints**: derived locally from the free search snippets (question-pattern extraction) instead of Apify RAG.
+- Firecrawl and Apify code paths still exist but are gated behind `SIFU_ALLOW_PAID_CRAWL=1` — unset (the default), they never fire, so a normal research run costs **zero Firecrawl/Apify credits**. Only set that env var deliberately if the free pipeline is genuinely insufficient for a specific run.
+- This is handled entirely inside the crawl agent — do not ask for approval per-request to use the free tools, and do not manually reach for the `firecrawl` skill for routine blog/content research now that this exists. Reserve manual Firecrawl skill usage for one-off tasks outside the agent pipeline where the user explicitly wants Firecrawl.
+
+### Step 1 — SERP Recon (free: DuckDuckGo, combined engines)
 - Search for the exact target keyword + 2–3 variations
-- Capture the top 10 organic results (titles, URLs, meta descriptions)
-- Note any featured snippets, PAA boxes, or video carousels
+- Capture the top 8–10 organic results (titles, URLs, meta descriptions)
+- Note any featured snippets or PAA-style phrasing in the snippets
 
-### Step 2 — Competitor Page Scrape with Firecrawl (firecrawl-scrape)
-- Scrape the top 5 ranking pages
-- Extract: word count, H2/H3 structure, tables, FAQs, schema types used, internal link patterns
+### Step 2 — Competitor Page Scrape (free: trafilatura + Jina Reader fallback)
+- Scrape the top 3–5 ranking pages
+- Extract: word count, H2/H3 structure, tables
 - Note the average word count — our post must exceed it by at least 20%
 
-### Step 3 — Deep SERP & Keyword Data with Apify
-- Run `apify/rag-web-browser` on the target keyword to surface semantic clusters, LSI terms, and related questions
-- Run `apify/google-search-scraper` (or equivalent) to pull "People Also Ask" and related searches for the keyword
+### Step 3 — PAA / Content Gaps (free: derived from search snippets)
+- Question-pattern hints pulled from the free search snippets surface likely PAA/FAQ targets
 - Identify content gaps: topics the top pages cover that our draft doesn't
 
 ### Step 4 — Write the Post
@@ -190,10 +197,11 @@ Both `tips/index.html` and `odds/index.html` have `_isPastKo(timeStr, graceMins)
 - GitHub Actions: `.github/workflows/update_countries_live.yml` — runs every 5 hours
 
 ### Live Data Research Protocol (for manual updates)
-Whenever updating `data/countries_live.json` manually, ALWAYS use both Firecrawl AND Apify:
-1. **Firecrawl scrape** bookmaker promo pages (e.g. `bet9ja.com/register`, `1xbet.com/en/promo`)
-2. **Apify `rag-web-browser`** — query `"best betting sites [Country] 2026 bonus"` for top 5 priority countries (NG, KE, ZA, GH, TZ)
+Whenever updating `data/countries_live.json` manually, use the free crawl agent (`agents/python/utils/serp_research.py` — `fc_search()` / `fc_scrape()`, see the free-first crawl agent note above):
+1. **Search + scrape** bookmaker promo pages (e.g. `bet9ja.com/register`, `1xbet.com/en/promo`) via `fc_scrape()` (trafilatura + Jina Reader fallback, no key/login)
+2. **Search** `"best betting sites [Country] 2026 bonus"` via `fc_search()` (DuckDuckGo, no key/login) for top 5 priority countries (NG, KE, ZA, GH, TZ)
 3. Update `data/countries_live.json` with verified bonus amounts, `status: "live"`, `source`, and `last_verified` timestamp
+4. Firecrawl/Apify are only used if `SIFU_ALLOW_PAID_CRAWL=1` is deliberately set and the free pipeline came back empty — don't reach for them by default
 
 ### Page Integration Pattern
 All pages use `fetchLiveData()` (or `patchBooksFromLive()`) to patch `BOOKS[code]` before rendering:
