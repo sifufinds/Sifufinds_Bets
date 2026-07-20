@@ -1,6 +1,34 @@
 [
   {
     "type": "flagged",
+    "slug": "sportpesa",
+    "brand_name": "SportPesa",
+    "at": "2026-07-20T06:39:39.607535+00:00",
+    "evidence": "A number of news articles, including those from Mwakilishi.com, Bizna Kenya, and Newszetu, report that SportPesa shut down operations in Kenya citing hostility from the government and heavy taxation, with its Kenyan license also being revoked."
+  },
+  {
+    "type": "rejected",
+    "slug": "bovada",
+    "brand_name": "Bovada",
+    "at": "2026-07-20T06:34:00.881586+00:00",
+    "evidence": "no African market signal found (country name, local currency, or local payment method)"
+  },
+  {
+    "type": "rejected",
+    "slug": "paripesa",
+    "brand_name": "Paripesa",
+    "at": "2026-07-20T06:33:05.331047+00:00",
+    "evidence": "official site https://paripesa.com/ unreachable or returned near-empty content"
+  },
+  {
+    "type": "rejected",
+    "slug": "sportsbetting",
+    "brand_name": "SportsBetting",
+    "at": "2026-07-20T06:32:21.230364+00:00",
+    "evidence": "no African market signal found (country name, local currency, or local payment method)"
+  },
+  {
+    "type": "flagged",
     "slug": "betking",
     "brand_name": "BetKing",
     "at": "2026-07-17T14:08:53.216561+00:00",

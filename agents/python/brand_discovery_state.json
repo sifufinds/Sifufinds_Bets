@@ -20,9 +20,27 @@
     "Fansport": {
       "reason": "official site content doesn't read as a betting/casino operator",
       "rejected_at": "2026-07-17T14:01:30.920438+00:00"
+    },
+    "SportsBetting": {
+      "reason": "no African market signal found (country name, local currency, or local payment method)",
+      "rejected_at": "2026-07-20T06:32:21.230087+00:00"
+    },
+    "Paripesa": {
+      "reason": "official site https://paripesa.com/ unreachable or returned near-empty content",
+      "rejected_at": "2026-07-20T06:33:05.330736+00:00"
+    },
+    "Bovada": {
+      "reason": "no African market signal found (country name, local currency, or local payment method)",
+      "rejected_at": "2026-07-20T06:34:00.881284+00:00"
     }
   },
-  "defunct_flags": {},
-  "runs": 2,
-  "last_run": "2026-07-17T18:01:58.361887+00:00"
+  "defunct_flags": {
+    "sportpesa": {
+      "first_flagged_at": "2026-07-20T06:39:39.607406+00:00",
+      "evidence": "A number of news articles, including those from Mwakilishi.com, Bizna Kenya, and Newszetu, report that SportPesa shut down operations in Kenya citing hostility from the government and heavy taxation, with its Kenyan license also being revoked.",
+      "runs_flagged": 1
+    }
+  },
+  "runs": 3,
+  "last_run": "2026-07-20T06:30:12.275119+00:00"
 }
