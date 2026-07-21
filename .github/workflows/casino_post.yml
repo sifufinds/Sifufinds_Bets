@@ -1,0 +1,97 @@
+name: Casino Post — Games & Bonuses, 2x per day
+
+on:
+  schedule:
+    # 2x per day: 08:30, 18:30 UTC (09:30/19:30 WAT, 11:30/21:30 EAT)
+    - cron: "30 8 * * *"
+    - cron: "30 18 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview only, post nothing"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: casino-post
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  post-casino:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Install Playwright browser
+        run: playwright install --with-deps chromium
+
+      - name: Post casino spotlight to Telegram + X
+        working-directory: agents/python
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+          TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          X_USERNAME: ${{ secrets.X_USERNAME }}
+          X_PASSWORD: ${{ secrets.X_PASSWORD }}
+          X_EMAIL: ${{ secrets.X_EMAIL }}
+          TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
+        run: |
+          ARGS="--no-facebook --no-instagram"
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          python agent_casino_post.py $ARGS
+
+      - name: Commit updated state
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add agents/python/casino_post_state.json || true
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "casino: posted $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done
