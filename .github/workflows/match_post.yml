@@ -1,0 +1,140 @@
+name: Match Post — On-demand single match/event post (Telegram + X)
+
+on:
+  workflow_dispatch:
+    inputs:
+      match:
+        description: 'Match/event, e.g. "Manchester United vs Arsenal"'
+        required: true
+      sport:
+        description: "Sport/vertical"
+        required: false
+        default: "football"
+        type: choice
+        options: ["football", "basketball", "tennis", "cricket", "rugby", "boxing", "ufc", "casino", "other"]
+      manual:
+        description: "Manual mode (for boxing/UFC/casino/other — no scraper exists for these)"
+        required: false
+        default: false
+        type: boolean
+      competition:
+        description: "Manual mode only: league/event name"
+        required: false
+        default: ""
+      kickoff:
+        description: "Manual mode only: kickoff/start time"
+        required: false
+        default: ""
+      pick:
+        description: "Manual mode only: the betting pick"
+        required: false
+        default: ""
+      odds:
+        description: 'Manual mode only: "Label:Price" pairs, separated by "|" if more than one'
+        required: false
+        default: ""
+      odds_source:
+        description: "Manual mode only: bookmaker the odds came from"
+        required: false
+        default: ""
+      dry_run:
+        description: "Preview only, post nothing"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: match-post
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  post-match:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Install Playwright browser
+        run: playwright install --with-deps chromium
+
+      - name: Post match to Telegram + X
+        working-directory: agents/python
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+          TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          X_USERNAME: ${{ secrets.X_USERNAME }}
+          X_PASSWORD: ${{ secrets.X_PASSWORD }}
+          X_EMAIL: ${{ secrets.X_EMAIL }}
+          TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
+        run: |
+          ARGS=(--sport "${{ github.event.inputs.sport }}" --no-facebook --no-instagram)
+          if [ "${{ github.event.inputs.manual }}" = "true" ]; then
+            ARGS+=(--manual)
+            [ -n "${{ github.event.inputs.competition }}" ] && ARGS+=(--competition "${{ github.event.inputs.competition }}")
+            [ -n "${{ github.event.inputs.kickoff }}" ] && ARGS+=(--kickoff "${{ github.event.inputs.kickoff }}")
+            [ -n "${{ github.event.inputs.pick }}" ] && ARGS+=(--pick "${{ github.event.inputs.pick }}")
+            [ -n "${{ github.event.inputs.odds_source }}" ] && ARGS+=(--odds-source "${{ github.event.inputs.odds_source }}")
+            IFS='|' read -ra ODDS_PAIRS <<< "${{ github.event.inputs.odds }}"
+            for pair in "${ODDS_PAIRS[@]}"; do
+              [ -n "$pair" ] && ARGS+=(--odds "$pair")
+            done
+          fi
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS+=(--dry-run)
+          fi
+          python agent_match_post.py "${{ github.event.inputs.match }}" "${ARGS[@]}"
+
+      - name: Commit updated tip counter
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add agents/python/match_post_state.json || true
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "match-post: posted $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done

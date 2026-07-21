@@ -57,7 +57,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r agents/python/requirements.txt
 
-      - name: Post accumulator to Telegram
+      - name: Install Playwright browser
+        run: playwright install --with-deps chromium
+
+      - name: Post accumulator to Telegram + X
         working-directory: agents/python
         env:
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
@@ -65,7 +68,14 @@ jobs:
           TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
           TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          X_USERNAME: ${{ secrets.X_USERNAME }}
+          X_PASSWORD: ${{ secrets.X_PASSWORD }}
+          X_EMAIL: ${{ secrets.X_EMAIL }}
+          TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
         run: |
           TYPE="${{ github.event.inputs.type }}"
           STAKE="${{ github.event.inputs.stake }}"
-          python agent_accumulator_post.py --type "${TYPE:-auto}" --stake "${STAKE:-1000}"
+          # Facebook/Instagram credentials aren't configured yet (see SETUP.md Step 3) —
+          # skip them explicitly rather than log a failed attempt on every scheduled run.
+          python agent_accumulator_post.py --type "${TYPE:-auto}" --stake "${STAKE:-1000}" \
+            --no-facebook --no-instagram
