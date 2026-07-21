@@ -1,13 +1,19 @@
 {
-  "date": "2026-07-18",
-  "total": 3,
+  "date": "2026-07-21",
+  "total": 4,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 3,
+    "MEDIUM": 4,
     "INFO": 0
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "missing_faqpage_schema",
+      "page": "villa-sign-gomes-rashford-future-uncertain",
+      "detail": "Post has FAQ content but no FAQPage JSON-LD"
+    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
