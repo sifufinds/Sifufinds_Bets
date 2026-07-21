@@ -60,6 +60,8 @@ from agent_telegram_offers import (
     send_to_channel,
     SITE_URL,
 )
+from agent3_social import post_facebook, post_instagram
+from agent_twitter_posts import _post_tweet as post_twitter
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 PRED_JSON = REPO_ROOT / "data" / "predictions.json"
@@ -580,14 +582,29 @@ def run(args: argparse.Namespace) -> None:
         print("Dry run — nothing sent.")
         return
 
+    results: dict[str, bool] = {}
+
     if args.telegram:
-        if send_to_channel(telegram_text):
-            log("match_post", "telegram", "success", m["home"])
-            print("✓ Posted to Telegram.")
-        else:
-            log("match_post", "telegram", "failed", m["home"])
-            print("✗ Telegram post failed — check TELEGRAM_BOT_TOKEN / session creds.")
-            sys.exit(1)
+        results["telegram"] = send_to_channel(telegram_text)
+        print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed — check TELEGRAM_BOT_TOKEN / session creds.")
+
+    if args.facebook:
+        results["facebook"] = post_facebook(facebook_text)
+        print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured (see agents/python/SETUP.md Step 3).")
+
+    if args.instagram:
+        results["instagram"] = post_instagram(instagram_text)
+        print("✓ Posted to Instagram." if results["instagram"] else "✗ Instagram post failed or not configured (see agents/python/SETUP.md Step 3).")
+
+    if args.twitter:
+        results["twitter"] = post_twitter(twitter_text)
+        print("✓ Posted to X/Twitter." if results["twitter"] else "✗ X/Twitter post failed or not configured (needs TWITTER_SESSION or X_USERNAME+X_PASSWORD in .env).")
+
+    for platform, ok in results.items():
+        log("match_post", platform, "success" if ok else "failed", m["home"])
+
+    if results and not any(results.values()):
+        sys.exit(1)
 
 
 if __name__ == "__main__":
@@ -605,6 +622,9 @@ if __name__ == "__main__":
     parser.add_argument("--odds", action="append", default=[], help='Manual mode: "Label:Price", repeatable')
     parser.add_argument("--odds-source", type=str, default="", help="Manual mode: bookmaker the odds came from")
     parser.add_argument("--no-telegram", dest="telegram", action="store_false", help="Don't auto-post to Telegram")
+    parser.add_argument("--no-facebook", dest="facebook", action="store_false", help="Don't auto-post to Facebook")
+    parser.add_argument("--no-instagram", dest="instagram", action="store_false", help="Don't auto-post to Instagram")
+    parser.add_argument("--no-twitter", dest="twitter", action="store_false", help="Don't auto-post to X/Twitter")
     parser.add_argument("--dry-run", action="store_true", help="Preview only, send nothing")
     args = parser.parse_args()
     run(args)

@@ -9,8 +9,12 @@ run it a few times a day once football season is underway, independently of
 per-match requests.
 
 Selection: takes the 5 highest-confidence real picks that carry a real,
-attributed price, deduplicated by match. Refuses to post (no invented 6th
-leg) if fewer than 5 qualifying picks exist — e.g. deep off-season.
+attributed price, deduplicated by match, restricted to the Premier League,
+the rest of the world's top ~10 leagues, African leagues, and major
+international/continental competitions (see ALLOWED_LEAGUE_KEYWORDS) — never
+a random lower-tier league just because it had a high-confidence tip.
+Refuses to post (no invented 6th leg, no falling back to a smaller league)
+if fewer than 5 qualifying picks exist — e.g. deep off-season.
 
 Usage:
   python3 agent_accumulator_post.py                  # auto weekend/weekday by UTC day
@@ -31,7 +35,9 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from utils.logger import log
 from agent_telegram_offers import send_to_channel, SITE_URL
-from agent_match_post import build_bookmaker_block, pick_cta_brand
+from agent_match_post import build_bookmaker_block, pick_cta_brand, _trim_to_limit
+from agent3_social import post_facebook, post_instagram
+from agent_twitter_posts import _post_tweet as post_twitter
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 PRED_JSON = REPO_ROOT / "data" / "predictions.json"
@@ -41,6 +47,40 @@ FOLD_COUNT = 5
 LEG_EMOJI = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣"]
 
 _REACT_PROMPT = "💬 React below — 🔥 backing this acca · 🤔 risky one · ❤️ love the analysis"
+
+# Only pick legs from the Premier League, the rest of the world's top ~10
+# leagues, African leagues, and major continental/international competitions —
+# never a random lower-tier league just because it happened to have a
+# high-confidence tip that day.
+ALLOWED_LEAGUE_KEYWORDS = [
+    # Top European/world leagues — "serie a" is deliberately NOT a bare keyword:
+    # several countries (Ecuador, etc.) also name their top flight "Serie A",
+    # so only Italy's and Brazil's are allowed explicitly (see is_major_league()).
+    "premier league", "la liga", "bundesliga", "ligue 1",
+    "eredivisie", "primeira liga", "pro league", "liga mx", "mls",
+    "super lig", "süper lig",
+    # African leagues
+    "npfl", "nigeria premier", "kenyan premier", "kenya premier",
+    "ghana premier", "egyptian premier", "egypt premier",
+    "caf champions league", "caf confederation",
+    "afcon", "africa cup of nations",
+    # Major international/continental competitions
+    "champions league", "europa league", "conference league",
+    "world cup", "copa america", "copa libertadores", "copa sudamericana",
+]
+
+# Reject anything that's clearly a reserve/lower-division fixture even if it
+# happens to contain an otherwise-allowed keyword (e.g. "Germany Bundesliga Div 5").
+_EXCLUDE_KEYWORDS = ["div 2", "div 3", "div 4", "div 5", "div 6", "reserve", "u21", "u23", "u19", "youth"]
+
+
+def is_major_league(competition: str) -> bool:
+    comp = (competition or "").lower()
+    if any(x in comp for x in _EXCLUDE_KEYWORDS):
+        return False
+    if "italy serie a" in comp or "brazil serie a" in comp:
+        return True
+    return any(k in comp for k in ALLOWED_LEAGUE_KEYWORDS)
 
 
 def _load_json(path: Path) -> dict:
@@ -79,6 +119,8 @@ def gather_candidates() -> list[dict]:
         conf = tip.get("conf")
         if odds <= 1.01 or not conf:
             continue
+        if not is_major_league(tip.get("league", "")):
+            continue
         seen.add(key)
         candidates.append({
             "match": match,
@@ -95,6 +137,8 @@ def gather_candidates() -> list[dict]:
         conf = pred.get("confidence")
         odds = _wdw_odds(pred)
         if key in seen or not conf or not odds or odds <= 1.01:
+            continue
+        if not is_major_league(pred.get("competition", "")):
             continue
         seen.add(key)
         candidates.append({
@@ -114,22 +158,28 @@ def pick_legs(candidates: list[dict], n: int = FOLD_COUNT) -> list[dict]:
     return candidates[:n]
 
 
-def build_telegram_post(legs: list[dict], acc_type: str, stake: int, cta: dict) -> str:
+def _compute_totals(legs: list[dict], stake: int) -> tuple[float, int, int]:
     total_odds = 1.0
     for leg in legs:
         total_odds *= leg["odds"]
     total_odds = round(total_odds, 2)
     returns = round(stake * total_odds)
     avg_conf = round(sum(leg["confidence"] for leg in legs) / len(legs))
+    return total_odds, returns, avg_conf
 
+
+def _title(acc_type: str) -> str:
+    return "WEEKEND ACCUMULATOR" if acc_type == "weekend" else "WEEKDAY ACCUMULATOR"
+
+
+def build_telegram_post(legs: list[dict], acc_type: str, stake: int, cta: dict) -> str:
+    total_odds, returns, avg_conf = _compute_totals(legs, stake)
     leg_lines = "\n".join(
         f"{LEG_EMOJI[i]} {leg['match']} - {leg['pick']}" for i, leg in enumerate(legs)
     )
 
-    title = "WEEKEND ACCUMULATOR" if acc_type == "weekend" else "WEEKDAY ACCUMULATOR"
-
     return (
-        f"🎉 <b>{title}</b> — Turn ₦{stake:,} into ₦{returns:,} 🎉\n\n"
+        f"🎉 <b>{_title(acc_type)}</b> — Turn ₦{stake:,} into ₦{returns:,} 🎉\n\n"
         f"<b>{len(legs)}-Fold @ {total_odds}</b>\n\n"
         f"{leg_lines}\n\n"
         f"<b>Stake:</b> ₦{stake:,} → <b>Returns:</b> ₦{returns:,}\n\n"
@@ -141,6 +191,54 @@ def build_telegram_post(legs: list[dict], acc_type: str, stake: int, cta: dict) 
         f"{_REACT_PROMPT}\n\n"
         f"🔞 18+ | Gamble Responsibly | BeGambleAware.org"
     )
+
+
+def build_facebook_post(legs: list[dict], acc_type: str, stake: int, cta: dict) -> str:
+    total_odds, returns, avg_conf = _compute_totals(legs, stake)
+    leg_lines = "\n".join(
+        f"{LEG_EMOJI[i]} {leg['match']} - {leg['pick']}" for i, leg in enumerate(legs)
+    )
+    return (
+        f"🎉 {_title(acc_type)} — Turn ₦{stake:,} into ₦{returns:,} 🎉\n\n"
+        f"{len(legs)}-Fold @ {total_odds}\n\n"
+        f"{leg_lines}\n\n"
+        f"Stake: ₦{stake:,} → Returns: ₦{returns:,}\n\n"
+        f"🧠 Why this combo: our {len(legs)} highest-confidence picks today, {avg_conf}% average model confidence\n"
+        f"⚠️ Higher risk than a single bet — every leg must win for the accumulator to pay out\n\n"
+        f"{build_bookmaker_block(cta, html=False)}\n\n"
+        f"🌐 More accas, tips, and bookmaker bonuses at {SITE_URL}\n\n"
+        f"{_REACT_PROMPT}\n\n"
+        f"🔞 18+ | Gamble Responsibly | BeGambleAware.org"
+    )
+
+
+def build_instagram_post(legs: list[dict], acc_type: str, stake: int, cta: dict) -> str:
+    total_odds, returns, avg_conf = _compute_totals(legs, stake)
+    leg_lines = "\n".join(
+        f"{LEG_EMOJI[i]} {leg['match']} - {leg['pick']}" for i, leg in enumerate(legs)
+    )
+    hashtags = "#SifuFinds #Accumulator #BettingTips #AfricanBetting #SportsBetting #" + cta["name"].replace(" ", "")
+    return (
+        f"🎉 {_title(acc_type)} — Turn ₦{stake:,} into ₦{returns:,} 🎉\n\n"
+        f"{len(legs)}-Fold @ {total_odds}\n\n"
+        f"{leg_lines}\n\n"
+        f"🧠 {avg_conf}% average model confidence · ⚠️ every leg must win\n\n"
+        f"👉 Link in bio for the full breakdown + bonus\n"
+        f"❤️🔥 Double-tap if you're backing this acca!\n\n"
+        f"🔞 18+ | Gamble Responsibly\n"
+        f".\n.\n.\n{hashtags}"
+    )
+
+
+def build_twitter_post(legs: list[dict], acc_type: str, stake: int, cta: dict) -> str:
+    total_odds, returns, _ = _compute_totals(legs, stake)
+    tweet = (
+        f"🎉 {_title(acc_type)} — Turn ₦{stake:,} into ₦{returns:,}\n\n"
+        f"{len(legs)}-Fold @ {total_odds} on {cta['name']}\n"
+        f"👉 Full picks + bonus → {cta['url']}\n\n"
+        f"#SifuFinds #Accumulator 🔞 18+"
+    )
+    return _trim_to_limit(tweet)
 
 
 def run(args: argparse.Namespace) -> None:
@@ -163,26 +261,56 @@ def run(args: argparse.Namespace) -> None:
         sys.exit(1)
 
     cta = pick_cta_brand()
-    telegram_text = build_telegram_post(legs, acc_type, args.stake, cta)
+    telegram_text  = build_telegram_post(legs, acc_type, args.stake, cta)
+    facebook_text  = build_facebook_post(legs, acc_type, args.stake, cta)
+    instagram_text = build_instagram_post(legs, acc_type, args.stake, cta)
+    twitter_text   = build_twitter_post(legs, acc_type, args.stake, cta)
 
     print("\n" + "═" * 60)
     print(f"{acc_type.upper()} ACCUMULATOR — TELEGRAM " + ("(auto-posting)" if args.telegram and not args.dry_run else "(preview)"))
     print("═" * 60)
     print(telegram_text)
+    print("\n" + "─" * 60)
+    print("FACEBOOK (copy/paste)")
+    print("─" * 60)
+    print(facebook_text)
+    print("\n" + "─" * 60)
+    print("INSTAGRAM (copy/paste)")
+    print("─" * 60)
+    print(instagram_text)
+    print("\n" + "─" * 60)
+    print("X / TWITTER (copy/paste)")
+    print("─" * 60)
+    print(twitter_text)
     print("═" * 60 + "\n")
 
     if args.dry_run:
         print("Dry run — nothing sent.")
         return
 
+    results: dict[str, bool] = {}
+
     if args.telegram:
-        if send_to_channel(telegram_text):
-            log("accumulator", "telegram", "success", acc_type)
-            print("✓ Posted to Telegram.")
-        else:
-            log("accumulator", "telegram", "failed", acc_type)
-            print("✗ Telegram post failed — check TELEGRAM_BOT_TOKEN / session creds.")
-            sys.exit(1)
+        results["telegram"] = send_to_channel(telegram_text)
+        print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed — check TELEGRAM_BOT_TOKEN / session creds.")
+
+    if args.facebook:
+        results["facebook"] = post_facebook(facebook_text)
+        print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured (see agents/python/SETUP.md Step 3).")
+
+    if args.instagram:
+        results["instagram"] = post_instagram(instagram_text)
+        print("✓ Posted to Instagram." if results["instagram"] else "✗ Instagram post failed or not configured (see agents/python/SETUP.md Step 3).")
+
+    if args.twitter:
+        results["twitter"] = post_twitter(twitter_text)
+        print("✓ Posted to X/Twitter." if results["twitter"] else "✗ X/Twitter post failed or not configured (needs TWITTER_SESSION or X_USERNAME+X_PASSWORD in .env).")
+
+    for platform, ok in results.items():
+        log("accumulator", platform, "success" if ok else "failed", acc_type)
+
+    if results and not any(results.values()):
+        sys.exit(1)
 
 
 if __name__ == "__main__":
@@ -191,6 +319,9 @@ if __name__ == "__main__":
                          help="Accumulator label (default: auto-detect from current UTC day)")
     parser.add_argument("--stake", type=int, default=1000, help="Example stake in ₦ used for the return calc (default: 1000)")
     parser.add_argument("--no-telegram", dest="telegram", action="store_false", help="Don't auto-post to Telegram")
+    parser.add_argument("--no-facebook", dest="facebook", action="store_false", help="Don't auto-post to Facebook")
+    parser.add_argument("--no-instagram", dest="instagram", action="store_false", help="Don't auto-post to Instagram")
+    parser.add_argument("--no-twitter", dest="twitter", action="store_false", help="Don't auto-post to X/Twitter")
     parser.add_argument("--dry-run", action="store_true", help="Preview only, send nothing")
     args = parser.parse_args()
     run(args)
