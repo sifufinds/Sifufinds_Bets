@@ -392,6 +392,32 @@ def pick_cta_brand() -> dict:
     return max(AFFILIATE_BRANDS, key=lambda b: b["stars"])
 
 
+def build_bookmaker_block(cta: dict, html: bool) -> str:
+    """Trust bar (real licence/withdrawal/cash-out facts from BRANDS, never invented)
+    plus a dual-path CTA — new vs. already-registered readers convert differently,
+    a standard affiliate-marketing pattern, not just one generic 'click here' link."""
+    def b(s: str) -> str:
+        return f"<b>{s}</b>" if html else s
+
+    def link(url: str, label: str) -> str:
+        return f'<a href="{url}">{label}</a>' if html else url
+
+    trust_bits = [cta["licence"]]
+    if cta.get("instant_withdrawal"):
+        trust_bits.append("⚡ instant withdrawals")
+    if cta.get("cashout"):
+        trust_bits.append("💸 cash-out available")
+    trust_line = " · ".join(trust_bits)
+
+    return (
+        f"🏅 {b(cta['name'])} {_stars(cta['stars'])} — {cta['tag']}\n"
+        f"🛡 {trust_line}\n"
+        f"💰 {b(cta['welcome'])}\n\n"
+        f"🎁 New here? Claim your bonus → {link(cta['url'], cta['name'])}\n"
+        f"✅ Already registered? Place this bet now → {link(cta['url'], cta['name'])}"
+    )
+
+
 # ── TIP CARD (shared structure, HTML for Telegram / plain for other platforms) ─
 
 def build_tip_card(m: dict, tip_num: int, html: bool) -> str:
@@ -432,10 +458,7 @@ def build_telegram_post(m: dict, cta: dict, tip_num: int) -> str:
     card = build_tip_card(m, tip_num, html=True)
     return (
         f"{card}\n\n"
-        f"🏅 <b>Recommended Bookmaker:</b> {cta['name']} {_stars(cta['stars'])}\n"
-        f"💰 {cta['welcome']}\n\n"
-        f"🎁 Claim Bonus → <a href=\"{cta['url']}\">{cta['name']}</a>\n"
-        f"✅ Place Bet → <a href=\"{cta['url']}\">{cta['name']}</a>\n\n"
+        f"{build_bookmaker_block(cta, html=True)}\n\n"
         f"🌐 Visit <a href=\"{SITE_URL}\">SifuFinds.com</a> for more {meta['label'].lower()} tips, "
         f"predictions, bookmaker reviews, and exclusive bonuses.\n\n"
         f"{_REACT_PROMPT_TG}\n\n"
@@ -448,8 +471,7 @@ def build_facebook_post(m: dict, cta: dict, tip_num: int) -> str:
     card = build_tip_card(m, tip_num, html=False)
     return (
         f"{card}\n\n"
-        f"🏅 Best Bookmaker: {cta['name']} ({_stars(cta['stars'])}) — {cta['welcome']}\n\n"
-        f"🎁 Claim your bonus and place your bet: {cta['url']}\n\n"
+        f"{build_bookmaker_block(cta, html=False)}\n\n"
         f"🌐 More tips, predictions, and bookmaker reviews at {SITE_URL}\n\n"
         f"{_REACT_PROMPT_FB}\n\n"
         f"🔞 18+ | Gamble Responsibly"
@@ -465,7 +487,7 @@ def build_instagram_post(m: dict, cta: dict, tip_num: int) -> str:
     )
     return (
         f"{card}\n\n"
-        f"🏅 Best odds via {cta['name']} — {cta['welcome']}\n\n"
+        f"{build_bookmaker_block(cta, html=False)}\n\n"
         f"👉 Link in bio for the full breakdown + bonus\n"
         f"❤️🔥 Double-tap and drop a comment with your score prediction!\n\n"
         f"🔞 18+ | Gamble Responsibly\n"
@@ -501,8 +523,8 @@ def build_twitter_post(m: dict, cta: dict, tip_num: int) -> str:
         f"{meta['emoji']} {meta['label']} Tip {tip_num}: {matchup}\n\n"
         f"{format_pick_line(m)}\n"
         f"{format_odds_line(m)}\n\n"
-        f"🎁 {cta['welcome']}\n"
-        f"👉 Claim bonus → {cta['url']}\n\n"
+        f"🎁 {cta['name']}: {cta['welcome']}\n"
+        f"👉 New here? Claim it → {cta['url']}\n\n"
         f"#SifuFinds {meta['tag']} 🔞 18+"
     )
     return _trim_to_limit(tweet)

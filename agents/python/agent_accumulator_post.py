@@ -30,7 +30,8 @@ load_dotenv(Path(__file__).parent / ".env")
 sys.path.insert(0, str(Path(__file__).parent))
 
 from utils.logger import log
-from agent_telegram_offers import AFFILIATE_BRANDS, _stars, send_to_channel, SITE_URL
+from agent_telegram_offers import send_to_channel, SITE_URL
+from agent_match_post import build_bookmaker_block, pick_cta_brand
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 PRED_JSON = REPO_ROOT / "data" / "predictions.json"
@@ -113,16 +114,13 @@ def pick_legs(candidates: list[dict], n: int = FOLD_COUNT) -> list[dict]:
     return candidates[:n]
 
 
-def pick_cta_brand() -> dict:
-    return max(AFFILIATE_BRANDS, key=lambda b: b["stars"])
-
-
 def build_telegram_post(legs: list[dict], acc_type: str, stake: int, cta: dict) -> str:
     total_odds = 1.0
     for leg in legs:
         total_odds *= leg["odds"]
     total_odds = round(total_odds, 2)
     returns = round(stake * total_odds)
+    avg_conf = round(sum(leg["confidence"] for leg in legs) / len(legs))
 
     leg_lines = "\n".join(
         f"{LEG_EMOJI[i]} {leg['match']} - {leg['pick']}" for i, leg in enumerate(legs)
@@ -131,12 +129,14 @@ def build_telegram_post(legs: list[dict], acc_type: str, stake: int, cta: dict) 
     title = "WEEKEND ACCUMULATOR" if acc_type == "weekend" else "WEEKDAY ACCUMULATOR"
 
     return (
-        f"🎉 <b>{title}</b> 🎉\n\n"
+        f"🎉 <b>{title}</b> — Turn ₦{stake:,} into ₦{returns:,} 🎉\n\n"
         f"<b>{len(legs)}-Fold @ {total_odds}</b>\n\n"
         f"{leg_lines}\n\n"
         f"<b>Stake:</b> ₦{stake:,} → <b>Returns:</b> ₦{returns:,}\n\n"
-        f"🏅 <b>Bookmaker:</b> {cta['name']} {_stars(cta['stars'])}\n"
-        f"⚡ Place this accumulator at <a href=\"{cta['url']}\">{cta['name']}</a> and get best odds guaranteed!\n\n"
+        f"🧠 <b>Why this combo:</b> our {len(legs)} highest-confidence picks today, "
+        f"{avg_conf}% average model confidence\n"
+        f"⚠️ Higher risk than a single bet — every leg must win for the accumulator to pay out\n\n"
+        f"{build_bookmaker_block(cta, html=True)}\n\n"
         f"🌐 Visit <a href=\"{SITE_URL}\">SifuFinds.com</a> for more accas, tips, and bookmaker bonuses.\n\n"
         f"{_REACT_PROMPT}\n\n"
         f"🔞 18+ | Gamble Responsibly | BeGambleAware.org"
