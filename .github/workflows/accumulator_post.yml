@@ -1,0 +1,71 @@
+name: Accumulator Post — Weekend/Weekday 5-Fold, 5x per day
+
+on:
+  schedule:
+    # 5x per day: 07:00, 11:00, 14:00, 17:00, 20:00 UTC
+    # (08:00, 12:00, 15:00, 18:00, 21:00 WAT/EAT)
+    - cron: "0 7 * * *"
+    - cron: "0 11 * * *"
+    - cron: "0 14 * * *"
+    - cron: "0 17 * * *"
+    - cron: "0 20 * * *"
+  workflow_dispatch:
+    inputs:
+      type:
+        description: "Accumulator type (auto detects weekend/weekday from the UTC day)"
+        required: false
+        default: "auto"
+        type: choice
+        options: ["auto", "weekend", "weekday"]
+      stake:
+        description: "Example stake in ₦ used for the return calc"
+        required: false
+        default: "1000"
+
+concurrency:
+  group: accumulator-post
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  post-accumulator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Post accumulator to Telegram
+        working-directory: agents/python
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+          TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          TYPE="${{ github.event.inputs.type }}"
+          STAKE="${{ github.event.inputs.stake }}"
+          python agent_accumulator_post.py --type "${TYPE:-auto}" --stake "${STAKE:-1000}"

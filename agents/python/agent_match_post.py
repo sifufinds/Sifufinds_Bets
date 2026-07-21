@@ -7,6 +7,12 @@ scraped into data/predictions.json / data/tips.json / data/live.json (never
 invents stats, odds, bookmakers, or bonuses). Posts to Telegram immediately
 using the same Telethon + bot-token pipeline as agent_telegram_offers.py.
 
+Telegram layout is a compact tip-card (Date / League / Match / Kick off / Pick
+/ Odds) modelled on the user-supplied reference screenshot (Eagle Predict's
+channel), followed by SifuFinds' own bookmaker-recommendation + CTA block.
+Each post is auto-numbered ("Football Tip 3") via a small daily counter in
+match_post_state.json, reset at UTC midnight per sport.
+
 Every post ends with a text engagement prompt inviting readers to react
 (🔥/🤔/❤️). Telegram's *native* tap-to-react menu (the reaction bar seen under
 other channels' posts) is a channel-wide setting the Bot API does not expose —
@@ -38,6 +44,7 @@ import argparse
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -58,23 +65,25 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 PRED_JSON = REPO_ROOT / "data" / "predictions.json"
 TIPS_JSON = REPO_ROOT / "data" / "tips.json"
 LIVE_JSON = REPO_ROOT / "data" / "live.json"
+STATE_FILE = Path(__file__).parent / "match_post_state.json"
 
 _BRAND_BY_NAME = {b["name"].lower(): b for b in BRANDS}
 
 # Sports backed by data/live.json (ESPN feed) — no draw outcome
 LIVE_JSON_SPORTS = {"basketball", "tennis", "cricket", "rugby"}
 NO_DRAW_SPORTS = {"basketball", "tennis", "cricket", "rugby", "boxing", "ufc", "baseball"}
+NO_LEAGUE_SPORTS = {"boxing", "ufc", "casino", "other"}  # "Event:" instead of "League:"
 
 SPORT_META = {
-    "football":   {"emoji": "⚽", "tag": "#Football", "label": "Match"},
-    "basketball": {"emoji": "🏀", "tag": "#NBA #Basketball", "label": "Game"},
-    "tennis":     {"emoji": "🎾", "tag": "#Tennis", "label": "Match"},
-    "cricket":    {"emoji": "🏏", "tag": "#Cricket", "label": "Match"},
-    "rugby":      {"emoji": "🏉", "tag": "#Rugby", "label": "Match"},
-    "boxing":     {"emoji": "🥊", "tag": "#Boxing", "label": "Fight"},
-    "ufc":        {"emoji": "🥋", "tag": "#UFC #MMA", "label": "Fight"},
-    "casino":     {"emoji": "🎰", "tag": "#Casino #iGaming", "label": "Promo"},
-    "other":      {"emoji": "🏆", "tag": "#SifuFinds", "label": "Event"},
+    "football":   {"emoji": "⚽", "tag": "#Football", "label": "Football"},
+    "basketball": {"emoji": "🏀", "tag": "#NBA #Basketball", "label": "Basketball"},
+    "tennis":     {"emoji": "🎾", "tag": "#Tennis", "label": "Tennis"},
+    "cricket":    {"emoji": "🏏", "tag": "#Cricket", "label": "Cricket"},
+    "rugby":      {"emoji": "🏉", "tag": "#Rugby", "label": "Rugby"},
+    "boxing":     {"emoji": "🥊", "tag": "#Boxing", "label": "Boxing"},
+    "ufc":        {"emoji": "🥋", "tag": "#UFC #MMA", "label": "UFC"},
+    "casino":     {"emoji": "🎰", "tag": "#Casino #iGaming", "label": "Casino"},
+    "other":      {"emoji": "🏆", "tag": "#SifuFinds", "label": "SifuFinds"},
 }
 
 
@@ -85,6 +94,15 @@ def _split_teams(query: str) -> tuple[str, str]:
     if len(parts) == 2:
         return parts[0].strip(), parts[1].strip()
     return query.strip(), ""
+
+
+def _split_combined(raw: str) -> tuple[str, str]:
+    """Split a 'DATE · TIME'-style display string. Returns ('', raw) if there's
+    no separator — never guesses which half is which."""
+    if " · " in raw:
+        a, b = raw.split(" · ", 1)
+        return a.strip(), b.strip()
+    return "", raw.strip()
 
 
 def _tokens(s: str) -> set[str]:
@@ -116,13 +134,16 @@ def _best_prediction_match(home_q: str, away_q: str) -> tuple[dict | None, float
         score = max(s, s_swapped)
         if score > best_score:
             best_score = score
+            date_raw, time_raw = _split_combined(pred.get("ko_display", ""))
             best = {
                 "sport": "football",
                 "source": "prediction",
                 "home": pred.get("home", ""),
                 "away": pred.get("away", ""),
                 "competition": pred.get("competition", ""),
-                "ko_display": pred.get("ko_display", ""),
+                "ko_utc": pred.get("ko_utc"),
+                "date_raw": date_raw,
+                "time_raw": time_raw,
                 "pick_label": pred.get("match_winner_label", ""),
                 "confidence": pred.get("confidence"),
                 "home_odds": pred.get("home_odds", ""),
@@ -151,7 +172,9 @@ def _best_tip_match(home_q: str, away_q: str) -> tuple[dict | None, float]:
                 "home": th,
                 "away": ta,
                 "competition": tip.get("league", ""),
-                "ko_display": f"{tip.get('time','TBD')} · {tip.get('date','')}".strip(" ·"),
+                "ko_utc": None,
+                "date_raw": tip.get("date", ""),
+                "time_raw": tip.get("time", "TBD"),
                 "pick_label": tip.get("pred", ""),
                 "confidence": tip.get("conf"),
                 "home_odds": "",
@@ -167,7 +190,8 @@ def _best_tip_match(home_q: str, away_q: str) -> tuple[dict | None, float]:
 
 _MERGEABLE_FIELDS = [
     "confidence", "home_odds", "draw_odds", "away_odds",
-    "over25", "btts", "correct_score", "odds_via", "ko_display", "pick_label",
+    "over25", "btts", "correct_score", "odds_via",
+    "ko_utc", "date_raw", "time_raw", "pick_label",
 ]
 
 
@@ -216,13 +240,16 @@ def find_live_json_match(query: str, sport: str) -> dict | None:
                 pick_label = f"{e['home']} to win" if h_odds < a_odds else f"{e['away']} to win"
             else:
                 pick_label = ""
+            date_raw, time_raw = _split_combined(e.get("time", ""))
             best = {
                 "sport": sport,
                 "source": "live",
                 "home": e.get("home", ""),
                 "away": e.get("away", ""),
                 "competition": e.get("league", ""),
-                "ko_display": e.get("time", ""),
+                "ko_utc": None,
+                "date_raw": date_raw,
+                "time_raw": time_raw,
                 "pick_label": pick_label,
                 "confidence": None,
                 "home_odds": h_odds or "",
@@ -255,14 +282,16 @@ def build_manual_record(args: argparse.Namespace) -> dict:
     odds_via = None
     if args.odds:
         label, price = args.odds[0].split(":", 1)
-        odds_via = {"odds": price.strip(), "brand": args.odds_source or "see below"}
+        odds_via = {"odds": price.strip(), "brand": args.odds_source or ""}
     return {
         "sport": args.sport,
         "source": "manual",
         "home": home,
         "away": away or "",
         "competition": args.competition or "",
-        "ko_display": args.kickoff or "",
+        "ko_utc": None,
+        "date_raw": "",
+        "time_raw": args.kickoff or "",
         "pick_label": args.pick or "",
         "confidence": None,
         "home_odds": "",
@@ -276,38 +305,86 @@ def build_manual_record(args: argparse.Namespace) -> dict:
     }
 
 
-# ── STATS + PICK BUILDING ─────────────────────────────────────────────────────
+# ── DATE/TIME + TIP NUMBERING ─────────────────────────────────────────────────
 
-def build_stats(m: dict) -> list[str]:
-    stats: list[str] = []
-    if m.get("confidence") is not None:
-        stats.append(f"📈 Model confidence: {m['confidence']}%")
-    if m.get("home_odds") or m.get("draw_odds") or m.get("away_odds"):
-        if m["sport"] in NO_DRAW_SPORTS:
-            stats.append(f"💹 Odds — {m['home']} {m.get('home_odds') or 'N/A'} · {m['away']} {m.get('away_odds') or 'N/A'}")
-        else:
-            stats.append(
-                f"💹 1X2 odds — Home {m.get('home_odds') or 'N/A'} · "
-                f"Draw {m.get('draw_odds') or 'N/A'} · Away {m.get('away_odds') or 'N/A'}"
-            )
+def format_date_time(m: dict) -> tuple[str, str]:
+    """Return (DD/MM/YYYY, time display) from whatever the record carries.
+    Never invents a date — returns '' for whichever half isn't available."""
+    iso = m.get("ko_utc")
+    if iso:
+        try:
+            dt = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+            return dt.strftime("%d/%m/%Y"), dt.strftime("%H:%M UTC")
+        except Exception:
+            pass
+
+    time_display = m.get("time_raw", "")
+    raw_date = m.get("date_raw", "")
+    if raw_date:
+        try:
+            dt = datetime.strptime(raw_date, "%d %b %Y")
+            return dt.strftime("%d/%m/%Y"), time_display
+        except ValueError:
+            pass
+        try:
+            dt = datetime.strptime(f"{raw_date} {datetime.now(timezone.utc).year}", "%d %b %Y")
+            return dt.strftime("%d/%m/%Y"), time_display
+        except ValueError:
+            return raw_date, time_display
+    return "", time_display
+
+
+def next_tip_number(sport: str) -> int:
+    """Sequential daily counter per sport, e.g. 'Football Tip 3' — resets at
+    UTC midnight, mirroring how reference tipster channels number their posts."""
+    state = _load_json(STATE_FILE)
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if state.get("date") != today:
+        state = {"date": today, "counters": {}}
+    counters = state.setdefault("counters", {})
+    counters[sport] = counters.get(sport, 0) + 1
+    STATE_FILE.write_text(json.dumps(state, indent=2))
+    return counters[sport]
+
+
+# ── PICK / ODDS LINES ─────────────────────────────────────────────────────────
+
+def format_pick_line(m: dict) -> str:
+    return f"✅ {m.get('pick_label') or 'See stats — no clear lean yet'}"
+
+
+def format_odds_line(m: dict) -> str:
+    if m.get("odds_via") and m["odds_via"].get("odds"):
+        bk = (m["odds_via"].get("brand") or "").upper()
+        price = m["odds_via"]["odds"]
+        return f"✅ Odds @{price} on {bk}" if bk else f"✅ Odds @{price}"
     if m.get("manual_odds"):
+        parts = []
         for line in m["manual_odds"]:
             label, price = line.split(":", 1)
-            stats.append(f"💹 {label.strip()}: {price.strip()}")
-    if m.get("odds_via"):
-        stats.append(f"💰 Best price found: {m['odds_via']['odds']} via {m['odds_via']['brand']}")
+            parts.append(f"{label.strip()} @{price.strip()}")
+        return "✅ Odds: " + " · ".join(parts)
+    if m.get("home_odds") or m.get("draw_odds") or m.get("away_odds"):
+        if m["sport"] in NO_DRAW_SPORTS:
+            return f"✅ Odds — {m['home']} {m.get('home_odds') or 'N/A'} · {m['away']} {m.get('away_odds') or 'N/A'}"
+        return (
+            f"✅ Odds — Home {m.get('home_odds') or 'N/A'} · "
+            f"Draw {m.get('draw_odds') or 'N/A'} · Away {m.get('away_odds') or 'N/A'}"
+        )
+    return ""
+
+
+def format_extra_lines(m: dict) -> list[str]:
+    """A couple of optional extra ✅ lines when the data has them — capped so
+    the card stays as compact as the reference, not a wall of stats."""
+    lines: list[str] = []
+    if m.get("confidence") is not None:
+        lines.append(f"✅ Confidence: {m['confidence']}%")
     if m.get("over25"):
-        stats.append(f"⚽ Goals market lean: {m['over25']}")
+        lines.append(f"✅ Goals: {m['over25']}")
     if m.get("btts"):
-        stats.append(f"🥅 BTTS: {m['btts']}")
-    if m.get("correct_score"):
-        stats.append(f"🎯 Correct score lean: {m['correct_score']}")
-    if m.get("competition"):
-        stats.append(f"🏆 Competition: {m['competition']}")
-    if m.get("ko_display"):
-        time_label = "Kickoff" if m["sport"] in ("football", "basketball", "rugby") else "Start time"
-        stats.append(f"🕒 {time_label}: {m['ko_display']}")
-    return stats[:5] if len(stats) >= 3 else stats
+        lines.append(f"✅ {m['btts']}")
+    return lines[:2]
 
 
 def pick_cta_brand() -> dict:
@@ -315,17 +392,33 @@ def pick_cta_brand() -> dict:
     return max(AFFILIATE_BRANDS, key=lambda b: b["stars"])
 
 
-def build_preview(m: dict) -> str:
-    home, away = m["home"], m.get("away") or ""
-    comp = m.get("competition") or "this fixture"
-    pick = m.get("pick_label") or "a tight contest"
-    subject = f"{home} take on {away}" if away else home
-    lines = [f"{subject} in {comp}."]
-    if m.get("ko_display"):
-        time_label = "Kick-off" if m["sport"] in ("football", "basketball", "rugby") else "Start time"
-        lines.append(f"{time_label} is {m['ko_display']}.")
-    lines.append(f"Our model leans towards {pick}." if pick != "a tight contest" else "")
-    return " ".join(l for l in lines if l)
+# ── TIP CARD (shared structure, HTML for Telegram / plain for other platforms) ─
+
+def build_tip_card(m: dict, tip_num: int, html: bool) -> str:
+    meta = SPORT_META.get(m["sport"], SPORT_META["other"])
+    date_display, time_display = format_date_time(m)
+    matchup = f"{m['home']} - {m['away']}" if m.get("away") else m["home"]
+    comp_label = "Event" if m["sport"] in NO_LEAGUE_SPORTS else "League"
+
+    def b(s: str) -> str:
+        return f"<b>{s}</b>" if html else s
+
+    title = f"{meta['label']} Tip {tip_num}"
+    lines = [f"{meta['emoji']} {b(title)} {meta['emoji']}", ""]
+    if date_display:
+        lines.append(f"{b('Date:')} {date_display}")
+    if m.get("competition"):
+        lines.append(f"{b(comp_label + ':')} {m['competition']}")
+    lines.append(f"{b('Match:')} {matchup}")
+    if time_display:
+        lines.append(f"{b('Kick off:')} {time_display}")
+    lines.append("")
+    lines.append(format_pick_line(m))
+    odds_line = format_odds_line(m)
+    if odds_line:
+        lines.append(odds_line)
+    lines.extend(format_extra_lines(m))
+    return "\n".join(lines)
 
 
 # ── PLATFORM FORMATTERS (generous spacing for mobile readability) ───────────
@@ -334,44 +427,27 @@ _REACT_PROMPT_TG = "💬 Tap a reaction below — 🔥 backing this pick · 🤔
 _REACT_PROMPT_FB = "💬 React below — 🔥 if you're backing this, 🤔 if you're not sure!"
 
 
-def build_telegram_post(m: dict, cta: dict) -> str:
+def build_telegram_post(m: dict, cta: dict, tip_num: int) -> str:
     meta = SPORT_META.get(m["sport"], SPORT_META["other"])
-    stats_block = "\n\n".join(f"• {s}" for s in build_stats(m))
-    matchup = f"{m['home']} vs {m['away']}" if m.get("away") else m["home"]
-    title = f"{matchup} — {meta['label']} Preview & Best Bet"
-    meta_line = m.get("competition", "")
-    if m.get("ko_display"):
-        meta_line += f" · {m['ko_display']}" if meta_line else m["ko_display"]
-
+    card = build_tip_card(m, tip_num, html=True)
     return (
-        f"🏆 <b>{title}</b>\n\n"
-        f"{meta['emoji']} <b>{matchup}</b>\n"
-        f"{meta_line}\n\n"
-        f"{build_preview(m)}\n\n"
-        f"📊 <b>Key Stats</b>\n\n"
-        f"{stats_block}\n\n"
-        f"🎯 <b>Best Betting Pick:</b> {m.get('pick_label') or 'See stats above'}\n\n"
+        f"{card}\n\n"
         f"🏅 <b>Recommended Bookmaker:</b> {cta['name']} {_stars(cta['stars'])}\n"
         f"💰 {cta['welcome']}\n\n"
         f"🎁 Claim Bonus → <a href=\"{cta['url']}\">{cta['name']}</a>\n"
         f"✅ Place Bet → <a href=\"{cta['url']}\">{cta['name']}</a>\n\n"
-        f"🌐 Visit <a href=\"{SITE_URL}\">SifuFinds.com</a> for more betting tips, "
+        f"🌐 Visit <a href=\"{SITE_URL}\">SifuFinds.com</a> for more {meta['label'].lower()} tips, "
         f"predictions, bookmaker reviews, and exclusive bonuses.\n\n"
         f"{_REACT_PROMPT_TG}\n\n"
         f"🔞 18+ | Gamble Responsibly"
     )
 
 
-def build_facebook_post(m: dict, cta: dict) -> str:
+def build_facebook_post(m: dict, cta: dict, tip_num: int) -> str:
     meta = SPORT_META.get(m["sport"], SPORT_META["other"])
-    stats_block = "\n\n".join(f"✔️ {s}" for s in build_stats(m))
-    matchup = f"{m['home']} vs {m['away']}" if m.get("away") else m["home"]
-
+    card = build_tip_card(m, tip_num, html=False)
     return (
-        f"🏆 {matchup} — {meta['label']} Preview & Best Bet\n\n"
-        f"{build_preview(m)}\n\n"
-        f"📊 Key Stats:\n\n{stats_block}\n\n"
-        f"🎯 Best Betting Pick: {m.get('pick_label') or 'See stats above'}\n\n"
+        f"{card}\n\n"
         f"🏅 Best Bookmaker: {cta['name']} ({_stars(cta['stars'])}) — {cta['welcome']}\n\n"
         f"🎁 Claim your bonus and place your bet: {cta['url']}\n\n"
         f"🌐 More tips, predictions, and bookmaker reviews at {SITE_URL}\n\n"
@@ -380,19 +456,15 @@ def build_facebook_post(m: dict, cta: dict) -> str:
     )
 
 
-def build_instagram_post(m: dict, cta: dict) -> str:
+def build_instagram_post(m: dict, cta: dict, tip_num: int) -> str:
     meta = SPORT_META.get(m["sport"], SPORT_META["other"])
-    stats_lines = "\n\n".join(f"🔹 {s}" for s in build_stats(m)[:4])
-    matchup = f"{m['home']} vs {m['away']}" if m.get("away") else m["home"]
+    card = build_tip_card(m, tip_num, html=False)
     hashtags = (
         f"#SifuFinds #BettingTips {meta['tag']} #AfricanBetting #SportsBetting "
         f"#{cta['name'].replace(' ', '')}"
     )
     return (
-        f"🏆 {matchup}\n\n"
-        f"{build_preview(m)}\n\n"
-        f"{stats_lines}\n\n"
-        f"🎯 Pick: {m.get('pick_label') or 'See stats above'}\n\n"
+        f"{card}\n\n"
         f"🏅 Best odds via {cta['name']} — {cta['welcome']}\n\n"
         f"👉 Link in bio for the full breakdown + bonus\n"
         f"❤️🔥 Double-tap and drop a comment with your score prediction!\n\n"
@@ -422,14 +494,14 @@ def _trim_to_limit(text: str, limit: int = 280) -> str:
     return "\n".join(lines)
 
 
-def build_twitter_post(m: dict, cta: dict) -> str:
+def build_twitter_post(m: dict, cta: dict, tip_num: int) -> str:
     meta = SPORT_META.get(m["sport"], SPORT_META["other"])
     matchup = f"{m['home']} vs {m['away']}" if m.get("away") else m["home"]
     tweet = (
-        f"🏆 {matchup}\n\n"
-        f"🎯 Pick: {m.get('pick_label') or 'Check the stats'}\n"
-        f"💰 Best odds via {cta['name']}\n"
-        f"🎁 {cta['welcome']}\n\n"
+        f"{meta['emoji']} {meta['label']} Tip {tip_num}: {matchup}\n\n"
+        f"{format_pick_line(m)}\n"
+        f"{format_odds_line(m)}\n\n"
+        f"🎁 {cta['welcome']}\n"
         f"👉 Claim bonus → {cta['url']}\n\n"
         f"#SifuFinds {meta['tag']} 🔞 18+"
     )
@@ -457,11 +529,12 @@ def run(args: argparse.Namespace) -> None:
         sys.exit(1)
 
     cta = pick_cta_brand()
+    tip_num = next_tip_number(args.sport)
 
-    telegram_text  = build_telegram_post(m, cta)
-    facebook_text  = build_facebook_post(m, cta)
-    instagram_text = build_instagram_post(m, cta)
-    twitter_text   = build_twitter_post(m, cta)
+    telegram_text  = build_telegram_post(m, cta, tip_num)
+    facebook_text  = build_facebook_post(m, cta, tip_num)
+    instagram_text = build_instagram_post(m, cta, tip_num)
+    twitter_text   = build_twitter_post(m, cta, tip_num)
 
     print("\n" + "═" * 60)
     print("TELEGRAM (auto-posting)" if args.telegram and not args.dry_run else "TELEGRAM (preview)")
