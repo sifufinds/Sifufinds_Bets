@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-23T22:34:51.332040+00:00",
+  "updated": "2026-07-23T23:31:46.795604+00:00",
   "count": 8,
   "events": [
     {
@@ -10,7 +10,24 @@
       "home": "St. Louis Cardinals",
       "away": "Arizona Diamondbacks",
       "hScore": "2",
-      "aScore": "3",
+      "aScore": "7",
+      "time": "LIVE",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
+    {
+      "league": "MLB",
+      "key": "baseball",
+      "live": true,
+      "complete": false,
+      "home": "Detroit Tigers",
+      "away": "Kansas City Royals",
+      "hScore": "0",
+      "aScore": "0",
       "time": "LIVE",
       "h": 0.0,
       "d": 0.0,
@@ -69,23 +86,6 @@
       "hBk": "",
       "dBk": "",
       "aBk": ""
-    },
-    {
-      "league": "MLB",
-      "key": "baseball",
-      "live": false,
-      "complete": false,
-      "home": "Detroit Tigers",
-      "away": "Kansas City Royals",
-      "hScore": null,
-      "aScore": null,
-      "time": "23 Jul 2026 \u00b7 22:40 UTC",
-      "h": 1.43,
-      "d": 0.0,
-      "a": 2.88,
-      "hBk": "DraftKings",
-      "dBk": "",
-      "aBk": "DraftKings"
     },
     {
       "league": "MLB",
