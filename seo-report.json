@@ -1,10 +1,10 @@
 {
-  "date": "2026-07-22",
-  "total": 4,
+  "date": "2026-07-23",
+  "total": 3,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 4,
+    "MEDIUM": 3,
     "INFO": 0
   },
   "issues": [
@@ -24,12 +24,6 @@
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
       "page": "boxing-underdog-factor-usyk-fury",
-      "detail": "Post has FAQ content but no FAQPage JSON-LD"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "missing_faqpage_schema",
-      "page": "igaming-trends-africa-regulators-operators",
       "detail": "Post has FAQ content but no FAQPage JSON-LD"
     }
   ]
