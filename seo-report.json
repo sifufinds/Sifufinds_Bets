@@ -1,13 +1,25 @@
 {
-  "date": "2026-07-23",
-  "total": 3,
+  "date": "2026-07-24",
+  "total": 5,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 3,
+    "HIGH": 1,
+    "MEDIUM": 4,
     "INFO": 0
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rodri-injury-blow-impact-on-manchester-city",
+      "detail": "Excerpt 194 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "missing_faqpage_schema",
+      "page": "rodri-injury-blow-impact-on-manchester-city",
+      "detail": "Post has FAQ content but no FAQPage JSON-LD"
+    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
