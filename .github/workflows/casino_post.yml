@@ -1,10 +1,10 @@
-name: Casino Post — Games & Bonuses, 2x per day
+name: Casino Post — Games & Bonuses, on-demand
 
 on:
-  schedule:
-    # 2x per day: 08:30, 18:30 UTC (09:30/19:30 WAT, 11:30/21:30 EAT)
-    - cron: "30 8 * * *"
-    - cron: "30 18 * * *"
+  # No automatic schedule: per the daily content strategy (3 high-quality posts/day —
+  # morning bonus + lunch tips + evening tips), casino/bonus extras get folded into a
+  # relevant prediction post instead of running as their own separate post. Trigger
+  # manually (gh workflow run casino_post.yml) when a casino bonus is worth its own post.
   workflow_dispatch:
     inputs:
       dry_run:

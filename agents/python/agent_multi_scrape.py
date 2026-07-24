@@ -1,10 +1,12 @@
 """
-agent_multi_scrape.py — Hourly multi-source scraper for SifuFinds
+agent_multi_scrape.py — 15-min multi-source scraper for SifuFinds
 Scrapes 6 sites (Flashscore, Sofascore, Livescore, OddsPortal, BetExplorer,
-OddsChecker) using Firecrawl, then merges results into data/live.json.
+OddsChecker) free-first (trafilatura + Jina Reader, see utils/free_scrape.py),
+then merges results into data/live.json. Firecrawl only fires as a last
+resort per-URL when both free layers return too little content.
 
-Runs every hour via GitHub Actions alongside agent_live_odds.py (ESPN, every 5 min).
-Requires: FIRECRAWL_API_KEY env var.
+Runs every 15 minutes via GitHub Actions alongside agent_live_odds.py (ESPN,
+every 5 min). FIRECRAWL_API_KEY is optional — the free pipeline needs no key.
 """
 
 from __future__ import annotations
@@ -12,16 +14,16 @@ from __future__ import annotations
 import json
 import os
 import re
-import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
+from utils.free_scrape import scrape as free_scrape
+
 # ── Config ────────────────────────────────────────────────────────────────────
 
-FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY", "")
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 LIVE_JSON = REPO_ROOT / "data" / "live.json"
 TODAY = datetime.now(timezone.utc).strftime("%Y%m%d")

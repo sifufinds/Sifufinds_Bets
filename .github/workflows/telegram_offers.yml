@@ -1,15 +1,13 @@
-name: Telegram Brand Offers — Post every 3 hours
+name: Telegram Brand Offers — Best Bonus of the Day, 1x per day
 
 on:
   schedule:
-    # 6x per day: 06:00, 09:00, 12:00, 15:00, 18:00, 21:00 UTC
-    # (07:00, 10:00, 13:00, 16:00, 19:00, 22:00 WAT / EAT)
-    - cron: "0 6 * * *"
-    - cron: "0 9 * * *"
-    - cron: "0 12 * * *"
-    - cron: "0 15 * * *"
-    - cron: "0 18 * * *"
-    - cron: "0 21 * * *"
+    # 1x per day, morning slot: 07:00 UTC (08:00 WAT / 10:00 EAT).
+    # Deliberately down from 6x/day: the daily content strategy is 3 high-quality
+    # posts/day (morning bonus + lunch tips + evening tips) rather than posting
+    # often enough to overwhelm a still-growing audience. Any further bonus detail
+    # worth sharing gets folded into a prediction post instead of a new bonus post.
+    - cron: "0 7 * * *"
   workflow_dispatch:
     inputs:
       brand:

@@ -1,14 +1,16 @@
-name: Accumulator Post — Weekend/Weekday 5-Fold, 5x per day
+name: Accumulator Post — Weekend/Weekday 5-Fold, 2x per day
 
 on:
   schedule:
-    # 5x per day: 07:00, 11:00, 14:00, 17:00, 20:00 UTC
-    # (08:00, 12:00, 15:00, 18:00, 21:00 WAT/EAT)
-    - cron: "0 7 * * *"
+    # 2x per day, matching the "lunch tips + evening tips" daily content strategy:
+    #   11:00 UTC = 12:00 WAT / 14:00 EAT — Best Prediction & Tips of the Day (lunch)
+    #   18:00 UTC = 19:00 WAT / 21:00 EAT — Evening Predictions & Tips
+    # Deliberately down from 5x/day while the audience is still growing, so each post
+    # gets room to gain views before the next one lands. Once the football season is
+    # properly underway, scale back up to 3-5 prediction posts/day by adding more cron
+    # lines here — but only with genuinely strong tips, not volume for its own sake.
     - cron: "0 11 * * *"
-    - cron: "0 14 * * *"
-    - cron: "0 17 * * *"
-    - cron: "0 20 * * *"
+    - cron: "0 18 * * *"
   workflow_dispatch:
     inputs:
       type:
