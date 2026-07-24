@@ -39,6 +39,14 @@
 - Local tasks / scripts: re-run the failed command after a short wait. If a git push fails, retry up to 3 times before stopping.
 - Never leave a failed job unaddressed. If a retry also fails, flag it and keep retrying on schedule.
 
+## STANDING RULE — Always Commit and Push (added 2026-07-24)
+
+**Every code/content change made by Claude Code (or any agent) in this repo must be committed and pushed immediately, without asking the user for confirmation first.** The user has explicitly authorized this — do not wait for a prompt to commit, and do not leave work sitting uncommitted "for review."
+
+- Write a clear commit message per the format in `git-workflow.md` (type: description), stage only the files actually touched, commit, and push to `main` right away.
+- This repo also has a separate automated deploy pipeline that periodically commits/pushes on its own (visible as `deploy: <timestamp> UTC` commits in the log) — that pipeline is independent infrastructure, not a substitute for committing your own work the moment it's done. Don't rely on it to pick up your changes; commit them yourself.
+- Still follow the existing git-safety rules: never force-push, never skip hooks, never amend a shared commit, and warn before anything destructive — this rule only removes the "ask before every commit/push" step for normal forward changes, it does not authorize destructive git operations.
+
 ## STANDING RULE — SEO Health Is Continuously Self-Healing (added 2026-07-05)
 
 **Nothing about SEO health is a one-time fix. Every category below has a permanent, automated guard so it never silently regresses.**
