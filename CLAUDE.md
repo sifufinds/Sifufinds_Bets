@@ -159,6 +159,17 @@ Every post must also be structured to get cited by AI answer engines (Google AI 
 - **Broken internal links**: the blog post bodies in `posts.json` sometimes contain hardcoded absolute `https://sifufinds.com/SLUG` links that may not resolve. Fix by adding a `Redirect 301 /old-slug /correct/path/` to `.htaccess`. Run the validator after to confirm.
 - **Validator command**: `python3 scripts/validate_site.py` — exit 0 = safe, exit 1 = block deploy.
 
+## STANDING RULE — Affiliate Link Masking & CTA Wording (added 2026-07-24)
+
+**Every affiliate link shared on any social platform (Telegram, Facebook, Instagram, X) must be a masked, branded URL wrapped in a CTA — never the raw affiliate tracking URL, and never a bare "click here" or the brand name as the link text.**
+
+- **Masked URL**: `https://sifufinds.com/<brand>` (e.g. `https://sifufinds.com/1xbet`) — clean and trustworthy-looking, no tracking parameters visible. 301-redirects to the real affiliate URL via the `AFFILIATE LINK MASKING` block in `.htaccess`.
+- **CTA wording**: one of `BET NOW`, `CLAIM BONUS NOW`, `FREE BETS` — chosen automatically to match the actual offer (no-deposit/free-bet copy → `FREE BETS`; deposit-match/bonus copy → `CLAIM BONUS NOW`; otherwise → `BET NOW`). Never invent a CTA that overstates the offer.
+- **Single source of truth**: `agents/python/utils/affiliate_links.py` — `masked_url()`, `pick_cta()`, `cta_html()` (real `<a href>` hyperlink for Telegram's HTML parse mode), `cta_plain()` (`CTA → url` text for platforms that can't render custom anchor text: Facebook captions, X, Instagram).
+- **Facebook posts always carry hashtags.** Every `post_facebook()` call site must include hashtags in the message body itself (Graph API doesn't accept a separate hashtags field) — this is enforced in `agent3_social.py`, `agent3_social_telethon.py` (the one actually wired into `agents/python/.github/workflows/agent3_social.yml`), `agent_telegram_offers.py`, `agent_match_post.py`, `agent_casino_post.py`, and `agent_accumulator_post.py`.
+- **Adding a new bookmaker brand**: add its slug to `BRAND_SLUGS` in `utils/affiliate_links.py` AND add the matching `RewriteRule ^<slug>/?$ "<real-url>" [R=301,L,NC]` to the `AFFILIATE LINK MASKING` block in `.htaccess` in the same change — the two must stay in sync or the masked link 404s. If an existing brand's affiliate URL changes (e.g. `affiliate` flips from `False` to `True` in `agent_telegram_offers.py`'s `BRANDS`), update its `.htaccess` rule at the same time.
+- Do not hand-patch one social agent and call it done — if you touch how affiliate links or CTAs are rendered, check `agent_telegram_offers.py`, `agent_match_post.py` (`build_bookmaker_block`, shared by match/casino/accumulator posts), `agent_casino_post.py`, `agent_accumulator_post.py`, `agent_twitter_posts.py`, and both `agent3_social*.py` files for the same pattern.
+
 ## Content Focus
 - African betting markets: Nigeria, Kenya, Ghana, South Africa, Tanzania, Uganda, Zambia, Ethiopia, Ivory Coast, Cameroon, Senegal, Rwanda, Zimbabwe, Malawi, Mozambique, Angola, DR Congo, Botswana, Namibia, Egypt, Morocco
 - Bookmakers: Bet9ja, SportyBet, Betway, 1xBet, Hollywoodbets, 22Bet, Melbet

@@ -64,3 +64,6 @@ agents/python/twitter_session_b64.txt
 agents/python/x_landing.png
 agents/python/x_debug*.png
 agents/python/twitter_session.json
+
+# Generated social-card images (ephemeral, regenerated + uploaded fresh each run)
+agents/python/generated_images/

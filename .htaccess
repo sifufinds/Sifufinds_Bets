@@ -47,6 +47,32 @@ RewriteRule ^(.*)$ https://sifufinds.com/$1 [R=301,L]
 RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
 RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 
+# ── AFFILIATE LINK MASKING ────────────────────────────────────────────────────
+# Every bookmaker gets a clean sifufinds.com/<brand> URL for social sharing
+# instead of the raw affiliate tracking link (see agents/python/utils/
+# affiliate_links.py — masked_url()/BRAND_SLUGS is the single source of truth
+# for these slugs; keep the two in sync). External 301 redirect to the real
+# affiliate/brand URL. NC = also match any casing a share might use.
+RewriteRule ^1xbet/?$ "https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97" [R=301,L,NC]
+RewriteRule ^melbet/?$ "https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559" [R=301,L,NC]
+RewriteRule ^betwinner/?$ "https://bwredir.com/1Lvf?p=%2Fregistration%2F" [R=301,L,NC]
+RewriteRule ^helabet/?$ "https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235" [R=301,L,NC]
+RewriteRule ^paripesa/?$ "https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569" [R=301,L,NC]
+RewriteRule ^bet9ja/?$ https://www.bet9ja.com [R=301,L,NC]
+RewriteRule ^sportybet/?$ https://www.sportybet.com/ng/ [R=301,L,NC]
+RewriteRule ^betking/?$ https://www.betking.com [R=301,L,NC]
+RewriteRule ^betway/?$ https://www.betway.com/en-ng/ [R=301,L,NC]
+RewriteRule ^hollywoodbets/?$ https://www.hollywoodbets.net/ [R=301,L,NC]
+RewriteRule ^betika/?$ https://www.betika.com/en-ke/ [R=301,L,NC]
+RewriteRule ^sportpesa/?$ https://www.sportpesa.co.ke [R=301,L,NC]
+RewriteRule ^mozzartbet/?$ https://www.mozzartbet.com/en/ [R=301,L,NC]
+RewriteRule ^nairabet/?$ https://www.nairabet.com [R=301,L,NC]
+RewriteRule ^22bet/?$ https://22bet.com [R=301,L,NC]
+RewriteRule ^betpawa/?$ https://www.betpawa.ng [R=301,L,NC]
+RewriteRule ^odibets/?$ https://odibets.com/ [R=301,L,NC]
+RewriteRule ^supabets/?$ https://www.supabets.com/ [R=301,L,NC]
+RewriteRule ^bangbet/?$ https://www.bangbet.com [R=301,L,NC]
+
 # ── 301 REDIRECTS — FIX BROKEN INTERNAL LINKS ────────────────────────────────
 # Plain mod_alias "Redirect 301" directives were not firing on the live host
 # (LiteSpeed/Hostinger) despite mod_rewrite rules working — using RewriteRule
