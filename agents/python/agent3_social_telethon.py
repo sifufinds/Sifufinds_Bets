@@ -133,7 +133,10 @@ def run():
             post_to_telegram_channel(channel, social["telegram"])
         )
     if social.get("facebook"):
-        results["facebook"] = post_facebook(social["facebook"])
+        # Facebook posts must always carry hashtags — never post the bare message.
+        hashtags = social.get("hashtags", "")
+        fb_caption = social["facebook"].rstrip() + ("\n\n" + hashtags if hashtags else "")
+        results["facebook"] = post_facebook(fb_caption)
     if social.get("instagram"):
         ig_text = social["instagram"] + "\n" + social.get("hashtags", "")
         results["instagram"] = post_instagram(ig_text)

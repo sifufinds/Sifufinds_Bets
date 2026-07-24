@@ -32,6 +32,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from utils.logger import log
 from utils.blog_match import find_matching_post, mark_used, bookmaker_review_url
 from utils.social_image import build_social_image, brand_color
+from utils.affiliate_links import masked_url, pick_cta, cta_html, cta_plain
 from agent3_social import post_facebook
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
@@ -449,7 +450,7 @@ def build_offer_message(brand: dict) -> str:
         f"💸 Cash-Out: {_yes_no(brand['cashout'])}\n"
         f"🛡 {brand['licence']}\n\n"
         f"🌍 Available in: {countries_str}\n\n"
-        f"👉 Claim offer → <a href=\"{brand['url']}\">{brand['name']}</a>\n"
+        f"👉 {cta_html(brand)}\n"
         f"📊 Compare all bonuses → <a href=\"{SITE_URL}\">{SITE_URL}</a>\n"
         f"📲 Join our channel → @sifufinds\n\n"
         f"{brand['hashtags']} #SifuFinds #BettingBonus #AfricanBetting\n\n"
@@ -460,10 +461,13 @@ def build_offer_message(brand: dict) -> str:
 
 def build_facebook_offer_message(brand: dict, link: str) -> str:
     """
-    Plain-text Facebook Page caption (Graph API captions don't render HTML tags).
-    Follows Meta Page-content best practice: one clear link, a handful of
-    relevant hashtags rather than a stacked block, no "guaranteed"/"sure win"
-    language, and the responsible-gambling line every SifuFinds post carries.
+    Plain-text Facebook Page caption (Graph API captions don't render HTML tags,
+    so the CTA phrase sits in front of the link rather than as anchor text).
+    Two purposeful links, never more: the content link first (drives organic
+    traffic to a real SifuFinds review/blog post) and a masked, CTA'd affiliate
+    link second — sifufinds.com/<brand>, never the raw tracking URL, per the
+    site-wide affiliate link masking rule in utils/affiliate_links.py.
+    Hashtags are always included — never a Facebook post without them.
     """
     flags = _country_flags(brand["countries"])
     countries_str = " · ".join(brand["countries"][:5])
@@ -478,8 +482,9 @@ def build_facebook_offer_message(brand: dict, link: str) -> str:
         f"{_stars(brand['stars'])} {brand['tag']}\n"
         f"Min deposit {brand['min_deposit']} · {brand['licence']}\n"
         f"Available in: {countries_str}\n\n"
-        f"Read the full review and claim the offer → {link}\n\n"
-        f"{top_hashtags}\n\n"
+        f"Read the full review → {link}\n"
+        f"{cta_plain(brand)}\n\n"
+        f"{top_hashtags} #SifuFinds #BettingBonus\n\n"
         f"18+ | Bet Responsibly | BeGambleAware.org"
     )
 

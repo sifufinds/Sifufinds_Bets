@@ -41,6 +41,7 @@ load_dotenv(Path(__file__).parent / ".env")
 sys.path.insert(0, str(Path(__file__).parent))
 
 from utils.logger import log
+from utils.affiliate_links import cta_plain
 from agent_telegram_offers import send_to_channel, SITE_URL
 from agent_match_post import build_bookmaker_block, pick_cta_brand, _trim_to_limit
 from agent3_social import post_facebook, post_instagram
@@ -236,7 +237,7 @@ def build_twitter_post(bonus: dict, game: dict, cta: dict) -> str:
         f"🎰 Casino Spotlight — {game['name']}\n\n"
         f"📢 {bonus['off'] or bonus['top']} ({bonus['brand']})\n"
         f"🏅 {cta['name']}: {cta['welcome']}\n"
-        f"👉 {cta['url']}\n\n"
+        f"👉 {cta_plain(cta)}\n\n"
         f"#SifuFinds #Casino 🔞 18+"
     )
     return _trim_to_limit(tweet)

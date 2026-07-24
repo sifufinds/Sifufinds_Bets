@@ -30,6 +30,7 @@ load_dotenv(Path(__file__).parent / ".env")
 
 sys.path.insert(0, str(Path(__file__).parent))
 from utils.logger import log
+from utils.affiliate_links import cta_plain
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 
@@ -212,7 +213,7 @@ def _build_offer_tweet(brand: dict) -> str:
         f"💰 {brand['welcome']}\n"
         f"✨ {brand['highlight']}\n\n"
         f"Min deposit: {brand['min_deposit']} | {brand['licence']}\n\n"
-        f"👉 Claim → {brand['url']}\n\n"
+        f"👉 {cta_plain(brand)}\n\n"
         f"{brand['hashtags']} #SifuFinds #AfricanBetting"
     )
     return _trim_to_limit(tweet)

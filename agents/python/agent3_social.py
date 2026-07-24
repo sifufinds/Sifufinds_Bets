@@ -130,11 +130,14 @@ def run():
             sys.exit(1)
 
     social = content.get("social", {})
-    ig_caption = social.get("instagram", "") + "\n.\n.\n.\n" + social.get("hashtags", "")
+    hashtags = social.get("hashtags", "")
+    ig_caption = social.get("instagram", "") + "\n.\n.\n.\n" + hashtags
+    # Facebook posts must always carry hashtags — never post the bare message.
+    fb_caption = social.get("facebook", "").rstrip() + ("\n\n" + hashtags if hashtags else "")
 
     results = {
         "telegram":  post_telegram(social.get("telegram", "")),
-        "facebook":  post_facebook(social.get("facebook", "")),
+        "facebook":  post_facebook(fb_caption),
         "instagram": post_instagram(ig_caption),
     }
 

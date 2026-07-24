@@ -53,6 +53,7 @@ load_dotenv(Path(__file__).parent / ".env")
 sys.path.insert(0, str(Path(__file__).parent))
 
 from utils.logger import log
+from utils.affiliate_links import masked_url, pick_cta, cta_html, cta_plain, CTA_CLAIM_BONUS, CTA_BET_NOW
 from agent_telegram_offers import (
     BRANDS,
     AFFILIATE_BRANDS,
@@ -397,12 +398,11 @@ def pick_cta_brand() -> dict:
 def build_bookmaker_block(cta: dict, html: bool) -> str:
     """Trust bar (real licence/withdrawal/cash-out facts from BRANDS, never invented)
     plus a dual-path CTA — new vs. already-registered readers convert differently,
-    a standard affiliate-marketing pattern, not just one generic 'click here' link."""
+    a standard affiliate-marketing pattern, not just one generic 'click here' link.
+    Both CTAs use the masked sifufinds.com/<brand> link, never the raw affiliate
+    tracking URL (see utils/affiliate_links.py)."""
     def b(s: str) -> str:
         return f"<b>{s}</b>" if html else s
-
-    def link(url: str, label: str) -> str:
-        return f'<a href="{url}">{label}</a>' if html else url
 
     trust_bits = [cta["licence"]]
     if cta.get("instant_withdrawal"):
@@ -411,12 +411,15 @@ def build_bookmaker_block(cta: dict, html: bool) -> str:
         trust_bits.append("💸 cash-out available")
     trust_line = " · ".join(trust_bits)
 
+    claim_link = cta_html(cta, label=CTA_CLAIM_BONUS) if html else cta_plain(cta, label=CTA_CLAIM_BONUS)
+    bet_link = cta_html(cta, label=CTA_BET_NOW) if html else cta_plain(cta, label=CTA_BET_NOW)
+
     return (
         f"🏅 {b(cta['name'])} {_stars(cta['stars'])} — {cta['tag']}\n"
         f"🛡 {trust_line}\n"
         f"💰 {b(cta['welcome'])}\n\n"
-        f"🎁 New here? Claim your bonus → {link(cta['url'], cta['name'])}\n"
-        f"✅ Already registered? Place this bet now → {link(cta['url'], cta['name'])}"
+        f"🎁 New here? {claim_link}\n"
+        f"✅ Already registered? {bet_link}"
     )
 
 
@@ -526,7 +529,7 @@ def build_twitter_post(m: dict, cta: dict, tip_num: int) -> str:
         f"{format_pick_line(m)}\n"
         f"{format_odds_line(m)}\n\n"
         f"🎁 {cta['name']}: {cta['welcome']}\n"
-        f"👉 New here? Claim it → {cta['url']}\n\n"
+        f"👉 {cta_plain(cta)}\n\n"
         f"#SifuFinds {meta['tag']} 🔞 18+"
     )
     return _trim_to_limit(tweet)

@@ -36,6 +36,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from utils.logger import log
 from utils.blog_match import find_matching_post, mark_used
 from utils.social_image import build_social_image, brand_color
+from utils.affiliate_links import cta_plain
 from agent_telegram_offers import send_to_channel, SITE_URL
 from agent_match_post import build_bookmaker_block, pick_cta_brand, _trim_to_limit
 from agent3_social import post_facebook, post_instagram
@@ -237,7 +238,7 @@ def build_twitter_post(legs: list[dict], acc_type: str, stake: int, cta: dict) -
     tweet = (
         f"🎉 {_title(acc_type)} — Turn ₦{stake:,} into ₦{returns:,}\n\n"
         f"{len(legs)}-Fold @ {total_odds} on {cta['name']}\n"
-        f"👉 Full picks + bonus → {cta['url']}\n\n"
+        f"👉 {cta_plain(cta)}\n\n"
         f"#SifuFinds #Accumulator 🔞 18+"
     )
     return _trim_to_limit(tweet)
