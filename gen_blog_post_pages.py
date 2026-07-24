@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import os, json, re
 from datetime import datetime, timezone
+from urllib.parse import quote as urlquote
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 POSTS_JSON = os.path.join(BASE, 'blog', 'posts.json')
@@ -1190,6 +1191,27 @@ _BK_SLUG_TO_LINK: dict[str, tuple[str, str]] = {
 }
 
 
+def build_share_bar(canonical_href: str, title: str) -> str:
+    """Social share bar with direct intent links + a copy-link button.
+
+    Every post gets a unique, crawlable /blog/{slug}/ URL already (see
+    build_post_page canonical/OG/Twitter tags), but nothing on the page let a
+    human actually grab and share that link — added 2026-07-24 so posts can
+    be shared to X, Facebook, LinkedIn and Telegram in one click, or copied
+    for WhatsApp/email/DMs.
+    """
+    enc_url = urlquote(canonical_href, safe='')
+    enc_title = urlquote(title, safe='')
+    return f'''<div class="share-bar">
+      <span class="share-label">Share this article:</span>
+      <a class="share-btn share-x" href="https://twitter.com/intent/tweet?url={enc_url}&amp;text={enc_title}" target="_blank" rel="noopener noreferrer" aria-label="Share on X">𝕏</a>
+      <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u={enc_url}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">f</a>
+      <a class="share-btn share-li" href="https://www.linkedin.com/sharing/share-offsite/?url={enc_url}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+      <a class="share-btn share-tg" href="https://t.me/share/url?url={enc_url}&amp;text={enc_title}" target="_blank" rel="noopener noreferrer" aria-label="Share on Telegram">✈</a>
+      <button type="button" class="share-btn share-copy" onclick="copyPostLink(this,'{canonical_href}')" aria-label="Copy article link">🔗 Copy Link</button>
+    </div>'''
+
+
 def build_resources_box(post: dict) -> str:
     """Build a 'Useful Resources' panel guaranteed to appear on every post.
 
@@ -1511,6 +1533,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     robots_content = ('noindex, follow' if noindex
                       else 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
     tags_html = ''.join(f'<span class="post-tag">{t}</span>' for t in tags[:6])
+    share_bar_html = build_share_bar(canonical_href, title)
 
     return f'''<!DOCTYPE html>
 <!-- sifufinds.com/blog/{out_slug}/ — {title} -->
@@ -1613,6 +1636,16 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 .related-card p{{font-size:12px;color:#666;margin:0}}
 .footer-bar{{background:#0a3d1e;color:rgba(255,255,255,.55);text-align:center;padding:18px;font-size:12px;line-height:1.8;margin-top:16px}}
 .footer-bar a{{color:rgba(255,255,255,.7);text-decoration:none}}
+.share-bar{{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0;padding:10px 0;border-top:1px solid #eee;border-bottom:1px solid #eee}}
+.share-label{{font-size:12px;font-weight:700;color:#666;margin-right:2px}}
+.share-btn{{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:38px;height:38px;padding:0 12px;border-radius:8px;border:1px solid #e0e0e0;background:#fff;color:#111;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s;line-height:1}}
+.share-btn:hover{{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}}
+.share-x:hover{{background:#000;color:#fff;border-color:#000}}
+.share-fb:hover{{background:#1877f2;color:#fff;border-color:#1877f2}}
+.share-li:hover{{background:#0a66c2;color:#fff;border-color:#0a66c2}}
+.share-tg:hover{{background:#26a5e4;color:#fff;border-color:#26a5e4}}
+.share-copy{{font-size:12px;padding:0 14px}}
+.share-copy.copied{{background:#1a6b35;color:#fff;border-color:#1a6b35}}
 </style>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
@@ -1671,13 +1704,17 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 
   <div style="display:grid;grid-template-columns:1fr minmax(0,760px) 1fr;gap:0">
     <div></div>
-    <article class="post-body" itemscope itemtype="https://schema.org/Article">
-      <meta itemprop="headline" content="{title}">
-      <meta itemprop="datePublished" content="{pub_iso}">
-      {body_html}
-      {resources_html}
-      {related_html}
-    </article>
+    <div>
+      {share_bar_html}
+      <article class="post-body" itemscope itemtype="https://schema.org/Article">
+        <meta itemprop="headline" content="{title}">
+        <meta itemprop="datePublished" content="{pub_iso}">
+        {body_html}
+        {resources_html}
+        {related_html}
+      </article>
+      {share_bar_html}
+    </div>
     <div></div>
   </div>
 
@@ -1703,6 +1740,23 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 <script src="../../assets/shared.js?v=10"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
+function copyPostLink(btn,url){{
+  const done=()=>{{
+    const orig=btn.textContent;
+    btn.textContent='✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(()=>{{btn.textContent=orig;btn.classList.remove('copied');}},2000);
+  }};
+  if(navigator.clipboard&&window.isSecureContext){{
+    navigator.clipboard.writeText(url).then(done).catch(()=>{{}});
+  }}else{{
+    const ta=document.createElement('textarea');
+    ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{{document.execCommand('copy');done();}}catch(e){{}}
+    document.body.removeChild(ta);
+  }}
+}}
 function init(){{
   H('foot-yr',NOW.getFullYear());
   const books=(BOOKS['NG']||[]).slice(0,4);

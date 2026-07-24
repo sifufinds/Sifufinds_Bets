@@ -1,5 +1,5 @@
 {
-  "date": "2026-07-21",
+  "date": "2026-07-24",
   "total": 4,
   "by_severity": {
     "CRITICAL": 0,
@@ -8,6 +8,12 @@
     "INFO": 0
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "missing_faqpage_schema",
+      "page": "rodri-injury-blow-impact-on-manchester-city",
+      "detail": "Post has FAQ content but no FAQPage JSON-LD"
+    },
     {
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
@@ -24,12 +30,6 @@
       "severity": "MEDIUM",
       "check": "missing_faqpage_schema",
       "page": "boxing-underdog-factor-usyk-fury",
-      "detail": "Post has FAQ content but no FAQPage JSON-LD"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "missing_faqpage_schema",
-      "page": "igaming-trends-africa-regulators-operators",
       "detail": "Post has FAQ content but no FAQPage JSON-LD"
     }
   ]

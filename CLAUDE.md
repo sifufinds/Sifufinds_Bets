@@ -219,6 +219,31 @@ When adding ANY new page that renders bookmakers, add `fetchLiveData()` that fet
 - One level deep (`tips/`, `odds/`, `blog/`, `countries/`): `../data/countries_live.json`
 - Two levels deep (`countries/nigeria/`): `../../data/countries_live.json`
 
+## STANDING RULE — Multi-Source Scraping, Firecrawl-Last (added 2026-07-24)
+
+**No agent may depend on Firecrawl as its primary or only data source. Firecrawl credits are a shared, limited resource (we've run out more than once) — every scraper must try free sources first and only fall back to Firecrawl when free sources genuinely can't get the data.**
+
+This was enforced after `agent_multi_scrape.py` (runs every **15 minutes, 24/7**, 6 sites) and `agent_scrape_tips.py`/`agent_firecrawl_odds.py` were found calling Firecrawl exclusively with zero free fallback — that one 15-min workflow alone was burning ~10 Firecrawl scrapes every 15 minutes (~960/day) before this fix.
+
+### Two free-first pipelines exist — use the right one
+
+| Use case | Module | Fallback behaviour |
+|---|---|---|
+| Blog/content research (SERP, competitor pages, PAA) — `agent_sports_blog.py`, `agent1_content.py`, `agent_brand_discovery.py` | `agents/python/utils/serp_research.py` (`research()`, `fc_search()`, `fc_scrape()`) | Firecrawl/Apify fallback is **opt-in only** — gated behind `SIFU_ALLOW_PAID_CRAWL=1`. Guarantees zero Firecrawl cost per run unless a human deliberately flips the flag. |
+| Live odds/scores/tips scraping — `agent_multi_scrape.py`, `agent_scrape_tips.py`, `agent_firecrawl_odds.py` | `agents/python/utils/free_scrape.py` (`scrape()`) | Firecrawl fires **automatically as a last resort per-URL**, no flag needed — these agents feed live, user-facing data on a 15-min cron, so a hard opt-in gate would silently starve live odds instead of just costing credits. Free layers (trafilatura + Jina Reader) still absorb the large majority of calls. |
+
+Both pipelines follow the same priority order underneath:
+1. **Search**: DuckDuckGo (`html.duckduckgo.com/html` + `ddgs` library combined, deduplicated) — free, no key/login.
+2. **Scrape**: `trafilatura` direct fetch first; **Jina AI Reader** (`https://r.jina.ai/<url>`, free, no key, renders JS) fallback when content comes back under ~300 chars.
+3. **News-specific**: `agents/python/utils/news_fetcher.py` layers DuckDuckGo News → Google News RSS → direct site RSS (BBC Sport, ESPN, Sky Sports, The Guardian, 90min, TalkSport, Mirror Football, Independent Football) for cross-checked, multi-source freshness before any blog post is written. Reuters, Football365, and Goal.com no longer publish public RSS feeds (verified 401/404 as of 2026-07-24) — the four alternatives above cover the same ground and are checked for liveness before being relied on again.
+4. **Firecrawl**: last resort only, per the table above.
+
+### Rules for any new/modified scraping agent
+- Never call the Firecrawl API/CLI/SDK directly as the first attempt. Route through `utils/free_scrape.py` (live data) or `utils/serp_research.py` (research/content).
+- If a target site is JS-heavy (SPA), try Jina Reader before reaching for Firecrawl — it renders JS for free and covers most cases (Sofascore, Flashscore, OddsPortal, Predictz all work through it).
+- Never add a new paid scraping/data service. If free + Jina Reader genuinely can't get a site (hard anti-bot wall, login-gated), that is a legitimate case for the existing Firecrawl fallback — don't build a workaround, just let it fall through.
+- If you add a new hourly/frequent-cron scraping agent, default it to the `utils/free_scrape.py` pattern (auto Firecrawl fallback, not the opt-in flag) since frequent crons are exactly the credit-burn risk this rule exists to prevent.
+
 ## CRITICAL — shared.js Must Never Have `defer`
 
 **NEVER add `defer` to the `<script src="...shared.js...">` tag on any page.**
