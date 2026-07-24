@@ -189,6 +189,7 @@ html,body{max-width:100%;overflow-x:hidden}
   position:absolute;inset:0;cursor:pointer;
   display:flex;align-items:flex-end;
   opacity:0;transition:opacity .55s ease;pointer-events:none;
+  text-decoration:none;color:inherit;
 }
 .hero-slide.active{opacity:1;pointer-events:auto;}
 .hero-slide-bg{
@@ -268,6 +269,7 @@ html,body{max-width:100%;overflow-x:hidden}
   border-bottom:1px solid #e8e8e8;cursor:pointer;
   transition:background .14s;
   display:flex;flex-direction:row;align-items:stretch;
+  text-decoration:none;color:inherit;
 }
 .article-card:first-child{border-radius:var(--card-radius) var(--card-radius) 0 0}
 .article-card:last-child{border-radius:0 0 var(--card-radius) var(--card-radius);border-bottom:none}
@@ -364,6 +366,16 @@ html,body{max-width:100%;overflow-x:hidden}
 .article-reader-cat{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
 .article-reader-title{font-size:26px;font-weight:900;line-height:1.3;color:#111;margin-bottom:12px;letter-spacing:-.4px}
 .article-reader-meta{font-size:12px;color:#aaa;margin-bottom:18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #f0f0f0;padding-bottom:14px}
+.share-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px;padding-bottom:16px;border-bottom:1px solid #f0f0f0}
+.share-label{font-size:12px;font-weight:700;color:#666;margin-right:2px}
+.share-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:36px;height:36px;padding:0 12px;border-radius:8px;border:1px solid #e0e0e0;background:#fff;color:#111;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s;line-height:1}
+.share-btn:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.share-x:hover{background:#000;color:#fff;border-color:#000}
+.share-fb:hover{background:#1877f2;color:#fff;border-color:#1877f2}
+.share-li:hover{background:#0a66c2;color:#fff;border-color:#0a66c2}
+.share-tg:hover{background:#26a5e4;color:#fff;border-color:#26a5e4}
+.share-copy{font-size:12px;padding:0 14px}
+.share-copy.copied{background:#1a6b35;color:#fff;border-color:#1a6b35}
 .article-md h2{font-size:18px;font-weight:800;color:#111;margin:20px 0 8px;padding-top:4px;border-top:1px solid #f5f5f5}
 .article-md h3{font-size:15px;font-weight:700;color:#333;margin:14px 0 6px}
 .article-md p{font-size:14px;color:#444;line-height:1.85;margin-bottom:10px}
@@ -461,6 +473,7 @@ html,body{max-width:100%;overflow-x:hidden}
 .sb-trend-item{
   display:flex;align-items:flex-start;gap:10px;padding:10px 0;
   border-bottom:1px solid #f0f0f0;cursor:pointer;transition:all .12s;
+  text-decoration:none;color:inherit;
 }
 .sb-trend-item:last-child{border:none}
 .sb-trend-item:hover{padding-left:4px}
@@ -956,7 +969,7 @@ function _buildSlides(){
     const slideStyle=imgUrl
       ?`background-color:${bg};background-image:url('${imgUrl}');background-size:cover;background-position:center top`
       :`background:${bg}`;
-    return`<div class="hero-slide" onclick="openArticle('${p.id}')" style="${slideStyle}">
+    return`<a class="hero-slide" href="${p.slug}/" onclick="return openArticle(event,'${p.id}')" style="${slideStyle}">
   <div class="hero-slide-bg" style="${imgUrl?'opacity:0':''}">
     ${imgUrl?'':p.image_icon||'📰'}
   </div>
@@ -978,7 +991,7 @@ function _buildSlides(){
       <span class="hero-read-btn">Read →</span>
     </div>
   </div>
-</div>`;
+</a>`;
   }).join('');
 }
 
@@ -1059,7 +1072,7 @@ function articleCard(p,mode){
   const cardBgStyle=cardImg
     ?`background-color:${p.image_color||'#1a6b35'};background-image:url('${cardImg}');background-size:cover;background-position:center`
     :`background:${p.image_color||'#1a6b35'}`;
-  return`<div class="article-card" onclick="openArticle('${p.id}')">
+  return`<a class="article-card" href="${p.slug}/" onclick="return openArticle(event,'${p.id}')">
   <div class="article-card-img" style="${cardBgStyle}">${cardImg?'':p.image_icon||'📰'}</div>
   <div class="article-card-body">
     <div><span class="article-cat-pill cat-${p.category}">${cat.icon} ${cat.label}</span></div>
@@ -1074,7 +1087,7 @@ function articleCard(p,mode){
       <span>📖 ${p.read_time||3}m read</span>
     </div>
   </div>
-</div>`;
+</a>`;
 }
 
 function loadMore(){
@@ -1206,13 +1219,13 @@ function renderSidebar(){
     </div>
     <div class="sb-widget-body">
       ${trendingPosts.map((p,i)=>`
-      <div class="sb-trend-item" onclick="openArticle('${p.id}')">
+      <a class="sb-trend-item" href="${p.slug}/" onclick="return openArticle(event,'${p.id}')">
         <div class="sb-trend-num">${i+1}</div>
         <div>
           <div class="sb-trend-title">${p.title}</div>
           <div class="sb-trend-cat">${CAT_META[p.category]?.icon||'📰'} ${CAT_META[p.category]?.label||p.category} · ${timeAgo(p.published_at)}</div>
         </div>
-      </div>`).join('')}
+      </a>`).join('')}
     </div>
   </div>
 
