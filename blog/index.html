@@ -1109,9 +1109,40 @@ function render(){
 }
 
 // ── ARTICLE READER ────────────────────────────────────────────────────────────
-function openArticle(id){
+function buildShareBar(url,title){
+  const encUrl=encodeURIComponent(url),encTitle=encodeURIComponent(title);
+  return`<div class="share-bar">
+    <span class="share-label">Share this article:</span>
+    <a class="share-btn share-x" href="https://twitter.com/intent/tweet?url=${encUrl}&text=${encTitle}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="Share on X">𝕏</a>
+    <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${encUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="Share on Facebook">f</a>
+    <a class="share-btn share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=${encUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="Share on LinkedIn">in</a>
+    <a class="share-btn share-tg" href="https://t.me/share/url?url=${encUrl}&text=${encTitle}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="Share on Telegram">✈</a>
+    <button type="button" class="share-btn share-copy" onclick="event.stopPropagation();copyPostLink(this,'${url}')" aria-label="Copy article link">🔗 Copy Link</button>
+  </div>`;
+}
+
+function copyPostLink(btn,url){
+  const done=()=>{
+    const orig=btn.textContent;
+    btn.textContent='✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent=orig;btn.classList.remove('copied');},2000);
+  };
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(url).then(done).catch(()=>{});
+  }else{
+    const ta=document.createElement('textarea');
+    ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');done();}catch(e){}
+    document.body.removeChild(ta);
+  }
+}
+
+function openArticle(e,id){
+  if(e&&(e.ctrlKey||e.metaKey||e.shiftKey||e.button===1))return true;
   const post=_allPosts.find(p=>p.id===id);
-  if(!post)return;
+  if(!post)return false;
   const cat=CAT_META[post.category]||{label:post.category,icon:'📰',color:'#666'};
   // Reviews: find brand-specific banner; fallback to any active inline banner
   let inlineBanner=null;
@@ -1143,6 +1174,7 @@ function openArticle(id){
     <span>·</span>
     <span>${(post.tags||[]).slice(0,3).map(t=>`<span style="background:#f0f0f0;padding:1px 6px;border-radius:3px;font-size:10px">${t}</span>`).join(' ')}</span>
   `;
+  document.getElementById('reader-share').innerHTML=buildShareBar(`https://sifufinds.com/blog/${post.slug}/`,post.title);
 
   // Convert simple markdown to HTML
   let html=markdownToHtml(post.body||'');
@@ -1175,6 +1207,10 @@ function openArticle(id){
   document.getElementById('reader-body').innerHTML=html;
   document.getElementById('article-reader-bg').classList.add('open');
   document.body.style.overflow='hidden';
+  if(!history.state||history.state.articleId!==id){
+    history.pushState({articleId:id},'',post.slug+'/');
+  }
+  return false;
 }
 
 function buildInlineBanner(b){
@@ -1193,7 +1229,18 @@ function closeReader(e){
   if(e&&e.target!==document.getElementById('article-reader-bg'))return;
   document.getElementById('article-reader-bg').classList.remove('open');
   document.body.style.overflow='';
+  if(history.state&&history.state.articleId){
+    history.back();
+  }
 }
+
+window.addEventListener('popstate',()=>{
+  const bg=document.getElementById('article-reader-bg');
+  if(bg.classList.contains('open')){
+    bg.classList.remove('open');
+    document.body.style.overflow='';
+  }
+});
 
 // ── SIDEBAR ───────────────────────────────────────────────────────────────────
 function renderSidebar(){
