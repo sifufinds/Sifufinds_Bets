@@ -82,19 +82,24 @@ def _firecrawl_scrape(url: str, wait_ms: int = 4000) -> str:
 def scrape(url: str, name: str = "", wait_ms: int = 4000, min_chars: int = _MIN_CHARS) -> str:
     """Free-first scrape: trafilatura -> Jina Reader -> Firecrawl (last resort).
 
+    Both free layers are always tried and the larger result is kept — a
+    static trafilatura fetch of a JS-heavy SPA (Flashscore, Sofascore, ...)
+    can return a few hundred characters of cookie/legal boilerplate that
+    would otherwise clear a naive length gate while missing the actual
+    rendered content Jina Reader provides, so we never skip Jina based on
+    trafilatura alone clearing min_chars.
+
     Returns markdown/text content, or the empty string if every layer fails.
     """
     label = name or url
 
     text = _trafilatura_scrape(url)
-    if len(text) >= min_chars:
-        print(f"    trafilatura [{label}]: {len(text)} chars")
-        return text
-
     jina_text = _jina_scrape(url)
     best_free = jina_text if len(jina_text) > len(text) else text
+
     if len(best_free) >= min_chars:
-        print(f"    Jina Reader [{label}]: {len(best_free)} chars")
+        source = "Jina Reader" if best_free is jina_text else "trafilatura"
+        print(f"    {source} [{label}]: {len(best_free)} chars")
         return best_free
 
     fc_text = _firecrawl_scrape(url, wait_ms)

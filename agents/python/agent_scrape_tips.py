@@ -265,7 +265,10 @@ def scrape_direct_http(url: str, name: str) -> str:
 # ── Scraper (free-first, see utils/free_scrape.py) ───────────────────────────
 
 def scrape(url: str, wait_ms: int, name: str) -> str:
-    return free_scrape(url, name=name, wait_ms=wait_ms, min_chars=300)
+    # 1500 char floor: boilerplate-only trafilatura fetches of these JS-heavy
+    # tip sites top out around ~1200 chars, so a lower floor risks accepting
+    # junk instead of escalating to Jina Reader/Firecrawl.
+    return free_scrape(url, name=name, wait_ms=wait_ms, min_chars=1500)
 
 
 def clean(s: str) -> str:

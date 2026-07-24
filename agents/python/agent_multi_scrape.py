@@ -130,7 +130,10 @@ MULTI_WORD_TEAMS: list[tuple[str, str]] = [
 
 def scrape_url(url: str, wait_ms: int = 3000, name: str = "") -> str:
     """Free-first scrape (trafilatura + Jina Reader), Firecrawl last resort."""
-    return free_scrape(url, name=name, wait_ms=wait_ms, min_chars=200)
+    # 1500 char floor: observed boilerplate-only trafilatura fetches of these
+    # SPA shells (cookie/legal disclaimers) top out around ~1200 chars, so a
+    # lower floor would accept junk instead of escalating to Jina/Firecrawl.
+    return free_scrape(url, name=name, wait_ms=wait_ms, min_chars=1500)
 
 
 # ── Parsers ───────────────────────────────────────────────────────────────────

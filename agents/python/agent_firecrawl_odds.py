@@ -26,7 +26,10 @@ LIVE_JSON = Path(__file__).resolve().parent.parent.parent / "data" / "live.json"
 
 def scrape_url(url: str) -> str:
     """Free-first scrape (trafilatura + Jina Reader), Firecrawl last resort."""
-    return free_scrape(url, wait_ms=4000, min_chars=200)
+    # 1500 char floor: OddsPortal's boilerplate-only trafilatura fetch tops
+    # out around ~1200 chars, so a lower floor risks accepting junk instead
+    # of escalating to Jina Reader/Firecrawl.
+    return free_scrape(url, wait_ms=4000, min_chars=1500)
 
 
 def extract_matches(text: str, region: str) -> list:
