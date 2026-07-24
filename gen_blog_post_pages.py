@@ -1511,8 +1511,9 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     # falls back to the sitewide logo graphic when a post has no dedicated one.
     # Every post shared one identical image until 2026-07-19; unique previews
     # raise AI-search multi-modal selection rates (see GEO audit notes).
+    has_feature_image = os.path.exists(f'assets/og/{slug}.png')
     og_image_url = (f'https://sifufinds.com/assets/og/{slug}.png'
-                     if os.path.exists(f'assets/og/{slug}.png')
+                     if has_feature_image
                      else 'https://sifufinds.com/assets/og-image.png')
     # JSON-safe variants for JSON-LD contexts — a raw quote in a title/excerpt
     # (e.g. a translated pull-quote) otherwise breaks the whole ld+json block.
@@ -1613,7 +1614,10 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 <link rel="preload" href="../../assets/shared.css?v=8" as="style">
 <link rel="stylesheet" href="../../assets/shared.css?v=8">
 <style>
-.post-hero{{background:linear-gradient(135deg,#0a3d1e 0%,#1a6b35 100%);color:#fff;padding:32px 0}}
+.post-hero{{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a3d1e 0%,#1a6b35 100%);color:#fff;padding:32px 0}}
+.post-hero-img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4}}
+.post-hero-overlay{{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,61,30,.9) 0%,rgba(26,107,53,.85) 100%)}}
+.post-hero .wrap{{position:relative;z-index:2}}
 .post-hero h1{{font-size:clamp(20px,3.5vw,30px);font-weight:900;margin-bottom:10px;letter-spacing:-.5px;line-height:1.3}}
 .post-meta{{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.75);margin-top:8px}}
 .post-body{{max-width:760px;font-size:15px;color:#222;line-height:1.8}}
@@ -1684,6 +1688,8 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 </nav>
 
 <div class="post-hero">
+  {f'<img class="post-hero-img" src="{og_image_url}" alt="" width="1200" height="630" loading="eager" fetchpriority="high">' if has_feature_image else ''}
+  <div class="post-hero-overlay"></div>
   <div class="wrap">
     <h1>{title}</h1>
     <div class="post-meta">
@@ -1894,6 +1900,15 @@ def main():
         if post['slug'] not in existing_slugs:
             post['id'] = f"post-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}-{abs(hash(post['slug'])) % 999}"
             post['published_at'] = now_iso
+            # Unique feature image — doubles as og:image/twitter:image and the
+            # LinkedIn/Facebook/X share preview (see scripts/generate_blog_feature_image.py).
+            try:
+                from scripts.generate_blog_feature_image import ensure_feature_image
+                feature_image = ensure_feature_image(post)
+                if feature_image:
+                    post['feature_image'] = feature_image
+            except Exception as e:
+                print(f'  ⚠  feature image generation failed for {post["slug"]}: {e}')
             data['posts'].insert(0, post)
             existing_slugs.add(post['slug'])
             posts_added += 1

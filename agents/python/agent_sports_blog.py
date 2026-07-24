@@ -29,6 +29,9 @@ from utils.news_fetcher import fetch_category, format_for_prompt
 from utils.ticker_builder import build_and_save as update_ticker
 from utils.serp_research import research, build_keyword_from_category
 
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
+from generate_blog_feature_image import ensure_feature_image
+
 # ── CATEGORY METADATA ─────────────────────────────────────────────────────────
 
 CATEGORIES = {
@@ -231,7 +234,7 @@ Write the article now. Base it on the REAL news provided above — do not invent
         if clean_cat not in CATEGORIES:
             clean_cat = category
 
-        return {
+        post = {
             "id": f"post-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}-{random.randint(100, 999)}",
             "category": clean_cat,
             "title": meta.get("title", ""),
@@ -248,6 +251,13 @@ Write the article now. Base it on the REAL news provided above — do not invent
             "read_time": meta.get("read_time", 4),
             "_sources": [item["source"] for item in news_items[:5]],
         }
+        # Unique feature image per post — doubles as the og:image/twitter:image
+        # (picked up automatically by gen_blog_post_pages.py) and the LinkedIn/
+        # Facebook/X share preview, since those all render off the same OG tags.
+        feature_image = ensure_feature_image(post)
+        if feature_image:
+            post["feature_image"] = feature_image
+        return post
 
     except json.JSONDecodeError as e:
         print(f"  ✗ JSON parse error: {e}")

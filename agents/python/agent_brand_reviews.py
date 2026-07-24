@@ -18,9 +18,11 @@ from pathlib import Path
 from typing import Optional
 
 sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
 
 from llm import ask_long
 from config import SITE_URL, BRAND_NAME
+from generate_blog_feature_image import ensure_feature_image
 
 # ── BRAND DATABASE ─────────────────────────────────────────────────────────────
 # Distilled from assets/shared.js — all data is accurate as per the site.
@@ -678,7 +680,7 @@ Write the full review now. ABSOLUTE LENGTH REQUIREMENT: The ===BLOG=== section M
 
         meta = json.loads(_clean_json(meta_raw))
 
-        return {
+        review = {
             "id": f"review-{brand['slug']}-{datetime.now(timezone.utc).strftime('%Y%m%d')}",
             "category": "review",
             "title": meta.get("title", f"{brand['name']} Review 2026"),
@@ -696,6 +698,14 @@ Write the full review now. ABSOLUTE LENGTH REQUIREMENT: The ===BLOG=== section M
             "stars": meta.get("stars", brand["stars"]),
             "brand_name": brand["name"],
         }
+        # Unique feature image — ensure_feature_image() only generates when
+        # assets/og/{slug}.png doesn't already exist, so a hand-crafted logo
+        # composite from scripts/generate_review_og_images.py is never
+        # overwritten by this generic fallback.
+        feature_image = ensure_feature_image(review)
+        if feature_image:
+            review["feature_image"] = feature_image
+        return review
 
     except json.JSONDecodeError as e:
         print(f"  ✗ JSON parse error for {brand['name']}: {e}")

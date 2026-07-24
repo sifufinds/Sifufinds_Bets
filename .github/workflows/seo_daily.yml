@@ -27,7 +27,10 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install --quiet lxml
+        run: pip install --quiet lxml Pillow
+
+      - name: Install fonts for feature-image generation
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core fonts-noto-color-emoji
 
       - name: Regenerate blog pages
         run: python3 gen_blog_post_pages.py --force
@@ -40,7 +43,7 @@ jobs:
         run: |
           git config user.name  "seo-bot"
           git config user.email "bot@sifufinds.com"
-          git add blog/ seo-report.json blog/posts.json
+          git add blog/ seo-report.json blog/posts.json assets/og/
           git diff --staged --quiet || git commit -m "chore: daily SEO auto-fix + audit report"
 
       - name: Push changes
