@@ -23,6 +23,9 @@ BASE = Path(__file__).parent.parent
 POSTS_JSON = BASE / 'blog' / 'posts.json'
 BLOG_DIR = BASE / 'blog'
 
+sys.path.insert(0, str(BASE))
+from gen_blog_post_pages import extract_faq_schema  # noqa: E402
+
 # ── Severity constants ────────────────────────────────────────────────────────
 CRITICAL = 'CRITICAL'
 HIGH = 'HIGH'
@@ -77,11 +80,15 @@ def read_html(slug):
     return ''
 
 def has_faq_content(body):
-    """True if post body contains FAQ-like question patterns."""
-    return bool(re.search(
-        r'(\*\*[^*\n]+\?\*\*|^#{1,3}.*FAQ|^Q:|^Q\d\.|^###\s+\w.*\?)',
-        body, re.MULTILINE | re.IGNORECASE
-    ))
+    """True if the generator can actually extract FAQPage entries from this body.
+
+    Delegates to extract_faq_schema() instead of a standalone regex so this
+    check can never drift out of sync with what the generator emits — the old
+    standalone regex flagged plain bold section headers ending in "?" (e.g.
+    "**Fury Trilogy Ruled Out: What's Next for Usyk?**") as FAQ content even
+    when there was no FAQ section at all, producing unfixable false positives.
+    """
+    return bool(extract_faq_schema(body))
 
 for p in posts:
     slug = p['slug']

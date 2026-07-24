@@ -1052,6 +1052,9 @@ def extract_faq_schema(body_md: str) -> str:
     # 6. **Bold question?** + paragraph answer (common in expanded blog posts)
     if not pairs:
         pairs = re.findall(r'\*\*([^*\n]+\?)\*\*\s*\n+(.*?)(?=\n\*\*[^*\n]+\?|\Z)', text, re.DOTALL)
+    # 7. Numbered list "1. Question?\nAnswer" format (no bold/heading markers)
+    if not pairs:
+        pairs = re.findall(r'^\d+\.\s+(.+?\?)\s*\n(.*?)(?=\n\d+\.\s|\Z)', text, re.DOTALL | re.MULTILINE)
     if not pairs:
         return ''
 
