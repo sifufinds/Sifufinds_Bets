@@ -9,6 +9,9 @@ on:
     # gets room to gain views before the next one lands. Once the football season is
     # properly underway, scale back up to 3-5 prediction posts/day by adding more cron
     # lines here — but only with genuinely strong tips, not volume for its own sake.
+    # Also posts to Facebook (photo + generated branded image + link to a real
+    # tips-flavoured blog post when one exists) once FACEBOOK_PAGE_ID /
+    # FACEBOOK_PAGE_ACCESS_TOKEN secrets are set — skips cleanly until then.
     - cron: "0 11 * * *"
     - cron: "0 18 * * *"
   workflow_dispatch:
@@ -62,7 +65,7 @@ jobs:
       - name: Install Playwright browser
         run: playwright install --with-deps chromium
 
-      - name: Post accumulator to Telegram + X
+      - name: Post accumulator to Telegram + Facebook + X
         working-directory: agents/python
         env:
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
@@ -70,6 +73,8 @@ jobs:
           TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
           TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
           X_USERNAME: ${{ secrets.X_USERNAME }}
           X_PASSWORD: ${{ secrets.X_PASSWORD }}
           X_EMAIL: ${{ secrets.X_EMAIL }}
@@ -77,7 +82,35 @@ jobs:
         run: |
           TYPE="${{ github.event.inputs.type }}"
           STAKE="${{ github.event.inputs.stake }}"
-          # Facebook/Instagram credentials aren't configured yet (see SETUP.md Step 3) —
-          # skip them explicitly rather than log a failed attempt on every scheduled run.
+          # Instagram credentials aren't configured yet (see FB_SETUP_SIMPLE.md) —
+          # skip it explicitly rather than log a failed attempt on every scheduled run.
           python agent_accumulator_post.py --type "${TYPE:-auto}" --stake "${STAKE:-1000}" \
-            --no-facebook --no-instagram
+            --no-instagram
+
+      - name: Commit updated state
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add agents/python/facebook_share_state.json agents/python/agent_log.json || true
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "accumulator: posted $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done

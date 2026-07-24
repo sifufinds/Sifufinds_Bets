@@ -43,15 +43,28 @@ def post_telegram(message: str) -> bool:
 
 # ── Facebook ──────────────────────────────────────────────────────────────────
 
-def post_facebook(message: str) -> bool:
+def post_facebook(message: str, image_path: str | Path | None = None) -> bool:
     if not FACEBOOK_PAGE_ID or not FACEBOOK_TOKEN:
         print("⚠ Facebook not configured yet.")
         return False
-    r = requests.post(
-        f"https://graph.facebook.com/v19.0/{FACEBOOK_PAGE_ID}/feed",
-        data={"message": message, "access_token": FACEBOOK_TOKEN},
-        timeout=15,
-    )
+
+    if image_path and Path(image_path).exists():
+        # Photo posts outperform plain link posts on Pages and let each post
+        # carry its own on-brand image. Graph API auto-linkifies the URL that
+        # appears in the caption text, so the message still delivers a working link.
+        with open(image_path, "rb") as f:
+            r = requests.post(
+                f"https://graph.facebook.com/v19.0/{FACEBOOK_PAGE_ID}/photos",
+                data={"caption": message, "access_token": FACEBOOK_TOKEN},
+                files={"source": f},
+                timeout=30,
+            )
+    else:
+        r = requests.post(
+            f"https://graph.facebook.com/v19.0/{FACEBOOK_PAGE_ID}/feed",
+            data={"message": message, "access_token": FACEBOOK_TOKEN},
+            timeout=15,
+        )
     ok = r.status_code == 200
     log("agent3", "facebook", "success" if ok else "failed", "" if ok else r.text[:100])
     return ok

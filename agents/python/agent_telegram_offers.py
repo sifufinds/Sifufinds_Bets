@@ -3,10 +3,17 @@ Telegram Brand Offers Agent — SifuFinds
 Posts one brand offer per run to @sifufinds, rotating through all 19 bookmakers.
 Uses the existing Bot Token (no Telethon needed for own channel).
 
+Also posts a Facebook Page photo post for the same brand (image generated
+locally, link prefers a real bonus-flavoured blog post over the bookmaker's
+own review page). Skips Facebook cleanly if FACEBOOK_PAGE_ID/
+FACEBOOK_PAGE_ACCESS_TOKEN aren't configured yet.
+
 Usage:
   python agent_telegram_offers.py            # next brand in rotation
   python agent_telegram_offers.py --brand Bet9ja  # specific brand
   python agent_telegram_offers.py --force    # ignore cooldown, post anyway
+  python agent_telegram_offers.py --no-facebook   # Telegram only
+  python agent_telegram_offers.py --dry-run       # preview only, post nothing
 """
 import argparse
 import asyncio
@@ -23,6 +30,9 @@ load_dotenv(Path(__file__).parent / ".env")
 
 sys.path.insert(0, str(Path(__file__).parent))
 from utils.logger import log
+from utils.blog_match import find_matching_post, mark_used, bookmaker_review_url
+from utils.social_image import build_social_image, brand_color
+from agent3_social import post_facebook
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 
@@ -448,6 +458,32 @@ def build_offer_message(brand: dict) -> str:
     return msg
 
 
+def build_facebook_offer_message(brand: dict, link: str) -> str:
+    """
+    Plain-text Facebook Page caption (Graph API captions don't render HTML tags).
+    Follows Meta Page-content best practice: one clear link, a handful of
+    relevant hashtags rather than a stacked block, no "guaranteed"/"sure win"
+    language, and the responsible-gambling line every SifuFinds post carries.
+    """
+    flags = _country_flags(brand["countries"])
+    countries_str = " · ".join(brand["countries"][:5])
+    if len(brand["countries"]) > 5:
+        countries_str += f" +{len(brand['countries']) - 5} more"
+    top_hashtags = " ".join(brand["hashtags"].split()[:5])
+
+    return (
+        f"🔥 Today's Top Deal — {brand['name']} {flags}\n\n"
+        f"{brand['welcome']}\n"
+        f"{brand['bonus_highlight']}\n\n"
+        f"{_stars(brand['stars'])} {brand['tag']}\n"
+        f"Min deposit {brand['min_deposit']} · {brand['licence']}\n"
+        f"Available in: {countries_str}\n\n"
+        f"Read the full review and claim the offer → {link}\n\n"
+        f"{top_hashtags}\n\n"
+        f"18+ | Bet Responsibly | BeGambleAware.org"
+    )
+
+
 # ── TELEGRAM SENDER ───────────────────────────────────────────────────────────
 
 async def _send_telethon(message: str) -> bool:
@@ -495,9 +531,22 @@ def send_to_channel(message: str) -> bool:
     return _send_bot_token(message)
 
 
+def _bonus_link_and_post(brand: dict) -> tuple[str, dict | None]:
+    """Prefer a real bonus-flavoured blog post, then the bookmaker's own
+    review page, then the homepage — never the raw affiliate URL, so organic
+    Page traffic funnels through SifuFinds' own content."""
+    post = find_matching_post("bonus")
+    if post:
+        return post["url"], post
+    review_url = bookmaker_review_url(brand["name"])
+    if review_url:
+        return review_url, None
+    return SITE_URL, None
+
+
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
-def run(brand_name: str | None = None, force: bool = False) -> None:
+def run(brand_name: str | None = None, force: bool = False, facebook: bool = True, dry_run: bool = False) -> None:
     log("offers", "start", "running")
     state = _load_state()
 
@@ -507,15 +556,41 @@ def run(brand_name: str | None = None, force: bool = False) -> None:
 
     print(f"📣 Posting offer for: {brand['name']}")
     message = build_offer_message(brand)
+    link, matched_post = _bonus_link_and_post(brand)
+    fb_message = build_facebook_offer_message(brand, link)
 
-    if send_to_channel(message):
+    if dry_run:
+        print("\n" + "─" * 60 + "\nTELEGRAM\n" + "─" * 60)
+        print(message)
+        print("\n" + "─" * 60 + f"\nFACEBOOK (link: {link})\n" + "─" * 60)
+        print(fb_message)
+        print("\nDry run — nothing sent.")
+        return
+
+    results: dict[str, bool] = {}
+    results["telegram"] = send_to_channel(message)
+    if results["telegram"]:
         now_iso = datetime.now(timezone.utc).isoformat()
         state.setdefault("brand_last_posted", {})[brand["name"]] = now_iso
         _save_state(state)
-        log("offers", "post", "success", brand["name"])
         print(f"✓ Offer posted for {brand['name']}")
-    else:
-        log("offers", "post", "failed", brand["name"])
+    log("offers", "telegram", "success" if results["telegram"] else "failed", brand["name"])
+
+    if facebook:
+        image_path = build_social_image(
+            headline=f"{brand['name']}: {brand['welcome']}",
+            tag="Best Bonus Today",
+            color_hex=brand_color(brand["name"]),
+            subtext=brand["tag"],
+            out_name="bonus_card.png",
+        )
+        results["facebook"] = post_facebook(fb_message, image_path=image_path)
+        if results["facebook"] and matched_post:
+            mark_used("bonus", matched_post["slug"])
+        log("offers", "facebook", "success" if results["facebook"] else "failed", brand["name"])
+        print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured (see agents/python/FB_SETUP_SIMPLE.md).")
+
+    if not any(results.values()):
         sys.exit(1)
 
 
@@ -523,5 +598,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SifuFinds Telegram Brand Offers")
     parser.add_argument("--brand", type=str, default=None, help="Post a specific brand offer")
     parser.add_argument("--force", action="store_true", help="Ignore cooldown and post anyway")
+    parser.add_argument("--no-facebook", dest="facebook", action="store_false", help="Don't auto-post to Facebook")
+    parser.add_argument("--dry-run", action="store_true", help="Preview only, post nothing")
     args = parser.parse_args()
-    run(brand_name=args.brand, force=args.force)
+    run(brand_name=args.brand, force=args.force, facebook=args.facebook, dry_run=args.dry_run)

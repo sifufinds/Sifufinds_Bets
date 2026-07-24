@@ -34,6 +34,8 @@ load_dotenv(Path(__file__).parent / ".env")
 sys.path.insert(0, str(Path(__file__).parent))
 
 from utils.logger import log
+from utils.blog_match import find_matching_post, mark_used
+from utils.social_image import build_social_image, brand_color
 from agent_telegram_offers import send_to_channel, SITE_URL
 from agent_match_post import build_bookmaker_block, pick_cta_brand, _trim_to_limit
 from agent3_social import post_facebook, post_instagram
@@ -193,7 +195,7 @@ def build_telegram_post(legs: list[dict], acc_type: str, stake: int, cta: dict) 
     )
 
 
-def build_facebook_post(legs: list[dict], acc_type: str, stake: int, cta: dict) -> str:
+def build_facebook_post(legs: list[dict], acc_type: str, stake: int, cta: dict, link: str = SITE_URL) -> str:
     total_odds, returns, avg_conf = _compute_totals(legs, stake)
     leg_lines = "\n".join(
         f"{LEG_EMOJI[i]} {leg['match']} - {leg['pick']}" for i, leg in enumerate(legs)
@@ -206,7 +208,7 @@ def build_facebook_post(legs: list[dict], acc_type: str, stake: int, cta: dict) 
         f"🧠 Why this combo: our {len(legs)} highest-confidence picks today, {avg_conf}% average model confidence\n"
         f"⚠️ Higher risk than a single bet — every leg must win for the accumulator to pay out\n\n"
         f"{build_bookmaker_block(cta, html=False)}\n\n"
-        f"🌐 More accas, tips, and bookmaker bonuses at {SITE_URL}\n\n"
+        f"🌐 Full breakdown → {link}\n\n"
         f"{_REACT_PROMPT}\n\n"
         f"🔞 18+ | Gamble Responsibly | BeGambleAware.org"
     )
@@ -261,8 +263,14 @@ def run(args: argparse.Namespace) -> None:
         sys.exit(1)
 
     cta = pick_cta_brand()
+
+    # Prefer a real tips/predictions blog post as the "read more" link over
+    # the generic homepage — falls back cleanly when nothing fresh matches.
+    tips_post = find_matching_post("tips")
+    facebook_link = tips_post["url"] if tips_post else SITE_URL
+
     telegram_text  = build_telegram_post(legs, acc_type, args.stake, cta)
-    facebook_text  = build_facebook_post(legs, acc_type, args.stake, cta)
+    facebook_text  = build_facebook_post(legs, acc_type, args.stake, cta, link=facebook_link)
     instagram_text = build_instagram_post(legs, acc_type, args.stake, cta)
     twitter_text   = build_twitter_post(legs, acc_type, args.stake, cta)
 
@@ -295,8 +303,18 @@ def run(args: argparse.Namespace) -> None:
         print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed — check TELEGRAM_BOT_TOKEN / session creds.")
 
     if args.facebook:
-        results["facebook"] = post_facebook(facebook_text)
-        print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured (see agents/python/SETUP.md Step 3).")
+        total_odds, returns, avg_conf = _compute_totals(legs, args.stake)
+        image_path = build_social_image(
+            headline=f"{_title(acc_type)} — {len(legs)}-Fold @ {total_odds}",
+            tag="Today's Betting Tips",
+            color_hex=brand_color(cta["name"]),
+            subtext=f"{avg_conf}% average model confidence",
+            out_name="tips_card.png",
+        )
+        results["facebook"] = post_facebook(facebook_text, image_path=image_path)
+        if results["facebook"] and tips_post:
+            mark_used("tips", tips_post["slug"])
+        print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured (see agents/python/FB_SETUP_SIMPLE.md).")
 
     if args.instagram:
         results["instagram"] = post_instagram(instagram_text)

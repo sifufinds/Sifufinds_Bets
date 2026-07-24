@@ -7,6 +7,9 @@ on:
     # posts/day (morning bonus + lunch tips + evening tips) rather than posting
     # often enough to overwhelm a still-growing audience. Any further bonus detail
     # worth sharing gets folded into a prediction post instead of a new bonus post.
+    # Also posts to Facebook (photo + generated branded image + link to a real
+    # bonus-flavoured blog post when one exists) once FACEBOOK_PAGE_ID /
+    # FACEBOOK_PAGE_ACCESS_TOKEN secrets are set — skips cleanly until then.
     - cron: "0 7 * * *"
   workflow_dispatch:
     inputs:
@@ -54,7 +57,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r agents/python/requirements.txt
 
-      - name: Post brand offer to Telegram
+      - name: Post brand offer to Telegram + Facebook
         working-directory: agents/python
         env:
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
@@ -62,6 +65,8 @@ jobs:
           TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
           TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
         run: |
           ARGS=""
           if [ -n "${{ github.event.inputs.brand }}" ]; then ARGS="--brand '${{ github.event.inputs.brand }}'"; fi
@@ -74,7 +79,7 @@ jobs:
         run: |
           git config --local user.email "agents@sifufinds.com"
           git config --local user.name "SifuFinds Agent"
-          git add agents/python/offers_state.json agents/python/agent_log.json || true
+          git add agents/python/offers_state.json agents/python/facebook_share_state.json agents/python/agent_log.json || true
           if git diff --cached --quiet; then
             echo "No state changes to commit"
             exit 0
