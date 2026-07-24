@@ -1,36 +1,11 @@
 {
   "date": "2026-07-24",
-  "total": 4,
+  "total": 0,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 4,
+    "MEDIUM": 0,
     "INFO": 0
   },
-  "issues": [
-    {
-      "severity": "MEDIUM",
-      "check": "missing_faqpage_schema",
-      "page": "rodri-injury-blow-impact-on-manchester-city",
-      "detail": "Post has FAQ content but no FAQPage JSON-LD"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "missing_faqpage_schema",
-      "page": "villa-sign-gomes-rashford-future-uncertain",
-      "detail": "Post has FAQ content but no FAQPage JSON-LD"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "missing_faqpage_schema",
-      "page": "stunning-upsets-and-record-defeats-in-global-sports",
-      "detail": "Post has FAQ content but no FAQPage JSON-LD"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "missing_faqpage_schema",
-      "page": "boxing-underdog-factor-usyk-fury",
-      "detail": "Post has FAQ content but no FAQPage JSON-LD"
-    }
-  ]
+  "issues": []
 }
