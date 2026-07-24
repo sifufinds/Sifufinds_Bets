@@ -1,4 +1,4 @@
-name: Firecrawl Odds — Daily African match data
+name: OddsPortal Odds — Daily African match data (free-first)
 
 on:
   schedule:
@@ -35,12 +35,9 @@ jobs:
       - name: Install Python dependencies
         run: |
           pip install --upgrade pip
-          pip install firecrawl-py requests
+          pip install requests trafilatura lxml_html_clean
 
-      - name: Install Firecrawl CLI (optional, falls back to SDK)
-        run: npm install -g @mendable/firecrawl-js 2>/dev/null || true
-
-      - name: Run Firecrawl odds agent
+      - name: Run OddsPortal odds agent (free-first, Firecrawl last resort)
         working-directory: agents/python
         run: python agent_firecrawl_odds.py
 

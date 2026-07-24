@@ -100,6 +100,11 @@ SEARCH_QUERIES: dict[str, list[str]] = {
 }
 
 # ── FALLBACK RSS FEEDS ────────────────────────────────────────────────────────
+# Reuters, Football365, and Goal.com no longer publish public RSS feeds
+# (verified 2026-07-24 — all return 401/404). 90min, TalkSport, Mirror
+# Football, and Independent Football are equally reputable, still-live
+# alternatives kept here for source redundancy so a single feed going down
+# never starves a category.
 FEEDS: list[tuple[str, str, str]] = [
     # Football
     ("BBC Sport",         "https://feeds.bbci.co.uk/sport/football/rss.xml",            "football"),
@@ -107,12 +112,17 @@ FEEDS: list[tuple[str, str, str]] = [
     ("Guardian Football", "https://www.theguardian.com/football/rss",                   "football"),
     ("Sky Football",      "https://www.skysports.com/rss/11095",                        "football"),
     ("BBC Africa Sport",  "https://feeds.bbci.co.uk/sport/africa/rss.xml",              "football"),
+    ("90min",             "https://www.90min.com/posts.rss",                            "football"),
+    ("TalkSport",         "https://talksport.com/feed/",                                "football"),
+    ("Mirror Football",   "https://www.mirror.co.uk/sport/football/?service=rss",       "football"),
+    ("Independent Football", "https://www.independent.co.uk/sport/football/rss",        "football"),
     # World Cup 2026
     ("BBC Football WC",   "https://feeds.bbci.co.uk/sport/football/rss.xml",            "worldcup2026"),
     ("ESPN Soccer WC",    "https://www.espn.com/espn/rss/soccer/news",                  "worldcup2026"),
     ("Guardian Football WC", "https://www.theguardian.com/football/rss",               "worldcup2026"),
     ("BBC Africa WC",     "https://feeds.bbci.co.uk/sport/africa/rss.xml",              "worldcup2026"),
     ("Sky Football WC",   "https://www.skysports.com/rss/11095",                        "worldcup2026"),
+    ("90min WC",          "https://www.90min.com/posts.rss",                            "worldcup2026"),
     # Sport News
     ("Sky Sports News",   "https://www.skysports.com/rss/12040",                        "sportnews"),
     ("Sky Sport All",     "https://www.skysports.com/rss/12",                           "sportnews"),
@@ -120,6 +130,9 @@ FEEDS: list[tuple[str, str, str]] = [
     ("BBC Transfers",     "https://feeds.bbci.co.uk/sport/football/transfers/rss.xml",  "sportnews"),
     ("ESPN All",          "https://www.espn.com/espn/rss/news",                         "sportnews"),
     ("Guardian Sport",    "https://www.theguardian.com/sport/rss",                      "sportnews"),
+    ("TalkSport News",    "https://talksport.com/feed/",                                "sportnews"),
+    ("Mirror Sport",      "https://www.mirror.co.uk/sport/?service=rss",                "sportnews"),
+    ("Independent Sport", "https://www.independent.co.uk/sport/rss",                    "sportnews"),
     # Basketball
     ("BBC Basketball",    "https://feeds.bbci.co.uk/sport/basketball/rss.xml",          "basketball"),
     ("ESPN NBA",          "https://www.espn.com/espn/rss/nba/news",                     "basketball"),

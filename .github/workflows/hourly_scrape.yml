@@ -44,13 +44,13 @@ jobs:
           restore-keys: ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        run: pip install requests firecrawl-py
+        run: pip install requests trafilatura lxml_html_clean
 
       - name: Step 1 — Run ESPN live odds agent (fast, no API key needed)
         working-directory: agents/python
         run: python agent_live_odds.py
 
-      - name: Step 2 — Run multi-source Firecrawl scrape (odds + scores)
+      - name: Step 2 — Run multi-source scrape (odds + scores, free-first)
         working-directory: agents/python
         run: python agent_multi_scrape.py
 

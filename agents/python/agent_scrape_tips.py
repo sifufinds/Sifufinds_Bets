@@ -7,20 +7,20 @@ and data/predictions.json.
 Sources (in priority order):
   1. TheSportsDB + FreeSuperTips — WC2026 (always-on, no API key needed)
   2. Predictz       — predictz.com/predictions/  (today + tomorrow)
-  3. FreeSuperTips  — freesupertips.com/football-tips/ (direct HTTP, no Firecrawl)
+  3. FreeSuperTips  — freesupertips.com/football-tips/ (direct HTTP)
   4. EaglePredict   — eaglepredict.com/predictions/league/international-world-cup/
   5. Forebet        — forebet.com today 1X2 predictions
 
 Runs hourly (or every 15 min) via GitHub Actions.
-Firecrawl optional — direct HTTP used for FreeSuperTips + TheSportsDB API.
+Free-first: direct HTTP for FreeSuperTips + TheSportsDB API; the rest go
+through utils/free_scrape.py (trafilatura + Jina Reader, Firecrawl only as
+a last resort per-URL).
 """
 
 from __future__ import annotations
 
 import json
-import os
 import re
-import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone, timedelta
@@ -28,9 +28,10 @@ from pathlib import Path
 
 import requests as _req
 
+from utils.free_scrape import scrape as free_scrape
+
 # ── Config ────────────────────────────────────────────────────────────────────
 
-FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY", "")
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 TIPS_JSON = REPO_ROOT / "data" / "tips.json"
 PRED_JSON = REPO_ROOT / "data" / "predictions.json"
@@ -261,46 +262,10 @@ def scrape_direct_http(url: str, name: str) -> str:
     return ""
 
 
-# ── Firecrawl helper ──────────────────────────────────────────────────────────
+# ── Scraper (free-first, see utils/free_scrape.py) ───────────────────────────
 
 def scrape(url: str, wait_ms: int, name: str) -> str:
-    # Primary: REST API (works in CI without CLI toolchain)
-    if FIRECRAWL_API_KEY and len(FIRECRAWL_API_KEY) > 20:
-        try:
-            import requests as _req  # type: ignore
-            resp = _req.post(
-                "https://api.firecrawl.dev/v1/scrape",
-                headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}", "Content-Type": "application/json"},
-                json={"url": url, "formats": ["markdown"], "waitFor": wait_ms, "onlyMainContent": True},
-                timeout=90,
-            )
-            if resp.ok:
-                data = resp.json()
-                md = (data.get("data") or data).get("markdown", "")
-                if md and len(md) > 300:
-                    return md
-                print(f"    api [{name}]: short response ({len(md)} chars) — {resp.status_code}")
-            else:
-                print(f"    api [{name}]: HTTP {resp.status_code} — {resp.text[:120]}")
-        except Exception as e:
-            print(f"    api error [{name}]: {e}")
-
-    # Fallback: CLI (works locally with stored creds)
-    env = dict(os.environ)
-    try:
-        r = subprocess.run(
-            ["firecrawl", "scrape", url, "--wait-for", str(wait_ms), "--only-main-content"],
-            capture_output=True, text=True, timeout=120, env=env,
-        )
-        if r.stdout and len(r.stdout) > 300:
-            return r.stdout
-        if r.stderr:
-            print(f"    cli [{name}]: {r.stderr[:200]}")
-    except FileNotFoundError:
-        pass
-    except Exception as e:
-        print(f"    cli error [{name}]: {e}")
-    return ""
+    return free_scrape(url, name=name, wait_ms=wait_ms, min_chars=300)
 
 
 def clean(s: str) -> str:
@@ -729,8 +694,9 @@ def scrape_source(source: dict) -> tuple[str, list[dict]]:
 
 
 def main() -> None:
+    from utils.free_scrape import FIRECRAWL_API_KEY
     if not FIRECRAWL_API_KEY:
-        print("ℹ FIRECRAWL_API_KEY not set — using direct HTTP + TheSportsDB for WC2026")
+        print("ℹ FIRECRAWL_API_KEY not set — running free-only (direct HTTP + trafilatura/Jina Reader)")
 
     ts = datetime.now(timezone.utc).isoformat()
     now_utc = datetime.now(timezone.utc)

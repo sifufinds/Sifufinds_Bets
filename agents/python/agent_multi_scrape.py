@@ -12,7 +12,6 @@ every 5 min). FIRECRAWL_API_KEY is optional — the free pipeline needs no key.
 from __future__ import annotations
 
 import json
-import os
 import re
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -126,48 +125,12 @@ MULTI_WORD_TEAMS: list[tuple[str, str]] = [
     ("central-african", "Central Africa"),
 ]
 
-# ── Firecrawl scraper ─────────────────────────────────────────────────────────
+# ── Scraper (free-first, see utils/free_scrape.py) ───────────────────────────
 
 
 def scrape_url(url: str, wait_ms: int = 3000, name: str = "") -> str:
-    """Scrape a URL via Firecrawl REST API (primary) or CLI (local fallback)."""
-    # Primary: REST API — reliable in CI without CLI toolchain
-    if FIRECRAWL_API_KEY and len(FIRECRAWL_API_KEY) > 20:
-        try:
-            import requests as _req  # type: ignore
-            resp = _req.post(
-                "https://api.firecrawl.dev/v1/scrape",
-                headers={"Authorization": f"Bearer {FIRECRAWL_API_KEY}", "Content-Type": "application/json"},
-                json={"url": url, "formats": ["markdown"], "waitFor": wait_ms, "onlyMainContent": True},
-                timeout=90,
-            )
-            if resp.ok:
-                data = resp.json()
-                md = (data.get("data") or data).get("markdown", "")
-                if md and len(md) > 200:
-                    return md
-                print(f"    api [{name}]: short response ({len(md)} chars) — {resp.status_code}")
-            else:
-                print(f"    api [{name}]: HTTP {resp.status_code} — {resp.text[:120]}")
-        except Exception as exc:
-            print(f"    api error [{name}]: {exc}")
-
-    # Fallback: CLI (works locally with stored creds)
-    env = dict(os.environ)
-    try:
-        result = subprocess.run(
-            ["firecrawl", "scrape", url, "--wait-for", str(wait_ms), "--only-main-content"],
-            capture_output=True, text=True, timeout=90, env=env,
-        )
-        if result.stdout and len(result.stdout) > 200:
-            return result.stdout
-        if result.stderr:
-            print(f"    cli [{name}]: {result.stderr[:150]}")
-    except FileNotFoundError:
-        pass
-    except Exception as exc:
-        print(f"    cli error [{name}]: {exc}")
-    return ""
+    """Free-first scrape (trafilatura + Jina Reader), Firecrawl last resort."""
+    return free_scrape(url, name=name, wait_ms=wait_ms, min_chars=200)
 
 
 # ── Parsers ───────────────────────────────────────────────────────────────────
@@ -865,8 +828,9 @@ def scrape_source(source: dict) -> tuple[str, list[dict]]:
 
 
 def main() -> None:
+    from utils.free_scrape import FIRECRAWL_API_KEY
     if not FIRECRAWL_API_KEY:
-        print("ℹ FIRECRAWL_API_KEY not set — using CLI stored credentials")
+        print("ℹ FIRECRAWL_API_KEY not set — running free-only (trafilatura + Jina Reader)")
 
     ts = datetime.now(timezone.utc).isoformat()
     print(f"\n[{ts}] Multi-source scrape starting...")

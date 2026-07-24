@@ -1,17 +1,17 @@
 """
-agent_firecrawl_odds.py — Daily Firecrawl scrape of OddsPortal for African leagues
-Supplements the ESPN-based live.json with real odds from OddsPortal public pages.
-Runs once daily via GitHub Actions.
+agent_firecrawl_odds.py — Daily scrape of OddsPortal for African leagues
+Supplements the ESPN-based live.json with real odds from OddsPortal public
+pages. Free-first (trafilatura + Jina Reader via utils/free_scrape.py);
+Firecrawl only fires as a last resort per-URL. Runs once daily via GitHub
+Actions.
 """
 import json
-import os
-import sys
-import subprocess
 import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY", "")
+from utils.free_scrape import scrape as free_scrape
+
 TODAY = datetime.now(timezone.utc).strftime("%Y%m%d")
 
 TARGETS = [
@@ -25,39 +25,8 @@ LIVE_JSON = Path(__file__).resolve().parent.parent.parent / "data" / "live.json"
 
 
 def scrape_url(url: str) -> str:
-    """Use firecrawl CLI to scrape a URL, return markdown text."""
-    try:
-        result = subprocess.run(
-            ["firecrawl", "scrape", url, "--wait-for", "4000", "--only-main-content"],
-            capture_output=True,
-            text=True,
-            timeout=60,
-            env={**os.environ, "FIRECRAWL_API_KEY": FIRECRAWL_API_KEY},
-        )
-        if result.returncode != 0 and result.stderr:
-            print(f"  firecrawl stderr: {result.stderr[:200]}")
-        return result.stdout
-    except FileNotFoundError:
-        # firecrawl CLI not installed — try Python SDK fallback
-        return _scrape_via_sdk(url)
-    except Exception as e:
-        print(f"  scrape failed for {url}: {e}")
-        return ""
-
-
-def _scrape_via_sdk(url: str) -> str:
-    """Fallback: use firecrawl-py SDK if CLI is unavailable."""
-    try:
-        from firecrawl import FirecrawlApp  # type: ignore
-        app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
-        result = app.scrape_url(
-            url,
-            params={"formats": ["markdown"], "waitFor": 4000, "onlyMainContent": True},
-        )
-        return result.get("markdown", "")
-    except Exception as e:
-        print(f"  SDK fallback failed for {url}: {e}")
-        return ""
+    """Free-first scrape (trafilatura + Jina Reader), Firecrawl last resort."""
+    return free_scrape(url, wait_ms=4000, min_chars=200)
 
 
 def extract_matches(text: str, region: str) -> list:
@@ -143,11 +112,11 @@ def save_live_json(data: dict) -> None:
 
 
 def main() -> None:
+    from utils.free_scrape import FIRECRAWL_API_KEY
     if not FIRECRAWL_API_KEY:
-        print("FIRECRAWL_API_KEY not set — skipping Firecrawl scrape")
-        sys.exit(0)
+        print("ℹ FIRECRAWL_API_KEY not set — running free-only (trafilatura + Jina Reader)")
 
-    print(f"Firecrawl odds agent — {datetime.now(timezone.utc).isoformat()}")
+    print(f"OddsPortal odds agent — {datetime.now(timezone.utc).isoformat()}")
     print(f"  live.json path: {LIVE_JSON}")
 
     existing = load_live_json()
