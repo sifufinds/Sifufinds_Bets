@@ -11,14 +11,17 @@ transfer story appears:
   2. Extracts structured facts (player, clubs, fee, deal stage) from that
      article via a strict, grounded LLM extraction pass — never invents a
      name, club, or figure not already in the article text.
-  3. Looks up a free, legal photo for the named player via Wikipedia's REST
-     API (utils/player_photo.py, Wikimedia Commons-licensed) — never scrapes
-     or rehosts a copyrighted news photo. Every post gets an image one way
-     or another: if no Wikipedia photo exists for the player, Telegram and
-     Facebook fall back to the per-post branded graphic already generated
-     locally for the blog article (uploaded as a file, not a URL — see the
-     "always has an image" note below). Instagram falls back to the site's
-     generic branded card, since its API requires a public URL (see note).
+  3. Looks up a real, current photo of the named player via
+     utils/player_photo.py's find_player_image(): sports news outlets and
+     social platforms first (DuckDuckGo image search, per explicit product
+     decision — see that module's docstring for the copyright tradeoff this
+     carries vs. Wikimedia-only sourcing), then Wikipedia as a safe
+     fallback. Every post gets an image one way or another: if neither tier
+     finds a photo, Telegram and Facebook fall back to the per-post branded
+     graphic already generated locally for the blog article (uploaded as a
+     file, not a URL — see the "always has an image" note below). Instagram
+     falls back to the site's generic branded card, since its API requires
+     a public URL (see note).
   4. Posts a short "breaking news" bulletin (Fabrizio Romano / Sports Arena
      Africa style) to Telegram, Facebook, Instagram, and X, each linking back
      to the new blog article. Pure transfer news only — no bookmaker CTA, no
@@ -58,7 +61,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from llm import ask
 from utils.logger import log
-from utils.player_photo import fetch_player_photo, looks_like_person_name
+from utils.player_photo import find_player_image, looks_like_person_name
 from agent_sports_blog import generate_post, load_posts, save_posts
 from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
@@ -132,6 +135,16 @@ def _clean_json(s: str) -> str:
     return s.strip()
 
 
+def _parse_json_object(s: str) -> dict:
+    """Parse the first complete JSON object in the string, ignoring any
+    trailing text the model tacks on after it (e.g. a stray closing remark)
+    — plain json.loads() raises "Extra data" on that instead of just
+    parsing the object it found."""
+    s = _clean_json(s)
+    obj, _ = json.JSONDecoder().raw_decode(s)
+    return obj
+
+
 def extract_transfer_facts(post: dict) -> dict:
     user_message = (
         f"HEADLINE: {post.get('title', '')}\n\n"
@@ -144,7 +157,7 @@ def extract_transfer_facts(post: dict) -> dict:
     }
     try:
         raw = ask(FACT_SYSTEM_PROMPT, user_message)
-        facts = json.loads(_clean_json(raw))
+        facts = _parse_json_object(raw)
         for key in fallback:
             facts.setdefault(key, fallback[key])
         return facts
@@ -283,8 +296,8 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     player = facts.get("player") or ""
     if player and looks_like_person_name(player):
         context_clubs = [facts.get("from_club"), facts.get("to_club")]
-        photo_url = fetch_player_photo(player, context_clubs=context_clubs)
-        print(f"  {'✓ Found Wikipedia photo' if photo_url else '— No Wikipedia photo found'} for {player!r}")
+        photo_url = find_player_image(player, context_clubs=context_clubs)
+        print(f"  {'✓ Found a real photo' if photo_url else '— No real photo found'} for {player!r}")
 
     # Guaranteed image: real Wikipedia player photo when found, otherwise the
     # per-post branded graphic already generated for the blog article

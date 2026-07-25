@@ -1,25 +1,24 @@
 """
-Free, legal player/club photo lookup via the Wikipedia REST + Search APIs.
+Player/club photo lookup — sports news & social image search first, with a
+Wikipedia REST/Search API fallback.
 
-Wikipedia's page-summary endpoint returns the same lead image used in the
-article infobox, which is always hosted on Wikimedia Commons under a licence
-that permits reuse (CC BY-SA or public domain) — this is the same source
-Wikipedia itself displays, so pulling the URL and hotlinking it for a social
-post caption is safe. No API key, no login, no scraping of a photo host that
-could revoke rights.
+Product decision (explicit user direction, 2026-07-26): source images from
+the wider football media ecosystem — sports news outlets (BBC/Sky/Guardian/
+Mirror/TeamTalk/etc.) and public social platforms — via DuckDuckGo image
+search (search_news_photo/find_player_image), not just Wikimedia Commons.
+This carries real copyright exposure that Wikimedia hotlinking doesn't:
+those outlets' photos are typically syndicated agency photos (Getty/PA/
+Reuters) licensed for the outlet's own site, not necessarily free for
+SifuFinds to repost. Flagged that tradeoff to the user before building this;
+recorded here so a future reader doesn't mistake it for an oversight.
 
-Deliberately does NOT scrape photos from news outlets (BBC/Sky/Guardian/etc.)
-even though those articles almost always carry a current picture of the
-player — those are near-always syndicated agency photos (Getty/PA/Reuters)
-licensed only for that outlet's own site, and reposting them to our own
-channels would be real copyright exposure, not a grey area. Wikimedia Commons
-is the one large, genuinely free-to-reuse source of footballer photos, so the
-lookup here is deliberately made smarter (search + disambiguation handling)
-rather than widening the source list to include copyrighted press photos.
+Wikipedia's page-summary endpoint (fetch_player_photo/fetch_entity_photo)
+remains as the fallback tier: its lead image is always hosted on Wikimedia
+Commons under a licence that permits reuse (CC BY-SA or public domain), so
+it's the safe net for whatever the news/social search misses.
 
-Never invents a photo: if the named person has no Wikipedia page, or the page
-has no lead image, returns None and the caller falls back to SifuFinds' own
-generic branded card.
+Never invents a photo: if nothing is found at either tier, returns None and
+the caller falls back to SifuFinds' own generic branded card.
 """
 import re
 import urllib.parse
@@ -40,6 +39,23 @@ _SEARCH_URL = "https://en.wikipedia.org/w/api.php"
 _FOOTBALL_HINTS = (
     "footballer", "football player", "association football",
     "midfielder", "defender", "forward", "goalkeeper", "winger", "striker",
+)
+
+# Broader than _FOOTBALL_HINTS — covers clubs/national teams and the other
+# sports SifuFinds writes about (basketball, cricket, tennis, rugby, boxing,
+# F1), so blog feature-image lookups (see scripts/generate_blog_feature_image.py)
+# can find a real photo for a team or a non-footballer subject too, not just
+# individual footballers.
+_ENTITY_HINTS = _FOOTBALL_HINTS + (
+    "football club", "national football team", "soccer club",
+    "basketball player", "basketball team", "point guard", "shooting guard",
+    "small forward", "power forward", "national basketball association",
+    "cricketer", "cricket team",
+    "tennis player",
+    "rugby union", "rugby league",
+    "boxer",
+    "racing driver", "formula one",
+    "head coach", "football manager", "manager (association football)",
 )
 
 
@@ -137,6 +153,107 @@ def fetch_player_photo(name: str, context_clubs: Optional[list[str]] = None) -> 
             return photo
 
     return None
+
+
+def _is_entity_context(data: dict) -> bool:
+    haystack = f"{data.get('description', '')} {data.get('extract', '')}".lower()
+    return any(hint in haystack for hint in _ENTITY_HINTS)
+
+
+def fetch_entity_photo(name: str) -> Optional[str]:
+    """Like fetch_player_photo, but for any sports subject — a player, a
+    club/national team, or a coach — used to source a real featured image
+    for blog posts (see scripts/generate_blog_feature_image.py) instead of
+    always falling back to the generic branded card.
+
+    Same guarantee as fetch_player_photo: only returns a photo when
+    Wikipedia's own description/extract for the matched page identifies it
+    as a sports subject, so a same-named unrelated Wikipedia page (a place,
+    a film, an unrelated person) never gets picked up. Returns None rather
+    than guess when nothing qualifies.
+    """
+    name = (name or "").strip()
+    if not name or len(name) < 3:
+        return None
+
+    data = _get_summary(name)
+    if data and data.get("type") not in ("disambiguation", "no-extract") and _is_entity_context(data):
+        photo = _thumbnail_from_summary(data)
+        if photo:
+            return photo
+
+    for candidate_title in _search_candidates(f"{name} sport"):
+        candidate = _get_summary(candidate_title)
+        if not candidate or candidate.get("type") == "disambiguation":
+            continue
+        if not _is_entity_context(candidate):
+            continue
+        photo = _thumbnail_from_summary(candidate)
+        if photo:
+            return photo
+
+    return None
+
+
+def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> Optional[str]:
+    """Search sports news outlets and social platforms for a real, current
+    photo of the named player, via DuckDuckGo image search (free, no key —
+    the `ddgs` package already used elsewhere in this codebase). This is a
+    deliberate product decision to source images from the wider football
+    media ecosystem (BBC/Sky/Guardian/Mirror/TeamTalk/etc. and public
+    social posts), not just Wikimedia Commons — those outlets' photos are
+    typically syndicated agency photos (Getty/PA/Reuters) licensed for the
+    outlet's own site, so this carries real copyright exposure that plain
+    Wikimedia hotlinking doesn't. Made that tradeoff explicitly at the
+    user's direction rather than silently choosing either side.
+
+    Requires every word of the player's name to appear in the result title
+    before trusting an image — general image-search relevance is much
+    noisier than Wikipedia's structured data (a bare "Alonso Chelsea" query
+    mixed in results for Xabi Alonso, Chelsea's manager, alongside Marcos
+    Alonso, the player) — a wrong photo is a worse failure than none.
+    """
+    try:
+        from ddgs import DDGS
+    except ImportError:
+        return None
+
+    name = (name or "").strip()
+    if not name:
+        return None
+    name_parts = [p.lower() for p in name.split() if len(p) > 2]
+    if not name_parts:
+        return None
+
+    club_hint = next((c for c in (context_clubs or []) if c), "")
+    query = f'"{name}" {club_hint}'.strip()
+
+    try:
+        with DDGS() as ddgs:
+            results = list(ddgs.images(query, max_results=8))
+    except Exception:
+        return None
+
+    for r in results:
+        image_url = r.get("image") or ""
+        title = (r.get("title") or "").lower()
+        if not image_url.startswith("https://"):
+            continue
+        if not all(part in title for part in name_parts):
+            continue
+        return image_url
+
+    return None
+
+
+def find_player_image(name: str, context_clubs: Optional[list[str]] = None) -> Optional[str]:
+    """Best-effort real photo lookup for a transfer-news subject: sports
+    news/social image search first (see search_news_photo — the current
+    product policy), then Wikipedia as a safe, always-free-to-reuse
+    fallback for whatever the search misses. Returns None only if both
+    tiers come up empty, in which case the caller falls back further to
+    SifuFinds' own branded graphic."""
+    return search_news_photo(name, context_clubs) or fetch_player_photo(name, context_clubs)
 
 
 def looks_like_person_name(name: str) -> bool:
