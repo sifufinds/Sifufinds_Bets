@@ -536,7 +536,9 @@ def send_to_channel(message: str) -> bool:
     return _send_bot_token(message)
 
 
-async def _send_telethon_photo(photo_url: str, caption: str) -> bool:
+async def _send_telethon_photo(photo, caption: str) -> bool:
+    """`photo` can be a remote URL or a local file path — Telethon's
+    send_file() handles both transparently."""
     api_id_str = os.getenv("TELEGRAM_API_ID", "").strip()
     api_hash   = os.getenv("TELEGRAM_API_HASH", "").strip()
     session    = os.getenv("TELEGRAM_SESSION_STRING", "").strip()
@@ -548,38 +550,47 @@ async def _send_telethon_photo(photo_url: str, caption: str) -> bool:
         from telethon import TelegramClient
         from telethon.sessions import StringSession
         async with TelegramClient(StringSession(session), int(api_id_str), api_hash) as client:
-            await client.send_file(CHANNEL, photo_url, caption=caption, parse_mode="html")
+            await client.send_file(CHANNEL, str(photo), caption=caption, parse_mode="html")
         return True
     except Exception as e:
         print(f"✗ Telethon photo error: {e}")
         return False
 
 
-def _send_bot_token_photo(photo_url: str, caption: str) -> bool:
+def _send_bot_token_photo(photo, caption: str) -> bool:
+    """`photo` can be a remote URL (sent as JSON) or a local file path
+    (multipart-uploaded) — the Bot API needs a different request shape
+    for each, unlike Telethon which handles both the same way."""
     if not BOT_TOKEN:
         return False
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
-    resp = requests.post(url, json={
-        "chat_id": CHANNEL,
-        "photo": photo_url,
-        "caption": caption,
-        "parse_mode": "HTML",
-    }, timeout=15)
+    is_remote = str(photo).startswith(("http://", "https://"))
+    if is_remote:
+        resp = requests.post(url, json={
+            "chat_id": CHANNEL, "photo": photo, "caption": caption, "parse_mode": "HTML",
+        }, timeout=15)
+    else:
+        with open(photo, "rb") as f:
+            resp = requests.post(url, data={
+                "chat_id": CHANNEL, "caption": caption, "parse_mode": "HTML",
+            }, files={"photo": f}, timeout=30)
     ok = resp.status_code == 200
     if not ok:
         print(f"✗ Bot token photo error: {resp.json().get('description', resp.text[:200])}")
     return ok
 
 
-def send_photo_to_channel(photo_url: str, caption: str) -> bool:
-    """Send a photo + HTML caption. Try Telethon first, fall back to bot
-    token. Falls back to a text-only message if the photo send fails for
-    any reason (e.g. Telegram rejects the source URL) rather than losing
-    the post entirely."""
-    if asyncio.run(_send_telethon_photo(photo_url, caption)):
+def send_photo_to_channel(photo, caption: str) -> bool:
+    """Send a photo + HTML caption. `photo` may be a remote URL (e.g. a
+    Wikimedia player photo) or a local file path (e.g. the freshly
+    generated per-post branded graphic) — both are supported end to end.
+    Tries Telethon first, falls back to bot token, and falls back further
+    to a text-only message if the photo send fails for any reason (e.g.
+    Telegram rejects the source) rather than losing the post entirely."""
+    if asyncio.run(_send_telethon_photo(photo, caption)):
         return True
     print("Telethon photo send unavailable — trying bot token fallback...")
-    if _send_bot_token_photo(photo_url, caption):
+    if _send_bot_token_photo(photo, caption):
         return True
     print("Photo send failed — falling back to text-only message...")
     return send_to_channel(caption)

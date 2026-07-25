@@ -12,13 +12,28 @@ transfer story appears:
      article via a strict, grounded LLM extraction pass — never invents a
      name, club, or figure not already in the article text.
   3. Looks up a free, legal photo for the named player via Wikipedia's REST
-     API (utils/player_photo.py, Wikimedia Commons-licensed) and falls back to
-     SifuFinds' generic branded social card if none is found — never scrapes
-     or rehosts a copyrighted news photo.
+     API (utils/player_photo.py, Wikimedia Commons-licensed) — never scrapes
+     or rehosts a copyrighted news photo. Every post gets an image one way
+     or another: if no Wikipedia photo exists for the player, Telegram and
+     Facebook fall back to the per-post branded graphic already generated
+     locally for the blog article (uploaded as a file, not a URL — see the
+     "always has an image" note below). Instagram falls back to the site's
+     generic branded card, since its API requires a public URL (see note).
   4. Posts a short "breaking news" bulletin (Fabrizio Romano / Sports Arena
      Africa style) to Telegram, Facebook, Instagram, and X, each linking back
-     to the new blog article, with the standard bookmaker CTA + responsible
-     gambling disclaimer.
+     to the new blog article. Pure transfer news only — no bookmaker CTA, no
+     bonus mention, no odds. This is a standalone news feed on its own
+     30-minute schedule, independent of the site's betting-tips/bonus posting
+     cadence (see agent_accumulator_post.py / agent_telegram_offers.py).
+
+Why Instagram can't reuse the per-post graphic like Telegram/Facebook do:
+Instagram's Content Publishing API only accepts a public image URL, not an
+uploaded file. The per-post PNG is generated locally in this same run, before
+the blog article is committed/pushed/deployed to sifufinds.com, so its URL
+isn't live yet at the moment this script would need to hand it to Instagram —
+posting it would 404. Telegram and Facebook don't have this problem because
+both accept a direct file upload of the same local PNG, so they always get a
+real per-post image; Instagram uses the sitewide generic card in that case.
 
 Duplicate protection: skips the whole cycle (no blog post, no social post) if
 the generated story's title closely matches one already in blog/posts.json —
@@ -43,15 +58,29 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from llm import ask
 from utils.logger import log
-from utils.affiliate_links import cta_html, cta_plain, CTA_CLAIM_BONUS
 from utils.player_photo import fetch_player_photo, looks_like_person_name
 from agent_sports_blog import generate_post, load_posts, save_posts
-from agent_telegram_offers import send_to_channel, send_photo_to_channel, _stars, SITE_URL
-from agent_match_post import pick_cta_brand
+from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
 from agent_twitter_posts import _post_tweet as post_twitter
 
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 GENERIC_SOCIAL_IMAGE = f"{SITE_URL}/assets/social-card.jpg"
+
+
+def local_feature_image_path(post: dict) -> Path | None:
+    """The per-post branded graphic already generated for the blog article
+    (assets/og/{slug}.png), as a local filesystem path — used as the
+    guaranteed image fallback for Telegram/Facebook when no Wikipedia photo
+    exists for the named player. Returns None only if generation genuinely
+    failed (see generate_blog_feature_image.py — never raises, so this is
+    the sole failure path)."""
+    feature_image = post.get("feature_image")
+    if not feature_image:
+        return None
+    path = REPO_ROOT / feature_image.lstrip("/")
+    return path if path.exists() else None
+
 
 # Common footballing nations — never guessed, only used when the extraction
 # step found an explicit nationality in the article text.
@@ -124,7 +153,7 @@ def extract_transfer_facts(post: dict) -> dict:
         return fallback
 
 
-# ── BULLETIN BODY (shared core, platform wrappers add branding/CTA) ─────────
+# ── BULLETIN BODY (shared core — pure news, no CTA/bonus/bookmaker content) ──
 
 def _sentence_case(s: str) -> str:
     s = str(s).strip()
@@ -154,54 +183,38 @@ def build_bulletin_lines(facts: dict) -> list[str]:
     return lines
 
 
-def build_bonus_cta(cta: dict, html: bool) -> str:
-    def b(s: str) -> str:
-        return f"<b>{s}</b>" if html else s
-    claim_link = cta_html(cta, label=CTA_CLAIM_BONUS) if html else cta_plain(cta, label=CTA_CLAIM_BONUS)
-    return (
-        f"🎁 While the transfer window plays out: {b(cta['name'])} {_stars(cta['stars'])} "
-        f"— {b(cta['welcome'])}\n{claim_link}"
-    )
-
-
 _REACT_PROMPT_TG = "💬 Tap a reaction below — 🔥 big move · 😳 shock · 🤔 not convinced"
 _REACT_PROMPT_FB = "💬 React below — 🔥 if this is a good move, 😳 if it shocked you!"
 
 
-def build_telegram_caption(facts: dict, post: dict, cta: dict) -> str:
+def build_telegram_caption(facts: dict, post: dict) -> str:
     lines = build_bulletin_lines(facts)
     blog_url = f"{SITE_URL}/blog/{post['slug']}/"
     return (
         "\n".join(lines) +
-        f"\n{build_bonus_cta(cta, html=True)}\n\n"
         f"📰 Full story: <a href=\"{blog_url}\">{post['title']}</a>\n\n"
-        f"{_REACT_PROMPT_TG}\n\n"
-        f"🔞 18+ | Gamble Responsibly"
+        f"{_REACT_PROMPT_TG}"
     )
 
 
-def build_facebook_caption(facts: dict, post: dict, cta: dict) -> str:
+def build_facebook_caption(facts: dict, post: dict) -> str:
     lines = build_bulletin_lines(facts)
     blog_url = f"{SITE_URL}/blog/{post['slug']}/"
-    hashtags = "#TransferNews #SifuFinds #Football #BettingTips"
+    hashtags = "#TransferNews #SifuFinds #Football #TransferWindow"
     return (
         "\n".join(lines) +
-        f"\n{build_bonus_cta(cta, html=False)}\n\n"
         f"📰 Full story: {blog_url}\n\n"
         f"{_REACT_PROMPT_FB}\n\n"
-        f"🔞 18+ | Gamble Responsibly\n\n"
         f"{hashtags}"
     )
 
 
-def build_instagram_caption(facts: dict, post: dict, cta: dict) -> str:
+def build_instagram_caption(facts: dict, post: dict) -> str:
     lines = build_bulletin_lines(facts)
-    hashtags = "#TransferNews #SifuFinds #Football #TransferWindow #AfricanBetting #BettingTips"
+    hashtags = "#TransferNews #SifuFinds #Football #TransferWindow #FootballNews"
     return (
         "\n".join(lines) +
-        f"\n{build_bonus_cta(cta, html=False)}\n\n"
-        f"👉 Link in bio for the full story + latest bonuses\n\n"
-        f"🔞 18+ | Gamble Responsibly\n"
+        f"👉 Link in bio for the full story\n\n"
         f".\n.\n.\n{hashtags}"
     )
 
@@ -227,13 +240,13 @@ def _trim_to_limit(text: str, limit: int = 280) -> str:
     return "\n".join(lines)
 
 
-def build_twitter_text(facts: dict, post: dict, cta: dict) -> str:
+def build_twitter_text(facts: dict, post: dict) -> str:
     lines = build_bulletin_lines(facts)
     blog_url = f"{SITE_URL}/blog/{post['slug']}/"
     tweet = (
         "\n".join(lines) +
-        f"\n👉 {blog_url}\n\n"
-        f"#TransferNews #SifuFinds 🔞 18+"
+        f"👉 {blog_url}\n\n"
+        f"#TransferNews #SifuFinds"
     )
     return _trim_to_limit(tweet)
 
@@ -272,15 +285,21 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
         photo_url = fetch_player_photo(player)
         print(f"  {'✓ Found Wikipedia photo' if photo_url else '— No Wikipedia photo found'} for {player!r}")
 
-    cta = pick_cta_brand()
+    # Guaranteed image: real Wikipedia player photo when found, otherwise the
+    # per-post branded graphic already generated for the blog article
+    # (uploaded as a local file for Telegram/Facebook — see module docstring
+    # for why Instagram can't use this same fallback).
+    local_image = None if photo_url else local_feature_image_path(post)
+    tg_fb_image = photo_url or local_image
+    print(f"  → Image for Telegram/Facebook: {'Wikipedia photo' if photo_url else ('branded graphic' if local_image else 'NONE — feature image generation failed')}")
 
-    telegram_text = build_telegram_caption(facts, post, cta)
-    facebook_text = build_facebook_caption(facts, post, cta)
-    instagram_text = build_instagram_caption(facts, post, cta)
-    twitter_text = build_twitter_text(facts, post, cta)
+    telegram_text = build_telegram_caption(facts, post)
+    facebook_text = build_facebook_caption(facts, post)
+    instagram_text = build_instagram_caption(facts, post)
+    twitter_text = build_twitter_text(facts, post)
 
     print("\n" + "═" * 60)
-    print(f"TELEGRAM {'(photo)' if photo_url else '(text)'} — {'preview' if dry_run else 'auto-posting'}")
+    print(f"TELEGRAM {'(photo)' if tg_fb_image else '(text)'} — {'preview' if dry_run else 'auto-posting'}")
     print("═" * 60)
     print(telegram_text)
     print("\n" + "─" * 60)
@@ -309,14 +328,18 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     results: dict[str, bool] = {}
 
     if telegram:
-        if photo_url:
-            results["telegram"] = send_photo_to_channel(photo_url, telegram_text)
+        if tg_fb_image:
+            results["telegram"] = send_photo_to_channel(tg_fb_image, telegram_text)
         else:
             results["telegram"] = send_to_channel(telegram_text)
         print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed.")
 
     if facebook:
-        results["facebook"] = post_facebook(facebook_text, image_url=photo_url)
+        results["facebook"] = post_facebook(
+            facebook_text,
+            image_path=local_image if not photo_url else None,
+            image_url=photo_url,
+        )
         print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured.")
 
     if instagram:
