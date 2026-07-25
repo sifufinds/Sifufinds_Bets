@@ -6,9 +6,21 @@ generic stock category photo on the blog listing page) — the same gap the
 2026-07-19 GEO audit flagged for bookmaker reviews (see
 generate_review_og_images.py). This script closes that gap for the general
 content pipeline (agent_sports_blog.py, gen_blog_post_pages.py NEW_POSTS)
-so every post gets its own on-brand 1200x630 image driven entirely by data
-already on the post (image_color, image_icon, category, title) — no stock
-photos, no AI image generation, no fabricated branding.
+so every post gets its own 1200x630 image.
+
+Per the 2026-07-26 standing rule ("use a free image of the player/team/person
+you're talking about as the feature image"), this now tries a real photo
+first: it pulls candidate subject names from the post's title and tags and
+looks each up via utils/player_photo.fetch_entity_photo(), which only
+returns a Wikimedia Commons-hosted photo when Wikipedia's own page
+description confirms it's a footballer, club, national team, or another
+sports subject SifuFinds covers — never a guess, never a copyrighted news
+photo (see that module's docstring for the full reasoning). When a photo is
+found it's composited into the same on-brand layout (kicker, headline,
+wordmark) as a full-bleed hero behind a gradient scrim. When no subject
+photo can be confirmed — a generic tips/odds/bonus post with no named
+player or club — it falls back to the original icon-card design driven by
+image_color/image_icon, exactly as before.
 
 Output goes to assets/og/{slug}.png, which gen_blog_post_pages.py already
 picks up automatically for <meta property="og:image"> / twitter:image. Since
@@ -23,8 +35,11 @@ Usage:
 """
 from __future__ import annotations
 
+import io
 import json
+import re
 import sys
+import urllib.request
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -32,6 +47,13 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).parent.parent
 POSTS_JSON = ROOT / "blog" / "posts.json"
 OUT_DIR = ROOT / "assets" / "og"
+
+sys.path.insert(0, str(ROOT / "agents" / "python"))
+from utils.player_photo import fetch_entity_photo  # noqa: E402
+
+_PHOTO_HEADERS = {
+    "User-Agent": "SifuFindsBot/1.0 (https://sifufinds.com; contact: kai.s.manyeh@gmail.com)",
+}
 
 # Content is authored on macOS but rendered on ubuntu-latest GitHub Actions
 # runners too (breaking_news.yml runs agent_sports_blog.py there several
@@ -245,6 +267,124 @@ def build_image(title: str, category: str, image_color: str, image_icon: str) ->
     return img.convert("RGB")
 
 
+_NAME_RE = re.compile(r"\b([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+){1,2})\b")
+
+
+def _subject_candidates(post: dict, limit: int = 8) -> list[str]:
+    """Candidate player/team/person names to try for a real photo, most
+    likely first: the post's own tags, which the content pipeline already
+    populates with the specific players/clubs/teams the post is about (see
+    agent_sports_blog.py — real examples: ['Real Madrid', 'Marc Cucurella',
+    'Cape Verde'], ['NBA', 'Knicks', 'New York']), then capitalised name
+    runs pulled from the title as a fallback for posts with sparse tags.
+    The title regex is a much cruder signal — headlines are Title Case, so
+    a 2-3 word window can still straddle a connector word ('Transfer From')
+    — but that's safe here because fetch_entity_photo() only returns a
+    photo once Wikipedia's own page confirms a sports subject, so a bad
+    candidate (a bookmaker name, a country, a headline fragment) safely
+    yields no photo rather than a wrong one.
+    """
+    candidates: list[str] = []
+    for tag in post.get("tags", []) or []:
+        tag = (tag or "").strip()
+        if tag and tag not in candidates:
+            candidates.append(tag)
+    title = post.get("title", "") or ""
+    for match in _NAME_RE.finditer(title):
+        name = match.group(1).strip()
+        if name not in candidates:
+            candidates.append(name)
+    return candidates[:limit]
+
+
+def _download_photo(url: str, timeout: int = 8) -> Image.Image | None:
+    try:
+        req = urllib.request.Request(url, headers=_PHOTO_HEADERS)
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return Image.open(io.BytesIO(r.read())).convert("RGB")
+    except Exception:
+        return None
+
+
+def find_subject_photo(post: dict) -> Image.Image | None:
+    """Tries each candidate subject in turn, returns the first Wikimedia
+    Commons photo that resolves and downloads, or None if the post has no
+    identifiable player/team/person (e.g. a generic tips or bonus post)."""
+    for name in _subject_candidates(post):
+        url = fetch_entity_photo(name)
+        if not url:
+            continue
+        photo = _download_photo(url)
+        if photo is not None:
+            return photo
+    return None
+
+
+def _cover_fit(img: Image.Image, w: int, h: int) -> Image.Image:
+    """Resize + crop to fill a w x h box with no distortion, the same idea
+    as CSS `background-size: cover`.
+
+    Wikipedia infobox photos are almost always portrait-oriented headshots
+    with the face in the upper third — a dead-centre vertical crop (the
+    naive `background-position: center` equivalent) reliably cropped straight
+    through the subject's chin/neck instead of showing their face (caught by
+    actually rendering a test image before shipping this, not just reading
+    the code). Horizontal cropping still centres, since landscape sources
+    don't have the same top-heavy bias."""
+    src_ratio = img.width / img.height
+    dst_ratio = w / h
+    if src_ratio > dst_ratio:
+        new_h, new_w = h, round(h * src_ratio)
+    else:
+        new_w, new_h = w, round(w / src_ratio)
+    resized = img.resize((new_w, new_h), Image.LANCZOS)
+    left = (new_w - w) // 2
+    top = round((new_h - h) * 0.12) if new_h > h else 0
+    return resized.crop((left, top, left + w, top + h))
+
+
+def build_image_with_photo(title: str, category: str, image_color: str, photo: Image.Image) -> Image.Image:
+    """Same on-brand kicker/headline/wordmark language as build_image(), but
+    with a real subject photo as the full-bleed hero behind a bottom-heavy
+    gradient scrim, instead of the generic icon card — used whenever
+    find_subject_photo() confirms a real player/team photo for the post."""
+    base = _hex_to_rgb(image_color)
+    photo_fit = _cover_fit(photo, W, H)
+    dark = _darken(base, 0.25)
+
+    # Bottom-heavy scrim so headline/wordmark stay legible over any photo —
+    # same putdata-mask compositing idea as _gradient_bg above.
+    dark_layer = Image.new("RGB", (W, H), dark)
+    mask = Image.new("L", (W, H))
+    mask.putdata([min(230, round(35 + 195 * (y / H) ** 1.6)) for y in range(H) for _ in range(W)])
+    img = Image.composite(dark_layer, photo_fit, mask)
+    draw = ImageDraw.Draw(img, "RGBA")
+
+    # Kicker pill, top-left — echoes the tag-pill language used on the
+    # generic branded card elsewhere in the pipeline (utils/social_image.py).
+    f_kicker = _font("bold", 24)
+    kicker_text = f"SIFUFINDS  ·  {_category_label(category).upper()}"
+    pad_x, pad_y = 20, 10
+    kicker_w = draw.textlength(kicker_text, font=f_kicker)
+    pill = (60, 50, 60 + kicker_w + pad_x * 2, 50 + 24 + pad_y * 2)
+    draw.rounded_rectangle(pill, radius=22, fill=(*dark, 210))
+    draw.text((pill[0] + pad_x, pill[1] + pad_y - 2), kicker_text, font=f_kicker, fill=GOLD)
+
+    # Headline, bottom-anchored over the darkest part of the scrim
+    f_headline = _font("black", 54)
+    pad_x2 = 72
+    lines = _wrap_text(draw, title, f_headline, W - pad_x2 * 2, max_lines=3)
+    line_h = 62
+    y = H - 100 - len(lines) * line_h
+    for line in lines:
+        draw.text((pad_x2, y), line, font=f_headline, fill=WHITE)
+        y += line_h
+
+    draw.text((pad_x2, H - 40), "SIFUFINDS.COM", font=_font("bold", 22), fill=GOLD)
+
+    return img
+
+
 def generate_feature_image(post: dict) -> str | None:
     """Generate assets/og/{slug}.png for one post. Returns the site-relative
     URL on success, None on failure (never raises — a broken image must not
@@ -254,12 +394,22 @@ def generate_feature_image(post: dict) -> str | None:
         return None
     try:
         OUT_DIR.mkdir(parents=True, exist_ok=True)
-        img = build_image(
-            title=post.get("title", ""),
-            category=post.get("category", ""),
-            image_color=post.get("image_color", "#1a6b35"),
-            image_icon=post.get("image_icon", "📰"),
-        )
+        photo = find_subject_photo(post)
+        if photo is not None:
+            print(f"  ✓ using real Wikipedia photo as feature image for {slug}")
+            img = build_image_with_photo(
+                title=post.get("title", ""),
+                category=post.get("category", ""),
+                image_color=post.get("image_color", "#1a6b35"),
+                photo=photo,
+            )
+        else:
+            img = build_image(
+                title=post.get("title", ""),
+                category=post.get("category", ""),
+                image_color=post.get("image_color", "#1a6b35"),
+                image_icon=post.get("image_icon", "📰"),
+            )
         out_path = OUT_DIR / f"{slug}.png"
         img.save(out_path, "PNG", optimize=True)
         return f"/assets/og/{slug}.png"

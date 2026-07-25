@@ -160,6 +160,22 @@ def _is_entity_context(data: dict) -> bool:
     return any(hint in haystack for hint in _ENTITY_HINTS)
 
 
+def _shares_significant_word(name: str, candidate_title: str) -> bool:
+    """Guards the search-fallback tier below: Wikipedia's search API happily
+    returns tangentially-related sport pages for a generic query (e.g.
+    "odds comparison sport" surfaced "Rugby football" and "Set piece
+    (football)" — both pass _is_entity_context since they genuinely are
+    sports pages, but have zero relation to "odds comparison"). Caught this
+    by actually rendering a feature image for a generic non-player betting
+    post and seeing an unrelated 19th-century engraving come back. Requiring
+    at least one non-trivial word in common with the original query keeps
+    real name-variant matches (disambiguation pages, "F.C." suffixes) while
+    rejecting genuinely unrelated sport pages a loose query happened to hit."""
+    name_words = {w.lower() for w in re.findall(r"[A-Za-z]{3,}", name)}
+    candidate_words = {w.lower() for w in re.findall(r"[A-Za-z]{3,}", candidate_title)}
+    return bool(name_words & candidate_words)
+
+
 def fetch_entity_photo(name: str) -> Optional[str]:
     """Like fetch_player_photo, but for any sports subject — a player, a
     club/national team, or a coach — used to source a real featured image
@@ -183,6 +199,8 @@ def fetch_entity_photo(name: str) -> Optional[str]:
             return photo
 
     for candidate_title in _search_candidates(f"{name} sport"):
+        if not _shares_significant_word(name, candidate_title):
+            continue
         candidate = _get_summary(candidate_title)
         if not candidate or candidate.get("type") == "disambiguation":
             continue
