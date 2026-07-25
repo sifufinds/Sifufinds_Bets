@@ -99,7 +99,7 @@ jobs:
         run: |
           git config --local user.email "newsbot@sifufinds.com"
           git config --local user.name "SifuFinds Transfer News Bot"
-          git add blog/posts.json blog/posts-data.js blog/ assets/og/ agents/python/agent_log.json
+          git add blog/posts.json blog/posts-data.js blog/ assets/og/
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
