@@ -47,5 +47,15 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "live: update countries live data $(date -u '+%Y-%m-%d %H:%M') UTC"
-            git push
+            for attempt in 1 2 3 4 5; do
+              if git push; then
+                echo "✅ Pushed on attempt $attempt"
+                break
+              fi
+              [ "$attempt" -eq 5 ] && { echo "❌ Push failed after 5 attempts"; exit 1; }
+              echo "⚠ Push rejected (attempt $attempt/5) — rebasing in 5s..."
+              sleep 5
+              git fetch origin main
+              git rebase FETCH_HEAD -X theirs || git rebase --abort
+            done
           fi

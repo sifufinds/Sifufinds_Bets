@@ -260,8 +260,8 @@ def run(args: argparse.Namespace) -> None:
             f"attributed price on each). Refusing to invent a leg to fill the accumulator — "
             f"wait for the next data refresh."
         )
-        log("accumulator", "lookup", "failed", f"{len(legs)}/{FOLD_COUNT}")
-        sys.exit(1)
+        log("accumulator", "lookup", "skipped", f"{len(legs)}/{FOLD_COUNT}")
+        sys.exit(0)  # not enough real data yet, not a failure — don't feed the retry/watchdog loop
 
     cta = pick_cta_brand()
 

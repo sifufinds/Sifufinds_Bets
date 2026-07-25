@@ -66,6 +66,7 @@ jobs:
           MINUTE=$(date -u +%M)
           HOUR=$(date -u +%H)
           HOUR_INT=$((10#$HOUR))
+          MINUTE_INT=$((10#$MINUTE))
 
           if [ "$EVENT" = "workflow_dispatch" ]; then
             case "$INPUT" in
@@ -73,7 +74,7 @@ jobs:
               force-fd)   echo "args=--force-fd"  >> $GITHUB_OUTPUT ;;
               *)          echo "args="             >> $GITHUB_OUTPUT ;;
             esac
-          elif [ "$((MINUTE % 30))" != "0" ]; then
+          elif [ "$((MINUTE_INT % 30))" != "0" ]; then
             # Not a 30-min boundary → this is a 5-min live-patch run
             echo "args=--espn-only" >> $GITHUB_OUTPUT
           else
@@ -114,6 +115,8 @@ jobs:
     needs: update
     if: failure()
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
     steps:
       - name: Wait before retry
         run: sleep 480

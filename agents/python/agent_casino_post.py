@@ -255,8 +255,8 @@ def run(args: argparse.Namespace) -> None:
             f"within {CASINO_FRESHNESS_DAYS} days, casino/spin/aviator/jackpot keyword). "
             f"Refusing to invent one — wait for the next data refresh."
         )
-        log("casino_post", "lookup", "failed")
-        sys.exit(1)
+        log("casino_post", "lookup", "skipped")
+        sys.exit(0)  # not enough real data yet, not a failure — don't feed the retry/watchdog loop
 
     bonus = pick_bonus(candidates)
     game = match_game(f"{bonus['top']} {bonus['off']}")
