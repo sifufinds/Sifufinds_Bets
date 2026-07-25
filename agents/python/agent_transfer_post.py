@@ -282,7 +282,8 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     photo_url = None
     player = facts.get("player") or ""
     if player and looks_like_person_name(player):
-        photo_url = fetch_player_photo(player)
+        context_clubs = [facts.get("from_club"), facts.get("to_club")]
+        photo_url = fetch_player_photo(player, context_clubs=context_clubs)
         print(f"  {'✓ Found Wikipedia photo' if photo_url else '— No Wikipedia photo found'} for {player!r}")
 
     # Guaranteed image: real Wikipedia player photo when found, otherwise the
