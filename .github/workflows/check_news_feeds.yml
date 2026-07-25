@@ -1,0 +1,46 @@
+name: News Feed Liveness Check — weekly RSS audit
+
+# agent_sports_blog.py depends on agents/python/utils/news_fetcher.py's RSS
+# feed list for one of its three research layers. Feeds rot silently and
+# non-fatally (fetch_category() just gets less, never errors) — a 2026-07-25
+# audit found 15 of ~40 feeds dead without anyone noticing. This job re-runs
+# scripts/check_news_feeds.py weekly so the next round of rot shows up in the
+# Actions log instead of quietly eroding content-research coverage again.
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # Mondays, 05:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check-feeds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Check every RSS feed in news_fetcher.py
+        run: python3 scripts/check_news_feeds.py
+        continue-on-error: true
+
+      - name: Fail only if more than a quarter of feeds are dead
+        run: |
+          python3 scripts/check_news_feeds.py > feed_report.txt || true
+          cat feed_report.txt
+          DEAD=$(grep -cE "^(DEAD|EMPTY)" feed_report.txt || true)
+          TOTAL=$(grep -cE "^(OK|DEAD|EMPTY)" feed_report.txt || true)
+          echo "Dead/empty: $DEAD / $TOTAL"
+          if [ "$TOTAL" -gt 0 ] && [ "$((DEAD * 4))" -gt "$TOTAL" ]; then
+            echo "::error::More than 25% of news feeds are dead/empty — see log above."
+            exit 1
+          fi

@@ -3,7 +3,13 @@ Live news research module — three-layer search for maximum freshness.
 
 Layer 1 — DuckDuckGo News Search (live web, last 24h, no API key)
 Layer 2 — Google News RSS search (Google's index, per keyword, no API key)
-Layer 3 — Site RSS feeds (BBC, ESPN, Guardian, Sky — reliable fallback)
+Layer 3 — Site RSS feeds: 45 verified-live feeds spanning BBC, Guardian, TalkSport,
+          Independent, 90min, Yahoo, Sporting News, CBS Sports, Sportskeeda,
+          ESPN Cricinfo, Autosport, France24, iGaming Business/SBC News/EGR
+          Global/Vegas Slots Online, plus nine African outlets (AllAfrica,
+          Punch/Vanguard/Complete Sports/Premium Times for Nigeria, Standard
+          Sports for Kenya, Graphic Sports for Ghana, KickOff for South Africa,
+          Africa Top Sports pan-African)
 
 Freshness rules:
   - Items with no parseable pubDate are DISCARDED (never faked as "now")
@@ -58,6 +64,7 @@ SEARCH_QUERIES: dict[str, list[str]] = {
         "trending sports news today",
         "world sport breaking news",
         "sports transfer signing news today",
+        "Nigeria Kenya Ghana South Africa sports news today",
     ],
     "transfers":  [
         "football transfer news today deal agreed",
@@ -107,75 +114,97 @@ SEARCH_QUERIES: dict[str, list[str]] = {
 }
 
 # ── FALLBACK RSS FEEDS ────────────────────────────────────────────────────────
-# Reuters, Football365, and Goal.com no longer publish public RSS feeds
-# (verified 2026-07-24 — all return 401/404). 90min, TalkSport, Mirror
-# Football, and Independent Football are equally reputable, still-live
-# alternatives kept here for source redundancy so a single feed going down
-# never starves a category.
+# Full liveness audit run 2026-07-25 (fetched every URL, parsed the XML, and
+# counted <item>s) turned up a large dead-weight problem: every espn.com/espn/rss/*
+# feed (soccer, all, NBA, tennis, cricket, rugby, boxing, F1 — 8 entries), every
+# skysports.com/rss/* feed (11095, 12040, 12 — all returned an empty <channel>
+# with zero items), every mirror.co.uk RSS (football/sport/transfers), Calvinayre,
+# and the Guardian betting feed were all silently dead or empty — non-fatal by
+# design (fetch_category just gets less), but it means a large chunk of the
+# "three-layer" coverage this file's docstring promises had quietly rotted away.
+# Reuters, Football365, and Goal.com remain dead too (verified again this pass).
+# Removed all of the above and replaced them with a wider, verified-live set —
+# including nine African outlets (AllAfrica, Punch/Vanguard/Complete Sports/
+# Premium Times for Nigeria, Standard Sports for Kenya, Graphic Sports for Ghana,
+# KickOff for South Africa, Africa Top Sports pan-African) so African football
+# and betting content is actually grounded in African reporting, not just UK/US
+# outlets covering Africa from the outside. Re-run the liveness check in
+# scripts/check_news_feeds.py before trusting any future edit to this list —
+# RSS feeds rot silently and non-fatally, so a stale entry never raises an error,
+# it just quietly stops contributing sources.
 FEEDS: list[tuple[str, str, str]] = [
-    # Football
+    # Football — international
     ("BBC Sport",         "https://feeds.bbci.co.uk/sport/football/rss.xml",            "football"),
-    ("ESPN Soccer",       "https://www.espn.com/espn/rss/soccer/news",                  "football"),
     ("Guardian Football", "https://www.theguardian.com/football/rss",                   "football"),
-    ("Sky Football",      "https://www.skysports.com/rss/11095",                        "football"),
     ("BBC Africa Sport",  "https://feeds.bbci.co.uk/sport/africa/rss.xml",              "football"),
     ("90min",             "https://www.90min.com/posts.rss",                            "football"),
     ("TalkSport",         "https://talksport.com/feed/",                                "football"),
-    ("Mirror Football",   "https://www.mirror.co.uk/sport/football/?service=rss",       "football"),
     ("Independent Football", "https://www.independent.co.uk/sport/football/rss",        "football"),
+    ("Yahoo Soccer",      "https://sports.yahoo.com/soccer/rss.xml",                     "football"),
+    ("France24 Sport",    "https://www.france24.com/en/sport/rss",                       "football"),
+    # Football — African outlets (grounds African coverage in African reporting)
+    ("AllAfrica Sports",  "https://allafrica.com/tools/headlines/rdf/sport/headlines.rdf", "football"),
+    ("Punch Sports (Nigeria)",    "https://punchng.com/topics/sports/feed/",             "football"),
+    ("Vanguard Sports (Nigeria)", "https://www.vanguardngr.com/category/sports/feed/",   "football"),
+    ("Complete Sports (Nigeria)", "https://www.completesports.com/feed/",                "football"),
+    ("Standard Sports (Kenya)",   "https://www.standardmedia.co.ke/rss/sports.php",      "football"),
+    ("Graphic Sports (Ghana)",    "https://www.graphic.com.gh/sports.feed",              "football"),
+    ("KickOff (South Africa)",    "https://www.kickoff.com/rss",                         "football"),
+    ("Africa Top Sports",         "https://africatopsports.com/feed/",                   "football"),
     # World Cup 2026
     ("BBC Football WC",   "https://feeds.bbci.co.uk/sport/football/rss.xml",            "worldcup2026"),
-    ("ESPN Soccer WC",    "https://www.espn.com/espn/rss/soccer/news",                  "worldcup2026"),
     ("Guardian Football WC", "https://www.theguardian.com/football/rss",               "worldcup2026"),
     ("BBC Africa WC",     "https://feeds.bbci.co.uk/sport/africa/rss.xml",              "worldcup2026"),
-    ("Sky Football WC",   "https://www.skysports.com/rss/11095",                        "worldcup2026"),
     ("90min WC",          "https://www.90min.com/posts.rss",                            "worldcup2026"),
+    ("AllAfrica Sports WC", "https://allafrica.com/tools/headlines/rdf/sport/headlines.rdf", "worldcup2026"),
+    ("KickOff WC",        "https://www.kickoff.com/rss",                                 "worldcup2026"),
     # Sport News
-    ("Sky Sports News",   "https://www.skysports.com/rss/12040",                        "sportnews"),
-    ("Sky Sport All",     "https://www.skysports.com/rss/12",                           "sportnews"),
     ("BBC Sport All",     "https://feeds.bbci.co.uk/sport/rss.xml",                     "sportnews"),
     ("BBC Transfers",     "https://feeds.bbci.co.uk/sport/football/transfers/rss.xml",  "sportnews"),
-    ("ESPN All",          "https://www.espn.com/espn/rss/news",                         "sportnews"),
     ("Guardian Sport",    "https://www.theguardian.com/sport/rss",                      "sportnews"),
     ("TalkSport News",    "https://talksport.com/feed/",                                "sportnews"),
-    ("Mirror Sport",      "https://www.mirror.co.uk/sport/?service=rss",                "sportnews"),
     ("Independent Sport", "https://www.independent.co.uk/sport/rss",                    "sportnews"),
-    # Transfers (dedicated feeds — verified live 2026-07-25; TalkSport and Sky
-    # transfer-specific feed IDs return empty <channel> with no <item>s, so
-    # they're deliberately left out here even though they work for sportnews)
+    ("Sky News Sport",    "https://feeds.skynews.com/feeds/rss/sports.xml",              "sportnews"),
+    ("Sporting News",     "https://www.sportingnews.com/us/rss",                         "sportnews"),
+    ("CBS Sports",        "https://www.cbssports.com/rss/headlines/",                    "sportnews"),
+    ("Yahoo Sports",      "https://sports.yahoo.com/rss/",                               "sportnews"),
+    ("Sportskeeda",       "https://www.sportskeeda.com/feed",                            "sportnews"),
+    ("Premium Times Sports (Nigeria)", "https://www.premiumtimesng.com/category/sports/feed", "sportnews"),
+    # Transfers (dedicated feeds)
     ("BBC Transfers Dedicated", "https://feeds.bbci.co.uk/sport/football/transfers/rss.xml", "transfers"),
     ("Guardian Transfer Window", "https://www.theguardian.com/football/transfer-window/rss", "transfers"),
-    ("Mirror Transfer News",    "https://www.mirror.co.uk/sport/football/transfer-news/?service=rss", "transfers"),
+    ("Yahoo Soccer Transfers",   "https://sports.yahoo.com/soccer/rss.xml",              "transfers"),
     # Basketball
     ("BBC Basketball",    "https://feeds.bbci.co.uk/sport/basketball/rss.xml",          "basketball"),
-    ("ESPN NBA",          "https://www.espn.com/espn/rss/nba/news",                     "basketball"),
     ("Guardian NBA",      "https://www.theguardian.com/sport/nba/rss",                  "basketball"),
+    ("Sporting News NBA", "https://www.sportingnews.com/us/rss",                        "basketball"),
+    ("CBS Sports NBA",    "https://www.cbssports.com/rss/headlines/",                   "basketball"),
     # Tennis
     ("BBC Tennis",        "https://feeds.bbci.co.uk/sport/tennis/rss.xml",              "tennis"),
-    ("ESPN Tennis",       "https://www.espn.com/espn/rss/tennis/news",                  "tennis"),
     ("Guardian Tennis",   "https://www.theguardian.com/sport/tennis/rss",               "tennis"),
     # Cricket
     ("BBC Cricket",       "https://feeds.bbci.co.uk/sport/cricket/rss.xml",             "cricket"),
-    ("ESPN Cricket",      "https://www.espn.com/espn/rss/cricket/news",                 "cricket"),
     ("Guardian Cricket",  "https://www.theguardian.com/sport/cricket/rss",              "cricket"),
+    ("ESPN Cricinfo",     "https://www.espncricinfo.com/rss/content/story/feeds/0.xml", "cricket"),
     # Rugby
     ("BBC Rugby",         "https://feeds.bbci.co.uk/sport/rugby-union/rss.xml",         "rugby"),
-    ("ESPN Rugby",        "https://www.espn.com/espn/rss/rugby/news",                   "rugby"),
     ("Guardian Rugby",    "https://www.theguardian.com/sport/rugby-union/rss",          "rugby"),
     # Boxing
     ("BBC Boxing",        "https://feeds.bbci.co.uk/sport/boxing/rss.xml",              "boxing"),
-    ("ESPN Boxing",       "https://www.espn.com/espn/rss/boxing/news",                  "boxing"),
     ("Guardian Boxing",   "https://www.theguardian.com/sport/boxing/rss",               "boxing"),
     # Formula 1
     ("BBC F1",            "https://feeds.bbci.co.uk/sport/formula1/rss.xml",            "f1"),
-    ("ESPN F1",           "https://www.espn.com/espn/rss/f1/news",                      "f1"),
     ("Guardian F1",       "https://www.theguardian.com/sport/formulaone/rss",           "f1"),
+    ("Autosport F1",      "https://www.autosport.com/rss/f1/news/",                     "f1"),
     # iGaming
     ("iGaming Business",  "https://igamingbusiness.com/feed/",                          "igaming"),
-    ("Calvinayre",        "https://calvinayre.com/feed/",                               "igaming"),
+    ("SBC News",          "https://sbcnews.co.uk/feed/",                                 "igaming"),
+    ("EGR Global",        "https://egr.global/feed/",                                    "igaming"),
+    ("Vegas Slots Online", "https://www.vegasslotsonline.com/news/feed/",               "igaming"),
     # Betting Tips & Odds
-    ("Guardian Betting",  "https://www.theguardian.com/sport/betting/rss",              "betting"),
     ("BBC Sport Betting", "https://feeds.bbci.co.uk/sport/rss.xml",                     "betting"),
+    ("Sportskeeda Betting", "https://www.sportskeeda.com/feed",                          "betting"),
+    ("SBC News Betting",  "https://sbcnews.co.uk/feed/",                                 "betting"),
 ]
 
 _HEADERS = {
