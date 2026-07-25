@@ -1,11 +1,18 @@
 {
   "date": "2026-07-25",
-  "total": 0,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 1,
     "MEDIUM": 0,
     "INFO": 0
   },
-  "issues": []
+  "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-window-update-alonso-vinicius-junior-salah",
+      "detail": "Title 77 chars (max 60): 'Transfer Window Update: Alonso, Vin\u00edcius J\u00fanior & Salah in Transfer He'"
+    }
+  ]
 }
