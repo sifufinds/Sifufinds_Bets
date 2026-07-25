@@ -1,9 +1,9 @@
 {
   "date": "2026-07-25",
-  "total": 1,
+  "total": 3,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 3,
     "MEDIUM": 0,
     "INFO": 0
   },
@@ -11,8 +11,20 @@
     {
       "severity": "HIGH",
       "check": "title_length",
+      "page": "transfer-window-frenzy",
+      "detail": "Title 63 chars (max 60): 'Transfer Window Frenzy: Impact on Squad Depth and Betting Value'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
       "page": "transfer-window-update-alonso-vinicius-junior-salah",
       "detail": "Title 77 chars (max 60): 'Transfer Window Update: Alonso, Vin\u00edcius J\u00fanior & Salah in Transfer He'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-window-frenzy",
+      "detail": "Excerpt 175 chars (max 155)"
     }
   ]
 }
