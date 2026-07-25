@@ -1,4 +1,4 @@
-name: Traffic Report — GoatCounter daily snapshot
+name: Traffic Report — GA4 + Search Console daily snapshot
 
 on:
   schedule:
@@ -41,27 +41,32 @@ jobs:
       - name: Install dependencies
         run: pip install -r agents/python/requirements.txt
 
-      - name: Check GoatCounter is configured
-        id: gc
+      - name: Check GA4 / Search Console are configured
+        id: ga
         run: |
-          if [ -z "${{ secrets.GOATCOUNTER_SITE }}" ] || [ -z "${{ secrets.GOATCOUNTER_TOKEN }}" ]; then
+          if [ -z "${{ secrets.GA4_PROPERTY_ID }}" ] || [ -z "${{ secrets.GSC_SITE_URL }}" ] || [ -z "${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}" ]; then
             echo "configured=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::GOATCOUNTER_SITE/GOATCOUNTER_TOKEN secrets are not set — skipping traffic report (not a failure, nothing to retry). See agents/python/traffic_report.md for setup steps."
+            echo "::notice::GA4_PROPERTY_ID/GSC_SITE_URL/GOOGLE_SERVICE_ACCOUNT_JSON secrets are not set — skipping traffic report (not a failure, nothing to retry). See agents/python/agent_traffic_report.py's docstring for setup steps."
           else
             echo "configured=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Write service account key to file
+        if: steps.ga.outputs.configured == 'true'
+        run: echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}" > "$RUNNER_TEMP/ga-service-account.json"
+
       - name: Run traffic report
-        if: steps.gc.outputs.configured == 'true'
+        if: steps.ga.outputs.configured == 'true'
         working-directory: agents/python
         env:
-          GOATCOUNTER_SITE:  ${{ secrets.GOATCOUNTER_SITE }}
-          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/ga-service-account.json
         run: |
           python agent_traffic_report.py --days ${{ github.event.inputs.days || '30' }}
 
       - name: Commit report
-        if: steps.gc.outputs.configured == 'true'
+        if: steps.ga.outputs.configured == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -70,7 +75,7 @@ jobs:
           git commit -m "traffic: daily report $(date -u +%Y-%m-%d)"
 
       - name: Push report (with retry)
-        if: steps.gc.outputs.configured == 'true'
+        if: steps.ga.outputs.configured == 'true'
         run: |
           for attempt in 1 2 3 4 5; do
             if git push; then

@@ -10,17 +10,20 @@ so every post gets its own 1200x630 image.
 
 Per the 2026-07-26 standing rule ("use a free image of the player/team/person
 you're talking about as the feature image"), this now tries a real photo
-first: it pulls candidate subject names from the post's title and tags and
-looks each up via utils/player_photo.fetch_entity_photo(), which only
-returns a Wikimedia Commons-hosted photo when Wikipedia's own page
-description confirms it's a footballer, club, national team, or another
-sports subject SifuFinds covers — never a guess, never a copyrighted news
-photo (see that module's docstring for the full reasoning). When a photo is
-found it's composited into the same on-brand layout (kicker, headline,
-wordmark) as a full-bleed hero behind a gradient scrim. When no subject
-photo can be confirmed — a generic tips/odds/bonus post with no named
-player or club — it falls back to the original icon-card design driven by
-image_color/image_icon, exactly as before.
+first: it pulls candidate subject names from the post's own tags (populated
+by the content pipeline with the specific players/clubs/teams a post is
+about) and looks each up via utils/player_photo.find_entity_image(), which
+searches sports news outlets (BBC/Sky/ESPN) and social platforms first, then
+falls back to Wikimedia Commons — see that module's docstring for the full
+reasoning and the copyright tradeoff that source order carries. Candidates
+are filtered through _looks_like_entity_candidate() first so a generic tag
+("Transfers", "World Cup 2026", "Value Bets") never even reaches an image
+search, where a loose query could return an unrelated but plausible-looking
+photo. When a photo is found it's composited into the same on-brand layout
+(kicker, headline, wordmark) as a full-bleed hero behind a gradient scrim.
+When no subject photo can be confirmed — a generic tips/odds/bonus post with
+no named player or club — it falls back to the original icon-card design
+driven by image_color/image_icon, exactly as before.
 
 Output goes to assets/og/{slug}.png, which gen_blog_post_pages.py already
 picks up automatically for <meta property="og:image"> / twitter:image. Since
@@ -49,7 +52,7 @@ POSTS_JSON = ROOT / "blog" / "posts.json"
 OUT_DIR = ROOT / "assets" / "og"
 
 sys.path.insert(0, str(ROOT / "agents" / "python"))
-from utils.player_photo import fetch_entity_photo  # noqa: E402
+from utils.player_photo import find_entity_image  # noqa: E402
 
 _PHOTO_HEADERS = {
     "User-Agent": "SifuFindsBot/1.0 (https://sifufinds.com; contact: kai.s.manyeh@gmail.com)",
@@ -267,33 +270,52 @@ def build_image(title: str, category: str, image_color: str, image_icon: str) ->
     return img.convert("RGB")
 
 
-_NAME_RE = re.compile(r"\b([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+){1,2})\b")
+# Words that show up in tags but never identify a specific player, team, or
+# person on their own — a tag consisting entirely of these (e.g. "Transfers",
+# "Value Bets", "World Cup 2026") must never reach an image search: a loose
+# query on a word like "Transfers" returns some plausible-but-wrong football
+# photo (verified during testing — it surfaced an unrelated player illustrating
+# the general concept of a transfer), which is a worse failure than no photo.
+_GENERIC_TAG_WORDS = {
+    "transfer", "transfers", "betting", "bet", "bets", "tips", "tip", "odds",
+    "preview", "previews", "review", "reviews", "news", "update", "updates",
+    "latest", "value", "bonus", "bonuses", "guide", "guides", "best", "top",
+    "market", "markets", "africa", "african", "football", "soccer",
+    "basketball", "cricket", "tennis", "rugby", "boxing", "sport", "sports",
+    "match", "matches", "live", "score", "scores", "game", "games", "week",
+    "today", "stage", "group", "world", "cup", "final", "finals", "season",
+    "league", "fan", "fans", "analysis", "prediction", "predictions",
+    "result", "results", "comparison", "deposit", "withdrawal", "welcome",
+    "free", "app", "apps", "site", "sites", "",
+}
+
+
+def _looks_like_entity_candidate(name: str) -> bool:
+    """True unless every word in `name` is a generic term from
+    _GENERIC_TAG_WORDS — i.e. the tag has at least one word that could
+    plausibly be part of a proper name ('Real Madrid', 'Marc Cucurella',
+    'Chelsea'), false for a purely generic/descriptive tag."""
+    words = [w for w in re.split(r"\s+", name.strip()) if w]
+    if not words:
+        return False
+    normalized = {re.sub(r"[^a-z]", "", w.lower()) for w in words}
+    return not normalized <= _GENERIC_TAG_WORDS
 
 
 def _subject_candidates(post: dict, limit: int = 8) -> list[str]:
-    """Candidate player/team/person names to try for a real photo, most
-    likely first: the post's own tags, which the content pipeline already
-    populates with the specific players/clubs/teams the post is about (see
-    agent_sports_blog.py — real examples: ['Real Madrid', 'Marc Cucurella',
-    'Cape Verde'], ['NBA', 'Knicks', 'New York']), then capitalised name
-    runs pulled from the title as a fallback for posts with sparse tags.
-    The title regex is a much cruder signal — headlines are Title Case, so
-    a 2-3 word window can still straddle a connector word ('Transfer From')
-    — but that's safe here because fetch_entity_photo() only returns a
-    photo once Wikipedia's own page confirms a sports subject, so a bad
-    candidate (a bookmaker name, a country, a headline fragment) safely
-    yields no photo rather than a wrong one.
+    """Candidate player/team/person names to try for a real photo, sourced
+    entirely from the post's own tags — the content pipeline already
+    populates these with the specific players/clubs/teams a post is about
+    (see agent_sports_blog.py — real examples: ['Real Madrid', 'Marc
+    Cucurella', 'Cape Verde'], ['NBA', 'Knicks', 'New York']). Filtered
+    through _looks_like_entity_candidate() so a purely generic/descriptive
+    tag never reaches an image search.
     """
     candidates: list[str] = []
     for tag in post.get("tags", []) or []:
         tag = (tag or "").strip()
-        if tag and tag not in candidates:
+        if tag and tag not in candidates and _looks_like_entity_candidate(tag):
             candidates.append(tag)
-    title = post.get("title", "") or ""
-    for match in _NAME_RE.finditer(title):
-        name = match.group(1).strip()
-        if name not in candidates:
-            candidates.append(name)
     return candidates[:limit]
 
 
@@ -307,11 +329,13 @@ def _download_photo(url: str, timeout: int = 8) -> Image.Image | None:
 
 
 def find_subject_photo(post: dict) -> Image.Image | None:
-    """Tries each candidate subject in turn, returns the first Wikimedia
-    Commons photo that resolves and downloads, or None if the post has no
-    identifiable player/team/person (e.g. a generic tips or bonus post)."""
+    """Tries each candidate subject in turn, returns the first real photo
+    that resolves and downloads (news/social search first, Wikimedia Commons
+    fallback — see utils.player_photo.find_entity_image), or None if the
+    post has no identifiable player/team/person (e.g. a generic tips or
+    bonus post)."""
     for name in _subject_candidates(post):
-        url = fetch_entity_photo(name)
+        url = find_entity_image(name)
         if not url:
             continue
         photo = _download_photo(url)
@@ -396,7 +420,7 @@ def generate_feature_image(post: dict) -> str | None:
         OUT_DIR.mkdir(parents=True, exist_ok=True)
         photo = find_subject_photo(post)
         if photo is not None:
-            print(f"  ✓ using real Wikipedia photo as feature image for {slug}")
+            print(f"  ✓ using a real subject photo as the feature image for {slug}")
             img = build_image_with_photo(
                 title=post.get("title", ""),
                 category=post.get("category", ""),

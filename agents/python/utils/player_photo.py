@@ -213,29 +213,58 @@ def fetch_entity_photo(name: str) -> Optional[str]:
     return None
 
 
+# Outlets explicitly named by the user (2026-07-26) plus the other
+# free/open sports-news sources this codebase already treats as reliable
+# for text (see utils/news_fetcher.py FEEDS) — searched via `site:` first so
+# a result is an actual editorial photo from a named newsroom, not whatever
+# an unrestricted query happens to surface (verified during testing: a bare
+# open-web image search for "Real Madrid" and "Chelsea" returned wallpaper-
+# aggregator sites and a photo-agency CDN, not a newsroom or social source
+# and a worse copyright/quality bet than the site-restricted tier below).
+_TRUSTED_NEWS_DOMAINS = (
+    "skysports.com", "bbc.co.uk", "bbc.com", "espn.com",
+    "theguardian.com", "90min.com", "talksport.com",
+    "independent.co.uk", "mirror.co.uk", "goal.com",
+)
+# Public social platforms, tried after the newsroom tier — image search
+# engines rarely surface individual social posts reliably, so this is a
+# lighter-weight second pass rather than the primary source.
+_SOCIAL_DOMAINS = ("twitter.com", "x.com", "instagram.com", "facebook.com")
+
+
+def _ddgs_image_search(query: str, max_results: int = 6) -> list[dict]:
+    try:
+        from ddgs import DDGS
+    except ImportError:
+        return []
+    try:
+        with DDGS() as ddgs:
+            return list(ddgs.images(query, max_results=max_results))
+    except Exception:
+        return []
+
+
 def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> Optional[str]:
     """Search sports news outlets and social platforms for a real, current
-    photo of the named player, via DuckDuckGo image search (free, no key —
+    photo of the named subject, via DuckDuckGo image search (free, no key —
     the `ddgs` package already used elsewhere in this codebase). This is a
     deliberate product decision to source images from the wider football
-    media ecosystem (BBC/Sky/Guardian/Mirror/TeamTalk/etc. and public
-    social posts), not just Wikimedia Commons — those outlets' photos are
-    typically syndicated agency photos (Getty/PA/Reuters) licensed for the
-    outlet's own site, so this carries real copyright exposure that plain
-    Wikimedia hotlinking doesn't. Made that tradeoff explicitly at the
-    user's direction rather than silently choosing either side.
+    media ecosystem (BBC/Sky/ESPN/Guardian/etc. and public social posts),
+    not just Wikimedia Commons — those outlets' photos are typically
+    syndicated agency photos (Getty/PA/Reuters) licensed for the outlet's
+    own site, so this carries real copyright exposure that plain Wikimedia
+    hotlinking doesn't. Made that tradeoff explicitly at the user's
+    direction rather than silently choosing either side.
 
-    Requires every word of the player's name to appear in the result title
-    before trusting an image — general image-search relevance is much
+    Tries the named outlets first (site: restricted, one query per domain
+    tier — see _TRUSTED_NEWS_DOMAINS), then social platforms, then an open
+    query as a last resort before the caller falls through to Wikipedia.
+    Every tier requires every word of the name to appear in the result
+    title before trusting an image — general image-search relevance is much
     noisier than Wikipedia's structured data (a bare "Alonso Chelsea" query
     mixed in results for Xabi Alonso, Chelsea's manager, alongside Marcos
     Alonso, the player) — a wrong photo is a worse failure than none.
     """
-    try:
-        from ddgs import DDGS
-    except ImportError:
-        return None
-
     name = (name or "").strip()
     if not name:
         return None
@@ -244,24 +273,30 @@ def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> O
         return None
 
     club_hint = next((c for c in (context_clubs or []) if c), "")
-    query = f'"{name}" {club_hint}'.strip()
+    base_query = f'"{name}" {club_hint}'.strip()
 
-    try:
-        with DDGS() as ddgs:
-            results = list(ddgs.images(query, max_results=8))
-    except Exception:
+    def _first_match(results: list[dict]) -> Optional[str]:
+        for r in results:
+            image_url = r.get("image") or ""
+            title = (r.get("title") or "").lower()
+            if not image_url.startswith("https://"):
+                continue
+            if not all(part in title for part in name_parts):
+                continue
+            return image_url
         return None
 
-    for r in results:
-        image_url = r.get("image") or ""
-        title = (r.get("title") or "").lower()
-        if not image_url.startswith("https://"):
-            continue
-        if not all(part in title for part in name_parts):
-            continue
-        return image_url
+    for domain in _TRUSTED_NEWS_DOMAINS:
+        photo = _first_match(_ddgs_image_search(f"{base_query} site:{domain}", max_results=3))
+        if photo:
+            return photo
 
-    return None
+    for domain in _SOCIAL_DOMAINS:
+        photo = _first_match(_ddgs_image_search(f"{base_query} site:{domain}", max_results=3))
+        if photo:
+            return photo
+
+    return _first_match(_ddgs_image_search(base_query, max_results=8))
 
 
 def find_player_image(name: str, context_clubs: Optional[list[str]] = None) -> Optional[str]:
@@ -272,6 +307,15 @@ def find_player_image(name: str, context_clubs: Optional[list[str]] = None) -> O
     tiers come up empty, in which case the caller falls back further to
     SifuFinds' own branded graphic."""
     return search_news_photo(name, context_clubs) or fetch_player_photo(name, context_clubs)
+
+
+def find_entity_image(name: str, context: Optional[list[str]] = None) -> Optional[str]:
+    """Same news/social-first, Wikipedia-fallback policy as find_player_image,
+    but for any sports subject a blog post's feature image might need — a
+    player, a club, or a national team (see scripts/generate_blog_feature_image.py).
+    Falls back to fetch_entity_photo (not fetch_player_photo) so a team name
+    still resolves to its crest/photo on the Wikipedia safety-net tier."""
+    return search_news_photo(name, context) or fetch_entity_photo(name)
 
 
 def looks_like_person_name(name: str) -> bool:
