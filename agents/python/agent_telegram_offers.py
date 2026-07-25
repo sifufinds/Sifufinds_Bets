@@ -536,6 +536,55 @@ def send_to_channel(message: str) -> bool:
     return _send_bot_token(message)
 
 
+async def _send_telethon_photo(photo_url: str, caption: str) -> bool:
+    api_id_str = os.getenv("TELEGRAM_API_ID", "").strip()
+    api_hash   = os.getenv("TELEGRAM_API_HASH", "").strip()
+    session    = os.getenv("TELEGRAM_SESSION_STRING", "").strip()
+
+    if not api_id_str or not api_hash or not session:
+        return False
+
+    try:
+        from telethon import TelegramClient
+        from telethon.sessions import StringSession
+        async with TelegramClient(StringSession(session), int(api_id_str), api_hash) as client:
+            await client.send_file(CHANNEL, photo_url, caption=caption, parse_mode="html")
+        return True
+    except Exception as e:
+        print(f"✗ Telethon photo error: {e}")
+        return False
+
+
+def _send_bot_token_photo(photo_url: str, caption: str) -> bool:
+    if not BOT_TOKEN:
+        return False
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
+    resp = requests.post(url, json={
+        "chat_id": CHANNEL,
+        "photo": photo_url,
+        "caption": caption,
+        "parse_mode": "HTML",
+    }, timeout=15)
+    ok = resp.status_code == 200
+    if not ok:
+        print(f"✗ Bot token photo error: {resp.json().get('description', resp.text[:200])}")
+    return ok
+
+
+def send_photo_to_channel(photo_url: str, caption: str) -> bool:
+    """Send a photo + HTML caption. Try Telethon first, fall back to bot
+    token. Falls back to a text-only message if the photo send fails for
+    any reason (e.g. Telegram rejects the source URL) rather than losing
+    the post entirely."""
+    if asyncio.run(_send_telethon_photo(photo_url, caption)):
+        return True
+    print("Telethon photo send unavailable — trying bot token fallback...")
+    if _send_bot_token_photo(photo_url, caption):
+        return True
+    print("Photo send failed — falling back to text-only message...")
+    return send_to_channel(caption)
+
+
 def _bonus_link_and_post(brand: dict) -> tuple[str, dict | None]:
     """Prefer a real bonus-flavoured blog post, then the bookmaker's own
     review page, then the homepage — never the raw affiliate URL, so organic

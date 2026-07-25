@@ -21,6 +21,7 @@ import re
 MAX_AGE_HOURS: dict[str, int] = {
     "football":      48,
     "sportnews":     48,
+    "transfers":     24,   # transfer news moves fast — stale rumours aren't worth posting
     "basketball":    48,
     "betting":       72,
     "tennis":        72,
@@ -57,6 +58,12 @@ SEARCH_QUERIES: dict[str, list[str]] = {
         "trending sports news today",
         "world sport breaking news",
         "sports transfer signing news today",
+    ],
+    "transfers":  [
+        "football transfer news today deal agreed",
+        "premier league transfer rumours today",
+        "european club transfer window news today",
+        "african player transfer news today",
     ],
     "basketball": [
         "NBA basketball news today",
@@ -133,6 +140,12 @@ FEEDS: list[tuple[str, str, str]] = [
     ("TalkSport News",    "https://talksport.com/feed/",                                "sportnews"),
     ("Mirror Sport",      "https://www.mirror.co.uk/sport/?service=rss",                "sportnews"),
     ("Independent Sport", "https://www.independent.co.uk/sport/rss",                    "sportnews"),
+    # Transfers (dedicated feeds — verified live 2026-07-25; TalkSport and Sky
+    # transfer-specific feed IDs return empty <channel> with no <item>s, so
+    # they're deliberately left out here even though they work for sportnews)
+    ("BBC Transfers Dedicated", "https://feeds.bbci.co.uk/sport/football/transfers/rss.xml", "transfers"),
+    ("Guardian Transfer Window", "https://www.theguardian.com/football/transfer-window/rss", "transfers"),
+    ("Mirror Transfer News",    "https://www.mirror.co.uk/sport/football/transfer-news/?service=rss", "transfers"),
     # Basketball
     ("BBC Basketball",    "https://feeds.bbci.co.uk/sport/basketball/rss.xml",          "basketball"),
     ("ESPN NBA",          "https://www.espn.com/espn/rss/nba/news",                     "basketball"),

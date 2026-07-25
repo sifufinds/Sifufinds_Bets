@@ -43,7 +43,7 @@ def post_telegram(message: str) -> bool:
 
 # ── Facebook ──────────────────────────────────────────────────────────────────
 
-def post_facebook(message: str, image_path: str | Path | None = None) -> bool:
+def post_facebook(message: str, image_path: str | Path | None = None, image_url: str | None = None) -> bool:
     if not FACEBOOK_PAGE_ID or not FACEBOOK_TOKEN:
         print("⚠ Facebook not configured yet.")
         return False
@@ -59,6 +59,14 @@ def post_facebook(message: str, image_path: str | Path | None = None) -> bool:
                 files={"source": f},
                 timeout=30,
             )
+    elif image_url:
+        # Graph API can also fetch a hosted image by URL instead of an
+        # uploaded file — used for e.g. a Wikimedia-hosted player photo.
+        r = requests.post(
+            f"https://graph.facebook.com/v19.0/{FACEBOOK_PAGE_ID}/photos",
+            data={"caption": message, "url": image_url, "access_token": FACEBOOK_TOKEN},
+            timeout=30,
+        )
     else:
         r = requests.post(
             f"https://graph.facebook.com/v19.0/{FACEBOOK_PAGE_ID}/feed",
@@ -72,11 +80,11 @@ def post_facebook(message: str, image_path: str | Path | None = None) -> bool:
 
 # ── Instagram ─────────────────────────────────────────────────────────────────
 
-def post_instagram(caption: str) -> bool:
+def post_instagram(caption: str, image_url: str | None = None) -> bool:
     if not INSTAGRAM_ACCOUNT_ID or not FACEBOOK_TOKEN:
         print("⚠ Instagram not configured yet.")
         return False
-    image_url = "https://sifufinds.com/assets/social-card.jpg"
+    image_url = image_url or "https://sifufinds.com/assets/social-card.jpg"
     r1 = requests.post(
         f"https://graph.facebook.com/v19.0/{INSTAGRAM_ACCOUNT_ID}/media",
         data={"image_url": image_url, "caption": caption, "access_token": FACEBOOK_TOKEN},

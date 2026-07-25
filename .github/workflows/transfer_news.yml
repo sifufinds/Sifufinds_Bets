@@ -1,0 +1,128 @@
+name: Transfer News Bot — Live coverage every 30 minutes
+
+on:
+  schedule:
+    # Every 30 minutes, all day — transfer news breaks on no fixed schedule,
+    # so this checks the dedicated "transfers" feeds (BBC/Guardian/Mirror +
+    # DuckDuckGo/Google News search via utils/news_fetcher.py) frequently.
+    # agent_transfer_post.py itself skips the cycle cleanly (no blog post, no
+    # social post) whenever there's no fresh story or the top story is a
+    # near-duplicate of something already published, so most 30-min ticks are
+    # a cheap no-op rather than actually publishing 48 posts/day.
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview only — don't publish or post anywhere"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: transfer-news-bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  post-transfer-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest content (avoid stale reads)
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Install fonts for feature-image generation
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core fonts-noto-color-emoji
+
+      - name: Run Transfer News Bot
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+          TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+          X_USERNAME: ${{ secrets.X_USERNAME }}
+          X_PASSWORD: ${{ secrets.X_PASSWORD }}
+          X_EMAIL: ${{ secrets.X_EMAIL }}
+          TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
+        run: |
+          # Instagram credentials aren't wired into secrets yet (see
+          # accumulator_post.yml) — skip it explicitly so a 30-min cron
+          # doesn't log a "not configured" warning every cycle. Remove
+          # --no-instagram once INSTAGRAM_BUSINESS_ACCOUNT_ID is set.
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python agent_transfer_post.py --dry-run
+          else
+            python agent_transfer_post.py --no-instagram
+          fi
+
+      - name: Generate static blog post pages
+        if: github.event.inputs.dry_run != 'true'
+        run: python3 gen_blog_post_pages.py
+
+      - name: Commit and push new article + logs
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git config --local user.email "newsbot@sifufinds.com"
+          git config --local user.name "SifuFinds Transfer News Bot"
+          git add blog/posts.json blog/posts-data.js blog/ assets/og/ agents/python/agent_log.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "🔄 Transfer news: $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          # Retry push up to 5 times — handles concurrent bot pushes from the
+          # other content workflows (same pattern as breaking_news.yml).
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "Push rejected (attempt $_attempt/5) — merging posts and retrying in 5s..."
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            python3 agents/python/merge_posts.py
+            python3 gen_blog_post_pages.py
+            git add -A
+            git commit -m "🔄 Transfer news: $(date -u '+%Y-%m-%d %H:%M') UTC (merged)" --allow-empty
+          done

@@ -37,6 +37,7 @@ from generate_blog_feature_image import ensure_feature_image
 CATEGORIES = {
     "football":   {"icon": "⚽", "color": "#1a6b35", "author": "SifuFinds Football Desk"},
     "sportnews":  {"icon": "🗞️", "color": "#7c3aed", "author": "Sport News Desk"},
+    "transfers":  {"icon": "🔄", "color": "#0f766e", "author": "Transfer Desk"},
     "betting":    {"icon": "📊", "color": "#d4af37", "author": "Sifu Kai"},
     "igaming":    {"icon": "🎮", "color": "#0055a4", "author": "iGaming Desk"},
     "basketball": {"icon": "🏀", "color": "#c2410c", "author": "Basketball Desk"},
@@ -62,6 +63,12 @@ BETTING_ANGLES = {
         "analyse transfer news and how squad changes shift betting odds (title, relegation, golden boot)",
         "round up the biggest world sport stories this week and highlight the best betting angles",
         "break down the most viral sports story right now and explain the betting implications",
+    ],
+    "transfers": [
+        "break down this transfer story (deal stage, fee, wages if reported) and what it means for the club's title/relegation/top-4 odds",
+        "explain how this signing or exit shifts the selling and buying club's odds for the season ahead",
+        "cover the transfer saga stage by stage (interest, bid, medical, here-we-go) and connect it to African bettors following the story",
+        "analyse how this transfer window business changes a club's squad depth and betting value for upcoming fixtures",
     ],
     "betting": [
         "build an accumulator with these fixtures and compare odds across bookmakers",
@@ -147,7 +154,7 @@ OUTPUT FORMAT — return EXACTLY this structure, nothing outside the markers:
 
 ===META===
 {{
-  "category": "ONE of: football, sportnews, betting, igaming, basketball, tennis, cricket, rugby, boxing, f1, worldcup2026 — pick exactly one word",
+  "category": "ONE of: football, sportnews, transfers, betting, igaming, basketball, tennis, cricket, rugby, boxing, f1, worldcup2026 — pick exactly one word",
   "icon": "emoji for the category",
   "title": "Specific title referencing the ACTUAL news story (max 80 chars)",
   "slug": "url-slug-format",
