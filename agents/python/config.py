@@ -15,7 +15,12 @@ TELEGRAM_CHANNEL_ID = os.getenv("TELEGRAM_CHANNEL_ID")
 FACEBOOK_PAGE_ID = os.getenv("FACEBOOK_PAGE_ID")
 FACEBOOK_PAGE_ACCESS_TOKEN = os.getenv("FACEBOOK_PAGE_ACCESS_TOKEN")
 INSTAGRAM_ACCOUNT_ID = os.getenv("INSTAGRAM_BUSINESS_ACCOUNT_ID")
-FOOTBALL_API_KEY = os.getenv("FOOTBALL_API_KEY", "fd_554baa8cfac7cfe33ba92edfbc00f3e2a179ba179f44ada9")
+# football-data.org — same free-tier service and token already used by the
+# live update_leagues.py pipeline (as FD_TOKEN). Reusing that env var here
+# means this never needs its own separately-provisioned secret; falls back to
+# FOOTBALL_API_KEY for anyone who set that name instead. No hardcoded key —
+# a real football-data.org token used to be committed here by mistake.
+FOOTBALL_API_KEY = os.getenv("FD_TOKEN") or os.getenv("FOOTBALL_API_KEY", "")
 ODDS_API_KEY = os.getenv("ODDS_API_KEY")
 
 # ── Site ──────────────────────────────────────────────────────────────────────
@@ -46,7 +51,12 @@ COUNTRIES = [
 ]
 
 # ── Football API endpoints ─────────────────────────────────────────────────────
-FOOTBALL_API_BASE = "https://api.footballdata.io/v1"
+# api.footballdata.io (the old value here) doesn't resolve — dead/wrong domain,
+# so get_todays_matches() below was silently falling back to static fixtures on
+# every single call. football-data.org is the real, already-proven-live free
+# service (see update_leagues.py's FD_BASE) — best free option already in use
+# elsewhere in this codebase, so reuse it instead of adding a third API.
+FOOTBALL_API_BASE = "https://api.football-data.org/v4"
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
 # ── Hashtag bank (rotate 25 per Instagram post) ───────────────────────────────
