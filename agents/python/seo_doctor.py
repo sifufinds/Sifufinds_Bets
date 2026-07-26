@@ -286,11 +286,26 @@ def check_llms():
         log_warn("llms.txt missing — AI search readiness impacted")
         return
     content = read(llms_path)
+    original = content
+
     # Update the Last Updated date
-    new_content = re.sub(r'## Last Updated\n\d{4}-\d{2}-\d{2}', f'## Last Updated\n{TODAY}', content)
-    if new_content != content:
-        write(llms_path, new_content)
-        log_fix(f"llms.txt: Last Updated → {TODAY}")
+    content = re.sub(r'## Last Updated\n\d{4}-\d{2}-\d{2}', f'## Last Updated\n{TODAY}', content)
+
+    # Keep the blog post count honest — this went stale for months (claimed
+    # 309 while posts.json actually had 236, then 540) with nothing catching
+    # it (GEO audit finding, 2026-07-26).
+    posts_path = ROOT / 'blog' / 'posts.json'
+    if posts_path.exists():
+        try:
+            post_count = len(json.loads(read(posts_path)).get('posts', []))
+            content = re.sub(r'Full blog post index \(\d+ posts, XML sitemap\)',
+                              f'Full blog post index ({post_count} posts, XML sitemap)', content)
+        except json.JSONDecodeError:
+            pass
+
+    if content != original:
+        write(llms_path, content)
+        log_fix(f"llms.txt: Last Updated → {TODAY}, blog post count refreshed")
     else:
         log_info("llms.txt: present and current ✓")
 

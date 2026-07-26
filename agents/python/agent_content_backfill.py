@@ -197,6 +197,10 @@ def run() -> int:
             continue
 
         post["body"] = new_body
+        # dateModified (gen_blog_post_pages.py) reads this — without it, a
+        # genuine content expansion still rendered dateModified == the
+        # original datePublished, making llms.txt's freshness claim false.
+        post["updated_at"] = datetime.now(timezone.utc).isoformat()
         state["processed"][slug] = {
             "processed_at": datetime.now(timezone.utc).isoformat(),
             "words_before": words_before,
