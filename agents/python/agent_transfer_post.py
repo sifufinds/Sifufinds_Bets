@@ -52,6 +52,7 @@ import argparse
 import json
 import re
 import sys
+import time
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -264,10 +265,31 @@ def build_twitter_text(facts: dict, post: dict) -> str:
     return _trim_to_limit(tweet)
 
 
+def _post_with_retry(platform: str, fn, *args, attempts: int = 3, delay: int = 8, **kwargs) -> bool:
+    """Retry a single platform post a few times before giving up — covers
+    transient failures (a network blip, a momentary rate limit) that would
+    otherwise permanently drop that platform's copy of this specific story,
+    since the next cron cycle posts whatever's freshest then, not a retry of
+    this one. Not a substitute for fixing a genuinely dead credential (that
+    still fails after every attempt and gets reported as a real failure by
+    the caller), just insurance against the failures that resolve themselves
+    a few seconds later."""
+    for attempt in range(1, attempts + 1):
+        try:
+            if fn(*args, **kwargs):
+                return True
+        except Exception as e:
+            print(f"  ⚠ {platform} attempt {attempt}/{attempts} raised: {e}")
+        if attempt < attempts:
+            print(f"  ⏳ {platform} attempt {attempt}/{attempts} failed — retrying in {delay}s...")
+            time.sleep(delay)
+    return False
+
+
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
 def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
-        instagram: bool = True, twitter: bool = True) -> dict | None:
+        instagram: bool = True, twitter: bool = True) -> tuple[dict | None, dict[str, bool]]:
     log("transfer_post", "start", "running")
 
     existing = load_posts()
@@ -278,13 +300,13 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     if post is None:
         print("⚠ No fresh transfer news available this cycle — nothing to post.")
         log("transfer_post", "generate", "skipped", "no fresh news")
-        return None
+        return None, {}
 
     title_key = post["title"].lower()[:40]
     if title_key in recent_titles:
         print(f"⚠ Similar transfer story already published — skipping. ('{post['title']}')")
         log("transfer_post", "generate", "skipped", "duplicate title")
-        return None
+        return None, {}
 
     print(f"  ✓ '{post['title']}'")
 
@@ -332,7 +354,7 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
 
     if dry_run:
         print("Dry run — blog post NOT saved, nothing sent.")
-        return post
+        return post, {}
 
     # Publish the blog article first — social posts link back to it.
     all_posts = [post] + existing
@@ -343,31 +365,34 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
 
     if telegram:
         if tg_fb_image:
-            results["telegram"] = send_photo_to_channel(tg_fb_image, telegram_text)
+            results["telegram"] = _post_with_retry("telegram", send_photo_to_channel, tg_fb_image, telegram_text)
         else:
-            results["telegram"] = send_to_channel(telegram_text)
-        print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed.")
+            results["telegram"] = _post_with_retry("telegram", send_to_channel, telegram_text)
+        print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed after retries.")
 
     if facebook:
-        results["facebook"] = post_facebook(
-            facebook_text,
+        results["facebook"] = _post_with_retry(
+            "facebook", post_facebook, facebook_text,
             image_path=local_image if not photo_url else None,
             image_url=photo_url,
         )
-        print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured.")
+        print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed after retries.")
 
     if instagram:
-        results["instagram"] = post_instagram(instagram_text, image_url=photo_url or GENERIC_SOCIAL_IMAGE)
-        print("✓ Posted to Instagram." if results["instagram"] else "✗ Instagram post failed or not configured.")
+        results["instagram"] = _post_with_retry(
+            "instagram", post_instagram, instagram_text,
+            image_url=photo_url or GENERIC_SOCIAL_IMAGE,
+        )
+        print("✓ Posted to Instagram." if results["instagram"] else "✗ Instagram post failed after retries.")
 
     if twitter:
-        results["twitter"] = post_twitter(twitter_text)
-        print("✓ Posted to X/Twitter." if results["twitter"] else "✗ X/Twitter post failed or not configured.")
+        results["twitter"] = _post_with_retry("twitter", post_twitter, twitter_text)
+        print("✓ Posted to X/Twitter." if results["twitter"] else "✗ X/Twitter post failed after retries.")
 
     for platform, ok in results.items():
         log("transfer_post", platform, "success" if ok else "failed", post["title"])
 
-    return post
+    return post, results
 
 
 if __name__ == "__main__":
@@ -378,8 +403,19 @@ if __name__ == "__main__":
     parser.add_argument("--no-instagram", dest="instagram", action="store_false")
     parser.add_argument("--no-twitter", dest="twitter", action="store_false")
     args = parser.parse_args()
-    result = run(
+    post, results = run(
         dry_run=args.dry_run, telegram=args.telegram, facebook=args.facebook,
         instagram=args.instagram, twitter=args.twitter,
     )
-    sys.exit(0 if result is not None or args.dry_run else 0)
+
+    # Exit code must actually reflect reality — a story generated but not
+    # delivered anywhere is a real failure the GitHub Actions watchdog/retry
+    # workflows need to see and act on, not a silent green checkmark. "No
+    # fresh news this cycle" (post is None) stays a soft success: that's the
+    # dedup/no-news case working as designed, not something to retry.
+    if args.dry_run or post is None:
+        sys.exit(0)
+    if results and not any(results.values()):
+        print("\n✗✗✗ Every requested platform failed to post this story — flagging as a real failure.")
+        sys.exit(1)
+    sys.exit(0)

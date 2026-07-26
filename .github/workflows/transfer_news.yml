@@ -90,12 +90,21 @@ jobs:
             python agent_transfer_post.py --no-instagram
           fi
 
+      # always() here is deliberate: agent_transfer_post.py now exits 1 when
+      # a story was generated but every requested platform failed to post
+      # it (so the failure is visible to the watchdog/retry workflows,
+      # instead of a silent green checkmark hiding a total delivery
+      # failure) — but the blog article itself is already saved to
+      # blog/posts.json by that point regardless, and the CI runner's
+      # filesystem is ephemeral, so these steps must still commit/push it
+      # or a successfully-written article would be lost the moment the job
+      # container tears down. The dry_run check still applies underneath.
       - name: Generate static blog post pages
-        if: github.event.inputs.dry_run != 'true'
+        if: always() && github.event.inputs.dry_run != 'true'
         run: python3 gen_blog_post_pages.py
 
       - name: Commit and push new article + logs
-        if: github.event.inputs.dry_run != 'true'
+        if: always() && github.event.inputs.dry_run != 'true'
         run: |
           git config --local user.email "newsbot@sifufinds.com"
           git config --local user.name "SifuFinds Transfer News Bot"
