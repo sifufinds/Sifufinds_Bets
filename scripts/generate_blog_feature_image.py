@@ -52,7 +52,7 @@ POSTS_JSON = ROOT / "blog" / "posts.json"
 OUT_DIR = ROOT / "assets" / "og"
 
 sys.path.insert(0, str(ROOT / "agents" / "python"))
-from utils.player_photo import find_entity_image  # noqa: E402
+from utils.player_photo import fetch_entity_photo, search_news_photo  # noqa: E402
 
 _PHOTO_HEADERS = {
     "User-Agent": "SifuFindsBot/1.0 (https://sifufinds.com; contact: kai.s.manyeh@gmail.com)",
@@ -328,14 +328,41 @@ def _download_photo(url: str, timeout: int = 8) -> Image.Image | None:
         return None
 
 
+def verified_entity_photo(name: str) -> str | None:
+    """Only returns a photo URL once Wikipedia's own page independently
+    confirms `name` is a real sports subject (fetch_entity_photo's
+    entity-context check) — then prefers a nicer/more current photo of that
+    exact confirmed name from the news/social tier, falling back to the
+    Wikipedia image itself.
+
+    Deliberately does NOT trust search_news_photo() on its own the way an
+    earlier version of this function did: a bulk backfill run (2026-07-26)
+    on ~200 published posts caught this the hard way — an unrestricted tag
+    like "Tactical Trends" or a bookmaker name excluded elsewhere in the
+    pipeline ("Betika") still matched *something* via news/social image
+    search (a same-titled but unrelated stats chart; a different
+    bookmaker's logo entirely), because that tier only checks that every
+    word of the query appears in a result's title, with no check that the
+    query is a real entity in the first place. Wikipedia's own summary/
+    search API doing that verification first is a free, already-proven
+    safety net (used for player photos since before this feature existed)
+    — requiring it to pass before ever trusting the louder, noisier
+    news-search tier turns "returns *something* for almost any string" into
+    "returns nothing unless the subject is real," which is the property
+    this whole feature depends on (a wrong photo is worse than none)."""
+    wiki_url = fetch_entity_photo(name)
+    if not wiki_url:
+        return None
+    return search_news_photo(name) or wiki_url
+
+
 def find_subject_photo(post: dict) -> Image.Image | None:
-    """Tries each candidate subject in turn, returns the first real photo
-    that resolves and downloads (news/social search first, Wikimedia Commons
-    fallback — see utils.player_photo.find_entity_image), or None if the
-    post has no identifiable player/team/person (e.g. a generic tips or
-    bonus post)."""
+    """Tries each candidate subject in turn, returns the first real,
+    Wikipedia-verified photo that resolves and downloads (see
+    verified_entity_photo), or None if the post has no identifiable
+    player/team/person (e.g. a generic tips or bonus post)."""
     for name in _subject_candidates(post):
-        url = find_entity_image(name)
+        url = verified_entity_photo(name)
         if not url:
             continue
         photo = _download_photo(url)
