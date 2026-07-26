@@ -950,8 +950,35 @@ def seo_title(title: str, max_len: int = 60) -> str:
 _TITLE_TAG_OVERRIDES: dict[str, str] = {}
 
 
+def _reserved_site_titles() -> dict[str, str]:
+    """<title> text already used by non-blog pages (countries/, bookmakers/,
+    core pages, etc.) — reserved so a blog post's truncated title can't
+    silently collide with e.g. countries/ghana/'s "Best Betting Sites in
+    Ghana 2026 | SifuFinds" (confirmed live 2026-07-26: a blog post's own
+    title was more specific — "...Top 6 GCA-Licensed..." — but seo_title()'s
+    separator truncation cut it down to the exact hub-page title)."""
+    reserved: dict[str, str] = {}
+    for dirpath, dirnames, filenames in os.walk(BASE):
+        dirnames[:] = [d for d in dirnames
+                        if d not in {'.git', '.venv', '__pycache__', 'node_modules',
+                                     '.github', 'agents', 'firecrawl',
+                                     'geo-content-writer', 'blog'}
+                        and not d.startswith('.')]
+        if 'index.html' not in filenames:
+            continue
+        try:
+            content = open(os.path.join(dirpath, 'index.html'), encoding='utf-8', errors='ignore').read()
+        except OSError:
+            continue
+        m = re.search(r'<title>(.*?)</title>', content, re.IGNORECASE | re.DOTALL)
+        if m:
+            reserved[m.group(1).strip()] = os.path.relpath(dirpath, BASE)
+    return reserved
+
+
 def resolve_title_collisions(posts: list, locale_translations: dict | None = None) -> None:
-    """Ensure every post/locale-variant's rendered <title> tag is unique.
+    """Ensure every post/locale-variant's rendered <title> tag is unique,
+    and doesn't collide with any non-blog page's <title> either.
 
     seo_title()'s separator-based truncation still collapses two pages onto
     the same <title> when their titles share an identical lead-in past the
@@ -965,7 +992,7 @@ def resolve_title_collisions(posts: list, locale_translations: dict | None = Non
     global _TITLE_TAG_OVERRIDES
     _TITLE_TAG_OVERRIDES = {}
     suffix = "| SifuFinds"
-    seen: dict[str, str] = {}
+    seen: dict[str, str] = dict(_reserved_site_titles())
     locale_translations = locale_translations or {}
     locales = list(locale_translations.keys())
 
