@@ -59,6 +59,36 @@ _ENTITY_HINTS = _FOOTBALL_HINTS + (
 )
 
 
+_WOMEN_HINTS = ("women's", "women", "womens", "female")
+
+
+def _mentions_women(text: str) -> bool:
+    text_l = (text or "").lower()
+    return any(hint in text_l for hint in _WOMEN_HINTS)
+
+
+def _gender_mismatch(query: str, candidate_text: str) -> bool:
+    """True when a candidate's own text disagrees with the query on men's vs
+    women's football — in either direction, so this also protects a genuine
+    women's-football query from picking up a men's photo, not just the
+    reported direction.
+
+    Root cause of a live incident (2026-07-27): a bare country tag like
+    'Morocco' on a post specifically about the Men's FIFA World Ranking
+    resolved, via both the Wikipedia search fallback and the news/social
+    image search, to Morocco's WOMEN's national team celebrating their 2023
+    World Cup run — a completely different, unrelated story that happened to
+    share the word 'Morocco'. Neither tier's existing checks (entity-context
+    keyword match, or "every word of the query appears in the title") catch
+    this, because both texts are legitimately about association football —
+    they just aren't about the same team. Blocking the org/competition tags
+    that started this (see generate_blog_feature_image._ORG_AND_COMPETITION_WORDS)
+    closes the most direct path, but a bare team/country name can still
+    surface the wrong-gender side, so this check runs wherever a candidate
+    is accepted regardless of which tag reached it."""
+    return _mentions_women(candidate_text) != _mentions_women(query)
+
+
 def _fetch_json(url: str, timeout: int = 8) -> Optional[dict]:
     try:
         req = urllib.request.Request(url, headers=_HEADERS)
@@ -80,6 +110,42 @@ def _thumbnail_from_summary(data: dict) -> Optional[str]:
 
 def _get_summary(title: str) -> Optional[dict]:
     return _fetch_json(_SUMMARY_URL.format(title=urllib.parse.quote(title.replace(" ", "_"))))
+
+
+_COUNTRY_DESC_HINTS = (
+    "country in", "sovereign state in", "island nation", "island country",
+    "country located in", "country on the",
+)
+
+
+def _looks_like_bare_country(name: str) -> bool:
+    """True when `name` resolves on Wikipedia to a country/place page rather
+    than a sports subject. A bare country name is exactly the ambiguous
+    shape that caused a live incident (2026-07-27): 'Morocco' alone gives
+    neither Wikipedia's search fallback nor the news-image search any way to
+    tell the men's national team from the women's, so either could come
+    back for a query that was never about gender in the first place. This
+    check drives qualify_entity_query() below rather than hardcoding a
+    country list, so it keeps working for any country tag the content
+    pipeline produces."""
+    data = _get_summary(name)
+    if not data:
+        return False
+    desc = (data.get("description") or "").lower()
+    return any(hint in desc for hint in _COUNTRY_DESC_HINTS)
+
+
+def qualify_entity_query(name: str) -> str:
+    """Rewrites a bare country name to its unambiguous men's-side Wikipedia
+    title before either photo tier ever runs a query. '<Country> national
+    football team' is the long-standing Wikipedia convention for the men's
+    side; the women's side is always titled '<Country> women's national
+    football team' explicitly. Any other name — a player, a club, a name
+    that's already qualified — is returned unchanged."""
+    name = (name or "").strip()
+    if name and _looks_like_bare_country(name):
+        return f"{name} national football team"
+    return name
 
 
 def _is_football_context(data: dict) -> bool:
@@ -194,9 +260,11 @@ def fetch_entity_photo(name: str) -> Optional[str]:
 
     data = _get_summary(name)
     if data and data.get("type") not in ("disambiguation", "no-extract") and _is_entity_context(data):
-        photo = _thumbnail_from_summary(data)
-        if photo:
-            return photo
+        haystack = f"{data.get('title', '')} {data.get('description', '')} {data.get('extract', '')}"
+        if not _gender_mismatch(name, haystack):
+            photo = _thumbnail_from_summary(data)
+            if photo:
+                return photo
 
     for candidate_title in _search_candidates(f"{name} sport"):
         if not _shares_significant_word(name, candidate_title):
@@ -205,6 +273,9 @@ def fetch_entity_photo(name: str) -> Optional[str]:
         if not candidate or candidate.get("type") == "disambiguation":
             continue
         if not _is_entity_context(candidate):
+            continue
+        haystack = f"{candidate_title} {candidate.get('description', '')} {candidate.get('extract', '')}"
+        if _gender_mismatch(name, haystack):
             continue
         photo = _thumbnail_from_summary(candidate)
         if photo:
@@ -281,7 +352,25 @@ def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> O
             title = (r.get("title") or "").lower()
             if not image_url.startswith("https://"):
                 continue
+            # lookaside.instagram.com is a live SEO-preview crawler proxy, not
+            # a stable direct photo URL — it can return a generic Instagram
+            # placeholder, a different post's cached preview, or nothing
+            # decodable at all depending on what Instagram's crawler feels
+            # like serving that moment. Real post images live on
+            # scontent*.cdninstagram.com / *.fbcdn.net.
+            if "lookaside.instagram.com" in image_url:
+                continue
             if not all(part in title for part in name_parts):
+                continue
+            # "every word of the name appears in the title" is trivially true
+            # for a bare team/country query ("Morocco") on any article about
+            # that name — including a completely unrelated women's-side story
+            # (the actual 2026-07-27 incident: a Men's FIFA ranking post's
+            # "Morocco" tag surfaced Morocco WOMEN's 2023 World Cup
+            # celebration photos, since both texts legitimately say
+            # "Morocco"). Reject a men's/women's mismatch in either
+            # direction — see _gender_mismatch's docstring.
+            if _gender_mismatch(name, title):
                 continue
             return image_url
         return None
@@ -315,7 +404,8 @@ def find_entity_image(name: str, context: Optional[list[str]] = None) -> Optiona
     player, a club, or a national team (see scripts/generate_blog_feature_image.py).
     Falls back to fetch_entity_photo (not fetch_player_photo) so a team name
     still resolves to its crest/photo on the Wikipedia safety-net tier."""
-    return search_news_photo(name, context) or fetch_entity_photo(name)
+    query = qualify_entity_query(name)
+    return search_news_photo(query, context) or fetch_entity_photo(query)
 
 
 _NAME_PLACEHOLDERS = {"unknown", "player", "n/a", "tbd", "none", "unnamed", "club"}
