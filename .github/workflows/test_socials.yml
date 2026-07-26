@@ -1,0 +1,90 @@
+name: Test Social Credentials — on-demand diagnostic
+
+# Manual-only diagnostic for checking whether Facebook/Twitter credentials
+# actually work, without burning LLM quota on a full content-generation run.
+# Posts a short, clearly-labelled test message so a real failure (expired
+# token, missing secret) is visible immediately instead of guessed at.
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: "Test message to post"
+        required: false
+        default: "SifuFinds credential test — please ignore"
+      facebook:
+        description: "Test Facebook"
+        required: false
+        default: true
+        type: boolean
+      twitter:
+        description: "Test X/Twitter"
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  test-socials:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Install Playwright browser (needed for X/Twitter posting)
+        if: github.event.inputs.twitter == 'true'
+        run: playwright install --with-deps chromium
+
+      - name: Test social credentials
+        working-directory: agents/python
+        env:
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+          X_USERNAME: ${{ secrets.X_USERNAME }}
+          X_PASSWORD: ${{ secrets.X_PASSWORD }}
+          X_EMAIL: ${{ secrets.X_EMAIL }}
+          TWITTER_SESSION: ${{ secrets.TWITTER_SESSION }}
+          TEST_MESSAGE: ${{ github.event.inputs.message }}
+          TEST_FACEBOOK: ${{ github.event.inputs.facebook }}
+          TEST_TWITTER: ${{ github.event.inputs.twitter }}
+        run: |
+          python3 - <<'PYEOF'
+          import os, sys
+          sys.path.insert(0, ".")
+
+          message = os.environ.get("TEST_MESSAGE", "SifuFinds credential test — please ignore")
+          test_facebook = os.environ.get("TEST_FACEBOOK") == "true"
+          test_twitter = os.environ.get("TEST_TWITTER") == "true"
+
+          results = {}
+
+          if test_facebook:
+              from agent3_social import post_facebook
+              print("--- Testing Facebook ---")
+              results["facebook"] = post_facebook(f"🧪 {message}")
+              print(f"Facebook result: {results['facebook']}")
+
+          if test_twitter:
+              from agent_twitter_posts import _post_tweet
+              print("--- Testing X/Twitter ---")
+              results["twitter"] = _post_tweet(f"🧪 {message}")
+              print(f"Twitter result: {results['twitter']}")
+
+          print("\n=== SUMMARY ===")
+          for platform, ok in results.items():
+              print(f"{platform}: {'✓ SUCCESS' if ok else '✗ FAILED'}")
+
+          if results and not all(results.values()):
+              sys.exit(1)
+          PYEOF
