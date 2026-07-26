@@ -1,11 +1,11 @@
 {
   "date": "2026-07-26",
-  "total": 1,
+  "total": 2,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
     "MEDIUM": 1,
-    "INFO": 0
+    "INFO": 1
   },
   "issues": [
     {
@@ -13,6 +13,12 @@
       "check": "potential_duplicate",
       "page": "bet9ja-vs-sportybet-nigeria-2026-comparison",
       "detail": "High title overlap (5 meaningful tokens) with 'bet9ja-vs-sportybet-nigeria-2026' \u2014 consider noindex"
+    },
+    {
+      "severity": "INFO",
+      "check": "formulaic_opener",
+      "page": "68 posts",
+      "detail": "68 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
