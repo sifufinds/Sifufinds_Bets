@@ -1,26 +1,41 @@
 """Fetch today's matches and best odds — uses existing free API keys."""
+from datetime import date
+
 import requests
 from config import FOOTBALL_API_KEY, ODDS_API_KEY, FOOTBALL_API_BASE, ODDS_API_BASE
 
 
 def get_todays_matches() -> str:
     """Returns a plain-text summary of today's matches for the AI prompt."""
+    if not FOOTBALL_API_KEY:
+        return _static_fixtures()
     try:
-        headers = {"Authorization": f"Bearer {FOOTBALL_API_KEY}"}
-        r = requests.get(f"{FOOTBALL_API_BASE}/fixtures/today", headers=headers, timeout=10)
+        today = date.today().isoformat()
+        headers = {"X-Auth-Token": FOOTBALL_API_KEY}
+        r = requests.get(
+            f"{FOOTBALL_API_BASE}/matches",
+            headers=headers,
+            params={"dateFrom": today, "dateTo": today},
+            timeout=10,
+        )
         if r.status_code == 200:
-            fixtures = r.json().get("fixtures", [])[:10]
-            if fixtures:
+            matches = r.json().get("matches", [])[:10]
+            if matches:
                 lines = []
-                for f in fixtures:
-                    home = f.get("homeTeam", {}).get("name", "TBD")
-                    away = f.get("awayTeam", {}).get("name", "TBD")
-                    time = f.get("kickoff", "TBD")
-                    league = f.get("league", {}).get("name", "")
+                for m in matches:
+                    home = m.get("homeTeam", {}).get("name", "TBD")
+                    away = m.get("awayTeam", {}).get("name", "TBD")
+                    utc_date = m.get("utcDate", "")
+                    time = utc_date[11:16] + " UTC" if len(utc_date) >= 16 else "TBD"
+                    league = m.get("competition", {}).get("name", "")
                     lines.append(f"- {home} vs {away} ({league}) at {time}")
                 return "\n".join(lines)
     except Exception:
         pass
+    return _static_fixtures()
+
+
+def _static_fixtures() -> str:
     # Fallback: static African fixtures so the agent always has content
     return (
         "- Nigeria vs Ghana (AFCON Qualifier) at 20:00 WAT\n"
