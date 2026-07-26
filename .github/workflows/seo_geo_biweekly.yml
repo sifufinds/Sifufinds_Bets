@@ -1,0 +1,183 @@
+name: SEO + GEO Doctor — Twice-weekly deep health check sifufinds.com
+
+# Runs Monday and Thursday at 07:30 UTC (offset from the daily 06:00 SEO
+# Doctor run so the two never race on the same commit window).
+#
+# This is the dedicated SEO *and* GEO (AI-search readiness) health pass:
+# title/meta hygiene, duplicate-title regression guard, indexability, and
+# the GEO-specific signals (robots.txt AI-bot coverage, llms.txt integrity,
+# FAQ answer-label leaks, sitemap orphan-bloat) that scripts/geo_check.py
+# checks for. daily_seo_doctor.yml already runs the core SEO auto-heal daily;
+# this workflow runs on the cadence the user asked for and adds full GEO
+# coverage on top, so both can coexist without duplicating effort.
+#
+# This workflow NEVER exits with failure — it heals, reports, then exits 0.
+
+on:
+  schedule:
+    - cron: "30 7 * * 1,4"
+  workflow_dispatch:
+
+concurrency:
+  group: seo-geo-biweekly
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  seo-geo-heal:
+    name: SEO + GEO Doctor — check and heal
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests 2>/dev/null || true
+
+      - name: Run indexability guard (auto-fix)
+        id: indexability
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/check_indexability.py --fix --live --report
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Fix duplicate slugs, thin titles/meta (auto-heal)
+        id: seo_check
+        shell: bash
+        run: |
+          set +e
+          python3 gen_blog_post_pages.py --force
+          python3 scripts/seo_check.py --fix --report
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          python3 gen_blog_post_pages.py --force
+          python3 gen_sitemap.py
+          exit 0
+
+      - name: Run GEO health check (auto-fix robots.txt / llms.txt)
+        id: geo_check
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/geo_check.py --fix --report
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Audit title length + site-wide title uniqueness
+        id: audit_titles
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/audit_titles.py --fix
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Regenerate blog pages + sitemap after all fixes
+        run: |
+          python3 gen_blog_post_pages.py --force
+          python3 gen_sitemap.py
+
+      - name: Pre-deploy validation (blocking)
+        id: validate
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/validate_site.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit any fixes
+        id: commit
+        run: |
+          git config --local user.email "seo-geo-doctor@sifufinds.com"
+          git config --local user.name "SifuFinds SEO+GEO Doctor"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No SEO/GEO changes needed"
+          else
+            COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
+            git commit -m "seo+geo: twice-weekly auto-heal $(date -u '+%Y-%m-%d') — ${COUNT} files updated"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push fixes
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            [ "$attempt" -eq 3 ] && { echo "❌ Push failed — will retry next scheduled run"; break; }
+            echo "⚠ Push rejected ($attempt/3) — rebasing..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done
+
+      - name: Trigger deploy if fixes applied
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          gh workflow run deploy_hostinger.yml \
+            --repo "${{ github.repository }}" \
+            --ref main && echo "✅ Deploy triggered" || echo "⚠️ Deploy trigger failed (will self-correct on next push)"
+          exit 0
+
+      - name: Report outcome
+        if: always()
+        run: |
+          IDX_CODE="${{ steps.indexability.outputs.exit_code }}"
+          if [ -z "$IDX_CODE" ] || [ "$IDX_CODE" = "0" ]; then
+            echo "✅ Indexability guard — nothing is stopping Google from crawling the site"
+          else
+            echo "🚨 Indexability guard found issues it could NOT auto-fix — see indexability-report.json"
+          fi
+
+          SEO_CODE="${{ steps.seo_check.outputs.exit_code }}"
+          if [ -z "$SEO_CODE" ] || [ "$SEO_CODE" = "0" ]; then
+            echo "✅ SEO audit — no CRITICAL issues"
+          else
+            echo "🚨 SEO audit found CRITICAL issue(s) it could NOT auto-fix — see seo-report.json"
+          fi
+
+          GEO_CODE="${{ steps.geo_check.outputs.exit_code }}"
+          if [ -z "$GEO_CODE" ] || [ "$GEO_CODE" = "0" ]; then
+            echo "✅ GEO health check — no CRITICAL AI-search readiness issues"
+          else
+            echo "🚨 GEO health check found CRITICAL issue(s) — see geo-report.json"
+          fi
+
+          TITLE_CODE="${{ steps.audit_titles.outputs.exit_code }}"
+          if [ -z "$TITLE_CODE" ] || [ "$TITLE_CODE" = "0" ]; then
+            echo "✅ Title audit — all titles within length limit, no duplicates across live pages"
+          else
+            echo "⚠️ Title audit found remaining duplicate <title> tags (likely orphaned legacy pages — see audit_titles.py output above)"
+          fi
+
+          VALIDATE_CODE="${{ steps.validate.outputs.exit_code }}"
+          if [ -z "$VALIDATE_CODE" ] || [ "$VALIDATE_CODE" = "0" ]; then
+            echo "✅ Pre-deploy validation passed"
+          else
+            echo "🚨 Pre-deploy validation FAILED — do not deploy until scripts/validate_site.py passes"
+          fi

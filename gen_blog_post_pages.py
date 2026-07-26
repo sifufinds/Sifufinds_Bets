@@ -919,20 +919,85 @@ Al-Ahly of Egypt have won the CAF Champions League 11 times — more than any ot
 
 
 def seo_title(title: str, max_len: int = 60) -> str:
-    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix."""
+    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix.
+
+    Only truncates at a ' — '/' - '/': ' separator when the separator sits
+    past 35% of the title's length — otherwise a short generic lead-in
+    ("World Cup 2026:", "Transfer News:") swallows the whole truncation and
+    every post sharing that lead-in collapses onto one identical, duplicate
+    <title> tag (confirmed live on ~85 of 236 posts, GEO/technical audit
+    2026-07-26). Falling back to word-boundary ellipsis truncation instead
+    keeps the distinctive, keyword-rich tail of the title intact.
+    """
     suffix = "| SifuFinds"
     full = f"{title} {suffix}"
     if len(full) <= max_len:
         return full
+    best = None
     for sep in [" — ", " - ", ": "]:
         idx = title.find(sep)
-        if idx > 10:
+        if idx > 10 and idx >= len(title) * 0.35:
             candidate = f"{title[:idx]} {suffix}"
-            if len(candidate) <= max_len:
-                return candidate
+            if len(candidate) <= max_len and (best is None or idx > best[0]):
+                best = (idx, candidate)
+    if best:
+        return best[1]
     available = max_len - len(suffix) - 4
     truncated = title[:available].rsplit(' ', 1)[0]
     return f"{truncated}... {suffix}"
+
+
+_TITLE_TAG_OVERRIDES: dict[str, str] = {}
+
+
+def resolve_title_collisions(posts: list, locale_translations: dict | None = None) -> None:
+    """Ensure every post/locale-variant's rendered <title> tag is unique.
+
+    seo_title()'s separator-based truncation still collapses two pages onto
+    the same <title> when their titles share an identical lead-in past the
+    0.35 threshold (e.g. two "World Cup 2026 Match Preview: ..." posts, or
+    two translated titles that happen to render identically). Checks every
+    locale variant (out_slug), not just the English title, since translated
+    titles collide independently of their English source. When a collision
+    is found, disambiguate every occurrence after the first using
+    distinctive words from that page's own out_slug.
+    """
+    global _TITLE_TAG_OVERRIDES
+    _TITLE_TAG_OVERRIDES = {}
+    suffix = "| SifuFinds"
+    seen: dict[str, str] = {}
+    locale_translations = locale_translations or {}
+    locales = list(locale_translations.keys())
+
+    candidates = []
+    for post in posts:
+        slug = post.get('slug')
+        if not slug:
+            continue
+        candidates.append((slug, post['title']))
+        for lg in locales:
+            tr = locale_translations[lg].get(slug)
+            if tr:
+                candidates.append((f'{slug}-{lg}', tr['title']))
+
+    for out_slug, title in candidates:
+        rendered = seo_title(title)
+        if rendered not in seen:
+            seen[rendered] = out_slug
+            continue
+        words = [w for w in out_slug.replace('-', ' ').split() if w.isalpha() and len(w) > 2]
+        tag = ' '.join(w.capitalize() for w in words[:4]) or out_slug
+        candidate = f"{tag} {suffix}"
+        if len(candidate) > 60:
+            available = 60 - len(suffix) - 4
+            candidate = f"{tag[:available].rsplit(' ', 1)[0]}... {suffix}"
+        n = 2
+        base_candidate = candidate
+        while candidate in seen:
+            candidate = base_candidate.replace(f" {suffix}", f" ({n}) {suffix}")
+            n += 1
+        seen[candidate] = out_slug
+        _TITLE_TAG_OVERRIDES[out_slug] = candidate
 
 
 def slugify(text: str) -> str:
@@ -1066,7 +1131,13 @@ def extract_faq_schema(body_md: str) -> str:
         # on ~20% of posts whose FAQ answers spanned multiple source lines.
         q = re.sub(r'\s+', ' ', q).strip()
         a = re.sub(r'<[^>]+>', '', a)
-        a = re.sub(r'\s+', ' ', a).strip()[:500]
+        a = re.sub(r'\s+', ' ', a).strip()
+        # Pattern #6 (bold question + plain paragraph answer) doesn't consume
+        # a literal "A:"/"A." label the way patterns #1-#3 do, so it leaks
+        # into both the visible page and acceptedAnswer.text — a citation
+        # reading "According to SifuFinds, A: Nigeria are typically..." reads
+        # as broken to both readers and AI engines (GEO audit, 2026-07-26).
+        a = re.sub(r'^A[:.]\s*', '', a).strip()[:500]
         if q and a:
             entities.append(f'''    {{
       "@type": "Question",
@@ -1470,6 +1541,11 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     title = tr['title'] if tr else post['title']
     excerpt = tr['excerpt'] if tr else post['excerpt']
     body_md = tr['body'] if tr else post.get('body', '')
+    # Strip a literal "A:"/"A." answer-label immediately after a bold FAQ
+    # question — the source convention "**Question?**\nA: Answer" otherwise
+    # renders "A:" as visible page text (see extract_faq_schema for the
+    # matching JSON-LD-side fix).
+    body_md = re.sub(r'(\*\*[^*\n]+\?\*\*)\s*\n+A[:.]\s+', r'\1\n', body_md)
     out_slug = slug if locale == 'en' else f'{slug}-{locale}'
     hreflang_links = '\n'.join(
         f'<link rel="alternate" hreflang="{lg}" href="https://sifufinds.com/blog/{slug if lg == "en" else slug + "-" + lg}/">'
@@ -1553,7 +1629,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{seo_title(title)}</title>
+<title>{_TITLE_TAG_OVERRIDES.get(out_slug) or seo_title(title)}</title>
 <meta name="description" content="{excerpt}">
 <meta name="keywords" content="{', '.join(tags[:8]).lower()}">
 <meta name="robots" content="{robots_content}">
@@ -1933,6 +2009,7 @@ def main():
     force = '--force' in sys.argv
 
     locale_translations = {lg: load_translations(lg) for lg in LOCALES}
+    resolve_title_collisions(data['posts'], locale_translations)
 
     for post in data['posts']:
         slug = post.get('slug')

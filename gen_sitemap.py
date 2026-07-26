@@ -70,7 +70,38 @@ def classify(url: str):
     return '0.6', 'monthly'
 
 
+def _tracked_blog_slugs() -> set[str]:
+    """Every blog/<slug>/ directory that's actually current per posts.json.
+
+    blog/ accumulates orphaned directories over time (renamed/removed posts,
+    a 2026-06-05 merge-conflict incident that required restoring 183 posts)
+    whose static HTML is never deleted. collect_urls() used to walk the
+    filesystem blindly, so every one of those stale directories kept getting
+    resubmitted to Google on every sitemap regen (305 confirmed stale
+    directories found in a 2026-07-26 GEO/technical audit). Scoping the blog
+    sitemap to posts.json's tracked slugs stops feeding crawlers content the
+    site no longer considers current, without touching/deleting any files.
+    """
+    posts_path = os.path.join(BASE, 'blog', 'posts.json')
+    try:
+        with open(posts_path, encoding='utf-8') as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return set()
+
+    locales = ['fr', 'de', 'es', 'pt', 'sw']
+    slugs = set()
+    for post in data.get('posts', []):
+        slug = post.get('slug')
+        if not slug:
+            continue
+        slugs.add(slug)
+        slugs.update(f'{slug}-{lg}' for lg in locales)
+    return slugs
+
+
 def collect_urls():
+    tracked_blog_slugs = _tracked_blog_slugs()
     urls = []
     for root, dirs, files in os.walk(BASE):
         # Prune excluded directories in-place
@@ -89,6 +120,12 @@ def collect_urls():
         # Skip analytics, google verification pages
         if any(skip in url for skip in ['/analytics', '/google3', '/gen_', '/.', '/data/']):
             continue
+
+        # blog/<slug>/ must still be a real post — see _tracked_blog_slugs().
+        if rel.startswith('blog' + os.sep) and rel != 'blog':
+            blog_slug = rel[len('blog' + os.sep):].split(os.sep)[0]
+            if tracked_blog_slugs and blog_slug not in tracked_blog_slugs:
+                continue
 
         urls.append(url)
 

@@ -25,16 +25,26 @@ SKIP_DIRS = {".git", ".venv", "__pycache__", "node_modules", ".github",
 
 
 def seo_title(title: str, max_len: int = MAX_LEN) -> str:
-    """Trim title to ≤ max_len chars with '| SifuFinds' suffix."""
+    """Trim title to ≤ max_len chars with '| SifuFinds' suffix.
+
+    Mirrors gen_blog_post_pages.py's seo_title(): only truncates at a
+    separator when it sits past 35% of the title's length, otherwise a short
+    generic lead-in ("World Cup 2026:") swallows the whole truncation and
+    unrelated posts collapse onto one identical <title> (confirmed live on
+    ~85 posts, GEO/technical audit 2026-07-26).
+    """
     full = f"{title} {SUFFIX}"
     if len(full) <= max_len:
         return full
+    best = None
     for sep in [" — ", " - ", ": ", " | "]:
         idx = title.find(sep)
-        if idx > 10:
+        if idx > 10 and idx >= len(title) * 0.35:
             candidate = f"{title[:idx]} {SUFFIX}"
-            if len(candidate) <= max_len:
-                return candidate
+            if len(candidate) <= max_len and (best is None or idx > best[0]):
+                best = (idx, candidate)
+    if best:
+        return best[1]
     available = max_len - len(SUFFIX) - 2
     truncated = title[:available].rsplit(" ", 1)[0]
     return f"{truncated}… {SUFFIX}"
@@ -83,6 +93,30 @@ def audit(max_len: int, fix: bool) -> list[tuple[int, str, str, str]]:
     return sorted(violations, reverse=True)
 
 
+def find_duplicate_titles() -> dict[str, list[str]]:
+    """Return {title: [paths]} for every <title> string shared by 2+ pages.
+
+    Duplicate <title> tags across distinct, unrelated pages undermine CTR
+    and keyword relevance even when each individual title is under the
+    length limit — this is a separate failure mode from the length check
+    above (confirmed live on ~85 blog posts, GEO/technical audit 2026-07-26,
+    root-caused to over-aggressive truncation in gen_blog_post_pages.py's
+    seo_title(), now fixed there and here).
+    """
+    by_title: dict[str, list[str]] = {}
+    for path in iter_html_files(SITE_ROOT):
+        try:
+            content = open(path, encoding="utf-8", errors="ignore").read()
+        except OSError:
+            continue
+        m = re.search(r"<title>(.*?)</title>", content, re.IGNORECASE | re.DOTALL)
+        if not m:
+            continue
+        raw = html_module.unescape(m.group(1)).strip()
+        by_title.setdefault(raw, []).append(path)
+    return {t: paths for t, paths in by_title.items() if len(paths) > 1}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Audit <title> tag lengths.")
     parser.add_argument("--fix", action="store_true", help="Patch violations in-place")
@@ -91,31 +125,46 @@ def main() -> None:
     args = parser.parse_args()
 
     violations = audit(args.max_len, args.fix)
+    # Duplicates must be found AFTER length-fixing (if --fix ran) so this
+    # check reflects the post-fix state rather than flagging titles the
+    # length pass is about to change anyway.
+    duplicates = find_duplicate_titles()
     rel = lambda p: os.path.relpath(p, SITE_ROOT)
 
-    if not violations:
-        print(f"✓ All titles are ≤ {args.max_len} chars — no issues found.")
-        sys.exit(0)
+    if violations:
+        action = "FIXED" if args.fix else "VIOLATION"
+        print(f"{'[' + action + ']':12}  {'LEN':>3}  PATH")
+        print("-" * 80)
+        for length, path, current, fixed in violations:
+            print(f"{'[' + action + ']':12}  {length:>3}  {rel(path)}")
+            print(f"  Current : {current}")
+            if args.fix:
+                print(f"  Fixed   : {fixed}")
+            else:
+                print(f"  Proposed: {fixed}")
+            print()
+        total = len(violations)
+        verb = "patched" if args.fix else "found"
+        print(f"{'─' * 80}")
+        print(f"{total} title violation(s) {verb}.")
+    else:
+        print(f"✓ All titles are ≤ {args.max_len} chars.")
 
-    action = "FIXED" if args.fix else "VIOLATION"
-    print(f"{'[' + action + ']':12}  {'LEN':>3}  PATH")
-    print("-" * 80)
-    for length, path, current, fixed in violations:
-        print(f"{'[' + action + ']':12}  {length:>3}  {rel(path)}")
-        print(f"  Current : {current}")
-        if args.fix:
-            print(f"  Fixed   : {fixed}")
-        else:
-            print(f"  Proposed: {fixed}")
+    if duplicates:
         print()
+        print(f"{'─' * 80}")
+        print(f"⚠ {len(duplicates)} duplicate <title> group(s) found across distinct pages:")
+        for title, paths in sorted(duplicates.items()):
+            print(f"\n  {title!r}  ({len(paths)}x)")
+            for p in paths:
+                print(f"    - {rel(p)}")
+    else:
+        print("✓ No duplicate <title> tags across distinct pages.")
 
-    total = len(violations)
-    verb = "patched" if args.fix else "found"
-    print(f"{'─' * 80}")
-    print(f"{total} title violation(s) {verb}.")
+    if violations and not args.fix:
+        print("\nRun with --fix to patch length violations in-place.")
 
-    if not args.fix:
-        print("Run with --fix to patch in-place.")
+    if (violations and not args.fix) or duplicates:
         sys.exit(1)
 
 

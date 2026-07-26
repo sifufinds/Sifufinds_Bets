@@ -1,6 +1,6 @@
 # robots.txt — sifufinds.com
 # Africa's #1 independent betting comparison platform
-# Updated: 2026-06-24
+# Updated: 2026-07-26
 
 # ── DEFAULT ───────────────────────────────────────────────────────────────────
 User-agent: *
@@ -83,129 +83,309 @@ Disallow: /geo-content-writer/
 # ── BING / MICROSOFT ─────────────────────────────────────────────────────────
 User-agent: Bingbot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: MSNBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: MSNBot-Media
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: BingPreview
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── ChatGPT / OpenAI ──────────────────────────────────────────────────────────
 User-agent: GPTBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Perplexity ────────────────────────────────────────────────────────────────
 User-agent: PerplexityBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Claude / Anthropic ────────────────────────────────────────────────────────
 User-agent: ClaudeBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Apple (Siri / Apple Intelligence) ────────────────────────────────────────
 User-agent: Applebot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Meta / Facebook / Instagram ──────────────────────────────────────────────
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: meta-externalagent
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: meta-externalfetcher
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Twitter / X ──────────────────────────────────────────────────────────────
 User-agent: Twitterbot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── LinkedIn ─────────────────────────────────────────────────────────────────
 User-agent: LinkedInBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── DuckDuckGo ────────────────────────────────────────────────────────────────
 User-agent: DuckDuckBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: DuckDuckGo-Favicons-Bot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Yahoo (Slurp) ────────────────────────────────────────────────────────────
 User-agent: Slurp
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Yandex ───────────────────────────────────────────────────────────────────
 User-agent: YandexBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: YandexImages
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Baidu ────────────────────────────────────────────────────────────────────
 User-agent: Baiduspider
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Common Crawl (used by GPT-4, Llama, Mistral AI training data) ─────────────
 User-agent: CCBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Cohere AI ────────────────────────────────────────────────────────────────
 User-agent: cohere-ai
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── ByteDance / TikTok ───────────────────────────────────────────────────────
 User-agent: Bytespider
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Internet Archive (Wayback Machine) ───────────────────────────────────────
 User-agent: ia_archiver
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── WhatsApp / Telegram link previews ────────────────────────────────────────
 User-agent: WhatsApp
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: TelegramBot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Slack / Discord unfurl ───────────────────────────────────────────────────
 User-agent: Slackbot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: Discordbot
 Allow: /
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── SEO audit tools (rate-limited to protect crawl budget) ───────────────────
 User-agent: AhrefsBot
 Crawl-delay: 10
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: SemrushBot
 Crawl-delay: 10
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: MajesticBot
 Crawl-delay: 10
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 User-agent: DotBot
 Crawl-delay: 10
+Disallow: /agents/
+Disallow: /.github/
+Disallow: /.venv/
+Disallow: /firecrawl/
+Disallow: /geo-content-writer/
 
 # ── Known bad bots (block entirely) ──────────────────────────────────────────
 User-agent: MJ12bot

@@ -4,6 +4,11 @@ Options -Indexes
 ErrorDocument 403 /404.html
 ErrorDocument 404 /404.html
 
+# Declare charset at the HTTP header level, not just via <meta charset> in
+# each page — some proxies, embed/unfurl tools, and simple crawlers trust the
+# HTTP Content-Type header's charset ahead of parsing the HTML body.
+AddDefaultCharset UTF-8
+
 # ── SECURITY HEADERS ──────────────────────────────────────────────────────────
 <IfModule mod_headers.c>
   # Prevent clickjacking
