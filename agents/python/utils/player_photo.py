@@ -21,10 +21,19 @@ Never invents a photo: if nothing is found at either tier, returns None and
 the caller falls back to SifuFinds' own generic branded card.
 """
 import re
+import unicodedata
 import urllib.parse
 import urllib.request
 import json
 from typing import Optional
+
+
+def _fold_accents(text: str) -> str:
+    """Strips diacritics so 'Jürgen' and 'Jurgen' compare equal — news outlets
+    are inconsistent about keeping accents in headlines, and the substring
+    matching below silently rejects a real match otherwise."""
+    normalized = unicodedata.normalize("NFKD", text or "")
+    return "".join(c for c in normalized if not unicodedata.combining(c))
 
 _HEADERS = {
     # Wikimedia's API etiquette policy requires a descriptive User-Agent with
@@ -87,6 +96,26 @@ def _gender_mismatch(query: str, candidate_text: str) -> bool:
     surface the wrong-gender side, so this check runs wherever a candidate
     is accepted regardless of which tag reached it."""
     return _mentions_women(candidate_text) != _mentions_women(query)
+
+
+# Titles that mean "this photo is merchandise/a product bearing the
+# subject's likeness," not a photo of the subject actually playing, coaching,
+# or otherwise doing the sport — real incident: "Jürgen Klopp's Liverpool
+# farewell marked with his own beer" legitimately has his full name in the
+# title and passes every other check, but the photo is a Carlsberg bottle
+# label, not Klopp.
+_PRODUCT_SHOT_HINTS = (
+    "beer", "brew", "lager", "wine", "champagne", "cologne", "perfume",
+    "fragrance", "cookbook", "book launch", "clothing line", "trainers",
+    "sneaker", "action figure", "bobblehead", "funko", "figurine",
+    "limited edition", "merchandise", "merch drop", "jersey launch",
+    "boot launch", "cleat launch",
+)
+
+
+def _looks_like_product_shot(title: str) -> bool:
+    title_l = (title or "").lower()
+    return any(hint in title_l for hint in _PRODUCT_SHOT_HINTS)
 
 
 def _fetch_json(url: str, timeout: int = 8) -> Optional[dict]:
@@ -339,7 +368,15 @@ def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> O
     name = (name or "").strip()
     if not name:
         return None
-    name_parts = [p.lower() for p in name.split() if len(p) > 2]
+    # Fold accents before splitting: news outlets are inconsistent about
+    # keeping diacritics in headlines ("Jurgen Klopp" vs "Jürgen Klopp"), and
+    # comparing the raw accented name against an unaccented title silently
+    # rejects every correctly-spelled match — caught 2026-07-27 when this
+    # exact mismatch threw out every real photo of Jürgen Klopp playing/
+    # managing and left only the one result that happened to keep the
+    # accent: a beer bottle ("Believers Brew") carrying his face on the
+    # label, which the caller then used as a football-news feature image.
+    name_parts = [p.lower() for p in _fold_accents(name).split() if len(p) > 2]
     if not name_parts:
         return None
 
@@ -349,7 +386,8 @@ def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> O
     def _first_match(results: list[dict]) -> Optional[str]:
         for r in results:
             image_url = r.get("image") or ""
-            title = (r.get("title") or "").lower()
+            title_raw = r.get("title") or ""
+            title = _fold_accents(title_raw).lower()
             if not image_url.startswith("https://"):
                 continue
             # lookaside.instagram.com is a live SEO-preview crawler proxy, not
@@ -371,6 +409,14 @@ def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> O
             # "Morocco"). Reject a men's/women's mismatch in either
             # direction — see _gender_mismatch's docstring.
             if _gender_mismatch(name, title):
+                continue
+            # A news outlet's photo desk sometimes shoots the *merchandise*,
+            # not the person — the same Klopp incident above: even once the
+            # accent bug was fixed, "Jürgen Klopp's Liverpool farewell marked
+            # with his own beer" still legitimately has his name in the
+            # title. A person's face on a product label isn't a usable
+            # feature-image photo of them.
+            if _looks_like_product_shot(title):
                 continue
             return image_url
         return None

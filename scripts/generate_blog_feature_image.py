@@ -52,7 +52,7 @@ POSTS_JSON = ROOT / "blog" / "posts.json"
 OUT_DIR = ROOT / "assets" / "og"
 
 sys.path.insert(0, str(ROOT / "agents" / "python"))
-from utils.player_photo import fetch_entity_photo, search_news_photo  # noqa: E402
+from utils.player_photo import fetch_entity_photo, qualify_entity_query, search_news_photo  # noqa: E402
 
 _PHOTO_HEADERS = {
     "User-Agent": "SifuFindsBot/1.0 (https://sifufinds.com; contact: kai.s.manyeh@gmail.com)",
@@ -289,17 +289,95 @@ _GENERIC_TAG_WORDS = {
     "free", "app", "apps", "site", "sites", "",
 }
 
+# Governing bodies, confederations, and competition/ranking brand names are a
+# *different* hazard from the generic descriptive words above: these are real,
+# specific proper nouns, so the generic-word check alone lets them straight
+# through as "entity" candidates. But unlike a player or club, none of them
+# corresponds to a single stable photo — the same acronym or brand spans many
+# unrelated tournaments, editions, and genders (FIFA alone governs the Men's
+# World Cup, the Women's World Cup, U-20s, futsal, and more). Both photo tiers
+# are also too permissive for a bare acronym like this: fetch_entity_photo()'s
+# Wikipedia description check treats "governing body of association football"
+# as a football-context match, and search_news_photo()'s title-matching only
+# requires the literal word to appear somewhere in a result's title — which is
+# true of nearly any football article ever written. That combination is
+# exactly how a live post went out with a "FIFA WOMEN'S WORLD CUP AU NZ 2023"
+# tournament graphic as the feature image for a Men's World Ranking article
+# (caught 2026-07-27, /blog/fifa-world-ranking-2026-spain-top-morocco-lead-africa/,
+# tags included the bare "FIFA" and "World Ranking"). Blocking these names at
+# the source — before either photo tier ever runs a query — is far cheaper and
+# more reliable than trying to make the search itself edition/gender-aware.
+_ORG_AND_COMPETITION_WORDS = {
+    "fifa", "uefa", "caf", "concacaf", "conmebol", "afc", "ofc",
+    "afcon", "can", "chan", "nba", "nfl", "nhl", "mlb", "mls",
+    "icc", "atp", "wta", "itf", "fia", "ioc", "fifpro",
+    "premier", "championship", "championships", "ranking", "rankings",
+    "qualifier", "qualifiers", "qualifying", "playoff", "playoffs",
+    "confederation", "federation", "association", "governing", "body",
+    "olympics", "olympic", "champions", "europa", "bundesliga",
+    "eredivisie", "seria", "serie", "liga", "ligue", "la",
+}
+
+_BLOCKED_TAG_WORDS = _GENERIC_TAG_WORDS | _ORG_AND_COMPETITION_WORDS
+
+# _BLOCKED_TAG_WORDS above only rejects a tag when EVERY word in it is
+# generic (AND-logic) — deliberately, since a real entity tag can legitimately
+# contain one clean word ('Chelsea'). That AND-based rule still let tournament
+# names straight through the moment they carried one incidental proper-noun-
+# shaped word alongside a competition word: 'African Cup of Nations' has
+# 'African' and 'Cup' blocked, but 'of' and 'Nations' weren't, so the tag as a
+# whole wasn't "every word generic" and passed; same story for 'T20 World Cup'
+# ('t20' unblocked) and 'Queen's Club Championship' ('queen's'/'club'
+# unblocked). Caught via a full scan of every tag actually in posts.json
+# (2026-07-27) after the FIFA/Morocco incident — this is a distinct, stronger
+# rule: ANY of these words appearing ANYWHERE in a tag disqualifies the whole
+# tag as a photo-search candidate, regardless of what else rides along with
+# it, because every word here names a tournament *format*, never a specific
+# team/player/country. 'super' is deliberately excluded even though it names
+# competitions ('Super League') — Nigeria's own 'Super Eagles' nickname would
+# also die under an OR-rule on that word, and that's a real, frequently-used,
+# perfectly safe tag; 'Super League' is still caught because 'league' alone
+# is enough.
+_COMPETITION_STRUCTURE_WORDS = {
+    "cup", "league", "championship", "championships", "trophy", "trophies",
+    "open", "masters", "prix", "bowl", "slam", "slams", "playoffs", "playoff",
+    "qualifier", "qualifiers", "qualifying", "nations", "finals", "final",
+    "conference", "division", "t20", "odi", "series", "invitational",
+    "classic", "tour", "grand", "games",
+}
+
+
+def _tokenize(name: str) -> list[str]:
+    """Splits a tag into words on whitespace AND hyphens — a hyphenated tag
+    like 'world-cup-2026' previously came through as a single glued token
+    ('worldcup2026') that matched nothing in any blocklist, silently
+    bypassing every word-level check below."""
+    return [w for w in re.split(r"[\s\-]+", name.strip()) if w]
+
+
+def _is_competition_reference(name: str) -> bool:
+    words = {re.sub(r"[^a-z0-9]", "", w.lower()) for w in _tokenize(name)}
+    return bool(words & _COMPETITION_STRUCTURE_WORDS)
+
 
 def _looks_like_entity_candidate(name: str) -> bool:
-    """True unless every word in `name` is a generic term from
-    _GENERIC_TAG_WORDS — i.e. the tag has at least one word that could
-    plausibly be part of a proper name ('Real Madrid', 'Marc Cucurella',
-    'Chelsea'), false for a purely generic/descriptive tag."""
-    words = [w for w in re.split(r"\s+", name.strip()) if w]
+    """False for a purely generic, governing-body, or competition-brand tag;
+    true otherwise — i.e. the tag has at least one word that could plausibly
+    be part of a proper name for a specific player, club, or country ('Real
+    Madrid', 'Marc Cucurella', 'Chelsea', 'Morocco').
+
+    Two independent rejection rules: every word is generic/org-level (see
+    _GENERIC_TAG_WORDS / _ORG_AND_COMPETITION_WORDS — AND-logic, tolerates
+    one clean proper-noun word), or the tag references a tournament format
+    at all (see _COMPETITION_STRUCTURE_WORDS — OR-logic, stricter, added
+    after real tournament tags still slipped past the first rule alone)."""
+    words = _tokenize(name)
     if not words:
         return False
+    if _is_competition_reference(name):
+        return False
     normalized = {re.sub(r"[^a-z]", "", w.lower()) for w in words}
-    return not normalized <= _GENERIC_TAG_WORDS
+    return not normalized <= _BLOCKED_TAG_WORDS
 
 
 def _subject_candidates(post: dict, limit: int = 8) -> list[str]:
@@ -349,11 +427,21 @@ def verified_entity_photo(name: str) -> str | None:
     — requiring it to pass before ever trusting the louder, noisier
     news-search tier turns "returns *something* for almost any string" into
     "returns nothing unless the subject is real," which is the property
-    this whole feature depends on (a wrong photo is worse than none)."""
-    wiki_url = fetch_entity_photo(name)
+    this whole feature depends on (a wrong photo is worse than none).
+
+    Also runs `name` through qualify_entity_query() first, which rewrites a
+    bare country tag ('Morocco') to its unambiguous men's-side Wikipedia
+    title ('Morocco national football team') before either tier ever
+    queries anything — closes the gender-ambiguity gap that let a Men's
+    FIFA ranking post surface a Morocco WOMEN's World Cup celebration photo
+    (2026-07-27): a bare country name has no way to signal which side a
+    search should be about, and both Wikipedia's search fallback and the
+    news-image search will happily return either."""
+    query = qualify_entity_query(name)
+    wiki_url = fetch_entity_photo(query)
     if not wiki_url:
         return None
-    return search_news_photo(name) or wiki_url
+    return search_news_photo(query) or wiki_url
 
 
 def find_subject_photo(post: dict) -> Image.Image | None:
