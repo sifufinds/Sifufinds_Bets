@@ -3,7 +3,7 @@ Run this ONCE to log in to Telegram and get your session string.
 After this you never need to touch Telegram setup again.
 
 Run: python3 get_telegram_session.py
-Then enter the SMS code Telegram sends to +447984336672
+Then enter the SMS code Telegram sends to the phone number set as TELEGRAM_PHONE in .env
 Copy the session string it prints and paste into .env
 """
 import asyncio
