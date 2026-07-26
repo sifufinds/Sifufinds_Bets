@@ -152,12 +152,18 @@ def check_llms_txt(fix: bool):
 
 
 def check_faq_answer_labels():
-    """Regression guard: a leaked 'A:'/'A.' label in FAQ answers (fixed
+    """Regression guard: a leaked 'Q:'/'A:' label in FAQ content (fixed
     2026-07-26 in gen_blog_post_pages.py's extract_faq_schema + body_md
-    preprocessing) reads as broken to citation engines."""
+    preprocessing, across all 4 source conventions: bold-question, plain
+    Q:/A: lines, bullet-list, and numbered-list) reads as broken to both
+    readers and citation engines. Checks both the JSON-LD side and the
+    visible-HTML side — the first pass at this fix only caught the
+    JSON-LD leak and missed 101 of 540 posts (19%) still leaking into
+    visible text via the plain Q:/A: convention (GEO re-audit finding)."""
     if not BLOG_DIR.exists():
         return
-    pattern = re.compile(r'"acceptedAnswer":\s*\{"@type":\s*"Answer",\s*"text":\s*"A[:.]\s')
+    schema_pattern = re.compile(r'"acceptedAnswer":\s*\{"@type":\s*"Answer",\s*"text":\s*"A[:.]\s')
+    visible_pattern = re.compile(r'<p>Q[:.]\s|<p>A[:.]\s|<li>Q[:.]\s')
     for post_dir in BLOG_DIR.iterdir():
         if not post_dir.is_dir():
             continue
@@ -168,9 +174,12 @@ def check_faq_answer_labels():
             html = index.read_text(encoding='utf-8', errors='ignore')
         except OSError:
             continue
-        if pattern.search(html):
+        if schema_pattern.search(html):
             issue(HIGH, 'faq_answer_label_leak', str(post_dir.relative_to(BASE)),
                   'FAQPage JSON-LD acceptedAnswer.text starts with a literal "A:" label')
+        if visible_pattern.search(html):
+            issue(HIGH, 'faq_answer_label_leak_visible', str(post_dir.relative_to(BASE)),
+                  'Visible page text still shows a literal "Q:"/"A:" label')
 
 
 def check_sitemap_blog_scope():

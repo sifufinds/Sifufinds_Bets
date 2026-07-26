@@ -1157,6 +1157,10 @@ def extract_faq_schema(body_md: str) -> str:
         # producing invalid JSON-LD (silently unparseable by Google/AI crawlers)
         # on ~20% of posts whose FAQ answers spanned multiple source lines.
         q = re.sub(r'\s+', ' ', q).strip()
+        # Pattern #7 (numbered list) doesn't consume a "Q:" label the way
+        # patterns #1-#3 do, so a source like "1. Q: What's...?" leaks the
+        # literal "Q:" into the schema's own question text too.
+        q = re.sub(r'^Q[:.]\s*', '', q).strip()
         a = re.sub(r'<[^>]+>', '', a)
         a = re.sub(r'\s+', ' ', a).strip()
         # Pattern #6 (bold question + plain paragraph answer) doesn't consume
@@ -1573,6 +1577,21 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     # renders "A:" as visible page text (see extract_faq_schema for the
     # matching JSON-LD-side fix).
     body_md = re.sub(r'(\*\*[^*\n]+\?\*\*)\s*\n+A[:.]\s+', r'\1\n', body_md)
+    # Same leak, different source convention: plain "Q: ...\nA: ..." lines
+    # (no bold markers) render both labels as literal visible text. Bolds
+    # the question and strips the "A:" label so it renders the same as the
+    # bold-question convention above. Confirmed live on 101 of 540 posts
+    # (19%, GEO re-audit 2026-07-26) — extract_faq_schema's pattern #2
+    # already consumes both labels for the JSON-LD side; this is the
+    # matching visible-HTML fix.
+    body_md = re.sub(r'^Q[:.]?\s+(.+?)\n+A[:.]?\s+', lambda m: f'**{m.group(1).strip()}**\n',
+                      body_md, flags=re.MULTILINE)
+    # Third source convention: bullet-list "* Q: ...\nA: ..." lines.
+    body_md = re.sub(r'^\*\s+Q[:.]?\s+(.+?)\n+A[:.]?\s+', lambda m: f'**{m.group(1).strip()}**\n',
+                      body_md, flags=re.MULTILINE)
+    # Fourth: numbered-list "N. Q: ...\nA: ..." lines.
+    body_md = re.sub(r'^\d+\.\s+Q[:.]?\s+(.+?)\n+A[:.]?\s+', lambda m: f'**{m.group(1).strip()}**\n',
+                      body_md, flags=re.MULTILINE)
     out_slug = slug if locale == 'en' else f'{slug}-{locale}'
     hreflang_links = '\n'.join(
         f'<link rel="alternate" hreflang="{lg}" href="https://sifufinds.com/blog/{slug if lg == "en" else slug + "-" + lg}/">'
@@ -1632,6 +1651,19 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     except Exception:
         pub_date = 'June 2026'
         pub_iso = '2026-06-07'
+
+    # dateModified must reflect a genuine content edit, not just today's
+    # regen — hardcoding it to always equal datePublished (pre-2026-07-26)
+    # made llms.txt's "factual claims updated within 24 hours" claim
+    # unsubstantiated (GEO audit finding). Callers that actually rewrite a
+    # post's body/excerpt (agent_content_backfill.py, manual content fixes)
+    # set post['updated_at']; everything else correctly falls back to its
+    # original publish date.
+    updated_at = post.get('updated_at', published_at)
+    try:
+        mod_iso = datetime.fromisoformat(updated_at.replace('Z', '+00:00')).strftime('%Y-%m-%d')
+    except Exception:
+        mod_iso = pub_iso
 
     canonical = f'https://sifufinds.com/blog/{out_slug}/'
     canonical_override = post.get('canonical_override', '') if locale == 'en' else ''
@@ -1697,7 +1729,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     "logo": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/android-chrome-192x192.png", "width": 192, "height": 192}}
   }},
   "datePublished": "{pub_iso}",
-  "dateModified": "{pub_iso}",
+  "dateModified": "{mod_iso}",
   "mainEntityOfPage": "{canonical}",
   "keywords": "{', '.join(tags)}",
   "articleSection": "{category}",
