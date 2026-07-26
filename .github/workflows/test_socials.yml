@@ -70,10 +70,25 @@ jobs:
           results = {}
 
           if test_facebook:
+              import requests
               from agent3_social import post_facebook
               print("--- Testing Facebook ---")
               results["facebook"] = post_facebook(f"🧪 {message}")
               print(f"Facebook result: {results['facebook']}")
+
+              print("--- Checking for linked Instagram Business Account ---")
+              page_id = os.environ.get("FACEBOOK_PAGE_ID", "")
+              page_token = os.environ.get("FACEBOOK_PAGE_ACCESS_TOKEN", "")
+              try:
+                  r = requests.get(
+                      f"https://graph.facebook.com/v19.0/{page_id}",
+                      params={"fields": "instagram_business_account", "access_token": page_token},
+                      timeout=10,
+                  )
+                  ig = r.json().get("instagram_business_account", {}).get("id")
+                  print(f"Instagram Business Account ID: {ig or 'none linked to this Page'}")
+              except Exception as e:
+                  print(f"Instagram lookup failed: {e}")
 
           if test_twitter:
               from agent_twitter_posts import _post_tweet
