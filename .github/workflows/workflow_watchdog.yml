@@ -22,7 +22,6 @@ on:
       - "Telegram Channel Growth — Post in African groups 3x/day"
       - "Telegram Brand Offers — Post every 3 hours"
       - "Telegram Outreach — Scrape + DM sequence"
-      - "Traffic Report — GA4 + Search Console daily snapshot"
       - "X (Twitter) Posts — 4x daily rotating content"
       - "Update Countries Live Data — Bookmaker Offers & Country Stats"
       - "SifuKaii Predicts — Scrape predictz.com every 15 minutes"
@@ -74,7 +73,6 @@ jobs:
             "Telegram Channel Growth"*)                                                   WF=telegram_growth.yml ;;
             "Telegram Brand Offers"*)                                                     WF=telegram_offers.yml ;;
             "Telegram Outreach"*)                                                         WF=telegram_outreach.yml ;;
-            "Traffic Report"*)                                                            WF=traffic_report.yml ;;
             "X (Twitter) Posts"*)                                                         WF=twitter_posts.yml ;;
             "Update Countries Live Data"*)                                                WF=update_countries_live.yml ;;
             "SifuKaii Predicts"*)                                                        WF=update_predictions.yml ;;

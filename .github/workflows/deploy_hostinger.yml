@@ -12,7 +12,6 @@ on:
       - ".github/workflows/seo_sitemap.yml"
       - ".github/workflows/telegram_growth.yml"
       - ".github/workflows/telegram_offers.yml"
-      - ".github/workflows/traffic_report.yml"
       - "*.md"
       - "*.py"
       - "pyproject.toml"
