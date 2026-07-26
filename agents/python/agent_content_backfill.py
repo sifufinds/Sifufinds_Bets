@@ -43,13 +43,30 @@ MIN_WORDS = 1000          # CLAUDE.md content standard
 BATCH_SIZE = 4             # posts expanded per run — keeps quality + API usage in check
 MAX_ATTEMPTS = 3           # give up on a post after this many failed expansions
 
+# Formulaic AI-tell openers CLAUDE.md's Voice & Language Rules ban outright
+# ("avoid formulaic openers"). Found live on 68 of 540 posts (12.6%) in the
+# 2026-07-26 GEO audit — too many to hand-rewrite safely in one sitting
+# without real risk of factual drift, so routed through this pipeline's
+# existing batched, tracked, LLM-rewrite process instead of a one-shot fix.
+_FORMULAIC_OPENER = re.compile(
+    r"^(In the world of|When it comes to|In today's fast-paced|"
+    r"The world of \w+ is always|As the |As we continue)",
+    re.IGNORECASE,
+)
+
+
+def _has_formulaic_opener(body: str) -> bool:
+    first_line = body.strip().split("\n", 1)[0]
+    return bool(_FORMULAIC_OPENER.search(first_line))
+
+
 SYSTEM_PROMPT = """You are the Content Editor for SifuFinds (sifufinds.com), Africa's #1 betting comparison website.
 
 You are EXPANDING an existing, already-published blog post to meet the current content standard. You are NOT rewriting it from scratch — preserve the original facts, tone, keyword focus, and any specific matches/teams/odds mentioned. Add depth, not filler.
 
 REQUIREMENTS for the returned post body:
 - Total length: 1000-1400 words of substantive markdown
-- Keep the original opening paragraph(s) essentially intact
+- Keep the original opening paragraph(s) essentially intact, UNLESS the very first sentence uses a formulaic AI-sounding opener ("In the world of...", "When it comes to...", "In today's fast-paced...", "The world of X is always exciting...", "As the ... approaches/continues..."). If it does, rewrite ONLY that first sentence or two to state the core fact directly and punchily instead — keep every other fact, name, and figure in the opening paragraph unchanged.
 - Add real analytical depth: context, comparisons, what it means for bettors, relevant stats
 - If the post doesn't already have a markdown comparison table (a table using | and --- syntax), add one relevant to the topic (e.g. odds comparison, bookmaker features, or key stats)
 - End with a "## FAQ" heading followed by exactly 4 question/answer pairs in this exact format (this is required for schema.org markup — follow it precisely):
@@ -95,6 +112,8 @@ def _needs_expansion(post: dict) -> bool:
     if _word_count(body) < MIN_WORDS:
         return True
     if not extract_faq_schema(body):
+        return True
+    if _has_formulaic_opener(body):
         return True
     return False
 

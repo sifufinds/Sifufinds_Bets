@@ -166,6 +166,23 @@ for i, pa in enumerate(indexed_posts):
             issue(MEDIUM, 'potential_duplicate', pa['slug'],
                   f"High title overlap ({len(shared)} meaningful tokens) with {pb['slug']!r} — consider noindex")
 
+# ── 4b. Formulaic AI-tell openers (visibility only — not auto-fixable here) ──
+# CLAUDE.md's Voice & Language Rules ban these outright. 68 of 540 posts
+# (12.6%) had one as of the 2026-07-26 GEO audit. Not mechanically fixable
+# (needs an LLM rewrite preserving facts) — agents/python/agent_content_backfill.py
+# now queues these for its existing batched rewrite pipeline; this is just the
+# tracking signal so the remaining count stays visible in every audit run.
+_FORMULAIC_OPENER = re.compile(
+    r"^(In the world of|When it comes to|In today's fast-paced|"
+    r"The world of \w+ is always|As the |As we continue)", re.IGNORECASE)
+_opener_hits = [p['slug'] for p in posts
+                if _FORMULAIC_OPENER.search(p.get('body', '').strip().split('\n', 1)[0])]
+if _opener_hits:
+    issue(INFO, 'formulaic_opener', f'{len(_opener_hits)} posts',
+          f"{len(_opener_hits)} posts still open with a banned formulaic phrase "
+          f"(see CLAUDE.md Voice & Language Rules) — queued in "
+          f"agent_content_backfill.py's rewrite pipeline, not auto-fixable here")
+
 # ── 5. Key static pages audit ─────────────────────────────────────────────────
 STATIC_CHECKS = [
     ('index.html', 'homepage'),
