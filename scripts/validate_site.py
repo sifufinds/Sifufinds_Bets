@@ -142,6 +142,47 @@ def find_invalid_jsonld(root: str) -> dict[str, str]:
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
+# ── CHECK 4: feature-image tag-safety regression guard ──────────────────────
+# Guards against a repeat of the 2026-07-27 incident: a Men's FIFA World
+# Ranking post shipped live with a FIFA Women's World Cup 2023 tournament
+# graphic as its feature image, because governing-body/competition tags
+# (FIFA, AFCON, NBA...) and bare country tags (Morocco) were trusted as photo-
+# search subjects with no way to know which of many unrelated tournaments/
+# editions/genders they might resolve to. See generate_blog_feature_image.py's
+# _ORG_AND_COMPETITION_WORDS / _COMPETITION_STRUCTURE_WORDS and
+# player_photo.py's _gender_mismatch / qualify_entity_query for the actual
+# fixes — this check exists purely so a future edit to those filters that
+# quietly reopens the gap (or over-tightens it) fails loudly here instead of
+# shipping silently.
+
+_KNOWN_RISKY_TAGS = [
+    "FIFA", "UEFA", "CAF", "AFCON", "AFCON 2026", "NBA", "World Ranking",
+    "African Cup of Nations", "Africa Cup of Nations", "T20 World Cup",
+    "Women's T20 World Cup", "CAF Champions League", "Premier League",
+    "Champions League", "Grand Slam", "Commonwealth Games", "US Open",
+    "Queen's Club Championship", "County Championship", "World Cup Bracket",
+    "EFL Trophy", "Six Nations", "Europa League",
+]
+_KNOWN_SAFE_TAGS = [
+    "Real Madrid", "Morocco", "Lakers", "Chelsea", "Super Eagles",
+    "Marc Cucurella", "New York Knicks", "Cape Verde", "LeBron James",
+]
+
+
+def check_feature_image_tag_safety() -> list[str]:
+    sys.path.insert(0, os.path.join(SITE_ROOT, "scripts"))
+    from generate_blog_feature_image import _looks_like_entity_candidate  # noqa: E402
+
+    problems = []
+    for tag in _KNOWN_RISKY_TAGS:
+        if _looks_like_entity_candidate(tag):
+            problems.append(f"'{tag}' should be BLOCKED as a photo-search candidate but is now allowed")
+    for tag in _KNOWN_SAFE_TAGS:
+        if not _looks_like_entity_candidate(tag):
+            problems.append(f"'{tag}' should be ALLOWED as a photo-search candidate but is now blocked")
+    return problems
+
+
 def main() -> None:
     strict = "--strict" in sys.argv
     errors = 0
@@ -222,6 +263,24 @@ def main() -> None:
         errors += len(invalid_jsonld)
     else:
         print("\n✅ CHECK 3 PASSED — all JSON-LD blocks are valid")
+
+    # Check 4 — feature-image tag-safety regression guard
+    tag_safety_problems = check_feature_image_tag_safety()
+    if tag_safety_problems:
+        print(f"\n🚨 CHECK 4 FAILED — {len(tag_safety_problems)} feature-image tag-safety issue(s)\n")
+        for p in tag_safety_problems:
+            print(f"   ✗  {p}")
+        print()
+        print("   Fix: see generate_blog_feature_image.py's _ORG_AND_COMPETITION_WORDS /")
+        print("   _COMPETITION_STRUCTURE_WORDS — a change there just broke a known-good")
+        print("   or known-risky tag. (Separately, run")
+        print("   `python3 scripts/audit_feature_images.py` periodically as a live-content")
+        print("   heal — it flags posts whose tags still route to a risky candidate under")
+        print("   the pre-2026-07-27 filter; not a blocking check since a post can be fully")
+        print("   fixed on disk yet still trip that historical comparison.)\n")
+        errors += len(tag_safety_problems)
+    else:
+        print("\n✅ CHECK 4 PASSED — feature-image tag-safety guard holds")
 
     # Summary
     print("=" * 70)
