@@ -1,9 +1,10 @@
 """
 agent_transfer_post.py — Live Transfer News Bot for SifuFinds
 
-Watches the dedicated "transfers" news feeds (BBC/Guardian/Mirror + DuckDuckGo
-+ Google News search, all via utils/news_fetcher.py), and when a genuinely new
-transfer story appears:
+Watches the dedicated "transfers" news feeds (BBC Sport, Sky Sports News, ESPN,
+Guardian + DuckDuckGo/Google News search, including named searches for
+Fabrizio Romano and David Ornstein, all via utils/news_fetcher.py), and when a
+genuinely new transfer story appears:
 
   1. Writes a full researched blog article via agent_sports_blog.generate_post
      ("transfers" category — same anti-hallucination pipeline as every other
@@ -24,9 +25,13 @@ transfer story appears:
      a public URL (see note).
   4. Posts a short "breaking news" bulletin (Fabrizio Romano / Sports Arena
      Africa style) to Telegram, Facebook, Instagram, and X, each linking back
-     to the new blog article. Pure transfer news only — no bookmaker CTA, no
-     bonus mention, no odds. This is a standalone news feed on its own
-     30-minute schedule, independent of the site's betting-tips/bonus posting
+     to the new blog article and always crediting the outlet the story came
+     from via a "📰 Source: X" line (see primary_source() / build_bulletin_lines()
+     below) — never posted as an unsourced claim. Pure transfer news only — no
+     bookmaker CTA, no bonus mention, no odds. This is a standalone news feed
+     on its own 5-minute schedule (the shortest interval GitHub Actions'
+     scheduler reliably supports — the closest a cron job can get to posting
+     "as it happens"), independent of the site's betting-tips/bonus posting
      cadence (see agent_accumulator_post.py / agent_telegram_offers.py).
 
 Why Instagram can't reuse the per-post graphic like Telegram/Facebook do:
@@ -40,8 +45,8 @@ real per-post image; Instagram uses the sitewide generic card in that case.
 
 Duplicate protection: skips the whole cycle (no blog post, no social post) if
 the generated story's title closely matches one already in blog/posts.json —
-the same recent-title check agent_sports_blog.py's own run() uses — so a 30
-minute cron doesn't repost the same still-trending rumour every cycle.
+the same recent-title check agent_sports_blog.py's own run() uses — so a
+5 minute cron doesn't repost the same still-trending rumour every cycle.
 
 Usage:
   python3 agent_transfer_post.py                # normal run (all 4 platforms)
@@ -174,7 +179,7 @@ def _sentence_case(s: str) -> str:
     return s[0].upper() + s[1:] if s else s
 
 
-def build_bulletin_lines(facts: dict) -> list[str]:
+def build_bulletin_lines(facts: dict, source: str | None = None) -> list[str]:
     flag = flag_for(facts.get("nationality"))
     headline = facts.get("headline_fact") or facts.get("player") or "Transfer news"
     lines = [f"🚨 {(flag + ' ') if flag else ''}{headline}".strip(), ""]
@@ -194,7 +199,20 @@ def build_bulletin_lines(facts: dict) -> list[str]:
         lines.append(" · ".join(detail_bits))
         lines.append("")
 
+    # Every transfer bulletin quotes where the story came from — never posted
+    # as an unsourced claim.
+    lines.append(f"📰 Source: {source}" if source else "📰 Source: multiple outlets")
+    lines.append("")
+
     return lines
+
+
+def primary_source(post: dict) -> str | None:
+    """First outlet credited for this story's headlines (see _sources in
+    agent_sports_blog.generate_post) — the name shown in every social
+    bulletin's "Source:" line so no transfer post goes out unattributed."""
+    sources = post.get("_sources") or []
+    return sources[0] if sources else None
 
 
 _REACT_PROMPT_TG = "💬 Tap a reaction below — 🔥 big move · 😳 shock · 🤔 not convinced"
@@ -202,7 +220,7 @@ _REACT_PROMPT_FB = "💬 React below — 🔥 if this is a good move, 😳 if it
 
 
 def build_telegram_caption(facts: dict, post: dict) -> str:
-    lines = build_bulletin_lines(facts)
+    lines = build_bulletin_lines(facts, source=primary_source(post))
     blog_url = f"{SITE_URL}/blog/{post['slug']}/"
     return (
         "\n".join(lines) +
@@ -212,7 +230,7 @@ def build_telegram_caption(facts: dict, post: dict) -> str:
 
 
 def build_facebook_caption(facts: dict, post: dict) -> str:
-    lines = build_bulletin_lines(facts)
+    lines = build_bulletin_lines(facts, source=primary_source(post))
     blog_url = f"{SITE_URL}/blog/{post['slug']}/"
     hashtags = "#TransferNews #SifuFinds #Football #TransferWindow"
     return (
@@ -224,7 +242,7 @@ def build_facebook_caption(facts: dict, post: dict) -> str:
 
 
 def build_instagram_caption(facts: dict, post: dict) -> str:
-    lines = build_bulletin_lines(facts)
+    lines = build_bulletin_lines(facts, source=primary_source(post))
     hashtags = "#TransferNews #SifuFinds #Football #TransferWindow #FootballNews"
     return (
         "\n".join(lines) +
@@ -255,7 +273,7 @@ def _trim_to_limit(text: str, limit: int = 280) -> str:
 
 
 def build_twitter_text(facts: dict, post: dict) -> str:
-    lines = build_bulletin_lines(facts)
+    lines = build_bulletin_lines(facts, source=primary_source(post))
     blog_url = f"{SITE_URL}/blog/{post['slug']}/"
     tweet = (
         "\n".join(lines) +

@@ -71,6 +71,11 @@ SEARCH_QUERIES: dict[str, list[str]] = {
         "premier league transfer rumours today",
         "european club transfer window news today",
         "african player transfer news today",
+        "Fabrizio Romano here we go transfer",
+        "David Ornstein Athletic transfer exclusive",
+        "Sky Sports News transfer deadline day",
+        "ESPN FC transfer news today",
+        "BBC Sport transfer news today",
     ],
     "basketball": [
         "NBA basketball news today",

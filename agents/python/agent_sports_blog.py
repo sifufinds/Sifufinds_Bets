@@ -130,6 +130,7 @@ ACCURACY RULES — NON-NEGOTIABLE:
 - If a headline says "Villa beat Freiburg", write about that specific match
 - Never fabricate odds, scores, or transfer fees — estimate odds in realistic ranges (1.30–12.00)
 - If the news shows the story is X hours old, reflect that timing accurately in the article
+- Attribute the story to the outlet that reported it, by name, at least once in the article (e.g. "as per BBC Sport", "Sky Sports News reports", "according to Fabrizio Romano") — the source for each headline is shown in brackets in the headlines list below
 
 BRAND VOICE:
 - Confident, knowledgeable, street-smart African analyst
