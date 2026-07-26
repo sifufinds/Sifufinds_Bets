@@ -318,13 +318,30 @@ def find_entity_image(name: str, context: Optional[list[str]] = None) -> Optiona
     return search_news_photo(name, context) or fetch_entity_photo(name)
 
 
+_NAME_PLACEHOLDERS = {"unknown", "player", "n/a", "tbd", "none", "unnamed", "club"}
+
+
 def looks_like_person_name(name: str) -> bool:
-    """Light heuristic: two or more capitalised words, no digits — filters out
-    junk like 'Unknown Player' or club names accidentally passed in."""
+    """Light heuristic filtering out junk like 'Unknown Player' or a club
+    name accidentally passed in, while still accepting single-word football
+    mononyms (Rodri, Casemiro, Neymar, Militão) — very common in transfer
+    news and previously excluded entirely by a hard "2+ words" rule, which
+    meant single-name players never got a real photo lookup at all."""
     name = (name or "").strip()
     if not name:
         return False
     if re.search(r"\d", name):
         return False
+    if name.lower() in _NAME_PLACEHOLDERS:
+        return False
     words = [w for w in name.split() if w]
-    return len(words) >= 2 and all(w[0].isupper() for w in words if w[0].isalpha())
+    if not words:
+        return False
+    if len(words) >= 2:
+        return all(w[0].isupper() for w in words if w[0].isalpha())
+    # Single word: require proper case (First-letter-upper, rest lower) and
+    # a plausible length — excludes all-caps abbreviations like "TBD" or
+    # "NBA" (their rest-of-word isn't lowercase) while still accepting a
+    # real mononym.
+    w = words[0]
+    return len(w) >= 4 and w[0].isupper() and w[1:].islower()
