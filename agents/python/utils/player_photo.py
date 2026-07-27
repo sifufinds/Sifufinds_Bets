@@ -67,6 +67,83 @@ _ENTITY_HINTS = _FOOTBALL_HINTS + (
     "head coach", "football manager", "manager (association football)",
 )
 
+# Per-sport hint subsets — used to *restrict* _is_entity_context to only the
+# sport a given post is actually about, instead of "any sport at all" (which
+# is all the flat _ENTITY_HINTS tuple above can express). Real incident
+# (2026-07-27): a basketball post's bare 'South Africa' country tag matched
+# _is_entity_context via _ENTITY_HINTS (a description mentioning "rugby
+# union" is still *some* sport), and fetch_entity_photo's own fallback
+# search ("South Africa sport") surfaced South Africa's rugby team — the
+# wrong sport for a basketball article. Keyed by scripts/generate_blog_
+# feature_image.py's own category strings so a post's category can be
+# passed straight through with no translation layer.
+_SPORT_HINT_GROUPS: dict[str, tuple[str, ...]] = {
+    "basketball": (
+        "basketball player", "basketball team", "point guard",
+        "shooting guard", "small forward", "power forward",
+        "national basketball association", "head coach",
+    ),
+    "cricket": ("cricketer", "cricket team"),
+    "rugby": ("rugby union", "rugby league"),
+    "tennis": ("tennis player",),
+    "boxing": ("boxer",),
+    "f1": ("racing driver", "formula one"),
+}
+
+
+# Title-level keyword hints for the same sports as _SPORT_HINT_GROUPS, used
+# by _sport_mismatch() below to catch a wrong-sport *news article* (as
+# opposed to _SPORT_HINT_GROUPS, which vets a Wikipedia page's own
+# description/extract). Deliberately excludes 'football' as a key — this
+# codebase's overwhelming default/majority sport uses far too many
+# competition names (AFCON, Premier League, Champions League, ...) to
+# enumerate as a fixed "this title is football" hint list, so rather than
+# trying to detect football specifically, _sport_mismatch requires *positive*
+# confirmation of the tracked sport's own keywords instead (see its
+# docstring) — that's a football-shaped title with no basketball/cricket/
+# etc. wording rejects itself automatically, with no need to name football
+# at all.
+_SPORT_TITLE_HINTS: dict[str, tuple[str, ...]] = {
+    "basketball": ("basketball", "nba", "hoops", "d'tigers", "afrobasket", " bal "),
+    "cricket": (
+        "cricket", "cricketer", " odi", "t20", "test match", "ipl",
+        "wicket", "batsman", "bowler", "innings",
+    ),
+    "rugby": ("rugby",),
+    "tennis": ("tennis", "wimbledon", "atp", "wta", "grand slam"),
+    "boxing": ("boxing", "boxer", "heavyweight", "wbc", "wba", "ibf", "knockout"),
+    "f1": ("formula 1", "formula one", " f1 ", "grand prix", "pole position"),
+}
+
+
+def _sport_mismatch(sport: str, title: str) -> bool:
+    """True when `sport` names a specific tracked sport and `title` doesn't
+    contain any of that sport's own keywords — the same shape as
+    _gender_mismatch, but for sport rather than gender. Requires *positive*
+    confirmation rather than trying to detect football specifically (see
+    _SPORT_TITLE_HINTS's docstring for why football can't be enumerated the
+    same way) — this rejects more matches than a negative-only check would
+    (a genuine basketball article whose title doesn't happen to say
+    "basketball"/"NBA" also gets rejected), but that's the safe failure
+    direction this codebase has consistently chosen elsewhere: falling back
+    to the Wikipedia-verified photo (or no photo) beats risking a wrong one.
+
+    Root cause of a live incident (2026-07-27): a basketball post's 'Nigeria'
+    tag correctly resolved via fetch_entity_photo (sport-aware, see above)
+    to the Nigeria Basketball Federation logo, but search_news_photo(), which
+    verified_entity_photo() tries *first* and prefers over the Wikipedia
+    result, has no sport awareness at all — it only checks that "Nigeria"
+    appears in a result's title, true of an AFCON *football* recap among
+    countless others — and overrode the correct basketball photo with an
+    unrelated Sky Sports football photo. Returns False (allow) whenever
+    `sport` isn't one of these specific tracked sports, preserving existing
+    behaviour for football/unset."""
+    sport_l = (sport or "").lower()
+    if sport_l not in _SPORT_TITLE_HINTS:
+        return False
+    title_l = f" {title.lower()} "
+    return not any(h in title_l for h in _SPORT_TITLE_HINTS[sport_l])
+
 
 _WOMEN_HINTS = ("women's", "women", "womens", "female")
 
@@ -186,7 +263,7 @@ def _get_summary(title: str) -> Optional[dict]:
 
 _COUNTRY_DESC_HINTS = (
     "country in", "sovereign state in", "island nation", "island country",
-    "country located in", "country on the",
+    "country located in", "country on the", "country within",
 )
 
 
@@ -207,13 +284,47 @@ def _looks_like_bare_country(name: str) -> bool:
     return any(hint in desc for hint in _COUNTRY_DESC_HINTS)
 
 
-def qualify_entity_query(name: str, womens_context: bool = False) -> str:
+
+# Wikipedia's own naming convention for each sport's men's national side —
+# used to rewrite a bare country tag to an unambiguous title. Deliberately
+# does NOT include every sport this codebase covers: basketball has no
+# single reliable Wikipedia-title convention across the African national
+# teams this site writes about most often (results vary between "<Country>
+# national basketball team", "<Country> men's national basketball team",
+# and redirects that don't exist at all), and tennis/boxing/F1 have no
+# national-team concept in the first place — for any of those, this
+# function deliberately falls through to returning `name` unchanged, so the
+# entity-context/football-context checks downstream correctly find no
+# football-team match and the caller moves on rather than silently
+# resolving to the wrong sport's team.
+_SPORT_TEAM_SUFFIX = {
+    "cricket": "cricket team",
+    "rugby": "national rugby union team",
+}
+
+
+def qualify_entity_query(name: str, womens_context: bool = False, sport: str = "") -> str:
     """Rewrites a bare country name to its unambiguous Wikipedia title before
     either photo tier ever runs a query. '<Country> national football team'
     is the long-standing Wikipedia convention for the men's side; the
     women's side is always titled '<Country> women's national football
     team' explicitly. Any other name — a player, a club, a name that's
     already qualified — is returned unchanged.
+
+    `sport` should be the post's own category (see
+    scripts/generate_blog_feature_image.py's CATEGORY_LABELS keys —
+    'cricket', 'rugby', 'basketball', 'football', ...) so a bare country tag
+    resolves to the *correct sport's* team, not always football. Root cause
+    of a live incident (2026-07-27): a cricket post tagged
+    ['cricket', 'county cricket', 'England', 'IPL'] and a basketball post
+    tagged ['NBA', ..., 'Nigeria', 'Kenya', 'South Africa', 'Ghana'] both
+    resolved their country tag to '<Country> national football team' —
+    the hardcoded, sport-unaware default — and shipped with football
+    players as the feature image on articles that had nothing to do with
+    football. Defaults to football (`sport` unset/unrecognised) purely for
+    backward compatibility with every existing call site; the fix is for
+    callers to actually pass their own category through, which
+    generate_blog_feature_image.find_subject_photo() now does.
 
     `womens_context` must come from the calling post's own signal (title,
     tags, excerpt — see generate_blog_feature_image._post_is_womens_context),
@@ -229,7 +340,16 @@ def qualify_entity_query(name: str, womens_context: bool = False) -> str:
     the *resolved* query against a candidate, never the source post."""
     name = (name or "").strip()
     if name and _looks_like_bare_country(name):
-        side = "women's national football team" if womens_context else "national football team"
+        base = _SPORT_TEAM_SUFFIX.get((sport or "").lower())
+        if base is None:
+            if (sport or "").lower() in ("basketball", "tennis", "boxing", "f1"):
+                # No reliable single Wikipedia title for these — return the
+                # bare name unchanged so the entity-context check downstream
+                # finds no football-team match either, rather than silently
+                # defaulting to football.
+                return name
+            base = "national football team"
+        side = f"women's {base}" if womens_context else base
         return f"{name} {side}"
     return name
 
@@ -307,9 +427,18 @@ def fetch_player_photo(name: str, context_clubs: Optional[list[str]] = None) -> 
     return None
 
 
-def _is_entity_context(data: dict) -> bool:
+def _is_entity_context(data: dict, sport: str = "") -> bool:
+    """Checks a Wikipedia summary against sport-specific hints when `sport`
+    names a group in _SPORT_HINT_GROUPS (basketball/cricket/rugby/tennis/
+    boxing/f1) — so a basketball post can't be satisfied by a page that's
+    only ever described in rugby/football terms. Falls back to the full,
+    any-sport _ENTITY_HINTS when `sport` is unset or is football/unrecognised
+    (e.g. 'transfers', 'sportnews', 'world-cup' — categories that aren't
+    literally a single sport), preserving existing behaviour for every
+    caller that predates this parameter."""
     haystack = f"{data.get('description', '')} {data.get('extract', '')}".lower()
-    return any(hint in haystack for hint in _ENTITY_HINTS)
+    hints = _SPORT_HINT_GROUPS.get((sport or "").lower(), _ENTITY_HINTS)
+    return any(hint in haystack for hint in hints)
 
 
 def _shares_significant_word(name: str, candidate_title: str) -> bool:
@@ -328,7 +457,7 @@ def _shares_significant_word(name: str, candidate_title: str) -> bool:
     return bool(name_words & candidate_words)
 
 
-def fetch_entity_photo(name: str) -> Optional[str]:
+def fetch_entity_photo(name: str, sport: str = "") -> Optional[str]:
     """Like fetch_player_photo, but for any sports subject — a player, a
     club/national team, or a coach — used to source a real featured image
     for blog posts (see scripts/generate_blog_feature_image.py) instead of
@@ -339,26 +468,37 @@ def fetch_entity_photo(name: str) -> Optional[str]:
     as a sports subject, so a same-named unrelated Wikipedia page (a place,
     a film, an unrelated person) never gets picked up. Returns None rather
     than guess when nothing qualifies.
-    """
+
+    `sport` (a post's category — 'basketball', 'cricket', 'rugby', 'tennis',
+    'boxing', 'f1') restricts both the entity-context check (_is_entity_context)
+    and the search-fallback query to that specific sport. Without this, a
+    bare country name resolves via whichever sport Wikipedia's generic
+    "{name} sport" search happens to surface first for that country — found
+    2026-07-27 shipping South Africa's *rugby* team photo on a *basketball*
+    (BAL) article, after an earlier, separate incident shipped a *football*
+    photo on this same kind of basketball post before the country-qualifier
+    fix below existed. Unset/unrecognised `sport` keeps the original
+    any-sport behaviour for every pre-existing caller."""
     name = (name or "").strip()
     if not name or len(name) < 3:
         return None
 
     data = _get_summary(name)
-    if data and data.get("type") not in ("disambiguation", "no-extract") and _is_entity_context(data):
+    if data and data.get("type") not in ("disambiguation", "no-extract") and _is_entity_context(data, sport):
         haystack = f"{data.get('title', '')} {data.get('description', '')} {data.get('extract', '')}"
         if not _gender_mismatch(name, haystack):
             photo = _thumbnail_from_summary(data)
             if photo:
                 return photo
 
-    for candidate_title in _search_candidates(f"{name} sport"):
+    fallback_query = f"{name} {sport}" if sport in _SPORT_HINT_GROUPS else f"{name} sport"
+    for candidate_title in _search_candidates(fallback_query):
         if not _shares_significant_word(name, candidate_title):
             continue
         candidate = _get_summary(candidate_title)
         if not candidate or candidate.get("type") == "disambiguation":
             continue
-        if not _is_entity_context(candidate):
+        if not _is_entity_context(candidate, sport):
             continue
         haystack = f"{candidate_title} {candidate.get('description', '')} {candidate.get('extract', '')}"
         if _gender_mismatch(name, haystack):
@@ -401,7 +541,7 @@ def _ddgs_image_search(query: str, max_results: int = 6) -> list[dict]:
         return []
 
 
-def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> Optional[str]:
+def search_news_photo(name: str, context_clubs: Optional[list[str]] = None, sport: str = "") -> Optional[str]:
     """Search sports news outlets and social platforms for a real, current
     photo of the named subject, via DuckDuckGo image search (free, no key —
     the `ddgs` package already used elsewhere in this codebase). This is a
@@ -478,6 +618,15 @@ def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> O
             if _looks_like_product_shot(title):
                 continue
             if _looks_like_news_column_graphic(title):
+                continue
+            # Same idea as the gender-mismatch check above, but for sport:
+            # "every word of the name appears in the title" is also
+            # trivially true for a bare country query on an article about a
+            # *different* sport entirely (an AFCON football recap legitimately
+            # says "Nigeria") — see _sport_mismatch's docstring for the live
+            # incident (a basketball post's correct Wikipedia-sourced photo
+            # got overridden by an unrelated football photo here).
+            if _sport_mismatch(sport, title_raw):
                 continue
             return image_url
         return None
