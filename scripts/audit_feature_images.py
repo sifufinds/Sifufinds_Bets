@@ -38,6 +38,21 @@ from generate_blog_feature_image import (  # noqa: E402
     _looks_like_entity_candidate,
     generate_feature_image,
 )
+from generate_review_og_images import BOOKMAKERS as _REVIEW_SLUGS  # noqa: E402
+
+# Bookmaker review posts (e.g. 'bet9ja-review') are real entries in
+# posts.json but their feature image is owned entirely by
+# generate_review_og_images.py — a purpose-built generator that composites
+# the bookmaker's own real logo (assets/logos/), never a sports photo. Their
+# white-logo-on-brand-colour card layout still reads as "photo-mode" under
+# the pixel probe below (the logo often isn't pure white at the probe point),
+# so a full `--all-photo-mode` sweep that doesn't know about this second
+# generator will forcibly regenerate them through generate_feature_image()
+# instead — a real incident (2026-07-27): a "Bet9ja Review" page ended up
+# showing the Nigeria Football Federation crest (from a "Nigeria" tag)
+# instead of the Bet9ja logo. Both post-selection functions below must
+# exclude these slugs.
+_NON_BLOG_PIPELINE_SLUGS = set(_REVIEW_SLUGS)
 
 POSTS_JSON = ROOT / "blog" / "posts.json"
 
@@ -78,7 +93,7 @@ def find_suspects(posts: list[dict]) -> list[dict]:
     suspects = []
     for post in posts:
         slug = post.get("slug")
-        if not slug:
+        if not slug or slug in _NON_BLOG_PIPELINE_SLUGS:
             continue
         png_path = OUT_DIR / f"{slug}.png"
         if not png_path.exists() or not is_photo_mode(png_path):
@@ -98,7 +113,7 @@ def find_all_photo_mode(posts: list[dict]) -> list[dict]:
     out = []
     for post in posts:
         slug = post.get("slug")
-        if not slug:
+        if not slug or slug in _NON_BLOG_PIPELINE_SLUGS:
             continue
         png_path = OUT_DIR / f"{slug}.png"
         if png_path.exists() and is_photo_mode(png_path):
