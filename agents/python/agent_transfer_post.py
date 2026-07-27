@@ -65,7 +65,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent / ".env")
 sys.path.insert(0, str(Path(__file__).parent))
 
-from llm import ask
+from llm import ask, AIProvidersExhausted
 from utils.logger import log
 from utils.player_photo import find_player_image, looks_like_person_name
 from agent_sports_blog import generate_post, load_posts, save_posts
@@ -314,7 +314,17 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     recent_titles = {p["title"].lower()[:40] for p in existing[:40]}
 
     print("📡 Generating transfer news article from live feeds...")
-    post = generate_post("transfers")
+    try:
+        post = generate_post("transfers")
+    except AIProvidersExhausted as e:
+        # A real infra failure, not "no fresh news" — fresh stories may well
+        # exist this cycle, the AI backend just can't write them up right
+        # now. Must surface as a hard failure (not the soft skip below) so
+        # the workflow exits non-zero and the retry/watchdog workflows catch
+        # it, instead of silently doing nothing until the next cron tick.
+        print(f"  ✗ {e}")
+        log("transfer_post", "generate", "failed", str(e))
+        raise
     if post is None:
         print("⚠ No fresh transfer news available this cycle — nothing to post.")
         log("transfer_post", "generate", "skipped", "no fresh news")

@@ -23,6 +23,17 @@ from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent / ".env")
 
+
+class AIProvidersExhausted(RuntimeError):
+    """Every configured LLM provider is rate-limited or over its daily quota.
+
+    Distinct from a bare RuntimeError so callers can tell "the AI backend is
+    down" (an infra failure worth retrying/alerting on) apart from ordinary
+    content-generation problems (bad JSON, no fresh news) that are fine to
+    skip silently. See agent_sports_blog.generate_post for the split.
+    """
+
+
 _groq_key      = os.getenv("GROQ_API_KEY", "")
 _gemini_key    = os.getenv("GEMINI_API_KEY", "")
 _anthropic_key = os.getenv("ANTHROPIC_API_KEY", "")
@@ -173,12 +184,12 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
                 print(f"[llm] Gemini {model} rate-limited — trying next model")
                 last_err = e
         if last_err:
-            raise RuntimeError(
+            raise AIProvidersExhausted(
                 "All AI providers exhausted. Groq TPD resets at midnight UTC. "
                 "Gemini free tier requires billing to be enabled on the Google Cloud project."
             )
 
-    raise RuntimeError(
+    raise AIProvidersExhausted(
         "All AI providers exhausted or rate-limited. "
         "Groq TPD resets at midnight UTC."
     )

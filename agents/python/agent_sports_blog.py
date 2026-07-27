@@ -23,7 +23,7 @@ from typing import Optional
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from llm import ask
+from llm import ask, AIProvidersExhausted
 from config import SITE_URL, BRAND_NAME
 from utils.news_fetcher import fetch_category, format_for_prompt
 from utils.ticker_builder import build_and_save as update_ticker
@@ -270,6 +270,16 @@ Write the article now. Base it on the REAL news provided above — do not invent
     except json.JSONDecodeError as e:
         print(f"  ✗ JSON parse error: {e}")
         return None
+    except AIProvidersExhausted:
+        # Not the same as "no fresh news" — this is an infra failure (every
+        # LLM backend rate-limited or over quota). Swallowing it into a plain
+        # `return None` here made it indistinguishable from a benign skip, so
+        # callers (agent_transfer_post.py) logged it as "no fresh news" and
+        # exited 0, and no GitHub Actions retry/watchdog workflow ever saw a
+        # failure to act on — real, fresh stories went unposted for hours
+        # with nothing flagging it. Let it propagate so the caller's process
+        # exits non-zero and the existing retry infra actually retries it.
+        raise
     except Exception as e:
         print(f"  ✗ Error: {e}")
         return None
