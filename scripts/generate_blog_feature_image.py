@@ -53,7 +53,9 @@ OUT_DIR = ROOT / "assets" / "og"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "agents" / "python"))
-from utils.player_photo import fetch_entity_photo, qualify_entity_query, search_news_photo  # noqa: E402
+from utils.player_photo import (  # noqa: E402
+    fetch_entity_photo, looks_like_person_name, qualify_entity_query, search_news_photo,
+)
 
 _PHOTO_HEADERS = {
     "User-Agent": "SifuFindsBot/1.0 (https://sifufinds.com; contact: kai.s.manyeh@gmail.com)",
@@ -290,6 +292,55 @@ from feature_image_tag_filter import (  # noqa: E402
 )
 
 
+def _looks_like_full_person_name(tag: str) -> bool:
+    """True for a tag shaped like a full person name (2+ capitalized words,
+    e.g. 'Bruno Fernandes', 'Erling Haaland') — used only to *prioritise*
+    candidate order below, never to reject anything.
+
+    Root cause this exists for (found 2026-07-27 auditing feature images):
+    a transfer post tagged ['Transfers', 'Juventus', 'Bruno Fernandes',
+    'Chelsea', 'Napoli'] tried 'Juventus' first (plain tag order) and
+    search_news_photo('Juventus') surfaced an old Cristiano Ronaldo photo —
+    a real, verifiable footballer, so every existing safety check (Wikipedia
+    entity-context, gender-match) passed, yet the person shown had nothing
+    to do with this specific story. A bare club/country query has no way to
+    prefer 'a photo relevant to this article' over 'any photo tagged with
+    this club', whereas a full person name is inherently much less
+    ambiguous. Since transfer headlines are almost always structured around
+    a named player, trying full-name tags first (before single-word club/
+    country tags reachable at the same position) fixes the common case
+    without changing anything for posts that only ever had club/country
+    tags to begin with."""
+    words = tag.split()
+    return len(words) >= 2 and all(w[0].isupper() for w in words if w[0].isalpha())
+
+
+def _candidate_priority(tag: str) -> int:
+    """Lower sorts first. Three tiers, least to most ambiguous as a photo
+    search subject:
+      0. Full person name (2+ capitalized words) — 'Bruno Fernandes'.
+      1. Single-word mononym shaped like a real surname — 'Barcola',
+         'Rodri' (looks_like_person_name's stricter single-word rule
+         already excludes short all-caps club acronyms here — see below).
+      2. Everything else — bare clubs/countries/acronyms ('PSG', 'Juventus',
+         'Real Madrid', 'Nigeria').
+
+    Tier 2 exists because a bare club/country query is the least specific
+    possible search: a news search for "PSG" doesn't reliably find *this
+    article's* subject, it finds *any* article that happens to mention PSG
+    at all. Found live 2026-07-27: a 'PSG Want £145m for Barcola' post's
+    first-tried tag was 'PSG' (single-word, tried before 'Barcola' later in
+    the same tag list under plain tag order), and search_news_photo('PSG')
+    surfaced an unrelated Sky Sports article about a completely different
+    player (Yan Diomande) that happened to also mention PSG in passing.
+    Trying the more specific single-word surname first avoids this."""
+    if _looks_like_full_person_name(tag):
+        return 0
+    if looks_like_person_name(tag):
+        return 1
+    return 2
+
+
 def _subject_candidates(post: dict, limit: int = 8) -> list[str]:
     """Candidate player/team/person names to try for a real photo, sourced
     entirely from the post's own tags — the content pipeline already
@@ -297,13 +348,19 @@ def _subject_candidates(post: dict, limit: int = 8) -> list[str]:
     (see agent_sports_blog.py — real examples: ['Real Madrid', 'Marc
     Cucurella', 'Cape Verde'], ['NBA', 'Knicks', 'New York']). Filtered
     through _looks_like_entity_candidate() so a purely generic/descriptive
-    tag never reaches an image search.
+    tag never reaches an image search. Sorted by _candidate_priority (stable
+    — relative order within each tier is unchanged) so a specific named
+    person is always tried before a bare club/country/acronym tag, since a
+    person is the least ambiguous, least likely-to-mismatch kind of subject
+    for a news-image search — see _candidate_priority's docstring for the
+    two distinct incidents this avoids.
     """
     candidates: list[str] = []
     for tag in post.get("tags", []) or []:
         tag = (tag or "").strip()
         if tag and tag not in candidates and _looks_like_entity_candidate(tag):
             candidates.append(tag)
+    candidates.sort(key=_candidate_priority)
     return candidates[:limit]
 
 
@@ -316,7 +373,9 @@ def _download_photo(url: str, timeout: int = 8) -> Image.Image | None:
         return None
 
 
-def verified_entity_photo(name: str, womens_context: bool = False) -> str | None:
+def verified_entity_photo(
+    name: str, womens_context: bool = False, sport: str = "", other_tags: list[str] | None = None,
+) -> str | None:
     """Only returns a photo URL once Wikipedia's own page independently
     confirms `name` is a real sports subject (fetch_entity_photo's
     entity-context check) — then prefers a nicer/more current photo of that
@@ -354,12 +413,29 @@ def verified_entity_photo(name: str, womens_context: bool = False) -> str | None
     itself was the bug: a post about the Women's Africa Cup of Nations
     tagged ['WAFCON', 'Nigeria', 'Morocco'] resolved 'Nigeria' to the men's
     team because nothing told this function the post was about the women's
-    tournament in the first place."""
-    query = qualify_entity_query(name, womens_context=womens_context)
-    wiki_url = fetch_entity_photo(query)
+    tournament in the first place.
+
+    Also passes `sport` (the post's own category) through so a bare country
+    tag resolves to the correct sport's national team — see
+    qualify_entity_query's docstring for the cricket/basketball incident
+    this closes (a bare country tag defaulting to football regardless of
+    what sport the post was actually about).
+
+    `other_tags` (the post's remaining candidate tags) is passed to
+    search_news_photo as extra query context — needed for a nickname-style
+    candidate that's also an ordinary English phrase: 'Black Stars' (Ghana's
+    football nickname) collided with an unrelated BBC feature titled
+    "Moments that made Britain's black stars" (2026-07-27), since that
+    result legitimately contains both words too. Adding a co-occurring tag
+    like 'Ghana' to the actual search query text (not just a post-hoc title
+    filter) steers DuckDuckGo's own relevance ranking toward the correct
+    football-specific results instead."""
+    query = qualify_entity_query(name, womens_context=womens_context, sport=sport)
+    wiki_url = fetch_entity_photo(query, sport=sport)
     if not wiki_url:
         return None
-    return search_news_photo(query) or wiki_url
+    context = [t for t in (other_tags or []) if t and t != name]
+    return search_news_photo(query, context_clubs=context, sport=sport) or wiki_url
 
 
 def find_subject_photo(post: dict) -> Image.Image | None:
@@ -371,8 +447,11 @@ def find_subject_photo(post: dict) -> Image.Image | None:
         post.get("title", ""), post.get("excerpt", ""),
         *(post.get("tags", []) or []),
     )
-    for name in _subject_candidates(post):
-        url = verified_entity_photo(name, womens_context)
+    sport = post.get("category", "")
+    candidates = _subject_candidates(post)
+    for name in candidates:
+        other_tags = [t for t in candidates if t != name]
+        url = verified_entity_photo(name, womens_context, sport, other_tags)
         if not url:
             continue
         photo = _download_photo(url)

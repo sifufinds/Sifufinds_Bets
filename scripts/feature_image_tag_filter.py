@@ -76,7 +76,34 @@ _ORG_AND_COMPETITION_WORDS = {
     "eredivisie", "seria", "serie", "liga", "ligue", "la",
 }
 
-_BLOCKED_TAG_WORDS = _GENERIC_TAG_WORDS | _ORG_AND_COMPETITION_WORDS
+# News-outlet attribution tags (the content pipeline cites its own sources
+# as tags, e.g. ['World Cup 2026', 'USA', 'Sky Sports', 'Guardian Sport']) —
+# these name the outlet a fact was sourced from, never the article's actual
+# subject, so a query for one would only ever return a broadcaster/publisher
+# logo or an unrelated page, not a photo relevant to the post. None of these
+# currently reach a search as any post's *first* candidate (verified via
+# audit 2026-07-27), but blocking them outright removes the risk entirely
+# for any post where every more-specific tag fails to resolve.
+_NEWS_OUTLET_WORDS = {
+    "sky", "guardian", "bbc", "espn", "talksport", "mirror", "90min",
+    "goal", "independent", "teamtalk", "standard", "telegraph", "times",
+}
+
+# Sponsor/brand names the content pipeline sometimes tags a post with (kit
+# manufacturers, game/console tie-ins) even though the brand is never the
+# post's actual subject. Real incident (2026-07-27): an NBA/basketball post
+# tagged ['NBA', 'Nike', 'Basketball Africa League', 'BAL', 'Nigeria', ...]
+# tried 'Nike' as a photo-search candidate and got back an unrelated
+# football photo (Nike sponsors far more football content than basketball),
+# a wrong-sport mismatch on a basketball article.
+_BRAND_SPONSOR_WORDS = {
+    "nike", "adidas", "puma", "castore", "umbro", "reebok",
+    "playstation", "xbox", "nvidia",
+}
+
+_BLOCKED_TAG_WORDS = (
+    _GENERIC_TAG_WORDS | _ORG_AND_COMPETITION_WORDS | _NEWS_OUTLET_WORDS | _BRAND_SPONSOR_WORDS
+)
 
 # _BLOCKED_TAG_WORDS above only rejects a tag when EVERY word in it is
 # generic (AND-logic) — deliberately, since a real entity tag can legitimately
