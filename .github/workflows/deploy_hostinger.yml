@@ -46,6 +46,14 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install Python dependencies for validators
+        # scripts/validate_site.py's CHECK 4 (feature-image tag-safety guard)
+        # imports generate_blog_feature_image.py, which needs Pillow — without
+        # this, every deploy fails at CHECK 4 with ModuleNotFoundError before
+        # a single file reaches Hostinger (found 2026-07-27 after ~6 hours of
+        # silently failed deploys).
+        run: pip install Pillow
+
       - name: Validate site — check for 403/404 issues
         run: |
           python3 scripts/validate_site.py

@@ -171,7 +171,16 @@ _KNOWN_SAFE_TAGS = [
 
 def check_feature_image_tag_safety() -> list[str]:
     sys.path.insert(0, os.path.join(SITE_ROOT, "scripts"))
-    from generate_blog_feature_image import _looks_like_entity_candidate  # noqa: E402
+    try:
+        from generate_blog_feature_image import _looks_like_entity_candidate  # noqa: E402
+    except ModuleNotFoundError as e:
+        # Pillow (or another optional dep of the image generator) isn't
+        # installed in this environment — degrade to a warning rather than
+        # failing the whole pre-deploy gate over a missing package. Found
+        # 2026-07-27: this exact ImportError silently blocked every Hostinger
+        # deploy for ~6 hours because the workflow never installed Pillow.
+        print(f"  ⚠  CHECK 4 skipped — {e} (install Pillow to enable this guard)")
+        return []
 
     problems = []
     for tag in _KNOWN_RISKY_TAGS:

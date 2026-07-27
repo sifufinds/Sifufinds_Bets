@@ -47,7 +47,11 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install requests 2>/dev/null || true
+        # Pillow is required by gen_blog_post_pages.py's feature-image step and
+        # by validate_site.py's CHECK 4 (feature-image tag-safety guard), both
+        # of which run later in this workflow — same gap found in
+        # deploy_hostinger.yml 2026-07-27 (ModuleNotFoundError: PIL).
+        run: pip install requests Pillow 2>/dev/null || true
 
       - name: Run indexability guard (auto-fix)
         id: indexability
