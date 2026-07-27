@@ -67,6 +67,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from llm import ask, AIProvidersExhausted
 from utils.logger import log
+from utils.news_fetcher import fetch_category
 from utils.player_photo import find_player_image, looks_like_person_name
 from agent_sports_blog import generate_post, load_posts, save_posts
 from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
@@ -75,6 +76,7 @@ from agent_twitter_posts import _post_tweet as post_twitter
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 GENERIC_SOCIAL_IMAGE = f"{SITE_URL}/assets/social-card.jpg"
+RAW_FALLBACK_STATE_PATH = Path(__file__).parent / "transfer_raw_fallback_state.json"
 
 
 def local_feature_image_path(post: dict) -> Path | None:
@@ -283,6 +285,154 @@ def build_twitter_text(facts: dict, post: dict) -> str:
     return _trim_to_limit(tweet)
 
 
+# ── RAW-HEADLINE FALLBACK (no LLM — used only when every AI provider is
+# exhausted, so live coverage never fully stops during an outage) ───────────
+#
+# Does NOT create a blog post: a single wire headline has nowhere near the
+# researched depth CLAUDE.md's blog protocol requires (SEO research, 1000+
+# words, FAQ section), and faking that would be thin content. Instead this
+# posts a short, honest repost straight to socials — always naming and
+# linking the real outlet that broke the story, never a SifuFinds page —
+# so "live" transfer coverage keeps its promise even while Groq/Gemini are
+# both out of daily quota. The moment a provider has headroom again,
+# generate_post() succeeds and the normal full-article path takes back over
+# automatically (this path is only reached when that raises
+# AIProvidersExhausted).
+
+def _load_raw_fallback_state() -> dict:
+    if RAW_FALLBACK_STATE_PATH.exists():
+        try:
+            return json.loads(RAW_FALLBACK_STATE_PATH.read_text())
+        except Exception:
+            pass
+    return {"posted_keys": []}
+
+
+def _save_raw_fallback_state(state: dict) -> None:
+    state["posted_keys"] = state.get("posted_keys", [])[-300:]
+    RAW_FALLBACK_STATE_PATH.write_text(json.dumps(state, indent=2))
+
+
+def _headline_key(title: str) -> str:
+    # Same scheme as run()'s recent_titles / title_key so a raw headline can
+    # actually be matched against an already-published article's title.
+    return title.lower()[:40]
+
+
+def pick_fresh_raw_headline(recent_titles: set[str]) -> dict | None:
+    """Freshest transfers headline not already covered by a real blog post
+    (recent_titles, same key scheme as the caller's dedup) and not already
+    reposted via this fallback (RAW_FALLBACK_STATE_PATH)."""
+    items = fetch_category("transfers", max_per_feed=6)
+    state = _load_raw_fallback_state()
+    posted = set(state.get("posted_keys", []))
+
+    for item in items:
+        key = _headline_key(item["title"])
+        if key in posted or key in recent_titles:
+            continue
+        return item
+    return None
+
+
+def build_raw_fallback_telegram(item: dict) -> str:
+    lines = [f"🚨 {item['title']}", ""]
+    if item.get("description"):
+        lines.append(item["description"][:220])
+        lines.append("")
+    lines.append(f"📰 Source: {item['source']}")
+    lines.append(f'🔗 <a href="{item["url"]}">Read the full story</a>')
+    lines.append("")
+    lines.append(_REACT_PROMPT_TG)
+    return "\n".join(lines)
+
+
+def build_raw_fallback_facebook(item: dict) -> str:
+    lines = [f"🚨 {item['title']}", ""]
+    if item.get("description"):
+        lines.append(item["description"][:220])
+        lines.append("")
+    lines.append(f"📰 Source: {item['source']}")
+    lines.append(f"🔗 {item['url']}")
+    lines.append("")
+    lines.append(_REACT_PROMPT_FB)
+    lines.append("")
+    lines.append("#TransferNews #SifuFinds #Football #TransferWindow")
+    return "\n".join(lines)
+
+
+def build_raw_fallback_instagram(item: dict) -> str:
+    lines = [f"🚨 {item['title']}", ""]
+    if item.get("description"):
+        lines.append(item["description"][:220])
+        lines.append("")
+    lines.append(f"📰 Source: {item['source']}")
+    lines.append("👉 Link in bio for more transfer coverage")
+    lines.append("")
+    lines.append(".\n.\n.\n#TransferNews #SifuFinds #Football #TransferWindow")
+    return "\n".join(lines)
+
+
+def build_raw_fallback_twitter(item: dict) -> str:
+    lines = [
+        f"🚨 {item['title']}", "",
+        f"📰 Source: {item['source']}",
+        f"🔗 {item['url']}", "",
+        "#TransferNews #SifuFinds",
+    ]
+    return _trim_to_limit("\n".join(lines))
+
+
+def run_raw_fallback(dry_run: bool, telegram: bool, facebook: bool,
+                      instagram: bool, twitter: bool,
+                      recent_titles: set[str]) -> tuple[dict | None, dict[str, bool]]:
+    item = pick_fresh_raw_headline(recent_titles)
+    if item is None:
+        print("⚠ No fresh, not-yet-covered transfer headline to repost this cycle.")
+        log("transfer_post", "raw_fallback", "skipped", "no fresh headline")
+        return None, {}
+
+    print(f"  ✓ Reposting directly from {item['source']!r}: '{item['title']}'")
+    telegram_text = build_raw_fallback_telegram(item)
+    facebook_text = build_raw_fallback_facebook(item)
+    instagram_text = build_raw_fallback_instagram(item)
+    twitter_text = build_raw_fallback_twitter(item)
+
+    print("\n" + "═" * 60)
+    print(f"RAW FALLBACK REPOST (AI unavailable) — {'preview' if dry_run else 'auto-posting'}")
+    print("═" * 60)
+    print(telegram_text)
+    print("═" * 60 + "\n")
+
+    if dry_run:
+        print("Dry run — nothing sent.")
+        return None, {}
+
+    results: dict[str, bool] = {}
+    if telegram:
+        results["telegram"] = _post_with_retry("telegram", send_to_channel, telegram_text)
+        print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed after retries.")
+    if facebook:
+        results["facebook"] = _post_with_retry("facebook", post_facebook, facebook_text, image_url=GENERIC_SOCIAL_IMAGE)
+        print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed after retries.")
+    if instagram:
+        results["instagram"] = _post_with_retry("instagram", post_instagram, instagram_text, image_url=GENERIC_SOCIAL_IMAGE)
+        print("✓ Posted to Instagram." if results["instagram"] else "✗ Instagram post failed after retries.")
+    if twitter:
+        results["twitter"] = _post_with_retry("twitter", post_twitter, twitter_text)
+        print("✓ Posted to X/Twitter." if results["twitter"] else "✗ X/Twitter post failed after retries.")
+
+    if any(results.values()):
+        state = _load_raw_fallback_state()
+        state.setdefault("posted_keys", []).append(_headline_key(item["title"]))
+        _save_raw_fallback_state(state)
+
+    for platform, ok in results.items():
+        log("transfer_post", f"raw_fallback_{platform}", "success" if ok else "failed", item["title"])
+
+    return None, results
+
+
 def _post_with_retry(platform: str, fn, *args, attempts: int = 3, delay: int = 8, **kwargs) -> bool:
     """Retry a single platform post a few times before giving up — covers
     transient failures (a network blip, a momentary rate limit) that would
@@ -317,14 +467,16 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     try:
         post = generate_post("transfers")
     except AIProvidersExhausted as e:
-        # A real infra failure, not "no fresh news" — fresh stories may well
-        # exist this cycle, the AI backend just can't write them up right
-        # now. Must surface as a hard failure (not the soft skip below) so
-        # the workflow exits non-zero and the retry/watchdog workflows catch
-        # it, instead of silently doing nothing until the next cron tick.
-        print(f"  ✗ {e}")
-        log("transfer_post", "generate", "failed", str(e))
-        raise
+        # Every LLM backend is over quota — rather than going dark until the
+        # next successful cycle (previously a hard failure the workflow had
+        # to wait out or get retried by the watchdog), repost the freshest
+        # headline directly from the free news feed with no AI involved. See
+        # run_raw_fallback()'s docstring for why this never creates a blog
+        # post. Full-article generation takes back over automatically the
+        # next time generate_post() succeeds.
+        print(f"  ⚠ {e}")
+        log("transfer_post", "generate", "ai_exhausted_fallback", str(e))
+        return run_raw_fallback(dry_run, telegram, facebook, instagram, twitter, recent_titles)
     if post is None:
         print("⚠ No fresh transfer news available this cycle — nothing to post.")
         log("transfer_post", "generate", "skipped", "no fresh news")
@@ -438,10 +590,14 @@ if __name__ == "__main__":
 
     # Exit code must actually reflect reality — a story generated but not
     # delivered anywhere is a real failure the GitHub Actions watchdog/retry
-    # workflows need to see and act on, not a silent green checkmark. "No
-    # fresh news this cycle" (post is None) stays a soft success: that's the
-    # dedup/no-news case working as designed, not something to retry.
-    if args.dry_run or post is None:
+    # workflows need to see and act on, not a silent green checkmark. Checked
+    # on `results` alone (not `post is None`) so the raw-fallback repost path
+    # (run_raw_fallback always returns post=None even on a real, attempted
+    # post — see its docstring) still gets this same accountability instead
+    # of silently reporting success while every platform actually failed.
+    # "No fresh news/headline this cycle" (post is None AND results == {})
+    # stays a soft success: that's the dedup/no-news case working as designed.
+    if args.dry_run:
         sys.exit(0)
     if results and not any(results.values()):
         print("\n✗✗✗ Every requested platform failed to post this story — flagging as a real failure.")
