@@ -118,6 +118,49 @@ def _looks_like_product_shot(title: str) -> bool:
     return any(hint in title_l for hint in _PRODUCT_SHOT_HINTS)
 
 
+# Recurring editorial franchise names news outlets use for round-up/gossip
+# columns — the article is genuinely about the queried subject (every word
+# of the name legitimately appears in the title, so the existing check
+# passes), but the page's own thumbnail is that column's fixed section-
+# branding graphic (a logo/wordmark card), not a photo of anyone. Real
+# incident (2026-07-27): searching "PSG" matched a Sky Sports "Paper Talk"
+# round-up whose thumbnail is the static "Paper Talk" branded graphic,
+# which then shipped as a blog post's feature image implying it depicted
+# the actual transfer story.
+_NEWS_COLUMN_TITLE_HINTS = (
+    "paper talk", "transfer talk", "transfer gossip", "gossip column",
+    "done deal", "here we go", "rumour mill", "rumor mill",
+    "silly season", "mailbox", "mailbag",
+)
+
+
+def _looks_like_news_column_graphic(title: str) -> bool:
+    title_l = (title or "").lower()
+    return any(hint in title_l for hint in _NEWS_COLUMN_TITLE_HINTS)
+
+
+# The Sky Sports "Paper Talk" incident above wasn't actually catchable by
+# title at all: the article title was a genuine, on-topic headline ("Bradley
+# Barcola transfer news: PSG value France forward at £145m..."), so every
+# title-based check (name-match, gender-match, product-shot, column-title)
+# passed — the *image URL itself* was
+# "https://e0.365dm.com/.../skysports-paper-talk-brand-refresh_....jpg", Sky
+# Sports' fixed section-branding graphic reused across every Paper Talk
+# instalment regardless of that day's actual transfer rumours. A relevant
+# on-topic article can still surface an irrelevant branded image, so this
+# checks the filename/path the same way _looks_like_news_column_graphic
+# checks the title.
+_NEWS_COLUMN_URL_HINTS = (
+    "paper-talk", "papertalk", "transfer-talk", "transfertalk",
+    "brand-refresh", "done-deal", "live-blog", "liveblog",
+)
+
+
+def _looks_like_branded_thumbnail_url(image_url: str) -> bool:
+    url_l = (image_url or "").lower()
+    return any(hint in url_l for hint in _NEWS_COLUMN_URL_HINTS)
+
+
 def _fetch_json(url: str, timeout: int = 8) -> Optional[dict]:
     try:
         req = urllib.request.Request(url, headers=_HEADERS)
@@ -404,6 +447,8 @@ def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> O
             title = _fold_accents(title_raw).lower()
             if not image_url.startswith("https://"):
                 continue
+            if _looks_like_branded_thumbnail_url(image_url):
+                continue
             # lookaside.instagram.com is a live SEO-preview crawler proxy, not
             # a stable direct photo URL — it can return a generic Instagram
             # placeholder, a different post's cached preview, or nothing
@@ -431,6 +476,8 @@ def search_news_photo(name: str, context_clubs: Optional[list[str]] = None) -> O
             # title. A person's face on a product label isn't a usable
             # feature-image photo of them.
             if _looks_like_product_shot(title):
+                continue
+            if _looks_like_news_column_graphic(title):
                 continue
             return image_url
         return None
