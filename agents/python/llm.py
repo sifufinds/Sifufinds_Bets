@@ -65,7 +65,7 @@ _GROQ_MODELS = [
     "openai/gpt-oss-20b",
 ]
 
-# ── Anthropic client (tier 3 — reliable paid fallback) ───────────────────────
+# ── Anthropic client (tier 5 — reliable paid fallback) ───────────────────────
 _anthropic_client = None
 if _anthropic_key:
     try:
