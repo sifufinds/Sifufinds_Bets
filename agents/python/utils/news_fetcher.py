@@ -16,6 +16,7 @@ Freshness rules:
   - Each category has a MAX_AGE_HOURS window; stale items are filtered out
   - If < MIN_FRESH_ITEMS pass the filter the agent skips generation
 """
+import html
 import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
@@ -270,9 +271,16 @@ def _make_item(title: str, description: str, url: str, source: str,
                category: str, pub_dt: datetime) -> NewsItem:
     now = datetime.now(timezone.utc)
     age = (now - pub_dt).total_seconds() / 3600
+    # RSS/search titles and descriptions routinely carry HTML entities
+    # (&#8217; for a right single quote, &#8211; for an en dash, etc.) — every
+    # caller used to hand this straight to an LLM, which paraphrased over the
+    # mess without anyone noticing. Now that agent_transfer_post.py's raw-AI-
+    # outage fallback (added 2026-07-27) can post a title/description
+    # verbatim with no LLM in between, unescape here once so nothing ever
+    # ships "&#8217;" literally in a live post again.
     return NewsItem(
-        title=title,
-        description=description[:300],
+        title=html.unescape(title),
+        description=html.unescape(description)[:300],
         url=url,
         source=source,
         category=category,
