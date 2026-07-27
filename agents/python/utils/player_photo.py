@@ -230,6 +230,16 @@ def _looks_like_news_column_graphic(title: str) -> bool:
 _NEWS_COLUMN_URL_HINTS = (
     "paper-talk", "papertalk", "transfer-talk", "transfertalk",
     "brand-refresh", "done-deal", "live-blog", "liveblog",
+    # BBC's ichef image proxy (ichef.bbci.co.uk/ace/branded_*/...) uses a
+    # "branded_<vertical>" path segment specifically for fixed section-
+    # branding graphics (seen: branded_sport, branded_news, branded_pidgin)
+    # — a real content photo from the same proxy instead uses "standard"
+    # (verified by comparing multiple live BBC results side by side,
+    # 2026-07-27: a genuine photo used ".../ace/standard/1024/...", while a
+    # "Black Stars" news-column-style result used
+    # ".../ace/branded_news/1200/..." and turned out to be BBC's generic
+    # branded card, not a photo of anyone).
+    "/branded_",
 )
 
 
