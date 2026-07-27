@@ -32,15 +32,55 @@
     "Bovada": {
       "reason": "no African market signal found (country name, local currency, or local payment method)",
       "rejected_at": "2026-07-20T06:34:00.881284+00:00"
+    },
+    "Sunubet": {
+      "reason": "official site https://sunubetsn.com/ unreachable or returned near-empty content",
+      "rejected_at": "2026-07-27T06:48:41.410272+00:00"
+    },
+    "Betclic": {
+      "reason": "official site https://m.betclic.com/ unreachable or returned near-empty content",
+      "rejected_at": "2026-07-27T06:48:42.877482+00:00"
+    },
+    "Bwinners": {
+      "reason": "no African market signal found (country name, local currency, or local payment method)",
+      "rejected_at": "2026-07-27T06:48:45.832750+00:00"
+    },
+    "Pmu": {
+      "reason": "official site https://leboss-duturf.com/pmu-burkina-a-comprehensive-overview/ unreachable or returned near-empty content",
+      "rejected_at": "2026-07-27T06:49:17.322555+00:00"
+    },
+    "LPbet": {
+      "reason": "official site https://igamingexpert.com/regions/africa/senegal-modernisation-lpbet/ unreachable or returned near-empty content",
+      "rejected_at": "2026-07-27T06:49:18.806624+00:00"
     }
   },
   "defunct_flags": {
-    "sportpesa": {
-      "first_flagged_at": "2026-07-20T06:39:39.607406+00:00",
-      "evidence": "A number of news articles, including those from Mwakilishi.com, Bizna Kenya, and Newszetu, report that SportPesa shut down operations in Kenya citing hostility from the government and heavy taxation, with its Kenyan license also being revoked.",
+    "bet9ja": {
+      "first_flagged_at": "2026-07-27T06:49:20.065115+00:00",
+      "evidence": "The Enugu State Gaming and Lottery Commission in Nigeria has sealed Bet9ja operations across Enugu State over alleged regulatory breaches and failure to remit statutory gaming fees.",
+      "runs_flagged": 1
+    },
+    "sportybet": {
+      "first_flagged_at": "2026-07-27T06:49:57.150407+00:00",
+      "evidence": "A news article reports that Sportybet Kenya shut down in October 2024 due to a tax row with the Kenya Revenue Authority.",
+      "runs_flagged": 1
+    },
+    "betway": {
+      "first_flagged_at": "2026-07-27T06:49:59.046766+00:00",
+      "evidence": "There is no clear or specific evidence that Betway Africa has permanently closed down its operations, and in fact, it is mentioned alongside other still-operational betting companies in Uganda.",
+      "runs_flagged": 1
+    },
+    "hollywoodbets": {
+      "first_flagged_at": "2026-07-27T06:51:01.138201+00:00",
+      "evidence": "All search results mention 'Hollywoodbets' in unrelated contexts, none specifically report the closure of the brand's operation in its primary African market or report any regulatory actions against it in that market.",
+      "runs_flagged": 1
+    },
+    "1xbet": {
+      "first_flagged_at": "2026-07-27T06:51:06.434087+00:00",
+      "evidence": "The official website of 1xBet Africa appears to be unreachable, but there are still recent reviews and promotions mentioned in search results, such as the 2026 review in SlotHub NG and the mention of 1xBet's billboard presence in Lagos and Abuja.",
       "runs_flagged": 1
     }
   },
-  "runs": 3,
-  "last_run": "2026-07-20T06:30:12.275119+00:00"
+  "runs": 4,
+  "last_run": "2026-07-27T06:47:28.506688+00:00"
 }
