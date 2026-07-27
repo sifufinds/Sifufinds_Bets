@@ -1,3 +1,10 @@
 {
-  "issues": []
+  "issues": [
+    {
+      "severity": "HIGH",
+      "check": "faq_answer_label_leak_visible",
+      "page": "blog/transfer-news-latest-updates-and-betting-insights",
+      "detail": "Visible page text still shows a literal \"Q:\"/\"A:\" label"
+    }
+  ]
 }
