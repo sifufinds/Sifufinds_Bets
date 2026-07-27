@@ -1,15 +1,26 @@
 """
-AI wrapper — Groq primary, Claude fallback, Gemini last resort.
+AI wrapper — Groq primary (4 models, each its own free daily quota), Claude
+fallback, Gemini last resort.
 
 Fallback chain (each tier is tried before the next):
-  1. Groq llama-3.3-70b-versatile  — best quality, 6,000 req/day free
-  2. Groq llama-3.1-8b-instant     — faster, higher RPM limit, same free tier
-  3. Claude claude-haiku-4-5        — reliable paid fallback, very cheap
-  4. Gemini gemini-2.0-flash-lite  — higher free-tier RPM than full flash
-  5. Gemini gemini-2.0-flash       — separate daily quota fallback
+  1. Groq llama-3.3-70b-versatile  — best quality, separate free TPD quota
+  2. Groq llama-3.1-8b-instant     — faster, separate free TPD quota
+  3. Groq openai/gpt-oss-120b      — separate free TPD quota
+  4. Groq openai/gpt-oss-20b       — separate free TPD quota
+  5. Claude claude-haiku-4-5        — reliable paid fallback, very cheap
+  6. Gemini gemini-2.0-flash-lite  — higher free-tier RPM than full flash
+  7. Gemini gemini-2.0-flash       — separate daily quota fallback
+
+Groq bills tokens-per-day (TPD) per model, not per account, so a model
+sitting near its cap doesn't touch the other three — that's why tiers 1-4
+are all Groq: each exhausted model just falls through to the next one on
+the same free key instead of jumping straight to a paid/billing-gated tier.
 
 Per-minute rate limits (RPM) are retried once after the suggested delay.
-Daily token limits (TPD) are not retried — they reset at midnight UTC.
+Daily token limits (TPD) are NOT retried inline — Groq's real TPD reset is a
+rolling window (minutes to hours since that model's quota was last consumed,
+not a fixed midnight-UTC cliff), so waiting the RPM-sized cap before retrying
+just wastes job time. They fall through to the next tier immediately instead.
 
 Get a free Groq key at: https://console.groq.com → API Keys → Create
 Get an Anthropic key at: https://console.anthropic.com
@@ -47,8 +58,12 @@ if _groq_key:
     from groq import Groq
     _groq_client = Groq(api_key=_groq_key)
 
-_GROQ_MODEL_PRIMARY = "llama-3.3-70b-versatile"
-_GROQ_MODEL_FAST    = "llama-3.1-8b-instant"
+_GROQ_MODELS = [
+    "llama-3.3-70b-versatile",
+    "llama-3.1-8b-instant",
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+]
 
 # ── Anthropic client (tier 3 — reliable paid fallback) ───────────────────────
 _anthropic_client = None
@@ -81,9 +96,16 @@ def _is_rate_limit(err: str) -> bool:
 
 
 def _is_daily_limit(err: str) -> bool:
-    """True when the error is a daily (TPD) cap — cannot be resolved by waiting."""
-    el = err.lower()
-    return any(k in el for k in _TPD_KEYWORDS) and "limit: 0" in el
+    """True when the error is a daily (TPD) cap — cannot be resolved by a short wait.
+
+    Groq reports real TPD exhaustion as e.g. "...on tokens per day (TPD): Limit
+    100000, Used 97772... Please try again in 27m44s" — note there is no
+    "limit: 0" in that message, that pattern is specific to Gemini's
+    billing-not-enabled case. Matching on the TPD/day keywords alone is
+    correct for both: neither can be fixed by sleeping the RPM-sized cap
+    below, so both should fall through to the next tier immediately.
+    """
+    return any(k in err.lower() for k in _TPD_KEYWORDS)
 
 
 def _parse_retry_seconds(err: str, cap: int = 60) -> int:
@@ -111,43 +133,28 @@ def ask_long(system_prompt: str, user_message: str) -> str:
 
 def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -> str:
     if _groq_client:
-        # Tier 1 — Groq 70B
-        try:
-            return _ask_groq(system_prompt, user_message, max_tokens, _GROQ_MODEL_PRIMARY)
-        except Exception as e:
-            err = str(e)
-            if _is_rate_limit(err.lower()):
-                wait = _parse_retry_seconds(err)
-                if wait and not _is_daily_limit(err):
-                    print(f"[llm] Groq 70B RPM limit — waiting {wait}s then retrying")
-                    time.sleep(wait)
-                    try:
-                        return _ask_groq(system_prompt, user_message, max_tokens, _GROQ_MODEL_PRIMARY)
-                    except Exception:
-                        pass
-                print(f"[llm] Groq 70B rate-limited — trying Groq 8B instant")
-            else:
-                raise
+        # Tiers 1-4 — four Groq models, each with its own separate free TPD
+        # quota bucket, so one model capping out doesn't block the others.
+        for i, model in enumerate(_GROQ_MODELS):
+            try:
+                return _ask_groq(system_prompt, user_message, max_tokens, model)
+            except Exception as e:
+                err = str(e)
+                if not _is_rate_limit(err.lower()):
+                    raise
+                if not _is_daily_limit(err):
+                    wait = _parse_retry_seconds(err)
+                    if wait:
+                        print(f"[llm] Groq {model} RPM limit — waiting {wait}s then retrying")
+                        time.sleep(wait)
+                        try:
+                            return _ask_groq(system_prompt, user_message, max_tokens, model)
+                        except Exception:
+                            pass
+                next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else "Claude"
+                print(f"[llm] Groq {model} exhausted — trying {next_step}")
 
-        # Tier 2 — Groq 8B instant
-        try:
-            return _ask_groq(system_prompt, user_message, max_tokens, _GROQ_MODEL_FAST)
-        except Exception as e:
-            err = str(e)
-            if _is_rate_limit(err.lower()):
-                wait = _parse_retry_seconds(err)
-                if wait and not _is_daily_limit(err):
-                    print(f"[llm] Groq 8B RPM limit — waiting {wait}s then retrying")
-                    time.sleep(wait)
-                    try:
-                        return _ask_groq(system_prompt, user_message, max_tokens, _GROQ_MODEL_FAST)
-                    except Exception:
-                        pass
-                print(f"[llm] Groq 8B rate-limited — trying Claude")
-            else:
-                raise
-
-    # Tier 3 — Claude (reliable paid fallback, fast)
+    # Tier 5 — Claude (reliable paid fallback, fast)
     if _anthropic_client:
         try:
             return _ask_claude(system_prompt, user_message, max_tokens)
@@ -158,7 +165,7 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
             else:
                 raise
 
-    # Tiers 4 & 5 — Gemini models tried in order, each with its own daily quota
+    # Tiers 6 & 7 — Gemini models tried in order, each with its own daily quota
     if _gemini_client:
         last_err: Exception | None = None
         for model in _GEMINI_MODELS:
