@@ -68,7 +68,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from llm import ask, AIProvidersExhausted
 from utils.logger import log
 from utils.news_fetcher import fetch_category
-from utils.player_photo import find_player_image, looks_like_person_name
+from utils.player_photo import find_player_image, looks_like_person_name, _get_summary
 from agent_sports_blog import generate_post, load_posts, save_posts
 from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
@@ -319,6 +319,133 @@ def _headline_key(title: str) -> str:
     return title.lower()[:40]
 
 
+# Common clubs/competitions that would otherwise look like a 2+ word proper
+# name to _NAME_CANDIDATE_RE below — excluded so e.g. "Real Madrid" or "RB
+# Leipzig" is never handed to find_player_image() as if it were a person.
+# Not exhaustive by design: a club name slipping through just means
+# find_player_image() finds no matching person photo and returns None, same
+# as any other failed lookup — never a wrong photo shown.
+_KNOWN_CLUBS_AND_COMPETITIONS = {
+    "Real Madrid", "Real Betis", "Real Sociedad", "Manchester City",
+    "Manchester United", "AC Milan", "Inter Milan", "RB Leipzig",
+    "Bayern Munich", "Borussia Dortmund", "Paris Saint", "Tottenham Hotspur",
+    "Aston Villa", "West Ham", "Newcastle United", "Crystal Palace",
+    "Atletico Madrid", "AS Roma", "Ajax Amsterdam", "Sporting Lisbon",
+    "Premier League", "Champions League", "Europa League", "La Liga",
+    "Serie A", "Bundesliga", "Ligue 1", "World Cup", "Transfer News",
+    "Wolverhampton Wanderers", "Nottingham Forest", "Leicester City",
+    # Single-word club/competition names — checked against single-word
+    # candidates too (see _extract_name_candidates), since those are just as
+    # likely to look like a valid mononym as a real player's surname.
+    "Chelsea", "Arsenal", "Liverpool", "Tottenham", "Brighton", "Newcastle",
+    "Everton", "Fulham", "Brentford", "Wolves", "Leeds", "Sevilla",
+    "Valencia", "Villarreal", "Monaco", "Marseille", "Leverkusen", "Napoli",
+    "Roma", "Lazio", "Fiorentina", "Ajax", "Feyenoord", "Porto", "Benfica",
+    "Besiktas", "Fenerbahce", "Galatasaray", "Barcelona", "Juventus",
+}
+
+_NAME_PHRASE_RE = re.compile(r"\b([A-Z][a-zA-Z'’-]+(?:\s+[A-Z][a-zA-Z'’-]+){1,2})\b")
+_SINGLE_WORD_RE = re.compile(r"\b([A-Z][a-zA-Z'’-]{3,})\b")
+
+# Individual words making up any entry in _KNOWN_CLUBS_AND_COMPETITIONS (e.g.
+# "Real Madrid" -> "Real", "Madrid"). A leftover fragment like "Madrid" or
+# "Milan" must never be tried as a single-word photo-search candidate on its
+# own — Wikipedia may well have an unrelated real person by that name
+# (surnames/city-names double as given names), which would attach a wrong,
+# unrelated photo to the post. That's a worse outcome than no photo at all.
+_CLUB_WORD_STOPWORDS = {
+    word for phrase in _KNOWN_CLUBS_AND_COMPETITIONS for word in phrase.split()
+}
+
+
+def _extract_name_candidates(text: str) -> list[str]:
+    """Best-effort, LLM-free extraction of person-name-shaped phrases from a
+    raw headline/description — the raw-headline fallback (run_raw_fallback)
+    has no LLM available to do proper entity extraction, unlike the normal
+    generate_post() + extract_transfer_facts() path. Deliberately permissive:
+    a false positive here just means find_player_image() fails to find a
+    matching photo and the caller moves to the next candidate, not a wrong
+    photo being shown."""
+    seen: list[str] = []
+
+    def _add(phrase: str) -> None:
+        if phrase in _KNOWN_CLUBS_AND_COMPETITIONS:
+            return
+        if any(club in phrase for club in _KNOWN_CLUBS_AND_COMPETITIONS):
+            return
+        if phrase not in seen:
+            seen.append(phrase)
+
+    # Multi-word phrases first (higher confidence — e.g. "Yan Diomande").
+    for m in _NAME_PHRASE_RE.finditer(text):
+        _add(m.group(1))
+
+    # Single Title-Case words next (common football mononyms — "Symonds",
+    # "Rodri") — skip the text's very first word, since headlines capitalise
+    # it regardless of whether it's a proper noun.
+    first_word_end = text.find(" ")
+    for m in _SINGLE_WORD_RE.finditer(text):
+        if first_word_end > 0 and m.start() < first_word_end:
+            continue
+        word = m.group(1)
+        if word in _CLUB_WORD_STOPWORDS:
+            continue
+        _add(word)
+
+    return seen
+
+
+_PERSON_ONLY_HINTS = (
+    "footballer", "football player", "midfielder", "defender", "forward",
+    "goalkeeper", "winger", "striker", "manager", "head coach",
+)
+_ORG_ONLY_HINTS = (
+    "football club", "national football team", "sports club",
+    "association football club", "soccer club",
+)
+
+
+def _wikipedia_confirms_person(name: str) -> bool:
+    """Extra guard specific to this fallback: unlike the main flow (where
+    facts['player'] is already an LLM-confirmed person name),
+    _extract_name_candidates() is a bare regex over free text, and a club
+    name (e.g. 'Energie Cottbus') passes every surface heuristic a real
+    person's name would — 2 title-case words, no digits. fetch_player_photo's
+    direct-hit path returns whatever thumbnail sits on the exact-name
+    Wikipedia page with no person/organisation check of its own (confirmed
+    2026-07-27: it returned Energie Cottbus's crest as if it were a player
+    photo), so verify independently here before trusting any photo this path
+    returns. No Wikipedia page at all means no way to verify — skip rather
+    than risk it, matching fetch_player_photo's own stated policy that a
+    wrong photo is worse than no photo."""
+    data = _get_summary(name)
+    if not data:
+        return False
+    haystack = f"{data.get('description', '')} {data.get('extract', '')}".lower()
+    if any(h in haystack for h in _ORG_ONLY_HINTS):
+        return False
+    return any(h in haystack for h in _PERSON_ONLY_HINTS)
+
+
+def find_raw_fallback_photo(item: dict) -> str | None:
+    """Try every name-shaped candidate in the headline, then the
+    description, returning the first *verified-person* real photo found —
+    or None, in which case the caller uses the site's generic branded social
+    card instead."""
+    for text in (item.get("title", ""), item.get("description", "")):
+        for candidate in _extract_name_candidates(text):
+            if not looks_like_person_name(candidate):
+                continue
+            if not _wikipedia_confirms_person(candidate):
+                continue
+            photo_url = find_player_image(candidate)
+            if photo_url:
+                print(f"  ✓ Found a real, verified photo for {candidate!r}")
+                return photo_url
+    print("  — No verified real photo found for this headline — using generic branded card")
+    return None
+
+
 def pick_fresh_raw_headline(recent_titles: set[str]) -> dict | None:
     """Freshest transfers headline not already covered by a real blog post
     (recent_titles, same key scheme as the caller's dedup) and not already
@@ -393,13 +520,16 @@ def run_raw_fallback(dry_run: bool, telegram: bool, facebook: bool,
         return None, {}
 
     print(f"  ✓ Reposting directly from {item['source']!r}: '{item['title']}'")
+    photo_url = find_raw_fallback_photo(item)
+    image_url = photo_url or GENERIC_SOCIAL_IMAGE
+
     telegram_text = build_raw_fallback_telegram(item)
     facebook_text = build_raw_fallback_facebook(item)
     instagram_text = build_raw_fallback_instagram(item)
     twitter_text = build_raw_fallback_twitter(item)
 
     print("\n" + "═" * 60)
-    print(f"RAW FALLBACK REPOST (AI unavailable) — {'preview' if dry_run else 'auto-posting'}")
+    print(f"RAW FALLBACK REPOST (AI unavailable) — image: {'real photo' if photo_url else 'generic branded card'} — {'preview' if dry_run else 'auto-posting'}")
     print("═" * 60)
     print(telegram_text)
     print("═" * 60 + "\n")
@@ -410,13 +540,13 @@ def run_raw_fallback(dry_run: bool, telegram: bool, facebook: bool,
 
     results: dict[str, bool] = {}
     if telegram:
-        results["telegram"] = _post_with_retry("telegram", send_to_channel, telegram_text)
+        results["telegram"] = _post_with_retry("telegram", send_photo_to_channel, image_url, telegram_text)
         print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed after retries.")
     if facebook:
-        results["facebook"] = _post_with_retry("facebook", post_facebook, facebook_text, image_url=GENERIC_SOCIAL_IMAGE)
+        results["facebook"] = _post_with_retry("facebook", post_facebook, facebook_text, image_url=image_url)
         print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed after retries.")
     if instagram:
-        results["instagram"] = _post_with_retry("instagram", post_instagram, instagram_text, image_url=GENERIC_SOCIAL_IMAGE)
+        results["instagram"] = _post_with_retry("instagram", post_instagram, instagram_text, image_url=image_url)
         print("✓ Posted to Instagram." if results["instagram"] else "✗ Instagram post failed after retries.")
     if twitter:
         results["twitter"] = _post_with_retry("twitter", post_twitter, twitter_text)
