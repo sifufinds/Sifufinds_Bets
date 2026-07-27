@@ -170,17 +170,20 @@ _KNOWN_SAFE_TAGS = [
 
 
 def check_feature_image_tag_safety() -> list[str]:
+    # Deliberately imports feature_image_tag_filter.py, NOT
+    # generate_blog_feature_image.py — the latter imports Pillow at module
+    # level for the actual image compositing, and the deploy workflow that
+    # runs this validator never installs any pip packages (this script was
+    # always pure-stdlib by design). Importing generate_blog_feature_image
+    # directly here crashed with ModuleNotFoundError: No module named 'PIL'
+    # on every deploy run for several hours (2026-07-27) until caught — an
+    # interim fix wrapped the import in try/except and skipped the check on
+    # failure, which stopped the crash but made CHECK 4 a permanent no-op in
+    # CI (Pillow is never going to appear there). The actual fix is this
+    # import: feature_image_tag_filter.py needs nothing but `re`, so it
+    # always succeeds and the guard actually runs.
     sys.path.insert(0, os.path.join(SITE_ROOT, "scripts"))
-    try:
-        from generate_blog_feature_image import _looks_like_entity_candidate  # noqa: E402
-    except ModuleNotFoundError as e:
-        # Pillow (or another optional dep of the image generator) isn't
-        # installed in this environment — degrade to a warning rather than
-        # failing the whole pre-deploy gate over a missing package. Found
-        # 2026-07-27: this exact ImportError silently blocked every Hostinger
-        # deploy for ~6 hours because the workflow never installed Pillow.
-        print(f"  ⚠  CHECK 4 skipped — {e} (install Pillow to enable this guard)")
-        return []
+    from feature_image_tag_filter import _looks_like_entity_candidate  # noqa: E402
 
     problems = []
     for tag in _KNOWN_RISKY_TAGS:
