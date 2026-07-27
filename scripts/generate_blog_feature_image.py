@@ -285,6 +285,7 @@ from feature_image_tag_filter import (  # noqa: E402
     _ORG_AND_COMPETITION_WORDS,
     _is_competition_reference,
     _looks_like_entity_candidate,
+    _looks_like_womens_context,
     _tokenize,
 )
 
@@ -315,7 +316,7 @@ def _download_photo(url: str, timeout: int = 8) -> Image.Image | None:
         return None
 
 
-def verified_entity_photo(name: str) -> str | None:
+def verified_entity_photo(name: str, womens_context: bool = False) -> str | None:
     """Only returns a photo URL once Wikipedia's own page independently
     confirms `name` is a real sports subject (fetch_entity_photo's
     entity-context check) — then prefers a nicer/more current photo of that
@@ -340,13 +341,21 @@ def verified_entity_photo(name: str) -> str | None:
 
     Also runs `name` through qualify_entity_query() first, which rewrites a
     bare country tag ('Morocco') to its unambiguous men's-side Wikipedia
-    title ('Morocco national football team') before either tier ever
-    queries anything — closes the gender-ambiguity gap that let a Men's
-    FIFA ranking post surface a Morocco WOMEN's World Cup celebration photo
-    (2026-07-27): a bare country name has no way to signal which side a
-    search should be about, and both Wikipedia's search fallback and the
-    news-image search will happily return either."""
-    query = qualify_entity_query(name)
+    title ('Morocco national football team') by default — closing the
+    gender-ambiguity gap that let a Men's FIFA ranking post surface a
+    Morocco WOMEN's World Cup celebration photo (2026-07-27): a bare country
+    name has no way to signal which side a search should be about, and both
+    Wikipedia's search fallback and the news-image search will happily
+    return either. `womens_context`, sourced from the whole post (see
+    feature_image_tag_filter._looks_like_womens_context) rather than this
+    one candidate name, flips
+    that default to the women's title instead — added after a second,
+    distinct incident (2026-07-27, WAFCON) where the men's-side default
+    itself was the bug: a post about the Women's Africa Cup of Nations
+    tagged ['WAFCON', 'Nigeria', 'Morocco'] resolved 'Nigeria' to the men's
+    team because nothing told this function the post was about the women's
+    tournament in the first place."""
+    query = qualify_entity_query(name, womens_context=womens_context)
     wiki_url = fetch_entity_photo(query)
     if not wiki_url:
         return None
@@ -358,8 +367,12 @@ def find_subject_photo(post: dict) -> Image.Image | None:
     Wikipedia-verified photo that resolves and downloads (see
     verified_entity_photo), or None if the post has no identifiable
     player/team/person (e.g. a generic tips or bonus post)."""
+    womens_context = _looks_like_womens_context(
+        post.get("title", ""), post.get("excerpt", ""),
+        *(post.get("tags", []) or []),
+    )
     for name in _subject_candidates(post):
-        url = verified_entity_photo(name)
+        url = verified_entity_photo(name, womens_context)
         if not url:
             continue
         photo = _download_photo(url)

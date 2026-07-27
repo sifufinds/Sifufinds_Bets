@@ -53,9 +53,21 @@ _GENERIC_TAG_WORDS = {
 # tags included the bare "FIFA" and "World Ranking"). Blocking these names at
 # the source — before either photo tier ever runs a query — is far cheaper and
 # more reliable than trying to make the search itself edition/gender-aware.
+#
+# "wafcon"/"wsl"/"nwsl"/"uwcl" were added after a second, distinct incident
+# the same day: a WAFCON (Women's Africa Cup of Nations) post shipped with a
+# men's Nigeria squad photo, because "wafcon" itself wasn't blocked here AND
+# — the deeper bug — a bare country tag alongside it ('Nigeria') silently
+# defaulted to the men's team with no way to know the post was about a
+# women's tournament (fixed separately in player_photo.qualify_entity_query /
+# generate_blog_feature_image._post_is_womens_context). These acronyms don't
+# literally contain "women" so the plain word-hint check elsewhere in the
+# pipeline can't catch them; they belong here for the same reason FIFA/AFCON
+# do — one acronym spans many editions/genders with no single stable photo.
 _ORG_AND_COMPETITION_WORDS = {
     "fifa", "uefa", "caf", "concacaf", "conmebol", "afc", "ofc",
-    "afcon", "can", "chan", "nba", "nfl", "nhl", "mlb", "mls",
+    "afcon", "can", "chan", "wafcon", "wsl", "nwsl", "uwcl",
+    "nba", "nfl", "nhl", "mlb", "mls",
     "icc", "atp", "wta", "itf", "fia", "ioc", "fifpro",
     "premier", "championship", "championships", "ranking", "rankings",
     "qualifier", "qualifiers", "qualifying", "playoff", "playoffs",
@@ -83,14 +95,54 @@ _BLOCKED_TAG_WORDS = _GENERIC_TAG_WORDS | _ORG_AND_COMPETITION_WORDS
 # competitions ('Super League') — Nigeria's own 'Super Eagles' nickname would
 # also die under an OR-rule on that word, and that's a real, frequently-used,
 # perfectly safe tag; 'Super League' is still caught because 'league' alone
-# is enough.
+# is enough. 'test' (cricket's Test-match format, alongside 't20'/'odi'
+# already here) was added 2026-07-27 after the same-day WAFCON audit also
+# turned up 'Test matches' ('matches' blocked, 'test' wasn't) resolving to
+# an unrelated men's Test cricket photo on a Women's T20 World Cup post.
 _COMPETITION_STRUCTURE_WORDS = {
     "cup", "league", "championship", "championships", "trophy", "trophies",
     "open", "masters", "prix", "bowl", "slam", "slams", "playoffs", "playoff",
     "qualifier", "qualifiers", "qualifying", "nations", "finals", "final",
-    "conference", "division", "t20", "odi", "series", "invitational",
+    "conference", "division", "t20", "odi", "test", "series", "invitational",
     "classic", "tour", "grand", "games",
 }
+
+
+# Acronyms/short names for women's-only competitions that don't literally
+# contain the word "women" (WAFCON = Women's Africa Cup of Nations, WSL =
+# Women's Super League, NWSL/UWCL likewise) — plain substring matching on
+# "women" misses these, and they're exactly the kind of tag that establishes
+# a post's women's-football context without any individual country/team tag
+# alongside them carrying that signal on its own. See
+# _looks_like_womens_context's docstring for the incident this closes.
+_WOMENS_ONLY_COMPETITION_ACRONYMS = ("wafcon", "wsl", "nwsl", "uwcl")
+
+_WOMENS_CONTEXT_PATTERN = re.compile(
+    r"\b(women'?s|womens|female|" + "|".join(_WOMENS_ONLY_COMPETITION_ACRONYMS) + r")\b",
+    re.IGNORECASE,
+)
+
+
+def _looks_like_womens_context(*texts: str) -> bool:
+    """True when the combined post text (title, excerpt, tags — any mix of
+    strings the caller has on hand) is clearly about women's football, even
+    though the individual candidate tag being resolved (a bare country name
+    like 'Nigeria') carries no gender signal by itself.
+
+    Root cause of a live incident (2026-07-27): a WAFCON (Women's Africa Cup
+    of Nations) post tagged ['WAFCON', 'Nigeria', 'Morocco'] shipped with a
+    men's Nigeria squad photo. Blocking 'wafcon' as a photo-search candidate
+    (see _ORG_AND_COMPETITION_WORDS above) stops that acronym from being
+    tried directly, but the very next candidate, 'Nigeria', is a bare
+    country tag that agents/python/utils/player_photo.qualify_entity_query()
+    has always defaulted to the men's national football team — and nothing
+    upstream told it the post itself was about the women's tournament.
+    generate_blog_feature_image.find_subject_photo() calls this once per
+    post (scanning title + excerpt + every tag together, since the signal is
+    often carried by a *different* tag than the one being qualified) and
+    threads the result through to qualify_entity_query() as `womens_context`
+    so the country resolves to the correct side."""
+    return bool(_WOMENS_CONTEXT_PATTERN.search(" ".join(t or "" for t in texts)))
 
 
 def _tokenize(name: str) -> list[str]:

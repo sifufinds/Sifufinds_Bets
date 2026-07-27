@@ -143,17 +143,20 @@ def find_invalid_jsonld(root: str) -> dict[str, str]:
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
 # ── CHECK 4: feature-image tag-safety regression guard ──────────────────────
-# Guards against a repeat of the 2026-07-27 incident: a Men's FIFA World
+# Guards against a repeat of two 2026-07-27 incidents: (1) a Men's FIFA World
 # Ranking post shipped live with a FIFA Women's World Cup 2023 tournament
 # graphic as its feature image, because governing-body/competition tags
 # (FIFA, AFCON, NBA...) and bare country tags (Morocco) were trusted as photo-
 # search subjects with no way to know which of many unrelated tournaments/
-# editions/genders they might resolve to. See generate_blog_feature_image.py's
-# _ORG_AND_COMPETITION_WORDS / _COMPETITION_STRUCTURE_WORDS and
-# player_photo.py's _gender_mismatch / qualify_entity_query for the actual
-# fixes — this check exists purely so a future edit to those filters that
-# quietly reopens the gap (or over-tightens it) fails loudly here instead of
-# shipping silently.
+# editions/genders they might resolve to; (2) a WAFCON post shipped with a
+# men's Nigeria squad photo — "wafcon" wasn't blocked here, and even once
+# blocked, a bare country tag like "Nigeria" still defaulted to the men's
+# team with no post-level women's-context signal. See
+# generate_blog_feature_image.py's _ORG_AND_COMPETITION_WORDS /
+# _COMPETITION_STRUCTURE_WORDS / _post_is_womens_context and player_photo.py's
+# _gender_mismatch / qualify_entity_query for the actual fixes — this check
+# exists purely so a future edit to those filters that quietly reopens the
+# gap (or over-tightens it) fails loudly here instead of shipping silently.
 
 _KNOWN_RISKY_TAGS = [
     "FIFA", "UEFA", "CAF", "AFCON", "AFCON 2026", "NBA", "World Ranking",
@@ -161,11 +164,13 @@ _KNOWN_RISKY_TAGS = [
     "Women's T20 World Cup", "CAF Champions League", "Premier League",
     "Champions League", "Grand Slam", "Commonwealth Games", "US Open",
     "Queen's Club Championship", "County Championship", "World Cup Bracket",
-    "EFL Trophy", "Six Nations", "Europa League",
+    "EFL Trophy", "Six Nations", "Europa League", "WAFCON", "WSL", "NWSL",
+    "UWCL", "Test matches", "Test series",
 ]
 _KNOWN_SAFE_TAGS = [
     "Real Madrid", "Morocco", "Lakers", "Chelsea", "Super Eagles",
     "Marc Cucurella", "New York Knicks", "Cape Verde", "LeBron James",
+    "Nigeria",
 ]
 
 
@@ -183,7 +188,10 @@ def check_feature_image_tag_safety() -> list[str]:
     # import: feature_image_tag_filter.py needs nothing but `re`, so it
     # always succeeds and the guard actually runs.
     sys.path.insert(0, os.path.join(SITE_ROOT, "scripts"))
-    from feature_image_tag_filter import _looks_like_entity_candidate  # noqa: E402
+    from feature_image_tag_filter import (  # noqa: E402
+        _looks_like_entity_candidate,
+        _looks_like_womens_context,
+    )
 
     problems = []
     for tag in _KNOWN_RISKY_TAGS:
@@ -192,6 +200,17 @@ def check_feature_image_tag_safety() -> list[str]:
     for tag in _KNOWN_SAFE_TAGS:
         if not _looks_like_entity_candidate(tag):
             problems.append(f"'{tag}' should be ALLOWED as a photo-search candidate but is now blocked")
+
+    # Regression coverage for the 2026-07-27 WAFCON incident: a bare country
+    # tag ('Nigeria') sitting alongside a women's-competition acronym
+    # ('WAFCON') must be recognised as women's context so it resolves to the
+    # correct national side instead of silently defaulting to the men's team.
+    if not _looks_like_womens_context("2026 WAFCON Kicks Off in Morocco", "", "WAFCON", "Nigeria", "Morocco"):
+        problems.append("a post tagged with 'WAFCON' should be detected as women's-football context but is not")
+    if not _looks_like_womens_context("", "", "Women's Super League", "Chelsea"):
+        problems.append("a post tagged with \"Women's Super League\" should be detected as women's-football context but is not")
+    if _looks_like_womens_context("Nigeria vs Morocco AFCON preview", "", "AFCON", "Nigeria", "Morocco"):
+        problems.append("a plain men's AFCON post should NOT be detected as women's-football context but is")
     return problems
 
 

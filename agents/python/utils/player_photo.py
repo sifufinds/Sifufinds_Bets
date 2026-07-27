@@ -164,16 +164,30 @@ def _looks_like_bare_country(name: str) -> bool:
     return any(hint in desc for hint in _COUNTRY_DESC_HINTS)
 
 
-def qualify_entity_query(name: str) -> str:
-    """Rewrites a bare country name to its unambiguous men's-side Wikipedia
-    title before either photo tier ever runs a query. '<Country> national
-    football team' is the long-standing Wikipedia convention for the men's
-    side; the women's side is always titled '<Country> women's national
-    football team' explicitly. Any other name — a player, a club, a name
-    that's already qualified — is returned unchanged."""
+def qualify_entity_query(name: str, womens_context: bool = False) -> str:
+    """Rewrites a bare country name to its unambiguous Wikipedia title before
+    either photo tier ever runs a query. '<Country> national football team'
+    is the long-standing Wikipedia convention for the men's side; the
+    women's side is always titled '<Country> women's national football
+    team' explicitly. Any other name — a player, a club, a name that's
+    already qualified — is returned unchanged.
+
+    `womens_context` must come from the calling post's own signal (title,
+    tags, excerpt — see generate_blog_feature_image._post_is_womens_context),
+    not from `name` itself: a bare country tag like 'Nigeria' carries no
+    gender information on its own, so defaulting to the men's side here is
+    silently wrong on a post that's actually about a women's tournament.
+    Root cause of a live incident (2026-07-27, WAFCON): a post tagged
+    ['WAFCON', 'Nigeria', 'Morocco'] resolved 'Nigeria' straight to the
+    men's team because nothing upstream ever told this function the post
+    was about the Women's Africa Cup of Nations — and once the query itself
+    read 'Nigeria national football team' with no 'women's' wording,
+    _gender_mismatch had nothing to disagree with; it only ever compares
+    the *resolved* query against a candidate, never the source post."""
     name = (name or "").strip()
     if name and _looks_like_bare_country(name):
-        return f"{name} national football team"
+        side = "women's national football team" if womens_context else "national football team"
+        return f"{name} {side}"
     return name
 
 
