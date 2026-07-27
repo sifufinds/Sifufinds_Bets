@@ -52,7 +52,7 @@ _anthropic_key = os.getenv("ANTHROPIC_API_KEY", "")
 if not _groq_key and not _gemini_key and not _anthropic_key:
     raise RuntimeError("No AI key found. Set GROQ_API_KEY or ANTHROPIC_API_KEY in agents/python/.env")
 
-# ── Groq client (tiers 1 & 2 — both free) ────────────────────────────────────
+# ── Groq client (tiers 1-4 — all free, separate quota per model) ────────────
 _groq_client = None
 if _groq_key:
     from groq import Groq
@@ -136,8 +136,9 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
         # Tiers 1-4 — four Groq models, each with its own separate free TPD
         # quota bucket, so one model capping out doesn't block the others.
         for i, model in enumerate(_GROQ_MODELS):
+            result = None
             try:
-                return _ask_groq(system_prompt, user_message, max_tokens, model)
+                result = _ask_groq(system_prompt, user_message, max_tokens, model)
             except Exception as e:
                 err = str(e)
                 if not _is_rate_limit(err.lower()):
@@ -148,11 +149,16 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
                         print(f"[llm] Groq {model} RPM limit — waiting {wait}s then retrying")
                         time.sleep(wait)
                         try:
-                            return _ask_groq(system_prompt, user_message, max_tokens, model)
+                            result = _ask_groq(system_prompt, user_message, max_tokens, model)
                         except Exception:
-                            pass
-                next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else "Claude"
-                print(f"[llm] Groq {model} exhausted — trying {next_step}")
+                            result = None
+            if result:
+                return result
+            # reasoning models (gpt-oss) can also come back with empty content
+            # when hidden reasoning tokens consume the whole max_tokens budget —
+            # that's not an exception, so it needs its own empty-result check.
+            next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else "Claude"
+            print(f"[llm] Groq {model} exhausted or empty — trying {next_step}")
 
     # Tier 5 — Claude (reliable paid fallback, fast)
     if _anthropic_client:
@@ -192,13 +198,17 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
                 last_err = e
         if last_err:
             raise AIProvidersExhausted(
-                "All AI providers exhausted. Groq TPD resets at midnight UTC. "
-                "Gemini free tier requires billing to be enabled on the Google Cloud project."
+                "All AI providers exhausted: all 4 Groq models are over their daily "
+                "token quota (each resets on its own rolling window, typically "
+                "minutes to a few hours after that model was last used, not a fixed "
+                "midnight-UTC cliff) and Gemini's free tier requires billing to be "
+                "enabled on the Google Cloud project."
             )
 
     raise AIProvidersExhausted(
-        "All AI providers exhausted or rate-limited. "
-        "Groq TPD resets at midnight UTC."
+        "All AI providers exhausted or rate-limited: all 4 Groq models are over "
+        "their daily token quota. Each resets on its own rolling window "
+        "(minutes to a few hours since last used), not a fixed midnight-UTC cliff."
     )
 
 
