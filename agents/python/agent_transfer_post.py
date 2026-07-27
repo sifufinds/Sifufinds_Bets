@@ -68,7 +68,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from llm import ask, AIProvidersExhausted
 from utils.logger import log
 from utils.news_fetcher import fetch_category
-from utils.player_photo import find_player_image, looks_like_person_name
+from utils.player_photo import find_player_image, looks_like_person_name, _get_summary
 from agent_sports_blog import generate_post, load_posts, save_posts
 from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
@@ -395,19 +395,54 @@ def _extract_name_candidates(text: str) -> list[str]:
     return seen
 
 
+_PERSON_ONLY_HINTS = (
+    "footballer", "football player", "midfielder", "defender", "forward",
+    "goalkeeper", "winger", "striker", "manager", "head coach",
+)
+_ORG_ONLY_HINTS = (
+    "football club", "national football team", "sports club",
+    "association football club", "soccer club",
+)
+
+
+def _wikipedia_confirms_person(name: str) -> bool:
+    """Extra guard specific to this fallback: unlike the main flow (where
+    facts['player'] is already an LLM-confirmed person name),
+    _extract_name_candidates() is a bare regex over free text, and a club
+    name (e.g. 'Energie Cottbus') passes every surface heuristic a real
+    person's name would — 2 title-case words, no digits. fetch_player_photo's
+    direct-hit path returns whatever thumbnail sits on the exact-name
+    Wikipedia page with no person/organisation check of its own (confirmed
+    2026-07-27: it returned Energie Cottbus's crest as if it were a player
+    photo), so verify independently here before trusting any photo this path
+    returns. No Wikipedia page at all means no way to verify — skip rather
+    than risk it, matching fetch_player_photo's own stated policy that a
+    wrong photo is worse than no photo."""
+    data = _get_summary(name)
+    if not data:
+        return False
+    haystack = f"{data.get('description', '')} {data.get('extract', '')}".lower()
+    if any(h in haystack for h in _ORG_ONLY_HINTS):
+        return False
+    return any(h in haystack for h in _PERSON_ONLY_HINTS)
+
+
 def find_raw_fallback_photo(item: dict) -> str | None:
     """Try every name-shaped candidate in the headline, then the
-    description, returning the first real photo found — or None, in which
-    case the caller uses the site's generic branded social card instead."""
+    description, returning the first *verified-person* real photo found —
+    or None, in which case the caller uses the site's generic branded social
+    card instead."""
     for text in (item.get("title", ""), item.get("description", "")):
         for candidate in _extract_name_candidates(text):
             if not looks_like_person_name(candidate):
                 continue
+            if not _wikipedia_confirms_person(candidate):
+                continue
             photo_url = find_player_image(candidate)
             if photo_url:
-                print(f"  ✓ Found a real photo for {candidate!r}")
+                print(f"  ✓ Found a real, verified photo for {candidate!r}")
                 return photo_url
-    print("  — No real photo found for this headline — using generic branded card")
+    print("  — No verified real photo found for this headline — using generic branded card")
     return None
 
 
