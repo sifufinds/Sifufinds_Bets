@@ -2,6 +2,18 @@ name: Deploy to Hostinger — sifufinds.com
 
 # Runs on every push to main that touches web files.
 # Bot-only pushes (agents, Python, workflows) are skipped.
+#
+# Scheduled fallback (added 2026-07-28): confirmed via the GitHub API that
+# individual bot commits (e.g. the transfer-news bot's ~5-min push cadence)
+# were producing ZERO workflow runs — not "skipped due to paths-ignore", just
+# never delivered at all. Same account-wide high-frequency-automation
+# behaviour already documented for cron in AGENT-KNOWLEDGE.md, just hitting
+# push events this time instead of schedule events. Manual workflow_dispatch
+# was the only thing keeping the live site in sync, leaving gaps of up to
+# ~1 hour of unpublished blog posts (this is what caused a reported 404 on a
+# post that had been committed and pushed to main nearly an hour earlier).
+# A cheap ~1-2 min run every 20 minutes closes that gap without depending on
+# push delivery at all — re-deploying identical content is a harmless no-op.
 on:
   push:
     branches: [main]
@@ -16,6 +28,8 @@ on:
       - "*.py"
       - "pyproject.toml"
       - "uv.lock"
+  schedule:
+    - cron: "*/20 * * * *"
   workflow_dispatch:
 
 concurrency:
