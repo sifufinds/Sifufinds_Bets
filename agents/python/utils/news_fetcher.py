@@ -122,13 +122,16 @@ SEARCH_QUERIES: dict[str, list[str]] = {
 # ── TRANSFER NEWS SOURCE ALLOWLIST ────────────────────────────────────────────
 # Added 2026-07-28 by explicit product decision: transfer news must only ever
 # be attributed to Sky Sports, BBC Sport, ESPN, TalkSport, David Ornstein (The
-# Athletic), or Fabrizio Romano — never Google or Yahoo. Google News RSS
-# hardcodes its item source to the literal string "Google News" (see
-# _google_news_search below), which would post "📰 Source: Google News"
-# instead of naming the real outlet, so that layer is skipped entirely for
-# this category. DuckDuckGo search and the site RSS feeds are still used, but
-# every resulting item is filtered through _is_allowed_transfer_source()
-# before it can be posted.
+# Athletic), or Fabrizio Romano — never Google or Yahoo. All three fetch
+# layers (DuckDuckGo, Google News RSS, site RSS feeds) are used for
+# "transfers" — Google News RSS is no longer skipped as of the same date:
+# it turned out to carry a real per-item <source> element (e.g. "Sky
+# Sports", "BBC", "talkSPORT"), so _parse_rss(use_item_source=True) reads
+# the genuine outlet instead of the generic "Google News" label an earlier
+# version of this fix hardcoded. Every item from every layer is still
+# filtered through _is_allowed_transfer_source() before it can be posted —
+# this allowlist is what actually enforces the restriction now, not which
+# layer an item came from.
 TRANSFER_ALLOWED_SOURCE_TERMS = (
     "bbc",
     "sky sports",
@@ -380,13 +383,23 @@ def _google_news_search(query: str, category: str,
     data = _fetch_url(url)
     if not data:
         return []
-    return _parse_rss(data, "Google News", category, max_age_hours)
+    return _parse_rss(data, "Google News", category, max_age_hours, use_item_source=True)
 
 
 # ── LAYER 3: SITE RSS FEEDS ───────────────────────────────────────────────────
 
 def _parse_rss(xml_bytes: bytes, source: str, category: str,
-               max_age_hours: int) -> list[NewsItem]:
+               max_age_hours: int, use_item_source: bool = False) -> list[NewsItem]:
+    """use_item_source=True reads each item's own <source> element (Google
+    News RSS aggregates many outlets per feed and tags every item with the
+    real publication, e.g. "Sky Sports"/"BBC"/"talkSPORT" — confirmed live
+    2026-07-28) instead of the single fixed `source` string, which is what
+    every other RSS feed here uses since they're already single-outlet
+    feeds. Without this, Google News items were hardcoded to the literal
+    string "Google News" and had to be excluded entirely from the
+    "transfers" category's strict named-outlet allowlist — see
+    TRANSFER_ALLOWED_SOURCE_TERMS above — even when the underlying item was
+    genuinely from Sky Sports/BBC/ESPN/talkSPORT."""
     try:
         root = ET.fromstring(xml_bytes)
     except ET.ParseError:
@@ -408,11 +421,14 @@ def _parse_rss(xml_bytes: bytes, source: str, category: str,
             or _text(item.find("description"))
         )
         link = _text(item.find("link")) or _text(item.find("guid"))
+        item_source = source
+        if use_item_source:
+            item_source = _text(item.find("source")) or source
         items.append(_make_item(
             title=title,
             description=_strip_html(desc_raw),
             url=link,
-            source=source,
+            source=item_source,
             category=category,
             pub_dt=pub_dt,
         ))
@@ -467,12 +483,16 @@ def fetch_category(category: str, max_per_feed: int = 6) -> list[NewsItem]:
     for q in queries:
         all_items.extend(_ddg_search(q, category, max_age, max_results=6))
 
-    # Layer 2: Google News RSS — skipped for "transfers" (see
-    # TRANSFER_ALLOWED_SOURCE_TERMS docstring above: Google News RSS items are
-    # never attributable to a real named outlet).
-    if category != "transfers":
-        for q in queries:
-            all_items.extend(_google_news_search(q, category, max_age))
+    # Layer 2: Google News RSS. Previously skipped entirely for "transfers"
+    # on the theory that every item would be hardcoded to the unattributable
+    # literal "Google News" — fixed 2026-07-28 by reading each item's real
+    # <source> element instead (see _parse_rss's use_item_source), so this
+    # layer now genuinely surfaces Sky Sports/BBC/ESPN/talkSPORT items
+    # (confirmed live) and is included for every category, "transfers"
+    # included; _is_allowed_transfer_source() below still filters out
+    # anything that isn't one of the allowlisted outlets.
+    for q in queries:
+        all_items.extend(_google_news_search(q, category, max_age))
 
     # Layer 3: Site RSS fallback
     site_feeds = [(s, u, c) for s, u, c in FEEDS if c == category]
