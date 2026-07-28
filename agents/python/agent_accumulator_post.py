@@ -83,6 +83,25 @@ def is_major_league(competition: str) -> bool:
         return False
     if "italy serie a" in comp or "brazil serie a" in comp:
         return True
+    # Country-qualified African premier leagues are unambiguous by name —
+    # checked before the generic "premier league" ambiguity guard below so
+    # they can never be caught by it (an earlier version of this guard did
+    # exactly that: "premier league" is a substring of "nigeria premier
+    # league" too, so it short-circuited to False before ever reaching
+    # ALLOWED_LEAGUE_KEYWORDS — caught by testing, not by reading the code).
+    if any(k in comp for k in ("nigeria premier", "kenyan premier", "kenya premier",
+                                "ghana premier", "egyptian premier", "egypt premier")):
+        return True
+    # "premier league" alone is ambiguous the same way "serie a" is (see
+    # comment above ALLOWED_LEAGUE_KEYWORDS) — plenty of countries name their
+    # top flight "Premier League" too (confirmed live in predictions.json:
+    # Russia, Kazakhstan, Canada), and those aren't what this site's African
+    # betting audience means by it. Only count it when nothing else in the
+    # competition string qualifies it as a specific country's own division —
+    # i.e. the field is bare "Premier League" or explicitly England's.
+    if ("premier league" in comp and comp.strip() != "premier league"
+            and not comp.startswith("england") and not comp.startswith("english")):
+        return False
     return any(k in comp for k in ALLOWED_LEAGUE_KEYWORDS)
 
 
@@ -137,12 +156,22 @@ def gather_candidates() -> list[dict]:
     for pred in _load_json(PRED_JSON).get("predictions", []):
         match = f"{pred.get('home','')} vs {pred.get('away','')}"
         key = match.lower()
-        conf = pred.get("confidence")
         odds = _wdw_odds(pred)
-        if key in seen or not conf or not odds or odds <= 1.01:
+        if key in seen or not odds or odds <= 1.01:
             continue
         if not is_major_league(pred.get("competition", "")):
             continue
+        # predictions.json (scraped from predictz.com) never carries an
+        # explicit confidence score — that site doesn't publish one, so this
+        # field is always null. Rather than reject every real, correctly-
+        # priced prediction over a field that structurally doesn't exist
+        # here, derive a real, non-fabricated proxy from the match's own
+        # scraped odds: market-implied probability (100/odds), capped at 90
+        # since no single football outcome should ever be presented as more
+        # certain than that. This is standard implied probability from a
+        # real price, not an invented number — consistent with the "never
+        # invent a leg" policy stated at the top of this file.
+        conf = pred.get("confidence") or min(90, round(100 / odds))
         seen.add(key)
         candidates.append({
             "match": match,
