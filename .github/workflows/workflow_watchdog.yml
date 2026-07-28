@@ -8,6 +8,7 @@ name: Workflow Watchdog — auto-retry all failed workflows
 on:
   workflow_run:
     workflows:
+      - "Accumulator Post — Weekend/Weekday 5-Fold, 2x per day"
       - "Brand Bonus Scraper — Daily Update"
       - "Brand Discovery — weekly new-brand research & defunct-brand check"
       - "Breaking News Bot — Auto-publish 3x daily"
@@ -60,6 +61,7 @@ jobs:
         run: |
           set +e
           case "$WORKFLOW_NAME" in
+            "Accumulator Post"*)                                                          WF=accumulator_post.yml ;;
             "Brand Bonus Scraper — Daily Update")                                         WF=brand_scraper.yml ;;
             "Brand Discovery — weekly new-brand research & defunct-brand check")          WF=brand_discovery.yml ;;
             "Breaking News Bot — Auto-publish 3x daily")                                  WF=breaking_news.yml ;;
