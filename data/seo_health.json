@@ -1,18 +1,17 @@
 {
   "date": "2026-07-28",
-  "fixes_applied": 6,
+  "fixes_applied": 5,
   "warnings": 2,
   "fixes": [
     "llms.txt: Last Updated \u2192 2026-07-28, blog post count refreshed",
-    "index.html: dateModified \u2192 2026-07-28",
     "Blog HTML: refreshed dateModified on 675 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 628",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 1334 total URLs",
+    "Blog HTML regenerated:     Total blog posts in JSON: 652",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 1358 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "247 posts below 900 words: transfer-sagas-heat-up-liverpool-man-utd-arsenal, africas-top-transfers-stones-snub-man-utd-seals-fourth-signing-and-more, man-utd-seal-4th-summer-signing, transfer-window-updates-african-football, transfer-window-frenzy-how-squad-changes-impact-betting-value...",
-    "172 posts missing FAQ section: transfer-sagas-heat-up-liverpool-man-utd-arsenal, africas-top-transfers-stones-snub-man-utd-seals-fourth-signing-and-more, man-utd-fourth-signing-city-rodri-chase-stones-new-club-transfer-fever-2026, african-transfer-window-analysis-squad-depth-and-betting-value, al-hilal-70m-bid-luis-diaz-african-betting"
+    "253 posts below 900 words: transfer-news-roundup, rangers-near-makhanya-deal, transfer-news-boosts-and-blows-for-top-teams, transfer-frenzy-man-utd-liverpool-chelsea, transfer-news-summer-2026...",
+    "176 posts missing FAQ section: transfer-news-roundup, transfer-madness-in-africa, chelsea-henderson-2026-liverpool-barcola-man-utd-signing, summer-2026-transfer-rush, transfer-sagas-heat-up-liverpool-man-utd-arsenal"
   ],
   "status": "warnings"
 }
