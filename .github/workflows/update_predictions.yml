@@ -1,9 +1,24 @@
-name: SifuKaii Predicts — Scrape predictz.com every 15 minutes
+name: SifuKaii Predicts — Scrape predictz.com 4x daily
 
+# Was every 15 minutes (96 runs/day) — this script calls Firecrawl + Apify
+# exclusively for 8 URLs per run with zero free-tier fallback (its regex
+# parser needs Firecrawl's specific markdown link syntax; trafilatura/Jina
+# Reader were tested live and don't preserve those links for this site, so
+# unlike every other scraper in this repo it couldn't be migrated to
+# free_scrape.py — see AGENT-KNOWLEDGE.md 2026-07-28). At 96 runs/day this
+# was the single largest Firecrawl consumer in the whole repo and the
+# primary reason the account ran out of credits in its first week. None of
+# this data's consumers (agent_accumulator_post.py: 2x/day;
+# agent_match_post.py: on-demand/manual) need 15-minute freshness — cut to
+# 4x/day, timed just ahead of the accumulator's 11:00/18:00 UTC posts, which
+# cuts Firecrawl exposure by ~24x while keeping data fresh enough for every
+# real consumer.
 on:
   schedule:
-    # Every 15 minutes, 24/7
-    - cron: "0,15,30,45 * * * *"
+    - cron: "0 5 * * *"
+    - cron: "0 10 * * *"
+    - cron: "0 16 * * *"
+    - cron: "0 22 * * *"
   workflow_dispatch:   # manual trigger from GitHub UI
 
 concurrency:

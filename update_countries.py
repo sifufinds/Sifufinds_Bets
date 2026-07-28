@@ -2,8 +2,10 @@
 """
 SifuFinds — Real-time countries page data updater.
 
-Uses Firecrawl CLI + Apify REST API to scrape live bonus offers and bookmaker
-availability, then writes data/countries_live.json for the frontend to consume.
+Scrapes live bonus offers and bookmaker availability free-first (trafilatura
+-> Jina Reader -> Firecrawl last resort, via agents/python/utils/
+free_scrape.py) plus Apify REST API, then writes data/countries_live.json
+for the frontend to consume.
 
 Run:     python3 update_countries.py
 Schedule: every 4–6 hours via cron or GitHub Actions
@@ -12,7 +14,6 @@ Schedule: every 4–6 hours via cron or GitHub Actions
 import json
 import os
 import re
-import subprocess
 import sys
 import time
 import urllib.request
@@ -21,10 +22,12 @@ import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent / "agents" / "python"))
+from utils.free_scrape import scrape as _free_scrape  # noqa: E402
+
 # ── Paths ─────────────────────────────────────────────────────────────────────
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "data"
-FC_DIR = BASE_DIR / ".firecrawl"
 SCRAPER_STATE = BASE_DIR / "agents" / "python" / "scraper_state.json"
 LIVE_OUT = DATA_DIR / "countries_live.json"
 
@@ -85,18 +88,21 @@ BONUS_PATTERNS = [
 
 
 def fc_scrape(url: str, out_name: str) -> str | None:
-    """Scrape a URL with Firecrawl CLI; return content or None."""
-    out = FC_DIR / f"live-{out_name}.md"
-    try:
-        r = subprocess.run(
-            ["firecrawl", "scrape", url, "--only-main-content", "-o", str(out)],
-            capture_output=True, text=True, timeout=60,
-        )
-        if r.returncode == 0 and out.exists():
-            return out.read_text(encoding="utf-8", errors="ignore")
-    except (subprocess.TimeoutExpired, FileNotFoundError):
-        pass
-    return None
+    """Free-first scrape (trafilatura -> Jina Reader -> Firecrawl last resort)
+    via agents/python/utils/free_scrape.py. Previously called the Firecrawl
+    CLI exclusively for all 16 bookmaker pages every run (~5x/day, no free
+    fallback at all) — a direct violation of the repo's "Multi-Source
+    Scraping, Firecrawl-Last" standing rule, and (together with
+    update_predictions.py's identical Firecrawl-only pattern, fixed
+    separately) the primary cause of running out of Firecrawl credits in the
+    first week of usage (see AGENT-KNOWLEDGE.md 2026-07-28). Bonus/promo
+    pages are marketing content, not long-form articles, so trafilatura's
+    readability extraction often returns nothing for them (confirmed live
+    testing) — Jina Reader is what actually carries this most of the time.
+    `extract_bonus()` below is plain regex over whatever text comes back, so
+    it works identically regardless of which layer supplied it.
+    """
+    return _free_scrape(url, name=out_name, min_chars=200) or None
 
 
 def extract_bonus(content: str) -> str | None:
@@ -199,13 +205,12 @@ def main() -> None:
     print(f"\n🔄  SifuFinds Live Data Updater")
     print(f"    {NOW}\n")
 
-    FC_DIR.mkdir(exist_ok=True)
     live = load_live()
 
     apify_token = os.getenv("APIFY_API_TOKEN") or os.getenv("APIFY_TOKEN", "")
 
-    # ── Phase 1 · Firecrawl bookmaker pages ───────────────────────────────────
-    print("📡  Phase 1 · Firecrawl bookmaker promo pages")
+    # ── Phase 1 · Bookmaker promo pages (free-first scrape) ───────────────────
+    print("📡  Phase 1 · Bookmaker promo pages")
     for name, url in BOOKMAKER_PAGES:
         slug = re.sub(r"[^\w]", "-", name.lower())
         print(f"    Scraping {name} …", end=" ", flush=True)
