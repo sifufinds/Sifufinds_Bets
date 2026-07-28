@@ -119,6 +119,32 @@ SEARCH_QUERIES: dict[str, list[str]] = {
     ],
 }
 
+# ── TRANSFER NEWS SOURCE ALLOWLIST ────────────────────────────────────────────
+# Added 2026-07-28 by explicit product decision: transfer news must only ever
+# be attributed to Sky Sports, BBC Sport, ESPN, TalkSport, David Ornstein (The
+# Athletic), or Fabrizio Romano — never Google or Yahoo. Google News RSS
+# hardcodes its item source to the literal string "Google News" (see
+# _google_news_search below), which would post "📰 Source: Google News"
+# instead of naming the real outlet, so that layer is skipped entirely for
+# this category. DuckDuckGo search and the site RSS feeds are still used, but
+# every resulting item is filtered through _is_allowed_transfer_source()
+# before it can be posted.
+TRANSFER_ALLOWED_SOURCE_TERMS = (
+    "bbc",
+    "sky sports",
+    "espn",
+    "talksport",
+    "athletic",    # David Ornstein writes for The Athletic
+    "ornstein",
+    "romano",      # Fabrizio Romano
+)
+
+
+def _is_allowed_transfer_source(source: str) -> bool:
+    s = (source or "").lower()
+    return any(term in s for term in TRANSFER_ALLOWED_SOURCE_TERMS)
+
+
 # ── FALLBACK RSS FEEDS ────────────────────────────────────────────────────────
 # Full liveness audit run 2026-07-25 (fetched every URL, parsed the XML, and
 # counted <item>s) turned up a large dead-weight problem: every espn.com/espn/rss/*
@@ -176,10 +202,11 @@ FEEDS: list[tuple[str, str, str]] = [
     ("Yahoo Sports",      "https://sports.yahoo.com/rss/",                               "sportnews"),
     ("Sportskeeda",       "https://www.sportskeeda.com/feed",                            "sportnews"),
     ("Premium Times Sports (Nigeria)", "https://www.premiumtimesng.com/category/sports/feed", "sportnews"),
-    # Transfers (dedicated feeds)
+    # Transfers (dedicated feeds) — restricted to Sky Sports/BBC/ESPN/
+    # TalkSport/David Ornstein/Fabrizio Romano only (2026-07-28); Guardian and
+    # Yahoo dropped.
     ("BBC Transfers Dedicated", "https://feeds.bbci.co.uk/sport/football/transfers/rss.xml", "transfers"),
-    ("Guardian Transfer Window", "https://www.theguardian.com/football/transfer-window/rss", "transfers"),
-    ("Yahoo Soccer Transfers",   "https://sports.yahoo.com/soccer/rss.xml",              "transfers"),
+    ("TalkSport Transfers",     "https://talksport.com/feed/",                               "transfers"),
     # Basketball
     ("BBC Basketball",    "https://feeds.bbci.co.uk/sport/basketball/rss.xml",          "basketball"),
     ("Guardian NBA",      "https://www.theguardian.com/sport/nba/rss",                  "basketball"),
@@ -436,13 +463,22 @@ def fetch_category(category: str, max_per_feed: int = 6) -> list[NewsItem]:
     for q in queries:
         all_items.extend(_ddg_search(q, category, max_age, max_results=6))
 
-    # Layer 2: Google News RSS
-    for q in queries:
-        all_items.extend(_google_news_search(q, category, max_age))
+    # Layer 2: Google News RSS — skipped for "transfers" (see
+    # TRANSFER_ALLOWED_SOURCE_TERMS docstring above: Google News RSS items are
+    # never attributable to a real named outlet).
+    if category != "transfers":
+        for q in queries:
+            all_items.extend(_google_news_search(q, category, max_age))
 
     # Layer 3: Site RSS fallback
     site_feeds = [(s, u, c) for s, u, c in FEEDS if c == category]
     all_items.extend(_fetch_site_feeds(site_feeds, category, max_age, max_per_feed))
+
+    # Transfer news is restricted to a named-outlet allowlist regardless of
+    # which layer surfaced it (Yahoo/Guardian/other outlets can still show up
+    # via DuckDuckGo search results, not just the site-feed layer).
+    if category == "transfers":
+        all_items = [i for i in all_items if _is_allowed_transfer_source(i["source"])]
 
     result = _dedupe_sort(all_items)
     return result if len(result) >= MIN_FRESH_ITEMS else []

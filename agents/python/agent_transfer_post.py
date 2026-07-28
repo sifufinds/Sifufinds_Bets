@@ -1,10 +1,10 @@
 """
 agent_transfer_post.py — Live Transfer News Bot for SifuFinds
 
-Watches the dedicated "transfers" news feeds (BBC Sport, Sky Sports News, ESPN,
-Guardian + DuckDuckGo/Google News search, including named searches for
-Fabrizio Romano and David Ornstein, all via utils/news_fetcher.py), and when a
-genuinely new transfer story appears:
+Watches the dedicated "transfers" news feed (BBC Sport, Sky Sports News, ESPN,
+TalkSport, David Ornstein, and Fabrizio Romano only — see
+utils.news_fetcher.TRANSFER_ALLOWED_SOURCE_TERMS; Google News and Yahoo are
+excluded by policy), and when a genuinely new transfer story appears:
 
   1. Writes a full researched blog article via agent_sports_blog.generate_post
      ("transfers" category — same anti-hallucination pipeline as every other
