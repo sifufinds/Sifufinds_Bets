@@ -204,9 +204,13 @@ FEEDS: list[tuple[str, str, str]] = [
     ("Premium Times Sports (Nigeria)", "https://www.premiumtimesng.com/category/sports/feed", "sportnews"),
     # Transfers (dedicated feeds) — restricted to Sky Sports/BBC/ESPN/
     # TalkSport/David Ornstein/Fabrizio Romano only (2026-07-28); Guardian and
-    # Yahoo dropped.
+    # Yahoo dropped. No dedicated TalkSport RSS feed here: talksport.com/feed/
+    # is a general all-sports feed (confirmed 2026-07-28 to carry NFL/other
+    # non-football stories), so TalkSport coverage for "transfers" comes only
+    # through the DuckDuckGo layer, whose queries are already football/
+    # transfer-specific (see SEARCH_QUERIES["transfers"]) and still passes
+    # through _is_allowed_transfer_source() like every other item.
     ("BBC Transfers Dedicated", "https://feeds.bbci.co.uk/sport/football/transfers/rss.xml", "transfers"),
-    ("TalkSport Transfers",     "https://talksport.com/feed/",                               "transfers"),
     # Basketball
     ("BBC Basketball",    "https://feeds.bbci.co.uk/sport/basketball/rss.xml",          "basketball"),
     ("Guardian NBA",      "https://www.theguardian.com/sport/nba/rss",                  "basketball"),
