@@ -57,17 +57,51 @@ jobs:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
+      - name: Check if a major transfer window is currently open
+        id: window
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "open=true" >> "$GITHUB_OUTPUT"
+            echo "▶ Manual dispatch — running regardless of the seasonal transfer-window gate."
+            exit 0
+          fi
+          # Major European transfer windows this bot tracks: summer (June,
+          # July, August — closes on deadline day, end of August) and winter
+          # (all of January). Outside these months there's essentially no
+          # real transfer news to report, so the bot pauses itself instead of
+          # spinning its ~5h50m self-perpetuating loop (see the file-level
+          # comment below) for nothing every hour. Deliberately whole-month
+          # granularity, not exact deadline-day dates — those shift by a day
+          # or two most years and this doesn't need to be that precise; the
+          # existing duplicate-title de-dupe in agent_transfer_post.py
+          # already prevents padding output even inside an open window.
+          MM=$(date -u +%-m)
+          if [ "$MM" -eq 1 ] || { [ "$MM" -ge 6 ] && [ "$MM" -le 8 ]; }; then
+            echo "open=true" >> "$GITHUB_OUTPUT"
+            echo "✅ Transfer window open (UTC month=$MM) — running normally."
+          else
+            echo "open=false" >> "$GITHUB_OUTPUT"
+            echo "⏸ Transfer window closed (UTC month=$MM) — pausing until it reopens (1 January or 1 June UTC)."
+          fi
+
+      - name: Paused — no transfer window open right now
+        if: steps.window.outputs.open != 'true'
+        run: echo "Skipping this run entirely — no major transfer window is open. The hourly schedule keeps checking and will resume automatically once one opens."
+
       - name: Checkout repo
+        if: steps.window.outputs.open == 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
+        if: steps.window.outputs.open == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Cache pip dependencies
+        if: steps.window.outputs.open == 'true'
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
@@ -75,16 +109,19 @@ jobs:
           restore-keys: ${{ runner.os }}-pip-
 
       - name: Install dependencies
+        if: steps.window.outputs.open == 'true'
         run: pip install -r agents/python/requirements.txt
 
       - name: Install fonts for feature-image generation
+        if: steps.window.outputs.open == 'true'
         run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core fonts-noto-color-emoji
 
       - name: Install Playwright browser
+        if: steps.window.outputs.open == 'true'
         run: playwright install --with-deps chromium
 
       - name: Dry-run preview (single check, nothing published)
-        if: github.event.inputs.dry_run == 'true'
+        if: steps.window.outputs.open == 'true' && github.event.inputs.dry_run == 'true'
         working-directory: agents/python
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -117,7 +154,7 @@ jobs:
       # job itself ends in failure — workflow_watchdog.yml / retry_failed.yml
       # pick that up and retry the whole workflow exactly as before.
       - name: Live coverage loop — checks every 5 minutes for up to ~5h50m
-        if: github.event.inputs.dry_run != 'true'
+        if: steps.window.outputs.open == 'true' && github.event.inputs.dry_run != 'true'
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
