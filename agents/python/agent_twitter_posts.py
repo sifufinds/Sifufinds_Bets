@@ -497,9 +497,17 @@ async def _post_playwright(text: str) -> bool:
         # repo's other retry safety nets can see through that (they only
         # check whether the *workflow* succeeded).
         create_tweet_result: dict = {}
+        graphql_seen: list = []
 
         async def _capture_create_tweet(response):
-            if "CreateTweet" not in response.url:
+            url = response.url
+            if "/i/api/graphql/" in url:
+                # Diagnostic trail: if CreateTweet never shows up, this tells
+                # us what the click actually triggered (wrong operation name,
+                # nothing at all, or an unexpected mutation) instead of
+                # leaving us to guess blind on the next attempt.
+                graphql_seen.append(f"{response.status} {url.split('/i/api/graphql/')[-1]}")
+            if "CreateTweet" not in url:
                 return
             try:
                 body = await response.json()
@@ -576,10 +584,35 @@ async def _post_playwright(text: str) -> bool:
         await post_btn.wait_for(state="visible", timeout=15_000)
         # Brief extra wait for X's React state to enable the button
         await page.wait_for_timeout(500)
+        pre_click_disabled = await post_btn.get_attribute("aria-disabled")
+        print(f"Post button aria-disabled before click: {pre_click_disabled!r}")
         print("Clicking Post button...")
         # force=True bypasses the #layers overlay that intercepts pointer events on x.com
         await post_btn.click(force=True)
         await page.wait_for_timeout(4_000)
+
+        # Diagnostics gathered before tearing down the page — if no CreateTweet
+        # call was observed, these distinguish "click never registered with
+        # React" (compose box still open/has text, button still disabled)
+        # from "request went to a different endpoint than expected".
+        diag_parts = []
+        try:
+            still_open = await textarea.is_visible()
+            diag_parts.append(f"compose box still visible: {still_open}")
+        except Exception as e:
+            diag_parts.append(f"compose box check failed: {e}")
+        try:
+            post_click_disabled = await post_btn.get_attribute("aria-disabled")
+            diag_parts.append(f"aria-disabled after click: {post_click_disabled!r}")
+        except Exception as e:
+            diag_parts.append(f"post-click button check failed: {e}")
+        try:
+            toast = page.locator('[data-testid="toast"], [role="alert"]').first
+            if await toast.count() > 0:
+                diag_parts.append(f"toast/alert text: {await toast.inner_text()!r}")
+        except Exception as e:
+            diag_parts.append(f"toast check failed: {e}")
+        diag_parts.append(f"graphql calls seen: {graphql_seen}")
 
         await context.close()
         await browser.close()
@@ -587,7 +620,8 @@ async def _post_playwright(text: str) -> bool:
         if not create_tweet_result:
             raise Exception(
                 "No CreateTweet network response observed — the click may not "
-                "have actually submitted the post (silent failure)"
+                "have actually submitted the post (silent failure). Diagnostics: "
+                + " | ".join(diag_parts)
             )
 
         status = create_tweet_result.get("status")
