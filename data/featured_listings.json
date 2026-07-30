@@ -1,0 +1,11 @@
+{
+  "_schema": {
+    "slot": "One of: homepage_hero, top_sportsbook, featured_casino, editors_pick, category_sponsor:<category>, country_sponsor:<country>, newsletter_sponsor",
+    "brand_slug": "Must match a slug in data/bookmaker_links.json or agents/python/utils/affiliate_links.py's BRAND_SLUGS",
+    "sponsored": "Must always be true — this feature only exists for clearly-labelled paid placements, never disguised organic promotion",
+    "starts_at": "ISO 8601 timestamp, or null for immediately active",
+    "ends_at": "ISO 8601 timestamp — required, no open-ended placements",
+    "criteria_note": "Required, human-readable — the transparent reason this brand holds this slot (CLAUDE.md: 'Editor's Pick (with transparent criteria)')"
+  },
+  "listings": []
+}

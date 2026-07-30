@@ -18,7 +18,11 @@ this template.
 """
 from __future__ import annotations
 
+import json
 from datetime import datetime, timezone
+from pathlib import Path
+
+FEATURED_LISTINGS_PATH = Path(__file__).resolve().parents[3] / "data" / "featured_listings.json"
 
 _COUNTRY_SELECTOR = """      <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
       <option value="KE">🇰🇪 Kenya · KSh KES</option>
@@ -67,6 +71,36 @@ def _hero_gradient(slug: str) -> tuple[str, str]:
     return _HERO_GRADIENTS[hash(slug) % len(_HERO_GRADIENTS)]
 
 
+def _active_featured_listing(slug: str) -> dict | None:
+    """Return the active Featured Listings entry for this brand slug, if any.
+
+    data/featured_listings.json is the single source of truth (managed by
+    agent_brand_partnerships.py --manage-listings) — read here rather than
+    duplicated so the hero badge can never drift from what was actually
+    sold/approved. Returns None for anything not sponsored=True or outside
+    its starts_at/ends_at window, so an expired deal silently stops showing.
+    """
+    if not FEATURED_LISTINGS_PATH.exists():
+        return None
+    try:
+        data = json.loads(FEATURED_LISTINGS_PATH.read_text())
+    except (OSError, json.JSONDecodeError):
+        return None
+
+    now = datetime.now(timezone.utc)
+    for entry in data.get("listings", []):
+        if entry.get("brand_slug") != slug or entry.get("sponsored") is not True:
+            continue
+        starts_at = entry.get("starts_at")
+        ends_at = entry.get("ends_at")
+        if starts_at and datetime.fromisoformat(starts_at.replace("Z", "+00:00")) > now:
+            continue
+        if ends_at and datetime.fromisoformat(ends_at.replace("Z", "+00:00")) < now:
+            continue
+        return entry
+    return None
+
+
 def render_bookmaker_page(facts: dict) -> str:
     """Render bookmakers/<slug>/index.html for a newly-discovered brand.
 
@@ -110,6 +144,12 @@ def render_bookmaker_page(facts: dict) -> str:
 
     stars_full = int(round(rating))
     stars = "★" * stars_full + "☆" * (5 - stars_full)
+
+    featured = _active_featured_listing(slug)
+    featured_badge_html = (
+        f'<div class="verdict-badge featured-badge" title="{featured.get("criteria_note", "")}">'
+        f'⭐ Featured Partner · Sponsored</div>'
+    ) if featured else ""
 
     return f"""<!DOCTYPE html>
 <!-- sifufinds.com/bookmakers/{slug}/ — {name} Review {year} — auto-researched listing -->
@@ -275,6 +315,7 @@ def render_bookmaker_page(facts: dict) -> str:
     <p>Independent review of {name} by SifuFinds. {welcome_bonus}</p>
     <div class="rating-big"><span>{rating}/5</span><span class="stars-big">{stars}</span></div>
     <div class="verdict-badge">🆕 New Listing — Under Ongoing Review</div>
+    {featured_badge_html}
     <div class="review-meta">
       <span>📅 First reviewed {today_iso}</span>
       <span>🔍 {licensing_status}</span>

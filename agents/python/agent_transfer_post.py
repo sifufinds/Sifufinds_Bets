@@ -53,9 +53,17 @@ both accept a direct file upload of the same local PNG, so they always get a
 real per-post image; Instagram uses the sitewide generic card in that case.
 
 Duplicate protection: skips the whole cycle (no blog post, no social post) if
-the generated story's title closely matches one already in blog/posts.json —
-the same recent-title check agent_sports_blog.py's own run() uses — so a
-5 minute cron doesn't repost the same still-trending rumour every cycle.
+either (a) the generated story's title closely matches one already in
+blog/posts.json — the same recent-title check agent_sports_blog.py's own
+run() uses — or (b) the article's underlying source headline(s) (see
+post["_source_items"]) match one already covered via posted_keys in
+transfer_raw_fallback_state.json, shared with the raw-fallback path below.
+(b) exists because (a) alone doesn't catch it: the LLM invents a fresh,
+differently-worded blog title on every cron cycle even when the underlying
+BBC/ESPN headline is the same still-fresh story, so title-prefix matching
+against previous *generated* titles never fires — see _source_keys()'s
+docstring for the real incident (five differently-titled posts about the
+same Henry Lawrence/Ipswich rumour within an hour, 2026-07-30) this closes.
 
 Usage:
   python3 agent_transfer_post.py                # normal run (all 4 platforms)
@@ -85,6 +93,11 @@ from agent_twitter_posts import _post_tweet as post_twitter
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 GENERIC_SOCIAL_IMAGE = f"{SITE_URL}/assets/social-card.jpg"
+# Filename predates 2026-07-30, but posted_keys is now a shared "already
+# covered this source headline" registry for BOTH the normal (LLM) flow and
+# the raw fallback below — see _source_keys()'s docstring. Kept the
+# original path rather than renaming/migrating so existing history isn't
+# discarded.
 RAW_FALLBACK_STATE_PATH = Path(__file__).parent / "transfer_raw_fallback_state.json"
 
 
@@ -328,6 +341,28 @@ def _headline_key(title: str) -> str:
     return title.lower()[:40]
 
 
+def _source_keys(post: dict) -> set[str]:
+    """Normalized keys for every candidate source headline this article was
+    actually built from (see generate_post()'s post["_source_items"]) —
+    used by run() to recognize when a 5-minute cron cycle is about to
+    re-cover a still-fresh BBC/ESPN/etc. headline the LLM just happens to
+    have written a completely different, novel-sounding blog title for.
+    Real incident (2026-07-30): the same "Ipswich Town transfer rumours:
+    Henry Lawrence" BBC headline (still inside the 24h freshness window
+    across several consecutive cron cycles) produced five differently-
+    titled "breaking news" posts within about an hour — "Transfer Frenzy:
+    How Summer Moves Impact Betting Odds", "Transfer Talk: What's
+    Happening in the Premier...", etc. — with contradictory invented
+    details (Lawrence's age given as 19, 20, 21, and 22 across the five)
+    and five different branded images, since title-prefix dedup on the
+    *generated* title never matches when the LLM invents a new title every
+    time. Checked against the same posted_keys registry
+    _load_raw_fallback_state()/_save_raw_fallback_state() already maintain,
+    so a headline covered by either this normal flow or the raw fallback is
+    recognized by both."""
+    return {_headline_key(i["title"]) for i in post.get("_source_items", []) if i.get("title")}
+
+
 def _usable_source_image(image: str, title: str) -> bool:
     """A real image is only usable if it's not one of the known generic
     section-branding graphics outlets reuse across unrelated stories (Sky
@@ -559,6 +594,20 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
         log("transfer_post", "generate", "skipped", "duplicate title")
         return None, {}
 
+    # Also check the *source* headline(s) this article was actually built
+    # from against the shared "already covered" registry — catches the case
+    # the title check above can't: the LLM invents a fresh, differently-
+    # worded blog title every cycle even when the underlying BBC/ESPN story
+    # is the same one still sitting inside the freshness window. See
+    # _source_keys()'s docstring for the real incident this fixes.
+    covered_keys = set(_load_raw_fallback_state().get("posted_keys", []))
+    source_keys = _source_keys(post)
+    matched = source_keys & covered_keys
+    if matched:
+        print(f"⚠ Underlying story already covered this cycle — skipping. ('{post['title']}')")
+        log("transfer_post", "generate", "skipped", "duplicate source headline")
+        return None, {}
+
     print(f"  ✓ '{post['title']}'")
 
     print("🔎 Extracting structured facts for the social bulletin...")
@@ -614,6 +663,14 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     all_posts = [post] + existing
     save_posts(all_posts)
     print(f"✅ Blog post saved. Total in blog: {len(all_posts)}")
+
+    # Record the source headline(s) this article covered into the shared
+    # "already covered" registry so a later cycle recognizes the same
+    # underlying story even under a brand-new LLM-invented title — see
+    # _source_keys()'s docstring.
+    dedup_state = _load_raw_fallback_state()
+    dedup_state.setdefault("posted_keys", []).extend(source_keys)
+    _save_raw_fallback_state(dedup_state)
 
     results: dict[str, bool] = {}
 
