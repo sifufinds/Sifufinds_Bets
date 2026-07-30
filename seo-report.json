@@ -1,13 +1,229 @@
 {
-  "date": "2026-07-28",
-  "total": 6,
+  "date": "2026-07-29",
+  "total": 42,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 5,
+    "MEDIUM": 41,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "arsenal-bruno-guimaraes-celtic-kasper-hogh-2026-transfer-news",
+      "detail": "High title overlap (6 meaningful tokens) with 'arsenal-bruno-guimaraes-celtic-kasper-hogh-transfer-updates-africa' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-record-kasper-hogh-premier-league-transfer-saga",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-record-deal-premier-league-transfer-betting-impact' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-record-kasper-hogh-premier-league-transfer-saga",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-smash-record-kasper-hogh-premier-league-buzz' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-transfer-premier-league-betting",
+      "detail": "High title overlap (6 meaningful tokens) with 'celtic-record-hogh-transfer-premier-league-impact' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-transfer-premier-league-betting",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-record-deal-premier-league-transfer-betting-impact' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-transfer-premier-league-betting",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-transfer-premier-league-betting",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-record-deal-real-madrid-vinicius-jr-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-transfer-premier-league-betting",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-transfers-kasper-hogh' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-record-hogh-transfer-premier-league-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-record-deal-premier-league-transfer-betting-impact' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-record-hogh-transfer-premier-league-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-record-hogh-transfer-premier-league-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-record-deal-real-madrid-vinicius-jr-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-record-hogh-transfer-premier-league-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-transfers-kasper-hogh' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "kasper-hog-club-record-transfer-shocks-2026",
+      "detail": "High title overlap (5 meaningful tokens) with 'transfer-news-celtic-leicester-swansae' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-deal-premier-league-transfer-betting-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-smash-record-kasper-hogh-premier-league-buzz' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-deal-premier-league-transfer-betting-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-deal-premier-league-transfer-betting-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-record-deal-real-madrid-vinicius-jr-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-deal-premier-league-transfer-betting-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-transfers-kasper-hogh' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "kasper-hogh-celtic-record-move-daizen-maeda-ipswich-betting-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'kasper-hogh-celtic-record-move-vinicius-jr-madrid-stay-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "kasper-hogh-celtic-record-move-daizen-maeda-ipswich-betting-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-2026-odds' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "kasper-hogh-celtic-record-move-daizen-maeda-ipswich-betting-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-2026-transfer-odds' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "kasper-hogh-celtic-record-move-daizen-maeda-ipswich-betting-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-ipswich-daizen-maeda-2026-odds",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-2026-transfer-odds' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-ipswich-daizen-maeda-2026-odds",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-record-kasper-hog-ipswich-daizen-maeda-transfer-window-2026' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-ipswich-daizen-maeda-2026-odds",
+      "detail": "High title overlap (6 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-ipswich-daizen-maeda-2026-transfer-odds",
+      "detail": "High title overlap (6 meaningful tokens) with 'celtic-hogh-ipswich-maeda-transfer-window-2026' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-ipswich-daizen-maeda-2026-transfer-odds",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-transfers-kasper-hogh-club-record' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-ipswich-daizen-maeda-2026-transfer-odds",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-record-kasper-hog-ipswich-daizen-maeda-transfer-window-2026' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-ipswich-daizen-maeda-2026-transfer-odds",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "vinicius-jr-stays-celtic-record-hogh-ipswich-maeda-betting",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtics-record-deal-real-madrid-vinicius-jr-premier-league-transfer-frenzy' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-hogh-ipswich-maeda-transfer-window-2026",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-transfers-kasper-hogh-club-record",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-transfers-kasper-hogh' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-record-kasper-hog-ipswich-daizen-maeda-transfer-window-2026",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtics-record-deal-real-madrid-vinicius-jr-premier-league-transfer-frenzy",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-record-deal-real-madrid-vinicius-jr-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-kasper-hogh-record-deal-real-madrid-vinicius-jr-betting' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-ipswich-daizen-maeda-transfer-betting",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-transfers-kasper-hogh' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "celtic-kasper-hogh-record-deal-real-madrid-vinicius-jr-betting",
+      "detail": "High title overlap (5 meaningful tokens) with 'celtic-transfers-kasper-hogh' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
@@ -41,8 +257,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "71 posts",
-      "detail": "71 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "74 posts",
+      "detail": "74 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
