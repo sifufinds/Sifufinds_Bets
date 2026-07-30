@@ -403,6 +403,14 @@ html,body{max-width:100%;overflow-x:hidden}
   font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0;
 }
 
+/* Raw third-party affiliate ad units (network-hosted creative, not our design system) */
+.article-inline-banner-raw{margin:18px 0;text-align:center}
+.article-inline-banner-raw::before{
+  content:'Sponsored';display:block;font-size:10px;font-weight:800;
+  letter-spacing:.5px;text-transform:uppercase;color:#999;margin-bottom:6px;
+}
+.article-inline-banner-raw iframe,.article-inline-banner-raw img{max-width:100%;border-radius:8px}
+
 /* ── SIDEBAR ──────────────────────────────────────────────────────── */
 .sidebar{position:sticky;top:52px;display:flex;flex-direction:column;gap:16px}
 
@@ -1205,6 +1213,7 @@ function openArticle(e,id){
   }
 
   document.getElementById('reader-body').innerHTML=html;
+  hydrateRawBanners(document.getElementById('reader-body'));
   document.getElementById('article-reader-bg').classList.add('open');
   document.body.style.overflow='hidden';
   if(!history.state||history.state.articleId!==id){
@@ -1214,6 +1223,9 @@ function openArticle(e,id){
 }
 
 function buildInlineBanner(b){
+  if(b.type==='raw'){
+    return `<div class="article-inline-banner-raw" data-raw-banner-id="${b.id}"></div>`;
+  }
   return`<a class="article-inline-banner" href="${b.url}" target="_blank" rel="noopener noreferrer" style="background:${b.bg};color:${b.tc}" onclick="event.stopPropagation()">
   <div class="aib-logo" style="color:${b.tc}">${b.logo_abbr}</div>
   <div class="aib-body">
@@ -1223,6 +1235,23 @@ function buildInlineBanner(b){
   </div>
   <div class="aib-cta">${b.cta}</div>
 </a>`;
+}
+
+// Raw third-party ad units (iframe/img + tracking <script>) are supplied as HTML
+// strings from banners.json. Assigning them via innerHTML parses the markup but
+// never runs embedded <script> tags (browsers intentionally neuter those), which
+// would silently break the ad network's viewability pixel. createContextualFragment
+// is the standard escape hatch — script elements it creates are NOT marked
+// "already started", so they execute normally once appended to the document.
+function hydrateRawBanners(root){
+  root.querySelectorAll('[data-raw-banner-id]').forEach(el=>{
+    if(el.dataset.hydrated)return;
+    const banner=_allBanners.find(b=>b.id===el.getAttribute('data-raw-banner-id'));
+    if(!banner||!banner.raw_html)return;
+    const frag=document.createRange().createContextualFragment(banner.raw_html);
+    el.appendChild(frag);
+    el.dataset.hydrated='1';
+  });
 }
 
 function closeReader(e){
@@ -1345,10 +1374,14 @@ function renderSidebar(){
   </div>
   `;
 
+  hydrateRawBanners(sidebar);
   renderAdminBannerList();
 }
 
 function buildSidebarBanner(b){
+  if(b.type==='raw'){
+    return `<div class="article-inline-banner-raw" data-raw-banner-id="${b.id}"></div>`;
+  }
   /* Derive a bright CTA colour — gold for dark bg, dark green for light */
   const ctaBg=b.tc==='#fff'?'#d4af37':'#1a6b35';
   const ctaTc=b.tc==='#fff'?'#0a3d1e':'#fff';
@@ -1387,7 +1420,7 @@ function renderAdminBannerList(){
   if(!list)return;
   list.innerHTML=_allBanners.map((b,i)=>`
   <div class="admin-banner-item">
-    <div class="abi-color" style="background:${b.bg}"></div>
+    <div class="abi-color" style="background:${b.bg||'#999'}"></div>
     <div class="abi-name">${b.bookmaker}</div>
     <div class="abi-slot">${b.slot}</div>
     <button class="abi-toggle${b.active?' on':''}" onclick="toggleBanner(${i})" title="${b.active?'Disable':'Enable'}"></button>
