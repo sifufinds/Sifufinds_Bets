@@ -1,9 +1,15 @@
-name: X (Twitter) Posts — 4x daily rotating content
+name: X (Twitter) Posts — 5x daily rotating content
 
 on:
   schedule:
-    # 4x per day: 09:00, 13:00, 17:00, 21:00 UTC (peak WAT/EAT engagement)
+    # 5x per day: 01:00, 09:00, 13:00, 17:00, 21:00 UTC (peak WAT/EAT engagement,
+    # plus 01:00 to break up the overnight 21:00→09:00 gap). The old 4-slot
+    # schedule left a 12-hour dead window every night — combined with normal
+    # GitHub Actions scheduled-trigger delay (observed 2h+ on 2026-07-30), that
+    # produced real multi-hour "nothing posted" gaps a user could notice. 01:00
+    # caps the longest possible gap at 8h even with zero delay.
     # Rotation: news → offer → tip → offer (auto mode cycles per run)
+    - cron: "0 1 * * *"
     - cron: "0 9 * * *"
     - cron: "0 13 * * *"
     - cron: "0 17 * * *"

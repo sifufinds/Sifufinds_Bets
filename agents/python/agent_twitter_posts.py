@@ -487,6 +487,29 @@ async def _post_playwright(text: str) -> bool:
             context = await _stealth_context(browser)
 
         page = await context.new_page()
+
+        # Capture the CreateTweet GraphQL response so we can verify the post
+        # actually landed, instead of trusting a clicked button. X returns
+        # HTTP 200 with an `errors` array (e.g. duplicate content, rate
+        # limit) for plenty of failure cases that still look like a normal
+        # network response — a silent "success" here would report green to
+        # the workflow while nothing actually posted, and none of this
+        # repo's other retry safety nets can see through that (they only
+        # check whether the *workflow* succeeded).
+        create_tweet_result: dict = {}
+
+        async def _capture_create_tweet(response):
+            if "CreateTweet" not in response.url:
+                return
+            try:
+                body = await response.json()
+            except Exception:
+                body = None
+            create_tweet_result["status"] = response.status
+            create_tweet_result["body"] = body
+
+        page.on("response", _capture_create_tweet)
+
         await page.goto("https://x.com/home", wait_until="domcontentloaded", timeout=30_000)
         await page.wait_for_timeout(3_000)
         print(f"Initial URL: {page.url}")
@@ -560,7 +583,21 @@ async def _post_playwright(text: str) -> bool:
 
         await context.close()
         await browser.close()
-        print("✓ Tweet posted via browser")
+
+        if not create_tweet_result:
+            raise Exception(
+                "No CreateTweet network response observed — the click may not "
+                "have actually submitted the post (silent failure)"
+            )
+
+        status = create_tweet_result.get("status")
+        body = create_tweet_result.get("body")
+        errors = body.get("errors") if isinstance(body, dict) else None
+        if status != 200 or errors:
+            err_msg = errors[0].get("message") if errors else f"HTTP {status}"
+            raise Exception(f"CreateTweet rejected the post: {err_msg}")
+
+        print(f"✓ Tweet posted via browser — CreateTweet confirmed (HTTP {status})")
         return True
 
 
