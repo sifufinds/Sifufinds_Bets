@@ -8,7 +8,7 @@ Also generates 50+ new SEO-targeted posts and appends them to posts.json.
 """
 from __future__ import annotations
 
-import os, json, re
+import os, json, re, zlib
 from datetime import datetime, timezone
 from urllib.parse import quote as urlquote
 
@@ -1295,6 +1295,52 @@ _BK_SLUG_TO_LINK: dict[str, tuple[str, str]] = {
     for e in _BOOKMAKER_ENTRIES if e.get('status') == 'active'
 }
 
+# Bonus pages (gen_bonus_pages.py output at bonuses/<slug>/) — news-category
+# posts (transfers/sportnews) already get a bookmaker review link via
+# _BK_SLUG_TO_LINK above, but never a bonus-page or comparison-article link
+# since a transfer rumour or match report rarely mentions "welcome bonus" or
+# "vs" naturally. This table + COMPARISON_LINKS close that gap.
+BONUS_LINKS: list[tuple[str, str, str]] = [
+    ('Welcome Bonus Offers',  '../../bonuses/welcome-bonus/',  'Best betting welcome bonuses in Africa'),
+    ('Free Bet Offers',       '../../bonuses/free-bet/',       'Free bet offers compared'),
+    ('Cashback Bonus Offers', '../../bonuses/cashback-bonus/', 'Cashback bonus offers compared'),
+    ('Reload Bonus Offers',   '../../bonuses/reload-bonus/',   'Reload bonus offers compared'),
+]
+
+# Comparison articles — hand-verified against blog/posts.json slugs, never
+# generated/guessed. Adding a link to a page that doesn't exist is the exact
+# failure mode sanitize_internal_links() exists to prevent (see CLAUDE.md's
+# documented 3-day deploy-block incident from AI-hallucinated internal links).
+COMPARISON_LINKS: list[tuple[str, str, str]] = [
+    ('bet9ja-vs-sportybet-nigeria-2026-comparison',
+     'Bet9ja vs SportyBet (Nigeria) Compared', 'Bet9ja vs SportyBet Nigeria 2026 comparison'),
+    ('1xbet-vs-betway-africa-2026-comparison',
+     '1xBet vs Betway (Africa) Compared', '1xBet vs Betway Africa 2026 comparison'),
+    ('best-betting-welcome-bonuses-africa-2026-compared',
+     'Best Welcome Bonuses Compared', 'Best betting welcome bonuses in Africa, compared'),
+]
+
+_NEWS_CATEGORIES = {'transfers', 'sportnews'}
+
+
+def _pick_news_context_links(post: dict) -> tuple[tuple[str, str, str], tuple[str, str, str]]:
+    """Deterministically pick one bonus-page link and one comparison-article
+    link for a news-category post. Stable across regenerations (hash of
+    slug) rather than random, and biased toward the most relevant comparison
+    when the post's tags name one of the compared brands."""
+    slug = post.get('slug', '')
+    idx = zlib.crc32(slug.encode('utf-8'))
+    bonus = BONUS_LINKS[idx % len(BONUS_LINKS)]
+
+    tags_lower = {t.lower() for t in post.get('tags', [])}
+    if {'bet9ja', 'sportybet'} & tags_lower:
+        comparison = COMPARISON_LINKS[0]
+    elif {'1xbet', 'betway'} & tags_lower:
+        comparison = COMPARISON_LINKS[1]
+    else:
+        comparison = COMPARISON_LINKS[idx % len(COMPARISON_LINKS)]
+    return bonus, comparison
+
 
 def build_share_bar(canonical_href: str, title: str) -> str:
     """Social share bar with direct intent links + a copy-link button.
@@ -1324,6 +1370,8 @@ def build_resources_box(post: dict) -> str:
     - 1-2 internal country-page links (from post tags)
     - 1 internal bookmaker review link (from bookmaker_featured)
     - 1 internal core page (tips or odds)
+    - for news-category posts (transfers/sportnews): 1 bonus-page link + 1
+      comparison-article link (see _pick_news_context_links)
     - 1 external sport-authority link (from category)
     - 1 external reference/backlink to bettingbrainiac.com/african-betting-sites/ (always)
     - 1 external responsible-gambling link (always)
@@ -1349,6 +1397,14 @@ def build_resources_box(post: dict) -> str:
         items.append('<li><a href="../../tips/">Free Football Betting Tips</a></li>')
     else:
         items.append('<li><a href="../../odds/">Live Odds Comparison</a></li>')
+
+    # News-category posts (transfers/sportnews) rarely mention a bonus type
+    # or a head-to-head bookmaker matchup organically, so give them one of
+    # each here — the review link above already covers "reviews".
+    if post.get('category') in _NEWS_CATEGORIES:
+        (b_label, b_href, b_title), (c_slug, c_label, c_title) = _pick_news_context_links(post)
+        items.append(f'<li><a href="{b_href}" title="{b_title}">{b_label}</a></li>')
+        items.append(f'<li><a href="../../blog/{c_slug}/" title="{c_title}">{c_label}</a></li>')
 
     # External: sport authority
     cat = post.get('category', 'football')

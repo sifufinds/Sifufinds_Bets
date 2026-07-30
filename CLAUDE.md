@@ -63,6 +63,10 @@
 
 **Do not hand-patch an SEO issue and call it done.** If you fix something in this list manually, also check whether the corresponding automated guard caught it — if it didn't, that guard has a bug and needs fixing so the same issue can't recur silently. If a new category of SEO issue is found, add a permanent automated check for it here, in one of the scripts above, and add a row to this table.
 
+## STANDING RULE — Compliance Is Continuously Self-Healing (added 2026-07-30)
+
+**The same "never a one-time fix" principle applies to legal/trust-critical content, not just SEO.** `scripts/compliance_check.py` guards: every blog post carries an 18+/BeGambleAware disclaimer, no page or agent template ships overstated gambling-outcome language ("guaranteed win", "risk-free bet", etc. — deliberately excludes accurate mechanics language like Cash Out's genuine "guaranteed profit before the final leg settles"), masked affiliate links carry `rel="sponsored"` (brand slugs read live from `.htaccess`'s AFFILIATE LINK MASKING block so the check can't drift out of sync), and every active Featured Listings placement declares a transparent `criteria_note`. Runs as a blocking pre-deploy gate step in `deploy_hostinger.yml`, same position as `seo_check.py`. If a new compliance category is found, extend `scripts/compliance_check.py` rather than hand-patching a single page.
+
 ## STANDING RULE — Affiliate Link & Banner Integrity Is Continuously Self-Healing (added 2026-07-30)
 
 **The masked-URL affiliate system (`sifufinds.com/<brand>` → real tracking link) and the banner-ad system (`blog/banners.json`) have a permanent, automated guard so they never silently drift or 404.**
