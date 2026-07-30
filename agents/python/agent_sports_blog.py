@@ -28,6 +28,7 @@ from config import SITE_URL, BRAND_NAME
 from utils.news_fetcher import fetch_category, format_for_prompt
 from utils.ticker_builder import build_and_save as update_ticker
 from utils.serp_research import research, build_keyword_from_category
+from agent_fact_checker import check_post as fact_check_post
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
 from generate_blog_feature_image import ensure_feature_image
@@ -263,7 +264,8 @@ Write the article now. Base it on the REAL news provided above — do not invent
             # turned out to be about, instead of a speculative name-based
             # photo search — see AGENT-KNOWLEDGE.md 2026-07-28.
             "_source_items": [
-                {"title": i["title"], "url": i["url"], "image": i.get("image", ""), "source": i["source"]}
+                {"title": i["title"], "url": i["url"], "image": i.get("image", ""),
+                 "source": i["source"], "description": i.get("description", "")}
                 for i in news_items[:8]
             ],
         }
@@ -273,6 +275,19 @@ Write the article now. Base it on the REAL news provided above — do not invent
         feature_image = ensure_feature_image(post)
         if feature_image:
             post["feature_image"] = feature_image
+
+        # Fact-check gate — second LLM pass cross-checking the draft against
+        # its own source snippets before it's ever returned to a caller.
+        # Both agent_sports_blog.run() and agent_transfer_post.py (which
+        # imports generate_post directly) go through this single choke
+        # point. A FLAG holds the post back this run (logged to
+        # fact_check_flags.json) rather than publishing an unverified claim
+        # — the AIProvidersExhausted case does the same, deliberately, so a
+        # fact-checker outage can never become a silent bypass.
+        passed, flags = fact_check_post(post)
+        if not passed:
+            print(f"  ✗ Fact-checker held back this article: {flags}")
+            return None
         return post
 
     except json.JSONDecodeError as e:
