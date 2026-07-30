@@ -1,13 +1,61 @@
 {
   "date": "2026-07-30",
-  "total": 56,
+  "total": 64,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 8,
     "MEDIUM": 55,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-rumour-roundup-lawrence-matsima-bailey",
+      "detail": "Title 81 chars (max 60): 'Transfer rumour roundup: Lawrence, Matsima, Bailey & the big Premier L'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-frenzy-ipswich-palace-hull-liverpool-tottenham",
+      "detail": "Title 80 chars (max 60): 'Transfer Frenzy: Ipswich, Palace, Hull & More \u2013 Betting Insight for Af'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-rumours-july-2026-heat-up",
+      "detail": "Title 67 chars (max 60): 'Transfer Rumours Heat Up: Bailey, Grealish, Romero & More Eye Moves'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-rumours-heat-up-henry-lawrence-savinho",
+      "detail": "Title 92 chars (max 60): 'Transfer Rumours Heat Up: From Henry Lawrence to Savinho \u2013 What It Mea'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-talk-premier-league-bbc",
+      "detail": "Excerpt 211 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-rumour-roundup-lawrence-matsima-bailey",
+      "detail": "Excerpt 204 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-rumours-july-2026-heat-up",
+      "detail": "Excerpt 197 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-rumours-heat-up-henry-lawrence-savinho",
+      "detail": "Excerpt 193 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
@@ -341,8 +389,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "76 posts",
-      "detail": "76 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "77 posts",
+      "detail": "77 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
