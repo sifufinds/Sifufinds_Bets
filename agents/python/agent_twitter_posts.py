@@ -577,11 +577,31 @@ async def _post_playwright(text: str) -> bool:
         await page.keyboard.type(text, delay=30)
         await page.wait_for_timeout(1_500)
 
-        # Find Post button — don't filter by [disabled] since X may use aria-disabled
-        post_btn = page.locator(
-            '[data-testid="tweetButton"], [data-testid="tweetButtonInline"]'
-        ).first
-        await post_btn.wait_for(state="visible", timeout=15_000)
+        # Find Post button. A combined `.first` over both testids picks whichever
+        # matches first in DOM order, not necessarily the one wired to the
+        # compose surface we actually typed into — X can render an inactive
+        # modal-compose button elsewhere in the DOM even when we used the
+        # inline box (confirmed live: this mismatch caused clicks to hit a
+        # dead button with zero effect — compose box stayed open, no network
+        # call fired at all). Try the testid matching the surface we opened
+        # first, only falling back to the other if that one isn't present.
+        post_btn_selectors = (
+            ['[data-testid="tweetButtonInline"]', '[data-testid="tweetButton"]']
+            if compose_opened
+            else ['[data-testid="tweetButton"]', '[data-testid="tweetButtonInline"]']
+        )
+        post_btn = None
+        for sel in post_btn_selectors:
+            candidate = page.locator(sel).first
+            try:
+                await candidate.wait_for(state="visible", timeout=15_000)
+                post_btn = candidate
+                print(f"Using post button: {sel}")
+                break
+            except PWTimeout:
+                continue
+        if post_btn is None:
+            raise Exception("Could not locate a visible Post button with either testid")
         # Brief extra wait for X's React state to enable the button
         await page.wait_for_timeout(500)
         pre_click_disabled = await post_btn.get_attribute("aria-disabled")
