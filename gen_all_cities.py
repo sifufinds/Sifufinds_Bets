@@ -5,6 +5,7 @@ Scales from 8 cities to 200+ cities, targeting searches like:
 "betting sites in Kano Nigeria", "best bookmakers Kisumu Kenya", etc.
 """
 
+import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -857,11 +858,11 @@ def build_page(city_data):
     ]
 
     faq_schema = ',\n'.join(
-        f'''        {{
-          "@type": "Question",
-          "name": "{q}",
-          "acceptedAnswer": {{"@type": "Answer", "text": "{a}"}}
-        }}'''
+        json.dumps({
+            "@type": "Question",
+            "name": q,
+            "acceptedAnswer": {"@type": "Answer", "text": a},
+        })
         for q, a in faq_items
     )
 

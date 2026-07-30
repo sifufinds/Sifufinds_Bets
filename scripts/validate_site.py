@@ -108,8 +108,18 @@ def find_broken_links(root: str) -> dict[str, list[str]]:
 # answer text, and title/excerpt were interpolated into JSON-LD without escaping
 # quote characters — both produced JSON-LD that silently failed to parse (~20%
 # of blog posts were affected) while the page itself rendered fine, so nothing
-# else caught it. Root cause fixed in gen_blog_post_pages.py via json.dumps();
-# this check exists so a future regression can't hide the same way again.
+# else caught it. Root cause fixed in gen_blog_post_pages.py via json.dumps().
+#
+# Found again 2026-07-30 (schema SEO audit): the same manual/absent-escaping
+# pattern was never propagated beyond gen_blog_post_pages.py — nine other
+# generators (gen_all_cities.py, gen_bonus_pages.py, gen_bookmaker_country_
+# pages.py, gen_city_pages.py, gen_guide_pages.py, gen_payment_country_pages.py,
+# gen_payment_pages.py, gen_sport_country_pages.py, generate_country_pages.py)
+# were still building FAQPage/HowTo JSON-LD with either `.replace('"', '\\"')`
+# (misses newlines/backslashes) or zero escaping at all. All nine now build
+# their JSON-LD via json.dumps(). This check parses every index.html site-wide
+# (not just blog posts), so it already covers all of them — but the fix must
+# stay in every generator, not just this file, or it silently regresses again.
 
 def find_invalid_jsonld(root: str) -> dict[str, str]:
     invalid: dict[str, str] = {}

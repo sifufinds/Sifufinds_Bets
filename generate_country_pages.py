@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate dedicated country landing pages for sifufinds.com."""
 
+import json
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -245,13 +246,12 @@ def make_faqs(c):
 def faq_schema_json(faqs):
     items = []
     for f in faqs:
-        a_text = f['a'].replace('<strong>', '').replace('</strong>', '').replace('"', '\\"')
-        q_text = f['q'].replace('"', '\\"')
-        items.append(f'''        {{
-          "@type": "Question",
-          "name": "{q_text}",
-          "acceptedAnswer": {{"@type": "Answer", "text": "{a_text}"}}
-        }}''')
+        a_text = f['a'].replace('<strong>', '').replace('</strong>', '')
+        items.append(json.dumps({
+            "@type": "Question",
+            "name": f['q'],
+            "acceptedAnswer": {"@type": "Answer", "text": a_text},
+        }))
     return ',\n'.join(items)
 
 
@@ -344,8 +344,8 @@ def generate_page(code, c):
     {{
       "@type": "WebPage",
       "@id": "{canonical}#webpage",
-      "name": "{title}",
-      "description": "{meta_desc}",
+      "name": {json.dumps(title)},
+      "description": {json.dumps(meta_desc)},
       "url": "{canonical}",
       "inLanguage": "en-GB",
       "isPartOf": {{"@id": "{DOMAIN}/#website"}}
@@ -355,7 +355,7 @@ def generate_page(code, c):
       "itemListElement": [
         {{"@type": "ListItem", "position": 1, "name": "Home", "item": "{DOMAIN}/"}},
         {{"@type": "ListItem", "position": 2, "name": "Countries", "item": "{DOMAIN}/countries/"}},
-        {{"@type": "ListItem", "position": 3, "name": "{name} Betting Sites", "item": "{canonical}"}}
+        {{"@type": "ListItem", "position": 3, "name": {json.dumps(name + " Betting Sites")}, "item": "{canonical}"}}
       ]
     }},
     {{

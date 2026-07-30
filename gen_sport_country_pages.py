@@ -5,6 +5,7 @@ Creates /betting/{sport-slug}/{country-slug}/index.html targeting searches like
 "football betting Nigeria", "basketball betting Kenya", "cricket betting South Africa".
 """
 
+import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -188,11 +189,11 @@ def build_page(sport, country_slug, country_data):
     ]
 
     faq_schema = ',\n'.join(
-        f'''        {{
-          "@type": "Question",
-          "name": "{q}",
-          "acceptedAnswer": {{"@type": "Answer", "text": "{a}"}}
-        }}'''
+        json.dumps({
+            "@type": "Question",
+            "name": q,
+            "acceptedAnswer": {"@type": "Answer", "text": a},
+        })
         for q, a in faq_items
     )
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate city-level betting pages for Lagos, Nairobi, Johannesburg, Accra, Cape Town."""
 
+import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -157,6 +158,25 @@ def make_city_page(c):
     canonical = f"https://sifufinds.com/countries/{c['country_slug']}/{c['slug']}/"
     h1 = f"Betting Sites in {c['city']}, {c['country']} &middot; 2026"
 
+    faq_items = [
+        (
+            f"Is sports betting legal in {c['city']}?",
+            f"Yes. Sports betting is legal in {c['city']}, {c['country']}, regulated by the {c['regulator']}. All bookmakers listed on SifuFinds hold valid licences for the {c['country']} market.",
+        ),
+        (
+            f"What are the best betting sites in {c['city']}?",
+            f"The best licensed betting sites serving {c['city']} bettors are listed on SifuFinds. All are regulated by the {c['regulator']} and accept local payment methods including {', '.join(c['payments'][:2])}. Use the bookmaker comparison above to find current verified bonuses.",
+        ),
+    ]
+    faq_schema = ',\n'.join(
+        json.dumps({
+            "@type": "Question",
+            "name": q,
+            "acceptedAnswer": {"@type": "Answer", "text": a},
+        })
+        for q, a in faq_items
+    )
+
     return f"""<!DOCTYPE html>
 <!-- sifufinds.com/countries/{c['country_slug']}/{c['slug']}/ — Betting Sites in {c['city']} {c['country']} -->
 <html lang="en">
@@ -197,8 +217,8 @@ def make_city_page(c):
     {{
       "@type": "WebPage",
       "@id": "{canonical}#webpage",
-      "name": "{title}",
-      "description": "{meta_desc}",
+      "name": {json.dumps(title)},
+      "description": {json.dumps(meta_desc)},
       "url": "{canonical}",
       "inLanguage": "en-GB",
       "isPartOf": {{"@id": "https://sifufinds.com/#website"}}
@@ -208,23 +228,14 @@ def make_city_page(c):
       "itemListElement": [
         {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sifufinds.com/"}},
         {{"@type": "ListItem", "position": 2, "name": "Countries", "item": "https://sifufinds.com/countries/"}},
-        {{"@type": "ListItem", "position": 3, "name": "{c['country']} Betting", "item": "https://sifufinds.com/countries/{c['country_slug']}/"}},
-        {{"@type": "ListItem", "position": 4, "name": "{c['city']} Betting", "item": "{canonical}"}}
+        {{"@type": "ListItem", "position": 3, "name": {json.dumps(c['country'] + " Betting")}, "item": "https://sifufinds.com/countries/{c['country_slug']}/"}},
+        {{"@type": "ListItem", "position": 4, "name": {json.dumps(c['city'] + " Betting")}, "item": "{canonical}"}}
       ]
     }},
     {{
       "@type": "FAQPage",
       "mainEntity": [
-        {{
-          "@type": "Question",
-          "name": "Is sports betting legal in {c['city']}?",
-          "acceptedAnswer": {{"@type": "Answer", "text": "Yes. Sports betting is legal in {c['city']}, {c['country']}, regulated by the {c['regulator']}. All bookmakers listed on SifuFinds hold valid licences for the {c['country']} market."}}
-        }},
-        {{
-          "@type": "Question",
-          "name": "What are the best betting sites in {c['city']}?",
-          "acceptedAnswer": {{"@type": "Answer", "text": "The best licensed betting sites serving {c['city']} bettors are listed on SifuFinds. All are regulated by the {c['regulator']} and accept local payment methods including {', '.join(c['payments'][:2])}. Use the bookmaker comparison above to find current verified bonuses."}}
-        }}
+{faq_schema}
       ]
     }}
   ]

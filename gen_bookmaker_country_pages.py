@@ -6,6 +6,7 @@ valid bookmaker × country combination — targeting high-commercial-intent
 searches like "Betway Nigeria review 2026", "SportPesa Kenya bonus", etc.
 """
 
+import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -396,11 +397,11 @@ def build_page(bk, country_slug, country, combo):
     ]
 
     faq_schema = ',\n'.join(
-        f'''        {{
-          "@type": "Question",
-          "name": "{q}",
-          "acceptedAnswer": {{"@type": "Answer", "text": "{a}"}}
-        }}'''
+        json.dumps({
+            "@type": "Question",
+            "name": q,
+            "acceptedAnswer": {"@type": "Answer", "text": a},
+        })
         for q, a in faq_items
     )
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate bookmaker review pages for Sportpesa, Hollywoodbets, 1xBet Africa, Betway Africa."""
 
+import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -196,6 +197,14 @@ def make_html(bk):
     </div>'''
         for f in bk['faqs']
     )
+    faq_schema = ',\n'.join(
+        json.dumps({
+            "@type": "Question",
+            "name": f['q'],
+            "acceptedAnswer": {"@type": "Answer", "text": f['a']},
+        })
+        for f in bk['faqs']
+    )
     country_link = (
         f'<a href="../../countries/{bk["country_page"]}/">🌍 {bk["country_name"]}</a>'
         if bk.get('country_page')
@@ -245,10 +254,10 @@ def make_html(bk):
       "@type": "Review",
       "@id": "https://sifufinds.com/bookmakers/{slug}/#review",
       "itemReviewed": {{
-        "@type": "LocalBusiness",
-        "name": "{bk['name']}",
+        "@type": "Organization",
+        "name": {json.dumps(bk['name'])},
         "url": "{bk['url']}",
-        "description": "{bk['tagline']}"
+        "description": {json.dumps(bk['tagline'])}
       }},
       "reviewRating": {{
         "@type": "Rating",
@@ -268,6 +277,12 @@ def make_html(bk):
         {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sifufinds.com/"}},
         {{"@type": "ListItem", "position": 2, "name": "Bookmaker Reviews", "item": "https://sifufinds.com/bookmakers/"}},
         {{"@type": "ListItem", "position": 3, "name": "{bk['name']} Review", "item": "https://sifufinds.com/bookmakers/{slug}/"}}
+      ]
+    }},
+    {{
+      "@type": "FAQPage",
+      "mainEntity": [
+{faq_schema}
       ]
     }}
   ]

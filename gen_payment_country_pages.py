@@ -6,6 +6,7 @@ valid payment × country combination — targeting searches like
 "M-Pesa betting sites Kenya", "MTN MoMo betting Ghana", etc.
 """
 
+import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -324,11 +325,11 @@ def build_page(payment, country_slug, country_data):
     ]
 
     faq_schema = ',\n'.join(
-        f'''        {{
-          "@type": "Question",
-          "name": "{q}",
-          "acceptedAnswer": {{"@type": "Answer", "text": "{a}"}}
-        }}'''
+        json.dumps({
+            "@type": "Question",
+            "name": q,
+            "acceptedAnswer": {"@type": "Answer", "text": a},
+        })
         for q, a in faq_items
     )
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate new betting guide pages."""
 
+import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -233,9 +234,11 @@ def make_guide_page(g):
     </div>""" for q, a in g['faq'])
 
     faq_schema = ',\n'.join(
-        '{{"@type":"Question","name":"{q}","acceptedAnswer":{{"@type":"Answer","text":"{a}"}}}}'.format(
-            q=q.replace('"', '\\"'), a=a.replace('"', '\\"')
-        )
+        json.dumps({
+            "@type": "Question",
+            "name": q,
+            "acceptedAnswer": {"@type": "Answer", "text": a},
+        })
         for q, a in g['faq']
     )
 

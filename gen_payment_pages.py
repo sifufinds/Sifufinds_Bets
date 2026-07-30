@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate new payment method pages: EcoCash, Orange Money, Vodacom, bank transfer."""
 
+import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -239,16 +240,16 @@ def make_payment_page(p):
     countries_items = '\n'.join(f'    <li>{c}</li>' for c in p['countries'])
 
     faq_schema = ',\n'.join(
-        '{{"@type":"Question","name":"{q}","acceptedAnswer":{{"@type":"Answer","text":"{a}"}}}}'.format(
-            q=q.replace('"', '\\"'), a=a.replace('"', '\\"')
-        )
+        json.dumps({
+            "@type": "Question",
+            "name": q,
+            "acceptedAnswer": {"@type": "Answer", "text": a},
+        })
         for q, a in p['faq']
     )
 
     howto_steps_json = ', '.join(
-        '{{"@type":"HowToStep","name":"{t}","text":"{d}"}}'.format(
-            t=t.replace('"', '\\"'), d=d.replace('"', '\\"')
-        )
+        json.dumps({"@type": "HowToStep", "name": t, "text": d})
         for t, d in p['steps']
     )
 
