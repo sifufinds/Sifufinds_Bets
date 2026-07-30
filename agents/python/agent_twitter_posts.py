@@ -577,39 +577,54 @@ async def _post_playwright(text: str) -> bool:
         await page.keyboard.type(text, delay=30)
         await page.wait_for_timeout(1_500)
 
-        # Find Post button. A combined `.first` over both testids picks whichever
-        # matches first in DOM order, not necessarily the one wired to the
-        # compose surface we actually typed into — X can render an inactive
-        # modal-compose button elsewhere in the DOM even when we used the
-        # inline box (confirmed live: this mismatch caused clicks to hit a
-        # dead button with zero effect — compose box stayed open, no network
-        # call fired at all). Try the testid matching the surface we opened
-        # first, only falling back to the other if that one isn't present.
-        post_btn_selectors = (
-            ['[data-testid="tweetButtonInline"]', '[data-testid="tweetButton"]']
-            if compose_opened
-            else ['[data-testid="tweetButton"]', '[data-testid="tweetButtonInline"]']
-        )
         post_btn = None
-        for sel in post_btn_selectors:
-            candidate = page.locator(sel).first
-            try:
-                await candidate.wait_for(state="visible", timeout=15_000)
-                post_btn = candidate
-                print(f"Using post button: {sel}")
+
+        # Primary submission: X binds Ctrl/Cmd+Enter to submit the compose
+        # box. Clicking the Post button has proven unreliable in practice —
+        # Playwright's click, even with force=True, still dispatches at real
+        # screen coordinates and gets hit-tested by the browser; if the
+        # documented #layers overlay genuinely sits on top of the button, the
+        # click lands on the overlay instead of the button, with zero effect
+        # (confirmed live: correct button testid located, but zero network
+        # calls fired and the compose box stayed open after the click). A
+        # keyboard shortcut has no click target to miss. Try both bindings
+        # (some apps check ctrlKey||metaKey unconditionally, others branch on
+        # detected platform) but only advance to the next once the previous
+        # produced no response, to avoid double-submitting.
+        for combo in ("Control+Enter", "Meta+Enter"):
+            if create_tweet_result:
                 break
-            except PWTimeout:
-                continue
-        if post_btn is None:
-            raise Exception("Could not locate a visible Post button with either testid")
-        # Brief extra wait for X's React state to enable the button
-        await page.wait_for_timeout(500)
-        pre_click_disabled = await post_btn.get_attribute("aria-disabled")
-        print(f"Post button aria-disabled before click: {pre_click_disabled!r}")
-        print("Clicking Post button...")
-        # force=True bypasses the #layers overlay that intercepts pointer events on x.com
-        await post_btn.click(force=True)
-        await page.wait_for_timeout(4_000)
+            print(f"Submitting via {combo}...")
+            await page.keyboard.press(combo)
+            await page.wait_for_timeout(2_500)
+
+        if not create_tweet_result:
+            print("Keyboard shortcut produced no response — falling back to button click...")
+            # A combined `.first` over both testids picks whichever matches
+            # first in DOM order, not necessarily the one wired to the
+            # compose surface actually typed into — try the testid matching
+            # the surface we opened first.
+            post_btn_selectors = (
+                ['[data-testid="tweetButtonInline"]', '[data-testid="tweetButton"]']
+                if compose_opened
+                else ['[data-testid="tweetButton"]', '[data-testid="tweetButtonInline"]']
+            )
+            for sel in post_btn_selectors:
+                candidate = page.locator(sel).first
+                try:
+                    await candidate.wait_for(state="visible", timeout=15_000)
+                    post_btn = candidate
+                    print(f"Using post button: {sel}")
+                    break
+                except PWTimeout:
+                    continue
+            if post_btn is None:
+                raise Exception("Could not locate a visible Post button with either testid")
+            pre_click_disabled = await post_btn.get_attribute("aria-disabled")
+            print(f"Post button aria-disabled before click: {pre_click_disabled!r}")
+            print("Clicking Post button...")
+            await post_btn.click(force=True)
+            await page.wait_for_timeout(4_000)
 
         # Diagnostics gathered before tearing down the page — if no CreateTweet
         # call was observed, these distinguish "click never registered with
@@ -621,11 +636,12 @@ async def _post_playwright(text: str) -> bool:
             diag_parts.append(f"compose box still visible: {still_open}")
         except Exception as e:
             diag_parts.append(f"compose box check failed: {e}")
-        try:
-            post_click_disabled = await post_btn.get_attribute("aria-disabled")
-            diag_parts.append(f"aria-disabled after click: {post_click_disabled!r}")
-        except Exception as e:
-            diag_parts.append(f"post-click button check failed: {e}")
+        if post_btn is not None:
+            try:
+                post_click_disabled = await post_btn.get_attribute("aria-disabled")
+                diag_parts.append(f"aria-disabled after click: {post_click_disabled!r}")
+            except Exception as e:
+                diag_parts.append(f"post-click button check failed: {e}")
         try:
             toast = page.locator('[data-testid="toast"], [role="alert"]').first
             if await toast.count() > 0:
