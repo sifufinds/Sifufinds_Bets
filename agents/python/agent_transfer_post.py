@@ -92,7 +92,15 @@ from agent3_social import post_facebook, post_instagram
 from agent_twitter_posts import _post_tweet as post_twitter
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
-GENERIC_SOCIAL_IMAGE = f"{SITE_URL}/assets/social-card.jpg"
+# assets/og-image.png is the site's real, live default social/OG image (used
+# correctly in index.html's own og:image meta tag, confirmed 200 live
+# 2026-07-30) — "assets/social-card.jpg" doesn't exist anywhere in the repo
+# and 404s, silently degrading every fallback-to-generic-card post to a
+# broken image URL (send_photo_to_channel() then falls back to text-only,
+# so the post itself wasn't lost, just its image — same wrong filename also
+# found in agent3_social.py and agent3_social_telethon.py's Instagram
+# fallbacks).
+GENERIC_SOCIAL_IMAGE = f"{SITE_URL}/assets/og-image.png"
 # Filename predates 2026-07-30, but posted_keys is now a shared "already
 # covered this source headline" registry for BOTH the normal (LLM) flow and
 # the raw fallback below — see _source_keys()'s docstring. Kept the

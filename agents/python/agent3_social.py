@@ -84,7 +84,10 @@ def post_instagram(caption: str, image_url: str | None = None) -> bool:
     if not INSTAGRAM_ACCOUNT_ID or not FACEBOOK_TOKEN:
         print("⚠ Instagram not configured yet.")
         return False
-    image_url = image_url or "https://sifufinds.com/assets/social-card.jpg"
+    # assets/og-image.png is the site's real default social image (used in
+    # index.html's own og:image tag) — "assets/social-card.jpg" doesn't
+    # exist and 404s, confirmed live 2026-07-30.
+    image_url = image_url or "https://sifufinds.com/assets/og-image.png"
     r1 = requests.post(
         f"https://graph.facebook.com/v19.0/{INSTAGRAM_ACCOUNT_ID}/media",
         data={"image_url": image_url, "caption": caption, "access_token": FACEBOOK_TOKEN},
