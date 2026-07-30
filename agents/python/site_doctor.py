@@ -8,13 +8,26 @@ Checks every run:
   4. Key asset files (shared.js, shared.css) loading correctly
   5. shared.js data integrity (BOOKS object present and non-empty)
   6. Blog post pages — every post in posts.json must have a static index.html
+  7. Affiliate link integrity — BRAND_SLUGS ↔ .htaccess masking rules stay in
+     sync, no duplicate RewriteRules, blog/banners.json entries are well-formed
+     and blog/banners-data.js mirrors banners.json exactly
 
 Auto-fixes without human input:
   - Stale or missing live.json  → re-runs agent_live_odds.py
   - Missing football categories → patches live.json with fallback events
   - Cache-bust version mismatch → updates ?v= tokens across all HTML files
   - Missing blog post pages     → runs gen_blog_post_pages.py to regenerate
+  - Orphaned .htaccess masking rule (redirect exists, BRAND_SLUGS doesn't know
+    it) → adds the missing slug to BRAND_SLUGS so masked_url()/social agents
+    can reference it
+  - Duplicate RewriteRule for the same masked slug → removes the later
+    duplicate, keeps the first
+  - blog/banners-data.js drifted from blog/banners.json → regenerates it
   - Marks health status in data/health.json for dashboard visibility
+
+  NOT auto-fixed (flagged as critical instead, since guessing would risk
+  breaking monetization tracking): a BRAND_SLUGS entry with no matching
+  .htaccess RewriteRule at all — that needs a real affiliate URL from a human.
 
 Exit codes: 0 = healthy (or successfully healed), 1 = critical unrecoverable failure
 """
@@ -31,6 +44,10 @@ SITE_URL = "https://sifufinds.com"
 REPO_ROOT = Path(__file__).parent.parent.parent
 DATA_DIR = REPO_ROOT / "data"
 HEALTH_FILE = DATA_DIR / "health.json"
+HTACCESS_FILE = REPO_ROOT / ".htaccess"
+AFFILIATE_LINKS_FILE = REPO_ROOT / "agents" / "python" / "utils" / "affiliate_links.py"
+BANNERS_JSON_FILE = REPO_ROOT / "blog" / "banners.json"
+BANNERS_DATA_JS_FILE = REPO_ROOT / "blog" / "banners-data.js"
 
 MAX_LIVE_JSON_AGE_MINUTES = 35
 
@@ -251,6 +268,146 @@ def check_and_fix_blog_pages() -> tuple[bool, list[str]]:
     return True, fixes
 
 
+def _parse_brand_slugs() -> dict[str, str]:
+    """Parse BRAND_SLUGS out of affiliate_links.py with a regex instead of
+    importing it — the file uses `str | None` syntax that fails to import on
+    the repo's default python3 (3.9), and a regex has no such constraint."""
+    text = AFFILIATE_LINKS_FILE.read_text(encoding="utf-8")
+    block = re.search(r"BRAND_SLUGS:.*?=\s*\{(.*?)\n\}", text, re.S)
+    if not block:
+        return {}
+    return dict(re.findall(r'"([^"]+)":\s*"([^"]+)"', block.group(1)))
+
+
+def _parse_htaccess_masking() -> tuple[str, list[str], list[tuple[str, str]]]:
+    """Return (raw_block_text, raw_lines, [(slug, target_url), ...]) for every
+    RewriteRule in the AFFILIATE LINK MASKING block, preserving order and
+    duplicates as-is. raw_block_text is the exact substring between the
+    marker comment and the next blank line — used to splice fixes back in by
+    whole-block substitution, since individual RewriteRule lines are often
+    byte-identical to each other and can't be told apart by content alone."""
+    text = HTACCESS_FILE.read_text(encoding="utf-8")
+    match = re.search(r"# ── AFFILIATE LINK MASKING.*?\n(.*?)\n\n", text, re.S)
+    if not match:
+        return "", [], []
+    block = match.group(1)
+    lines = [l for l in block.splitlines() if l.strip().startswith("RewriteRule")]
+    rules = []
+    for line in lines:
+        m = re.match(r'RewriteRule \^([a-z0-9]+)/\?\$\s+"?([^"\s]+)"?', line)
+        if m:
+            rules.append((m.group(1), m.group(2)))
+    return block, lines, rules
+
+
+def check_and_fix_affiliate_links() -> tuple[bool, list[str]]:
+    """
+    Keeps the affiliate-link masking system self-consistent:
+      - BRAND_SLUGS (agents/python/utils/affiliate_links.py) vs the .htaccess
+        AFFILIATE LINK MASKING block must reference the same set of slugs
+      - no duplicate RewriteRule for the same slug
+      - blog/banners.json entries are well-formed for their type
+      - blog/banners-data.js must mirror blog/banners.json exactly
+    Returns (is_healthy, fixes_applied). A BRAND_SLUGS entry with genuinely no
+    .htaccess rule is NOT auto-fixed (no real URL to guess) — it is reported
+    as a critical, human-actionable gap instead.
+    """
+    fixes: list[str] = []
+    critical = False
+
+    if not HTACCESS_FILE.exists() or not AFFILIATE_LINKS_FILE.exists():
+        print("  ⚠ .htaccess or affiliate_links.py not found — skipping")
+        return True, fixes
+
+    brand_slugs = _parse_brand_slugs()
+    block, htaccess_lines, htaccess_rules = _parse_htaccess_masking()
+    htaccess_slugs = [slug for slug, _ in htaccess_rules]
+
+    # 1. Duplicate RewriteRule for the same slug → keep the first occurrence,
+    # drop the rest. Rebuilt by index within the isolated block text (not by
+    # matching line content against the whole file) since duplicate
+    # RewriteRules are typically byte-identical and can't be distinguished
+    # from one another by string content alone.
+    block_lines = block.splitlines()
+    seen: set[str] = set()
+    dupes: list[str] = []
+    new_block_lines: list[str] = []
+    for line in block_lines:
+        m = re.match(r'RewriteRule \^([a-z0-9]+)/\?\$', line.strip())
+        slug = m.group(1) if m else None
+        if slug and slug in seen:
+            dupes.append(slug)
+            continue
+        if slug:
+            seen.add(slug)
+        new_block_lines.append(line)
+
+    if dupes:
+        new_block = "\n".join(new_block_lines)
+        text = HTACCESS_FILE.read_text(encoding="utf-8")
+        text = text.replace(block, new_block, 1)
+        HTACCESS_FILE.write_text(text, encoding="utf-8")
+        fixes.append(f"removed {len(dupes)} duplicate .htaccess masking rule(s): {', '.join(sorted(set(dupes)))}")
+        print(f"  ✗ Duplicate masking RewriteRule(s) found — removed: {', '.join(sorted(set(dupes)))}")
+
+    # 2. .htaccess has a working redirect BRAND_SLUGS doesn't know about → teach it
+    orphaned = sorted(set(htaccess_slugs) - set(brand_slugs.values()) - set(brand_slugs.keys()))
+    if orphaned:
+        text = AFFILIATE_LINKS_FILE.read_text(encoding="utf-8")
+        insertion = "".join(f'    "{slug}": "{slug}",\n' for slug in orphaned)
+        new_text = re.sub(
+            r"(BRAND_SLUGS:.*?=\s*\{.*?\n)(\})",
+            lambda m: m.group(1) + insertion + m.group(2),
+            text, count=1, flags=re.S,
+        )
+        if new_text != text:
+            AFFILIATE_LINKS_FILE.write_text(new_text, encoding="utf-8")
+            fixes.append(f"added {len(orphaned)} orphaned masking slug(s) to BRAND_SLUGS: {', '.join(orphaned)}")
+            print(f"  ✗ .htaccess has masking rule(s) unknown to BRAND_SLUGS — added: {', '.join(orphaned)}")
+
+    # 3. BRAND_SLUGS entry with no .htaccess rule at all → cannot safely auto-fix
+    missing = sorted(set(brand_slugs.values()) - set(htaccess_slugs))
+    if missing:
+        print(f"  🚨 BRAND_SLUGS references slug(s) with NO .htaccess masking rule "
+              f"(masked link would 404 — needs a real affiliate URL): {', '.join(missing)}")
+        critical = True
+    else:
+        print(f"  ✓ {len(brand_slugs)} BRAND_SLUGS entries all have matching .htaccess masking rules")
+
+    # 4. blog/banners.json well-formed + blog/banners-data.js in sync
+    if BANNERS_JSON_FILE.exists():
+        try:
+            data = json.loads(BANNERS_JSON_FILE.read_text(encoding="utf-8"))
+            banners = data.get("banners", [])
+            bad = []
+            for b in banners:
+                if b.get("type") == "raw":
+                    if not b.get("raw_html") or not b.get("url"):
+                        bad.append(b.get("id", "?"))
+                else:
+                    if not b.get("url") or not b.get("bg") or not b.get("logo_abbr"):
+                        bad.append(b.get("id", "?"))
+            if bad:
+                print(f"  🚨 blog/banners.json has malformed banner entrie(s), missing required fields: {', '.join(bad)}")
+                critical = True
+            else:
+                print(f"  ✓ All {len(banners)} blog/banners.json entries have their required fields")
+
+            expected_js = "window.BANNERS_DATA=" + json.dumps(data, separators=(",", ":"), ensure_ascii=False) + ";\n"
+            actual_js = BANNERS_DATA_JS_FILE.read_text(encoding="utf-8") if BANNERS_DATA_JS_FILE.exists() else ""
+            if actual_js != expected_js:
+                BANNERS_DATA_JS_FILE.write_text(expected_js, encoding="utf-8")
+                fixes.append("regenerated blog/banners-data.js to match blog/banners.json")
+                print("  ✗ blog/banners-data.js was out of sync with blog/banners.json — regenerated")
+            else:
+                print("  ✓ blog/banners-data.js matches blog/banners.json")
+        except Exception as e:
+            print(f"  🚨 blog/banners.json failed to parse: {e}")
+            critical = True
+
+    return not critical, fixes
+
+
 def write_health_report(page_results: dict, fixes: list[str], all_ok: bool) -> None:
     DATA_DIR.mkdir(exist_ok=True)
     report = {
@@ -275,29 +432,36 @@ def main() -> int:
     all_fixes: list[str] = []
     critical_failure = False
 
-    print("\n[1/5] Checking critical pages...")
+    print("\n[1/6] Checking critical pages...")
     page_results = check_pages()
     down_pages = [k for k, v in page_results.items() if not v]
     if down_pages:
         print(f"  ⚠ Down: {', '.join(down_pages)}")
 
-    print("\n[2/5] Checking live.json freshness and football coverage...")
+    print("\n[2/6] Checking live.json freshness and football coverage...")
     live_ok, live_fixes = check_and_fix_live_json()
     all_fixes.extend(live_fixes)
     if not live_ok:
         print("  ✗ Could not recover live.json — marking critical")
         critical_failure = True
 
-    print("\n[3/5] Checking shared.js integrity...")
+    print("\n[3/6] Checking shared.js integrity...")
     js_ok = check_shared_js_integrity()
     if not js_ok:
         critical_failure = True
 
-    print("\n[4/5] Checking blog post static pages...")
+    print("\n[4/6] Checking blog post static pages...")
     _, blog_fixes = check_and_fix_blog_pages()
     all_fixes.extend(blog_fixes)
 
-    print("\n[5/5] Writing health report...")
+    print("\n[5/6] Checking affiliate link integrity (BRAND_SLUGS ↔ .htaccess, banners.json)...")
+    affiliate_ok, affiliate_fixes = check_and_fix_affiliate_links()
+    all_fixes.extend(affiliate_fixes)
+    if not affiliate_ok:
+        print("  ✗ Affiliate link integrity issue(s) need human input — marking critical")
+        critical_failure = True
+
+    print("\n[6/6] Writing health report...")
     healthy = not critical_failure and len(down_pages) == 0
     write_health_report(page_results, all_fixes, healthy)
 

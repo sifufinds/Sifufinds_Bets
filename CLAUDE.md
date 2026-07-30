@@ -63,6 +63,22 @@
 
 **Do not hand-patch an SEO issue and call it done.** If you fix something in this list manually, also check whether the corresponding automated guard caught it — if it didn't, that guard has a bug and needs fixing so the same issue can't recur silently. If a new category of SEO issue is found, add a permanent automated check for it here, in one of the scripts above, and add a row to this table.
 
+## STANDING RULE — Affiliate Link & Banner Integrity Is Continuously Self-Healing (added 2026-07-30)
+
+**The masked-URL affiliate system (`sifufinds.com/<brand>` → real tracking link) and the banner-ad system (`blog/banners.json`) have a permanent, automated guard so they never silently drift or 404.**
+
+`check_and_fix_affiliate_links()` in `agents/python/site_doctor.py` (step 5/6, runs every 15 minutes via `.github/workflows/site_doctor.yml`, same 24/7 cron that already heals live.json/blog pages) checks and auto-heals:
+
+| Issue | Guard behaviour |
+|---|---|
+| A brand in `BRAND_SLUGS` (`agents/python/utils/affiliate_links.py`) has no matching `RewriteRule` in the `.htaccess` AFFILIATE LINK MASKING block — masked link would 404 | **Not auto-fixed** (no real affiliate URL to guess) — flagged critical in the doctor's log/exit code so a human adds the real tracking URL |
+| `.htaccess` has a working masking `RewriteRule` that `BRAND_SLUGS` doesn't know about | Auto-adds the slug to `BRAND_SLUGS` so `masked_url()` and the social-posting agents can reference it |
+| Duplicate `RewriteRule` for the same masked slug | Auto-removes the later duplicate, keeps the first |
+| `blog/banners.json` entry missing required fields for its type (`raw` needs `raw_html`+`url`; card needs `url`+`bg`+`logo_abbr`) | **Not auto-fixed** (can't safely invent ad copy/creative) — flagged critical |
+| `blog/banners-data.js` drifted from `blog/banners.json` | Auto-regenerated from `banners.json` (deterministic mirror, same as `agent_brand_scraper.py`'s `_save_banners()`) |
+
+Fixes are committed by the existing `site_doctor.yml` workflow (its commit step stages `.htaccess` and `agents/python/utils/affiliate_links.py` alongside `data/`/`blog/`) and pushed immediately, then trigger a redeploy the same as every other doctor fix. If you add a new bookmaker's affiliate link or a new raw banner ad by hand, this guard will pick it up on its next 15-minute run — no separate step needed. If a new category of affiliate/banner issue is found, extend `check_and_fix_affiliate_links()` rather than hand-patching, so it can't recur silently.
+
 ## Stack
 Static HTML site targeting African sports betting markets. Blog posts live in `blog/posts.json`; static pages are generated via `gen_blog_post_pages.py`.
 
