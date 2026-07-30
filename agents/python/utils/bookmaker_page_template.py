@@ -240,6 +240,7 @@ def render_bookmaker_page(facts: dict) -> str:
 .rating-big{{font-size:32px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px;margin-top:8px}}
 .stars-big{{color:#fbbf24;font-size:20px}}
 .verdict-badge{{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:6px;margin-top:8px}}
+.featured-badge{{background:rgba(251,191,36,.22);border-color:rgba(251,191,36,.6);color:#fef3c7;margin-left:8px}}
 .score-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:10px}}
 .score-item{{background:#fff;border:1px solid #e8e8e8;border-radius:9px;padding:10px;text-align:center}}
 .score-num{{font-size:20px;font-weight:900;color:var(--g)}}

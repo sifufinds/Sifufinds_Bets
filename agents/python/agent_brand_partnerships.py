@@ -50,6 +50,12 @@ load_dotenv(Path(__file__).parent / ".env")
 PROSPECTS_FILE = Path(__file__).parent / "brand_partnership_prospects.json"
 STATE_FILE = Path(__file__).parent / "brand_partnership_state.json"
 GREENLIGHT_FILE = Path(__file__).parent / "brand_partnership_greenlight.flag"
+FEATURED_LISTINGS_FILE = Path(__file__).parent.parent.parent / "data" / "featured_listings.json"
+
+VALID_SLOT_PREFIXES = (
+    "homepage_hero", "top_sportsbook", "featured_casino", "editors_pick",
+    "category_sponsor:", "country_sponsor:", "newsletter_sponsor",
+)
 
 SITE_URL = "https://sifufinds.com"
 SENDER_NAME = "Kai from SifuFinds"
@@ -259,12 +265,127 @@ def run_send(prospects: list[Prospect], brand_filter: str | None) -> None:
     print(f"\n[DONE] Sent {sent} partnership email(s).")
 
 
+# ── FEATURED LISTINGS MANAGEMENT ────────────────────────────────────────────
+# The "Commercial Partnerships Manager" side of this agent: turning a closed
+# deal (see the outreach flow above) into a live, transparently-labelled
+# sponsored placement. data/featured_listings.json is the single source of
+# truth — also read by utils/bookmaker_page_template.py (renders the
+# "Featured Partner" badge on bookmaker review pages) and checked for
+# transparent-criteria compliance by scripts/compliance_check.py.
+
+def _load_listings() -> dict:
+    if FEATURED_LISTINGS_FILE.exists():
+        try:
+            return json.loads(FEATURED_LISTINGS_FILE.read_text())
+        except (OSError, json.JSONDecodeError):
+            pass
+    return {"listings": []}
+
+
+def _save_listings(data: dict) -> None:
+    FEATURED_LISTINGS_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+
+
+def _is_active(entry: dict, now: datetime) -> bool:
+    if entry.get("sponsored") is not True:
+        return False
+    starts_at = entry.get("starts_at")
+    ends_at = entry.get("ends_at")
+    if starts_at and datetime.fromisoformat(starts_at.replace("Z", "+00:00")) > now:
+        return False
+    if ends_at and datetime.fromisoformat(ends_at.replace("Z", "+00:00")) < now:
+        return False
+    return True
+
+
+def list_listings() -> None:
+    data = _load_listings()
+    now = datetime.now(timezone.utc)
+    entries = data.get("listings", [])
+    if not entries:
+        print("No Featured Listings on record.")
+        return
+    for e in entries:
+        status = "ACTIVE" if _is_active(e, now) else "expired/scheduled"
+        print(f"  [{status:18}] {e.get('slot')} -> {e.get('brand_slug')} (ends {e.get('ends_at', 'MISSING — invalid')})")
+        print(f"      criteria: {e.get('criteria_note', '(missing — required)')}")
+
+
+def add_listing(slot: str, brand_slug: str, ends_at: str, criteria_note: str,
+                starts_at: str | None = None, force: bool = False) -> int:
+    if not any(slot == p or slot.startswith(p) for p in VALID_SLOT_PREFIXES):
+        print(f"❌ Unknown slot '{slot}' — must be one of {VALID_SLOT_PREFIXES}")
+        return 1
+    if not criteria_note:
+        print("❌ --criteria is required — every sponsored placement must state why this brand holds it "
+              "(CLAUDE.md: 'Editor's Pick (with transparent criteria)')")
+        return 1
+    try:
+        datetime.fromisoformat(ends_at.replace("Z", "+00:00"))
+    except ValueError:
+        print(f"❌ --ends '{ends_at}' is not a valid ISO 8601 timestamp — no open-ended placements allowed")
+        return 1
+
+    data = _load_listings()
+    entries = data.get("listings", [])
+    now = datetime.now(timezone.utc)
+    occupant = next((e for e in entries if e.get("slot") == slot and _is_active(e, now)), None)
+    if occupant and not force:
+        print(f"❌ Slot '{slot}' is already held by '{occupant.get('brand_slug')}' until {occupant.get('ends_at')} "
+              f"— pass --force to replace it")
+        return 1
+
+    entries = [e for e in entries if e.get("slot") != slot]
+    entries.append({
+        "slot": slot, "brand_slug": brand_slug, "sponsored": True,
+        "starts_at": starts_at, "ends_at": ends_at, "criteria_note": criteria_note,
+    })
+    data["listings"] = entries
+    _save_listings(data)
+    print(f"✅ '{brand_slug}' now holds slot '{slot}' until {ends_at}")
+    return 0
+
+
+def remove_listing(slot: str) -> int:
+    data = _load_listings()
+    entries = data.get("listings", [])
+    remaining = [e for e in entries if e.get("slot") != slot]
+    if len(remaining) == len(entries):
+        print(f"No listing found for slot '{slot}'")
+        return 1
+    data["listings"] = remaining
+    _save_listings(data)
+    print(f"✅ Removed listing for slot '{slot}'")
+    return 0
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SifuFinds Brand Partnership Outreach Agent")
     parser.add_argument("--brand", help="Only target prospects whose name contains this text")
     parser.add_argument("--test", metavar="EMAIL", help="Send one real email for a single brand to this address")
     parser.add_argument("--send", action="store_true", help="Real bulk run (requires the greenlight file)")
+
+    parser.add_argument("--manage-listings", action="store_true", help="List all Featured Listings and their status")
+    parser.add_argument("--add-listing", action="store_true", help="Add/replace a Featured Listing (needs --slot/--brand-slug/--ends/--criteria)")
+    parser.add_argument("--remove-listing", metavar="SLOT", help="Remove any Featured Listing occupying this slot")
+    parser.add_argument("--slot", help="Slot name, e.g. top_sportsbook or country_sponsor:nigeria")
+    parser.add_argument("--brand-slug", help="Brand slug for --add-listing")
+    parser.add_argument("--starts", help="ISO 8601 start timestamp (omit for immediately active)")
+    parser.add_argument("--ends", help="ISO 8601 end timestamp (required for --add-listing)")
+    parser.add_argument("--criteria", help="Transparent reason this brand holds the slot (required for --add-listing)")
+    parser.add_argument("--force", action="store_true", help="Replace an already-occupied slot")
     args = parser.parse_args()
+
+    if args.manage_listings:
+        list_listings()
+        sys.exit(0)
+    if args.add_listing:
+        if not (args.slot and args.brand_slug and args.ends and args.criteria):
+            print("❌ --add-listing requires --slot, --brand-slug, --ends, and --criteria")
+            sys.exit(1)
+        sys.exit(add_listing(args.slot, args.brand_slug, args.ends, args.criteria, args.starts, args.force))
+    if args.remove_listing:
+        sys.exit(remove_listing(args.remove_listing))
 
     all_prospects = _load_prospects()
     if not all_prospects:
