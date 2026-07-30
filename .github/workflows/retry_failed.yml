@@ -50,6 +50,7 @@ jobs:
 
           WORKFLOWS=(
             "accumulator_post.yml"
+            "agent_translate.yml"
             "brand_scraper.yml"
             "brand_discovery.yml"
             "breaking_news.yml"

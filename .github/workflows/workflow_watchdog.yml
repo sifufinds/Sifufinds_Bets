@@ -12,6 +12,7 @@ on:
       - "Brand Bonus Scraper — Daily Update"
       - "Brand Discovery — weekly new-brand research & defunct-brand check"
       - "Breaking News Bot — Auto-publish 3x daily"
+      - "Country Localisation — translate blog posts"
       - "Deploy to Hostinger — sifufinds.com"
       - "Firecrawl Odds — Daily African match data"
       - "Hourly Multi-Source Scrape — Flashscore, Sofascore, Livescore, OddsPortal, BetExplorer, OddsChecker"
@@ -65,6 +66,7 @@ jobs:
             "Brand Bonus Scraper — Daily Update")                                         WF=brand_scraper.yml ;;
             "Brand Discovery — weekly new-brand research & defunct-brand check")          WF=brand_discovery.yml ;;
             "Breaking News Bot — Auto-publish 3x daily")                                  WF=breaking_news.yml ;;
+            "Country Localisation — translate blog posts")                               WF=agent_translate.yml ;;
             "Deploy to Hostinger — sifufinds.com")                                        WF=deploy_hostinger.yml ;;
             "Firecrawl Odds — Daily African match data")                                  WF=firecrawl_odds.yml ;;
             "Hourly Multi-Source Scrape"*)                                                WF=hourly_scrape.yml ;;

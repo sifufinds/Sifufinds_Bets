@@ -1,0 +1,138 @@
+name: Country Localisation — translate blog posts
+
+# gen_blog_post_pages.py already knows how to render blog/{slug}-{locale}/
+# with correct hreflang + OG-locale tags (LOCALES/OG_LOCALE at the top of
+# that file) for fr/de/es/pt/sw — but only fr and de ever got translated
+# content, and even those two have not kept pace with new posts.json growth.
+# This works through the backlog for whichever locale is furthest behind, a
+# small batch at a time, same "never depends on someone remembering" shape
+# as content_backfill.yml.
+#
+# Progress is tracked in agents/python/translate_state.json — committed to
+# the repo so it survives across runs. A post that fails translation 3 times
+# for a given locale is left in place (not retried forever).
+#
+# This workflow never exits with a failure code — a quota-exhausted run just
+# means 0 posts translated this time; it tries again on the next scheduled run.
+
+on:
+  schedule:
+    - cron: "45 0 * * *"
+  workflow_dispatch:
+    inputs:
+      locale:
+        description: "Locale to translate (blank = auto-pick biggest backlog)"
+        required: false
+        type: choice
+        options: ["", fr, de, es, pt, sw]
+
+concurrency:
+  group: agent-translate
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  translate:
+    name: Translate next batch of blog posts
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run Country Localisation agent
+        id: translate
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set +e
+          if [ -n "${{ github.event.inputs.locale }}" ]; then
+            python agent_translate.py --locale "${{ github.event.inputs.locale }}"
+          else
+            python agent_translate.py
+          fi
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Regenerate static blog pages
+        run: python3 gen_blog_post_pages.py --force
+
+      - name: Regenerate sitemap
+        run: python3 gen_sitemap.py
+
+      - name: Commit and push translated posts
+        run: |
+          git config --local user.email "translate-agent@sifufinds.com"
+          git config --local user.name "SifuFinds Country Localisation Agent"
+          git add blog/translations/ blog/ sitemap*.xml agents/python/translate_state.json
+          if git diff --cached --quiet; then
+            echo "No posts translated this run — nothing to commit"
+            exit 0
+          fi
+          git commit -m "content: translate blog posts $(date -u '+%Y-%m-%d') UTC"
+
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "Push rejected (attempt $attempt/5) — merging and retrying..."
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            python3 gen_blog_post_pages.py --force
+            python3 gen_sitemap.py
+            git add -A
+            git commit -m "content: translate blog posts $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
+          done
+
+      - name: Trigger deploy if content changed
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          gh workflow run deploy_hostinger.yml \
+            --repo "${{ github.repository }}" \
+            --ref main && echo "✅ Deploy triggered" || echo "⚠️ Deploy trigger failed (will self-correct on next push)"
+          exit 0
+
+      - name: Report outcome
+        if: always()
+        run: |
+          CODE="${{ steps.translate.outputs.exit_code }}"
+          if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
+            echo "✅ Country Localisation agent ran — see logs above for posts translated / backlog remaining"
+          else
+            echo "⚠️ Country Localisation agent exit code $CODE — check logs above"
+          fi
