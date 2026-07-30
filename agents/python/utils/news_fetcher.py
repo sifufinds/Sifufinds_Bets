@@ -51,6 +51,7 @@ class NewsItem(TypedDict):
     category: str
     published_at: str
     age_hours: float
+    image: str
 
 
 # ── SEARCH QUERIES ────────────────────────────────────────────────────────────
@@ -257,6 +258,7 @@ _HEADERS = {
 }
 
 _CONTENT_NS = "http://purl.org/rss/1.0/modules/content/"
+_MEDIA_NS = "http://search.yahoo.com/mrss/"
 
 
 # ── DATE PARSING ──────────────────────────────────────────────────────────────
@@ -301,8 +303,15 @@ def _text(el: Optional[ET.Element]) -> str:
     return (el.text or "").strip() if el is not None else ""
 
 
+def _valid_image_url(url: str) -> str:
+    """Only trust a well-formed http(s) URL as a real source image — never a
+    relative path or garbage string a feed occasionally includes."""
+    url = (url or "").strip()
+    return url if url.startswith(("http://", "https://")) else ""
+
+
 def _make_item(title: str, description: str, url: str, source: str,
-               category: str, pub_dt: datetime) -> NewsItem:
+               category: str, pub_dt: datetime, image: str = "") -> NewsItem:
     now = datetime.now(timezone.utc)
     age = (now - pub_dt).total_seconds() / 3600
     # RSS/search titles and descriptions routinely carry HTML entities
@@ -320,6 +329,7 @@ def _make_item(title: str, description: str, url: str, source: str,
         category=category,
         published_at=pub_dt.isoformat(),
         age_hours=round(age, 1),
+        image=_valid_image_url(image),
     )
 
 
@@ -356,6 +366,7 @@ def _ddg_search(query: str, category: str, max_age_hours: int,
             source=r.get("source") or "DuckDuckGo",
             category=category,
             pub_dt=pub_dt,
+            image=r.get("image") or "",
         ))
 
     return items
@@ -387,6 +398,25 @@ def _google_news_search(query: str, category: str,
 
 
 # ── LAYER 3: SITE RSS FEEDS ───────────────────────────────────────────────────
+
+def _rss_item_image(item: ET.Element) -> str:
+    """Real, article-specific image straight from the source feed (e.g. BBC's
+    <media:thumbnail url="https://ichef.bbci.co.uk/..."> — confirmed live
+    2026-07-28) — never a speculative name-based photo search. Checks the
+    common RSS image patterns in order of how specific/reliable they are:
+    media:content (usually full-size), media:thumbnail, then a plain
+    <enclosure> with an image MIME type."""
+    media_content = item.find(f"{{{_MEDIA_NS}}}content")
+    if media_content is not None and media_content.get("url"):
+        return media_content.get("url", "")
+    thumbnail = item.find(f"{{{_MEDIA_NS}}}thumbnail")
+    if thumbnail is not None and thumbnail.get("url"):
+        return thumbnail.get("url", "")
+    enclosure = item.find("enclosure")
+    if enclosure is not None and enclosure.get("url") and "image" in enclosure.get("type", ""):
+        return enclosure.get("url", "")
+    return ""
+
 
 def _parse_rss(xml_bytes: bytes, source: str, category: str,
                max_age_hours: int, use_item_source: bool = False) -> list[NewsItem]:
@@ -431,6 +461,7 @@ def _parse_rss(xml_bytes: bytes, source: str, category: str,
             source=item_source,
             category=category,
             pub_dt=pub_dt,
+            image=_rss_item_image(item),
         ))
 
     return items
