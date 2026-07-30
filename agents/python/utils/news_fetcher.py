@@ -149,6 +149,53 @@ def _is_allowed_transfer_source(source: str) -> bool:
     return any(term in s for term in TRANSFER_ALLOWED_SOURCE_TERMS)
 
 
+# Rolling recap/tracker-page and gossip-column items — outlets republish a
+# single item that bundles many different (and not necessarily fresh)
+# stories under one headline, rather than reporting one specific fresh
+# story. Two confirmed-live variants (2026-07-30):
+#   1. BBC's transfers RSS feed carries a perpetually-updated "All done deals
+#      in July 2026" item with a fresh pubDate every time the page is
+#      refreshed, so it passes the freshness-window filter looking exactly
+#      like breaking news, but its content is a running list spanning the
+#      whole transfer window — including years-old completed deals. Real
+#      incident: this was the only "transfers" headline available for
+#      several cycles, got woven into a generated article as if Cristiano
+#      Ronaldo's 2022 move to Al Nassr were breaking news from "the last 13
+#      hours," and fact-extraction then picked that stale bullet as the
+#      social bulletin's headline — producing a Telegram/Facebook post whose
+#      caption (old Ronaldo transfer) didn't match its own linked article's
+#      real topic (Rodri/Grealish) or its branded image, which is what
+#      actually looked like "the wrong image" to a reader even though the
+#      image itself correctly matched the post it was attached to.
+#   2. BBC's daily gossip column ("Football gossip: Rodri, Jones, Romero,
+#      Kolo Muani, Sangare, Bailey, Matsima", "Real Madrid confident of Rodri
+#      deal - Thursday's gossip") bundles many different players' unconfirmed
+#      rumours under one item every day — same failure mode even though the
+#      rumours themselves are current, since a single "headline_fact"/one
+#      image can't correctly represent seven different players' stories.
+# See AGENT-KNOWLEDGE.md 2026-07-30.
+#
+# Deliberately narrower than player_photo.py's _looks_like_news_column_graphic
+# (which matches the singular "done deal" for its image-branding-detection
+# purpose) — that would also match a genuine single confirmed-transfer
+# headline like "Player X's move to Club Y is now a done deal," and dropping
+# a real scoop from the feed entirely is a worse outcome than the narrower
+# image-only guard risks. The signal that reliably marks a bundled item
+# instead of one fresh story is the aggregate/plural phrasing, or the
+# "gossip" label outlets use specifically for rumour-roundup columns (never
+# used in a genuine single confirmed/rumoured-deal headline).
+_ROLLING_RECAP_TITLE_HINTS = (
+    "all done deals", "every done deal", "done deals so far",
+    "done deals in", "all the transfers", "every transfer completed",
+    "transfer window: all", "silly season", "gossip",
+)
+
+
+def _is_rolling_recap(title: str) -> bool:
+    title_l = (title or "").lower()
+    return any(hint in title_l for hint in _ROLLING_RECAP_TITLE_HINTS)
+
+
 # ── FALLBACK RSS FEEDS ────────────────────────────────────────────────────────
 # Full liveness audit run 2026-07-25 (fetched every URL, parsed the XML, and
 # counted <item>s) turned up a large dead-weight problem: every espn.com/espn/rss/*
@@ -534,6 +581,11 @@ def fetch_category(category: str, max_per_feed: int = 6) -> list[NewsItem]:
     # via DuckDuckGo search results, not just the site-feed layer).
     if category == "transfers":
         all_items = [i for i in all_items if _is_allowed_transfer_source(i["source"])]
+
+    # Applies to every category, not just transfers: a rolling recap/tracker
+    # item is never a genuine single fresh story, regardless of which beat
+    # it's filed under.
+    all_items = [i for i in all_items if not _is_rolling_recap(i["title"])]
 
     result = _dedupe_sort(all_items)
     return result if len(result) >= MIN_FRESH_ITEMS else []
