@@ -258,6 +258,14 @@ Write the article now. Base it on the REAL news provided above — do not invent
             "bookmaker_featured": meta.get("bookmaker_featured", ""),
             "read_time": meta.get("read_time", 4),
             "_sources": [item["source"] for item in news_items[:5]],
+            # Kept so callers (agent_transfer_post.py) can attach the real,
+            # source-provided image for whichever specific story the article
+            # turned out to be about, instead of a speculative name-based
+            # photo search — see AGENT-KNOWLEDGE.md 2026-07-28.
+            "_source_items": [
+                {"title": i["title"], "url": i["url"], "image": i.get("image", ""), "source": i["source"]}
+                for i in news_items[:8]
+            ],
         }
         # Unique feature image per post — doubles as the og:image/twitter:image
         # (picked up automatically by gen_blog_post_pages.py) and the LinkedIn/

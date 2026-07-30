@@ -12,17 +12,26 @@ excluded by policy), and when a genuinely new transfer story appears:
   2. Extracts structured facts (player, clubs, fee, deal stage) from that
      article via a strict, grounded LLM extraction pass — never invents a
      name, club, or figure not already in the article text.
-  3. Looks up a real, current photo of the named player via
-     utils/player_photo.py's find_player_image(): sports news outlets and
-     social platforms first (DuckDuckGo image search, per explicit product
-     decision — see that module's docstring for the copyright tradeoff this
-     carries vs. Wikimedia-only sourcing), then Wikipedia as a safe
-     fallback. Every post gets an image one way or another: if neither tier
-     finds a photo, Telegram and Facebook fall back to the per-post branded
-     graphic already generated locally for the blog article (uploaded as a
-     file, not a URL — see the "always has an image" note below). Instagram
-     falls back to the site's generic branded card, since its API requires
-     a public URL (see note).
+  3. Uses the REAL image the source article itself carries (see
+     find_source_image() / find_raw_fallback_photo() below) — never a
+     speculative name-based photo search. utils/news_fetcher.py's fetch
+     layers already capture each story's own image where the source
+     provides one (DuckDuckGo News results, RSS <media:thumbnail>/
+     <enclosure> tags), and generate_post() carries those through as
+     post["_source_items"]. The normal flow matches the LLM-extracted
+     player/club facts against each candidate source item's title to find
+     the one the article is actually about, then uses that item's own
+     image — guarding against known generic section-branding graphics
+     (Sky Sports "Paper Talk", BBC "branded_*" cards) along the way. This
+     replaced an earlier Wikipedia/DuckDuckGo-image-search-by-name
+     approach that could and did attach the wrong person's photo (matching
+     by name alone, no connection to the actual story) — see
+     AGENT-KNOWLEDGE.md 2026-07-28. Every post still gets an image one way
+     or another: if no source item has a usable match, Telegram and
+     Facebook fall back to the per-post branded graphic already generated
+     locally for the blog article (uploaded as a file, not a URL — see the
+     "always has an image" note below). Instagram falls back to the site's
+     generic branded card, since its API requires a public URL (see note).
   4. Posts a short "breaking news" bulletin (Fabrizio Romano / Sports Arena
      Africa style) to Telegram, Facebook, Instagram, and X, each linking back
      to the new blog article and always crediting the outlet the story came
@@ -68,7 +77,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from llm import ask, AIProvidersExhausted
 from utils.logger import log
 from utils.news_fetcher import fetch_category
-from utils.player_photo import find_player_image, looks_like_person_name, _get_summary
+from utils.player_photo import _looks_like_branded_thumbnail_url, _looks_like_news_column_graphic
 from agent_sports_blog import generate_post, load_posts, save_posts
 from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
@@ -82,8 +91,8 @@ RAW_FALLBACK_STATE_PATH = Path(__file__).parent / "transfer_raw_fallback_state.j
 def local_feature_image_path(post: dict) -> Path | None:
     """The per-post branded graphic already generated for the blog article
     (assets/og/{slug}.png), as a local filesystem path — used as the
-    guaranteed image fallback for Telegram/Facebook when no Wikipedia photo
-    exists for the named player. Returns None only if generation genuinely
+    guaranteed image fallback for Telegram/Facebook when no matching source
+    image exists for the story. Returns None only if generation genuinely
     failed (see generate_blog_feature_image.py — never raises, so this is
     the sole failure path)."""
     feature_image = post.get("feature_image")
@@ -319,131 +328,63 @@ def _headline_key(title: str) -> str:
     return title.lower()[:40]
 
 
-# Common clubs/competitions that would otherwise look like a 2+ word proper
-# name to _NAME_CANDIDATE_RE below — excluded so e.g. "Real Madrid" or "RB
-# Leipzig" is never handed to find_player_image() as if it were a person.
-# Not exhaustive by design: a club name slipping through just means
-# find_player_image() finds no matching person photo and returns None, same
-# as any other failed lookup — never a wrong photo shown.
-_KNOWN_CLUBS_AND_COMPETITIONS = {
-    "Real Madrid", "Real Betis", "Real Sociedad", "Manchester City",
-    "Manchester United", "AC Milan", "Inter Milan", "RB Leipzig",
-    "Bayern Munich", "Borussia Dortmund", "Paris Saint", "Tottenham Hotspur",
-    "Aston Villa", "West Ham", "Newcastle United", "Crystal Palace",
-    "Atletico Madrid", "AS Roma", "Ajax Amsterdam", "Sporting Lisbon",
-    "Premier League", "Champions League", "Europa League", "La Liga",
-    "Serie A", "Bundesliga", "Ligue 1", "World Cup", "Transfer News",
-    "Wolverhampton Wanderers", "Nottingham Forest", "Leicester City",
-    # Single-word club/competition names — checked against single-word
-    # candidates too (see _extract_name_candidates), since those are just as
-    # likely to look like a valid mononym as a real player's surname.
-    "Chelsea", "Arsenal", "Liverpool", "Tottenham", "Brighton", "Newcastle",
-    "Everton", "Fulham", "Brentford", "Wolves", "Leeds", "Sevilla",
-    "Valencia", "Villarreal", "Monaco", "Marseille", "Leverkusen", "Napoli",
-    "Roma", "Lazio", "Fiorentina", "Ajax", "Feyenoord", "Porto", "Benfica",
-    "Besiktas", "Fenerbahce", "Galatasaray", "Barcelona", "Juventus",
-}
-
-_NAME_PHRASE_RE = re.compile(r"\b([A-Z][a-zA-Z'’-]+(?:\s+[A-Z][a-zA-Z'’-]+){1,2})\b")
-_SINGLE_WORD_RE = re.compile(r"\b([A-Z][a-zA-Z'’-]{3,})\b")
-
-# Individual words making up any entry in _KNOWN_CLUBS_AND_COMPETITIONS (e.g.
-# "Real Madrid" -> "Real", "Madrid"). A leftover fragment like "Madrid" or
-# "Milan" must never be tried as a single-word photo-search candidate on its
-# own — Wikipedia may well have an unrelated real person by that name
-# (surnames/city-names double as given names), which would attach a wrong,
-# unrelated photo to the post. That's a worse outcome than no photo at all.
-_CLUB_WORD_STOPWORDS = {
-    word for phrase in _KNOWN_CLUBS_AND_COMPETITIONS for word in phrase.split()
-}
-
-
-def _extract_name_candidates(text: str) -> list[str]:
-    """Best-effort, LLM-free extraction of person-name-shaped phrases from a
-    raw headline/description — the raw-headline fallback (run_raw_fallback)
-    has no LLM available to do proper entity extraction, unlike the normal
-    generate_post() + extract_transfer_facts() path. Deliberately permissive:
-    a false positive here just means find_player_image() fails to find a
-    matching photo and the caller moves to the next candidate, not a wrong
-    photo being shown."""
-    seen: list[str] = []
-
-    def _add(phrase: str) -> None:
-        if phrase in _KNOWN_CLUBS_AND_COMPETITIONS:
-            return
-        if any(club in phrase for club in _KNOWN_CLUBS_AND_COMPETITIONS):
-            return
-        if phrase not in seen:
-            seen.append(phrase)
-
-    # Multi-word phrases first (higher confidence — e.g. "Yan Diomande").
-    for m in _NAME_PHRASE_RE.finditer(text):
-        _add(m.group(1))
-
-    # Single Title-Case words next (common football mononyms — "Symonds",
-    # "Rodri") — skip the text's very first word, since headlines capitalise
-    # it regardless of whether it's a proper noun.
-    first_word_end = text.find(" ")
-    for m in _SINGLE_WORD_RE.finditer(text):
-        if first_word_end > 0 and m.start() < first_word_end:
-            continue
-        word = m.group(1)
-        if word in _CLUB_WORD_STOPWORDS:
-            continue
-        _add(word)
-
-    return seen
-
-
-_PERSON_ONLY_HINTS = (
-    "footballer", "football player", "midfielder", "defender", "forward",
-    "goalkeeper", "winger", "striker", "manager", "head coach",
-)
-_ORG_ONLY_HINTS = (
-    "football club", "national football team", "sports club",
-    "association football club", "soccer club",
-)
-
-
-def _wikipedia_confirms_person(name: str) -> bool:
-    """Extra guard specific to this fallback: unlike the main flow (where
-    facts['player'] is already an LLM-confirmed person name),
-    _extract_name_candidates() is a bare regex over free text, and a club
-    name (e.g. 'Energie Cottbus') passes every surface heuristic a real
-    person's name would — 2 title-case words, no digits. fetch_player_photo's
-    direct-hit path returns whatever thumbnail sits on the exact-name
-    Wikipedia page with no person/organisation check of its own (confirmed
-    2026-07-27: it returned Energie Cottbus's crest as if it were a player
-    photo), so verify independently here before trusting any photo this path
-    returns. No Wikipedia page at all means no way to verify — skip rather
-    than risk it, matching fetch_player_photo's own stated policy that a
-    wrong photo is worse than no photo."""
-    data = _get_summary(name)
-    if not data:
+def _usable_source_image(image: str, title: str) -> bool:
+    """A real image is only usable if it's not one of the known generic
+    section-branding graphics outlets reuse across unrelated stories (Sky
+    Sports "Paper Talk", BBC "branded_*" cards, etc. — see
+    utils/player_photo.py's _looks_like_branded_thumbnail_url /
+    _looks_like_news_column_graphic, reused here rather than duplicated)."""
+    if not image:
         return False
-    haystack = f"{data.get('description', '')} {data.get('extract', '')}".lower()
-    if any(h in haystack for h in _ORG_ONLY_HINTS):
+    if _looks_like_branded_thumbnail_url(image):
         return False
-    return any(h in haystack for h in _PERSON_ONLY_HINTS)
+    if _looks_like_news_column_graphic(title):
+        return False
+    return True
 
 
 def find_raw_fallback_photo(item: dict) -> str | None:
-    """Try every name-shaped candidate in the headline, then the
-    description, returning the first *verified-person* real photo found —
-    or None, in which case the caller uses the site's generic branded social
-    card instead."""
-    for text in (item.get("title", ""), item.get("description", "")):
-        for candidate in _extract_name_candidates(text):
-            if not looks_like_person_name(candidate):
-                continue
-            if not _wikipedia_confirms_person(candidate):
-                continue
-            photo_url = find_player_image(candidate)
-            if photo_url:
-                print(f"  ✓ Found a real, verified photo for {candidate!r}")
-                return photo_url
-    print("  — No verified real photo found for this headline — using generic branded card")
+    """The raw headline *is* the source article — its own scraped image
+    (see utils/news_fetcher.py's image field, populated from DuckDuckGo
+    News results and RSS <media:thumbnail>/<enclosure> tags) is the only
+    photo ever used here. No speculative name-based photo search: that
+    previously matched wrong/random people by name overlap alone, which is
+    strictly worse than falling back to the generic branded social card."""
+    image = item.get("image", "")
+    if _usable_source_image(image, item.get("title", "")):
+        print(f"  ✓ Using the source's own image ({item.get('source', 'unknown')})")
+        return image
+    print("  — No usable source image for this headline — using generic branded card")
     return None
+
+
+def find_source_image(post: dict, facts: dict) -> tuple[str | None, str | None]:
+    """The real, source-provided image for whichever specific story the
+    generated article turned out to be about — matched against the
+    extracted facts (player/from_club/to_club) by keyword overlap with each
+    candidate source item's title, never a speculative name-based photo
+    search. Requires an actual match (score > 0): an unmatched top item's
+    image could easily belong to a different story entirely, since
+    generate_post() feeds the LLM several fresh headlines at once. Returns
+    (image_url, source_name) or (None, None)."""
+    candidates = [c for c in (facts.get("player"), facts.get("from_club"), facts.get("to_club")) if c]
+    if not candidates:
+        return None, None
+
+    best_item, best_score = None, 0
+    for item in post.get("_source_items", []):
+        image = item.get("image", "")
+        title = item.get("title", "")
+        if not _usable_source_image(image, title):
+            continue
+        title_l = title.lower()
+        score = sum(1 for c in candidates if c.lower() in title_l)
+        if score > best_score:
+            best_item, best_score = item, score
+
+    if best_item:
+        return best_item["image"], best_item.get("source")
+    return None, None
 
 
 def pick_fresh_raw_headline(recent_titles: set[str]) -> dict | None:
@@ -624,20 +565,23 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     facts = extract_transfer_facts(post)
     print(f"  ✓ player={facts.get('player')!r} status={facts.get('status')!r}")
 
-    photo_url = None
-    player = facts.get("player") or ""
-    if player and looks_like_person_name(player):
-        context_clubs = [facts.get("from_club"), facts.get("to_club")]
-        photo_url = find_player_image(player, context_clubs=context_clubs)
-        print(f"  {'✓ Found a real photo' if photo_url else '— No real photo found'} for {player!r}")
+    photo_url, photo_source = find_source_image(post, facts)
+    print(f"  {'✓ Using source image from ' + photo_source if photo_url else '— No matching source image found'}")
+    # This post dict is about to be written to blog/posts.json — strip the
+    # source-item list now that it's served its purpose (it's only ever
+    # needed transiently, right here, to pick the image above) rather than
+    # bloating the public JSON every visitor's browser fetches.
+    post.pop("_source_items", None)
 
-    # Guaranteed image: real Wikipedia player photo when found, otherwise the
-    # per-post branded graphic already generated for the blog article
-    # (uploaded as a local file for Telegram/Facebook — see module docstring
-    # for why Instagram can't use this same fallback).
+    # Guaranteed image: the real source-article photo when a confident match
+    # was found, otherwise the per-post branded graphic already generated
+    # for the blog article (uploaded as a local file for Telegram/Facebook —
+    # see module docstring for why Instagram can't use this same fallback).
+    # Never a speculative name-based photo search — see find_source_image's
+    # docstring and AGENT-KNOWLEDGE.md 2026-07-28.
     local_image = None if photo_url else local_feature_image_path(post)
     tg_fb_image = photo_url or local_image
-    print(f"  → Image for Telegram/Facebook: {'Wikipedia photo' if photo_url else ('branded graphic' if local_image else 'NONE — feature image generation failed')}")
+    print(f"  → Image for Telegram/Facebook: {'source photo' if photo_url else ('branded graphic' if local_image else 'NONE — feature image generation failed')}")
 
     telegram_text = build_telegram_caption(facts, post)
     facebook_text = build_facebook_caption(facts, post)
