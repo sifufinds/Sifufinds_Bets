@@ -72,7 +72,20 @@ if _anthropic_key:
         import anthropic as _anthropic_lib
         _anthropic_client = _anthropic_lib.Anthropic(api_key=_anthropic_key)
     except ImportError:
-        pass  # anthropic package not installed — skip this tier
+        # Confirmed live 2026-07-31: this silently swallowed the fact that
+        # "anthropic" was missing from requirements.txt, so the "reliable
+        # paid fallback" tier this module's own docstring promises had
+        # never actually been installed in any CI workflow, and every
+        # scheduled job silently fell straight through to Gemini/exhaustion
+        # with nothing in the logs pointing at why — see AGENT-KNOWLEDGE.md.
+        # A `print` here can't be missed the way a silently-empty client
+        # can: it shows up in every single workflow run's log output.
+        print("[llm] ⚠ ANTHROPIC_API_KEY is set but the 'anthropic' package "
+              "isn't installed — Claude fallback tier is DISABLED this run. "
+              "Check agents/python/requirements.txt.")
+else:
+    print("[llm] ⚠ ANTHROPIC_API_KEY not set — Claude fallback tier is "
+          "DISABLED, relying on Groq + Gemini free tiers only.")
 
 _ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"  # fast + cheapest Claude
 
