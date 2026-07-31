@@ -50,6 +50,9 @@ jobs:
 
           WORKFLOWS=(
             "accumulator_post.yml"
+            "agent5_plan.yml"
+            "agent_keyword_research.yml"
+            "agent_serp_monitor.yml"
             "agent_translate.yml"
             "brand_scraper.yml"
             "brand_discovery.yml"
@@ -58,6 +61,7 @@ jobs:
             "firecrawl_odds.yml"
             "hourly_scrape.yml"
             "live_odds.yml"
+            "performance_check.yml"
             "seo_backlinks.yml"
             "seo_sitemap.yml"
             "site_doctor.yml"

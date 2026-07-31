@@ -15,9 +15,13 @@ on:
       - "Country Localisation — translate blog posts"
       - "Deploy to Hostinger — sifufinds.com"
       - "Firecrawl Odds — Daily African match data"
+      - "Growth Planner — weekly editorial & campaign plan"
       - "Hourly Multi-Source Scrape — Flashscore, Sofascore, Livescore, OddsPortal, BetExplorer, OddsChecker"
+      - "Keyword Research — discover keyword opportunities"
       - "Live Odds — Update every 5 minutes"
+      - "Performance & Core Web Vitals Check"
       - "SEO Backlink Outreach — Hourly"
+      - "SERP Monitor — track rank position over time"
       - "SEO — Update sitemap lastmod after blog publish"
       - "Site Doctor — 24/7 auto-heal sifufinds.com"
       - "Site Monitor — auto-heal sifufinds.com"
@@ -69,10 +73,14 @@ jobs:
             "Country Localisation — translate blog posts")                               WF=agent_translate.yml ;;
             "Deploy to Hostinger — sifufinds.com")                                        WF=deploy_hostinger.yml ;;
             "Firecrawl Odds — Daily African match data")                                  WF=firecrawl_odds.yml ;;
+            "Growth Planner"*)                                                            WF=agent5_plan.yml ;;
             "Hourly Multi-Source Scrape"*)                                                WF=hourly_scrape.yml ;;
+            "Keyword Research"*)                                                          WF=agent_keyword_research.yml ;;
             "Live Odds — Update every 5 minutes")                                        WF=live_odds.yml ;;
+            "Performance & Core Web Vitals Check")                                        WF=performance_check.yml ;;
             "SEO Backlink Outreach — Hourly")                                             WF=seo_backlinks.yml ;;
             "SEO — Update sitemap"*)                                                      WF=seo_sitemap.yml ;;
+            "SERP Monitor"*)                                                              WF=agent_serp_monitor.yml ;;
             "Site Doctor"*)                                                               WF=site_doctor.yml ;;
             "Site Monitor"*)                                                              WF=site_monitor.yml ;;
             "Telegram Channel Growth"*)                                                   WF=telegram_growth.yml ;;

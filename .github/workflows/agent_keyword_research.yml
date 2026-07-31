@@ -1,0 +1,99 @@
+name: Keyword Research — discover keyword opportunities
+
+# Runs agents/python/agent_keyword_research.py, which researches a batch of
+# seed keywords (core topics x countries) per run and persists findings —
+# whether SifuFinds already ranks, top competitors, PAA-style question gaps
+# — to agents/python/keyword_opportunities.json. Content agents can draw
+# from this backlog instead of each doing one-off, un-persisted research.
+#
+# This workflow never exits with a failure code — a rate-limited/quota-
+# exhausted run just means fewer keywords researched this time; it tries
+# again on the next scheduled run.
+
+on:
+  schedule:
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: agent-keyword-research
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  research:
+    name: Research next batch of keywords
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run Keyword Research agent
+        id: research
+        working-directory: agents/python
+        run: |
+          set +e
+          python agent_keyword_research.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit and push keyword opportunities
+        run: |
+          git config --local user.email "keyword-research@sifufinds.com"
+          git config --local user.name "SifuFinds Keyword Research Agent"
+          git add agents/python/keyword_opportunities.json
+          if git diff --cached --quiet; then
+            echo "No new keyword data this run — nothing to commit"
+            exit 0
+          fi
+          git commit -m "research: keyword opportunities $(date -u '+%Y-%m-%d') UTC"
+
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            git add -A
+            git commit -m "research: keyword opportunities $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
+          done
+
+      - name: Report outcome
+        if: always()
+        run: |
+          CODE="${{ steps.research.outputs.exit_code }}"
+          if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
+            echo "✅ Keyword Research agent ran — see logs above"
+          else
+            echo "⚠️ Keyword Research agent exit code $CODE — check logs above"
+          fi
