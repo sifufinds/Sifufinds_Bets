@@ -1,96 +1,18 @@
 {
   "date": "2026-07-31",
-  "total": 70,
+  "total": 57,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 12,
-    "MEDIUM": 57,
+    "HIGH": 0,
+    "MEDIUM": 56,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "eddie-howe-out-roddri-rumours-premier-league-betting",
-      "detail": "Title 106 chars (max 60): 'Eddie Howe out, Rodri on the radar and a wave of Premier League rumors'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "july-2026-transfer-frenzy-howe-rodri-premier-league-rumours",
-      "detail": "Title 108 chars (max 60): 'July 2026 Transfer Frenzy: Howe Out, Rodri on the Horizon, Premier Lea'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "real-madrid-rodri-tottenham-savinho-july-transfer-buzz",
-      "detail": "Title 75 chars (max 60): 'Real Madrid eye Rodri, Tottenham chase Savinho and other July transfer'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "july-transfer-frenzy-rodri-grealish",
-      "detail": "Title 64 chars (max 60): 'July Transfer Frenzy: From Rodri Rumours to Grealish Saudi Moves'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "real-madrid-rodri-tottenham-romero-savinho-transfer-betting",
-      "detail": "Title 93 chars (max 60): 'Real Madrid eye Rodri, Tottenham chase Romero & Savinho \u2013 Transfer buz'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "transfer-fever-2026-rodri-romero-grealish-african-bettors",
-      "detail": "Title 84 chars (max 60): 'Transfer Fever 2026: Rodri, Romero, Grealish & More \u2013 What African Bet'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "eddie-howe-out-roddri-rumours-premier-league-betting",
-      "detail": "Excerpt 185 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "july-2026-transfer-frenzy-howe-rodri-premier-league-rumours",
-      "detail": "Excerpt 182 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "real-madrid-rodri-tottenham-savinho-july-transfer-buzz",
-      "detail": "Excerpt 190 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "july-transfer-frenzy-rodri-grealish",
-      "detail": "Excerpt 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "real-madrid-rodri-tottenham-romero-savinho-transfer-betting",
-      "detail": "Excerpt 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "transfer-fever-2026-rodri-romero-grealish-african-bettors",
-      "detail": "Excerpt 167 chars (max 155)"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
-      "page": "july-2026-transfer-frenzy-howe-rodri-premier-league-rumours",
-      "detail": "High title overlap (5 meaningful tokens) with 'july-transfer-frenzy-rodri-grealish' \u2014 consider noindex"
-    },
-    {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
       "page": "real-madrid-rodri-tottenham-savinho-july-transfer-buzz",
-      "detail": "High title overlap (8 meaningful tokens) with 'real-madrid-rodri-tottenham-romero-savinho-transfer-betting' \u2014 consider noindex"
+      "detail": "High title overlap (6 meaningful tokens) with 'real-madrid-rodri-tottenham-romero-savinho-transfer-betting' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
