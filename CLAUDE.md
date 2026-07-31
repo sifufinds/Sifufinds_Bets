@@ -103,7 +103,10 @@ The business side of SifuFinds maps to a target org chart (Strategy / SEO & GEO 
 | Betting Guide Writer | ❌ Missing | `gen_guide_pages.py` is static/hand-authored, no writer agent |
 | Gambling News Writer | ✅ Covered | `agent_sports_blog.py` (football/basketball/tennis/cricket/rugby/boxing/f1/betting/sportnews categories, scheduled via `breaking_news.yml`) + `agent_transfer_post.py` (dedicated transfer-news feed) |
 | Country Localisation Specialist (European Portuguese) | ✅ Built Phase 1 | `agents/python/agent_translate.py --locale pt` |
-| Country Localisation Specialist (general) | ✅ Built Phase 1 | `agents/python/agent_translate.py` (generalised across fr/de/es/pt/sw) |
+| Country Localisation Specialist (French) | ✅ Covered | `agents/python/agent_translate.py --locale fr` (France French, not Canadian) — `blog/translations/fr.json` already had 168 manually-populated entries pre-Phase-1, agent now keeps it topped up against posts.json growth |
+| Country Localisation Specialist (Spanish) | ✅ Built Phase 1 | `agents/python/agent_translate.py --locale es` (Spain Spanish, not Latin American) — `blog/translations/es.json` had zero entries before Phase 1, hreflang/OG-locale (`es_ES`) plumbing in `gen_blog_post_pages.py` was ready and unused until now |
+| Country Localisation Specialist (German) | ✅ Covered | `agents/python/agent_translate.py --locale de` — `blog/translations/de.json` already had 168 manually-populated entries pre-Phase-1, agent now keeps it topped up against posts.json growth |
+| Country Localisation Specialist (general) | ✅ Built Phase 1 | `agents/python/agent_translate.py` (generalised across fr/de/es/pt/sw — omit `--locale` to auto-pick whichever has the biggest untranslated backlog) |
 | Fact Checker | ✅ Built Phase 1 | `agents/python/agent_fact_checker.py`, wired into `agent_sports_blog.generate_post()` |
 | Compliance Reviewer | ✅ Built Phase 1 | `scripts/compliance_check.py`, blocking pre-deploy gate |
 | UX Optimisation Agent | ❌ Missing | No agent; needs live GA4/session data as an input first |
