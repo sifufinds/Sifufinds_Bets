@@ -3,8 +3,32 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="preload" href="assets/shared.js?v=10" as="script">
-<link rel="preload" href="assets/shared.css?v=8" as="style">
+<script>
+// GEO HOMEPAGE ROUTING — see CLAUDE.md STANDING RULE. Sends every visitor straight to
+// their own country's page (e.g. Kenya -> /countries/kenya/) instead of this generic page.
+// Bypass with ?cty=XX (explicit country switch, e.g. footer quick-links) or ?intl=1 (force this page).
+(function(){
+  var qs=new URLSearchParams(location.search);
+  if(qs.has('cty')||qs.has('intl'))return;
+  var MAP={NG:'nigeria',KE:'kenya',GH:'ghana',ZA:'south-africa',TZ:'tanzania',UG:'uganda',ZM:'zambia',ET:'ethiopia',CI:'ivory-coast',CM:'cameroon',SN:'senegal',RW:'rwanda',ZW:'zimbabwe',MW:'malawi',MZ:'mozambique',AO:'angola',CD:'dr-congo',BW:'botswana',NA:'namibia',EG:'egypt',MA:'morocco',SL:'sierra-leone',LR:'liberia'};
+  function go(code){location.replace('/countries/'+(MAP[code]||MAP.NG)+'/');}
+  var saved=localStorage.getItem('sf_cty');
+  if(saved){go(saved);return;}
+  var req=fetch('https://ipapi.co/json/').then(function(r){return r.json();});
+  var timeout=new Promise(function(res){setTimeout(function(){res(null);},2000);});
+  Promise.race([req,timeout]).then(function(d){
+    var code=(d&&d.country_code||'').toUpperCase();
+    var resolved=MAP[code]?code:'NG';
+    localStorage.setItem('sf_cty',resolved);
+    go(resolved);
+  }).catch(function(){
+    localStorage.setItem('sf_cty','NG');
+    go('NG');
+  });
+})();
+</script>
+<link rel="preload" href="assets/shared.js?v=11" as="script">
+<link rel="preload" href="assets/shared.css?v=9" as="style">
 <!-- Critical-path connections -->
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
@@ -217,7 +241,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="assets/shared.css?v=8">
+<link rel="stylesheet" href="assets/shared.css?v=9">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
@@ -594,7 +618,7 @@
 <script>
 const SITE={home:'/',tips:'tips/',casino:'casino/',odds:'odds/',countries:'countries/'};
 </script>
-<script src="assets/shared.js?v=10"></script>
+<script src="assets/shared.js?v=11"></script>
 <script>
 // ── PAGE-SPECIFIC JS ──────────────────────────────────────────────────────────
 const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BW:'Botswana',NA:'Namibia',EG:'Egypt',MA:'Morocco',SL:'Sierra Leone',LR:'Liberia'};

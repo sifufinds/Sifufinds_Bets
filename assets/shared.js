@@ -857,6 +857,62 @@ document.addEventListener('click',e=>{
   if(e.target.id==='page-modal'){closePage();}
 });
 
+// ── ROTATING OFFER POPUP ─────────────────────────────────────────────────────
+// Fires once per browser tab (sessionStorage-gated) after 30s on any landing page.
+// Offers are shuffled from the visitor's country BOOKS list each time, so the 3
+// brands shown keep changing between sessions and page visits.
+const _OFFER_POPUP_SS='sf_offer_popup_shown';
+const _OFFER_POPUP_DELAY_MS=30000;
+function _pickRandomOffers(cty,n){
+  const pool=(BOOKS[cty]||BOOKS.NG).slice();
+  for(let i=pool.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [pool[i],pool[j]]=[pool[j],pool[i]];
+  }
+  return pool.slice(0,n);
+}
+function _offerCard(b){
+  return`<div class="fc">
+    <div class="fc-img" style="background:${b.bg}">
+      ${logoImg(b.url,b.name,b.abbr,b.tc,140,12,true)}
+      <span class="fc-nm">${b.name}</span>
+    </div>
+    <div class="fc-body">
+      <div class="fc-off">${b.off}</div>
+      <a class="gbtn" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored">Claim →</a>
+    </div>
+  </div>`;
+}
+function closeOfferPopup(){
+  const bg=document.getElementById('offer-popup-bg');
+  if(bg)bg.remove();
+  document.body.style.overflow='';
+}
+function showOfferPopup(){
+  if(sessionStorage.getItem(_OFFER_POPUP_SS))return;
+  if(document.getElementById('cmp-modal')?.classList.contains('open'))return;
+  if(document.getElementById('page-modal')?.classList.contains('open'))return;
+  const cty=getCurrentCountry();
+  const cd=(typeof COUNTRY_DATA!=='undefined'&&COUNTRY_DATA[cty])||null;
+  const offers=_pickRandomOffers(cty,3);
+  if(offers.length<3)return;
+  sessionStorage.setItem(_OFFER_POPUP_SS,'1');
+  const el=document.createElement('div');
+  el.id='offer-popup-bg';
+  el.className='offer-popup-bg open';
+  el.innerHTML=`<div class="offer-popup">
+    <button class="offer-popup-close" onclick="closeOfferPopup()">×</button>
+    <h2>🔥 Top ${cd?cd.name:'Betting'} Offers Right Now</h2>
+    <p class="op-sub">Verified bonuses from licensed bookmakers — updated live.</p>
+    <div class="op-grid">${offers.map(_offerCard).join('')}</div>
+    <p class="op-dis">18+ only. T&amp;Cs apply. Bet responsibly. <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a></p>
+  </div>`;
+  document.body.appendChild(el);
+  document.body.style.overflow='hidden';
+  el.addEventListener('click',e=>{if(e.target===el)closeOfferPopup();});
+}
+setTimeout(showOfferPopup,_OFFER_POPUP_DELAY_MS);
+
 // ── EXPAND / COLLAPSE DETAILS ─────────────────────────────────────────────────
 function toggleDet(btn){
   const det=btn.nextElementSibling;

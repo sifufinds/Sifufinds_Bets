@@ -133,6 +133,17 @@ select.csel option{color:#222;background:#fff}
 .page-modal-bg.open{display:flex;align-items:flex-start;justify-content:center}
 .page-modal{background:#fff;border-radius:14px;width:100%;max-width:720px;padding:28px;margin:auto;position:relative}
 .page-modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;color:#aaa;cursor:pointer}
+.offer-popup-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:400;padding:16px;align-items:center;justify-content:center}
+.offer-popup-bg.open{display:flex}
+.offer-popup{background:#fff;border-radius:16px;width:100%;max-width:760px;padding:24px;position:relative;max-height:92vh;overflow-y:auto}
+.offer-popup-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:24px;color:#aaa;cursor:pointer;line-height:1}
+.offer-popup h2{margin:0 26px 4px 0;font-size:19px;font-weight:800;color:#111}
+.offer-popup .op-sub{margin:0 0 16px;font-size:12.5px;color:#777}
+.offer-popup .op-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.offer-popup .op-grid .fc-img{height:96px}
+.offer-popup .op-dis{margin:16px 0 0;font-size:11px;color:#999;text-align:center}
+.offer-popup .op-dis a{color:#999;text-decoration:underline}
+@media(max-width:640px){.offer-popup .op-grid{grid-template-columns:1fr}}
 .pm h1{font-size:22px;font-weight:800;color:#111;margin-bottom:16px;padding-right:30px;border-bottom:2px solid var(--g);padding-bottom:10px}
 .pm h2{font-size:16px;font-weight:700;color:#333;margin:18px 0 8px}
 .pm h3{font-size:14px;font-weight:700;color:#444;margin:12px 0 6px}

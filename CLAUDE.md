@@ -302,6 +302,43 @@ When adding ANY new page that renders bookmakers, add `fetchLiveData()` that fet
 - One level deep (`tips/`, `odds/`, `blog/`, `countries/`): `../data/countries_live.json`
 - Two levels deep (`countries/nigeria/`): `../../data/countries_live.json`
 
+## STANDING RULE — Geo Homepage Routing (added 2026-07-31)
+
+**Every visitor to the bare `/` URL is routed straight to their own country's page as their homepage.** A visitor detected as Kenya lands on `/countries/kenya/`, a visitor detected as Ghana lands on `/countries/ghana/`, and so on for all 23 supported countries — including Nigeria (`/countries/nigeria/`). This is a client-side redirect (the site is static, no server-side GeoIP available on Hostinger) implemented as an inline `<script>` at the very top of `index.html`'s `<head>` — before `assets/shared.js` loads — so it fires before paint on repeat visits.
+
+### How it works
+- Reuses the existing geo-IP infrastructure already in `assets/shared.js` (`ipapi.co`, 2 s timeout, `localStorage['sf_cty']`) rather than duplicating it — the head script sets the exact same `sf_cty` key, so when `shared.js` loads later in `<body>` its own `_geoFetch` IIFE sees `localStorage` already populated and skips a second network call.
+- On a **first visit**, the redirect fires after the (capped, ~2 s max) `ipapi.co` lookup resolves. On **every return visit**, it fires instantly from `localStorage` before the page paints.
+- Detection failure or an unmapped/non-African country both fall back to the same default the rest of the site already uses (`NG` → `/countries/nigeria/`) — there is no special-cased "stay on the generic homepage" path; this keeps the contract identical to `waitForCountry()` elsewhere and avoids a first-visit/return-visit behavioural split.
+- **Escape hatches** (so internal links and QA aren't broken by the redirect): `?cty=XX` on `/` (the same param the footer's country quick-switch links already use) skips the redirect so the generic pan-African homepage can render with a specific country's data; `?intl=1` forces the generic homepage regardless of detected country.
+- The generic `index.html` content itself is unchanged and still renders normally for search-engine crawlers (which almost always resolve to non-African IPs and therefore never match the redirect map) and for anyone using an escape hatch.
+
+### Country code → page slug map
+Lives inline in `index.html`'s head script (kept intentionally duplicated from `_SUPPORTED_CTYS` in `shared.js` rather than shared, since the whole point is to run *before* `shared.js` loads):
+`NG→nigeria, KE→kenya, GH→ghana, ZA→south-africa, TZ→tanzania, UG→uganda, ZM→zambia, ET→ethiopia, CI→ivory-coast, CM→cameroon, SN→senegal, RW→rwanda, ZW→zimbabwe, MW→malawi, MZ→mozambique, AO→angola, CD→dr-congo, BW→botswana, NA→namibia, EG→egypt, MA→morocco, SL→sierra-leone, LR→liberia`
+
+**When adding a new country**: add it to `_SUPPORTED_CTYS` in `shared.js` (as already documented), to `BOOKS`/`COUNTRY_DATA`, generate its `countries/<slug>/index.html` via `generate_country_pages.py`, **and** add the matching `CODE:'slug'` entry to the `MAP` object in `index.html`'s head redirect script — the four must stay in sync or that country's visitors will silently fall through to the Nigeria default instead of their own page.
+
+## STANDING RULE — Rotating 3-Brand Offer Popup (added 2026-07-31)
+
+**Every landing page shows a popup of 3 bookmaker offers after a visitor has been on the page for 30 seconds, and the 3 brands shown are re-shuffled every time so they keep changing.** Implemented once, site-wide, in `assets/shared.js` (`showOfferPopup()` + `_pickRandomOffers()` + `_offerCard()`, styled by `.offer-popup*`/`.op-*` rules in `assets/shared.css`) — not per-page — so it automatically covers every page that loads `shared.js`, including all 23 country homepages, without touching individual page files.
+
+### Behaviour
+- `setTimeout(showOfferPopup, 30000)` fires 30 s after `shared.js` parses on any page.
+- Shows once per browser tab per session (`sessionStorage['sf_offer_popup_shown']`) — it does not re-fire on every subsequent page navigation within the same tab, to avoid being spammy while still satisfying "30 seconds on a landing page" for a fresh visit.
+- Picks the visitor's current country via `getCurrentCountry()`, Fisher-Yates shuffles that country's `BOOKS[cty]` list, and takes the first 3 — a different combination is very likely on the next session/page since most countries carry well over 3 listed bookmakers (exceptions: Ethiopia and DR Congo currently only have 2 bookmakers listed each, so the popup silently does not fire for those two countries until more are added — this is intentional, never show fewer than 3 offers than promised).
+- Reuses the site's existing `.fc`/`.fc-img`/`.fc-body`/`.fc-off`/`.gbtn` card markup (the same template `renderFeatCards()` already uses on the homepage) rather than inventing new card markup, and the same `rel="noopener noreferrer sponsored"` + direct `b.url` link convention every other bookmaker card on the site already uses.
+- Carries a mandatory 18+/BeGambleAware disclaimer line, consistent with the compliance rule above — do not remove it if this function is ever touched.
+- Guards against double-showing over an already-open `#cmp-modal` or `#page-modal`.
+
+### If you touch this
+- Don't add a per-page trigger — the whole point is one function in `shared.js` reaching every page. If a new page type needs different behaviour (e.g. no popup at all), gate it inside `showOfferPopup()`, don't duplicate the timer elsewhere.
+- If you change the 30 s delay or the once-per-session gating, update `_OFFER_POPUP_DELAY_MS` / `_OFFER_POPUP_SS` in `shared.js`, not a magic number inline.
+- Bump the `?v=` query param on `assets/shared.js`/`assets/shared.css` (see below) whenever this function changes, or cached copies on already-visited pages won't pick it up.
+
+### `?v=` cache-busting on `shared.js`/`shared.css` must cover every page
+Every page includes `assets/shared.js?v=N` / `assets/shared.css?v=N` so a version bump invalidates cached copies everywhere at once. As of 2026-07-31 this covers **every** HTML page including the 23 `countries/<slug>/index.html` pages and their generator `generate_country_pages.py` — those 23 pages and their generator were previously missing the `?v=` param entirely (found while wiring up this popup, since country pages are now the actual homepage for most visitors and needed the update to land reliably). When bumping the version after any `shared.js`/`shared.css` change: bump it in **every** `.html` file site-wide (currently ~1,470 files) **and** in every Python generator that hardcodes the tag (`gen_sport_country_pages.py`, `gen_payment_country_pages.py`, `gen_all_cities.py`, `gen_bookmaker_country_pages.py`, `gen_blog_post_pages.py`, `generate_country_pages.py`, `agents/python/utils/bookmaker_page_template.py`) so future regenerated pages don't revert to a stale version number.
+
 ## STANDING RULE — Multi-Source Scraping, Firecrawl-Last (added 2026-07-24)
 
 **No agent may depend on Firecrawl as its primary or only data source. Firecrawl credits are a shared, limited resource (we've run out more than once) — every scraper must try free sources first and only fall back to Firecrawl when free sources genuinely can't get the data.**
