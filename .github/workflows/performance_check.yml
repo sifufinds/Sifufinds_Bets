@@ -1,0 +1,81 @@
+name: Performance & Core Web Vitals Check
+
+# No Lighthouse/PageSpeed automation existed anywhere in this repo before
+# scripts/performance_check.py (2026-07-30 agent-team roadmap audit). Uses
+# Google's free PageSpeed Insights API v5 against a handful of representative
+# live pages, tracks history in data/performance_history.json, and flags
+# CRITICAL/WARN findings in the log — but never blocks a deploy, since it
+# measures the LIVE site, not the content about to be deployed (see the
+# script's own docstring for why that would just measure a race).
+#
+# PAGESPEED_API_KEY is optional (raises Google's free rate limit) — the
+# script works without one, just at a lower request budget, so a 429 on a
+# given run is expected occasionally and never fails the job.
+
+on:
+  schedule:
+    - cron: "20 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: performance-check
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    name: Check Core Web Vitals on key pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run performance check
+        env:
+          PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
+        run: |
+          set +e
+          python3 scripts/performance_check.py --report
+          echo "Performance check completed (never fails the job — see script docstring)"
+          exit 0
+
+      - name: Commit and push performance history
+        run: |
+          git config --local user.email "performance-check@sifufinds.com"
+          git config --local user.name "SifuFinds Performance Check"
+          git add data/performance_history.json performance-report.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No performance data changed this run — nothing to commit"
+            exit 0
+          fi
+          git commit -m "perf: Core Web Vitals check $(date -u '+%Y-%m-%d') UTC"
+
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo "⚠️ Push failed after 3 attempts (non-critical — history stays local to this run's log)"
+              exit 0
+            fi
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            git add -A
+            git commit -m "perf: Core Web Vitals check $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
+          done

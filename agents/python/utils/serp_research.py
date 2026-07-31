@@ -312,6 +312,25 @@ def fc_scrape(url: str) -> str:
     return _fc_scrape(url)
 
 
+def find_site_position(results: list[dict], domain: str = "sifufinds.com") -> int | None:
+    """1-indexed rank position of `domain` within a fc_search()/_ddg_search()
+    result list, or None if it doesn't appear at all. Shared by
+    agent_keyword_research.py and agent_serp_monitor.py so both track
+    ranking the same way rather than each reimplementing the match logic."""
+    for i, r in enumerate(results, start=1):
+        if domain in (r.get("url") or ""):
+            return i
+    return None
+
+
+def paa_hints_from_results(results: list[dict]) -> list[str]:
+    """Question-style hints derived from free search result snippets — the
+    same free-first PAA substitute _paa_from_snippets() already uses
+    internally for blog research, exposed here for agents that only have a
+    result list (not the full research() block)."""
+    return _paa_from_snippets([r.get("description", "") for r in results])
+
+
 # ── Main entry point ─────────────────────────────────────────────────────────
 
 def research(keyword: str, country_name: str = "") -> str:

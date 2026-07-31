@@ -1,0 +1,104 @@
+name: Growth Planner — weekly editorial & campaign plan
+
+# Wires up agents/python/agent5_plan.py, which was fully written but never
+# actually scheduled (found during the 2026-07-30 agent-team roadmap
+# re-audit — "CMO Agent" was dead code, not a running agent). Generates a
+# weekly editorial calendar, social campaign plan, and keyword-gap list from
+# recent content/SEO/queue state, written to agents/python/weekly_plan.json.
+#
+# This workflow never exits with a failure code at the agent-run step — a
+# quota-exhausted run just means no fresh plan this week; it tries again
+# next Monday.
+
+on:
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: agent5-plan
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    name: Generate weekly growth plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run Growth Planner agent
+        id: plan
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set +e
+          python agent5_plan.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit and push weekly plan
+        run: |
+          git config --local user.email "growth-planner@sifufinds.com"
+          git config --local user.name "SifuFinds Growth Planner"
+          git add agents/python/weekly_plan.json
+          if git diff --cached --quiet; then
+            echo "No new plan generated this run — nothing to commit"
+            exit 0
+          fi
+          git commit -m "plan: weekly growth plan $(date -u '+%Y-%m-%d') UTC"
+
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "Push rejected (attempt $attempt/5) — merging and retrying..."
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            git add -A
+            git commit -m "plan: weekly growth plan $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
+          done
+
+      - name: Report outcome
+        if: always()
+        run: |
+          CODE="${{ steps.plan.outputs.exit_code }}"
+          if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
+            echo "✅ Growth Planner agent ran — see logs above"
+          else
+            echo "⚠️ Growth Planner agent exit code $CODE — check logs above"
+          fi
