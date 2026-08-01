@@ -1,0 +1,31 @@
+{
+  "critical": 0,
+  "warnings": 5,
+  "issues": [
+    {
+      "severity": "WARN",
+      "page": "homepage",
+      "detail": "PageSpeed API request failed: HTTP Error 429: Too Many Requests"
+    },
+    {
+      "severity": "WARN",
+      "page": "bookmaker_review",
+      "detail": "PageSpeed API request failed: HTTP Error 429: Too Many Requests"
+    },
+    {
+      "severity": "WARN",
+      "page": "country_page",
+      "detail": "PageSpeed API request failed: HTTP Error 429: Too Many Requests"
+    },
+    {
+      "severity": "WARN",
+      "page": "tips",
+      "detail": "PageSpeed API request failed: HTTP Error 429: Too Many Requests"
+    },
+    {
+      "severity": "WARN",
+      "page": "odds",
+      "detail": "PageSpeed API request failed: HTTP Error 429: Too Many Requests"
+    }
+  ]
+}
