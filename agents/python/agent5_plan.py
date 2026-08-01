@@ -71,6 +71,27 @@ def load_json(file_name):
         return {}
 
 
+def _top_gap_keywords(data: dict, limit: int = 10) -> list[str]:
+    """Most recently researched evergreen keywords SifuFinds doesn't yet
+    rank for, from agent_keyword_research.py's persisted backlog."""
+    opportunities = data.get("opportunities", {})
+    gaps = [
+        (k, v.get("checked_at", ""))
+        for k, v in opportunities.items()
+        if not v.get("sifufinds_ranks")
+    ]
+    gaps.sort(key=lambda pair: pair[1], reverse=True)
+    return [k for k, _ in gaps[:limit]]
+
+
+def _top_trending(data: dict, limit: int = 10) -> list[dict]:
+    """Most recently checked trending keyword pairings from
+    agent_trending_keywords.py's news-driven backlog."""
+    trending = data.get("trending", {})
+    items = sorted(trending.values(), key=lambda e: e.get("checked_at", ""), reverse=True)
+    return items[:limit]
+
+
 def clean_response(raw_text):
     text = raw_text.strip()
     if text.startswith("```"):
@@ -95,6 +116,16 @@ def run():
     latest_seo = load_json("latest_seo.json")
     content_queue = load_json("content_queue.json")
     engagement_queue = load_json("engagement_queue.json")
+    keyword_opportunities = load_json("keyword_opportunities.json")
+    trending_keywords = load_json("trending_keywords.json")
+
+    gap_keywords = _top_gap_keywords(keyword_opportunities)
+    trending_items = _top_trending(trending_keywords)
+    gap_block = "\n".join(f"- {k}" for k in gap_keywords) or "None researched yet"
+    trending_block = "\n".join(
+        f"- \"{t['primary_keyword']}\" ({t['country']}, from: {t['source_headline'][:70]})"
+        for t in trending_items
+    ) or "None researched yet"
 
     top_countries = ", ".join([country["name"] for country in COUNTRIES])
     queue_summary = {
@@ -122,10 +153,16 @@ Blog items queued: {queue_summary['blog_items']}
 Social items queued: {queue_summary['social_items']}
 Engagement topics: {queue_summary['engagement_topics']}
 
+Real keyword research (agent_keyword_research.py) — evergreen money keywords SifuFinds does NOT yet rank for:
+{gap_block}
+
+Real trending keyword research (agent_trending_keywords.py) — current news-driven keyword opportunities across our 23 African markets:
+{trending_block}
+
 Use the recent content, SEO signals, and community priorities to propose:
-- a 7-day editorial calendar
+- a 7-day editorial calendar — base topics and primary_keyword fields on the real keyword research above wherever relevant, rather than inventing keywords from scratch
 - 3 social campaigns for the upcoming week
-- 5 keyword gap opportunities
+- 5 keyword gap opportunities — draw these from the real backlog above, don't just repeat generic ideas
 - platform priorities for Telegram, X, Facebook, and Instagram
 - 3 growth actions and planning notes
 

@@ -1,0 +1,101 @@
+name: Trending Keywords — news-driven keyword discovery
+
+# Runs agents/python/agent_trending_keywords.py, which pairs today's fresh
+# news headlines (via utils/news_fetcher.py) with country intent modifiers
+# across all 23 African markets SifuFinds serves, and persists findings —
+# whether SifuFinds already ranks, top competitors, suggested content type
+# — to agents/python/trending_keywords.json. Distinct from
+# agent_keyword_research.py's static evergreen backlog: this one re-seeds
+# from real news every run, so the keywords stay genuinely trending.
+#
+# This workflow never exits with a failure code — a rate-limited/quota-
+# exhausted run just means fewer countries researched this time; it tries
+# again on the next scheduled run.
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: agent-trending-keywords
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  research:
+    name: Research today's trending keywords
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run Trending Keywords agent
+        id: research
+        working-directory: agents/python
+        run: |
+          set +e
+          python agent_trending_keywords.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit and push trending keywords
+        run: |
+          git config --local user.email "trending-keywords@sifufinds.com"
+          git config --local user.name "SifuFinds Trending Keywords Agent"
+          git add agents/python/trending_keywords.json
+          if git diff --cached --quiet; then
+            echo "No new trending keyword data this run — nothing to commit"
+            exit 0
+          fi
+          git commit -m "research: trending keywords $(date -u '+%Y-%m-%d') UTC"
+
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            git add -A
+            git commit -m "research: trending keywords $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
+          done
+
+      - name: Report outcome
+        if: always()
+        run: |
+          CODE="${{ steps.research.outputs.exit_code }}"
+          if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
+            echo "✅ Trending Keywords agent ran — see logs above"
+          else
+            echo "⚠️ Trending Keywords agent exit code $CODE — check logs above"
+          fi
