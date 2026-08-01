@@ -25,12 +25,15 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from config import COUNTRIES
+from utils.countries import AFRICAN_COUNTRIES
 from utils.logger import log
 from utils.serp_research import fc_search, find_site_position, paa_hints_from_results
 
 STATE_PATH = Path(__file__).parent / "keyword_opportunities.json"
-BATCH_SIZE = 6
+# Was 6 — bumped alongside the switch from config.COUNTRIES (6 markets) to
+# AFRICAN_COUNTRIES (all 23 the site actually serves, see utils/countries.py)
+# so the full rotation still completes in a reasonable number of days.
+BATCH_SIZE = 10
 
 # Core money-keyword templates — the topics SifuFinds actually needs to rank
 # for, not a random keyword list. Mirrors utils/serp_research.py's
@@ -48,7 +51,7 @@ KEYWORD_TEMPLATES = [
 
 def _seed_keywords() -> list[str]:
     keywords = []
-    for country in COUNTRIES:
+    for country in AFRICAN_COUNTRIES:
         name = country["name"]
         for template in KEYWORD_TEMPLATES:
             keywords.append(template.format(country=name))
