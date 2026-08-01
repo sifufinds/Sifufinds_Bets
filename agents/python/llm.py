@@ -1,15 +1,19 @@
 """
-AI wrapper — Groq primary (4 models, each its own free daily quota), Claude
-fallback, Gemini last resort.
+AI wrapper — Groq primary (4 models, each its own free daily quota), a
+local self-hosted open-weight model as a genuinely-free last resort, then
+Claude/Gemini as optional paid/billing-gated tiers if ever configured.
 
 Fallback chain (each tier is tried before the next):
   1. Groq llama-3.3-70b-versatile  — best quality, separate free TPD quota
   2. Groq llama-3.1-8b-instant     — faster, separate free TPD quota
   3. Groq openai/gpt-oss-120b      — separate free TPD quota
   4. Groq openai/gpt-oss-20b       — separate free TPD quota
-  5. Claude claude-haiku-4-5        — reliable paid fallback, very cheap
-  6. Gemini gemini-2.0-flash-lite  — higher free-tier RPM than full flash
-  7. Gemini gemini-2.0-flash       — separate daily quota fallback
+  5. Local Ollama (llama3.2:3b)    — no signup, no API key, no billing;
+                                     installed + started on demand only
+                                     once every tier above has failed
+  6. Claude claude-haiku-4-5        — reliable paid fallback, very cheap
+  7. Gemini gemini-2.0-flash-lite  — higher free-tier RPM than full flash
+  8. Gemini gemini-2.0-flash       — separate daily quota fallback
 
 Groq bills tokens-per-day (TPD) per model, not per account, so a model
 sitting near its cap doesn't touch the other three — that's why tiers 1-4
@@ -22,14 +26,28 @@ rolling window (minutes to hours since that model's quota was last consumed,
 not a fixed midnight-UTC cliff), so waiting the RPM-sized cap before retrying
 just wastes job time. They fall through to the next tier immediately instead.
 
+Tier 5 (Ollama) exists because this repo runs ~10 different scheduled
+agents off one shared free Groq key (see AGENT-KNOWLEDGE.md 2026-08-01) —
+cumulative usage across all of them can exhaust every Groq model's daily
+quota on a busy day, and neither Claude nor Gemini billing is set up, which
+previously meant total content silence until Groq's quota rolled over. The
+local model is deliberately only installed/started lazily inside
+_ensure_ollama() the first time it's actually needed in a given process —
+never as a workflow-level setup step — so the common case (a Groq model
+succeeds) pays zero extra latency or CI minutes. Quality is well below the
+70B-class Groq models; this is a last resort, not a replacement.
+
 Get a free Groq key at: https://console.groq.com → API Keys → Create
 Get an Anthropic key at: https://console.anthropic.com
 Get a free Gemini key at: https://aistudio.google.com/app/apikey
 """
 import os
 import re
+import shutil
+import subprocess
 import time
 from pathlib import Path
+import requests
 from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent / ".env")
@@ -88,6 +106,78 @@ else:
           "DISABLED, relying on Groq + Gemini free tiers only.")
 
 _ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"  # fast + cheapest Claude
+
+# ── Local Ollama fallback (tier 5 — no signup, no API key, no billing) ──────
+_OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
+_ollama_setup_attempted = False
+
+
+def _ollama_reachable(timeout: float = 2.0) -> bool:
+    try:
+        return requests.get(f"{_OLLAMA_HOST}/api/tags", timeout=timeout).status_code == 200
+    except Exception:
+        return False
+
+
+def _ensure_ollama() -> bool:
+    """Install Ollama + pull a small open-weight model + start the server,
+    entirely on demand, the first time every tier above has already failed
+    in this process. Cached via _ollama_setup_attempted so a second
+    AIProvidersExhausted-bound call in the same run doesn't retry an
+    install/pull that already failed (e.g. no internet egress, disk full).
+    Returns False fast on any environment where this can't work (a local
+    dev machine without Ollama and without sudo, a sandboxed runner with no
+    outbound network) so those environments fall through to Claude/Gemini
+    exactly as before."""
+    global _ollama_setup_attempted
+    if _ollama_reachable():
+        return True
+    if _ollama_setup_attempted:
+        return False
+    _ollama_setup_attempted = True
+    try:
+        if shutil.which("ollama") is None:
+            print("[llm] Installing local Ollama fallback (no signup/key required)...")
+            subprocess.run("curl -fsSL https://ollama.com/install.sh | sh",
+                            shell=True, check=True, timeout=180,
+                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print("[llm] Starting local Ollama server...")
+        subprocess.Popen(["ollama", "serve"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        for _ in range(30):
+            if _ollama_reachable():
+                break
+            time.sleep(1)
+        else:
+            print("[llm] Ollama server did not come up in time — skipping local fallback")
+            return False
+        print(f"[llm] Pulling local fallback model {_OLLAMA_MODEL} (one-time per runner, ~2GB)...")
+        subprocess.run(["ollama", "pull", _OLLAMA_MODEL], check=True, timeout=600)
+        return True
+    except Exception as e:
+        print(f"[llm] Local Ollama fallback unavailable in this environment: {e}")
+        return False
+
+
+def _ask_ollama(system_prompt: str, user_message: str, max_tokens: int) -> str:
+    resp = requests.post(
+        f"{_OLLAMA_HOST}/api/chat",
+        json={
+            "model": _OLLAMA_MODEL,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message},
+            ],
+            "stream": False,
+            "options": {"num_predict": max_tokens, "temperature": 0.8},
+        },
+        # CPU-only inference on a shared runner is slow — a full-length
+        # article generation can genuinely take several minutes, unlike the
+        # cloud tiers above.
+        timeout=900,
+    )
+    resp.raise_for_status()
+    return resp.json()["message"]["content"].strip()
 
 # ── Gemini client (tiers 4 & 5) ───────────────────────────────────────────────
 # Tried in order; each model has its own separate daily quota bucket.
@@ -170,10 +260,21 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
             # reasoning models (gpt-oss) can also come back with empty content
             # when hidden reasoning tokens consume the whole max_tokens budget —
             # that's not an exception, so it needs its own empty-result check.
-            next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else "Claude"
+            next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else "local Ollama fallback"
             print(f"[llm] Groq {model} exhausted or empty — trying {next_step}")
 
-    # Tier 5 — Claude (reliable paid fallback, fast)
+    # Tier 5 — local, self-hosted open-weight model via Ollama. No signup,
+    # no API key, no billing — installed/started on demand (see
+    # _ensure_ollama()'s docstring). Tried before Claude/Gemini since those
+    # are currently unconfigured/billing-gated in this repo, making Ollama
+    # the only tier below that reliably works at all right now.
+    if _ensure_ollama():
+        try:
+            return _ask_ollama(system_prompt, user_message, max_tokens)
+        except Exception as e:
+            print(f"[llm] Local Ollama fallback failed: {e} — trying Claude")
+
+    # Tier 6 — Claude (reliable paid fallback, fast)
     if _anthropic_client:
         try:
             return _ask_claude(system_prompt, user_message, max_tokens)
@@ -184,7 +285,7 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
             else:
                 raise
 
-    # Tiers 6 & 7 — Gemini models tried in order, each with its own daily quota
+    # Tiers 7 & 8 — Gemini models tried in order, each with its own daily quota
     if _gemini_client:
         last_err: Exception | None = None
         for model in _GEMINI_MODELS:
