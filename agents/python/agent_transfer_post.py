@@ -89,6 +89,7 @@ from utils.news_fetcher import fetch_category
 from utils.player_photo import _looks_like_branded_thumbnail_url, _looks_like_news_column_graphic
 from utils.story_dedup import headline_key as _headline_key, source_keys as _source_keys, \
     load_covered_keys as _load_covered_keys, record_covered_keys as _record_covered_keys
+from utils.tweet_text import tweet_len as _tweet_len, trim_to_limit as _trim_to_limit
 from agent_sports_blog import generate_post, load_posts, save_posts
 from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
@@ -284,25 +285,6 @@ def build_instagram_caption(facts: dict, post: dict) -> str:
     )
 
 
-def _tweet_len(text: str) -> int:
-    url_pattern = re.compile(r"https?://\S+")
-    count, last = 0, 0
-    for m in url_pattern.finditer(text):
-        count += len(text[last:m.start()]) + 23
-        last = m.end()
-    count += len(text[last:])
-    return count
-
-
-def _trim_to_limit(text: str, limit: int = 280) -> str:
-    lines = text.split("\n")
-    while lines and _tweet_len("\n".join(lines)) > limit:
-        words = lines[-1].split()
-        if len(words) <= 1:
-            lines.pop()
-        else:
-            lines[-1] = " ".join(words[:-1]) + "..."
-    return "\n".join(lines)
 
 
 def build_twitter_text(facts: dict, post: dict) -> str:

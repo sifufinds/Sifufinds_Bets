@@ -31,6 +31,7 @@ load_dotenv(Path(__file__).parent / ".env")
 sys.path.insert(0, str(Path(__file__).parent))
 from utils.logger import log
 from utils.affiliate_links import cta_plain
+from utils.tweet_text import tweet_len as _tweet_len, trim_to_limit as _trim_to_limit, TWEET_MAX
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 
@@ -41,9 +42,6 @@ STATE_FILE = Path(__file__).parent / "twitter_state.json"
 POSTS_PATH = Path(__file__).parent.parent.parent / "blog" / "posts.json"
 
 BRAND_COOLDOWN_HOURS = 48
-# Twitter wraps all URLs to t.co — always 23 chars in the character count
-TWITTER_URL_LEN = 23
-TWEET_MAX = 280
 
 # Content-type rotation for --mode auto: news → offer → tip → offer
 ROTATION = ["news", "offer", "tip", "tool", "offer", "news", "tip", "offer"]
@@ -143,42 +141,6 @@ def _save_state(state: dict) -> None:
     # Keep tweeted_slugs bounded
     state["tweeted_slugs"] = state.get("tweeted_slugs", [])[-200:]
     STATE_FILE.write_text(json.dumps(state, indent=2))
-
-
-# ── TWEET LENGTH HELPERS ──────────────────────────────────────────────────────
-
-def _tweet_len(text: str) -> int:
-    """Approximate Twitter character count: URLs = 23, other chars as-is."""
-    import re
-    url_pattern = re.compile(r'https?://\S+')
-    count = 0
-    last = 0
-    for m in url_pattern.finditer(text):
-        count += len(text[last:m.start()])
-        count += TWITTER_URL_LEN
-        last = m.end()
-    count += len(text[last:])
-    return count
-
-
-def _trim_to_limit(text: str, limit: int = TWEET_MAX) -> str:
-    """Truncate the last line of a tweet that exceeds the limit."""
-    if _tweet_len(text) <= limit:
-        return text
-    import re
-    # Truncate preserving newlines: shorten the last line
-    lines = text.split("\n")
-    while lines and _tweet_len("\n".join(lines)) > limit:
-        last = lines[-1]
-        if not last:
-            lines.pop()
-            continue
-        words = last.split()
-        if len(words) <= 1:
-            lines.pop()
-        else:
-            lines[-1] = " ".join(words[:-1]) + "..."
-    return "\n".join(lines)
 
 
 # ── OFFER MODE ────────────────────────────────────────────────────────────────

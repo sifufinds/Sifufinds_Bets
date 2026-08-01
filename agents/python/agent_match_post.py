@@ -54,6 +54,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from utils.logger import log
 from utils.affiliate_links import masked_url, pick_cta, cta_html, cta_plain, CTA_CLAIM_BONUS, CTA_BET_NOW
+from utils.tweet_text import tweet_len as _tweet_len, trim_to_limit as _trim_to_limit
 from agent_telegram_offers import (
     BRANDS,
     AFFILIATE_BRANDS,
@@ -500,25 +501,6 @@ def build_instagram_post(m: dict, cta: dict, tip_num: int) -> str:
     )
 
 
-def _tweet_len(text: str) -> int:
-    url_pattern = re.compile(r"https?://\S+")
-    count, last = 0, 0
-    for mm in url_pattern.finditer(text):
-        count += len(text[last:mm.start()]) + 23
-        last = mm.end()
-    count += len(text[last:])
-    return count
-
-
-def _trim_to_limit(text: str, limit: int = 280) -> str:
-    lines = text.split("\n")
-    while lines and _tweet_len("\n".join(lines)) > limit:
-        words = lines[-1].split()
-        if len(words) <= 1:
-            lines.pop()
-        else:
-            lines[-1] = " ".join(words[:-1]) + "..."
-    return "\n".join(lines)
 
 
 def build_twitter_post(m: dict, cta: dict, tip_num: int) -> str:
