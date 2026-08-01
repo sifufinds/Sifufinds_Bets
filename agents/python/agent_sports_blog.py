@@ -28,6 +28,8 @@ from config import SITE_URL, BRAND_NAME
 from utils.news_fetcher import fetch_category, format_for_prompt
 from utils.ticker_builder import build_and_save as update_ticker
 from utils.serp_research import research, build_keyword_from_category
+from utils.story_dedup import source_keys as _source_keys, \
+    load_covered_keys as _load_covered_keys, record_covered_keys as _record_covered_keys
 from agent_fact_checker import check_post as fact_check_post
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
@@ -434,6 +436,15 @@ def run(topics: int = 1, specific_category: Optional[str] = None,
     recent_titles = {p["title"].lower()[:40] for p in existing[:30]}
     new_posts: list[dict] = []
 
+    # Source-headline dedup shared with agent_transfer_post.py (see
+    # utils/story_dedup.py). recent_titles above only matches when the LLM
+    # happens to reuse the same 40-char title prefix, which almost never
+    # happens for a fresh phrasing of the same real-world story — this is
+    # the same duplicate-content bug already fixed for the dedicated
+    # transfers feed on 2026-07-30, now closed here too after a 2026-08-01
+    # site scan found 56 duplicate-title post pairs traced back to this gap.
+    covered_keys = _load_covered_keys()
+
     categories = list(CATEGORIES.keys())
     if specific_category:
         categories = [specific_category] * topics
@@ -451,6 +462,13 @@ def run(topics: int = 1, specific_category: Optional[str] = None,
         if title_key in recent_titles:
             print(f"  ⚠ Similar title already exists — skipping")
             continue
+
+        post_source_keys = _source_keys(post)
+        if post_source_keys & covered_keys:
+            print(f"  ⚠ Underlying story already covered recently — skipping")
+            continue
+        covered_keys |= post_source_keys
+        _record_covered_keys(post_source_keys)
 
         new_posts.append(post)
         recent_titles.add(title_key)

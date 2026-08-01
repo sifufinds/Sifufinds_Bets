@@ -56,8 +56,9 @@ Duplicate protection: skips the whole cycle (no blog post, no social post) if
 either (a) the generated story's title closely matches one already in
 blog/posts.json — the same recent-title check agent_sports_blog.py's own
 run() uses — or (b) the article's underlying source headline(s) (see
-post["_source_items"]) match one already covered via posted_keys in
-transfer_raw_fallback_state.json, shared with the raw-fallback path below.
+post["_source_items"]) match one already covered via the shared registry in
+utils/story_dedup.py (as of 2026-08-01, also shared with agent_sports_blog.py's
+own run() — see that module's docstring), including the raw-fallback path below.
 (b) exists because (a) alone doesn't catch it: the LLM invents a fresh,
 differently-worded blog title on every cron cycle even when the underlying
 BBC/ESPN headline is the same still-fresh story, so title-prefix matching
@@ -86,6 +87,8 @@ from llm import ask, AIProvidersExhausted
 from utils.logger import log
 from utils.news_fetcher import fetch_category
 from utils.player_photo import _looks_like_branded_thumbnail_url, _looks_like_news_column_graphic
+from utils.story_dedup import headline_key as _headline_key, source_keys as _source_keys, \
+    load_covered_keys as _load_covered_keys, record_covered_keys as _record_covered_keys
 from agent_sports_blog import generate_post, load_posts, save_posts
 from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
@@ -101,12 +104,10 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 # found in agent3_social.py and agent3_social_telethon.py's Instagram
 # fallbacks).
 GENERIC_SOCIAL_IMAGE = f"{SITE_URL}/assets/og-image.png"
-# Filename predates 2026-07-30, but posted_keys is now a shared "already
-# covered this source headline" registry for BOTH the normal (LLM) flow and
-# the raw fallback below — see _source_keys()'s docstring. Kept the
-# original path rather than renaming/migrating so existing history isn't
-# discarded.
-RAW_FALLBACK_STATE_PATH = Path(__file__).parent / "transfer_raw_fallback_state.json"
+# posted_keys is a shared "already covered this source headline" registry —
+# see utils/story_dedup.py. Shared with agent_sports_blog.py's own run() as
+# of 2026-08-01 so the same rumour can't be covered twice under two
+# differently-worded titles by two different agents in the same day either.
 
 
 def local_feature_image_path(post: dict) -> Path | None:
@@ -329,48 +330,6 @@ def build_twitter_text(facts: dict, post: dict) -> str:
 # automatically (this path is only reached when that raises
 # AIProvidersExhausted).
 
-def _load_raw_fallback_state() -> dict:
-    if RAW_FALLBACK_STATE_PATH.exists():
-        try:
-            return json.loads(RAW_FALLBACK_STATE_PATH.read_text())
-        except Exception:
-            pass
-    return {"posted_keys": []}
-
-
-def _save_raw_fallback_state(state: dict) -> None:
-    state["posted_keys"] = state.get("posted_keys", [])[-300:]
-    RAW_FALLBACK_STATE_PATH.write_text(json.dumps(state, indent=2))
-
-
-def _headline_key(title: str) -> str:
-    # Same scheme as run()'s recent_titles / title_key so a raw headline can
-    # actually be matched against an already-published article's title.
-    return title.lower()[:40]
-
-
-def _source_keys(post: dict) -> set[str]:
-    """Normalized keys for every candidate source headline this article was
-    actually built from (see generate_post()'s post["_source_items"]) —
-    used by run() to recognize when a 5-minute cron cycle is about to
-    re-cover a still-fresh BBC/ESPN/etc. headline the LLM just happens to
-    have written a completely different, novel-sounding blog title for.
-    Real incident (2026-07-30): the same "Ipswich Town transfer rumours:
-    Henry Lawrence" BBC headline (still inside the 24h freshness window
-    across several consecutive cron cycles) produced five differently-
-    titled "breaking news" posts within about an hour — "Transfer Frenzy:
-    How Summer Moves Impact Betting Odds", "Transfer Talk: What's
-    Happening in the Premier...", etc. — with contradictory invented
-    details (Lawrence's age given as 19, 20, 21, and 22 across the five)
-    and five different branded images, since title-prefix dedup on the
-    *generated* title never matches when the LLM invents a new title every
-    time. Checked against the same posted_keys registry
-    _load_raw_fallback_state()/_save_raw_fallback_state() already maintain,
-    so a headline covered by either this normal flow or the raw fallback is
-    recognized by both."""
-    return {_headline_key(i["title"]) for i in post.get("_source_items", []) if i.get("title")}
-
-
 def _usable_source_image(image: str, title: str) -> bool:
     """A real image is only usable if it's not one of the known generic
     section-branding graphics outlets reuse across unrelated stories (Sky
@@ -433,10 +392,9 @@ def find_source_image(post: dict, facts: dict) -> tuple[str | None, str | None]:
 def pick_fresh_raw_headline(recent_titles: set[str]) -> dict | None:
     """Freshest transfers headline not already covered by a real blog post
     (recent_titles, same key scheme as the caller's dedup) and not already
-    reposted via this fallback (RAW_FALLBACK_STATE_PATH)."""
+    reposted via this fallback (see utils/story_dedup.py)."""
     items = fetch_category("transfers", max_per_feed=6)
-    state = _load_raw_fallback_state()
-    posted = set(state.get("posted_keys", []))
+    posted = _load_covered_keys()
 
     for item in items:
         key = _headline_key(item["title"])
@@ -537,9 +495,7 @@ def run_raw_fallback(dry_run: bool, telegram: bool, facebook: bool,
         print("✓ Posted to X/Twitter." if results["twitter"] else "✗ X/Twitter post failed after retries.")
 
     if any(results.values()):
-        state = _load_raw_fallback_state()
-        state.setdefault("posted_keys", []).append(_headline_key(item["title"]))
-        _save_raw_fallback_state(state)
+        _record_covered_keys({_headline_key(item["title"])})
 
     for platform, ok in results.items():
         log("transfer_post", f"raw_fallback_{platform}", "success" if ok else "failed", item["title"])
@@ -607,8 +563,8 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     # the title check above can't: the LLM invents a fresh, differently-
     # worded blog title every cycle even when the underlying BBC/ESPN story
     # is the same one still sitting inside the freshness window. See
-    # _source_keys()'s docstring for the real incident this fixes.
-    covered_keys = set(_load_raw_fallback_state().get("posted_keys", []))
+    # utils/story_dedup.py's docstring for the real incident this fixes.
+    covered_keys = _load_covered_keys()
     source_keys = _source_keys(post)
     matched = source_keys & covered_keys
     if matched:
@@ -675,10 +631,8 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     # Record the source headline(s) this article covered into the shared
     # "already covered" registry so a later cycle recognizes the same
     # underlying story even under a brand-new LLM-invented title — see
-    # _source_keys()'s docstring.
-    dedup_state = _load_raw_fallback_state()
-    dedup_state.setdefault("posted_keys", []).extend(source_keys)
-    _save_raw_fallback_state(dedup_state)
+    # utils/story_dedup.py's docstring.
+    _record_covered_keys(source_keys)
 
     results: dict[str, bool] = {}
 

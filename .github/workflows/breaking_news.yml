@@ -105,6 +105,7 @@ jobs:
           git config --local user.email "newsbot@sifufinds.com"
           git config --local user.name "SifuFinds Breaking News Bot"
           git add blog/posts.json blog/posts-data.js blog/ticker.json blog/ticker-data.js blog/ assets/og/
+          git add agents/python/covered_stories_state.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0

@@ -1063,7 +1063,15 @@ def markdown_to_html(md: str) -> str:
         if line.startswith('### '):
             if in_ul: html_lines.append('</ul>'); in_ul = False
             if in_ol: html_lines.append('</ol>'); in_ol = False
-            html_lines.append(f'<h3>{_inline_md(line[4:])}</h3>')
+            # A literal "Q:"/"Q." label on an FAQ question heading was
+            # already found and stripped from the FAQPage JSON-LD schema on
+            # 2026-07-26 (see extract_faq_schema below), but that fix never
+            # touched this renderer — the one that actually produces the
+            # visible page — so readers still saw "Q: What is..." verbatim
+            # (GEO scan, 2026-08-01). Same regex, applied where it was
+            # always supposed to matter most.
+            heading_text = re.sub(r'^Q[:.]\s*', '', line[4:], flags=re.IGNORECASE)
+            html_lines.append(f'<h3>{_inline_md(heading_text)}</h3>')
         elif line.startswith('## '):
             if in_ul: html_lines.append('</ul>'); in_ul = False
             if in_ol: html_lines.append('</ol>'); in_ol = False
@@ -1108,7 +1116,10 @@ def markdown_to_html(md: str) -> str:
 
                 if line.strip() == '':
                     continue
-                html_lines.append(f'<p>{_inline_md(line)}</p>')
+                # Same literal-label leak as the heading case above, for a
+                # plain "A: The answer..." line under an FAQ question.
+                para_text = re.sub(r'^A[:.]\s*', '', line, flags=re.IGNORECASE)
+                html_lines.append(f'<p>{_inline_md(para_text)}</p>')
 
     if in_table: html_lines.append('</tbody></table></div>')
     if in_ul: html_lines.append('</ul>')

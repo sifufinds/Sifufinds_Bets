@@ -575,9 +575,67 @@ async def _post_playwright(text: str) -> bool:
 
         # keyboard.type triggers proper React synthetic events (execCommand does not)
         await page.keyboard.type(text, delay=30)
-        await page.wait_for_timeout(1_500)
+        await page.wait_for_timeout(800)
 
+        # Verify the text actually registered in React's state before trying
+        # to submit. A mistargeted focus (typing into a stale/decoy editor)
+        # leaves the visible box empty with zero exception raised, which
+        # produces exactly the silent-failure pattern seen in production
+        # every single run since 2026-07-30: aria-disabled='true' both
+        # before AND after the click, with no error until the final
+        # diagnostic check. One retry here before giving up on this path.
+        typed_ok = False
+        for _attempt in range(2):
+            try:
+                current_text = (await textarea.inner_text()).strip()
+            except Exception:
+                current_text = ""
+            if len(current_text) >= min(20, len(text) // 2):
+                typed_ok = True
+                break
+            print(f"  ⚠ Compose box looks empty after typing ({len(current_text)} chars seen) — retrying focus+type")
+            await textarea.click()
+            await page.evaluate("() => { const el = document.activeElement; if (el) el.focus(); }")
+            await page.wait_for_timeout(400)
+            await page.keyboard.type(text, delay=30)
+            await page.wait_for_timeout(800)
+        if not typed_ok:
+            print("  ✗ Compose box still empty after retry — proceeding anyway so diagnostics below capture the real state")
+
+        # Locate the Post button up front so we can poll its enabled state
+        # instead of guessing a fixed wait. X keeps aria-disabled='true'
+        # until its own client-side validation settles (char count including
+        # t.co-shortened URLs, link-preview card attachment) — a short fixed
+        # sleep raced that and lost on every recent production run. A
+        # combined `.first` over both testids picks whichever matches first
+        # in DOM order, not necessarily the one wired to the compose surface
+        # actually typed into — try the testid matching the surface opened.
+        post_btn_selectors = (
+            ['[data-testid="tweetButtonInline"]', '[data-testid="tweetButton"]']
+            if compose_opened
+            else ['[data-testid="tweetButton"]', '[data-testid="tweetButtonInline"]']
+        )
         post_btn = None
+        for sel in post_btn_selectors:
+            candidate = page.locator(sel).first
+            try:
+                await candidate.wait_for(state="visible", timeout=15_000)
+                post_btn = candidate
+                print(f"Using post button: {sel}")
+                break
+            except PWTimeout:
+                continue
+        if post_btn is None:
+            raise Exception("Could not locate a visible Post button with either testid")
+
+        button_enabled = False
+        for _ in range(20):  # poll up to ~10s instead of a blind fixed wait
+            disabled = await post_btn.get_attribute("aria-disabled")
+            if disabled != "true":
+                button_enabled = True
+                break
+            await page.wait_for_timeout(500)
+        print(f"Post button enabled after polling: {button_enabled}")
 
         # Primary submission: X binds Ctrl/Cmd+Enter to submit the compose
         # box. Clicking the Post button has proven unreliable in practice —
@@ -600,26 +658,6 @@ async def _post_playwright(text: str) -> bool:
 
         if not create_tweet_result:
             print("Keyboard shortcut produced no response — falling back to button click...")
-            # A combined `.first` over both testids picks whichever matches
-            # first in DOM order, not necessarily the one wired to the
-            # compose surface actually typed into — try the testid matching
-            # the surface we opened first.
-            post_btn_selectors = (
-                ['[data-testid="tweetButtonInline"]', '[data-testid="tweetButton"]']
-                if compose_opened
-                else ['[data-testid="tweetButton"]', '[data-testid="tweetButtonInline"]']
-            )
-            for sel in post_btn_selectors:
-                candidate = page.locator(sel).first
-                try:
-                    await candidate.wait_for(state="visible", timeout=15_000)
-                    post_btn = candidate
-                    print(f"Using post button: {sel}")
-                    break
-                except PWTimeout:
-                    continue
-            if post_btn is None:
-                raise Exception("Could not locate a visible Post button with either testid")
             pre_click_disabled = await post_btn.get_attribute("aria-disabled")
             print(f"Post button aria-disabled before click: {pre_click_disabled!r}")
             print("Clicking Post button...")
@@ -630,7 +668,7 @@ async def _post_playwright(text: str) -> bool:
         # call was observed, these distinguish "click never registered with
         # React" (compose box still open/has text, button still disabled)
         # from "request went to a different endpoint than expected".
-        diag_parts = []
+        diag_parts = [f"text registered: {typed_ok}", f"button enabled after poll: {button_enabled}"]
         try:
             still_open = await textarea.is_visible()
             diag_parts.append(f"compose box still visible: {still_open}")

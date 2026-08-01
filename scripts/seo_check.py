@@ -302,7 +302,15 @@ if args.fix:
         with open(POSTS_JSON, 'w') as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
             f.write('\n')
-        print(f"\n{fixed} titles auto-fixed in posts.json")
+        # posts-data.js is the file://-protocol fallback copy of the same
+        # data (see agent_sports_blog.save_posts()) — writing posts.json
+        # alone here left it silently drifting out of sync on every daily
+        # auto-heal run that actually fixed something (found 2026-08-01).
+        payload = out if isinstance(out, dict) else {'posts': out}
+        posts_data_js = POSTS_JSON.parent / 'posts-data.js'
+        with open(posts_data_js, 'w', encoding='utf-8') as f:
+            f.write(f"window.POSTS_DATA={json.dumps(payload, ensure_ascii=False)};\n")
+        print(f"\n{fixed} titles auto-fixed in posts.json (+ posts-data.js)")
         print("Re-run: python3 gen_blog_post_pages.py --force")
     else:
         print("\nNo auto-fixable issues found.")

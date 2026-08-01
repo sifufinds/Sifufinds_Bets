@@ -207,7 +207,7 @@ jobs:
             # Separate `git add` call — if this pathspec ever matched nothing
             # (file deleted/missing), a single combined `git add` would fail
             # entirely and silently skip staging the paths above too.
-            git add agents/python/transfer_raw_fallback_state.json 2>/dev/null || true
+            git add agents/python/covered_stories_state.json 2>/dev/null || true
             if git diff --cached --quiet; then
               echo "No changes to commit this cycle"
             else
