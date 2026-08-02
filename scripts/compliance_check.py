@@ -76,11 +76,23 @@ BANNED_RE = re.compile("|".join(BANNED_PHRASES), re.IGNORECASE)
 # Skip a match if it's an instruction telling the writer NOT to use the
 # phrase (e.g. agent_content_backfill.py's own prompt says "Never promise
 # guaranteed wins") rather than the phrase actually being shipped.
-_NEGATION_RE = re.compile(r"\b(never|don'?t|do not|avoid|without)\s+[\w\s]{0,20}$", re.IGNORECASE)
+#
+# Found 2026-08-02: agent_priority_writer.py's own prompt says 'Never claim
+# a "guaranteed win", "risk-free bet", or anything that overstates a
+# gambling outcome' — a quoted, comma-separated list of banned phrases
+# right after the negation word, exactly the case this exception exists
+# for. It still false-positived because (a) [\w\s] doesn't include the
+# quote/comma punctuation sitting between "Never" and the phrase, and (b)
+# the second phrase in the list sits ~33 chars after "Never", past the
+# old {0,20} cap. Widened both the allowed character class and the cap
+# (plus the lookback window below) rather than special-casing this one
+# phrasing, since any future prompt listing 2+ banned phrases after one
+# "Never claim..." would hit the same gap.
+_NEGATION_RE = re.compile(r"\b(never|don'?t|do not|avoid|without)[\w\s\"',:]{0,80}$", re.IGNORECASE)
 
 
 def _is_negated(text: str, match_start: int) -> bool:
-    return bool(_NEGATION_RE.search(text[max(0, match_start - 40):match_start]))
+    return bool(_NEGATION_RE.search(text[max(0, match_start - 100):match_start]))
 
 issues: list[dict] = []
 
