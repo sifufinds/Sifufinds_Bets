@@ -39,6 +39,7 @@ from config import SITE_URL
 from utils.serp_research import research
 from utils.site_data import load_country_data, load_bookmakers
 from agent_fact_checker import check_post as fact_check_post
+from agent_content_priority import EVERGREEN_CONTENT_TYPES
 from agent_sports_blog import (
     CATEGORIES, _extract, _clean_json, load_posts, save_posts, announce_to_facebook,
 )
@@ -326,24 +327,63 @@ Write the guide now, following every rule in the system prompt exactly."""
         return None
 
 
+def _core_phrase(keyword: str) -> str:
+    lowered = keyword.lower()
+    for substring, *_rest in EVERGREEN_CONTENT_TYPES:
+        if substring in lowered:
+            return substring
+    return ""
+
+
+def _already_covered(item: dict, existing_posts: list[dict]) -> bool:
+    """True if an existing post (published before this pipeline existed, or
+    by this pipeline on an earlier run) already substantially targets the
+    same country + keyword angle. Found live during this agent's first real
+    run: a legacy post already existed at slug "best-betting-sites-nigeria-
+    2026" that agent_content_priority.py's SERP check correctly flagged as
+    "SifuFinds doesn't rank for this exact query", but nothing checked
+    whether SifuFinds already had a PAGE for it before queuing a fresh
+    write — would have produced a near-duplicate and recreated the exact
+    56-duplicate-title-pairs bug fixed 2026-08-01 (see
+    utils/story_dedup.py, built for the news-post case; this is the
+    evergreen-post equivalent check)."""
+    phrase = _core_phrase(item["keyword"])
+    country = item["country"].lower()
+    if not phrase:
+        return False
+    phrase_words = phrase.split()
+    for p in existing_posts:
+        haystack = f"{p.get('title', '')} {p.get('slug', '')}".lower().replace("-", " ")
+        if country in haystack and all(w in haystack for w in phrase_words):
+            return True
+    return False
+
+
 def run(count: int = COUNT) -> int:
     queue = _load_json(QUEUE_PATH, {"items": []})
     state = _load_json(STATE_PATH, {"posted": {}})
     posted = state.setdefault("posted", {})
+    existing = load_posts()
 
-    candidates = [
-        item for item in queue.get("items", [])
-        if item.get("writer_actionable") and item["keyword"] not in posted
-    ]
+    candidates = []
+    for item in queue.get("items", []):
+        if not item.get("writer_actionable") or item["keyword"] in posted:
+            continue
+        if _already_covered(item, existing):
+            posted[item["keyword"]] = {"skipped": "already_covered_by_existing_post"}
+            continue
+        candidates.append(item)
+
     if not candidates:
         print("Priority Writer — no un-actioned writer-actionable items in the queue. "
-              "Run agent_content_priority.py first, or everything actionable is already written.")
+              "Run agent_content_priority.py first, or everything actionable is already written/covered.")
+        state["posted"] = posted
+        STATE_PATH.write_text(json.dumps(state, indent=2, ensure_ascii=False))
         return 0
 
     batch = candidates[:count]
     print(f"Priority Writer Agent — {len(candidates)} un-actioned priority item(s), writing {len(batch)} this run")
 
-    existing = load_posts()
     new_posts = []
     written = 0
     for item in batch:
