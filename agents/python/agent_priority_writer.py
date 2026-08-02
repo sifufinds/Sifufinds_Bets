@@ -405,7 +405,26 @@ def run(count: int = COUNT) -> int:
     attempts_log = []
     for item in batch:
         print(f"\n📝 [{item['country']}] {item['keyword']} (score {item['score']})")
-        post, reason = generate_priority_post(item)
+        try:
+            post, reason = generate_priority_post(item)
+        except AIProvidersExhausted:
+            # generate_priority_post() deliberately re-raises this (copied
+            # from agent_sports_blog.py's pattern, where an uncaught infra
+            # failure propagating to script exit lets the retry
+            # infrastructure notice and retry the whole workflow run) — but
+            # this loop had no try/except around the call, so every single
+            # cycle since this agent existed crashed silently here before
+            # ever reaching the state write below. Confirmed live 2026-08-02:
+            # four consecutive real cycles all committed only
+            # content_priority_queue.json, with zero diagnostic trace,
+            # because the crash happened before `state["last_run"]` could
+            # ever be set. Every remaining item in this batch would fail
+            # identically (all providers are exhausted, not just this one
+            # item), so stop the batch here rather than retry each — but
+            # still fall through to persist what we learned.
+            print(f"  ✗ All LLM providers exhausted — stopping this batch early")
+            attempts_log.append({"keyword": item["keyword"], "country": item["country"], "result": "failed", "reason": "AIProvidersExhausted"})
+            break
         if post is None:
             attempts_log.append({"keyword": item["keyword"], "country": item["country"], "result": "failed", "reason": reason})
             continue
