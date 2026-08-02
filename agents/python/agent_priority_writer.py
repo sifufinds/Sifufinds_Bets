@@ -112,13 +112,14 @@ ARTICLE REQUIREMENTS — LENGTH IS A HARD REQUIREMENT, NOT A SUGGESTION:
 
 FAQ SECTION — EXACT FORMAT REQUIRED, THIS IS A COMMON MISTAKE, FOLLOW IT PRECISELY:
 - Start the section with exactly: ## FAQ
-- Each question is a heading with EXACTLY THREE hash characters, never four: ### Your question here?
+- Each question is a heading line starting with exactly three "#" characters and one space, then YOUR OWN question about this specific topic, ending in "?" — nothing else on that line
+- Never put "#" characters anywhere else on a heading line. Never write two heading markers on one line, never write a "#" character inside the question text itself
 - Do NOT prefix the question with "Q:" or the answer with "A:" — write the question as a heading and the answer as a plain paragraph directly under it, nothing else
-- Include at least 4 questions, each answer a complete, standalone paragraph (2-3 sentences)
-- Correct example of ONE FAQ entry, copy this exact shape:
-  ### Is it safe to bet online with a licensed bookmaker?
-  Yes, provided you use a licensed bookmaker. Always check for a valid regulator licence before depositing, and never share your account password with anyone.
-- WRONG (never do this): "#### Q: Is it safe..." or "**Q:** Is it safe..." — these are both mistakes that break the page
+- Include at least 4 questions specific to this keyword/country/angle, each answer a complete, standalone paragraph (2-3 sentences)
+- FORMAT TEMPLATE (structure only — write your own real question and answer, do not reuse this wording):
+  ### <your own question here, one sentence, ending in a question mark>
+  <your own two-to-three sentence answer here>
+- WRONG (never do this): "#### Q: Is it safe..." or "**Q:** Is it safe..." or "### ### Is it safe..." — these are all mistakes that break the page
 
 LINKING RULES — NON-NEGOTIABLE:
 - NEVER write a markdown link to any {SITE_URL}/<path> page
@@ -174,6 +175,12 @@ REQUIRED_FINAL_LINE = "*18+ | Bet Responsibly | T&Cs Apply*"
 _BAD_FAQ_HEADING_RE = re.compile(r"^#{4,}\s", re.MULTILINE)
 _QA_LABEL_RE = re.compile(r"^#{1,6}\s*[QA][:.]\s", re.MULTILINE)
 _FAQ_QUESTION_RE = re.compile(r"^###\s+\S", re.MULTILINE)
+# Found live 2026-08-02: the model copied the prompt's FAQ example question
+# verbatim, including its own "### " marker, producing "### ### Is it safe
+# to bet..." — a doubled marker that neither of the two checks above catch
+# (it's still exactly 3 leading hashes, and it's not a Q:/A: label). Any
+# stray "#" anywhere else on a "### " heading line is the same class of bug.
+_STRAY_HASH_IN_HEADING_RE = re.compile(r"^###\s+.*#", re.MULTILINE)
 
 
 def _validate_body(body: str) -> list[str]:
@@ -195,6 +202,8 @@ def _validate_body(body: str) -> list[str]:
         failures.append("found a heading with 4+ '#' characters — FAQ questions must use exactly '### '")
     if _QA_LABEL_RE.search(body):
         failures.append("found a 'Q:'/'A:' label on a heading line — questions must be plain headings with no label")
+    if _STRAY_HASH_IN_HEADING_RE.search(body):
+        failures.append("found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '")
     last_line = next((l.strip() for l in reversed(body.strip().splitlines()) if l.strip()), "")
     if last_line != REQUIRED_FINAL_LINE:
         failures.append(f"final line was '{last_line}', must be exactly '{REQUIRED_FINAL_LINE}'")
