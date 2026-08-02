@@ -37,7 +37,15 @@ permissions:
 jobs:
   backlink-outreach:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # 40 min (was 10): confirmed live 2026-08-02 this workflow started
+    # getting cancelled by its own job timeout mid-run (3 of 5 most recent
+    # runs) — same root cause as breaking_news.yml's identical fix that day.
+    # The 2026-08-01 local Ollama fallback tier in llm.py (see
+    # AGENT-KNOWLEDGE.md) adds real wall-clock time (a one-time install +
+    # model-pull, then CPU-only inference) that the original 10min budget
+    # never accounted for, across up to `limit` (default 15) opportunities
+    # per run. Still comfortably under the next hourly trigger.
+    timeout-minutes: 40
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
