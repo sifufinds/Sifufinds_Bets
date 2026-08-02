@@ -131,7 +131,19 @@ ACCURACY RULES — NON-NEGOTIABLE:
 - Only write about stories explicitly listed in the provided headlines
 - Quote or paraphrase the actual headline/story — name the real teams, players, events
 - If a headline says "Villa beat Freiburg", write about that specific match
-- Never fabricate odds, scores, or transfer fees — estimate odds in realistic ranges (1.30–12.00)
+- Odds are the one exception to "don't invent numbers": always estimate odds in
+  realistic ranges (1.30–12.00) for the betting-angle content, and always frame
+  them as illustrative market pricing, e.g. "odds are trading around 4.50 with
+  Bet9ja" — never as a fact you're claiming happened
+- NEVER invent a transfer fee, a specific date/deadline, or a statistic that
+  isn't in the headlines/snippets above — if the source doesn't give a fee or
+  date, don't guess one; write "undisclosed fee" or "no date confirmed yet"
+  instead of a specific-sounding number
+- NEVER put words in anyone's mouth — do not write a direct quote (in quotation
+  marks) attributed to a player, club, bookmaker, or "a representative" unless
+  that exact quote appears in the source snippets. Describe reactions and
+  sentiment in your own voice instead (e.g. "bettors are reacting fast to the
+  news" rather than inventing what someone supposedly said)
 - If the news shows the story is X hours old, reflect that timing accurately in the article
 - Attribute the story to the outlet that reported it, by name, at least once in the article (e.g. "as per BBC Sport", "Sky Sports News reports", "according to Fabrizio Romano") — the source for each headline is shown in brackets in the headlines list below
 
