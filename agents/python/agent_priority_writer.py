@@ -215,18 +215,25 @@ def _country_block(code: str) -> tuple[str, dict]:
     return block, data
 
 
-def generate_priority_post(item: dict) -> Optional[dict]:
+def generate_priority_post(item: dict) -> tuple[Optional[dict], str]:
+    """Returns (post, reason). post is None on failure; reason is always a
+    short machine-readable code so callers can persist *why* nothing was
+    written — agent_log.json is gitignored (real log store is the Supabase
+    mirror in utils/logger.py, not this repo), so a GitHub Actions run's
+    diagnostic detail was otherwise invisible after the runner tore down
+    (see AGENT-KNOWLEDGE.md 2026-08-02 for the live debugging that found
+    this the hard way)."""
     country_name = item["country"]
     code = _COUNTRY_CODE_BY_NAME.get(country_name)
     if not code:
         print(f"  ✗ Unknown country code for '{country_name}' — skipping")
-        return None
+        return None, "unknown_country_code"
 
     country_block, country_data = _country_block(code)
     bookmaker_block = _bookmaker_block(code)
     if not country_block or not bookmaker_block:
         print(f"  ✗ No real site data found for {country_name} — skipping (never inventing bookmaker facts)")
-        return None
+        return None, "no_site_data"
 
     print(f"  🔍 Running SERP research for '{item['keyword']}'...")
     serp_block = research(item["keyword"], country_name)
@@ -251,6 +258,7 @@ Write the guide now, following every rule in the system prompt exactly."""
     try:
         meta = None
         blog_body = ""
+        last_failures: list[str] = []
         current_message = user_message
         for attempt in range(1, 3):
             print(f"  🤖 Generating guide with LLM (attempt {attempt}/2)...")
@@ -261,7 +269,7 @@ Write the guide now, following every rule in the system prompt exactly."""
             if not meta_raw or not body_candidate:
                 print(f"  ✗ LLM response missing required sections")
                 if attempt == 2:
-                    return None
+                    return None, "missing_output_markers"
                 current_message = user_message + "\n\nYour previous response was missing the ===META=== or ===BLOG=== markers. Return EXACTLY the structure specified, nothing else."
                 continue
 
@@ -271,10 +279,11 @@ Write the guide now, following every rule in the system prompt exactly."""
                 blog_body = body_candidate
                 break
 
+            last_failures = failures
             print(f"  ⚠ Draft failed quality gate: {'; '.join(failures)}")
             if attempt == 2:
                 print(f"  ✗ Still failing after retry — skipping this item rather than publishing a substandard guide")
-                return None
+                return None, "quality_gate: " + "; ".join(failures)
             current_message = (
                 user_message
                 + "\n\nYour previous attempt failed these checks, fix ALL of them this time:\n"
@@ -282,7 +291,7 @@ Write the guide now, following every rule in the system prompt exactly."""
             )
 
         if meta is None:
-            return None
+            return None, "quality_gate: " + "; ".join(last_failures) if last_failures else "unknown"
         cat_meta = CATEGORIES["betting"]
 
         post = {
@@ -314,17 +323,17 @@ Write the guide now, following every rule in the system prompt exactly."""
         passed, flags = fact_check_post(post)
         if not passed:
             print(f"  ✗ Fact-checker held back this article: {flags}")
-            return None
-        return post
+            return None, "fact_check: " + "; ".join(flags)
+        return post, ""
 
     except json.JSONDecodeError as e:
         print(f"  ✗ JSON parse error: {e}")
-        return None
+        return None, f"json_parse_error: {e}"
     except AIProvidersExhausted:
         raise
     except Exception as e:
         print(f"  ✗ Error: {e}")
-        return None
+        return None, f"error: {e}"
 
 
 def _core_phrase(keyword: str) -> str:
@@ -378,6 +387,13 @@ def run(count: int = COUNT) -> int:
         print("Priority Writer — no un-actioned writer-actionable items in the queue. "
               "Run agent_content_priority.py first, or everything actionable is already written/covered.")
         state["posted"] = posted
+        state["last_run"] = {
+            "checked_at": datetime.now(timezone.utc).isoformat(),
+            "candidates_available": 0,
+            "attempted": 0,
+            "written": 0,
+            "attempts": [],
+        }
         STATE_PATH.write_text(json.dumps(state, indent=2, ensure_ascii=False))
         return 0
 
@@ -386,16 +402,19 @@ def run(count: int = COUNT) -> int:
 
     new_posts = []
     written = 0
+    attempts_log = []
     for item in batch:
         print(f"\n📝 [{item['country']}] {item['keyword']} (score {item['score']})")
-        post = generate_priority_post(item)
+        post, reason = generate_priority_post(item)
         if post is None:
+            attempts_log.append({"keyword": item["keyword"], "country": item["country"], "result": "failed", "reason": reason})
             continue
         new_posts.append(post)
         posted[item["keyword"]] = {
             "slug": post["slug"],
             "posted_at": datetime.now(timezone.utc).isoformat(),
         }
+        attempts_log.append({"keyword": item["keyword"], "country": item["country"], "result": "written", "slug": post["slug"]})
         written += 1
         print(f"  ✓ '{post['title']}'")
         if announce_to_facebook(post):
@@ -407,6 +426,21 @@ def run(count: int = COUNT) -> int:
     else:
         print("\n⚠ No new guides written this run.")
 
+    # agent_log.json (utils/logger.py) is gitignored — its real durable
+    # store is a Supabase mirror this workflow has no access to inspect
+    # after the fact, so a run's diagnostic detail was otherwise invisible
+    # once the ephemeral GitHub Actions runner tore down (confirmed live
+    # 2026-08-02: three consecutive zero-output cycles with no way to tell
+    # *why* without waiting hours for the full job log to become
+    # available). last_run persists here instead, in a file that IS
+    # committed every cycle regardless of outcome.
+    state["last_run"] = {
+        "checked_at": datetime.now(timezone.utc).isoformat(),
+        "candidates_available": len(candidates),
+        "attempted": len(batch),
+        "written": written,
+        "attempts": attempts_log,
+    }
     STATE_PATH.write_text(json.dumps(state, indent=2, ensure_ascii=False))
     return 0
 
