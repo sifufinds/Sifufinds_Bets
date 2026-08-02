@@ -26,6 +26,7 @@ Usage:
 import argparse
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -100,14 +101,23 @@ BRAND VOICE:
 - NEVER use em dashes or en dashes to join clauses — rewrite as separate sentences or commas instead
 - Answer the core question in the first 2-3 sentences, in plain, quotable, self-contained language (this is read by AI answer engines, not just Google)
 
-ARTICLE REQUIREMENTS:
-- Exceed the target word count given below by at least 20%, minimum 1000 words
+ARTICLE REQUIREMENTS — LENGTH IS A HARD REQUIREMENT, NOT A SUGGESTION:
+- The article body MUST be at least 1200 words of substantial prose. Count as you write. A short listicle is a FAILED response — write full paragraphs under every heading, not just bullet points. Cover: an introduction that directly answers the keyword's intent, a detailed comparison section, a "how to choose" section weighing the real trade-offs between the bookmakers given, a step-by-step section relevant to the guide angle, licensing/regulation, payment methods, and responsible gambling — each of these is its own paragraph or more, not one line.
 - At least one markdown comparison table (bookmaker name / top offer / min deposit / payment methods)
-- A "## FAQ" section with at least 3 "###"-level questions, each with a complete, standalone answer
 - Mention the country's real payment methods and regulator/licensing body given below at least once
-- Include a responsible gambling section
-- End with a CTA mentioning {SITE_URL} as plain text — do NOT wrap it in a markdown link
-- FINAL LINE must be exactly: *18+ | Bet Responsibly | T&Cs Apply*
+- Include a responsible gambling section (a real paragraph, not just a heading)
+- End with a short CTA paragraph mentioning {SITE_URL} as plain text — do NOT wrap it in a markdown link
+- FINAL LINE of the article must be exactly: *18+ | Bet Responsibly | T&Cs Apply*
+
+FAQ SECTION — EXACT FORMAT REQUIRED, THIS IS A COMMON MISTAKE, FOLLOW IT PRECISELY:
+- Start the section with exactly: ## FAQ
+- Each question is a heading with EXACTLY THREE hash characters, never four: ### Your question here?
+- Do NOT prefix the question with "Q:" or the answer with "A:" — write the question as a heading and the answer as a plain paragraph directly under it, nothing else
+- Include at least 4 questions, each answer a complete, standalone paragraph (2-3 sentences)
+- Correct example of ONE FAQ entry, copy this exact shape:
+  ### Is it safe to bet online with a licensed bookmaker?
+  Yes, provided you use a licensed bookmaker. Always check for a valid regulator licence before depositing, and never share your account password with anyone.
+- WRONG (never do this): "#### Q: Is it safe..." or "**Q:** Is it safe..." — these are both mistakes that break the page
 
 LINKING RULES — NON-NEGOTIABLE:
 - NEVER write a markdown link to any {SITE_URL}/<path> page
@@ -126,9 +136,9 @@ OUTPUT FORMAT — return EXACTLY this structure, nothing outside the markers:
   "read_time": 6
 }}
 ===BLOG===
-[Full article in plain markdown]
+[Full article in plain markdown, at least 1200 words]
 [Must include the comparison table]
-[Must include the FAQ section]
+[Must include the ## FAQ section using the EXACT format above — ### headings, no Q:/A: labels]
 [Must include responsible gambling section]
 [Final line: *18+ | Bet Responsibly | T&Cs Apply*]
 ===END==="""
@@ -154,6 +164,40 @@ def _bookmaker_block(code: str, limit: int = 6) -> str:
             f"— {b.get('terms')}"
         )
     return "\n".join(lines)
+
+
+MIN_WORD_COUNT = 1000
+MIN_FAQ_ENTRIES = 3
+REQUIRED_FINAL_LINE = "*18+ | Bet Responsibly | T&Cs Apply*"
+
+_BAD_FAQ_HEADING_RE = re.compile(r"^#{4,}\s", re.MULTILINE)
+_QA_LABEL_RE = re.compile(r"^#{1,6}\s*[QA][:.]\s", re.MULTILINE)
+_FAQ_QUESTION_RE = re.compile(r"^###\s+\S", re.MULTILINE)
+
+
+def _validate_body(body: str) -> list[str]:
+    """Deterministic quality gate — an LLM undershooting a word-count
+    instruction or misusing a heading level (both observed live in this
+    agent's first real run: a 453-word draft, and "#### Q:" leaking as
+    literal visible text because the page renderer only processes
+    ###-level FAQ headings) is common enough that prompting alone can't be
+    trusted. Returns a list of failure reasons; empty means it passed."""
+    failures = []
+    word_count = len(body.split())
+    if word_count < MIN_WORD_COUNT:
+        failures.append(f"only {word_count} words (minimum {MIN_WORD_COUNT})")
+    if "## FAQ" not in body and "## Frequently Asked Questions" not in body:
+        failures.append("no '## FAQ' section heading found")
+    if len(_FAQ_QUESTION_RE.findall(body)) < MIN_FAQ_ENTRIES:
+        failures.append(f"fewer than {MIN_FAQ_ENTRIES} '### ' FAQ question headings found")
+    if _BAD_FAQ_HEADING_RE.search(body):
+        failures.append("found a heading with 4+ '#' characters — FAQ questions must use exactly '### '")
+    if _QA_LABEL_RE.search(body):
+        failures.append("found a 'Q:'/'A:' label on a heading line — questions must be plain headings with no label")
+    last_line = next((l.strip() for l in reversed(body.strip().splitlines()) if l.strip()), "")
+    if last_line != REQUIRED_FINAL_LINE:
+        failures.append(f"final line was '{last_line}', must be exactly '{REQUIRED_FINAL_LINE}'")
+    return failures
 
 
 def _country_block(code: str) -> tuple[str, dict]:
@@ -204,16 +248,40 @@ REAL BOOKMAKER DATA (use exactly, never invent — these are the only bookmakers
 Write the guide now, following every rule in the system prompt exactly."""
 
     try:
-        print(f"  🤖 Generating guide with LLM...")
-        raw = ask_long(SYSTEM_PROMPT, user_message)
+        meta = None
+        blog_body = ""
+        current_message = user_message
+        for attempt in range(1, 3):
+            print(f"  🤖 Generating guide with LLM (attempt {attempt}/2)...")
+            raw = ask_long(SYSTEM_PROMPT, current_message)
 
-        meta_raw = _extract(raw, "===META===", "===BLOG===")
-        blog_body = _extract(raw, "===BLOG===", "===END===", end_required=False)
-        if not meta_raw or not blog_body:
-            print(f"  ✗ LLM response missing required sections")
+            meta_raw = _extract(raw, "===META===", "===BLOG===")
+            body_candidate = _extract(raw, "===BLOG===", "===END===", end_required=False)
+            if not meta_raw or not body_candidate:
+                print(f"  ✗ LLM response missing required sections")
+                if attempt == 2:
+                    return None
+                current_message = user_message + "\n\nYour previous response was missing the ===META=== or ===BLOG=== markers. Return EXACTLY the structure specified, nothing else."
+                continue
+
+            failures = _validate_body(body_candidate)
+            if not failures:
+                meta = json.loads(_clean_json(meta_raw))
+                blog_body = body_candidate
+                break
+
+            print(f"  ⚠ Draft failed quality gate: {'; '.join(failures)}")
+            if attempt == 2:
+                print(f"  ✗ Still failing after retry — skipping this item rather than publishing a substandard guide")
+                return None
+            current_message = (
+                user_message
+                + "\n\nYour previous attempt failed these checks, fix ALL of them this time:\n"
+                + "\n".join(f"- {f}" for f in failures)
+            )
+
+        if meta is None:
             return None
-
-        meta = json.loads(_clean_json(meta_raw))
         cat_meta = CATEGORIES["betting"]
 
         post = {
