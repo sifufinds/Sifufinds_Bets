@@ -781,10 +781,22 @@ def run(mode: str = "auto", dry_run: bool = False, force: bool = False) -> None:
             state.setdefault("brand_last_posted", {})[brand["name"]] = now_iso
         elif mode == "news" and post:
             state.setdefault("tweeted_slugs", []).append(post["slug"])
-        _save_state(state)
         log("twitter", "post", "success", mode)
     elif not success:
         log("twitter", "post", "failed", mode)
+
+    # Persist rotation/template-index advancement regardless of success —
+    # previously this only saved on success, so a failed post never
+    # persisted the rotation_index/tool_template_index bump that already
+    # happened in-memory when the mode/template was chosen. The next run
+    # then reloaded the stale index and rebuilt byte-identical tweet text,
+    # which X rejected as a duplicate (error 187) — confirmed live
+    # 2026-08-02, 3 consecutive "tool" mode failures with the same
+    # template before a lucky retry finally landed on different content.
+    if not dry_run:
+        _save_state(state)
+
+    if not success:
         sys.exit(1)
 
 
