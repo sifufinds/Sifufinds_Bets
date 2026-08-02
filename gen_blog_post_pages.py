@@ -1734,7 +1734,16 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 
     canonical = f'https://sifufinds.com/blog/{out_slug}/'
     canonical_override = post.get('canonical_override', '') if locale == 'en' else ''
-    noindex = post.get('noindex', False)
+    # noindex is an English-duplicate-consolidation concept (see
+    # dedupe_noindex.py, 2026-08-02) — it must not cascade to translated
+    # locale variants the same way canonical_override already doesn't,
+    # because a post's translation can exist with no equivalent
+    # translation on whichever post it's being consolidated into (found
+    # 2026-08-02: bet9ja-vs-sportybet-nigeria-2026-comparison had fr/de
+    # translations but its noindex target, bet9ja-vs-sportybet-nigeria-2026,
+    # had none — cascading noindex would have deindexed the only fr/de
+    # coverage of that topic with no replacement, not fixed a duplicate).
+    noindex = post.get('noindex', False) if locale == 'en' else False
     canonical_href = canonical_override if canonical_override else canonical
     robots_content = ('noindex, follow' if noindex
                       else 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
