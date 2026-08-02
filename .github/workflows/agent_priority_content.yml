@@ -1,0 +1,134 @@
+name: Priority Content — write evergreen guides from keyword gaps
+
+# Closes the loop found 2026-08-01/02: keyword-gap research alone never
+# turned into scheduled content. This workflow runs the pipeline end to
+# end every 2 hours:
+#   1. agent_content_priority.py — re-rank keyword_opportunities.json +
+#      trending_keywords.json into content_priority_queue.json (country
+#      tier x content type x recency).
+#   2. agent_priority_writer.py — write real, SEO-optimised evergreen guide
+#      posts (best betting sites/bonus, how to bet online, safest apps)
+#      for the top un-actioned queue items, grounded in the site's own real
+#      per-country bookmaker/bonus data (utils/site_data.py), never news
+#      headlines — that ground is already covered by breaking_news.yml's
+#      3x/day schedule and deliberately excluded here (see
+#      agent_content_priority.py's docstring on writer_actionable).
+#
+# This workflow never exits with a failure code — a rate-limited/quota-
+# exhausted run just means fewer guides written this time; it tries again
+# on the next scheduled run. If Groq's quota is exhausted, llm.py's local
+# Ollama fallback (see AGENT-KNOWLEDGE.md 2026-08-01) still produces
+# something rather than nothing.
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "How many guides to write this run"
+        required: false
+        default: "3"
+
+concurrency:
+  group: agent-priority-content
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  write-priority-content:
+    name: Rank gaps and write priority guides
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Install fonts for feature-image generation
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core fonts-noto-color-emoji
+
+      - name: Rank keyword gaps into a priority queue
+        working-directory: agents/python
+        run: python agent_content_priority.py
+
+      - name: Write top priority guides
+        id: write
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+        run: |
+          set +e
+          python agent_priority_writer.py --count "${{ github.event.inputs.count || '3' }}"
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Generate static blog post pages
+        run: python3 gen_blog_post_pages.py
+
+      - name: Commit and push new priority content
+        run: |
+          git config --local user.email "priority-writer@sifufinds.com"
+          git config --local user.name "SifuFinds Priority Content Agent"
+          git add agents/python/content_priority_queue.json agents/python/priority_writer_state.json
+          git add blog/posts.json blog/posts-data.js blog/ assets/og/
+          if git diff --cached --quiet; then
+            echo "No new priority content this run — nothing to commit"
+            exit 0
+          fi
+          git commit -m "content: priority guides $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "Push rejected (attempt $attempt/5) — merging and retrying..."
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            python3 agents/python/merge_posts.py 2>/dev/null || true
+            python3 gen_blog_post_pages.py
+            git add -A
+            git commit -m "content: priority guides $(date -u '+%Y-%m-%d %H:%M') UTC (merged)" --allow-empty
+          done
+
+      - name: Report outcome
+        if: always()
+        run: |
+          CODE="${{ steps.write.outputs.exit_code }}"
+          if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
+            echo "✅ Priority Writer agent ran — see logs above"
+          else
+            echo "⚠️ Priority Writer agent exit code $CODE — check logs above"
+          fi
