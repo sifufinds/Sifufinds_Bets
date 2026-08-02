@@ -33,7 +33,14 @@ jobs:
   backfill:
     name: Expand next batch of thin/no-FAQ posts
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # 40 min (was 15): confirmed live 2026-08-02 this workflow got cancelled
+    # by its own job timeout mid-run for the first time — same root cause as
+    # breaking_news.yml's identical fix that day. The 2026-08-01 local Ollama
+    # fallback tier in llm.py (see AGENT-KNOWLEDGE.md) adds real wall-clock
+    # time (a one-time install+model-pull, then CPU-only inference) that the
+    # original 15min budget never accounted for, across BATCH_SIZE=4 posts
+    # each needing at least one LLM call.
+    timeout-minutes: 40
 
     steps:
       - name: Checkout repo
