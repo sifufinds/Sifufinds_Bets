@@ -25,11 +25,32 @@ name: Retry Safety Net — every 15 minutes
 # window for social-posting workflows (Facebook/Telegram silence is
 # directly user-visible), combined with a 20-minute grace period per slot
 # below so normal GitHub delivery jitter doesn't get force-retriggered.
+#
+# 2026-08-02: this workflow — the site-wide safety net for every other
+# workflow's cron reliability — turned out to be subject to the exact same
+# "*/15 * * * *" delivery unreliability it exists to catch for everything
+# else. Measured live: gaps of 160-230+ minutes between runs were common
+# over a 60-run sample, not rare — meaning there were multi-hour windows,
+# repeatedly, where *nothing* was checking for or retrying any failed
+# workflow site-wide. Applied the same fix transfer_news.yml already
+# proved out: don't depend on GitHub actually delivering every scheduled
+# tick. Once a run does start (whenever GitHub gets around to firing the
+# trigger below), it loops internally on its own clock every ~14 minutes
+# for up to ~5h50m, so the real cadence comes from the loop, not from
+# GitHub's cron delivery. The schedule below is just what starts a fresh
+# loop; concurrency + cancel-in-progress means a new trigger cancels and
+# restarts an already-running loop rather than piling up (cheap on this
+# public repo's unlimited Actions minutes, and avoids unbounded backlog if
+# GitHub's delivery ever becomes more reliable than observed here).
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # every 15 minutes, 24/7
+    - cron: "*/15 * * * *"   # every 15 minutes, 24/7 — best-effort outer trigger
   workflow_dispatch:
+
+concurrency:
+  group: retry-safety-net
+  cancel-in-progress: true
 
 permissions:
   actions: write
@@ -38,178 +59,201 @@ jobs:
   retry-all:
     name: Scan all workflows and retry failures
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 350
 
     steps:
-      - name: Check and retry failed workflows
+      - name: Self-perpetuating safety-net loop — real ~14-min cadence, up to ~5h50m per run
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
           set +e
 
-          WORKFLOWS=(
-            "accumulator_post.yml"
-            "agent5_plan.yml"
-            "agent_keyword_research.yml"
-            "agent_serp_monitor.yml"
-            "agent_translate.yml"
-            "agent_trending_keywords.yml"
-            "backlink_outreach.yml"
-            "brand_scraper.yml"
-            "brand_discovery.yml"
-            "breaking_news.yml"
-            "check_news_feeds.yml"
-            "content_backfill.yml"
-            "daily_seo_doctor.yml"
-            "deploy_hostinger.yml"
-            "firecrawl_odds.yml"
-            "hourly_scrape.yml"
-            "live_odds.yml"
-            "performance_check.yml"
-            "seo_backlinks.yml"
-            "seo_daily.yml"
-            "seo_geo_biweekly.yml"
-            "seo_sitemap.yml"
-            "site_doctor.yml"
-            "site_monitor.yml"
-            "telegram_growth.yml"
-            "telegram_offers.yml"
-            "telegram_outreach.yml"
-            "transfer_news.yml"
-            "twitter_posts.yml"
-            "update_countries_live.yml"
-            "update_predictions.yml"
-          )
+          check_and_retry_failures() {
+            WORKFLOWS=(
+              "accumulator_post.yml"
+              "agent5_plan.yml"
+              "agent_keyword_research.yml"
+              "agent_serp_monitor.yml"
+              "agent_translate.yml"
+              "agent_trending_keywords.yml"
+              "backlink_outreach.yml"
+              "brand_scraper.yml"
+              "brand_discovery.yml"
+              "breaking_news.yml"
+              "check_news_feeds.yml"
+              "content_backfill.yml"
+              "daily_seo_doctor.yml"
+              "deploy_hostinger.yml"
+              "firecrawl_odds.yml"
+              "hourly_scrape.yml"
+              "live_odds.yml"
+              "performance_check.yml"
+              "seo_backlinks.yml"
+              "seo_daily.yml"
+              "seo_geo_biweekly.yml"
+              "seo_sitemap.yml"
+              "site_doctor.yml"
+              "site_monitor.yml"
+              "telegram_growth.yml"
+              "telegram_offers.yml"
+              "telegram_outreach.yml"
+              "transfer_news.yml"
+              "twitter_posts.yml"
+              "update_countries_live.yml"
+              "update_predictions.yml"
+            )
 
-          RETRIED=0
-          SKIPPED=0
-          OK=0
+            RETRIED=0
+            SKIPPED=0
+            OK=0
 
-          for WF in "${WORKFLOWS[@]}"; do
-            INFO=$(gh run list \
-              --workflow="$WF" \
-              --repo "$REPO" \
-              --limit 1 \
-              --json conclusion,status \
-              --jq '.[0] | {conclusion: (.conclusion // ""), status: (.status // "")}' 2>/dev/null)
+            for WF in "${WORKFLOWS[@]}"; do
+              INFO=$(gh run list \
+                --workflow="$WF" \
+                --repo "$REPO" \
+                --limit 1 \
+                --json conclusion,status \
+                --jq '.[0] | {conclusion: (.conclusion // ""), status: (.status // "")}' 2>/dev/null)
 
-            CONCLUSION=$(echo "$INFO" | jq -r '.conclusion')
-            STATUS=$(echo "$INFO"     | jq -r '.status')
+              CONCLUSION=$(echo "$INFO" | jq -r '.conclusion')
+              STATUS=$(echo "$INFO"     | jq -r '.status')
 
-            # Skip if a run is already active
-            if [ "$STATUS" = "in_progress" ] || [ "$STATUS" = "queued" ] || [ "$STATUS" = "waiting" ]; then
-              echo "⏳  $WF — currently $STATUS, skipping"
-              SKIPPED=$((SKIPPED + 1))
-              continue
-            fi
-
-            if [ "$CONCLUSION" = "failure" ]; then
-              echo "⚠️  $WF — last run FAILED, re-triggering..."
-              if gh workflow run "$WF" --repo "$REPO" --ref main; then
-                echo "✅  $WF re-triggered"
-                RETRIED=$((RETRIED + 1))
-              else
-                echo "⚠️  Could not re-trigger $WF"
+              # Skip if a run is already active
+              if [ "$STATUS" = "in_progress" ] || [ "$STATUS" = "queued" ] || [ "$STATUS" = "waiting" ]; then
+                echo "⏳  $WF — currently $STATUS, skipping"
+                SKIPPED=$((SKIPPED + 1))
+                continue
               fi
-            else
-              echo "✅  $WF — $CONCLUSION"
-              OK=$((OK + 1))
-            fi
-          done
 
-          echo ""
-          echo "━━━ Safety Net Summary ━━━"
-          echo "  OK      : $OK"
-          echo "  Active  : $SKIPPED"
-          echo "  Retried : $RETRIED"
-          exit 0
-
-      - name: Check for missed schedules (trigger never fired at all)
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-        run: |
-          set +e
-
-          # Grace period after a scheduled slot's start time before we
-          # consider it "missed" — wide enough to absorb ordinary GitHub
-          # cron jitter, tight enough that a genuine silent drop (like
-          # accumulator_post.yml's 11:00 UTC slot on 2026-07-28) gets caught
-          # and fixed within roughly GRACE_MIN + this job's own 15-min
-          # interval, not hours later.
-          GRACE_MIN=20
-
-          # workflow file → space-separated list of its scheduled UTC hours.
-          # Only workflows with simple once-or-a-few-times-daily hour-based
-          # crons belong here — high-frequency "*/N minute" workflows
-          # (live_odds.yml, hourly_scrape.yml) and transfer_news.yml (already
-          # self-healing via its internal loop) don't fit this slot model and
-          # are deliberately left out.
-          declare -A SCHEDULES=(
-            ["accumulator_post.yml"]="11 18"
-            ["breaking_news.yml"]="7 13 19"
-            ["telegram_offers.yml"]="7"
-            ["twitter_posts.yml"]="1 9 13 17 21"
-          )
-
-          NOW_EPOCH=$(date -u +%s)
-          TODAY=$(date -u +%Y-%m-%d)
-          YDAY=$(date -u -d "yesterday" +%Y-%m-%d)
-
-          for WF in "${!SCHEDULES[@]}"; do
-            HOURS="${SCHEDULES[$WF]}"
-
-            # Skip if a run is already active — avoid double-firing into a
-            # run GitHub actually did start late.
-            STATUS=$(gh run list --workflow="$WF" --repo "$REPO" --limit 1 \
-              --json status --jq '.[0].status // ""' 2>/dev/null)
-            if [ "$STATUS" = "in_progress" ] || [ "$STATUS" = "queued" ] || [ "$STATUS" = "waiting" ]; then
-              echo "⏳  $WF — currently $STATUS, skipping missed-schedule check"
-              continue
-            fi
-
-            # Find the most recent scheduled slot that is already at least
-            # GRACE_MIN old, checking today's slots first and falling back
-            # to yesterday's last slot if none of today's are due yet.
-            BEST_SLOT_EPOCH=0
-            for H in $HOURS; do
-              SLOT_EPOCH=$(date -u -d "${TODAY}T$(printf '%02d' "$H"):00:00Z" +%s)
-              DUE_EPOCH=$(( SLOT_EPOCH + GRACE_MIN * 60 ))
-              if [ "$NOW_EPOCH" -ge "$DUE_EPOCH" ] && [ "$SLOT_EPOCH" -gt "$BEST_SLOT_EPOCH" ]; then
-                BEST_SLOT_EPOCH=$SLOT_EPOCH
+              if [ "$CONCLUSION" = "failure" ]; then
+                echo "⚠️  $WF — last run FAILED, re-triggering..."
+                if gh workflow run "$WF" --repo "$REPO" --ref main; then
+                  echo "✅  $WF re-triggered"
+                  RETRIED=$((RETRIED + 1))
+                else
+                  echo "⚠️  Could not re-trigger $WF"
+                fi
+              else
+                echo "✅  $WF — $CONCLUSION"
+                OK=$((OK + 1))
               fi
             done
-            if [ "$BEST_SLOT_EPOCH" -eq 0 ]; then
+
+            echo ""
+            echo "━━━ Safety Net Summary ━━━"
+            echo "  OK      : $OK"
+            echo "  Active  : $SKIPPED"
+            echo "  Retried : $RETRIED"
+          }
+
+          check_missed_schedules() {
+            # Grace period after a scheduled slot's start time before we
+            # consider it "missed" — wide enough to absorb ordinary GitHub
+            # cron jitter, tight enough that a genuine silent drop (like
+            # accumulator_post.yml's 11:00 UTC slot on 2026-07-28) gets
+            # caught and fixed within roughly GRACE_MIN + one loop pass,
+            # not hours later.
+            GRACE_MIN=20
+
+            # workflow file → space-separated list of its scheduled UTC hours.
+            # Only workflows with simple once-or-a-few-times-daily hour-based
+            # crons belong here — high-frequency "*/N minute" workflows
+            # (live_odds.yml, hourly_scrape.yml) and transfer_news.yml (already
+            # self-healing via its internal loop) don't fit this slot model and
+            # are deliberately left out.
+            declare -A SCHEDULES=(
+              ["accumulator_post.yml"]="11 18"
+              ["breaking_news.yml"]="7 13 19"
+              ["telegram_offers.yml"]="7"
+              ["twitter_posts.yml"]="1 9 13 17 21"
+            )
+
+            NOW_EPOCH=$(date -u +%s)
+            TODAY=$(date -u +%Y-%m-%d)
+            YDAY=$(date -u -d "yesterday" +%Y-%m-%d)
+
+            for WF in "${!SCHEDULES[@]}"; do
+              HOURS="${SCHEDULES[$WF]}"
+
+              # Skip if a run is already active — avoid double-firing into a
+              # run GitHub actually did start late.
+              STATUS=$(gh run list --workflow="$WF" --repo "$REPO" --limit 1 \
+                --json status --jq '.[0].status // ""' 2>/dev/null)
+              if [ "$STATUS" = "in_progress" ] || [ "$STATUS" = "queued" ] || [ "$STATUS" = "waiting" ]; then
+                echo "⏳  $WF — currently $STATUS, skipping missed-schedule check"
+                continue
+              fi
+
+              # Find the most recent scheduled slot that is already at least
+              # GRACE_MIN old, checking today's slots first and falling back
+              # to yesterday's last slot if none of today's are due yet.
+              BEST_SLOT_EPOCH=0
               for H in $HOURS; do
-                SLOT_EPOCH=$(date -u -d "${YDAY}T$(printf '%02d' "$H"):00:00Z" +%s)
-                if [ "$SLOT_EPOCH" -gt "$BEST_SLOT_EPOCH" ]; then
+                SLOT_EPOCH=$(date -u -d "${TODAY}T$(printf '%02d' "$H"):00:00Z" +%s)
+                DUE_EPOCH=$(( SLOT_EPOCH + GRACE_MIN * 60 ))
+                if [ "$NOW_EPOCH" -ge "$DUE_EPOCH" ] && [ "$SLOT_EPOCH" -gt "$BEST_SLOT_EPOCH" ]; then
                   BEST_SLOT_EPOCH=$SLOT_EPOCH
                 fi
               done
-            fi
-
-            LAST_RUN_ISO=$(gh run list --workflow="$WF" --repo "$REPO" --limit 1 \
-              --json createdAt --jq '.[0].createdAt // ""' 2>/dev/null)
-
-            if [ -z "$LAST_RUN_ISO" ]; then
-              echo "⚠️  $WF — no run history found at all, triggering"
-              gh workflow run "$WF" --repo "$REPO" --ref main
-              continue
-            fi
-
-            LAST_RUN_EPOCH=$(date -u -d "$LAST_RUN_ISO" +%s)
-            SLOT_HUMAN=$(date -u -d "@$BEST_SLOT_EPOCH" '+%Y-%m-%d %H:%M UTC')
-
-            if [ "$LAST_RUN_EPOCH" -lt "$BEST_SLOT_EPOCH" ]; then
-              echo "🚨  $WF missed its $SLOT_HUMAN slot (last run: $LAST_RUN_ISO) — triggering now"
-              if gh workflow run "$WF" --repo "$REPO" --ref main; then
-                echo "✅  $WF triggered to catch up"
-              else
-                echo "⚠️  Could not trigger $WF — will retry next 15-min pass"
+              if [ "$BEST_SLOT_EPOCH" -eq 0 ]; then
+                for H in $HOURS; do
+                  SLOT_EPOCH=$(date -u -d "${YDAY}T$(printf '%02d' "$H"):00:00Z" +%s)
+                  if [ "$SLOT_EPOCH" -gt "$BEST_SLOT_EPOCH" ]; then
+                    BEST_SLOT_EPOCH=$SLOT_EPOCH
+                  fi
+                done
               fi
-            else
-              echo "✅  $WF — up to date for its $SLOT_HUMAN slot"
+
+              LAST_RUN_ISO=$(gh run list --workflow="$WF" --repo "$REPO" --limit 1 \
+                --json createdAt --jq '.[0].createdAt // ""' 2>/dev/null)
+
+              if [ -z "$LAST_RUN_ISO" ]; then
+                echo "⚠️  $WF — no run history found at all, triggering"
+                gh workflow run "$WF" --repo "$REPO" --ref main
+                continue
+              fi
+
+              LAST_RUN_EPOCH=$(date -u -d "$LAST_RUN_ISO" +%s)
+              SLOT_HUMAN=$(date -u -d "@$BEST_SLOT_EPOCH" '+%Y-%m-%d %H:%M UTC')
+
+              if [ "$LAST_RUN_EPOCH" -lt "$BEST_SLOT_EPOCH" ]; then
+                echo "🚨  $WF missed its $SLOT_HUMAN slot (last run: $LAST_RUN_ISO) — triggering now"
+                if gh workflow run "$WF" --repo "$REPO" --ref main; then
+                  echo "✅  $WF triggered to catch up"
+                else
+                  echo "⚠️  Could not trigger $WF — will retry next loop pass"
+                fi
+              else
+                echo "✅  $WF — up to date for its $SLOT_HUMAN slot"
+              fi
+            done
+          }
+
+          # 340 minutes minus a little headroom for this loop's own final
+          # pass, so the job exits cleanly well before GitHub's 360-min
+          # hard kill — same margin transfer_news.yml already uses.
+          END_TIME=$(( $(date +%s) + 340*60 ))
+
+          while [ "$(date +%s)" -lt "$END_TIME" ]; do
+            ITER_START=$(date +%s)
+            echo "▶ Safety net pass — $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
+            check_and_retry_failures
+            echo ""
+            check_missed_schedules
+
+            NOW=$(date +%s)
+            ITER_ELAPSED=$(( NOW - ITER_START ))
+            SLEEP_FOR=$(( 840 - ITER_ELAPSED ))   # ~14 min cadence
+            if [ "$SLEEP_FOR" -lt 0 ]; then
+              SLEEP_FOR=0
             fi
+            if [ "$(( NOW + SLEEP_FOR ))" -ge "$END_TIME" ]; then
+              echo "Loop window ending — exiting cleanly so the next queued/scheduled run takes over with no gap."
+              break
+            fi
+            echo "Sleeping ${SLEEP_FOR}s until next pass..."
+            sleep "$SLEEP_FOR"
           done
+
           exit 0
