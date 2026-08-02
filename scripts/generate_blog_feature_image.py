@@ -184,7 +184,27 @@ def _emoji_image(emoji: str, target_size: int) -> Image.Image | None:
     return cropped
 
 
+def _sanitize_for_font(text: str) -> str:
+    """Replace Unicode punctuation the installed image-generation fonts
+    (fonts-dejavu-core, per the "Install fonts for feature-image
+    generation" CI step) don't have a glyph for, rendering as a visible
+    tofu box in the PNG. Found 2026-08-02 via a feature-image spot-check:
+    a title using U+2011 NON-BREAKING HYPHEN ("free‑agent") rendered a
+    broken box between "free" and "agent" in the generated OG image, even
+    though the same title renders perfectly fine in the HTML <title> tag
+    and page body (browsers handle this character natively — this is
+    specific to the custom PIL renderer here, not a site-wide issue).
+    Scoped to hyphen-family characters specifically since those are the
+    ones confirmed missing; em-dash/en-dash and other punctuation already
+    render correctly in this font and are left untouched."""
+    for ch in ("‐", "‑", "‒"):  # hyphen, non-breaking hyphen, figure dash
+        text = text.replace(ch, "-")
+    text = text.replace(" ", " ")  # narrow no-break space
+    return text
+
+
 def _wrap_text(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, max_width: int, max_lines: int) -> list[str]:
+    text = _sanitize_for_font(text)
     words = text.split()
     lines: list[str] = []
     current = ""
