@@ -234,8 +234,25 @@ def ask_long(system_prompt: str, user_message: str) -> str:
     return _ask_with_fallback(system_prompt, user_message, max_tokens=8000)
 
 
+# Set once all 4 Groq models are confirmed exhausted/empty in this process.
+# A single generate_post() call makes TWO ask()/ask_long() calls back to back
+# (the draft, then agent_fact_checker.check_post()'s independent pass) — with
+# no memoization, the second call re-probes all 4 already-dead Groq models
+# from scratch, roughly doubling every cycle's wall-clock time and doubling
+# the failed-request load this process adds to the shared Groq key for zero
+# benefit (Groq's TPD quota doesn't reset mid-process). Confirmed live
+# 2026-08-02: transfer_news.yml's 5-minute loop was spending minutes per
+# cycle re-exhausting Groq twice before ever reaching Ollama. Deliberately
+# process-scoped, not persisted to disk — each self-perpetuating loop
+# iteration is a fresh `python agent_transfer_post.py` invocation anyway, so
+# this naturally re-checks Groq every ~5 minutes, roughly matching the real
+# TPD rolling-window reset cadence instead of assuming exhaustion forever.
+_groq_exhausted_this_process = False
+
+
 def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -> str:
-    if _groq_client:
+    global _groq_exhausted_this_process
+    if _groq_client and not _groq_exhausted_this_process:
         # Tiers 1-4 — four Groq models, each with its own separate free TPD
         # quota bucket, so one model capping out doesn't block the others.
         for i, model in enumerate(_GROQ_MODELS):
@@ -262,6 +279,9 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
             # that's not an exception, so it needs its own empty-result check.
             next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else "local Ollama fallback"
             print(f"[llm] Groq {model} exhausted or empty — trying {next_step}")
+        _groq_exhausted_this_process = True
+    elif _groq_exhausted_this_process:
+        print("[llm] Groq already confirmed exhausted earlier this run — skipping straight to local fallback")
 
     # Tier 5 — local, self-hosted open-weight model via Ollama. No signup,
     # no API key, no billing — installed/started on demand (see

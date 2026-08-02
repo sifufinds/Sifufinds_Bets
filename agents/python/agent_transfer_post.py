@@ -90,7 +90,7 @@ from utils.player_photo import _looks_like_branded_thumbnail_url, _looks_like_ne
 from utils.story_dedup import headline_key as _headline_key, source_keys as _source_keys, \
     load_covered_keys as _load_covered_keys, record_covered_keys as _record_covered_keys
 from utils.tweet_text import tweet_len as _tweet_len, trim_to_limit as _trim_to_limit
-from agent_sports_blog import generate_post, load_posts, save_posts
+from agent_sports_blog import generate_post, load_posts, save_posts, discard_feature_image
 from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
 from agent_twitter_posts import _post_tweet as post_twitter
@@ -538,6 +538,7 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     if title_key in recent_titles:
         print(f"⚠ Similar transfer story already published — skipping. ('{post['title']}')")
         log("transfer_post", "generate", "skipped", "duplicate title")
+        discard_feature_image(post)
         return None, {}
 
     # Also check the *source* headline(s) this article was actually built
@@ -552,6 +553,7 @@ def run(dry_run: bool = False, telegram: bool = True, facebook: bool = True,
     if matched:
         print(f"⚠ Underlying story already covered this cycle — skipping. ('{post['title']}')")
         log("transfer_post", "generate", "skipped", "duplicate source headline")
+        discard_feature_image(post)
         return None, {}
 
     print(f"  ✓ '{post['title']}'")

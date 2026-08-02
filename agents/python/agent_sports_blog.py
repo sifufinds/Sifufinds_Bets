@@ -180,6 +180,28 @@ OUTPUT FORMAT — return EXACTLY this structure, nothing outside the markers:
 
 # ── CORE GENERATION ───────────────────────────────────────────────────────────
 
+def discard_feature_image(post: dict) -> None:
+    """Delete the branded OG image already generated for a post that's about
+    to be thrown away (fact-check FLAG, or a caller's own dedup rejection —
+    see agent_transfer_post.py's run()). Without this, ensure_feature_image()
+    has already written a real PNG to assets/og/ by the time any rejection
+    check runs, and every caller's git-add step (transfer_news.yml's
+    `git add ... assets/og/`) stages it unconditionally — producing a real
+    commit every ~5 minutes with no corresponding post ever landing in
+    posts.json, which silently disguises a 100%-rejection-rate outage as
+    normal ongoing activity (confirmed live 2026-08-02: 3 days, zero new
+    transfer posts, while the workflow kept committing orphaned images the
+    whole time)."""
+    feature_image = post.get("feature_image")
+    if not feature_image:
+        return
+    path = Path(__file__).resolve().parent.parent.parent / feature_image.lstrip("/")
+    try:
+        path.unlink(missing_ok=True)
+    except OSError:
+        pass
+
+
 def generate_post(category: str) -> Optional[dict]:
     today = datetime.now(timezone.utc).strftime("%A, %d %B %Y")
     cat_meta = CATEGORIES.get(category, CATEGORIES["football"])
@@ -289,6 +311,7 @@ Write the article now. Base it on the REAL news provided above — do not invent
         passed, flags = fact_check_post(post)
         if not passed:
             print(f"  ✗ Fact-checker held back this article: {flags}")
+            discard_feature_image(post)
             return None
         return post
 
