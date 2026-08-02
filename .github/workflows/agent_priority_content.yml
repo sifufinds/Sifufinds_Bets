@@ -45,7 +45,21 @@ on:
 
 concurrency:
   group: agent-priority-content
-  cancel-in-progress: true
+  # false, not true (transfer_news.yml's cancel-in-progress:true pattern was
+  # copied too literally 2026-08-02 morning) — found live: GitHub delivers
+  # this account's cron ticks erratically, including bursts close together
+  # (e.g. one tick 15 minutes after another, nowhere near the nominal 2h
+  # spacing). transfer_news.yml can tolerate cancel-in-progress:true because
+  # its internal cycle is ~5 minutes; this workflow's write step alone can
+  # take up to 25 minutes (timeout 1500 below), so a tick arriving inside
+  # that window killed the run before it completed even one cycle — observed
+  # directly: a run started 11:06 was killed by a tick at 11:21, never
+  # finishing a single write attempt. With cancel-in-progress:false a new
+  # tick queues instead of killing the active run; GitHub Actions concurrency
+  # semantics already collapse a backlog of queued ticks down to just the
+  # latest before it's dequeued, so this doesn't reintroduce a pileup risk,
+  # it just stops interrupting real in-flight work.
+  cancel-in-progress: false
 
 permissions:
   contents: write
