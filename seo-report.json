@@ -1,13 +1,19 @@
 {
   "date": "2026-08-02",
-  "total": 1,
+  "total": 2,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 1,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "best-betting-sites-nigeria-2026-compare-top-bookmakers-and-find-your-perfect-match",
+      "detail": "Title 83 chars (max 60): 'Best Betting Sites Nigeria 2026: Compare Top Bookmakers and Find Your '"
+    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
