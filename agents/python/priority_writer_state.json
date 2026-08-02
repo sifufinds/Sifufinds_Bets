@@ -12,5 +12,31 @@
     "best betting sites Tanzania 2026": {
       "skipped": "already_covered_by_existing_post"
     }
+  },
+  "last_run": {
+    "checked_at": "2026-08-02T16:12:09.097229+00:00",
+    "candidates_available": 22,
+    "attempted": 3,
+    "written": 0,
+    "attempts": [
+      {
+        "keyword": "best betting bonus Nigeria 2026",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: only 641 words (minimum 1000); final line was 'Finding the best betting site with a welcome bonus in Nigeria can be challenging. This guide has provided you with an overview of top bookmakers offering attractive promotions and their terms. Remember to always gamble responsibly and never bet more than you can afford to lose.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "how to bet online Nigeria beginners guide",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: only 766 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'To start betting online, choose a licensed bookmaker, register an account, deposit funds, place your first bet, and understand odds formats.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "safest betting apps Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: only 840 words (minimum 1000); no '## FAQ' section heading found; final line was '# *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      }
+    ]
   }
 }
