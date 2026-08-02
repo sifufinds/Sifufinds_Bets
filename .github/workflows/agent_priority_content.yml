@@ -129,9 +129,17 @@ jobs:
             python3 gen_blog_post_pages.py
 
             git add agents/python/content_priority_queue.json agents/python/priority_writer_state.json
+            git add agents/python/agent_log.json 2>/dev/null || true
             git add blog/posts.json blog/posts-data.js blog/ assets/og/
             if git diff --cached --quiet; then
               echo "No new priority content this cycle"
+              # agent_log.json still gets written every cycle even when no
+              # post is produced — discard that local change explicitly
+              # rather than leaving the tree dirty for next iteration's
+              # `git pull --rebase` to trip over (a dirty tracked file makes
+              # rebase fail outright, forcing the reset --hard fallback
+              # below every single cycle instead of only on a real conflict).
+              git checkout -- agents/python/agent_log.json 2>/dev/null || true
             else
               git commit -m "content: priority guides $(date -u '+%Y-%m-%d %H:%M') UTC"
 
