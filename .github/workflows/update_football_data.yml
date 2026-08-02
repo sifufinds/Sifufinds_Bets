@@ -89,6 +89,8 @@ jobs:
     needs: update-football
     if: failure()
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
     steps:
       - name: Wait before retry
         run: sleep 600
