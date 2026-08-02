@@ -1,8 +1,8 @@
 name: Priority Content — write evergreen guides from keyword gaps
 
 # Closes the loop found 2026-08-01/02: keyword-gap research alone never
-# turned into scheduled content. This workflow runs the pipeline end to
-# end every 2 hours:
+# turned into scheduled content. Each loop iteration runs the pipeline end
+# to end:
 #   1. agent_content_priority.py — re-rank keyword_opportunities.json +
 #      trending_keywords.json into content_priority_queue.json (country
 #      tier x content type x recency).
@@ -14,11 +14,24 @@ name: Priority Content — write evergreen guides from keyword gaps
 #      3x/day schedule and deliberately excluded here (see
 #      agent_content_priority.py's docstring on writer_actionable).
 #
-# This workflow never exits with a failure code — a rate-limited/quota-
-# exhausted run just means fewer guides written this time; it tries again
-# on the next scheduled run. If Groq's quota is exhausted, llm.py's local
-# Ollama fallback (see AGENT-KNOWLEDGE.md 2026-08-01) still produces
-# something rather than nothing.
+# 2026-08-02: switched to a self-perpetuating internal loop instead of
+# relying on GitHub to deliver every "0 */2 * * *" tick. Confirmed live on
+# this repo tonight (see retry_failed.yml's 2026-08-02 fix and
+# transfer_news.yml's 2026-07-27 fix) that this account's scheduler drops
+# most cron ticks under load — this workflow's own first night showed a
+# ~5 hour gap with only one scheduled run firing. Once a run does start
+# (whenever GitHub gets around to it), it now loops on its own clock every
+# ~2 hours for up to ~5h50m, so the real cadence comes from the loop, not
+# from GitHub's delivery. Each individual write attempt is wrapped in
+# `timeout` — the run that did fire tonight was killed by the old 20-minute
+# job timeout mid-generation, because a Groq-quota-exhausted attempt falls
+# through to llm.py's local Ollama fallback, which pulls a fresh ~2GB model
+# on every ephemeral runner and can genuinely take a while; a stuck/slow
+# attempt must not be able to block the rest of the loop.
+#
+# This workflow never exits with a failure code from a single write
+# attempt — a rate-limited/quota-exhausted/timed-out attempt just means
+# fewer guides written this cycle; the loop tries again next cycle.
 
 on:
   schedule:
@@ -26,31 +39,28 @@ on:
   workflow_dispatch:
     inputs:
       count:
-        description: "How many guides to write this run"
+        description: "How many guides to write per cycle"
         required: false
         default: "3"
 
 concurrency:
   group: agent-priority-content
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
 
 jobs:
   write-priority-content:
-    name: Rank gaps and write priority guides
+    name: Rank gaps and write priority guides (self-perpetuating loop)
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 350
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Pull latest
-        run: git pull --rebase origin main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -70,13 +80,13 @@ jobs:
       - name: Install fonts for feature-image generation
         run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core fonts-noto-color-emoji
 
-      - name: Rank keyword gaps into a priority queue
-        working-directory: agents/python
-        run: python agent_content_priority.py
-
-      - name: Write top priority guides
-        id: write
-        working-directory: agents/python
+      # One continuous step, not several chained with `if: always()` — the
+      # whole point is an internal loop that outlives any single
+      # GitHub-delivered trigger, exactly mirroring transfer_news.yml's
+      # proven pattern. Each iteration: pull latest -> rank the queue ->
+      # write up to N guides (hard-timeout-wrapped) -> regenerate static
+      # pages -> commit/push -> sleep until the next ~2h mark.
+      - name: Priority content loop — every ~2h for up to ~5h50m
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -85,50 +95,80 @@ jobs:
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
         run: |
           set +e
-          python agent_priority_writer.py --count "${{ github.event.inputs.count || '3' }}"
-          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
-          exit 0
-
-      - name: Generate static blog post pages
-        run: python3 gen_blog_post_pages.py
-
-      - name: Commit and push new priority content
-        run: |
           git config --local user.email "priority-writer@sifufinds.com"
           git config --local user.name "SifuFinds Priority Content Agent"
-          git add agents/python/content_priority_queue.json agents/python/priority_writer_state.json
-          git add blog/posts.json blog/posts-data.js blog/ assets/og/
-          if git diff --cached --quiet; then
-            echo "No new priority content this run — nothing to commit"
-            exit 0
-          fi
-          git commit -m "content: priority guides $(date -u '+%Y-%m-%d %H:%M') UTC"
 
-          for attempt in 1 2 3 4 5; do
-            if git push; then
-              echo "✅ Pushed on attempt $attempt"
+          COUNT="${{ github.event.inputs.count || '3' }}"
+          CYCLE_SECONDS=$(( 2 * 60 * 60 ))
+          # 340 min budget, matching transfer_news.yml's margin under the
+          # 350-min job timeout for setup steps + a final iteration's runtime.
+          END_TIME=$(( $(date +%s) + 340*60 ))
+
+          while [ "$(date +%s)" -lt "$END_TIME" ]; do
+            ITER_START=$(date +%s)
+            echo "▶ Priority content cycle — $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
+
+            if ! git pull --rebase origin main; then
+              echo "⚠️  Pull rebase failed — resetting to origin/main"
+              git rebase --abort 2>/dev/null
+              git fetch origin main
+              git reset --hard origin/main
+            fi
+
+            ( cd agents/python && python agent_content_priority.py )
+
+            # Hard cap on the write step itself: llm.py's Ollama fallback can
+            # pull a fresh ~2GB model on this ephemeral runner and, combined
+            # with agent_priority_writer.py's own retry-on-quality-gate-
+            # failure, has genuinely taken over 20 minutes — confirmed by
+            # tonight's first scheduled run getting killed by the old
+            # job-level timeout mid-generation. 25 min leaves headroom inside
+            # the ~2h cycle without letting one stuck attempt eat the loop.
+            ( cd agents/python && timeout 1500 python agent_priority_writer.py --count "$COUNT" )
+
+            python3 gen_blog_post_pages.py
+
+            git add agents/python/content_priority_queue.json agents/python/priority_writer_state.json
+            git add blog/posts.json blog/posts-data.js blog/ assets/og/
+            if git diff --cached --quiet; then
+              echo "No new priority content this cycle"
+            else
+              git commit -m "content: priority guides $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+              PUSHED=0
+              for _attempt in 1 2 3 4 5; do
+                if git push; then
+                  echo "✅ Pushed on attempt $_attempt"
+                  PUSHED=1
+                  break
+                fi
+                if [ "$_attempt" -eq 5 ]; then
+                  echo "❌ Push failed after 5 attempts"
+                  break
+                fi
+                echo "Push rejected (attempt $_attempt/5) — merging and retrying..."
+                sleep 5
+                git fetch origin main
+                git merge --no-edit origin/main || true
+                python3 agents/python/merge_posts.py 2>/dev/null || true
+                python3 gen_blog_post_pages.py
+                git add -A
+                git commit -m "content: priority guides $(date -u '+%Y-%m-%d %H:%M') UTC (merged)" --allow-empty
+              done
+            fi
+
+            NOW=$(date +%s)
+            ITER_ELAPSED=$(( NOW - ITER_START ))
+            SLEEP_FOR=$(( CYCLE_SECONDS - ITER_ELAPSED ))
+            if [ "$SLEEP_FOR" -lt 0 ]; then
+              SLEEP_FOR=0
+            fi
+            if [ "$(( NOW + SLEEP_FOR ))" -ge "$END_TIME" ]; then
+              echo "Loop window ending — exiting cleanly so the next queued run takes over with no gap."
               break
             fi
-            if [ "$attempt" -eq 5 ]; then
-              echo "❌ Push failed after 5 attempts"
-              exit 1
-            fi
-            echo "Push rejected (attempt $attempt/5) — merging and retrying..."
-            sleep 5
-            git fetch origin main
-            git merge --no-edit origin/main || true
-            python3 agents/python/merge_posts.py 2>/dev/null || true
-            python3 gen_blog_post_pages.py
-            git add -A
-            git commit -m "content: priority guides $(date -u '+%Y-%m-%d %H:%M') UTC (merged)" --allow-empty
+            echo "Sleeping ${SLEEP_FOR}s until the next cycle..."
+            sleep "$SLEEP_FOR"
           done
 
-      - name: Report outcome
-        if: always()
-        run: |
-          CODE="${{ steps.write.outputs.exit_code }}"
-          if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
-            echo "✅ Priority Writer agent ran — see logs above"
-          else
-            echo "⚠️ Priority Writer agent exit code $CODE — check logs above"
-          fi
+          exit 0
