@@ -19,11 +19,23 @@ permissions:
 jobs:
   publish-breaking-news:
     runs-on: ubuntu-latest
-    # 15 min (was 10): 3 sequential generate_post() calls can each burn up to
-    # ~2min in Groq RPM-limit retry waits (see llm.py _parse_retry_seconds cap)
-    # before falling through to Gemini — 10min was tight enough that legitimate
-    # runs got killed mid-write by the job timeout rather than failing cleanly.
-    timeout-minutes: 15
+    # 40 min (was 15): confirmed live 2026-08-02 that 15min was no longer enough
+    # and was actively discarding real work — two runs that day each completed
+    # a full first-category article successfully, then got killed by the job
+    # timeout partway through the second category, with the commit/push step
+    # never reached (conclusion: "cancelled", not "failure", so nothing was
+    # even flagged as broken; only found via a manual run-history audit).
+    # Root cause: the 2026-08-01 local Ollama fallback tier in llm.py (see
+    # AGENT-KNOWLEDGE.md) sits between Groq and Gemini/Claude and adds real
+    # wall-clock time the original 15min budget never accounted for — a
+    # one-time ~1-3min install+model-pull the first time any of this job's 3
+    # sequential generate_post() calls falls all the way through Groq, plus
+    # CPU-only inference time for whichever calls actually use it. Combined
+    # with the original ~2min-per-call Groq RPM-retry budget this comment
+    # used to size 15min against, worst case across 3 categories now
+    # genuinely needs more room. 40min gives real headroom while staying far
+    # under GitHub's 360min hard job cap.
+    timeout-minutes: 40
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
