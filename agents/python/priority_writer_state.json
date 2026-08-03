@@ -18,8 +18,8 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-03T05:02:56.309384+00:00",
-    "candidates_available": 21,
+    "checked_at": "2026-08-03T05:34:28.648866+00:00",
+    "candidates_available": 27,
     "attempted": 3,
     "written": 0,
     "attempts": [
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 912 words (minimum 1000); no '## FAQ' section heading found; final line was 'Betting online in Nigeria is generally considered safe, as most licensed bookmakers use secure payment methods and adhere to strict regulations. However, it's essential to choose a reputable bookmaker and read the terms and conditions carefully before depositing funds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 611 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 770 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "quality_gate: only 677 words (minimum 1000); no '## FAQ' section heading found"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 767 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'By following these guidelines, you can choose the best betting site in Kenya for 2026 and enjoy a safe and exciting betting experience.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 669 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       }
     ]
   }
