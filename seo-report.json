@@ -1,19 +1,13 @@
 {
   "date": "2026-08-03",
-  "total": 2,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "africa-sports-betting-news-august-3-2026",
-      "detail": "Title 76 chars (max 60): \"Breaking Down Africa's Top Sports Betting News: Nunez, Vinicius Jr, an\""
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
