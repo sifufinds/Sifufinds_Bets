@@ -1,36 +1,5 @@
 {
-  "critical": 5,
+  "critical": 0,
   "warnings": 0,
-  "issues": [
-    {
-      "severity": "CRITICAL",
-      "check": "unexpected_noindex",
-      "page": "bookmakers/bet9ja/index.html",
-      "detail": "Unexpected noindex meta robots tag: content=\"noindex, follow\""
-    },
-    {
-      "severity": "CRITICAL",
-      "check": "unexpected_noindex",
-      "page": "bookmakers/sportybet/index.html",
-      "detail": "Unexpected noindex meta robots tag: content=\"noindex, follow\""
-    },
-    {
-      "severity": "CRITICAL",
-      "check": "unexpected_noindex",
-      "page": "bookmakers/1xbet/index.html",
-      "detail": "Unexpected noindex meta robots tag: content=\"noindex, follow\""
-    },
-    {
-      "severity": "CRITICAL",
-      "check": "unexpected_noindex",
-      "page": "bookmakers/betway/index.html",
-      "detail": "Unexpected noindex meta robots tag: content=\"noindex, follow\""
-    },
-    {
-      "severity": "CRITICAL",
-      "check": "unexpected_noindex",
-      "page": "bookmakers/hollywoodbets/index.html",
-      "detail": "Unexpected noindex meta robots tag: content=\"noindex, follow\""
-    }
-  ]
+  "issues": []
 }
