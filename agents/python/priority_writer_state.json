@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-03T07:35:20.898492+00:00",
+    "checked_at": "2026-08-03T09:34:02.988967+00:00",
     "candidates_available": 27,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 878 words (minimum 1000); no '## FAQ' section heading found; final line was 'By following these steps and tips, you'll be well on your way to becoming a successful online sports bettor in Nigeria.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 773 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; final line was '---', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 690 words (minimum 1000); no '## FAQ' section heading found; found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Common red flags include a lack of clear license number or logo, poor customer reviews, and unrealistic bonuses or promotions.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 590 words (minimum 1000); no '## FAQ' section heading found; found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'If you have any questions or need further assistance, please don't hesitate to contact us.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
