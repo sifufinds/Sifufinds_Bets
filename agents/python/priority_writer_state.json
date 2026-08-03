@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-03T11:57:23.926843+00:00",
+    "checked_at": "2026-08-03T13:55:41.997601+00:00",
     "candidates_available": 27,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Minimum deposits vary among bookmakers. Some popular options include ₦100 (Bet9ja) or ₦0 (BetKing).', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 736 words (minimum 1000); final line was '### *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 745 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 638 words (minimum 1000)"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 683 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was '[1xBet Kenya](https://sifufinds.com/1xbet-kenya/) is a top-rated sportsbook with competitive odds, fast withdrawals, and excellent customer service.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 800 words (minimum 1000); no '## FAQ' section heading found"
       }
     ]
   }
