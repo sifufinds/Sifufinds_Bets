@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-03T09:59:55.901249+00:00",
+    "checked_at": "2026-08-03T11:57:23.926843+00:00",
     "candidates_available": 27,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 808 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'OPay, PalmPay, Bank Transfer, Visa, Mastercard, and USSD are among the most accepted payment methods for online sports betting in Nigeria.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Minimum deposits vary among bookmakers. Some popular options include ₦100 (Bet9ja) or ₦0 (BetKing).', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 867 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "quality_gate: only 745 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 854 words (minimum 1000); final line was '- [Kenya's Betting Control and Licensing Board](https://www.bclb.go.ke/)', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 683 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was '[1xBet Kenya](https://sifufinds.com/1xbet-kenya/) is a top-rated sportsbook with competitive odds, fast withdrawals, and excellent customer service.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
