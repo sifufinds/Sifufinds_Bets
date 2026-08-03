@@ -1,13 +1,25 @@
 {
   "date": "2026-08-03",
-  "total": 1,
+  "total": 3,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "africa-s-take-football-news-and-betting-implications-august-03-2026",
+      "detail": "Title 73 chars (max 60): \"Africa's Take: Football News and Betting Implications for August 03, 2\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "africa-sports-betting-news-roundup-august-2026",
+      "detail": "Title 85 chars (max 60): \"Africa's Sports Betting News Roundup: A Closer Look at the Big Stories\""
+    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
