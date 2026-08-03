@@ -1237,11 +1237,9 @@ def _load_bookmaker_entries() -> list[dict]:
     """Load the bookmaker link registry from data/bookmaker_links.json.
 
     This is the single source of truth for standalone bookmakers/<slug>/
-    review pages — also read/written by agents/python/agent_brand_discovery.py
-    when it adds a newly-researched brand or marks one as removed. Only
-    status=='active' rows feed BOOKMAKER_LINKS/_BK_SLUG_TO_LINK below, so a
-    removed brand stops being linked from new content without deleting its
-    history or its (still-live, non-404) page.
+    review pages. Only status=='active' rows feed BOOKMAKER_LINKS/_BK_SLUG_TO_LINK
+    below, so a removed brand stops being linked from new content without
+    deleting its history or its (still-live, non-404) page.
     """
     path = os.path.join(BASE, 'data', 'bookmaker_links.json')
     with open(path, 'r', encoding='utf-8') as f:

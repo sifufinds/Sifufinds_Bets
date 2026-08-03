@@ -1,5 +1,5 @@
 {
-  "_comment": "Single source of truth for standalone bookmakers/<slug>/ review pages. Loaded by gen_blog_post_pages.py (BOOKMAKER_LINKS, _BK_SLUG_TO_LINK) and read/written by agents/python/agent_brand_discovery.py. Only status=active entries are linked from blog posts and the resources box. status=removed keeps the row (and its evidence trail) instead of deleting it, since the page at href still exists as a discontinued notice rather than a 404.",
+  "_comment": "Single source of truth for standalone bookmakers/<slug>/ review pages. Loaded by gen_blog_post_pages.py (BOOKMAKER_LINKS, _BK_SLUG_TO_LINK). Only status=active entries are linked from blog posts and the resources box. status=removed keeps the row (and its evidence trail) instead of deleting it, since the page at href still exists as a discontinued notice rather than a 404. (agent_brand_discovery.py, which used to read/write this file, was removed 2026-08-03 after it falsely marked 5 major active brands as discontinued on hallucinated evidence — see AGENT-KNOWLEDGE.md.)",
   "bookmakers": [
     {
       "keyword": "bet9ja",
@@ -7,12 +7,10 @@
       "href": "../../bookmakers/bet9ja/",
       "anchor_title": "Bet9ja review",
       "resource_label": "Bet9ja Review",
-      "status": "removed",
+      "status": "active",
       "official_url": "https://www.bet9ja.com",
       "discovered_by": "manual",
-      "added_at": "2026-06-01T00:00:00+00:00",
-      "removed_at": "2026-08-03T06:55:46.390215+00:00",
-      "removal_evidence": "evidence was hedged/uncertain, treated as active: A liquor license was revoked after the operator allegedly offered 'free beer' when President Trump dies, which might be unrelated to Bet9ja's operation."
+      "added_at": "2026-06-01T00:00:00+00:00"
     },
     {
       "keyword": "sportybet",
@@ -20,12 +18,10 @@
       "href": "../../bookmakers/sportybet/",
       "anchor_title": "SportyBet review",
       "resource_label": "SportyBet Review",
-      "status": "removed",
+      "status": "active",
       "official_url": "https://www.sportybet.com",
       "discovered_by": "manual",
-      "added_at": "2026-06-01T00:00:00+00:00",
-      "removed_at": "2026-08-03T06:56:01.161318+00:00",
-      "removal_evidence": "Reports of SportyBet's licensing troubles and a KRA dispute led to the platform collapsing, with many users losing significant amounts of money."
+      "added_at": "2026-06-01T00:00:00+00:00"
     },
     {
       "keyword": "betway",
@@ -33,12 +29,10 @@
       "href": "../../bookmakers/betway-africa/",
       "anchor_title": "Betway Africa review",
       "resource_label": "Betway Review",
-      "status": "removed",
+      "status": "active",
       "official_url": "https://www.betway.co.za",
       "discovered_by": "manual",
-      "added_at": "2026-06-01T00:00:00+00:00",
-      "removed_at": "2026-08-03T06:56:20.066163+00:00",
-      "removal_evidence": "Betway quit and permanently closed its operations in Kenya, as stated in multiple news articles published after 2023."
+      "added_at": "2026-06-01T00:00:00+00:00"
     },
     {
       "keyword": "hollywoodbets",
@@ -46,12 +40,10 @@
       "href": "../../bookmakers/hollywoodbets/",
       "anchor_title": "Hollywoodbets review",
       "resource_label": "Hollywoodbets Review",
-      "status": "removed",
+      "status": "active",
       "official_url": "https://www.hollywoodbets.net",
       "discovered_by": "manual",
-      "added_at": "2026-06-01T00:00:00+00:00",
-      "removed_at": "2026-08-03T06:56:36.502190+00:00",
-      "removal_evidence": "Hollywoodbets Shut Down Its Kenya Subsidiary - iGaming Afrika: Hollywoodbets Kenya Shut Down"
+      "added_at": "2026-06-01T00:00:00+00:00"
     },
     {
       "keyword": "sportpesa",
@@ -70,12 +62,10 @@
       "href": "../../bookmakers/1xbet-africa/",
       "anchor_title": "1xBet Africa review",
       "resource_label": "1xBet Review",
-      "status": "removed",
+      "status": "active",
       "official_url": "https://1xbet.com",
       "discovered_by": "manual",
-      "added_at": "2026-06-01T00:00:00+00:00",
-      "removed_at": "2026-08-03T06:57:14.254209+00:00",
-      "removal_evidence": "1xBet's official site is unreachable, but multiple articles and forums confirm their presence and operations in Africa, with no mention of any shutdown plans."
+      "added_at": "2026-06-01T00:00:00+00:00"
     },
     {
       "keyword": "betking",

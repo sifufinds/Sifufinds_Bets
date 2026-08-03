@@ -104,14 +104,12 @@ def _active_featured_listing(slug: str) -> dict | None:
 def render_bookmaker_page(facts: dict) -> str:
     """Render bookmakers/<slug>/index.html for a newly-discovered brand.
 
-    `facts` is produced by agent_brand_discovery.py after the legitimacy
-    gate passes — every field is either directly observed during research
-    (official_url, primary_country) or a conservative, clamped value the
-    agent computed, never an unclamped LLM claim. See _clamp_rating() in
-    agent_brand_discovery.py for why the verdict badge below always reads
-    "New Listing — Under Review" instead of "Recommended": a single week
-    of research isn't enough evidence to vouch for a brand the way the
-    hand-reviewed pages do.
+    `facts` should be produced by a research pipeline that only supplies
+    directly-observed fields (official_url, primary_country) or conservative,
+    clamped values, never an unclamped LLM claim, so the verdict badge below
+    always reads "New Listing — Under Review" instead of "Recommended": a
+    single pass of research isn't enough evidence to vouch for a brand the
+    way the hand-reviewed pages do.
     """
     slug = facts["slug"]
     name = facts["brand_name"]

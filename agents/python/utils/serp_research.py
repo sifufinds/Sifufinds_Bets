@@ -290,7 +290,7 @@ def build_keyword_from_category(category: str) -> str:
 
 
 # ── Public wrappers (for agents that need raw search/scrape, not the full
-#    research() block — e.g. agent_brand_discovery.py's legitimacy checks) ──
+#    research() block) ──
 #    Free-first: DuckDuckGo + trafilatura/Jina try first; Firecrawl only fires
 #    if free sources come back empty AND SIFU_ALLOW_PAID_CRAWL=1 is set.
 

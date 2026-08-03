@@ -68,7 +68,6 @@ jobs:
           case "$WORKFLOW_NAME" in
             "Accumulator Post"*)                                                          WF=accumulator_post.yml ;;
             "Brand Bonus Scraper — Daily Update")                                         WF=brand_scraper.yml ;;
-            "Brand Discovery — weekly new-brand research & defunct-brand check")          WF=brand_discovery.yml ;;
             "Breaking News Bot — Auto-publish 3x daily")                                  WF=breaking_news.yml ;;
             "Country Localisation — translate blog posts")                               WF=agent_translate.yml ;;
             "Deploy to Hostinger — sifufinds.com")                                        WF=deploy_hostinger.yml ;;
