@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-02T22:34:59.562195+00:00",
+    "checked_at": "2026-08-03T03:03:10.879832+00:00",
     "candidates_available": 21,
     "attempted": 3,
     "written": 0,
@@ -27,7 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '### END', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "safest betting apps Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: only 615 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Unlicensed operators, unclear or complex terms and conditions, poor customer support, inadequate security measures, and unrealistic odds or promises are all red flags to avoid.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "best betting bonus Kenya 2026",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "missing_output_markers"
       }
     ]
   }
