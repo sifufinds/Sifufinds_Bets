@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-04T05:34:08.073886+00:00",
+    "checked_at": "2026-08-04T07:32:58.971586+00:00",
     "candidates_available": 34,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 868 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'No, Nigerian law requires that all sports betting be done by individuals who are at least 18 years old.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 826 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "missing_output_markers"
+        "reason": "quality_gate: only 693 words (minimum 1000)"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 694 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '3 internal links: [Betting Sites in Kenya](https://sifufinds.com/betting-sites-in-kenya) | [Responsible Gambling Support](https://sifufinds.com/responsible-gambling-support)', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 756 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Compare different bookmakers' welcome bonuses and consider factors such as the bonus amount, deposit requirements, and wagering requirements to find the one that suits your betting style.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
