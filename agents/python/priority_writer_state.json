@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-04T12:18:01.055123+00:00",
+    "checked_at": "2026-08-04T16:18:09.561871+00:00",
     "candidates_available": 34,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 881 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 750 words (minimum 1000); final line was 'To find the best bookmakers for your betting needs, compare their offers, payment methods, and odds formats. Look for bookmakers that offer competitive odds, a wide range of markets, and reliable customer support.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 684 words (minimum 1000); no '## FAQ' section heading found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'You can report suspicious betting activities to the NLRC by contacting their customer service department directly or through their official website.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 754 words (minimum 1000); final line was '18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 899 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 895 words (minimum 1000); final line was 'For more information on Kenyan betting sites and bonuses, visit sifufinds.com.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
