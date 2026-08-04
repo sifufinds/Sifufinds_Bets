@@ -1,5 +1,5 @@
 {
-  "date": "2026-08-03",
+  "date": "2026-08-04",
   "total": 3,
   "by_severity": {
     "CRITICAL": 0,
@@ -11,14 +11,14 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "africa-s-take-football-news-and-betting-implications-august-03-2026",
-      "detail": "Title 73 chars (max 60): \"Africa's Take: Football News and Betting Implications for August 03, 2\""
+      "page": "stokes-ufc-ittuma-betting-angles-2026",
+      "detail": "Title 79 chars (max 60): 'From Stokes to the UFC: This Week\u2019s Biggest Sports Headlines and Betti'"
     },
     {
       "severity": "HIGH",
-      "check": "title_length",
-      "page": "africa-sports-betting-news-roundup-august-2026",
-      "detail": "Title 85 chars (max 60): \"Africa's Sports Betting News Roundup: A Closer Look at the Big Stories\""
+      "check": "meta_desc_length",
+      "page": "stokes-ufc-ittuma-betting-angles-2026",
+      "detail": "Excerpt 185 chars (max 155)"
     },
     {
       "severity": "INFO",
