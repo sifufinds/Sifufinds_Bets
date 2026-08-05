@@ -1,13 +1,31 @@
 {
   "date": "2026-08-05",
-  "total": 1,
+  "total": 4,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 3,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "arsenal-real-betis-friendly-newcastle-captain-talks",
+      "detail": "Title 83 chars (max 60): 'Arsenal vs Real Betis friendly sparks Newcastle captain talks and coac'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "the-big-transfer-window-african-footballers-in-the-spotlight",
+      "detail": "Title 61 chars (max 60): 'The Big Transfer Window: African Footballers in the Spotlight'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "arsenal-real-betis-friendly-newcastle-captain-talks",
+      "detail": "Excerpt 233 chars (max 155)"
+    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
