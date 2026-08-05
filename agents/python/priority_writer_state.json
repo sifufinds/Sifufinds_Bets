@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-05T05:36:16.742481+00:00",
+    "checked_at": "2026-08-05T05:58:57.031512+00:00",
     "candidates_available": 41,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 995 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: no '## FAQ' section heading found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '###', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "missing_output_markers"
+        "reason": "quality_gate: only 839 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 742 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 671 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       }
     ]
   }
