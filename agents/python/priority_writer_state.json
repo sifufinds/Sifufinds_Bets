@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-05T14:48:27.022705+00:00",
+    "checked_at": "2026-08-05T16:49:46.281070+00:00",
     "candidates_available": 41,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 851 words (minimum 1000); final line was 'To withdraw your winnings, log in to your account, go to the \"Withdrawal\" or \"Funds\" section, choose your preferred payment method, enter the amount you want to withdraw, and confirm the transaction.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 846 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 555 words (minimum 1000)"
+        "reason": "quality_gate: only 615 words (minimum 1000)"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 692 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was '*   **18+ | Bet Responsibly | T&Cs Apply**', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was '### internal links ===', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
