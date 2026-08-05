@@ -1,5 +1,5 @@
 {
-  "date": "2026-08-04",
+  "date": "2026-08-05",
   "total": 3,
   "by_severity": {
     "CRITICAL": 0,
@@ -11,20 +11,20 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "premier-league-transfer-frenzy-rashford-fulham-betting-pulse",
-      "detail": "Title 71 chars (max 60): 'Premier League Transfer Frenzy: Rashford, Fulham, and the Betting Puls'"
+      "page": "tennis-betting-predictions-2026-ealas-rise-and-raduncanus-injury",
+      "detail": "Title 70 chars (max 60): \"Tennis Betting Predictions for 2026: Eala's Rise and Raducanu's Injury\""
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "premier-league-transfer-frenzy-rashford-fulham-betting-pulse",
-      "detail": "Excerpt 177 chars (max 155)"
+      "page": "tennis-betting-predictions-2026-ealas-rise-and-raduncanus-injury",
+      "detail": "Excerpt 186 chars (max 155)"
     },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "77 posts",
-      "detail": "77 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "78 posts",
+      "detail": "78 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
