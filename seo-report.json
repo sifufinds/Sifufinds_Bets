@@ -1,25 +1,13 @@
 {
   "date": "2026-08-05",
-  "total": 3,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "tennis-betting-predictions-2026-ealas-rise-and-raduncanus-injury",
-      "detail": "Title 70 chars (max 60): \"Tennis Betting Predictions for 2026: Eala's Rise and Raducanu's Injury\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tennis-betting-predictions-2026-ealas-rise-and-raduncanus-injury",
-      "detail": "Excerpt 186 chars (max 155)"
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
