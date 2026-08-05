@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-05T05:58:57.031512+00:00",
+    "checked_at": "2026-08-05T07:57:50.156502+00:00",
     "candidates_available": 41,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '###', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 887 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'If you have any questions or need further clarification on any of these topics, please don't hesitate to ask.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 839 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "quality_gate: only 608 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 671 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 719 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Yes, it's possible to use multiple bookmakers at once, but ensure you meet the terms and conditions of each site before placing bets.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
