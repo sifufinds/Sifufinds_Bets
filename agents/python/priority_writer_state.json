@@ -18,8 +18,8 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-05T03:36:13.840032+00:00",
-    "candidates_available": 34,
+    "checked_at": "2026-08-05T05:36:16.742481+00:00",
+    "candidates_available": 41,
     "attempted": 3,
     "written": 0,
     "attempts": [
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 874 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Online sports betting is regulated by the National Lottery Regulatory Commission (NLRC) in Nigeria. However, as with any form of gaming, it's essential to practice responsible gambling habits and follow the T&Cs to ensure a safe and enjoyable experience.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 995 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 733 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "missing_output_markers"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "missing_output_markers"
+        "reason": "quality_gate: only 742 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       }
     ]
   }
