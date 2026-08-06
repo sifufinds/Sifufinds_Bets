@@ -18,8 +18,8 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-05T21:13:26.408372+00:00",
-    "candidates_available": 41,
+    "checked_at": "2026-08-06T08:07:37.601960+00:00",
+    "candidates_available": 47,
     "attempted": 3,
     "written": 0,
     "attempts": [
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 791 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was '---', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 947 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '**Internal Link: [Understanding Odds Formats for Nigerian Online Sports Betting](https://sifufinds.com/understanding-odds-formats-for-nigerian-online-sports-betting)**', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 629 words (minimum 1000); final line was 'No, you must be at least 18 years old to use Betway Nigeria or any other bookmaker.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 453 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Responsible gambling practices include setting budgets, monitoring bankroll, and taking regular breaks.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 914 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; found a 'Q:'/'A:' label on a heading line — questions must be plain headings with no label; final line was 'Note: The above guide is based on general research and may not be up-to-date or accurate. For the most recent information, please visit our page on [sifufinds.com](http://sifufinds.com).', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 657 words (minimum 1000); no '## FAQ' section heading found"
       }
     ]
   }
