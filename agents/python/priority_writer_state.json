@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-06T12:31:55.241026+00:00",
+    "checked_at": "2026-08-06T14:57:23.193397+00:00",
     "candidates_available": 47,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 755 words (minimum 1000); final line was '[IBetafrica - Beginner's Guide to Sports Betting in Nigeria: Odds, Tips & Strategies](https://ibetafrica.com/2025/08/24/beginners-guide-to-sports-betting-in-nigeria-odds-tips-strategies/)', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 734 words (minimum 1000); no '## FAQ' section heading found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '### [Visit sifufinds.com](https://sifufinds.com) for more information on online sports betting and bookmaker reviews.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 845 words (minimum 1000); no '## FAQ' section heading found; final line was 'Yes, you can place bets on your favorite football leagues such as NPFL, CAF Champions League, Premier League, UEFA Champions League, and AFCON using the betting apps mentioned above.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 712 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 814 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 506 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was '18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
