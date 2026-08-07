@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-07T13:20:44.620000+00:00",
+    "checked_at": "2026-08-07T22:33:25.204366+00:00",
     "candidates_available": 54,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 938 words (minimum 1000)"
+        "reason": "quality_gate: only 852 words (minimum 1000); no '## FAQ' section heading found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'To avoid overspending, it's essential to set limits on your betting activity. This will help you enjoy online sports betting without compromising your financial stability.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 859 words (minimum 1000); final line was 'When it comes to betting in Nigeria, finding the safest and most reliable betting apps can be a daunting task. However, by following our guide, you'll be well-equipped to make an informed decision and enjoy a secure betting experience.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 755 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'To maintain a healthy balance between betting and other aspects of your life, set limits on your bets and deposits, take regular breaks from betting, monitor your spending habits, and seek help from a professional organization or support group if needed.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 796 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 831 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '### *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
