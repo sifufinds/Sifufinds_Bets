@@ -1,25 +1,13 @@
 {
   "date": "2026-08-07",
-  "total": 3,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "liverpool-leeds-palace-transfer-rumours-odds",
-      "detail": "Title 88 chars (max 60): 'Liverpool, Leeds & Palace in Transfer Hot\u2011Water \u2013 What the Rumours Mea'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "liverpool-leeds-palace-transfer-rumours-odds",
-      "detail": "Excerpt 166 chars (max 155)"
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
