@@ -1,25 +1,13 @@
 {
   "date": "2026-08-07",
-  "total": 3,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "esports-betting-africa-2026",
-      "detail": "Title 75 chars (max 60): 'The Rise of Esports Betting in Africa: How Operators are Poised for Su'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "esports-betting-africa-2026",
-      "detail": "Excerpt 195 chars (max 155)"
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
