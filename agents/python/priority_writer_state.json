@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-07T04:30:25.957436+00:00",
+    "checked_at": "2026-08-07T04:53:40.343255+00:00",
     "candidates_available": 54,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 812 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Responsible gambling involves setting a budget for yourself, sticking to it, and not chasing losses. It's also essential to take breaks from betting and prioritize your mental health.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 685 words (minimum 1000); no '## FAQ' section heading found"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 714 words (minimum 1000); no '## FAQ' section heading found"
+        "reason": "quality_gate: only 606 words (minimum 1000); no '## FAQ' section heading found"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '#### ###', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'To claim your welcome bonus, follow these steps: create an account, deposit the required minimum amount, look out for a dedicated section or email notification where you can claim your bonus, apply the bonus to your bet slip, and place a qualifying bet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
