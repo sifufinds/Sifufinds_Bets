@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-07T20:07:55.088077+00:00",
+    "checked_at": "2026-08-07T22:09:05.546409+00:00",
     "candidates_available": 54,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 950 words (minimum 1000); final line was 'If you or someone you know has a gambling problem, seek help from organizations such as the National Council on Problem Gambling (NCPG) or Gamblers Anonymous.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 717 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "missing_output_markers"
+        "reason": "quality_gate: only 558 words (minimum 1000); no '## FAQ' section heading found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 544 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 649 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       }
     ]
   }
