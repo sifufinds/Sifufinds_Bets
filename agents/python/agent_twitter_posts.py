@@ -599,51 +599,49 @@ async def _post_playwright(text: str) -> bool:
             await page.wait_for_timeout(500)
         print(f"Post button enabled after polling: {button_enabled}")
 
-        # Primary submission: X binds Ctrl/Cmd+Enter to submit the compose
-        # box. Clicking the Post button has proven unreliable in practice —
-        # Playwright's click, even with force=True, still dispatches at real
-        # screen coordinates and gets hit-tested by the browser; if the
-        # documented #layers overlay genuinely sits on top of the button, the
-        # click lands on the overlay instead of the button, with zero effect
-        # (confirmed live: correct button testid located, but zero network
-        # calls fired and the compose box stayed open after the click). A
-        # keyboard shortcut has no click target to miss. Try both bindings
-        # (some apps check ctrlKey||metaKey unconditionally, others branch on
-        # detected platform) but only advance to the next once the previous
-        # produced no response, to avoid double-submitting.
-        #
-        # Two full passes (added 2026-08-07): production runs showed the
-        # button flip from enabled (initial poll above) back to
-        # aria-disabled='true' by the time the click fallback ran — a
-        # debounce race, not a permanent block. A single read right before
-        # the fallback click could catch it mid-debounce and give up on a
-        # button that re-enables moments later. Poll again before clicking,
-        # and if a whole pass still produces nothing, re-focus the compose
-        # box and try once more before raising — costs a few seconds against
+        # Click first, before any Enter key press (reordered 2026-08-07).
+        # Earlier versions tried Ctrl/Cmd+Enter first and only clicked as a
+        # fallback — but production diagnostics on 2026-08-07 showed the
+        # button read aria-disabled='true' at the click step on every single
+        # failure, across two full passes, meaning the click was *never once*
+        # exercised while the button was confirmed enabled. The disabling
+        # consistently follows the Enter attempts, not precedes them — the
+        # likely mechanism is X's compose box treating Enter specially when
+        # an @mention/#hashtag autocomplete dropdown is open (common for
+        # this repo's tweets, which almost always end in a hashtag or a URL
+        # with a link-preview card), consuming the keypress instead of
+        # submitting and leaving the box in a disabled/settling state. Click
+        # has no such interaction with autocomplete. Ctrl/Cmd+Enter remains
+        # the fallback for the opposite failure mode (a genuine click-overlay
+        # miss) rather than the primary path. Two full passes with a
+        # re-focus in between, same as before — costs a few seconds against
         # a workflow-level retry that waits 10+ minutes.
         for pass_num in (1, 2):
+            ready = button_enabled if pass_num == 1 else False
+            if not ready:
+                for _ in range(10):  # poll up to ~5s
+                    disabled = await post_btn.get_attribute("aria-disabled")
+                    if disabled != "true":
+                        ready = True
+                        break
+                    await page.wait_for_timeout(500)
+
+            if ready:
+                print("Clicking Post button (before any Enter key press)...")
+                await post_btn.click(force=True)
+                await page.wait_for_timeout(3_000)
+            else:
+                print("Post button still disabled — skipping click, trying keyboard shortcut...")
+
+            if create_tweet_result:
+                break
+
             for combo in ("Control+Enter", "Meta+Enter"):
                 if create_tweet_result:
                     break
                 print(f"Submitting via {combo}...")
                 await page.keyboard.press(combo)
                 await page.wait_for_timeout(2_500)
-
-            if create_tweet_result:
-                break
-
-            print("Keyboard shortcut produced no response — polling button state before click...")
-            click_ready = False
-            for _ in range(10):  # poll up to ~5s — button may still be settling from debounce
-                pre_click_disabled = await post_btn.get_attribute("aria-disabled")
-                if pre_click_disabled != "true":
-                    click_ready = True
-                    break
-                await page.wait_for_timeout(500)
-            print(f"Post button aria-disabled before click: {'false' if click_ready else 'true'}")
-            print("Clicking Post button...")
-            await post_btn.click(force=True)
-            await page.wait_for_timeout(4_000)
 
             if create_tweet_result or pass_num == 2:
                 break
