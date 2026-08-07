@@ -27,7 +27,7 @@
   });
 })();
 </script>
-<link rel="preload" href="assets/shared.js?v=12" as="script">
+<link rel="preload" href="assets/shared.js?v=13" as="script">
 <link rel="preload" href="assets/shared.css?v=9" as="style">
 <!-- Critical-path connections -->
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
@@ -618,7 +618,7 @@
 <script>
 const SITE={home:'/',tips:'tips/',casino:'casino/',odds:'odds/',countries:'countries/'};
 </script>
-<script src="assets/shared.js?v=12"></script>
+<script src="assets/shared.js?v=13"></script>
 <script>
 // ── PAGE-SPECIFIC JS ──────────────────────────────────────────────────────────
 const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BW:'Botswana',NA:'Namibia',EG:'Egypt',MA:'Morocco',SL:'Sierra Leone',LR:'Liberia'};
@@ -711,7 +711,7 @@ function renderBooks(){
 
 function renderFeatCards(){
   const cty=getCurrentCountry();
-  const books=(BOOKS[cty]||BOOKS.NG).slice(0,5);
+  const books=(BOOKS[cty]||BOOKS.NG).slice(0,8);
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${b.bg}">

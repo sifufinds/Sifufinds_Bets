@@ -19,7 +19,7 @@
 <meta property="og:title" content="Best Betting Sites in Cameroon 2026 | SifuFinds">
 <meta property="og:description" content="Compare the 4 best licensed betting sites in Cameroon 2026. Verified bonuses, Orange Money, MTN MoMo payments and expert bookmaker reviews. Updated daily.">
 <meta property="og:url" content="https://sifufinds.com/countries/cameroon/">
-<meta property="og:image" content="https://sifufinds.com/assets/og/country-cameroon.png">
+<meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Best Betting Sites in Cameroon — SifuFinds">
@@ -31,7 +31,7 @@
 <meta name="twitter:site" content="@sifufinds">
 <meta name="twitter:title" content="Best Betting Sites in Cameroon 2026 | SifuFinds">
 <meta name="twitter:description" content="Compare the 4 best licensed betting sites in Cameroon 2026. Verified bonuses, Orange Money, MTN MoMo payments and expert bookmaker reviews. Updated daily.">
-<meta name="twitter:image" content="https://sifufinds.com/assets/og/country-cameroon.png">
+<meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
 
 <!-- Geo -->
 <meta name="geo.region" content="CM">
@@ -64,31 +64,11 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Is online betting legal in Cameroon?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Yes. Sports betting is legal and regulated in Cameroon. The licensing authority is the Autorité des Marchés des Jeux (AMJ). All bookmakers listed on SifuFinds hold valid licences for the Cameroon market — we only list fully licensed operators."}
-        },
-        {
-          "@type": "Question",
-          "name": "What payment methods can I use at Cameroon betting sites?",
-          "acceptedAnswer": {"@type": "Answer", "text": "The most popular deposit and withdrawal methods at Cameroon betting sites include Orange Money, MTN MoMo, Bank Transfer. Most licensed bookmakers process withdrawals within 24 hours to mobile money accounts."}
-        },
-        {
-          "@type": "Question",
-          "name": "Which betting site has the highest bonus in Cameroon?",
-          "acceptedAnswer": {"@type": "Answer", "text": "1xBet Cameroon currently offers one of the highest welcome bonuses in Cameroon at CFA 100,000. SifuFinds compares all verified offers daily — use the Highest Bonus sort to see the current leader."}
-        },
-        {
-          "@type": "Question",
-          "name": "What is the minimum deposit at Cameroon betting sites?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Minimum deposits at Cameroon betting sites start from CFA 500 at some bookmakers. Mobile money platforms typically have very low minimums to keep betting accessible."}
-        },
-        {
-          "@type": "Question",
-          "name": "What sports and leagues can I bet on in Cameroon?",
-          "acceptedAnswer": {"@type": "Answer", "text": "The most popular betting markets in Cameroon include MTN Elite One, CAF Champions League, Ligue 1 France. Football is the dominant sport, with both local leagues and international competitions attracting high betting volumes."}
-        }
+{"@type": "Question", "name": "Is online betting legal in Cameroon?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Sports betting is legal and regulated in Cameroon. The licensing authority is the Autorit\u00e9 des March\u00e9s des Jeux (AMJ). All bookmakers listed on SifuFinds hold valid licences for the Cameroon market \u2014 we only list fully licensed operators."}},
+{"@type": "Question", "name": "What payment methods can I use at Cameroon betting sites?", "acceptedAnswer": {"@type": "Answer", "text": "The most popular deposit and withdrawal methods at Cameroon betting sites include Orange Money, MTN MoMo, Bank Transfer. Most licensed bookmakers process withdrawals within 24 hours to mobile money accounts."}},
+{"@type": "Question", "name": "Which betting site has the highest bonus in Cameroon?", "acceptedAnswer": {"@type": "Answer", "text": "1xBet Cameroon currently offers one of the highest welcome bonuses in Cameroon at CFA 100,000. SifuFinds compares all verified offers daily \u2014 use the Highest Bonus sort to see the current leader."}},
+{"@type": "Question", "name": "What is the minimum deposit at Cameroon betting sites?", "acceptedAnswer": {"@type": "Answer", "text": "Minimum deposits at Cameroon betting sites start from CFA 500 at some bookmakers. Mobile money platforms typically have very low minimums to keep betting accessible."}},
+{"@type": "Question", "name": "What sports and leagues can I bet on in Cameroon?", "acceptedAnswer": {"@type": "Answer", "text": "The most popular betting markets in Cameroon include MTN Elite One, CAF Champions League, Ligue 1 France. Football is the dominant sport, with both local leagues and international competitions attracting high betting volumes."}}
       ]
     }
   ]
@@ -199,6 +179,12 @@
   </div>
 </div></div>
 
+<!-- FEATURED -->
+<div class="feat-bar"><div class="wrap">
+  <div class="feat-lbl">⭐ Top Picks · Cameroon</div>
+  <div class="feat-grid" id="feat-cards"></div>
+</div></div>
+
 <!-- MAIN CONTENT -->
 <div class="sec-bg"><div class="wrap">
   <div class="breadcrumb">
@@ -307,7 +293,7 @@
   </div>
 </div>
 
-<script src="../../assets/shared.js?v=12"></script>
+<script src="../../assets/shared.js?v=13"></script>
 <script>
 const SITE={home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../'
 };
@@ -384,6 +370,22 @@ function renderBooks(){
   H('mcount',`Showing ${books.length} bookmaker${books.length!==1?'s':''}`);
 }
 
+function renderFeatCards(){
+  const books=(BOOKS[_PAGE_CTY]||[]).slice(0,8);
+  H('feat-cards',books.map(b=>`
+  <div class="fc">
+    <div class="fc-img" style="background:${b.bg}">
+      <img src="${logoUrl(b.url,b.abbr)}" data-fb="${logoFb(b.url,b.abbr)}" alt="${b.name} logo" width="180" height="180" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0;opacity:0;transition:opacity .25s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
+      <span class="fc-nm">${b.name}</span>
+    </div>
+    <div class="fc-body">
+      <div class="fc-stars">${stars(b.stars)}</div>
+      <div class="fc-off">${b.off}</div>
+      <a class="gbtn" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored">Claim →</a>
+    </div>
+  </div>`).join(''));
+}
+
 function init(){
   const sel=document.getElementById('ctySel');
   if(sel)sel.value=_PAGE_CTY;
@@ -391,6 +393,7 @@ function init(){
   H('foot-date',DATE_STR);
   H('foot-yr',NOW.getFullYear());
   renderBooks();
+  renderFeatCards();
 }
 init();
 </script>

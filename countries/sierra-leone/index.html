@@ -199,6 +199,12 @@
   </div>
 </div></div>
 
+<!-- FEATURED -->
+<div class="feat-bar"><div class="wrap">
+  <div class="feat-lbl">⭐ Top Picks · Sierra Leone</div>
+  <div class="feat-grid" id="feat-cards"></div>
+</div></div>
+
 <!-- MAIN CONTENT -->
 <div class="sec-bg"><div class="wrap">
   <div class="breadcrumb">
@@ -306,7 +312,7 @@
   </div>
 </div>
 
-<script src="../../assets/shared.js?v=12"></script>
+<script src="../../assets/shared.js?v=13"></script>
 <script>
 const SITE={home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../'
 };
@@ -383,6 +389,22 @@ function renderBooks(){
   H('mcount',`Showing ${books.length} bookmaker${books.length!==1?'s':''}`);
 }
 
+function renderFeatCards(){
+  const books=(BOOKS[_PAGE_CTY]||[]).slice(0,8);
+  H('feat-cards',books.map(b=>`
+  <div class="fc">
+    <div class="fc-img" style="background:${b.bg}">
+      <img src="${logoUrl(b.url,b.abbr)}" data-fb="${logoFb(b.url,b.abbr)}" alt="${b.name} logo" width="180" height="180" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0;opacity:0;transition:opacity .25s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
+      <span class="fc-nm">${b.name}</span>
+    </div>
+    <div class="fc-body">
+      <div class="fc-stars">${stars(b.stars)}</div>
+      <div class="fc-off">${b.off}</div>
+      <a class="gbtn" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored">Claim →</a>
+    </div>
+  </div>`).join(''));
+}
+
 function init(){
   const sel=document.getElementById('ctySel');
   if(sel)sel.value=_PAGE_CTY;
@@ -390,6 +412,7 @@ function init(){
   H('foot-date',DATE_STR);
   H('foot-yr',NOW.getFullYear());
   renderBooks();
+  renderFeatCards();
 }
 init();
 </script>
