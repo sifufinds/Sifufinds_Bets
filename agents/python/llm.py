@@ -1,6 +1,6 @@
 """
-AI wrapper — Groq primary (4 models, each its own free daily quota), a
-local self-hosted open-weight model as a genuinely-free last resort, then
+AI wrapper — Groq primary (4 models, each its own free daily quota), then
+two genuinely-free-and-keyless fallbacks (g4f, then local Ollama), then
 Claude/Gemini as optional paid/billing-gated tiers if ever configured.
 
 Fallback chain (each tier is tried before the next):
@@ -8,12 +8,20 @@ Fallback chain (each tier is tried before the next):
   2. Groq llama-3.1-8b-instant     — faster, separate free TPD quota
   3. Groq openai/gpt-oss-120b      — separate free TPD quota
   4. Groq openai/gpt-oss-20b       — separate free TPD quota
-  5. Local Ollama (llama3.1:8b)    — no signup, no API key, no billing;
+  5. g4f (gpt-4o-mini → gpt-4 →    — no signup, no API key, no billing;
+     llama-3.3-70b)                  hosted (seconds, not CPU-bound
+                                      minutes) aggregator of free
+                                      reverse-engineered LLM front-ends
+                                      (github.com/xtekky/gpt4free)
+  6. Local Ollama (llama3.1:8b)    — no signup, no API key, no billing;
                                      installed + started on demand only
-                                     once every tier above has failed
-  6. Claude claude-haiku-4-5        — reliable paid fallback, very cheap
-  7. Gemini gemini-2.0-flash-lite  — higher free-tier RPM than full flash
-  8. Gemini gemini-2.0-flash       — separate daily quota fallback
+                                     once every tier above has failed;
+                                     the only tier below that has zero
+                                     dependency on a third-party service
+                                     staying up
+  7. Claude claude-haiku-4-5        — reliable paid fallback, very cheap
+  8. Gemini gemini-2.0-flash-lite  — higher free-tier RPM than full flash
+  9. Gemini gemini-2.0-flash       — separate daily quota fallback
 
 Groq bills tokens-per-day (TPD) per model, not per account, so a model
 sitting near its cap doesn't touch the other three — that's why tiers 1-4
@@ -26,19 +34,31 @@ rolling window (minutes to hours since that model's quota was last consumed,
 not a fixed midnight-UTC cliff), so waiting the RPM-sized cap before retrying
 just wastes job time. They fall through to the next tier immediately instead.
 
-Tier 5 (Ollama) exists because this repo runs ~10 different scheduled
-agents off one shared free Groq key (see AGENT-KNOWLEDGE.md 2026-08-01) —
-cumulative usage across all of them can exhaust every Groq model's daily
-quota on a busy day, and neither Claude nor Gemini billing is set up, which
-previously meant total content silence until Groq's quota rolled over. The
-local model is deliberately only installed/started lazily inside
+Tiers 5-6 exist because this repo runs ~10 different scheduled agents off
+one shared free Groq key (see AGENT-KNOWLEDGE.md 2026-08-01) — cumulative
+usage across all of them can exhaust every Groq model's daily quota on a
+busy day, and neither Claude nor Gemini billing is set up, which previously
+meant total content silence until Groq's quota rolled over.
+
+g4f (tier 5, added 2026-08-08) is tried before Ollama because it is hosted
+(a real GPT-4o-mini/GPT-4-class response in 1-9s in testing, vs. Ollama's
+multi-minute CPU-only inference) and meaningfully better than the local
+model at following "don't invent a fee/quote" instructions — but it works by
+proxying free public chat front-ends, not a stable documented API, so
+individual g4f providers/models can and do break without notice. Every
+call is wrapped in a hard wall-clock timeout and any failure (exception,
+timeout, or empty response) falls straight through to the next model in
+_G4F_MODELS, then to Ollama — this tier is a pure bonus, never a
+dependency the rest of the pipeline assumes is up.
+
+Local Ollama (tier 6) is deliberately only installed/started lazily inside
 _ensure_ollama() the first time it's actually needed in a given process —
-never as a workflow-level setup step — so the common case (a Groq model
-succeeds) pays zero extra latency or CI minutes. Quality is well below the
-70B-class Groq models; this is a last resort, not a replacement.
+never as a workflow-level setup step — so the common case (a Groq or g4f
+model succeeds) pays zero extra latency or CI minutes. Quality is well
+below the 70B-class Groq models; this is a last resort, not a replacement.
 
 Upgraded from llama3.2:3b to llama3.1:8b on 2026-08-08 (see
-AGENT-KNOWLEDGE.md): with Groq TPD now saturated most of the day across the
+AGENT-KNOWLEDGE.md): with Groq TPD saturated most of the day across the
 growing agent fleet and Gemini still billing-gated, Ollama had become the
 *de facto primary* writer for transfers content, not an occasional
 fallback — and 3b was hallucinating specific transfer fees/quotes not in
@@ -46,13 +66,13 @@ the source snippets often enough that agent_fact_checker.py was correctly
 blocking essentially 100% of drafts for a 12+ hour stretch. 8b is still a
 genuinely free/local/no-signup model (same zero-cost property that made 3b
 the chosen tier over a paid key or Gemini billing) but follows the
-"never invent a fee/quote" instruction meaningfully more reliably. This is
-a mitigation, not a fix for the underlying cause — Groq's shared quota
-being oversubscribed by the number of scheduled agents on one key.
+"never invent a fee/quote" instruction meaningfully more reliably. g4f
+(added the same day) further reduces how often Ollama is even reached.
 
 Get a free Groq key at: https://console.groq.com → API Keys → Create
 Get an Anthropic key at: https://console.anthropic.com
 Get a free Gemini key at: https://aistudio.google.com/app/apikey
+g4f and Ollama need no key or signup at all — see tiers 5-6 above.
 """
 import os
 import re
@@ -96,7 +116,56 @@ _GROQ_MODELS = [
     "openai/gpt-oss-20b",
 ]
 
-# ── Anthropic client (tier 5 — reliable paid fallback) ───────────────────────
+# ── g4f client (tier 5 — free, no signup, no API key, no billing) ───────────
+# github.com/xtekky/gpt4free — aggregates many free reverse-engineered LLM
+# front-ends behind one OpenAI-style interface. Genuinely optional: if the
+# package isn't installed (e.g. a local dev env that skipped it), this tier
+# is just absent from the chain rather than raising, same pattern as the
+# Anthropic import guard below.
+_g4f_client = None
+try:
+    from g4f.client import Client as _G4FClient
+    _g4f_client = _G4FClient()
+except ImportError:
+    print("[llm] g4f not installed — skipping the free no-signup g4f fallback tier "
+          "(falls through to Ollama/Claude/Gemini instead). Add 'g4f' to requirements.txt.")
+
+# Tried in order; each is a different underlying free provider/model, so one
+# breaking (g4f's providers rotate/get patched often — see module docstring)
+# doesn't take the others down with it.
+_G4F_MODELS = ["gpt-4o-mini", "gpt-4", "llama-3.3-70b"]
+_G4F_TIMEOUT = 60  # hard wall-clock cap per model attempt, in seconds
+
+
+def _ask_g4f(system_prompt: str, user_message: str, max_tokens: int, model: str) -> str:
+    """g4f's client has no reliable built-in timeout (some of its providers
+    can hang indefinitely on a dead upstream), so this enforces one from the
+    outside via a throwaway thread — the call is synchronous, there's no
+    async alternative worth threading through this module for a fallback
+    tier that's expected to fail sometimes."""
+    from concurrent.futures import ThreadPoolExecutor
+    from concurrent.futures import TimeoutError as _FutureTimeout
+
+    def _call() -> str:
+        response = _g4f_client.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message},
+            ],
+            max_tokens=max_tokens,
+        )
+        return (response.choices[0].message.content or "").strip()
+
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        future = pool.submit(_call)
+        try:
+            return future.result(timeout=_G4F_TIMEOUT)
+        except _FutureTimeout:
+            raise TimeoutError(f"g4f {model} did not respond within {_G4F_TIMEOUT}s")
+
+
+# ── Anthropic client (tier 7 — reliable paid fallback) ───────────────────────
 _anthropic_client = None
 if _anthropic_key:
     try:
@@ -116,11 +185,11 @@ if _anthropic_key:
               "Check agents/python/requirements.txt.")
 else:
     print("[llm] ⚠ ANTHROPIC_API_KEY not set — Claude fallback tier is "
-          "DISABLED, relying on Groq + Gemini free tiers only.")
+          "DISABLED, relying on Groq + g4f + Ollama + Gemini instead.")
 
 _ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"  # fast + cheapest Claude
 
-# ── Local Ollama fallback (tier 5 — no signup, no API key, no billing) ──────
+# ── Local Ollama fallback (tier 6 — no signup, no API key, no billing) ──────
 _OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 _OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
 _ollama_setup_attempted = False
@@ -193,7 +262,7 @@ def _ask_ollama(system_prompt: str, user_message: str, max_tokens: int) -> str:
     resp.raise_for_status()
     return resp.json()["message"]["content"].strip()
 
-# ── Gemini client (tiers 4 & 5) ───────────────────────────────────────────────
+# ── Gemini client (tiers 8 & 9) ───────────────────────────────────────────────
 # Tried in order; each model has its own separate daily quota bucket.
 _gemini_client = None
 if _gemini_key:
