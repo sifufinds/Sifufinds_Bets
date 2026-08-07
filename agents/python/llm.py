@@ -263,9 +263,17 @@ def ask_long(system_prompt: str, user_message: str) -> str:
 # TPD rolling-window reset cadence instead of assuming exhaustion forever.
 _groq_exhausted_this_process = False
 
+# Same rationale as _groq_exhausted_this_process just above: without this, a
+# single generate_post() call's second ask() (the fact-checker pass) would
+# re-attempt all 3 g4f models from scratch even after they just failed for
+# the draft a few seconds earlier, doubling wall-clock time for no benefit —
+# a dead g4f provider is dead for the rest of this process, not likely to
+# recover in the next few seconds.
+_g4f_exhausted_this_process = False
+
 
 def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -> str:
-    global _groq_exhausted_this_process
+    global _groq_exhausted_this_process, _g4f_exhausted_this_process
     if _groq_client and not _groq_exhausted_this_process:
         # Tiers 1-4 — four Groq models, each with its own separate free TPD
         # quota bucket, so one model capping out doesn't block the others.
@@ -291,24 +299,46 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
             # reasoning models (gpt-oss) can also come back with empty content
             # when hidden reasoning tokens consume the whole max_tokens budget —
             # that's not an exception, so it needs its own empty-result check.
-            next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else "local Ollama fallback"
+            next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else "g4f"
             print(f"[llm] Groq {model} exhausted or empty — trying {next_step}")
         _groq_exhausted_this_process = True
     elif _groq_exhausted_this_process:
-        print("[llm] Groq already confirmed exhausted earlier this run — skipping straight to local fallback")
+        print("[llm] Groq already confirmed exhausted earlier this run — skipping straight to g4f")
 
-    # Tier 5 — local, self-hosted open-weight model via Ollama. No signup,
-    # no API key, no billing — installed/started on demand (see
-    # _ensure_ollama()'s docstring). Tried before Claude/Gemini since those
-    # are currently unconfigured/billing-gated in this repo, making Ollama
-    # the only tier below that reliably works at all right now.
+    # Tier 5 — g4f: free, no-signup, no-API-key aggregator of hosted free
+    # LLM front-ends. Tried before Ollama because it's hosted (seconds, not
+    # CPU-bound minutes) and a meaningfully stronger writer than the local
+    # model — see module docstring. Any failure (bad provider, timeout,
+    # empty response) just moves to the next model in the list; if all of
+    # them fail, falls through to Ollama exactly like Groq exhaustion does.
+    if _g4f_client and not _g4f_exhausted_this_process:
+        for i, model in enumerate(_G4F_MODELS):
+            result = None
+            try:
+                result = _ask_g4f(system_prompt, user_message, max_tokens, model)
+            except Exception as e:
+                print(f"[llm] g4f {model} failed: {e}")
+            if result:
+                return result
+            next_step = _G4F_MODELS[i + 1] if i + 1 < len(_G4F_MODELS) else "local Ollama fallback"
+            print(f"[llm] g4f {model} exhausted or empty — trying {next_step}")
+        _g4f_exhausted_this_process = True
+    elif _g4f_exhausted_this_process:
+        print("[llm] g4f already confirmed exhausted earlier this run — skipping straight to local fallback")
+
+    # Tier 6 — local, self-hosted open-weight model via Ollama. No signup,
+    # no API key, no billing, no dependency on any third-party service
+    # staying up — installed/started on demand (see _ensure_ollama()'s
+    # docstring). The only tier below this point that's currently reliably
+    # configured at all: Claude has no API key, Gemini's free tier is
+    # billing-gated (see module docstring).
     if _ensure_ollama():
         try:
             return _ask_ollama(system_prompt, user_message, max_tokens)
         except Exception as e:
             print(f"[llm] Local Ollama fallback failed: {e} — trying Claude")
 
-    # Tier 6 — Claude (reliable paid fallback, fast)
+    # Tier 7 — Claude (reliable paid fallback, fast)
     if _anthropic_client:
         try:
             return _ask_claude(system_prompt, user_message, max_tokens)
@@ -319,7 +349,7 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
             else:
                 raise
 
-    # Tiers 7 & 8 — Gemini models tried in order, each with its own daily quota
+    # Tiers 8 & 9 — Gemini models tried in order, each with its own daily quota
     if _gemini_client:
         last_err: Exception | None = None
         for model in _GEMINI_MODELS:
@@ -349,14 +379,16 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
                 "All AI providers exhausted: all 4 Groq models are over their daily "
                 "token quota (each resets on its own rolling window, typically "
                 "minutes to a few hours after that model was last used, not a fixed "
-                "midnight-UTC cliff) and Gemini's free tier requires billing to be "
-                "enabled on the Google Cloud project."
+                "midnight-UTC cliff), every free g4f model failed or timed out, the "
+                "local Ollama fallback failed, and Gemini's free tier requires "
+                "billing to be enabled on the Google Cloud project."
             )
 
     raise AIProvidersExhausted(
         "All AI providers exhausted or rate-limited: all 4 Groq models are over "
-        "their daily token quota. Each resets on its own rolling window "
-        "(minutes to a few hours since last used), not a fixed midnight-UTC cliff."
+        "their daily token quota (each resets on its own rolling window, minutes "
+        "to a few hours since last used, not a fixed midnight-UTC cliff), every "
+        "free g4f model failed or timed out, and the local Ollama fallback failed."
     )
 
 
