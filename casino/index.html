@@ -302,7 +302,7 @@ function renderCasinos(){
 }
 
 function renderFeatCasinos(){
-  H('cas-feat',CASINOS.slice(0,4).map(c=>`
+  H('cas-feat',CASINOS.slice(0,8).map(c=>`
   <div class="cas-fc">
     <div class="fc-img" style="background:${c.bg}">
       <img src="${logoUrl(c.url,c.abbr)}" data-fb="${logoFb(c.url,c.abbr)}" alt="${c.name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0;opacity:0;transition:opacity .25s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">
