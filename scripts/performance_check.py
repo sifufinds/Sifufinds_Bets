@@ -166,10 +166,36 @@ def main() -> int:
     pages = {k: v for k, v in CHECK_PAGES.items() if not args.pages or k in args.pages}
     history = _load_history()
 
+    checked = 0
     for page_key, url in pages.items():
-        check_page(page_key, url, history)
+        if check_page(page_key, url, history) is not None:
+            checked += 1
 
     _save_history(history)
+
+    # Total-outage escalation (added 2026-08-07): found live that this check
+    # had been reporting workflow "success" every day for a full week
+    # (2026-08-01 through 2026-08-07) while silently recording zero real
+    # data — every one of the 5 pages hit HTTP 429 from Google's PageSpeed
+    # API (no PAGESPEED_API_KEY secret configured, so requests run against
+    # the free unauthenticated quota, which GitHub Actions' shared runner
+    # IP pool exhausts easily). Each individual failure was only ever a WARN
+    # per-page, indistinguishable in the log/history from "this one page had
+    # a slow metric" — nothing escalated "0/5 pages produced any data at
+    # all" to something a human would actually notice. That silent-failure
+    # shape is exactly what this repo's error-handling rules exist to catch.
+    if pages and checked == 0:
+        issue(
+            CRITICAL,
+            "ALL_PAGES",
+            f"0/{len(pages)} pages returned any PageSpeed data this run — the monitor is "
+            "producing zero real data, not just failing one metric. Most likely cause: no "
+            "PAGESPEED_API_KEY secret configured, so requests run against Google's free "
+            "unauthenticated quota and get rate-limited (429) by GitHub Actions' shared "
+            "runner IPs. Fix: create a key at https://console.cloud.google.com "
+            "(enable 'PageSpeed Insights API', free tier), then `gh secret set "
+            "PAGESPEED_API_KEY`.",
+        )
 
     critical = [i for i in issues if i["severity"] == CRITICAL]
     warnings = [i for i in issues if i["severity"] == WARN]
