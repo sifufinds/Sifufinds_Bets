@@ -611,20 +611,47 @@ async def _post_playwright(text: str) -> bool:
         # (some apps check ctrlKey||metaKey unconditionally, others branch on
         # detected platform) but only advance to the next once the previous
         # produced no response, to avoid double-submitting.
-        for combo in ("Control+Enter", "Meta+Enter"):
+        #
+        # Two full passes (added 2026-08-07): production runs showed the
+        # button flip from enabled (initial poll above) back to
+        # aria-disabled='true' by the time the click fallback ran — a
+        # debounce race, not a permanent block. A single read right before
+        # the fallback click could catch it mid-debounce and give up on a
+        # button that re-enables moments later. Poll again before clicking,
+        # and if a whole pass still produces nothing, re-focus the compose
+        # box and try once more before raising — costs a few seconds against
+        # a workflow-level retry that waits 10+ minutes.
+        for pass_num in (1, 2):
+            for combo in ("Control+Enter", "Meta+Enter"):
+                if create_tweet_result:
+                    break
+                print(f"Submitting via {combo}...")
+                await page.keyboard.press(combo)
+                await page.wait_for_timeout(2_500)
+
             if create_tweet_result:
                 break
-            print(f"Submitting via {combo}...")
-            await page.keyboard.press(combo)
-            await page.wait_for_timeout(2_500)
 
-        if not create_tweet_result:
-            print("Keyboard shortcut produced no response — falling back to button click...")
-            pre_click_disabled = await post_btn.get_attribute("aria-disabled")
-            print(f"Post button aria-disabled before click: {pre_click_disabled!r}")
+            print("Keyboard shortcut produced no response — polling button state before click...")
+            click_ready = False
+            for _ in range(10):  # poll up to ~5s — button may still be settling from debounce
+                pre_click_disabled = await post_btn.get_attribute("aria-disabled")
+                if pre_click_disabled != "true":
+                    click_ready = True
+                    break
+                await page.wait_for_timeout(500)
+            print(f"Post button aria-disabled before click: {'false' if click_ready else 'true'}")
             print("Clicking Post button...")
             await post_btn.click(force=True)
             await page.wait_for_timeout(4_000)
+
+            if create_tweet_result or pass_num == 2:
+                break
+
+            print("Pass 1 produced no response — re-focusing compose box and retrying once...")
+            await textarea.click()
+            await page.evaluate("() => { const el = document.activeElement; if (el) el.focus(); }")
+            await page.wait_for_timeout(500)
 
         # Diagnostics gathered before tearing down the page — if no CreateTweet
         # call was observed, these distinguish "click never registered with
