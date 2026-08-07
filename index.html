@@ -711,7 +711,7 @@ function renderBooks(){
 
 function renderFeatCards(){
   const cty=getCurrentCountry();
-  const books=(BOOKS[cty]||BOOKS.NG).slice(0,5);
+  const books=(BOOKS[cty]||BOOKS.NG).slice(0,8);
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${b.bg}">
