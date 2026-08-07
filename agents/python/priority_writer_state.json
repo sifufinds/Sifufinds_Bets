@@ -18,7 +18,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-07T06:52:18.622595+00:00",
+    "checked_at": "2026-08-07T09:20:10.478220+00:00",
     "candidates_available": 54,
     "attempted": 3,
     "written": 0,
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 934 words (minimum 1000); no '## FAQ' section heading found"
+        "reason": "quality_gate: only 722 words (minimum 1000); final line was 'Yes, most bookmakers offer mobile betting apps or websites, allowing you to place bets on-the-go.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 795 words (minimum 1000); no '## FAQ' section heading found; found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was '*18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 855 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 749 words (minimum 1000); no '## FAQ' section heading found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Choosing the best betting bonus in Kenya requires careful consideration of several factors. This guide has provided an overview of top bookmakers and their welcome bonuses, helping you make an informed decision when choosing a site that suits your needs.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 779 words (minimum 1000); final line was 'The min deposit/payout amount varies across bookmakers. For example, Betika Kenya requires KSh 10 for free bets, while SportPesa Kenya requires KSh 10 for the Karibu Gift.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
