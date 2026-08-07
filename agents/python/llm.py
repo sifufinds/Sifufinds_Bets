@@ -8,7 +8,7 @@ Fallback chain (each tier is tried before the next):
   2. Groq llama-3.1-8b-instant     — faster, separate free TPD quota
   3. Groq openai/gpt-oss-120b      — separate free TPD quota
   4. Groq openai/gpt-oss-20b       — separate free TPD quota
-  5. Local Ollama (llama3.2:3b)    — no signup, no API key, no billing;
+  5. Local Ollama (llama3.1:8b)    — no signup, no API key, no billing;
                                      installed + started on demand only
                                      once every tier above has failed
   6. Claude claude-haiku-4-5        — reliable paid fallback, very cheap
@@ -36,6 +36,19 @@ _ensure_ollama() the first time it's actually needed in a given process —
 never as a workflow-level setup step — so the common case (a Groq model
 succeeds) pays zero extra latency or CI minutes. Quality is well below the
 70B-class Groq models; this is a last resort, not a replacement.
+
+Upgraded from llama3.2:3b to llama3.1:8b on 2026-08-08 (see
+AGENT-KNOWLEDGE.md): with Groq TPD now saturated most of the day across the
+growing agent fleet and Gemini still billing-gated, Ollama had become the
+*de facto primary* writer for transfers content, not an occasional
+fallback — and 3b was hallucinating specific transfer fees/quotes not in
+the source snippets often enough that agent_fact_checker.py was correctly
+blocking essentially 100% of drafts for a 12+ hour stretch. 8b is still a
+genuinely free/local/no-signup model (same zero-cost property that made 3b
+the chosen tier over a paid key or Gemini billing) but follows the
+"never invent a fee/quote" instruction meaningfully more reliably. This is
+a mitigation, not a fix for the underlying cause — Groq's shared quota
+being oversubscribed by the number of scheduled agents on one key.
 
 Get a free Groq key at: https://console.groq.com → API Keys → Create
 Get an Anthropic key at: https://console.anthropic.com
@@ -109,7 +122,7 @@ _ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"  # fast + cheapest Claude
 
 # ── Local Ollama fallback (tier 5 — no signup, no API key, no billing) ──────
 _OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
-_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
+_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
 _ollama_setup_attempted = False
 
 
@@ -151,8 +164,8 @@ def _ensure_ollama() -> bool:
         else:
             print("[llm] Ollama server did not come up in time — skipping local fallback")
             return False
-        print(f"[llm] Pulling local fallback model {_OLLAMA_MODEL} (one-time per runner, ~2GB)...")
-        subprocess.run(["ollama", "pull", _OLLAMA_MODEL], check=True, timeout=600)
+        print(f"[llm] Pulling local fallback model {_OLLAMA_MODEL} (one-time per runner, ~4.7GB)...")
+        subprocess.run(["ollama", "pull", _OLLAMA_MODEL], check=True, timeout=900)
         return True
     except Exception as e:
         print(f"[llm] Local Ollama fallback unavailable in this environment: {e}")
@@ -173,8 +186,9 @@ def _ask_ollama(system_prompt: str, user_message: str, max_tokens: int) -> str:
         },
         # CPU-only inference on a shared runner is slow — a full-length
         # article generation can genuinely take several minutes, unlike the
-        # cloud tiers above.
-        timeout=900,
+        # cloud tiers above. 8b needs more headroom than the 3b model this
+        # was originally sized for (see 2026-08-08 model upgrade above).
+        timeout=1200,
     )
     resp.raise_for_status()
     return resp.json()["message"]["content"].strip()

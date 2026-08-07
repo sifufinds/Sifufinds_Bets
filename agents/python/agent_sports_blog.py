@@ -138,12 +138,19 @@ ACCURACY RULES — NON-NEGOTIABLE:
 - NEVER invent a transfer fee, a specific date/deadline, or a statistic that
   isn't in the headlines/snippets above — if the source doesn't give a fee or
   date, don't guess one; write "undisclosed fee" or "no date confirmed yet"
-  instead of a specific-sounding number
+  instead of a specific-sounding number. WRONG example (do not do this): if
+  a headline just says "Barcelona bid for Rodri", do not write "Barcelona's
+  initial bid for Rodri was £38.5m" — no figure was given, so no figure gets
+  written, not even a plausible-sounding one
 - NEVER put words in anyone's mouth — do not write a direct quote (in quotation
   marks) attributed to a player, club, bookmaker, or "a representative" unless
   that exact quote appears in the source snippets. Describe reactions and
   sentiment in your own voice instead (e.g. "bettors are reacting fast to the
   news" rather than inventing what someone supposedly said)
+- When in doubt about whether a specific number, date, or quote is actually
+  in the source snippets, leave it out entirely rather than guess — a vaguer
+  sentence that passes fact-check beats a specific one that gets the whole
+  article rejected
 - If the news shows the story is X hours old, reflect that timing accurately in the article
 - Attribute the story to the outlet that reported it, by name, at least once in the article (e.g. "as per BBC Sport", "Sky Sports News reports", "according to Fabrizio Romano") — the source for each headline is shown in brackets in the headlines list below
 
