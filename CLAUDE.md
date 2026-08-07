@@ -242,6 +242,26 @@ Every post must also be structured to get cited by AI answer engines (Google AI 
 - **Adding a new bookmaker brand**: add its slug to `BRAND_SLUGS` in `utils/affiliate_links.py` AND add the matching `RewriteRule ^<slug>/?$ "<real-url>" [R=301,L,NC]` to the `AFFILIATE LINK MASKING` block in `.htaccess` in the same change — the two must stay in sync or the masked link 404s. If an existing brand's affiliate URL changes (e.g. `affiliate` flips from `False` to `True` in `agent_telegram_offers.py`'s `BRANDS`), update its `.htaccess` rule at the same time.
 - Do not hand-patch one social agent and call it done — if you touch how affiliate links or CTAs are rendered, check `agent_telegram_offers.py`, `agent_match_post.py` (`build_bookmaker_block`, shared by match/casino/accumulator posts), `agent_casino_post.py`, `agent_accumulator_post.py`, `agent_twitter_posts.py`, and both `agent3_social*.py` files for the same pattern.
 
+## STANDING RULE — Brands With a Real Affiliate Link Are Always Top-of-List + Featured (added 2026-08-07)
+
+**Every bookmaker in `assets/shared.js`'s `BOOKS` object whose `url` points at a real affiliate-tracking domain (not the brand's own homepage) must sit at the top of its country's array, and be included in `HEADER_BRANDS` (the site-wide "🔥 Featured" bar).** This is a permanent rule, not a one-off cleanup — apply it every time a brand's `url` is changed from a placeholder homepage link to a real tracking link, and every time a new affiliate deal is onboarded.
+
+### Why this is mechanically what "top of list" and "featured" mean on this site
+- `BOOKS[cty]` array order **is** the default rank. `sortBooks()` in every `countries/<slug>/index.html` defaults to `s==='default'`, which returns the array as-is — position 1 in the array renders as `#1` on the country page. `renderFeatCards()` in `index.html` takes `BOOKS[cty].slice(0,5)` for the homepage "Featured" cards. There is no separate per-country "featured" flag to set — array position **is** the mechanism.
+- `HEADER_BRANDS` (near the bottom of `assets/shared.js`, rendered by `renderBrandsBar()`) is the site-wide "🔥 Featured" bar shown in the header on every page. It is a flat list, not per-country — add any affiliate brand here regardless of which country it targets.
+- Known real affiliate-tracking domains currently in use (a brand's `url` matching any of these — not its own `www.brandname.tld` homepage — is what makes it "affiliate-linked"): `reffpa.com`, `refpa3665.com`, `bwredir.com`, `1212fghnna.com`, `combodef.com`, `goaffnk.com`, `trackrt.tictacbets.co.za`, `track.trkbxa.click`, `track.bettapartners.co.za`. Add new tracking domains to this list as new affiliate networks are onboarded.
+
+### Full checklist when adding or changing any brand's real affiliate link
+1. `assets/shared.js` — update the `url` field on that brand's `BOOKS[cty]` entry (this is what the "Claim →" / "Bet Now →" buttons actually link to), then move that entry to the **front** of its country's array (stable: keep existing affiliate brands' relative order, then this one, then the rest as-is — don't reshuffle brands that weren't touched).
+2. `assets/shared.js` `HEADER_BRANDS` — add the brand (or move it to the front) so it appears in the "🔥 Featured" header bar.
+3. `agents/python/utils/affiliate_links.py` `BRAND_SLUGS` — register the brand's slug so `masked_url()`/social-agent CTAs work.
+4. `.htaccess` `AFFILIATE LINK MASKING` block — add the matching `RewriteRule ^<slug>/?$ "<real-affiliate-url>" [R=301,L,NC]`. Must stay in sync with `BRAND_SLUGS` or the masked link 404s.
+5. The ABBR→domain map (`assets/shared.js`, ~line 720, e.g. `'BTB':'bettabets.co.za'`) should point at the brand's **own** domain for logo-fetching purposes — never the tracking-redirect domain. Only add/update this if the brand is new; it's unrelated to the affiliate `url` field.
+6. Bump `?v=N` on every `shared.js?v=` / `shared.css` reference site-wide (see the 2026-07-31 "Rotating 3-Brand Offer Popup" rule below for the exact file list — currently ~1,487 `.html` files + 7 Python generators) since `shared.js` changed.
+7. Re-run `python3 scripts/validate_site.py` and `python3 scripts/compliance_check.py` — both must exit clean before committing.
+
+**Scope note**: this rule reorders a country's bookmaker list by affiliate status only for brands that actually carry a real tracking link — it does not mean every organic (non-affiliate) listing gets pushed down arbitrarily beyond that. When multiple affiliate brands exist in one country, preserve their existing relative order among themselves rather than re-ranking them against each other without a specific reason to.
+
 ## Content Focus
 - African betting markets: Nigeria, Kenya, Ghana, South Africa, Tanzania, Uganda, Zambia, Ethiopia, Ivory Coast, Cameroon, Senegal, Rwanda, Zimbabwe, Malawi, Mozambique, Angola, DR Congo, Botswana, Namibia, Egypt, Morocco
 - Bookmakers: Bet9ja, SportyBet, Betway, 1xBet, Hollywoodbets, 22Bet, Melbet
