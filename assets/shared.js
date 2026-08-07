@@ -969,23 +969,24 @@ document.addEventListener('click',e=>{
 });
 
 // ── HEADER BRANDS BAR ─────────────────────────────────────────────────────────
-// Top brands for the visitor's own country, not one static global list —
-// "hot"-badged brands first, then highest star rating, from that country's BOOKS[].
-const _HBRANDS_COUNT=8;
-function _pickTopBrands(cty,n){
-  const pool=(BOOKS[cty]||BOOKS.NG).slice();
-  pool.sort((a,b)=>((b.badge==='hot'?100:0)+b.stars)-((a.badge==='hot'?100:0)+a.stars));
-  return pool.slice(0,n);
-}
+const HEADER_BRANDS=[
+  {name:'Bettabets',abbr:'BTB',bg:'#1B5E20',tc:'#fff',url:'https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777',domain:'bettabets.co.za',tag:'R200 Free Bet on First Deposit'},
+  {name:'BetXchange',abbr:'BX',bg:'#0D47A1',tc:'#fff',url:'https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226',domain:'betxchange.co.za',tag:'R200 Free Bet on First Deposit'},
+  {name:'1xBet',abbr:'1X',bg:'#E60000',tc:'#fff',url:'https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97',domain:'1xbet.com',tag:'Up to ₦1.2M Bonus'},
+  {name:'BetWinner',abbr:'BW',bg:'#0055A4',tc:'#fff',url:'https://bwredir.com/1Lvf?p=%2Fregistration%2F',domain:'betwinner.com',tag:'200% Welcome Bonus'},
+  {name:'HelaBet',abbr:'HB',bg:'#1565C0',tc:'#fff',url:'https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235',domain:'helabet.com',tag:'100% Welcome Bonus'},
+  {name:'Melbet',abbr:'MB',bg:'#FD1B26',tc:'#fff',url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559',domain:'melbet.com',tag:'200% + 150 Sports'},
+  {name:'Paripesa',abbr:'PP',bg:'#2E7D32',tc:'#fff',url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',domain:'paripesa.com',tag:'200% First Deposit'},
+  {name:'TicTacBets',abbr:'TTC',bg:'#00838F',tc:'#fff',url:'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023',domain:'tictacbets.co.za',tag:'25 Free Spins + R5K'}
+];
 function renderBrandsBar(){
   const el=document.getElementById('hbrands');
   if(!el)return;
-  const brands=_pickTopBrands(getCurrentCountry(),_HBRANDS_COUNT);
   el.innerHTML=`<div class="hbrands-in"><span class="hbrands-lbl">🔥 Featured</span><div class="hbrands-list">${
-    brands.map(b=>`<a class="hbrand" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored" style="background:${b.bg};color:${b.tc}"><div class="hbrand-logo">${logoImg(b.url,b.name,b.abbr,b.tc,22,3,true)}</div><div class="hbrand-body"><span class="hbrand-name">${b.name}</span><span class="hbrand-tag">${b.tag}</span></div><span class="hbrand-cta">Bet Now →</span></a>`).join('')
+    HEADER_BRANDS.map(b=>{const logoSrc=b.domain?`https://${b.domain}`:b.url;return`<a class="hbrand" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored" style="background:${b.bg};color:${b.tc}"><div class="hbrand-logo">${logoImg(logoSrc,b.name,b.abbr,b.tc,22,3,true)}</div><div class="hbrand-body"><span class="hbrand-name">${b.name}</span><span class="hbrand-tag">${b.tag}</span></div><span class="hbrand-cta">Bet Now →</span></a>`;}).join('')
   }</div></div>`;
 }
-document.addEventListener('DOMContentLoaded',()=>{waitForCountry().then(renderBrandsBar);});
+document.addEventListener('DOMContentLoaded',renderBrandsBar);
 
 // Inject About link into nav on every page (E-E-A-T trust signal)
 document.addEventListener('DOMContentLoaded',function(){

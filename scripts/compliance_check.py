@@ -22,7 +22,7 @@ Checks:
      .htaccess AFFILIATE LINK MASKING block so this never drifts out of sync)
      carry rel="sponsored" wherever they're rendered, including in
      assets/*.js template strings (many CTAs are client-rendered, not baked
-     into the static HTML — see assets/shared.js's renderBrandsBar()).
+     into the static HTML — see assets/shared.js's HEADER_BRANDS renderer).
   5. Every active Featured Listings placement (data/featured_listings.json,
      once populated) renders with a visible "Sponsored" label at its target
      location — a no-op until that file exists.
