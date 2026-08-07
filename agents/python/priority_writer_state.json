@@ -18,8 +18,8 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-07T02:30:52.493165+00:00",
-    "candidates_available": 47,
+    "checked_at": "2026-08-07T04:30:25.957436+00:00",
+    "candidates_available": 54,
     "attempted": 3,
     "written": 0,
     "attempts": [
@@ -27,19 +27,19 @@
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 823 words (minimum 1000); final line was 'To avoid problem gambling, set a budget, track your bets, and take regular breaks. Bookmakers also offer tools such as self-exclusion and deposit limits to help you manage your betting habits.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 812 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Responsible gambling involves setting a budget for yourself, sticking to it, and not chasing losses. It's also essential to take breaks from betting and prioritize your mental health.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "safest betting apps Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 690 words (minimum 1000); no '## FAQ' section heading found; found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "quality_gate: only 714 words (minimum 1000); no '## FAQ' section heading found"
       },
       {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 838 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was '### *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '#### ###', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
