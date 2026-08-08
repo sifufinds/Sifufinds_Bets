@@ -124,41 +124,62 @@ _GROQ_MODELS = [
 # Anthropic import guard below.
 _g4f_client = None
 _G4F_PROVIDERS: list[tuple[object, str, str]] = []  # (provider_class, model, label)
+
+# Deliberately PINNED to specific provider classes instead of leaving
+# model="gpt-4o-mini" etc. to g4f's own auto-provider-selection. Confirmed
+# live 2026-08-08: on the actual GitHub Actions runner (not just this dev
+# machine), g4f's auto-selection routed straight to providers that need real
+# credentials — "GithubCopilot: MissingAuthError ... run 'g4f auth
+# github-copilot'" and "Nvidia: PaymentRequiredError: No cake credits" — so
+# every g4f attempt failed and the tier was a total no-op in production
+# despite passing every local test. These three were individually
+# live-tested (both a short JSON fact-check prompt and a full 700+ word
+# article-generation prompt) and require no auth of any kind. WeWordle first
+# (fastest, ~2-11s, handles both prompt shapes cleanly); OperaAria next
+# (slower, ~30s, but the only other one that reliably handled the long
+# article-generation prompt); Cloudflare last (fast for short prompts like
+# fact-checking, but has a live bug — UnboundLocalError — on longer prompts,
+# so it's a weak bet for article drafts specifically but harmless to try
+# since a failure here just falls through to Ollama like any other).
+# Re-verify this list with the test snippet in AGENT-KNOWLEDGE.md's
+# 2026-08-08 entry if g4f is ever touched again — individual providers
+# break/get patched without notice.
+#
+# Each provider is imported independently (fixed 2026-08-08): the original
+# code imported all three under one try/except ImportError, so when g4f
+# shipped a version where WeWordle alone had been renamed/removed (confirmed
+# live: "cannot import name 'WeWordle' from 'g4f.Provider'" on a normal
+# scheduled run), the ImportError killed OperaAria and Cloudflare too even
+# though neither one was actually broken — the whole tier silently went from
+# 3 working providers to 0 because of one. requirements.txt only pins
+# g4f>=7.9.0 (no upper bound), so this kind of drift between what was tested
+# and what actually installs on a fresh ephemeral runner is expected to
+# recur; degrading per-provider instead of all-or-nothing is what actually
+# fixes it, not chasing an exact version pin.
 try:
     from g4f.client import Client as _G4FClient
-    from g4f.Provider import WeWordle as _WeWordle
-    from g4f.Provider import OperaAria as _OperaAria
-    from g4f.Provider import Cloudflare as _Cloudflare
     _g4f_client = _G4FClient()
-
-    # Deliberately PINNED to specific provider classes instead of leaving
-    # model="gpt-4o-mini" etc. to g4f's own auto-provider-selection.
-    # Confirmed live 2026-08-08: on the actual GitHub Actions runner (not
-    # just this dev machine), g4f's auto-selection routed straight to
-    # providers that need real credentials — "GithubCopilot: MissingAuthError
-    # ... run 'g4f auth github-copilot'" and "Nvidia: PaymentRequiredError:
-    # No cake credits" — so every g4f attempt failed and the tier was a
-    # total no-op in production despite passing every local test. These
-    # three were individually live-tested (both a short JSON fact-check
-    # prompt and a full 700+ word article-generation prompt) and require no
-    # auth of any kind. WeWordle first (fastest, ~2-11s, handles both prompt
-    # shapes cleanly); OperaAria next (slower, ~30s, but the only other one
-    # that reliably handled the long article-generation prompt); Cloudflare
-    # last (fast for short prompts like fact-checking, but has a live bug —
-    # UnboundLocalError — on longer prompts, so it's a weak bet for article
-    # drafts specifically but harmless to try since a failure here just
-    # falls through to Ollama like any other). Re-verify this list with the
-    # test snippet in AGENT-KNOWLEDGE.md's 2026-08-08 entry if g4f is ever
-    # touched again — individual providers break/get patched without notice.
-    _G4F_PROVIDERS = [
-        (_WeWordle, "gpt-4o-mini", "WeWordle"),
-        (_OperaAria, "aria", "OperaAria"),
-        (_Cloudflare, "llama-3.3-70b", "Cloudflare"),
-    ]
 except ImportError as e:
-    print(f"[llm] g4f not installed or a pinned provider is unavailable ({e}) — "
-          "skipping the free no-signup g4f fallback tier (falls through to "
+    print(f"[llm] g4f package not installed ({e}) — skipping the free "
+          "no-signup g4f fallback tier entirely (falls through to "
           "Ollama/Claude/Gemini instead). Add 'g4f' to requirements.txt.")
+
+if _g4f_client is not None:
+    for _provider_name, _model, _label in (
+        ("WeWordle", "gpt-4o-mini", "WeWordle"),
+        ("OperaAria", "aria", "OperaAria"),
+        ("Cloudflare", "llama-3.3-70b", "Cloudflare"),
+    ):
+        try:
+            import g4f.Provider as _g4f_provider_module
+            _provider_cls = getattr(_g4f_provider_module, _provider_name)
+            _G4F_PROVIDERS.append((_provider_cls, _model, _label))
+        except AttributeError as e:
+            print(f"[llm] g4f provider '{_label}' unavailable in this g4f version ({e}) — "
+                  f"skipping just this provider, trying the rest of the g4f tier.")
+    if not _G4F_PROVIDERS:
+        print("[llm] All pinned g4f providers are unavailable in this g4f version — "
+              "the g4f tier has nothing to try this run (falls through to Ollama).")
 
 _G4F_TIMEOUT = 60  # hard wall-clock cap per provider attempt, in seconds
 
