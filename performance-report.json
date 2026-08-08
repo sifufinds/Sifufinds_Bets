@@ -1,5 +1,5 @@
 {
-  "critical": 0,
+  "critical": 1,
   "warnings": 5,
   "issues": [
     {
@@ -26,6 +26,11 @@
       "severity": "WARN",
       "page": "odds",
       "detail": "PageSpeed API request failed: HTTP Error 429: Too Many Requests"
+    },
+    {
+      "severity": "CRITICAL",
+      "page": "ALL_PAGES",
+      "detail": "0/5 pages returned any PageSpeed data this run \u2014 the monitor is producing zero real data, not just failing one metric. Most likely cause: no PAGESPEED_API_KEY secret configured, so requests run against Google's free unauthenticated quota and get rate-limited (429) by GitHub Actions' shared runner IPs. Fix: create a key at https://console.cloud.google.com (enable 'PageSpeed Insights API', free tier), then `gh secret set PAGESPEED_API_KEY`."
     }
   ]
 }
