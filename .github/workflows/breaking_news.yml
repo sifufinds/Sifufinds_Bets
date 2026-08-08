@@ -35,7 +35,15 @@ jobs:
     # used to size 15min against, worst case across 3 categories now
     # genuinely needs more room. 40min gives real headroom while staying far
     # under GitHub's 360min hard job cap.
-    timeout-minutes: 40
+    #
+    # Bumped to 45min (2026-08-08) alongside adding per-call `timeout`
+    # wrappers around every agent_sports_blog.py invocation below: the
+    # per-call caps (10min x3 categories + 5min ticker = 35min worst case)
+    # are now the real backstop that should almost never be exhausted, and
+    # this job-level ceiling exists only as a last resort so setup-step
+    # slowness on a bad day still can't reach the unretryable
+    # "cancelled"-by-external-timeout state documented below.
+    timeout-minutes: 45
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -76,8 +84,24 @@ jobs:
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
         run: |
-          python agent_sports_blog.py --category football
-          python agent_sports_blog.py --category sportnews
+          # Each call capped at 10 min (added 2026-08-08): the job's own
+          # 40-min timeout-minutes was already raised once (see comment
+          # above) to cover the local-Ollama fallback tier's install+pull+
+          # generate time, but the SAME DAY llm.py's fallback model was
+          # upgraded 3b→8b ("needs more headroom" — see its own comment),
+          # silently invalidating that sizing again. This run hit the
+          # external job timeout mid-generation (conclusion: "cancelled"),
+          # which neither workflow_watchdog.yml nor retry_failed.yml
+          # retries (both only act on conclusion: "failure") — a
+          # GitHub-level timeout kill is invisible to both safety nets, so
+          # the run silently vanished from the retry pipeline instead of
+          # being retried. A per-call shell timeout bounds each attempt so
+          # the job can never reach its own external timeout in the first
+          # place — a capped call fails with a real non-zero exit instead,
+          # which normal `set -e` step failure + the retry safety nets can
+          # actually see and act on.
+          timeout 600 python agent_sports_blog.py --category football
+          timeout 600 python agent_sports_blog.py --category sportnews
 
       - name: Run Sports Blog Agent — Rotating category (all 10 covered daily)
         working-directory: agents/python
@@ -89,17 +113,18 @@ jobs:
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
         run: |
-          # Rotate all 10 blog categories across the day in 2-hour windows
+          # Rotate all 10 blog categories across the day in 2-hour windows.
+          # 10-min per-call cap — see the timeout comment on the step above.
           HOUR=$(date -u +%H)
-          if   [ "$HOUR" -lt 7  ]; then python agent_sports_blog.py --category basketball
-          elif [ "$HOUR" -lt 9  ]; then python agent_sports_blog.py --category betting
-          elif [ "$HOUR" -lt 11 ]; then python agent_sports_blog.py --category tennis
-          elif [ "$HOUR" -lt 13 ]; then python agent_sports_blog.py --category cricket
-          elif [ "$HOUR" -lt 15 ]; then python agent_sports_blog.py --category rugby
-          elif [ "$HOUR" -lt 17 ]; then python agent_sports_blog.py --category boxing
-          elif [ "$HOUR" -lt 19 ]; then python agent_sports_blog.py --category f1
-          elif [ "$HOUR" -lt 21 ]; then python agent_sports_blog.py --category igaming
-          else python agent_sports_blog.py --category basketball
+          if   [ "$HOUR" -lt 7  ]; then timeout 600 python agent_sports_blog.py --category basketball
+          elif [ "$HOUR" -lt 9  ]; then timeout 600 python agent_sports_blog.py --category betting
+          elif [ "$HOUR" -lt 11 ]; then timeout 600 python agent_sports_blog.py --category tennis
+          elif [ "$HOUR" -lt 13 ]; then timeout 600 python agent_sports_blog.py --category cricket
+          elif [ "$HOUR" -lt 15 ]; then timeout 600 python agent_sports_blog.py --category rugby
+          elif [ "$HOUR" -lt 17 ]; then timeout 600 python agent_sports_blog.py --category boxing
+          elif [ "$HOUR" -lt 19 ]; then timeout 600 python agent_sports_blog.py --category f1
+          elif [ "$HOUR" -lt 21 ]; then timeout 600 python agent_sports_blog.py --category igaming
+          else timeout 600 python agent_sports_blog.py --category basketball
           fi
 
       - name: Update live ticker
@@ -107,7 +132,7 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python agent_sports_blog.py --ticker-only
+        run: timeout 300 python agent_sports_blog.py --ticker-only
 
       - name: Generate static blog post pages
         run: python3 gen_blog_post_pages.py
