@@ -95,6 +95,11 @@ RewriteRule ^bookmaker-comparison/?$ /bookmakers/ [R=301,L]
 RewriteRule ^best-bookmakers-africa/?$ /bookmakers/ [R=301,L]
 RewriteRule ^best-bookmakers-in-africa/?$ /bookmakers/ [R=301,L]
 RewriteRule ^top-african-bookmakers/?$ /bookmakers/ [R=301,L]
+# 2026-08-03: bookmakers/1xbet/ and bookmakers/betway/ were stray wrong-slug
+# review pages (registry keyword instead of the real directory slug) deleted
+# in 0d5148a6d — GSC still has the old URLs indexed, so redirect to the real pages.
+RewriteRule ^bookmakers/1xbet/?$ /bookmakers/1xbet-africa/ [R=301,L]
+RewriteRule ^bookmakers/betway/?$ /bookmakers/betway-africa/ [R=301,L]
 # Tips
 RewriteRule ^betting-tips/?$ /tips/ [R=301,L]
 RewriteRule ^football-betting-tips/?$ /tips/ [R=301,L]
@@ -140,6 +145,9 @@ RewriteRule ^african-football-leagues/?$ /blog/ [R=301,L]
 RewriteRule ^africas-top-leagues-npfl-kpl-psl/?$ /blog/ [R=301,L]
 RewriteRule ^betting-guide-group-stage/?$ /blog/wc2026-group-stage-tips-all-9-african-teams/ [R=301,L]
 RewriteRule ^betting-tips-knockout-stage/?$ /blog/world-cup-2026-preview/ [R=301,L]
+# 2026-08-02: dedupe_slugs() collapsed this long duplicate slug into the
+# shorter canonical one — GSC still has the old long-slug URL indexed.
+RewriteRule ^blog/best-betting-sites-nigeria-2026-compare-top-bookmakers-and-find-your-perfect-match/?$ /blog/best-betting-sites-nigeria-2026/ [R=301,L]
 # Person/event blog slugs with no matching page
 RewriteRule ^alexander-zverev-next-big-thing-tennis/?$ /blog/ [R=301,L]
 RewriteRule ^serena-williams-queen-tennis-returns/?$ /blog/ [R=301,L]
