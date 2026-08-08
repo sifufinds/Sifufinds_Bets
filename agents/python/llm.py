@@ -123,21 +123,47 @@ _GROQ_MODELS = [
 # is just absent from the chain rather than raising, same pattern as the
 # Anthropic import guard below.
 _g4f_client = None
+_G4F_PROVIDERS: list[tuple[object, str, str]] = []  # (provider_class, model, label)
 try:
     from g4f.client import Client as _G4FClient
+    from g4f.Provider import WeWordle as _WeWordle
+    from g4f.Provider import OperaAria as _OperaAria
+    from g4f.Provider import Cloudflare as _Cloudflare
     _g4f_client = _G4FClient()
-except ImportError:
-    print("[llm] g4f not installed — skipping the free no-signup g4f fallback tier "
-          "(falls through to Ollama/Claude/Gemini instead). Add 'g4f' to requirements.txt.")
 
-# Tried in order; each is a different underlying free provider/model, so one
-# breaking (g4f's providers rotate/get patched often — see module docstring)
-# doesn't take the others down with it.
-_G4F_MODELS = ["gpt-4o-mini", "gpt-4", "llama-3.3-70b"]
-_G4F_TIMEOUT = 60  # hard wall-clock cap per model attempt, in seconds
+    # Deliberately PINNED to specific provider classes instead of leaving
+    # model="gpt-4o-mini" etc. to g4f's own auto-provider-selection.
+    # Confirmed live 2026-08-08: on the actual GitHub Actions runner (not
+    # just this dev machine), g4f's auto-selection routed straight to
+    # providers that need real credentials — "GithubCopilot: MissingAuthError
+    # ... run 'g4f auth github-copilot'" and "Nvidia: PaymentRequiredError:
+    # No cake credits" — so every g4f attempt failed and the tier was a
+    # total no-op in production despite passing every local test. These
+    # three were individually live-tested (both a short JSON fact-check
+    # prompt and a full 700+ word article-generation prompt) and require no
+    # auth of any kind. WeWordle first (fastest, ~2-11s, handles both prompt
+    # shapes cleanly); OperaAria next (slower, ~30s, but the only other one
+    # that reliably handled the long article-generation prompt); Cloudflare
+    # last (fast for short prompts like fact-checking, but has a live bug —
+    # UnboundLocalError — on longer prompts, so it's a weak bet for article
+    # drafts specifically but harmless to try since a failure here just
+    # falls through to Ollama like any other). Re-verify this list with the
+    # test snippet in AGENT-KNOWLEDGE.md's 2026-08-08 entry if g4f is ever
+    # touched again — individual providers break/get patched without notice.
+    _G4F_PROVIDERS = [
+        (_WeWordle, "gpt-4o-mini", "WeWordle"),
+        (_OperaAria, "aria", "OperaAria"),
+        (_Cloudflare, "llama-3.3-70b", "Cloudflare"),
+    ]
+except ImportError as e:
+    print(f"[llm] g4f not installed or a pinned provider is unavailable ({e}) — "
+          "skipping the free no-signup g4f fallback tier (falls through to "
+          "Ollama/Claude/Gemini instead). Add 'g4f' to requirements.txt.")
+
+_G4F_TIMEOUT = 60  # hard wall-clock cap per provider attempt, in seconds
 
 
-def _ask_g4f(system_prompt: str, user_message: str, max_tokens: int, model: str) -> str:
+def _ask_g4f(system_prompt: str, user_message: str, max_tokens: int, provider, model: str) -> str:
     """g4f's client has no reliable built-in timeout (some of its providers
     can hang indefinitely on a dead upstream), so this enforces one from the
     outside via a throwaway thread — the call is synchronous, there's no
@@ -149,6 +175,7 @@ def _ask_g4f(system_prompt: str, user_message: str, max_tokens: int, model: str)
     def _call() -> str:
         response = _g4f_client.chat.completions.create(
             model=model,
+            provider=provider,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message},
@@ -377,20 +404,22 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
     # Tier 5 — g4f: free, no-signup, no-API-key aggregator of hosted free
     # LLM front-ends. Tried before Ollama because it's hosted (seconds, not
     # CPU-bound minutes) and a meaningfully stronger writer than the local
-    # model — see module docstring. Any failure (bad provider, timeout,
-    # empty response) just moves to the next model in the list; if all of
-    # them fail, falls through to Ollama exactly like Groq exhaustion does.
-    if _g4f_client and not _g4f_exhausted_this_process:
-        for i, model in enumerate(_G4F_MODELS):
+    # model — see module docstring. Pinned to specific known-working
+    # providers, not g4f's own auto-selection (see _G4F_PROVIDERS comment
+    # for why). Any failure (bad provider, timeout, empty response) just
+    # moves to the next one in the list; if all of them fail, falls through
+    # to Ollama exactly like Groq exhaustion does.
+    if _g4f_client and _G4F_PROVIDERS and not _g4f_exhausted_this_process:
+        for i, (provider, model, label) in enumerate(_G4F_PROVIDERS):
             result = None
             try:
-                result = _ask_g4f(system_prompt, user_message, max_tokens, model)
+                result = _ask_g4f(system_prompt, user_message, max_tokens, provider, model)
             except Exception as e:
-                print(f"[llm] g4f {model} failed: {e}")
+                print(f"[llm] g4f/{label} failed: {e}")
             if result:
                 return result
-            next_step = _G4F_MODELS[i + 1] if i + 1 < len(_G4F_MODELS) else "local Ollama fallback"
-            print(f"[llm] g4f {model} exhausted or empty — trying {next_step}")
+            next_step = _G4F_PROVIDERS[i + 1][2] if i + 1 < len(_G4F_PROVIDERS) else "local Ollama fallback"
+            print(f"[llm] g4f/{label} exhausted or empty — trying {next_step}")
         _g4f_exhausted_this_process = True
     elif _g4f_exhausted_this_process:
         print("[llm] g4f already confirmed exhausted earlier this run — skipping straight to local fallback")
