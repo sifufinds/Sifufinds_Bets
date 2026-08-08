@@ -41,20 +41,33 @@ permissions:
   contents: read
 
 jobs:
-  # Cooldown gate (added 2026-08-07): four independent triggers can fire this
-  # workflow — push events, the */20min schedule, workflow_watchdog.yml (10
-  # min after any failure), and retry_failed.yml (every ~14 min while the
-  # last run is a failure). Found live: from 10:35 to 15:52 UTC on 2026-08-07,
-  # EVERY one of ~40 consecutive runs failed with HTTP 429 from Hostinger's
-  # upload API, some as little as 2 minutes apart. The four triggers were
-  # re-firing this workflow faster than Hostinger's rate-limit window could
-  # ever clear — a self-inflicted retry storm where no single attempt could
-  # ever succeed. This job makes actual Hostinger upload attempts skip
-  # cleanly (exit 0, no error) unless at least COOLDOWN_MIN minutes have
-  # passed since the last run of this workflow started, regardless of which
-  # trigger fired it. Safe to skip freely: every deploy re-uploads the whole
-  # site from the current main HEAD (not incremental), so a skipped run never
-  # drops content — the next run past cooldown picks up everything.
+  # Cooldown gate (added 2026-08-07, fixed 2026-08-08): four independent
+  # triggers can fire this workflow — push events, the */20min schedule,
+  # workflow_watchdog.yml (10 min after any failure), and retry_failed.yml
+  # (every ~14 min while the last run is a failure). Found live: from 10:35
+  # to 15:52 UTC on 2026-08-07, EVERY one of ~40 consecutive runs failed with
+  # HTTP 429 from Hostinger's upload API, some as little as 2 minutes apart.
+  #
+  # The original version of this gate measured cooldown against the last
+  # *run* of this workflow, regardless of whether that run actually attempted
+  # an upload. That was a bug: on a repo this active, some trigger lands
+  # inside almost every 15-minute window, so a chain of skip-runs kept
+  # resetting the clock for each other and a real attempt could be starved
+  # indefinitely — even long after Hostinger's rate limit had actually
+  # cleared. Found live 2026-08-08: a chain of skip-only runs from 23:03 to
+  # 23:43 UTC (each individually "valid" under the old check), then real
+  # attempts at 23:58/00:14/01:20 that still hit 429 because the underlying
+  # Hostinger-side window is apparently longer than 15 min — leaving newly
+  # published blog posts 404ing on the live site for well over an hour.
+  #
+  # Fixed to measure cooldown against the last run where the deploy job
+  # actually executed (conclusion != skipped), not the last run of any kind.
+  # Also backs off harder after consecutive real failures (15 -> 30 -> 60
+  # min) instead of retrying every single cooldown window during a sustained
+  # Hostinger throttle, since hammering a live 429 window only risks
+  # extending it. Safe to skip freely either way: every deploy re-uploads the
+  # whole site from the current main HEAD (not incremental), so a skipped run
+  # never drops content — the next run past cooldown picks up everything.
   check-cooldown:
     name: Check deploy cooldown (avoid Hostinger 429 rate-limit storms)
     runs-on: ubuntu-latest
@@ -62,36 +75,73 @@ jobs:
     outputs:
       should_deploy: ${{ steps.check.outputs.should_deploy }}
     steps:
-      - name: Check time since last run of this workflow
+      - name: Check time since last real deploy attempt
         id: check
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           CURRENT_RUN_ID: ${{ github.run_id }}
         run: |
-          COOLDOWN_MIN=15
+          BASE_COOLDOWN_MIN=15
 
-          LAST_CREATED=$(gh run list --workflow=deploy_hostinger.yml --repo "$REPO" \
-            --limit 5 --json databaseId,createdAt,status \
-            --jq "[.[] | select(.databaseId != ${CURRENT_RUN_ID}) | select(.status == \"completed\")] | .[0].createdAt // empty")
+          CANDIDATE_IDS=$(gh run list --workflow=deploy_hostinger.yml --repo "$REPO" \
+            --limit 15 --json databaseId,status \
+            --jq "[.[] | select(.databaseId != ${CURRENT_RUN_ID}) | select(.status == \"completed\")] | .[].databaseId")
 
-          if [ -z "$LAST_CREATED" ]; then
-            echo "No prior completed run found — proceeding with deploy."
+          # Walk recent completed runs newest-first, collecting the outcome of
+          # every run whose deploy job actually attempted an upload (skipping
+          # skip-only runs entirely) until we have the most recent real
+          # attempt's timestamp plus up to 3 real outcomes for backoff.
+          LAST_ATTEMPT_CREATED=""
+          REAL_CONCLUSIONS=()
+          for rid in $CANDIDATE_IDS; do
+            JOB_CONCLUSION=$(gh api "repos/$REPO/actions/runs/$rid/jobs" \
+              --jq '.jobs[] | select(.name == "Deploy static site to Hostinger") | .conclusion' 2>/dev/null)
+            if [ -z "$JOB_CONCLUSION" ] || [ "$JOB_CONCLUSION" = "skipped" ]; then
+              continue
+            fi
+            if [ -z "$LAST_ATTEMPT_CREATED" ]; then
+              LAST_ATTEMPT_CREATED=$(gh run view "$rid" --repo "$REPO" --json createdAt --jq .createdAt)
+            fi
+            REAL_CONCLUSIONS+=("$JOB_CONCLUSION")
+            if [ "${#REAL_CONCLUSIONS[@]}" -ge 3 ]; then
+              break
+            fi
+          done
+
+          if [ -z "$LAST_ATTEMPT_CREATED" ]; then
+            echo "No prior real deploy attempt found in recent history — proceeding with deploy."
             echo "should_deploy=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          LAST_EPOCH=$(date -u -d "$LAST_CREATED" +%s)
+          # Adaptive backoff: 2+ consecutive real failures -> 30min, 3+ -> 60min.
+          COOLDOWN_MIN=$BASE_COOLDOWN_MIN
+          CONSECUTIVE_FAILURES=0
+          for c in "${REAL_CONCLUSIONS[@]}"; do
+            if [ "$c" = "failure" ]; then
+              CONSECUTIVE_FAILURES=$((CONSECUTIVE_FAILURES + 1))
+            else
+              break
+            fi
+          done
+          if [ "$CONSECUTIVE_FAILURES" -ge 3 ]; then
+            COOLDOWN_MIN=60
+          elif [ "$CONSECUTIVE_FAILURES" -ge 2 ]; then
+            COOLDOWN_MIN=30
+          fi
+
+          LAST_EPOCH=$(date -u -d "$LAST_ATTEMPT_CREATED" +%s)
           NOW_EPOCH=$(date -u +%s)
           ELAPSED_MIN=$(( (NOW_EPOCH - LAST_EPOCH) / 60 ))
 
-          echo "Last run of this workflow started ${ELAPSED_MIN} min ago ($LAST_CREATED)."
+          echo "Last real deploy attempt started ${ELAPSED_MIN} min ago ($LAST_ATTEMPT_CREATED). Consecutive real failures: ${CONSECUTIVE_FAILURES}. Cooldown: ${COOLDOWN_MIN}min."
 
           if [ "$ELAPSED_MIN" -lt "$COOLDOWN_MIN" ]; then
-            echo "⏸  Within ${COOLDOWN_MIN}min cooldown — skipping this attempt to avoid a Hostinger 429 rate-limit storm. The */20min schedule or next trigger past cooldown will deploy the current content."
+            echo "⏸  Within ${COOLDOWN_MIN}min cooldown since last real attempt — skipping this attempt to avoid a Hostinger 429 rate-limit storm. The */20min schedule or next trigger past cooldown will deploy the current content."
             echo "should_deploy=false" >> "$GITHUB_OUTPUT"
           else
-            echo "✅ Cooldown elapsed — proceeding with deploy."
+            echo "✅ Cooldown elapsed since last real attempt — proceeding with deploy."
             echo "should_deploy=true" >> "$GITHUB_OUTPUT"
           fi
 
