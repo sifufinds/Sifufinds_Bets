@@ -1,19 +1,13 @@
 {
   "date": "2026-08-08",
-  "total": 2,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "best-betting-sites-uganda-2026",
-      "detail": "Title 62 chars (max 60): 'Best Betting Sites Uganda 2026: Comprehensive Comparison Guide'"
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
