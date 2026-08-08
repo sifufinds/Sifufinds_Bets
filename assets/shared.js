@@ -57,7 +57,9 @@ const COUNTRY_DATA={
 };
 
 // ── AFFILIATE FILTER ──────────────────────────────────────────────────────────
-const AFFILIATE_DOMAINS=['reffpa.com','refpa3665.com','bwredir.com','combodef.com','1212fghnna.com','trackrt.tictacbets.co.za'];
+// Keep in sync with CLAUDE.md's "Brands With a Real Affiliate Link" tracking-domain
+// list — this was missing 3 of the 9 documented domains until 2026-08-08.
+const AFFILIATE_DOMAINS=['reffpa.com','refpa3665.com','bwredir.com','combodef.com','1212fghnna.com','trackrt.tictacbets.co.za','goaffnk.com','track.trkbxa.click','track.bettapartners.co.za'];
 function isAffiliate(b){return AFFILIATE_DOMAINS.some(d=>b.url&&b.url.includes(d));}
 function affiliateBooks(books){return(books||[]).filter(isAffiliate);}
 
@@ -990,6 +992,83 @@ function renderBrandsBar(){
   }</div></div>`;
 }
 document.addEventListener('DOMContentLoaded',renderBrandsBar);
+
+// ── SPONSORED COUNTRY PLACEMENTS ─────────────────────────────────────────────
+// Renders into <div id="sponsor-strip"> on countries/<slug>/index.html pages —
+// a big 5-card paid-placement strip (brands pay a flat monthly fee to hold a
+// slot here), separate from the organic "Top Picks" grid built by
+// renderFeatCards(). data/featured_listings.json (slot "country_sponsor:
+// <slug>:<position>") is the single source of truth for which brand holds
+// which position — same file already used for the bookmaker review page
+// "Featured Partner" badge, managed via agent_brand_partnerships.py
+// --add-listing. Only brands with a real affiliate-tracking link (per
+// AFFILIATE_DOMAINS above) can ever occupy a slot, sold or not: a paid slot
+// whose brand_slug doesn't resolve to an affiliate-linked BOOKS entry is
+// skipped rather than rendered, so a slot can never be sold out from under a
+// brand that lost its tracking link. Unsold/unmatched positions are filled
+// with that country's next top affiliate-linked brand, unlabeled (no
+// "Sponsored" tag), so the strip never looks empty while inventory is unsold.
+const _SPONSOR_SLOT_COUNT=5;
+function _brandSlugForBook(b){
+  const dom=BRAND_DOMAINS[b.abbr];
+  return dom?dom.split('.')[0].toLowerCase():null;
+}
+function _countrySlugFor(cty){
+  return(COUNTRY_DATA[cty]?.name||'').toLowerCase().replace(/\s+/g,'-');
+}
+function _sponsorDataRoot(){
+  const depth=(location.pathname.match(/\//g)||[]).length-1;
+  return depth>1?'../'.repeat(depth-1):(depth===1?'../':'');
+}
+function _sponsorCard(b,isPaid,criteriaNote){
+  return`<div class="spc">
+    ${isPaid?`<span class="spc-tag" title="${escHtml(criteriaNote||'Paid placement')}">Sponsored</span>`:''}
+    <div class="spc-img" style="background:${b.bg}">${logoImg(b.url,b.name,b.abbr,b.tc,140,0,true)}</div>
+    <div class="spc-body">
+      <div class="spc-off">${b.off}</div>
+      <a class="gbtn spc-cta" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored">Claim Offer →</a>
+      <p class="spc-terms">${b.terms||'18+ New customers only. T&amp;Cs apply. Bet responsibly.'}</p>
+    </div>
+  </div>`;
+}
+function renderSponsorStrip(){
+  const el=document.getElementById('sponsor-strip');
+  if(!el)return;
+  const cty=(typeof _PAGE_CTY!=='undefined'&&_PAGE_CTY)?_PAGE_CTY:getCurrentCountry();
+  const books=affiliateBooks(BOOKS[cty]||[]);
+  if(!books.length)return;
+  const slug=_countrySlugFor(cty);
+  const finish=(paidSlots)=>{
+    const used=new Set();
+    const cards=[];
+    for(let pos=1;pos<=_SPONSOR_SLOT_COUNT;pos++){
+      const paid=paidSlots.find(s=>s.pos===pos);
+      let book=null,isPaid=false,note='';
+      if(paid){
+        const match=books.find(b=>!used.has(b)&&_brandSlugForBook(b)===paid.brand_slug);
+        if(match){book=match;isPaid=true;note=paid.criteria_note;}
+      }
+      if(!book)book=books.find(b=>!used.has(b));
+      if(book){used.add(book);cards.push(_sponsorCard(book,isPaid,note));}
+    }
+    if(!cards.length)return;
+    el.innerHTML=`<div class="wrap"><div class="spc-lbl">🔥 Top Offers</div><div class="spc-grid">${cards.join('')}</div><p class="spc-dis">18+ only. Some placements above are paid partnerships (marked "Sponsored"), others are our top affiliate-linked picks. Bet responsibly. <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a></p></div>`;
+  };
+  fetch(_sponsorDataRoot()+'data/featured_listings.json').then(r=>r.ok?r.json():{listings:[]}).then(data=>{
+    const now=Date.now();
+    const prefix=`country_sponsor:${slug}:`;
+    const paidSlots=(data.listings||[]).filter(e=>{
+      if(e.sponsored!==true||!e.slot||!e.slot.startsWith(prefix))return false;
+      const starts=e.starts_at?Date.parse(e.starts_at):null;
+      const ends=e.ends_at?Date.parse(e.ends_at):null;
+      if(starts&&starts>now)return false;
+      if(ends&&ends<now)return false;
+      return true;
+    }).map(e=>({pos:parseInt(e.slot.slice(prefix.length),10),brand_slug:e.brand_slug,criteria_note:e.criteria_note}));
+    finish(paidSlots);
+  }).catch(()=>finish([]));
+}
+document.addEventListener('DOMContentLoaded',renderSponsorStrip);
 
 // Inject About link into nav on every page (E-E-A-T trust signal)
 document.addEventListener('DOMContentLoaded',function(){
