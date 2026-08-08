@@ -1,22 +1,34 @@
 """
-Trending Keywords Agent — pairs today's fresh news headlines with country
-intent modifiers to surface time-sensitive keyword opportunities across all
-23 African markets SifuFinds serves, for direct use by blog/news/guide
-writers.
+Trending Keywords Agent — researches each of SifuFinds' 23 African markets'
+OWN genuinely trending stories (not a shared pool reused across countries)
+and pairs them with country intent modifiers to surface time-sensitive
+keyword opportunities, for direct use by blog/news/guide writers.
 
 Distinct from agent_keyword_research.py: that agent tracks a fixed backlog
 of evergreen money keywords ("best betting sites {country} 2026") that
 barely change month to month. This agent re-seeds itself from real,
-freshness-checked news every run (reusing utils/news_fetcher.py, the same
-free multi-source feed agent_sports_blog.py already writes from), so the
-keyword ideas it produces are genuinely trending — a live fixture, a
-transfer story, a tournament headline — rather than a static template.
+freshness-checked, COUNTRY-SCOPED news every run (utils/news_fetcher.py's
+fetch_country_trending() — a live DuckDuckGo search with the country's own
+name embedded in the query, plus that country's dedicated local-outlet feed
+where one exists), so the keyword ideas it produces are genuinely trending
+IN that specific market — a live fixture, a transfer story, a tournament
+headline a Kenyan or Ghanaian bettor is actually searching for right now —
+rather than a global headline arbitrarily paired with a country name.
+
+Fixed 2026-08-08: the previous version fetched ONE shared pool of global
+topics via fetch_category() and assigned them to whichever countries were
+due for a check via topics[i % len(topics)] — the exact same handful of
+headlines got round-robined across every country in the batch, so "trending
+in Nigeria" and "trending in Kenya" were frequently the identical story.
+fetch_country_trending() replaces that as the primary source per country;
+the old shared-pool fetch is kept only as a fallback for the (rare) case a
+specific country's own search comes up empty this run.
 
 Free-first, no LLM calls: news comes from utils/news_fetcher.py (DuckDuckGo
-+ Google News RSS + site feeds, no API key) and SERP checks come from
-utils/serp_research.py's fc_search()/find_site_position() (DuckDuckGo,
-Firecrawl only as an opt-in last resort) — the same free pipeline every
-other keyword/SERP agent in this repo already uses.
++ site feeds, no API key) and SERP checks come from utils/serp_research.py's
+fc_search()/find_site_position() (DuckDuckGo, Firecrawl only as an opt-in
+last resort) — the same free pipeline every other keyword/SERP agent in
+this repo already uses.
 
 Usage:
     python agent_trending_keywords.py                # next batch of countries
@@ -25,20 +37,27 @@ Usage:
 import argparse
 import json
 import os
+import random
 import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Optional
 
 sys.path.insert(0, os.path.dirname(__file__))
 
 from utils.countries import AFRICAN_COUNTRIES
 from utils.logger import log
-from utils.news_fetcher import fetch_category
+from utils.news_fetcher import fetch_category, fetch_country_trending
 from utils.serp_research import fc_search, find_site_position
 
 STATE_PATH = Path(__file__).parent / "trending_keywords.json"
-BATCH_SIZE = 10
+# All 23 countries every run, not a handful — this research step makes no
+# LLM calls (free DuckDuckGo/RSS only, see module docstring), so there's no
+# per-run cost pressure to ration coverage the way agent_keyword_research.py
+# rations its LLM-adjacent SERP checks. "Each country" genuinely means each
+# country every day, not a slow multi-day rotation.
+BATCH_SIZE = 23
 MAX_ENTRIES = 400
 
 # Categories most relevant to betting content — mirrors the "premier focus"
@@ -113,7 +132,11 @@ def _suggest_content_type(topic: str, keyword: str) -> str:
 def _fresh_topics() -> list[dict]:
     """Pull today's fresh headlines across betting-relevant categories and
     reduce each to a short trending subject + source metadata, deduped by
-    subject so the same story doesn't dominate every country pairing."""
+    subject so the same story doesn't dominate every country pairing.
+
+    This is now only the FALLBACK pool — used when a specific country's own
+    fetch_country_trending() search comes up empty this run — not the
+    primary source. See _topics_for_country() and the module docstring."""
     topics: list[dict] = []
     seen: set[str] = set()
     for category in TREND_CATEGORIES:
@@ -132,9 +155,40 @@ def _fresh_topics() -> list[dict]:
             topics.append({
                 "topic": topic,
                 "source_headline": item["title"],
+                "source_description": item.get("description", ""),
                 "source_url": item["url"],
                 "source_category": category,
             })
+    return topics
+
+
+def _topics_for_country(country_name: str) -> list[dict]:
+    """Genuinely country-scoped trending topics — the primary source for
+    each country's batch entry. See fetch_country_trending()'s docstring
+    (utils/news_fetcher.py) and this module's docstring for why this
+    replaced the old shared/global pool cycled by round-robin."""
+    try:
+        items = fetch_country_trending(country_name, max_results=10)
+    except Exception as e:
+        log("trending_keywords", "_topics_for_country", "error", f"{country_name}: {e}")
+        return []
+
+    topics: list[dict] = []
+    seen: set[str] = set()
+    relevant_items = [i for i in items if _looks_sports_related(i["title"])]
+    for item in relevant_items[:TOPICS_PER_CATEGORY]:
+        topic = _extract_topic(item["title"])
+        key = topic.lower()
+        if not topic or key in seen:
+            continue
+        seen.add(key)
+        topics.append({
+            "topic": topic,
+            "source_headline": item["title"],
+            "source_description": item.get("description", ""),
+            "source_url": item["url"],
+            "source_category": "country_trending",
+        })
     return topics
 
 
@@ -189,22 +243,33 @@ def run(batch_size: int = BATCH_SIZE) -> int:
     trending = state.setdefault("trending", {})
     last_checked = state.setdefault("country_last_checked", {})
 
-    topics = _fresh_topics()
-    if not topics:
-        print("No fresh trending topics found this run (all sources below freshness window) — skipping")
-        log("trending_keywords", "run", "skipped", "no fresh topics")
-        _save_state(state)
-        return 0
-
     countries = _pick_countries(last_checked, batch_size)
-    print(f"Trending Keywords Agent — {len(topics)} fresh topic(s), pairing with {len(countries)} countr{'y' if len(countries) == 1 else 'ies'} this run")
+    print(f"Trending Keywords Agent — researching each of {len(countries)} countr{'y' if len(countries) == 1 else 'ies'}' own trending topics this run")
+
+    # Lazy, computed at most once, only if some country's own search comes
+    # up empty this run — see _fresh_topics()'s docstring.
+    fallback_topics: Optional[list[dict]] = None
 
     today = datetime.now(timezone.utc).isoformat()
     gaps_found = 0
-    for i, country in enumerate(countries):
-        topic_data = topics[i % len(topics)]
+    countries_checked = 0
+    for country in countries:
+        country_topics = _topics_for_country(country["name"])
+        source_scope = "country_specific"
+        if country_topics:
+            topic_data = country_topics[0]
+        else:
+            if fallback_topics is None:
+                fallback_topics = _fresh_topics()
+            if not fallback_topics:
+                print(f"  → [{country['name']}] no fresh topics found (country-specific or fallback) — skipping this run")
+                continue
+            topic_data = random.choice(fallback_topics)
+            source_scope = "fallback_global"
+
         topic = topic_data["topic"]
-        print(f"  → [{country['name']}] {topic}")
+        scope_note = "" if source_scope == "country_specific" else " (fallback — no country-specific trend found)"
+        print(f"  → [{country['name']}] {topic}{scope_note}")
         try:
             result = research_trending_pair(topic, country["name"])
         except Exception as e:
@@ -212,14 +277,17 @@ def run(batch_size: int = BATCH_SIZE) -> int:
             print(f"    ✗ error: {e}")
             continue
 
+        countries_checked += 1
         key = f"{country['code']}:{topic.lower()[:60]}"
         trending[key] = {
             "country": country["name"],
             "country_code": country["code"],
             "topic": topic,
             "source_headline": topic_data["source_headline"],
+            "source_description": topic_data.get("source_description", ""),
             "source_url": topic_data["source_url"],
             "source_category": topic_data["source_category"],
+            "source_scope": source_scope,
             "checked_at": today,
             **result,
         }
@@ -238,8 +306,8 @@ def run(batch_size: int = BATCH_SIZE) -> int:
 
     state["generated_at"] = today
     _save_state(state)
-    log("trending_keywords", "run", "ok", f"{len(countries)} countr(y/ies), {gaps_found} gap(s)")
-    print(f"\n✅ {len(countries)} countr{'y' if len(countries) == 1 else 'ies'} checked against fresh trending topics, {gaps_found} gap(s) with no current SifuFinds ranking.")
+    log("trending_keywords", "run", "ok", f"{countries_checked} countr(y/ies), {gaps_found} gap(s)")
+    print(f"\n✅ {countries_checked} countr{'y' if countries_checked == 1 else 'ies'} checked against fresh trending topics, {gaps_found} gap(s) with no current SifuFinds ranking.")
     return 0
 
 

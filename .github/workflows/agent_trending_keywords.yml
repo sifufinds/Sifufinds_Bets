@@ -1,12 +1,23 @@
 name: Trending Keywords — news-driven keyword discovery
 
-# Runs agents/python/agent_trending_keywords.py, which pairs today's fresh
-# news headlines (via utils/news_fetcher.py) with country intent modifiers
-# across all 23 African markets SifuFinds serves, and persists findings —
-# whether SifuFinds already ranks, top competitors, suggested content type
-# — to agents/python/trending_keywords.json. Distinct from
+# Runs agents/python/agent_trending_keywords.py, which researches each of
+# SifuFinds' 23 African markets' OWN genuinely trending stories (via
+# utils/news_fetcher.py's fetch_country_trending() — a country-scoped
+# DuckDuckGo search plus that country's dedicated local-outlet feed where
+# one exists) and persists findings — whether SifuFinds already ranks, top
+# competitors, suggested content type — to
+# agents/python/trending_keywords.json. Distinct from
 # agent_keyword_research.py's static evergreen backlog: this one re-seeds
-# from real news every run, so the keywords stay genuinely trending.
+# from real, country-specific news every run, so the keywords stay
+# genuinely trending IN that market, not a shared global pool cycled by
+# country name (see agent_trending_keywords.py's module docstring for the
+# 2026-08-08 fix).
+#
+# Default batch size covers all 23 countries every run now (bumped from 10,
+# see agent_trending_keywords.py's BATCH_SIZE) since this step makes no LLM
+# calls — timeout raised from 10 to 30 minutes to match: 23 countries x
+# (2 country-scoped DDG searches + 1 SERP gap-check) genuinely takes longer
+# than the old 10-country batch against a shared pre-fetched pool.
 #
 # This workflow never exits with a failure code — a rate-limited/quota-
 # exhausted run just means fewer countries researched this time; it tries
@@ -28,7 +39,7 @@ jobs:
   research:
     name: Research today's trending keywords
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repo

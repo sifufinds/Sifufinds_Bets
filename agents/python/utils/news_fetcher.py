@@ -591,6 +591,60 @@ def fetch_category(category: str, max_per_feed: int = 6) -> list[NewsItem]:
     return result if len(result) >= MIN_FRESH_ITEMS else []
 
 
+# ── PER-COUNTRY TRENDING (country-scoped, not a shared/global pool) ─────────
+# Country name -> feed source names already in FEEDS that are genuinely
+# published by an outlet based in that country, so this function can prefer
+# real local reporting over a generic pan-African/global search result.
+_COUNTRY_DEDICATED_SOURCES: dict[str, list[str]] = {
+    "Nigeria": ["Punch Sports (Nigeria)", "Vanguard Sports (Nigeria)",
+                "Complete Sports (Nigeria)", "Premium Times Sports (Nigeria)"],
+    "Kenya": ["Standard Sports (Kenya)"],
+    "Ghana": ["Graphic Sports (Ghana)"],
+    "South Africa": ["KickOff (South Africa)"],
+}
+_PAN_AFRICAN_SOURCES = ["AllAfrica Sports", "Africa Top Sports", "BBC Africa Sport"]
+
+COUNTRY_TRENDING_MAX_AGE_HOURS = 48
+COUNTRY_TRENDING_MIN_ITEMS = 1
+
+
+def fetch_country_trending(country_name: str, max_results: int = 10) -> list[NewsItem]:
+    """Genuinely country-scoped trending headlines — not a shared global
+    pool reused across every country.
+
+    Added 2026-08-08: previously the only trending source available to
+    agent_trending_keywords.py was fetch_category()'s shared, category-only
+    pool, cycled across countries by simple round-robin
+    (topics[i % len(topics)]) — the SAME handful of global headlines got
+    paired with whichever country's turn it was, so "trending in Kenya" was
+    really just "whatever global football headline landed on Kenya's turn
+    this run," never anything actually trending in Kenya specifically.
+
+    Combines two country-scoped signals:
+    1. A live DuckDuckGo News search with the country's own name embedded
+       in the query, so results are about that specific market rather than
+       whichever global story happens to be biggest today.
+    2. That country's own dedicated local-outlet RSS feed(s) where one
+       exists (see _COUNTRY_DEDICATED_SOURCES) — falling back to
+       pan-African outlets for the many markets with no dedicated feed of
+       their own, which still beats a purely global/UK-outlet pool.
+    """
+    queries = [
+        f"{country_name} football betting news today",
+        f"{country_name} sports news today",
+    ]
+    items: list[NewsItem] = []
+    for q in queries:
+        items.extend(_ddg_search(q, "country_trending", COUNTRY_TRENDING_MAX_AGE_HOURS, max_results=6))
+
+    source_names = _COUNTRY_DEDICATED_SOURCES.get(country_name) or _PAN_AFRICAN_SOURCES
+    feed_list = [(s, u, c) for s, u, c in FEEDS if s in source_names]
+    items.extend(_fetch_site_feeds(feed_list, "country_trending", COUNTRY_TRENDING_MAX_AGE_HOURS, max_per_feed=5))
+
+    result = _dedupe_sort(items)
+    return result[:max_results] if len(result) >= COUNTRY_TRENDING_MIN_ITEMS else []
+
+
 def fetch_all_categories(max_per_category: int = 8) -> dict[str, list[NewsItem]]:
     categories = [
         "football", "sportnews", "basketball", "tennis",

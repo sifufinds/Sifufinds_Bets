@@ -4,16 +4,27 @@ and actionability into one queue, so it's clear exactly what to write next
 to close the "0 of 51 keywords ranking" gap found 2026-08-01.
 
 Reads both keyword backlogs (agent_keyword_research.py's evergreen gaps,
-agent_trending_keywords.py's news-driven gaps) and produces one ranked
-queue at content_priority_queue.json. Trending/news-shaped gaps are
-recorded for visibility but marked NOT writer-actionable: they're the same
-headlines agent_sports_blog.py's existing 3x/day schedule already turns
-into posts, and writing a second post targeting the same real-world story
-would recreate the exact duplicate-content bug fixed 2026-08-01
-(utils/story_dedup.py exists specifically to prevent this — see
-AGENT-KNOWLEDGE.md). The genuinely uncovered ground is evergreen
-commercial content — "best betting sites/bonus/apps", "how to bet online" —
-which has no existing writer at all; agent_priority_writer.py closes that.
+agent_trending_keywords.py's country-scoped trending gaps) and produces one
+ranked queue at content_priority_queue.json.
+
+Trending gaps are writer-actionable UNLESS the same real-world story is
+already covered by agent_sports_blog.py's existing 3x/day pan-African news
+schedule — checked against utils/story_dedup.py's shared covered-story
+registry (the same registry agent_sports_blog.py itself writes to), so a
+second post is only ever written when it's a genuinely different,
+country-specific angle agent_sports_blog.py's pan-African pipeline wouldn't
+otherwise produce. This closes the gap found 2026-08-08: since
+agent_trending_keywords.py now researches each country's OWN trending
+stories (not a shared pool cycled by country name, see that module's
+docstring), most trending gaps are about stories agent_sports_blog.py never
+touches at all, so unconditionally marking every trending gap
+non-actionable was leaving real country-specific ranking opportunities on
+the table. agent_country_trending_writer.py is the writer that closes this
+gap, the trending-content equivalent of agent_priority_writer.py.
+
+The genuinely uncovered evergreen ground is commercial content — "best
+betting sites/bonus/apps", "how to bet online" — which has no existing
+writer at all; agent_priority_writer.py closes that.
 
 Usage:
     python agent_content_priority.py
@@ -29,6 +40,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from utils.countries import AFRICAN_COUNTRIES
 from utils.logger import log
+from utils.story_dedup import headline_key, load_covered_keys
 
 KEYWORD_OPPS_PATH = Path(__file__).parent / "keyword_opportunities.json"
 TRENDING_PATH = Path(__file__).parent / "trending_keywords.json"
@@ -121,23 +133,31 @@ def build_queue() -> dict:
             "score": _score(country, actionable, "evergreen", data.get("checked_at", "")),
         })
 
+    covered_keys = load_covered_keys()
     for key, data in trending.items():
         if data.get("sifufinds_ranks"):
             continue
+        source_headline = data.get("source_headline", "")
+        # Only skip writer-actionable when the same real-world story is
+        # already covered by agent_sports_blog.py's pan-African pipeline
+        # (shared registry, see module docstring) — a country-specific
+        # trending story that pipeline never touched at all is exactly the
+        # gap agent_country_trending_writer.py exists to close.
+        already_covered = bool(source_headline) and headline_key(source_headline) in covered_keys
+        actionable = not already_covered
         items.append({
             "keyword": data.get("primary_keyword", key),
             "country": data.get("country", ""),
             "content_type": data.get("content_type_suggestion", "blog"),
             "guide_angle": "",
-            # Trending items are already covered by agent_sports_blog.py's
-            # scheduled news pipeline — never writer-actionable here, see
-            # module docstring.
-            "writer_actionable": False,
+            "writer_actionable": actionable,
             "source": "trending",
             "top_competitors": data.get("top_competitors", []),
-            "source_headline": data.get("source_headline", ""),
+            "source_headline": source_headline,
+            "source_description": data.get("source_description", ""),
+            "source_url": data.get("source_url", ""),
             "checked_at": data.get("checked_at", ""),
-            "score": _score(data.get("country", ""), False, "trending", data.get("checked_at", "")),
+            "score": _score(data.get("country", ""), actionable, "trending", data.get("checked_at", "")),
         })
 
     items.sort(key=lambda i: i["score"], reverse=True)

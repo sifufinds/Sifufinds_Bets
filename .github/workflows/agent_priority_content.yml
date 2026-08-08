@@ -1,4 +1,4 @@
-name: Priority Content — write evergreen guides from keyword gaps
+name: Priority Content — write evergreen guides + country trending posts from keyword gaps
 
 # Closes the loop found 2026-08-01/02: keyword-gap research alone never
 # turned into scheduled content. Each loop iteration runs the pipeline end
@@ -10,9 +10,14 @@ name: Priority Content — write evergreen guides from keyword gaps
 #      posts (best betting sites/bonus, how to bet online, safest apps)
 #      for the top un-actioned queue items, grounded in the site's own real
 #      per-country bookmaker/bonus data (utils/site_data.py), never news
-#      headlines — that ground is already covered by breaking_news.yml's
-#      3x/day schedule and deliberately excluded here (see
-#      agent_content_priority.py's docstring on writer_actionable).
+#      headlines.
+#   3. agent_country_trending_writer.py — added 2026-08-08: writes real,
+#      country-specific trending posts for queue items agent_content_
+#      priority.py marked writer-actionable (i.e. NOT already covered by
+#      breaking_news.yml's pan-African 3x/day schedule, checked against the
+#      shared utils/story_dedup.py registry). Closes the gap where
+#      agent_trending_keywords.py's now-genuinely-per-country research (see
+#      that module's docstring) was found but never turned into a post.
 #
 # 2026-08-02: switched to a self-perpetuating internal loop instead of
 # relying on GitHub to deliver every "0 */2 * * *" tick. Confirmed live on
@@ -140,6 +145,13 @@ jobs:
             # the ~2h cycle without letting one stuck attempt eat the loop.
             ( cd agents/python && timeout 1500 python agent_priority_writer.py --count "$COUNT" )
 
+            # Country trending writer — same hard-cap reasoning as the
+            # evergreen writer above (LLM/Ollama-fallback latency risk).
+            # Reads the SAME content_priority_queue.json agent_content_
+            # priority.py just rebuilt above, so it always sees this cycle's
+            # freshest writer-actionable trending items, not a stale queue.
+            ( cd agents/python && timeout 1500 python agent_country_trending_writer.py --count "$COUNT" )
+
             python3 gen_blog_post_pages.py
 
             # agent_log.json is deliberately gitignored (agents/python/.gitignore)
@@ -149,9 +161,11 @@ jobs:
             # an oversight; `git add` on a gitignored path silently no-ops,
             # so that "fix" never actually worked. Real per-cycle diagnostics
             # (attempted/written counts, per-item failure reasons) now live in
-            # priority_writer_state.json's "last_run" key instead, written by
-            # agent_priority_writer.py itself and committed normally below.
+            # priority_writer_state.json / country_trending_writer_state.json's
+            # "last_run" key instead, written by each writer itself and
+            # committed normally below.
             git add agents/python/content_priority_queue.json agents/python/priority_writer_state.json
+            git add agents/python/country_trending_writer_state.json agents/python/covered_stories_state.json
             git add blog/posts.json blog/posts-data.js blog/ assets/og/
             if git diff --cached --quiet; then
               echo "No new priority content this cycle"
