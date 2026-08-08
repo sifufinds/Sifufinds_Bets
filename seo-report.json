@@ -1,19 +1,13 @@
 {
   "date": "2026-08-08",
-  "total": 2,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kolisi-returns-springboks-match-preview-betting",
-      "detail": "Title 68 chars (max 60): 'Springboks\u2019 Captain Kolisi Returns: Match Preview & Betting Insights'"
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
