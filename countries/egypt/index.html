@@ -394,7 +394,7 @@ function renderBooks(){
 }
 
 function renderFeatCards(){
-  const books=(BOOKS[_PAGE_CTY]||[]).slice(0,8);
+  const books=(BOOKS[_PAGE_CTY]||[]).slice(0,6);
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${b.bg}">

@@ -1016,9 +1016,11 @@ function _brandSlugForBook(b){
 function _countrySlugFor(cty){
   return(COUNTRY_DATA[cty]?.name||'').toLowerCase().replace(/\s+/g,'-');
 }
-function _sponsorDataRoot(){
-  const depth=(location.pathname.match(/\//g)||[]).length-1;
-  return depth>1?'../'.repeat(depth-1):(depth===1?'../':'');
+// Relative path prefix from the current page back to the site root, e.g.
+// '../../' from /countries/nigeria/, '../' from /tips/, '' from /.
+function _pathRoot(){
+  const segs=location.pathname.split('/').filter(Boolean);
+  return '../'.repeat(segs.length);
 }
 function _sponsorCard(b,isPaid,criteriaNote){
   return`<div class="spc">
@@ -1054,7 +1056,7 @@ function renderSponsorStrip(){
     if(!cards.length)return;
     el.innerHTML=`<div class="wrap"><div class="spc-lbl">🔥 Top Offers</div><div class="spc-grid">${cards.join('')}</div><p class="spc-dis">18+ only. Some placements above are paid partnerships (marked "Sponsored"), others are our top affiliate-linked picks. Bet responsibly. <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a></p></div>`;
   };
-  fetch(_sponsorDataRoot()+'data/featured_listings.json').then(r=>r.ok?r.json():{listings:[]}).then(data=>{
+  fetch(_pathRoot()+'data/featured_listings.json').then(r=>r.ok?r.json():{listings:[]}).then(data=>{
     const now=Date.now();
     const prefix=`country_sponsor:${slug}:`;
     const paidSlots=(data.listings||[]).filter(e=>{
@@ -1074,8 +1076,7 @@ document.addEventListener('DOMContentLoaded',renderSponsorStrip);
 document.addEventListener('DOMContentLoaded',function(){
   const tabs=document.querySelector('.ntabs');
   if(tabs&&!tabs.querySelector('[href*="about"]')){
-    const depth=(location.pathname.match(/\//g)||[]).length-1;
-    const root=depth>1?'../'.repeat(depth-1):(depth===1?'../':'');
+    const root=_pathRoot();
     const a=document.createElement('a');
     a.className='nt';
     a.href=root+'about/';
