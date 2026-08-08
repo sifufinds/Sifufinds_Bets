@@ -23,31 +23,39 @@
     "safest betting apps Nigeria": {
       "slug": "safest-betting-apps-nigeria",
       "posted_at": "2026-08-08T02:14:44.076031+00:00"
+    },
+    "how to bet online Kenya beginners guide": {
+      "slug": "how-to-bet-online-kenya-beginners-guide",
+      "posted_at": "2026-08-08T04:14:47.800523+00:00"
+    },
+    "safest betting apps Kenya": {
+      "slug": "safest-betting-apps-kenya",
+      "posted_at": "2026-08-08T04:15:27.902184+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-08-08T02:15:25.690928+00:00",
-    "candidates_available": 54,
+    "checked_at": "2026-08-08T04:15:30.898522+00:00",
+    "candidates_available": 59,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "how to bet online Nigeria beginners guide",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "how-to-bet-online-nigeria-beginners-guide"
-      },
-      {
-        "keyword": "safest betting apps Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "safest-betting-apps-nigeria"
-      },
-      {
         "keyword": "best betting bonus Kenya 2026",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: final line was 'Look for licensing, payment methods, customer support, and the range of sports and markets offered. Ensure the site has a good reputation and positive reviews from other bettors to guarantee a safe betting experience.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "how to bet online Kenya beginners guide",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "how-to-bet-online-kenya-beginners-guide"
+      },
+      {
+        "keyword": "safest betting apps Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "safest-betting-apps-kenya"
       }
     ]
   }
