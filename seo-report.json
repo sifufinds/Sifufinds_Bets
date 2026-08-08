@@ -1,13 +1,19 @@
 {
   "date": "2026-08-08",
-  "total": 1,
+  "total": 2,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 1,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "best-betting-bonus-tanzania-2026",
+      "detail": "Title 63 chars (max 60): 'Best Betting Bonus Tanzania 2026: Welcome Bonuses & Promo Codes'"
+    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
