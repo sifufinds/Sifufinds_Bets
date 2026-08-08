@@ -1,7 +1,7 @@
 {
   "_schema": {
-    "slot": "One of: homepage_hero, top_sportsbook, featured_casino, editors_pick, category_sponsor:<category>, country_sponsor:<country>, newsletter_sponsor",
-    "brand_slug": "Must match a slug in data/bookmaker_links.json or agents/python/utils/affiliate_links.py's BRAND_SLUGS",
+    "slot": "One of: homepage_hero, top_sportsbook, featured_casino, editors_pick, category_sponsor:<category>, country_sponsor:<country-slug>:<position 1-5>, newsletter_sponsor. country_sponsor slots power the 5-card paid strip at the top of countries/<country-slug>/index.html (assets/shared.js renderSponsorStrip()) — <country-slug> must match the page's directory name (e.g. 'nigeria', 'south-africa', 'dr-congo'), and <position> is the 1-5 slot rendered left-to-right. A slot only renders as paid if brand_slug also resolves to a BOOKS[] entry with a real affiliate-tracking link (assets/shared.js AFFILIATE_DOMAINS) — otherwise it's silently skipped and filled with an unlabeled organic pick, so never sell a slot to a brand without a live tracking URL.",
+    "brand_slug": "Must match a slug in data/bookmaker_links.json or agents/python/utils/affiliate_links.py's BRAND_SLUGS. For country_sponsor slots specifically, must also match the brand's domain-derived slug used by renderSponsorStrip() (first label of assets/shared.js BRAND_DOMAINS[abbr], e.g. '1xbet.com' -> '1xbet')",
     "sponsored": "Must always be true — this feature only exists for clearly-labelled paid placements, never disguised organic promotion",
     "starts_at": "ISO 8601 timestamp, or null for immediately active",
     "ends_at": "ISO 8601 timestamp — required, no open-ended placements",
