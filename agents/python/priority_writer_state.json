@@ -91,31 +91,35 @@
     "safest betting apps Uganda": {
       "slug": "safest-betting-apps-uganda",
       "posted_at": "2026-08-08T14:19:44.897982+00:00"
+    },
+    "best betting bonus Zambia 2026": {
+      "slug": "best-betting-bonus-zambia-2026",
+      "posted_at": "2026-08-08T14:22:21.180620+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-08-08T14:19:48.347807+00:00",
-    "candidates_available": 45,
+    "checked_at": "2026-08-08T14:23:28.318534+00:00",
+    "candidates_available": 42,
     "attempted": 3,
-    "written": 3,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "best betting bonus Uganda 2026",
-        "country": "Uganda",
-        "result": "written",
-        "slug": "best-betting-bonus-uganda-2026"
+        "keyword": "best betting sites Zambia 2026",
+        "country": "Zambia",
+        "result": "failed",
+        "reason": "missing_output_markers"
       },
       {
-        "keyword": "how to bet online Uganda beginners guide",
-        "country": "Uganda",
+        "keyword": "best betting bonus Zambia 2026",
+        "country": "Zambia",
         "result": "written",
-        "slug": "how-to-bet-online-uganda-beginners-guide"
+        "slug": "best-betting-bonus-zambia-2026"
       },
       {
-        "keyword": "safest betting apps Uganda",
-        "country": "Uganda",
-        "result": "written",
-        "slug": "safest-betting-apps-uganda"
+        "keyword": "how to bet online Zambia beginners guide",
+        "country": "Zambia",
+        "result": "failed",
+        "reason": "quality_gate: final line was '*18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
