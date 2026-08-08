@@ -15,19 +15,39 @@
     "best betting bonus Nigeria 2026": {
       "slug": "best-betting-bonus-nigeria-2026",
       "posted_at": "2026-08-02T19:58:09.142614+00:00"
+    },
+    "how to bet online Nigeria beginners guide": {
+      "slug": "how-to-bet-online-nigeria-beginners-guide",
+      "posted_at": "2026-08-08T02:13:39.800267+00:00"
+    },
+    "safest betting apps Nigeria": {
+      "slug": "safest-betting-apps-nigeria",
+      "posted_at": "2026-08-08T02:14:44.076031+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-08-08T02:11:59.311049+00:00",
+    "checked_at": "2026-08-08T02:15:25.690928+00:00",
     "candidates_available": 54,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "how to bet online Nigeria beginners guide",
         "country": "Nigeria",
+        "result": "written",
+        "slug": "how-to-bet-online-nigeria-beginners-guide"
+      },
+      {
+        "keyword": "safest betting apps Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "safest-betting-apps-nigeria"
+      },
+      {
+        "keyword": "best betting bonus Kenya 2026",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       }
     ]
   }
