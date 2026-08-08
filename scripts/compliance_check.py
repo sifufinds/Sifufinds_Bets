@@ -88,7 +88,14 @@ BANNED_RE = re.compile("|".join(BANNED_PHRASES), re.IGNORECASE)
 # (plus the lookback window below) rather than special-casing this one
 # phrasing, since any future prompt listing 2+ banned phrases after one
 # "Never claim..." would hit the same gap.
-_NEGATION_RE = re.compile(r"\b(never|don'?t|do not|avoid|without)[\w\s\"',:]{0,80}$", re.IGNORECASE)
+#
+# Found 2026-08-08: "no" wasn't in the negation-word list, so a genuine
+# responsible-gambling disclaimer — "There is no guaranteed win, no risk
+# free bet and no promise of profit" in best-betting-bonus-zambia-2026 —
+# tripped this as a CRITICAL violation and blocked every deploy behind it
+# for hours. "no" is exactly the natural word this kind of accurate
+# disclaimer uses, same as "avoid"/"without" already in this list.
+_NEGATION_RE = re.compile(r"\b(never|don'?t|do not|avoid|without|no)[\w\s\"',:]{0,80}$", re.IGNORECASE)
 
 
 def _is_negated(text: str, match_start: int) -> bool:

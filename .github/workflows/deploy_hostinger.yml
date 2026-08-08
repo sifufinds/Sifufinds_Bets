@@ -97,21 +97,31 @@ jobs:
             --jq "[.[] | select(.databaseId != ${CURRENT_RUN_ID}) | select(.status == \"completed\")] | .[].databaseId")
 
           # Walk recent completed runs newest-first, collecting the outcome of
-          # every run whose deploy job actually attempted an upload (skipping
-          # skip-only runs entirely) until we have the most recent real
+          # every run that actually reached the Hostinger upload step (not
+          # just "the deploy job ran") until we have the most recent real
           # attempt's timestamp plus up to 8 real outcomes for backoff.
+          #
+          # Found live 2026-08-08: a run can fail at an earlier validation
+          # step (validate_site.py / compliance_check.py etc.) and never touch
+          # the Hostinger API at all — that's a content problem, not a rate
+          # limit, and treating it as a "real 429-style failure" wrongly
+          # escalated the cooldown to 180min after a compliance-check false
+          # positive, blocking deploys for hours with zero Hostinger calls
+          # involved. Keying specifically on the upload step's own conclusion
+          # (not the job's overall conclusion) tells the two apart: a null
+          # conclusion here means the job never got that far.
           LAST_ATTEMPT_CREATED=""
           REAL_CONCLUSIONS=()
           for rid in $CANDIDATE_IDS; do
-            JOB_CONCLUSION=$(gh api "repos/$REPO/actions/runs/$rid/jobs" \
-              --jq '.jobs[] | select(.name == "Deploy static site to Hostinger") | .conclusion' 2>/dev/null)
-            if [ -z "$JOB_CONCLUSION" ] || [ "$JOB_CONCLUSION" = "skipped" ]; then
+            UPLOAD_STEP_CONCLUSION=$(gh api "repos/$REPO/actions/runs/$rid/jobs" \
+              --jq '.jobs[] | select(.name == "Deploy static site to Hostinger") | .steps[]? | select(.name == "Deploy to Hostinger via MCP (with retry)") | .conclusion' 2>/dev/null)
+            if [ -z "$UPLOAD_STEP_CONCLUSION" ] || [ "$UPLOAD_STEP_CONCLUSION" = "skipped" ]; then
               continue
             fi
             if [ -z "$LAST_ATTEMPT_CREATED" ]; then
               LAST_ATTEMPT_CREATED=$(gh run view "$rid" --repo "$REPO" --json createdAt --jq .createdAt)
             fi
-            REAL_CONCLUSIONS+=("$JOB_CONCLUSION")
+            REAL_CONCLUSIONS+=("$UPLOAD_STEP_CONCLUSION")
             if [ "${#REAL_CONCLUSIONS[@]}" -ge 8 ]; then
               break
             fi
