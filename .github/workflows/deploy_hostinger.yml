@@ -91,7 +91,7 @@ jobs:
           # Walk recent completed runs newest-first, collecting the outcome of
           # every run whose deploy job actually attempted an upload (skipping
           # skip-only runs entirely) until we have the most recent real
-          # attempt's timestamp plus up to 3 real outcomes for backoff.
+          # attempt's timestamp plus up to 6 real outcomes for backoff.
           LAST_ATTEMPT_CREATED=""
           REAL_CONCLUSIONS=()
           for rid in $CANDIDATE_IDS; do
@@ -104,7 +104,7 @@ jobs:
               LAST_ATTEMPT_CREATED=$(gh run view "$rid" --repo "$REPO" --json createdAt --jq .createdAt)
             fi
             REAL_CONCLUSIONS+=("$JOB_CONCLUSION")
-            if [ "${#REAL_CONCLUSIONS[@]}" -ge 3 ]; then
+            if [ "${#REAL_CONCLUSIONS[@]}" -ge 6 ]; then
               break
             fi
           done
@@ -115,7 +115,12 @@ jobs:
             exit 0
           fi
 
-          # Adaptive backoff: 2+ consecutive real failures -> 30min, 3+ -> 60min.
+          # Adaptive backoff: 2+ consecutive real failures -> 30min, 3+ -> 60min,
+          # 4+ -> 120min. Found live 2026-08-08: a 60min cap still wasn't enough —
+          # a 4th consecutive real attempt at 02:28 still hit 429 despite a 68min
+          # gap since the prior failure, echoing the 5h17m storm documented above.
+          # Escalating further here reduces how much this workflow itself
+          # contributes to keeping that window open on Hostinger's side.
           COOLDOWN_MIN=$BASE_COOLDOWN_MIN
           CONSECUTIVE_FAILURES=0
           for c in "${REAL_CONCLUSIONS[@]}"; do
@@ -125,7 +130,9 @@ jobs:
               break
             fi
           done
-          if [ "$CONSECUTIVE_FAILURES" -ge 3 ]; then
+          if [ "$CONSECUTIVE_FAILURES" -ge 4 ]; then
+            COOLDOWN_MIN=120
+          elif [ "$CONSECUTIVE_FAILURES" -ge 3 ]; then
             COOLDOWN_MIN=60
           elif [ "$CONSECUTIVE_FAILURES" -ge 2 ]; then
             COOLDOWN_MIN=30
