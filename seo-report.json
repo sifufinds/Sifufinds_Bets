@@ -1,43 +1,13 @@
 {
   "date": "2026-08-08",
-  "total": 6,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "best-betting-sites-south-africa-2026",
-      "detail": "Title 68 chars (max 60): 'Best Betting Sites South Africa 2026: Comprehensive Comparison Guide'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "best-betting-bonus-south-africa-2026",
-      "detail": "Title 65 chars (max 60): 'Best Betting Bonus South Africa 2026: Top Welcome Offers Compared'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "best-betting-bonus-kenya-2026",
-      "detail": "Title 62 chars (max 60): 'Best Betting Bonus Kenya 2026: Welcome Bonuses and Promo Codes'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "best-betting-bonus-ghana-2026",
-      "detail": "Title 61 chars (max 60): 'Best Betting Bonus in Ghana 2026: Top Welcome Offers Compared'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "safest-betting-apps-nigeria",
-      "detail": "Excerpt 158 chars (max 155)"
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
