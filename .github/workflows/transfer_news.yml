@@ -30,6 +30,17 @@ name: Transfer News Bot — Live coverage every 5 minutes
 # restarting instead costs one cheap ~30-60s cache-restore/checkout on
 # whichever cadence GitHub actually delivers, with no unbounded backlog risk
 # either way.
+#
+# Self-healing tripwire (added 2026-08-08): the loop body also fails itself
+# (non-zero exit) after 5 consecutive cycles where agent_fact_checker.py
+# rejects every draft — a real live incident on 2026-08-07/08 saw every LLM
+# tier degrade far enough (Groq quota exhausted, weak local fallback
+# hallucinating) that this ran green for 12+ hours while publishing nothing,
+# completely invisible to workflow_watchdog.yml/retry_failed.yml because
+# "fact-checker rejected the draft" is deliberately not a crash — see
+# agent_fact_checker.py's own docstring. See the CONSECUTIVE_FLAGGED comment
+# further down for the mechanism. This does NOT trip on ordinary "no fresh
+# news right now" cycles, which are a normal, expected, non-error outcome.
 
 on:
   schedule:
@@ -184,6 +195,29 @@ jobs:
           END_TIME=$(( $(date +%s) + 340*60 ))
           EXIT_CODE=0
 
+          # Self-healing tripwire (added 2026-08-08 — see AGENT-KNOWLEDGE.md):
+          # a cycle where the fact-checker holds back every draft returns
+          # EXIT_CODE 0 (deliberately — a flagged draft isn't a crash, see
+          # agent_fact_checker.py's docstring) and "No changes to commit",
+          # so the loop just quietly sleeps and tries again forever. Confirmed
+          # live 2026-08-07/08: this let the bot run green for 12+ hours
+          # while publishing nothing, completely invisible to
+          # workflow_watchdog.yml/retry_failed.yml since nothing ever
+          # reported as failed. CONSECUTIVE_FLAGGED counts back-to-back
+          # cycles where the fact-checker specifically rejected a draft
+          # (distinct from "no fresh news", which is a normal, expected,
+          # non-error outcome during a quiet news window and must NOT trip
+          # this). At the threshold below (~25 min of continuous rejection)
+          # the loop deliberately fails the job so the run shows red in
+          # `gh run list` and the existing watchdog/retry-failed workflows
+          # actually retry it — a fresh process re-probes Groq/g4f from
+          # scratch, which a stuck self-perpetuating loop never does on its
+          # own since _groq_exhausted_this_process/_g4f_exhausted_this_process
+          # are process-scoped and only ever get set, never cleared, once
+          # tripped within a single run.
+          CONSECUTIVE_FLAGGED=0
+          FLAGGED_THRESHOLD=5
+
           while [ "$(date +%s)" -lt "$END_TIME" ]; do
             ITER_START=$(date +%s)
             echo "▶ Checking for fresh transfer news — $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
@@ -197,9 +231,22 @@ jobs:
 
             # Instagram credentials aren't wired into secrets yet (see
             # accumulator_post.yml) — skip it explicitly so every 5-min
-            # check doesn't log a "not configured" warning.
-            ( cd agents/python && python agent_transfer_post.py --no-instagram )
-            EXIT_CODE=$?
+            # check doesn't log a "not configured" warning. Output is
+            # captured (via `tee`, so it still streams live to the job log)
+            # purely to drive the CONSECUTIVE_FLAGGED tripwire above.
+            ( cd agents/python && python agent_transfer_post.py --no-instagram ) 2>&1 | tee /tmp/transfer_cycle_output.log
+            EXIT_CODE=${PIPESTATUS[0]}
+
+            if grep -q "Fact-checker held back this article" /tmp/transfer_cycle_output.log; then
+              CONSECUTIVE_FLAGGED=$(( CONSECUTIVE_FLAGGED + 1 ))
+              echo "⚠️  Fact-checker rejected this cycle's draft ($CONSECUTIVE_FLAGGED/$FLAGGED_THRESHOLD consecutive)"
+              if [ "$CONSECUTIVE_FLAGGED" -ge "$FLAGGED_THRESHOLD" ]; then
+                echo "❌ $FLAGGED_THRESHOLD consecutive cycles rejected by the fact-checker — likely every LLM tier is degraded (weak fallback model hallucinating). Failing this run on purpose so the watchdog/retry-failed workflows retry with a fresh process."
+                EXIT_CODE=1
+              fi
+            else
+              CONSECUTIVE_FLAGGED=0
+            fi
 
             python3 gen_blog_post_pages.py
 

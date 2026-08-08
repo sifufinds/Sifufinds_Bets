@@ -78,10 +78,17 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           set +e
+          # Capped at 30 min (added 2026-08-08) — same root cause and fix as
+          # content_backfill.yml/breaking_news.yml's identical change that
+          # day: an unbounded LLM-fallback chain can consume the whole 40-min
+          # job timeout, which reports as "cancelled" and is invisible to
+          # both workflow_watchdog.yml and retry_failed.yml (both only act
+          # on conclusion: "failure"), skipping every step after this one
+          # even for posts already translated before the kill.
           if [ -n "${{ github.event.inputs.locale }}" ]; then
-            python agent_translate.py --locale "${{ github.event.inputs.locale }}"
+            timeout 1800 python agent_translate.py --locale "${{ github.event.inputs.locale }}"
           else
-            python agent_translate.py
+            timeout 1800 python agent_translate.py
           fi
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
           exit 0

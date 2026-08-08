@@ -61,7 +61,14 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           set +e
-          python agent5_plan.py
+          # Capped at 8 min, same shape as breaking_news.yml/
+          # content_backfill.yml/agent_translate.yml's 2026-08-08 fix: an
+          # unbounded LLM-fallback chain (Groq exhausted -> g4f -> local
+          # Ollama install+pull+generate) can exceed this job's already-tight
+          # 10-min ceiling and get killed by GitHub's own job timeout, which
+          # reports "cancelled" — invisible to both workflow_watchdog.yml and
+          # retry_failed.yml (both only act on conclusion: "failure").
+          timeout 480 python agent5_plan.py
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
           exit 0
 

@@ -77,7 +77,19 @@ jobs:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: |
           set +e
-          python agent_content_backfill.py
+          # Capped at 30 min (added 2026-08-08, same root cause as
+          # breaking_news.yml's identical fix that day, re-triggered by
+          # llm.py's Ollama fallback model upgrading 3b->8b the same day
+          # this comment was written): without a bound here, a slow/exhausted
+          # LLM chain across BATCH_SIZE posts can consume the whole 40-min
+          # job timeout, which GitHub reports as "cancelled" — invisible to
+          # both workflow_watchdog.yml and retry_failed.yml (both only act
+          # on conclusion: "failure") and skips every step after this one
+          # (regenerate pages, commit, push, deploy trigger) even for posts
+          # that already finished successfully before the kill. A bounded
+          # `timeout` here still lets $? get captured normally below and
+          # lets the rest of the job run with whatever was completed so far.
+          timeout 1800 python agent_content_backfill.py
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
           exit 0
 
