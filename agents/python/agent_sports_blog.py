@@ -426,6 +426,23 @@ _CATEGORY_HASHTAGS = {
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
+# Persistent backlog for posts whose Facebook announcement still failed
+# after post_facebook()'s own in-request retries (agent3_social.py) — added
+# 2026-08-08. Before this, a failure here was permanent: the post published
+# fine, but its Facebook announcement was gone the moment the process
+# exited, with nothing to pick it up again. Every blog-writing entrypoint in
+# this codebase (agent_sports_blog.run(), agent_priority_writer.py,
+# agent_country_trending_writer.py) calls announce_to_facebook() for every
+# post it writes, so flushing this backlog at the top of that one shared
+# function gives every one of those a real, persistent "keep trying until
+# it actually posts" guarantee instead of a single best-effort attempt.
+FACEBOOK_BACKLOG_PATH = Path(__file__).parent / "facebook_announce_backlog.json"
+_FACEBOOK_BACKLOG_MAX_ENTRIES = 50
+# A backlog entry older than this is almost certainly stale news by the time
+# it would post (this pipeline publishes several times an hour) — better to
+# drop it than announce day-old "breaking" news as if it were fresh.
+_FACEBOOK_BACKLOG_MAX_AGE_HOURS = 48
+
 
 def build_facebook_caption(post: dict) -> str:
     icon = CATEGORIES.get(post["category"], {}).get("icon", "📰")
@@ -439,13 +456,85 @@ def build_facebook_caption(post: dict) -> str:
     )
 
 
+def _load_facebook_backlog() -> list[dict]:
+    if FACEBOOK_BACKLOG_PATH.exists():
+        try:
+            return json.loads(FACEBOOK_BACKLOG_PATH.read_text()).get("pending", [])
+        except (OSError, json.JSONDecodeError):
+            pass
+    return []
+
+
+def _save_facebook_backlog(entries: list[dict]) -> None:
+    FACEBOOK_BACKLOG_PATH.write_text(
+        json.dumps({"pending": entries[-_FACEBOOK_BACKLOG_MAX_ENTRIES:]}, indent=2, ensure_ascii=False)
+    )
+
+
+def _queue_facebook_backlog(post: dict) -> None:
+    image_path = post.get("_facebook_image_path")
+    entries = _load_facebook_backlog()
+    entries.append({
+        "title": post["title"],
+        "caption": build_facebook_caption(post),
+        "image_path": str(image_path) if image_path else "",
+        "queued_at": datetime.now(timezone.utc).isoformat(),
+    })
+    _save_facebook_backlog(entries)
+
+
+def retry_pending_facebook_announcements() -> int:
+    """Flush the backlog — called automatically at the top of every
+    announce_to_facebook() so a post that failed on an earlier run (a
+    different Python process, possibly a different GitHub Actions job
+    entirely) gets picked up the very next time ANY writer agent announces
+    a new post, not just its own retry. Returns how many were successfully
+    posted this call."""
+    entries = _load_facebook_backlog()
+    if not entries:
+        return 0
+
+    from agent3_social import post_facebook
+
+    now = datetime.now(timezone.utc)
+    still_pending = []
+    posted = 0
+    for entry in entries:
+        try:
+            queued_at = datetime.fromisoformat(entry["queued_at"])
+        except (KeyError, ValueError):
+            queued_at = now
+        age_hours = (now - queued_at).total_seconds() / 3600
+        if age_hours > _FACEBOOK_BACKLOG_MAX_AGE_HOURS:
+            print(f"  ⚠ Dropping stale Facebook backlog entry ({age_hours:.0f}h old): '{entry.get('title', '')}'")
+            continue
+
+        image_path = entry.get("image_path") or None
+        if image_path and not Path(image_path).exists():
+            image_path = None
+        if post_facebook(entry["caption"], image_path=image_path):
+            posted += 1
+            print(f"  ✓ Posted previously-failed Facebook announcement: '{entry.get('title', '')}'")
+        else:
+            still_pending.append(entry)
+
+    _save_facebook_backlog(still_pending)
+    return posted
+
+
 def announce_to_facebook(post: dict) -> bool:
-    """Best-effort — a Facebook failure must never block blog generation or
-    take down the rest of the run, same resilience pattern as every other
-    post_facebook() call site in this codebase."""
+    """A Facebook failure must never block blog generation or take down the
+    rest of the run — but unlike a purely best-effort attempt, a failure
+    here (even after post_facebook()'s own in-request retries) is queued to
+    FACEBOOK_BACKLOG_PATH and retried automatically on the next call from
+    ANY writer agent, so the post's announcement keeps trying until it
+    actually succeeds rather than being silently lost the moment this
+    process exits."""
     try:
         from agent3_social import post_facebook
         from utils.logger import log
+
+        retry_pending_facebook_announcements()
 
         image_path = None
         feature_image = post.get("feature_image")
@@ -453,12 +542,20 @@ def announce_to_facebook(post: dict) -> bool:
             candidate = REPO_ROOT / feature_image.lstrip("/")
             if candidate.exists():
                 image_path = candidate
+        post["_facebook_image_path"] = image_path
 
         ok = post_facebook(build_facebook_caption(post), image_path=image_path)
         log("sports_blog", "facebook_announce", "success" if ok else "failed", post["title"])
+        if not ok:
+            _queue_facebook_backlog(post)
+            print(f"  ⚠ Facebook announcement failed after retries — queued for next attempt (blog post itself is unaffected)")
         return ok
     except Exception as e:
         print(f"  ⚠ Facebook announcement failed (blog post itself is unaffected): {e}")
+        try:
+            _queue_facebook_backlog(post)
+        except Exception:
+            pass
         return False
 
 
