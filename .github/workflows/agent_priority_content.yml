@@ -186,7 +186,21 @@ jobs:
                 sleep 5
                 git fetch origin main
                 git merge --no-edit origin/main || true
-                python3 agents/python/merge_posts.py 2>/dev/null || true
+                # merge_posts.py is the JSON-aware merge for blog/posts.json — it
+                # reads HEAD/FETCH_HEAD via `git show` (bypassing any conflict
+                # markers the raw `git merge` above may have left in the working
+                # tree) and refuses to write a suspiciously small result. If it
+                # fails, do NOT swallow that (2026-08-09 incident: `|| true` here
+                # let a failed/skipped merge fall through to `git add -A` and
+                # commit whatever the raw text merge left, repeatedly stomping
+                # the ~850-post database down to a handful of posts). Instead
+                # reset to origin's last-known-good posts.json for this cycle —
+                # this cycle's own new post(s) are dropped, but that beats
+                # corrupting the shared file; the next scheduled run tries again.
+                if ! python3 agents/python/merge_posts.py; then
+                  echo "::warning::merge_posts.py failed — resetting blog/posts.json to origin/main instead of committing a possibly-corrupted merge"
+                  git checkout origin/main -- blog/posts.json blog/posts-data.js
+                fi
                 python3 gen_blog_post_pages.py
                 git add -A
                 git commit -m "content: priority guides $(date -u '+%Y-%m-%d %H:%M') UTC (merged)" --allow-empty

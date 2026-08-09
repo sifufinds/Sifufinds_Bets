@@ -17,6 +17,7 @@ import json
 import os
 import random
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
@@ -381,24 +382,72 @@ POSTS_PATH = Path(__file__).parent.parent.parent / "blog" / "posts.json"
 
 
 def load_posts() -> list[dict]:
-    if POSTS_PATH.exists():
+    """Load blog/posts.json, retrying briefly against concurrent writers.
+
+    2026-08-09 incident: this used to swallow any read/parse failure and
+    return [] on the spot. Multiple bot workflows (agent_priority_writer.py,
+    agent_country_trending_writer.py, agent_transfer_post.py, etc.) call
+    save_posts() on overlapping schedules with no file locking, so a reader
+    can catch the target file mid-write (truncated/invalid JSON) purely by
+    bad timing. Treating that transient race as "there are zero posts" is
+    catastrophic: the caller then does save_posts(new_posts + []), silently
+    replacing the entire ~850-post database with a handful of posts. That
+    happened repeatedly for ~9 hours before being caught and restored from
+    git history. A short retry absorbs the race; if the file is still
+    unreadable after that, we raise instead of returning an empty list, so
+    a real corruption fails the run loudly rather than overwriting good data.
+    """
+    if not POSTS_PATH.exists():
+        return []
+    last_err: Exception | None = None
+    for attempt in range(5):
         try:
             with open(POSTS_PATH) as f:
                 return json.load(f).get("posts", [])
-        except Exception:
-            return []
-    return []
+        except (json.JSONDecodeError, OSError) as e:
+            last_err = e
+            time.sleep(0.4 * (attempt + 1))
+    raise RuntimeError(
+        f"Could not read {POSTS_PATH} after 5 attempts — refusing to treat "
+        f"this as an empty post list (that would overwrite existing posts "
+        f"on the next save_posts() call). Last error: {last_err}"
+    )
 
 
 def save_posts(posts: list[dict]) -> None:
+    """Write blog/posts.json + posts-data.js atomically.
+
+    Writes to a temp file in the same directory and os.replace()s it into
+    place, so a concurrent load_posts() in another process can never observe
+    a partially-written file — os.replace is atomic on POSIX. Also refuses
+    to write a suspiciously small post list over a much larger existing one,
+    as a last-resort guard against the same class of bug this fixes.
+    """
     POSTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    if POSTS_PATH.exists():
+        try:
+            existing_count = len(json.loads(POSTS_PATH.read_text()).get("posts", []))
+            if existing_count >= 20 and len(posts) < existing_count * 0.5:
+                raise RuntimeError(
+                    f"save_posts() refused: about to write {len(posts)} posts "
+                    f"over an existing {existing_count} — looks like data loss, "
+                    f"not a real edit. Aborting instead of overwriting."
+                )
+        except (json.JSONDecodeError, OSError):
+            pass  # existing file unreadable — nothing to compare against, proceed
     payload = {"posts": posts}
-    with open(POSTS_PATH, "w") as f:
+
+    tmp_path = POSTS_PATH.with_suffix(".json.tmp")
+    with open(tmp_path, "w") as f:
         json.dump(payload, f, indent=2)
+    os.replace(tmp_path, POSTS_PATH)
+
     # Also write posts-data.js so the blog works on file:// protocol
     js_path = POSTS_PATH.parent / "posts-data.js"
-    with open(js_path, "w", encoding="utf-8") as f:
+    js_tmp_path = js_path.with_suffix(".js.tmp")
+    with open(js_tmp_path, "w", encoding="utf-8") as f:
         f.write(f"window.POSTS_DATA={json.dumps(payload, ensure_ascii=False)};\n")
+    os.replace(js_tmp_path, js_path)
 
 
 # ── FACEBOOK ANNOUNCEMENT (every published article, not just transfers) ───────
