@@ -307,7 +307,7 @@ def build_page(sport, country_slug, country_data):
 <div class="tbar">
   <div class="tbar-l">
     <a href="{assets}">🏠 Home</a>
-    <a href="{assets}countries/{country_slug}/">{flag} {cname}</a>
+    <a href="{assets}best-bonus-in-{country_slug}/">{flag} {cname}</a>
     <button onclick="openPage('responsible')">Responsible Gambling</button>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
@@ -401,7 +401,7 @@ def build_page(sport, country_slug, country_data):
 
 <div class="footer-bar">
   <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison<br>
-  <a href="{assets}">Home</a> · <a href="{assets}countries/{country_slug}/">{cname} Betting</a> · <a href="{assets}betting/{sport_slug}/">{sport_sport} Betting Africa</a> · <a href="{assets}tips/">{sport_sport} Tips</a><br>
+  <a href="{assets}">Home</a> · <a href="{assets}best-bonus-in-{country_slug}/">{cname} Betting</a> · <a href="{assets}betting/{sport_slug}/">{sport_sport} Betting Africa</a> · <a href="{assets}tips/">{sport_sport} Tips</a><br>
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only.
 </div>
 

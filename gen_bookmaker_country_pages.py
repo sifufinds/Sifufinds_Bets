@@ -554,7 +554,7 @@ def build_page(bk, country_slug, country, combo):
 <div class="tbar">
   <div class="tbar-l">
     <a href="{assets}">🏠 Home</a>
-    <a href="{assets}countries/{country_slug}/">{flag} {cname}</a>
+    <a href="{assets}best-bonus-in-{country_slug}/">{flag} {cname}</a>
     <button onclick="openPage('responsible')">Responsible Gambling</button>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
@@ -676,7 +676,7 @@ def build_page(bk, country_slug, country, combo):
     <h2>Compare {name} With Other {cname} Bookmakers</h2>
     <div id="compare-books"></div>
     <div style="text-align:center;margin-top:12px">
-      <a href="{assets}countries/{country_slug}/" style="display:inline-block;background:var(--g);color:#fff;padding:10px 22px;border-radius:7px;font-size:13px;font-weight:800;text-decoration:none">All {cname} Bookmakers →</a>
+      <a href="{assets}best-bonus-in-{country_slug}/" style="display:inline-block;background:var(--g);color:#fff;padding:10px 22px;border-radius:7px;font-size:13px;font-weight:800;text-decoration:none">All {cname} Bookmakers →</a>
     </div>
   </div>
 
@@ -685,7 +685,7 @@ def build_page(bk, country_slug, country, combo):
 
 <div class="footer-bar">
   <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison<br>
-  <a href="{assets}">Home</a> · <a href="{assets}countries/{country_slug}/">{cname} Betting</a> · <a href="{assets}bookmakers/{bk_slug}/">{name} Africa Review</a> · <a href="{assets}tips/">Tips</a> · <a href="{assets}blog/">Blog</a><br>
+  <a href="{assets}">Home</a> · <a href="{assets}best-bonus-in-{country_slug}/">{cname} Betting</a> · <a href="{assets}bookmakers/{bk_slug}/">{name} Africa Review</a> · <a href="{assets}tips/">Tips</a> · <a href="{assets}blog/">Blog</a><br>
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only.
 </div>
 

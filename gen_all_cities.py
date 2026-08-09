@@ -830,11 +830,14 @@ def build_page(city_data):
     # Depth from root (3 segments for countries/X/Y)
     depth = path.count('/')
     assets = '../' * (depth + 1)
-    country_prefix = '../' * depth
 
     slug = path.split('/')[-1]
     country_slug = path.split('/')[1]
     city_slug = slug
+
+    # 2026-08-09: country pages moved from countries/<slug>/ to best-bonus-in-<slug>/
+    # (see generate_country_pages.py) — link straight to the new location.
+    country_prefix = f'{assets}best-bonus-in-{country_slug}/'
 
     canonical = f'https://sifufinds.com/{path}/'
     hreflang = f'en-{code}'
@@ -935,7 +938,7 @@ def build_page(city_data):
       "itemListElement": [
         {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sifufinds.com/"}},
         {{"@type": "ListItem", "position": 2, "name": "Countries", "item": "https://sifufinds.com/countries/"}},
-        {{"@type": "ListItem", "position": 3, "name": "{country} Betting", "item": "https://sifufinds.com/countries/{country_slug}/"}},
+        {{"@type": "ListItem", "position": 3, "name": "{country} Bonus Sites", "item": "https://sifufinds.com/best-bonus-in-{country_slug}/"}},
         {{"@type": "ListItem", "position": 4, "name": "{city} Betting", "item": "{canonical}"}}
       ]
     }},

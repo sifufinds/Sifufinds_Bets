@@ -3,11 +3,30 @@
 
 import os
 import json
+import re
 from datetime import date, datetime
 
 BASE    = os.path.dirname(os.path.abspath(__file__))
 DOMAIN  = 'https://sifufinds.com'
 TODAY   = date.today().isoformat()
+
+_NOINDEX_RE = re.compile(r'<meta\s+name="robots"\s+content="[^"]*noindex', re.IGNORECASE)
+
+
+def _is_noindex(index_html_path: str) -> bool:
+    """True if the page's own <meta name="robots"> carries noindex.
+
+    Redirect-stub pages (e.g. countries/<slug>/ after the 2026-08-09
+    best-bonus-in-<slug>/ rename) are intentionally noindex — never submit
+    those to Google via sitemap even though the file still physically
+    exists (kept only so nested sub-pages retain a non-403 parent dir).
+    """
+    try:
+        with open(index_html_path, encoding='utf-8', errors='ignore') as f:
+            head = f.read(4000)
+    except OSError:
+        return False
+    return bool(_NOINDEX_RE.search(head))
 
 
 def file_lastmod(url: str) -> str:
@@ -119,6 +138,10 @@ def collect_urls():
 
         # Skip analytics, google verification pages
         if any(skip in url for skip in ['/analytics', '/google3', '/gen_', '/.', '/data/']):
+            continue
+
+        # Skip pages that carry their own noindex meta (e.g. redirect stubs).
+        if _is_noindex(os.path.join(root, 'index.html')):
             continue
 
         # blog/<slug>/ must still be a real post — see _tracked_blog_slugs().

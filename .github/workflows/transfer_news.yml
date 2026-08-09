@@ -273,7 +273,20 @@ jobs:
                 sleep 5
                 git fetch origin main
                 git merge --no-edit origin/main || true
-                python3 agents/python/merge_posts.py
+                # This whole step runs under `set +e` (see top of the loop),
+                # so a merge_posts.py failure would otherwise fall straight
+                # through to `git add -A`/`git commit` below and ship
+                # whatever the raw text `git merge` above left in
+                # blog/posts.json — including embedded conflict markers.
+                # 2026-08-09 incident: exactly this pattern (unchecked
+                # merge_posts.py + `set +e`) repeatedly stomped the ~850-post
+                # database down to a handful of posts in another workflow.
+                # Explicitly check the exit code and fall back to origin's
+                # last-known-good posts.json instead of committing a bad merge.
+                if ! python3 agents/python/merge_posts.py; then
+                  echo "::warning::merge_posts.py failed — resetting blog/posts.json to origin/main instead of committing a possibly-corrupted merge"
+                  git checkout origin/main -- blog/posts.json blog/posts-data.js
+                fi
                 python3 gen_blog_post_pages.py
                 git add -A
                 git commit -m "🔄 Transfer news: $(date -u '+%Y-%m-%d %H:%M') UTC (merged)" --allow-empty

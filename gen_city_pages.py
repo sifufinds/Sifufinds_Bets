@@ -151,7 +151,11 @@ def make_city_page(c):
     pay_chips = ' '.join(f'<span class="pay-chip">{p}</span>' for p in c['payments'])
     league_items = '\n'.join(f'      <li>{lg}</li>' for lg in c['popular_leagues'])
     ap = c['assets_prefix']
-    cp = c['country_prefix']
+    # 2026-08-09: country pages moved from countries/<slug>/ to best-bonus-in-<slug>/
+    # (see generate_country_pages.py) — link straight to the new location rather
+    # than through countries/<slug>/'s redirect stub. c['country_prefix'] (the old
+    # relative-up-N-levels path) is intentionally unused here now.
+    cp = f"{ap}best-bonus-in-{c['country_slug']}/"
 
     title = seo_title(f"Betting Sites in {c['city']}, {c['country']} 2026")
     meta_desc = f"Best licensed betting sites in {c['city']}, {c['country']} 2026. Compare verified bonuses from {c['regulator']} regulated bookmakers. {', '.join(c['payments'][:2])} accepted. Updated daily."
@@ -228,7 +232,7 @@ def make_city_page(c):
       "itemListElement": [
         {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://sifufinds.com/"}},
         {{"@type": "ListItem", "position": 2, "name": "Countries", "item": "https://sifufinds.com/countries/"}},
-        {{"@type": "ListItem", "position": 3, "name": {json.dumps(c['country'] + " Betting")}, "item": "https://sifufinds.com/countries/{c['country_slug']}/"}},
+        {{"@type": "ListItem", "position": 3, "name": {json.dumps(c['country'] + " Bonus Sites")}, "item": "https://sifufinds.com/best-bonus-in-{c['country_slug']}/"}},
         {{"@type": "ListItem", "position": 4, "name": {json.dumps(c['city'] + " Betting")}, "item": "{canonical}"}}
       ]
     }},

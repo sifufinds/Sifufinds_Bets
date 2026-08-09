@@ -1,11 +1,22 @@
 #!/usr/bin/env python3
-"""Generate dedicated country landing pages for sifufinds.com."""
+"""Generate dedicated per-country bonus landing pages for sifufinds.com.
+
+Renamed 2026-08-09: this generator used to output "Best Betting Sites in
+{Country}" pages to countries/<slug>/. It now outputs "Best Bonus Sites in
+{Country}" pages to /best-bonus-in-<slug>/ at the repo root — same rich
+per-country content (legality, payments, leagues, live bookmaker listing),
+retitled and moved. The old countries/<slug>/ URLs are 301-redirected to
+the new location (see .htaccess) and replaced with lightweight noindex
+stub pages (see gen_country_redirect_stubs.py) rather than deleted, since
+countries/<slug>/<city>/ sub-pages still live inside that same directory.
+"""
 
 import json
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 COUNTRIES_DIR = os.path.join(BASE_DIR, 'countries')
+OUT_PREFIX = 'best-bonus-in-'
 
 YEAR = '2026'
 MONTH_YEAR = 'June 2026'
@@ -183,6 +194,42 @@ COUNTRIES = {
         'leagues': ['NFA Premier League', 'CAF Confederation Cup', 'DStv Premiership', 'Premier League'],
         'top_bonus': 'NAD 4,500', 'top_bookmaker': 'Melbet Namibia', 'min_deposit': 'NAD 5', 'books_count': 6,
     },
+    'EG': {
+        'slug': 'egypt', 'name': 'Egypt', 'flag': '🇪🇬',
+        'currency': 'EGP', 'symbol': 'EGP',
+        'regulator': 'Egyptian Gambling Regulatory Authority (EGRA)',
+        'about': "Egypt is one of Africa's largest sports betting markets with a passionate football culture. The Egyptian Premier League is among Africa's strongest domestic competitions. International bookmakers serve Egyptian bettors and the market is growing with mobile penetration. Vodafone Cash Egypt and bank transfer are the main payment routes.",
+        'payments': ['Vodafone Cash Egypt', 'Orange Money Egypt', 'Bank Transfer', 'Visa', 'Mastercard'],
+        'leagues': ['Egyptian Premier League', 'CAF Champions League', 'Premier League', 'La Liga', 'World Cup 2026'],
+        'top_bonus': 'EGP 30,000', 'top_bookmaker': 'Melbet Egypt', 'min_deposit': 'EGP 10', 'books_count': 5,
+    },
+    'MA': {
+        'slug': 'morocco', 'name': 'Morocco', 'flag': '🇲🇦',
+        'currency': 'MAD', 'symbol': 'MAD',
+        'regulator': 'MDJS (Marocaine des Jeux et des Sports)',
+        'about': "Morocco has a regulated gambling market overseen by MDJS. PMU Maroc (Pari Mutuel Urbain) is the state-licensed operator. Morocco's 2022 World Cup semi-final run ignited massive betting interest — they are favourites as Africa's best side at World Cup 2026. The Botola Pro is the top domestic league, while La Liga, Champions League and Serie A are hugely popular.",
+        'payments': ['Bank Transfer', 'CIH Bank', 'Attijari Bank', 'Orange Money Morocco', 'Visa', 'Mastercard'],
+        'leagues': ['Botola Pro', 'CAF Champions League', 'Premier League', 'La Liga', 'World Cup 2026'],
+        'top_bonus': 'MAD 5,000', 'top_bookmaker': 'Melbet Maroc', 'min_deposit': 'MAD 10', 'books_count': 4,
+    },
+    'SL': {
+        'slug': 'sierra-leone', 'name': 'Sierra Leone', 'flag': '🇸🇱',
+        'currency': 'SLL', 'symbol': 'Le',
+        'regulator': 'National Lotteries Authority (NLA)',
+        'about': "Sierra Leone has a growing sports betting market regulated by the National Lotteries Authority. Orange Money Sierra Leone and Africell Money are the main mobile payment channels. The Sierra Leone Premier League and AFCON attract the most betting interest, with international competitions like the Premier League also popular.",
+        'payments': ['Orange Money Sierra Leone', 'Africell Money', 'Bank Transfer', 'Visa'],
+        'leagues': ['Sierra Leone Premier League', 'CAF Confederation Cup', 'Premier League', 'AFCON'],
+        'top_bonus': 'Le 2,000,000', 'top_bookmaker': '1xBet Sierra Leone', 'min_deposit': 'Le 1,000', 'books_count': 3,
+    },
+    'LR': {
+        'slug': 'liberia', 'name': 'Liberia', 'flag': '🇱🇷',
+        'currency': 'LRD', 'symbol': '$',
+        'regulator': 'National Lottery of Liberia',
+        'about': "Liberia has an emerging sports betting market. The National Lottery of Liberia oversees gambling activities. Lonestar Cell MTN Mobile Money and Orange Liberia are the main mobile payment options. Football is the dominant sport with the LFA League and international competitions attracting strong interest.",
+        'payments': ['Lonestar MTN Mobile Money', 'Orange Liberia', 'Bank Transfer', 'Visa'],
+        'leagues': ['LFA League', 'CAF Confederation Cup', 'Premier League', 'AFCON'],
+        'top_bonus': '$200', 'top_bookmaker': '1xBet Liberia', 'min_deposit': '$2', 'books_count': 3,
+    },
 }
 
 COUNTRY_SELECTOR_OPTIONS = """\
@@ -204,41 +251,48 @@ COUNTRY_SELECTOR_OPTIONS = """\
       <option value="AO">🇦🇴 Angola · AOA</option>
       <option value="CD">🇨🇩 DR Congo · CDF</option>
       <option value="BW">🇧🇼 Botswana · BWP</option>
-      <option value="NA">🇳🇦 Namibia · NAD</option>"""
+      <option value="NA">🇳🇦 Namibia · NAD</option>
+      <option value="EG">🇪🇬 Egypt · EGP</option>
+      <option value="MA">🇲🇦 Morocco · MAD</option>
+      <option value="SL">🇸🇱 Sierra Leone · Le SLL</option>
+      <option value="LR">🇱🇷 Liberia · $ LRD</option>"""
+
+BONUS_TYPE_LINKS = [
+    ('🎉', 'Welcome Bonuses', '../bonuses/welcome-bonus/'),
+    ('🆓', 'No-Deposit Bonuses', '../bonuses/no-deposit/'),
+    ('🎯', 'Free Bets', '../bonuses/free-bet/'),
+    ('💰', 'Cashback Bonuses', '../bonuses/cashback-bonus/'),
+    ('🔄', 'Reload Bonuses', '../bonuses/reload-bonus/'),
+]
 
 
 def make_faqs(c):
     name = c['name']
-    regulator = c['regulator']
-    payments = c['payments']
     top_book = c['top_bookmaker']
     top_bonus = c['top_bonus']
     min_dep = c['min_deposit']
-    leagues = c['leagues']
-
-    pay_str = ', '.join(payments[:3])
-    league_str = ', '.join(leagues[:3])
+    key_payment = c['payments'][0]
 
     return [
         {
-            'q': f'Is online betting legal in {name}?',
-            'a': f'Yes. Sports betting is legal and regulated in {name}. The licensing authority is the <strong>{regulator}</strong>. All bookmakers listed on SifuFinds hold valid licences for the {name} market — we only list fully licensed operators.',
+            'q': f'What types of betting bonuses are available in {name}?',
+            'a': f'Licensed betting sites in {name} offer welcome bonuses (first-deposit matches), no-deposit bonuses, free bets, cashback on losses, and weekly reload bonuses. Welcome bonuses are the largest and most common, with the current top offer at {top_bonus}.',
         },
         {
-            'q': f'What payment methods can I use at {name} betting sites?',
-            'a': f'The most popular deposit and withdrawal methods at {name} betting sites include {pay_str}. Most licensed bookmakers process withdrawals within 24 hours to mobile money accounts.',
+            'q': f'Which betting site has the biggest bonus in {name}?',
+            'a': f'{top_book} currently offers one of the biggest bonuses in {name} at {top_bonus}. Bonus offers change frequently, so SifuFinds verifies and updates these figures daily — use the Highest Bonus sort above to see the current leader.',
         },
         {
-            'q': f'Which betting site has the highest bonus in {name}?',
-            'a': f'{top_book} currently offers one of the highest welcome bonuses in {name} at {top_bonus}. SifuFinds compares all verified offers daily — use the Highest Bonus sort to see the current leader.',
+            'q': f'How do I claim a betting bonus in {name}?',
+            'a': f'Register at a licensed bookmaker, complete KYC verification, make a qualifying first deposit (minimum {min_dep} at some sites), and the bonus is credited automatically or via a promo code. Always read the specific terms before depositing.',
         },
         {
-            'q': f'What is the minimum deposit at {name} betting sites?',
-            'a': f'Minimum deposits at {name} betting sites start from {min_dep} at some bookmakers. Mobile money platforms typically have very low minimums to keep betting accessible.',
+            'q': f'Are there wagering requirements on bonuses in {name}?',
+            'a': f'Yes. Most bonuses in {name} carry a wagering requirement of 3x to 10x the bonus amount that must be bet before winnings can be withdrawn. No-deposit and cashback bonuses often carry lower requirements than welcome bonuses.',
         },
         {
-            'q': f'What sports and leagues can I bet on in {name}?',
-            'a': f'The most popular betting markets in {name} include {league_str}. Football is the dominant sport, with both local leagues and international competitions attracting high betting volumes.',
+            'q': f'Can I get a bonus without depositing in {name}?',
+            'a': f'Some bookmakers in {name} offer no-deposit bonuses just for registering and verifying an account, usually via {key_payment} or a mobile number. These are smaller than deposit-matched welcome bonuses but let you try a site risk-free.',
         },
     ]
 
@@ -276,6 +330,7 @@ def generate_page(code, c):
     payments = c['payments']
     leagues = c['leagues']
     top_bonus = c['top_bonus']
+    top_bookmaker = c['top_bookmaker']
     books_count = c['books_count']
     key_payment = payments[0]
 
@@ -286,24 +341,32 @@ def generate_page(code, c):
     pay_chips = ' '.join(f'<span class="pay-chip">{p}</span>' for p in payments)
     league_items = '\n'.join(f'      <li>{lg}</li>' for lg in leagues)
 
+    bonus_type_cards = '\n'.join(
+        f'''    <a href="{href}" class="bk-card" style="display:block;background:#fff;border-radius:12px;padding:14px 16px;border:2px solid #e8f5e9;text-decoration:none;color:inherit">
+      <div style="font-size:20px;margin-bottom:4px">{icon}</div>
+      <div style="font-weight:800;color:#0a3d1e;font-size:14px">{label}</div>
+    </a>'''
+        for icon, label, href in BONUS_TYPE_LINKS
+    )
+
     pay_str = ', '.join(payments[:2])
     meta_desc = (
-        f'Compare the {books_count} best licensed betting sites in {name} {YEAR}. '
-        f'Verified bonuses, {pay_str} payments and expert bookmaker reviews. Updated daily.'
+        f'Compare the best betting bonus sites in {name} {YEAR} — welcome offers, no-deposit '
+        f'bonuses, free bets and cashback at {books_count} licensed bookmakers. Verified daily.'
     )
-    title = f'Best Betting Sites in {name} {YEAR} | SifuFinds'
-    canonical = f'{DOMAIN}/countries/{slug}/'
-    h1 = f'Best Betting Sites in {name} &middot; {MONTH_YEAR}'
+    title = f'Best Bonus Sites in {name} {YEAR} | SifuFinds'
+    canonical = f'{DOMAIN}/{OUT_PREFIX}{slug}/'
+    h1 = f'Best Bonus Sites in {name} &middot; {MONTH_YEAR}'
 
     return f"""<!DOCTYPE html>
-<!-- sifufinds.com/countries/{slug}/ – Best Betting Sites in {name} {YEAR} -->
+<!-- sifufinds.com/{OUT_PREFIX}{slug}/ – Best Bonus Sites in {name} {YEAR} -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{meta_desc}">
-<meta name="keywords" content="betting sites {name.lower()}, best bookmakers {name.lower()}, {name.lower()} betting bonuses {YEAR}, online betting {name.lower()}, {key_payment.lower()} betting">
+<meta name="keywords" content="best bonus sites {name.lower()}, betting bonus {name.lower()} {YEAR}, welcome bonus {name.lower()}, no deposit bonus {name.lower()}, free bet {name.lower()}, {key_payment.lower()} betting bonus">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="SifuFinds">
 <link rel="canonical" href="{canonical}">
@@ -313,20 +376,20 @@ def generate_page(code, c):
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SifuFinds">
-<meta property="og:title" content="Best Betting Sites in {name} {YEAR} | SifuFinds">
+<meta property="og:title" content="{title}">
 <meta property="og:description" content="{meta_desc}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{DOMAIN}/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Best Betting Sites in {name} — SifuFinds">
+<meta property="og:image:alt" content="Best Bonus Sites in {name} — SifuFinds">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="en_{code}">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sifufinds">
-<meta name="twitter:title" content="Best Betting Sites in {name} {YEAR} | SifuFinds">
+<meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{meta_desc}">
 <meta name="twitter:image" content="{DOMAIN}/assets/og-image.png">
 
@@ -354,8 +417,8 @@ def generate_page(code, c):
       "@type": "BreadcrumbList",
       "itemListElement": [
         {{"@type": "ListItem", "position": 1, "name": "Home", "item": "{DOMAIN}/"}},
-        {{"@type": "ListItem", "position": 2, "name": "Countries", "item": "{DOMAIN}/countries/"}},
-        {{"@type": "ListItem", "position": 3, "name": {json.dumps(name + " Betting Sites")}, "item": "{canonical}"}}
+        {{"@type": "ListItem", "position": 2, "name": "Bonuses", "item": "{DOMAIN}/bonuses/"}},
+        {{"@type": "ListItem", "position": 3, "name": {json.dumps(name + " Bonus Sites")}, "item": "{canonical}"}}
       ]
     }},
     {{
@@ -372,8 +435,8 @@ def generate_page(code, c):
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
-<link rel="preload" href="../../assets/shared.css?v=11" as="style">
-<link rel="stylesheet" href="../../assets/shared.css?v=11">
+<link rel="preload" href="../assets/shared.css?v=11" as="style">
+<link rel="stylesheet" href="../assets/shared.css?v=11">
 <style>
 .reg-badge{{display:inline-block;background:#edf7f0;border:1px solid #c8e6c9;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;color:#1a6b35;margin-bottom:10px}}
 .pay-grid{{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}}
@@ -400,8 +463,8 @@ def generate_page(code, c):
 <!-- TOP BAR -->
 <div class="tbar">
   <div class="tbar-l">
-    <a href="../../">🏠 Home</a>
-    <a href="../">🌍 Africa</a>
+    <a href="../">🏠 Home</a>
+    <a href="../countries/">🌍 Africa</a>
     <button onclick="openPage('responsible')">Responsible Gambling</button>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
@@ -416,17 +479,17 @@ def generate_page(code, c):
 <!-- MAIN NAV -->
 <nav class="mnav">
   <div class="mnav-in">
-    <a class="logo" href="../../">
-      <img src="../../assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">
+    <a class="logo" href="../">
+      <img src="../assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">
       SifuFinds
     </a>
     <div class="ntabs">
-      <a class="nt" href="../../">⭐ Best Bonuses</a>
-      <a class="nt" href="../../tips/">💡 Tips</a>
-      <a class="nt" href="../../casino/">🎰 Casino</a>
-      <a class="nt" href="../../odds/">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
-      <a class="nt on" href="../">🌍 Countries</a>
-      <a class="nt" href="../../blog/">📰 Blog</a>
+      <a class="nt on" href="../">⭐ Best Bonuses</a>
+      <a class="nt" href="../tips/">💡 Tips</a>
+      <a class="nt" href="../casino/">🎰 Casino</a>
+      <a class="nt" href="../odds/">📊 Live Odds<span class="lpulse" style="margin-left:4px"></span></a>
+      <a class="nt" href="../countries/">🌍 Countries</a>
+      <a class="nt" href="../blog/">📰 Blog</a>
     </div>
     <div class="srch-wrap">
       <input class="srch-inp" id="srch-inp" type="text" placeholder="Search bookmakers..." autocomplete="off" aria-label="Search bookmakers">
@@ -440,14 +503,14 @@ def generate_page(code, c):
 <!-- HERO -->
 <div class="hero"><div class="wrap">
   <h1>{h1}</h1>
-  <p>{about}</p>
+  <p>Looking for the best betting bonus in {name}? {top_bookmaker} currently leads with a {top_bonus} welcome offer. SifuFinds tracks welcome bonuses, no-deposit offers, free bets, cashback and reload promotions across all {books_count} licensed bookmakers in {name} — verified and updated daily. {about}</p>
   <div class="ctrs">
     <div class="ctr"><div class="ctr-n">{top_bonus}</div><div class="ctr-l">largest welcome bonus</div></div>
     <div class="ctr"><div class="ctr-n">{books_count}</div><div class="ctr-l">licensed bookmakers</div></div>
     <div class="ctr"><div class="ctr-n" id="today-d"></div><div class="ctr-l">last updated</div></div>
   </div>
   <div class="trust">
-    <div class="tb">✅ Licensed &amp; Verified</div>
+    <div class="tb">✅ Verified Bonuses</div>
     <div class="tb">📱 Mobile-First</div>
     <div class="tb">🔄 Updated Daily</div>
     <div class="tb">💳 {key_payment}</div>
@@ -456,17 +519,24 @@ def generate_page(code, c):
 
 <!-- FEATURED -->
 <div class="feat-bar"><div class="wrap">
-  <div class="feat-lbl">⭐ Top Picks · {name}</div>
+  <div class="feat-lbl">⭐ Top Bonus Offers · {name}</div>
   <div class="feat-grid" id="feat-cards"></div>
 </div></div>
 
 <!-- MAIN CONTENT -->
 <div class="sec-bg"><div class="wrap">
   <div class="breadcrumb">
-    <a href="../../">Home</a><span>›</span><a href="../">Countries</a><span>›</span>{name} Betting Sites
+    <a href="../">Home</a><span>›</span><a href="../bonuses/">Bonuses</a><span>›</span>{name} Bonus Sites
   </div>
 
   <div class="adv">📢 <strong>Advertiser Disclosure:</strong> We may earn commission from bookmaker links. All bonuses independently verified. Always check the bookmaker's official site for current T&amp;Cs.</div>
+
+  <!-- Bonus types -->
+  <div class="sec-lbl">TYPES OF BONUSES · {name.upper()} · {YEAR}</div>
+  <h2 style="font-size:17px;font-weight:800;color:#111;margin-bottom:9px">Betting Bonus Types Available in {name}</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:8px">
+{bonus_type_cards}
+  </div>
 
   <!-- Legality & Regulation -->
   <div class="cbox2">
@@ -477,15 +547,15 @@ def generate_page(code, c):
   </div>
 
   <!-- Bookmaker listings -->
-  <div class="sec-lbl">LICENSED BOOKMAKERS · {name.upper()} · {YEAR}</div>
-  <h2 style="font-size:17px;font-weight:800;color:#111;margin-bottom:9px">{books_count} Best Betting Sites in {name} — Verified {YEAR}</h2>
+  <div class="sec-lbl">VERIFIED BONUS OFFERS · {name.upper()} · {YEAR}</div>
+  <h2 style="font-size:17px;font-weight:800;color:#111;margin-bottom:9px">{books_count} Best Bonus Sites in {name} — Verified {YEAR}</h2>
 
   <div class="fbar"><div class="fr">
     <span class="fr-label">Sort:</span>
     <select class="fsel" id="srt" onchange="renderBooks()">
+      <option value="bonus">Highest Bonus</option>
       <option value="default">Editors' Picks</option>
       <option value="stars">Highest Rated</option>
-      <option value="bonus">Highest Bonus</option>
       <option value="sports">Most Sports</option>
     </select>
     <span class="fr-label" style="margin-left:4px">Filter:</span>
@@ -497,7 +567,7 @@ def generate_page(code, c):
 
   <div class="mc" id="mcount"></div>
   <div id="bk-cards">
-    <noscript><p style="padding:20px;color:#666">Enable JavaScript to view bookmaker listings, or visit <a href="../../">SifuFinds.com</a>.</p></noscript>
+    <noscript><p style="padding:20px;color:#666">Enable JavaScript to view bonus listings, or visit <a href="../">SifuFinds.com</a>.</p></noscript>
   </div>
 
   <!-- Payment Methods -->
@@ -519,7 +589,7 @@ def generate_page(code, c):
 
   <!-- FAQ -->
   <div class="cbox2">
-    <h2>Frequently Asked Questions — Betting in {name}</h2>
+    <h2>Frequently Asked Questions — Bonuses in {name}</h2>
 {faq_block}
   </div>
 
@@ -533,7 +603,7 @@ def generate_page(code, c):
 <!-- FOOTER -->
 <div class="footer-bar">
   <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison · <span id="foot-date"></span><br>
-  <a href="../../">Home</a> · <a href="../">All Countries</a> · <a href="../../tips/">Tips</a> · <a href="../../casino/">Casino</a> · <a href="../../odds/">Odds</a> · <a href="../../blog/">Blog</a><br>
+  <a href="../">Home</a> · <a href="../bonuses/">All Bonuses</a> · <a href="../countries/">All Countries</a> · <a href="../tips/">Tips</a> · <a href="../casino/">Casino</a> · <a href="../odds/">Odds</a> · <a href="../blog/">Blog</a><br>
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only. Gambling can be addictive. Play responsibly.
 </div>
 
@@ -545,9 +615,9 @@ def generate_page(code, c):
   </div>
 </div>
 
-<script src="../../assets/shared.js?v=15"></script>
+<script src="../assets/shared.js?v=15"></script>
 <script>
-const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../'
+const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'
 }};
 const _PAGE_CTY='{code}';
 let _activeFilt='all';
@@ -572,7 +642,7 @@ function filterBooks(books){{
 }}
 
 function sortBooks(books){{
-  const s=document.getElementById('srt')?.value||'default';
+  const s=document.getElementById('srt')?.value||'bonus';
   if(s==='stars')return[...books].sort((a,b)=>b.stars-a.stars);
   if(s==='sports')return[...books].sort((a,b)=>b.sports-a.sports);
   if(s==='bonus')return[...books].sort((a,b)=>(b.nodep?1:0)-(a.nodep?1:0));
@@ -619,11 +689,11 @@ function renderBooks(){{
   const el=document.getElementById('bk-cards');
   if(!books.length){{el.innerHTML='<div class="no-results">No bookmakers match this filter.</div>';return;}}
   el.innerHTML=books.map((b,i)=>bookCard(b,i,i)).join('');
-  H('mcount',`Showing ${{books.length}} bookmaker${{books.length!==1?'s':''}}`);
+  H('mcount',`Showing ${{books.length}} bonus offer${{books.length!==1?'s':''}}`);
 }}
 
 function renderFeatCards(){{
-  const books=(BOOKS[_PAGE_CTY]||[]).slice(0,12);
+  const books=sortBooks((BOOKS[_PAGE_CTY]||[]).slice()).slice(0,12);
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${{b.bg}}">
@@ -657,12 +727,12 @@ if __name__ == '__main__':
     created = 0
     for code, country in COUNTRIES.items():
         slug = country['slug']
-        out_dir = os.path.join(COUNTRIES_DIR, slug)
+        out_dir = os.path.join(BASE_DIR, f'{OUT_PREFIX}{slug}')
         os.makedirs(out_dir, exist_ok=True)
         out_path = os.path.join(out_dir, 'index.html')
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(generate_page(code, country))
-        print(f'  ✓  /countries/{slug}/')
+        print(f'  ✓  /{OUT_PREFIX}{slug}/')
         created += 1
 
-    print(f'\n✅ Generated {created} country pages')
+    print(f'\n✅ Generated {created} best-bonus-in-<country> pages')

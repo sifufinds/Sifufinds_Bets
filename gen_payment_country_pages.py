@@ -555,7 +555,7 @@ def build_page(payment, country_slug, country_data):
 
 <div class="footer-bar">
   <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison<br>
-  <a href="{assets}">Home</a> · <a href="{assets}betting/{pm_slug}/">{pm_name} Betting Africa</a> · <a href="{assets}countries/{country_slug}/">{cname} Betting</a> · <a href="{assets}tips/">Tips</a><br>
+  <a href="{assets}">Home</a> · <a href="{assets}betting/{pm_slug}/">{pm_name} Betting Africa</a> · <a href="{assets}best-bonus-in-{country_slug}/">{cname} Betting</a> · <a href="{assets}tips/">Tips</a><br>
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only.
 </div>
 
