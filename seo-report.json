@@ -1,13 +1,19 @@
 {
   "date": "2026-08-09",
-  "total": 1,
+  "total": 2,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 1,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nottingham-forest-vs-barcelona-prediction-betting-tips-nigeria",
+      "detail": "Title 64 chars (max 60): 'Nottingham Forest vs Barcelona - Prediction Betting Tips Nigeria'"
+    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
