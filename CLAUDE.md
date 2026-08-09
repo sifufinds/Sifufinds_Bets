@@ -361,7 +361,23 @@ Lives inline in `index.html`'s head script (kept intentionally duplicated from `
 ### `?v=` cache-busting on `shared.js`/`shared.css` must cover every page
 Every page includes `assets/shared.js?v=N` / `assets/shared.css?v=N` so a version bump invalidates cached copies everywhere at once. As of 2026-07-31 this covers **every** HTML page including the 23 `countries/<slug>/index.html` pages and their generator `generate_country_pages.py` — those 23 pages and their generator were previously missing the `?v=` param entirely (found while wiring up this popup, since country pages are now the actual homepage for most visitors and needed the update to land reliably). When bumping the version after any `shared.js`/`shared.css` change: bump it in **every** `.html` file site-wide (currently ~1,470 files) **and** in every Python generator that hardcodes the tag (`gen_sport_country_pages.py`, `gen_payment_country_pages.py`, `gen_all_cities.py`, `gen_bookmaker_country_pages.py`, `gen_blog_post_pages.py`, `generate_country_pages.py`, `gen_best_bonus_pages.py`, `agents/python/utils/bookmaker_page_template.py`) so future regenerated pages don't revert to a stale version number.
 
-## STANDING RULE — Multi-Source Scraping, Firecrawl-Last (added 2026-07-24)
+## STANDING RULE — Firecrawl Scoped Exclusively to tips/odds/leagues (added 2026-08-09, supersedes the opt-in gate below)
+
+**Firecrawl may only ever be used by the pipelines feeding `sifufinds.com/tips/`, `sifufinds.com/odds/`, and `sifufinds.com/leagues/`. Every other Firecrawl call site in the repo must be permanently disabled, not just defaulted off.**
+
+| Pipeline | Feeds | Firecrawl status |
+|---|---|---|
+| `agent_scrape_tips.py`, `agent_firecrawl_odds.py`, `agent_multi_scrape.py`, `agent_live_odds.py` (via `agents/python/utils/free_scrape.py`) | tips/odds pages (`data/tips.json`, `data/predictions.json`, `data/live.json`) | **Allowed** — free-first, Firecrawl last-resort per-URL (unchanged) |
+| `update_predictions.py` (direct Firecrawl+Apify, no free fallback — see its own workflow comment for why) | tips page (`data/predictions.json`) | **Allowed**, already scoped correctly — feeds the tips page |
+| `update_leagues.py` | leagues page (`data/matches_live.json`) | Currently uses FD API + ESPN only, zero Firecrawl calls — **allowed to add Firecrawl here in future** if FD/ESPN ever prove insufficient, not required to |
+| Blog/content research — `agent_sports_blog.py`, `agent1_content.py`, `agent_content_backfill.py`, `agent_priority_writer.py`, `agent_country_trending_writer.py`, `agent_trending_keywords.py` (via `agents/python/utils/serp_research.py`) | blog posts, not tips/odds/leagues | **Hard-disabled** — `ALLOW_PAID_CRAWL` is a hardcoded `False` in `serp_research.py`, not env-driven. The old `SIFU_ALLOW_PAID_CRAWL=1` opt-in escape hatch is gone; setting that env var no longer does anything |
+| `update_countries.py` (feeds `data/countries_live.json` — homepage, all 23 country pages, etc.) | not tips/odds/leagues | **Disabled** — its `agents/python/utils/free_scrape.py` call now passes `allow_firecrawl=False` (new param on `scrape()`, default `True` for the allowed pipelines above) |
+
+`FIRECRAWL_API_KEY` was also removed from the env blocks of the now-disabled workflows (`agent_priority_content.yml`, `breaking_news.yml`, `content_backfill.yml`, `transfer_news.yml`, `update_countries_live.yml`) so the key isn't sitting unused in jobs that can no longer call it.
+
+**If you add a new scraper that needs a Firecrawl fallback**: it must feed tips, odds, or leagues. Anything else routes through `free_scrape.scrape(..., allow_firecrawl=False)` or `serp_research`'s free-only functions. Do not add a new opt-in env var as a workaround — the point of this rule is that no flag can re-enable it outside the three allowed pipelines.
+
+## STANDING RULE — Multi-Source Scraping, Firecrawl-Last (added 2026-07-24, narrowed 2026-08-09 — see rule above)
 
 **No agent may depend on Firecrawl as its primary or only data source. Firecrawl credits are a shared, limited resource (we've run out more than once) — every scraper must try free sources first and only fall back to Firecrawl when free sources genuinely can't get the data.**
 
@@ -371,20 +387,22 @@ This was enforced after `agent_multi_scrape.py` (runs every **15 minutes, 24/7**
 
 | Use case | Module | Fallback behaviour |
 |---|---|---|
-| Blog/content research (SERP, competitor pages, PAA) — `agent_sports_blog.py`, `agent1_content.py` | `agents/python/utils/serp_research.py` (`research()`, `fc_search()`, `fc_scrape()`) | Firecrawl/Apify fallback is **opt-in only** — gated behind `SIFU_ALLOW_PAID_CRAWL=1`. Guarantees zero Firecrawl cost per run unless a human deliberately flips the flag. |
-| Live odds/scores/tips scraping — `agent_multi_scrape.py`, `agent_scrape_tips.py`, `agent_firecrawl_odds.py` | `agents/python/utils/free_scrape.py` (`scrape()`) | Firecrawl fires **automatically as a last resort per-URL**, no flag needed — these agents feed live, user-facing data on a 15-min cron, so a hard opt-in gate would silently starve live odds instead of just costing credits. Free layers (trafilatura + Jina Reader) still absorb the large majority of calls. |
+| Blog/content research (SERP, competitor pages, PAA) — `agent_sports_blog.py`, `agent1_content.py` | `agents/python/utils/serp_research.py` (`research()`, `fc_search()`, `fc_scrape()`) | Firecrawl/Apify is **hard-disabled** (2026-08-09) — always runs free-only regardless of any env var. See the scope rule above. |
+| Live odds/scores/tips scraping — `agent_multi_scrape.py`, `agent_scrape_tips.py`, `agent_firecrawl_odds.py` | `agents/python/utils/free_scrape.py` (`scrape()`, `allow_firecrawl=True` — the default) | Firecrawl fires **automatically as a last resort per-URL**, no flag needed — these agents feed live, user-facing data on a 15-min cron, so a hard opt-in gate would silently starve live odds instead of just costing credits. Free layers (trafilatura + Jina Reader) still absorb the large majority of calls. |
+| Anything else calling `free_scrape.scrape()` (e.g. `update_countries.py`) | `agents/python/utils/free_scrape.py` with `allow_firecrawl=False` | Free layers only (trafilatura + Jina Reader) — Firecrawl call is skipped entirely regardless of `FIRECRAWL_API_KEY`. |
 
 Both pipelines follow the same priority order underneath:
 1. **Search**: DuckDuckGo (`html.duckduckgo.com/html` + `ddgs` library combined, deduplicated) — free, no key/login.
 2. **Scrape**: `trafilatura` direct fetch first; **Jina AI Reader** (`https://r.jina.ai/<url>`, free, no key, renders JS) fallback when content comes back under ~300 chars.
 3. **News-specific**: `agents/python/utils/news_fetcher.py` layers DuckDuckGo News → Google News RSS → direct site RSS (BBC Sport, ESPN, Sky Sports, The Guardian, 90min, TalkSport, Mirror Football, Independent Football) for cross-checked, multi-source freshness before any blog post is written. Reuters, Football365, and Goal.com no longer publish public RSS feeds (verified 401/404 as of 2026-07-24) — the four alternatives above cover the same ground and are checked for liveness before being relied on again.
-4. **Firecrawl**: last resort only, per the table above.
+4. **Firecrawl**: last resort only, per the table above, and only for the three allowed pipelines.
 
 ### Rules for any new/modified scraping agent
 - Never call the Firecrawl API/CLI/SDK directly as the first attempt. Route through `utils/free_scrape.py` (live data) or `utils/serp_research.py` (research/content).
+- Firecrawl usage of any kind is scoped to tips/odds/leagues — see the scope rule above before wiring up a new Firecrawl fallback anywhere else.
 - If a target site is JS-heavy (SPA), try Jina Reader before reaching for Firecrawl — it renders JS for free and covers most cases (Sofascore, Flashscore, OddsPortal, Predictz all work through it).
-- Never add a new paid scraping/data service. If free + Jina Reader genuinely can't get a site (hard anti-bot wall, login-gated), that is a legitimate case for the existing Firecrawl fallback — don't build a workaround, just let it fall through.
-- If you add a new hourly/frequent-cron scraping agent, default it to the `utils/free_scrape.py` pattern (auto Firecrawl fallback, not the opt-in flag) since frequent crons are exactly the credit-burn risk this rule exists to prevent.
+- Never add a new paid scraping/data service. If free + Jina Reader genuinely can't get a site (hard anti-bot wall, login-gated) on one of the three allowed pipelines, that is a legitimate case for the existing Firecrawl fallback — don't build a workaround, just let it fall through.
+- If you add a new hourly/frequent-cron scraping agent for tips/odds/leagues, default it to the `utils/free_scrape.py` pattern (auto Firecrawl fallback, not an opt-in flag) since frequent crons are exactly the credit-burn risk this rule exists to prevent. For anything else, pass `allow_firecrawl=False`.
 
 ## CRITICAL — shared.js Must Never Have `defer`
 

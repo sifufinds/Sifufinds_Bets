@@ -70,9 +70,27 @@ COMP_PRIORITY: dict = {
 }
 
 # ESPN league slugs for African competitions (plus WC for live-score patching)
+# The top-5 European leagues + UCL + Primeira Liga + Eredivisie + Championship +
+# Brasileirao + Libertadores use ESPN's free, no-auth API as their PRIMARY source
+# (not just a patch) — FD_TOKEN is currently unset/invalid so FD returns zero
+# matches for these every run (see AGENT-KNOWLEDGE.md 2026-08-09 entry). Their
+# compId intentionally matches FD's own numeric competition ID from COMP_PRIORITY
+# so that if/when FD_TOKEN is fixed, the dedup logic in main() treats them as the
+# same competition instead of double-counting.
 ESPN_LEAGUES = [
     # (compId used internally, ESPN slug, display name)
     (2000,             "fifa.world",    "FIFA World Cup 2026"),
+    (2021,             "eng.1",         "Premier League"),
+    (2014,             "esp.1",         "La Liga"),
+    (2002,             "ger.1",         "Bundesliga"),
+    (2019,             "ita.1",         "Serie A"),
+    (2015,             "fra.1",         "Ligue 1"),
+    (2001,             "uefa.champions","UEFA Champions League"),
+    (2017,             "por.1",         "Primeira Liga"),
+    (2003,             "ned.1",         "Eredivisie"),
+    (2016,             "eng.2",         "Championship"),
+    (2013,             "bra.1",         "Brasileirao"),
+    (2152,             "conmebol.libertadores", "Copa Libertadores"),
     ("espn:caf.afcon", "caf.nations",  "AFCON 2025"),
     ("espn:caf.cl",    "caf.champions","CAF Champions League"),
     ("espn:caf.cc",    "caf.confed",   "CAF Confederation Cup"),
@@ -92,7 +110,13 @@ ESPN_LEAGUES = [
 LIVE_STATUSES = {"IN_PLAY", "PAUSED", "EXTRA_TIME", "PENALTY_SHOOTOUT"}
 
 SESSION = requests.Session()
-SESSION.headers.update({"User-Agent": "SifuFinds/2.0 leaguesbot@sifufinds.com"})
+# No custom User-Agent — verified 2026-08-09 that ESPN's edge (site.api.espn.com)
+# returns HTTP 403 for ANY explicitly-set User-Agent header (custom app strings
+# AND realistic browser UAs alike) while the default python-requests/curl UA
+# gets HTTP 200. This was silently zeroing out every ESPN-sourced match (all
+# African leagues + WC live-patch) in every run, on both this sandbox and real
+# GitHub Actions runners — see AGENT-KNOWLEDGE.md. Do not re-add a custom UA
+# here without re-verifying against the live endpoint first.
 
 
 # ── FD helpers ────────────────────────────────────────────────────────────────
@@ -338,10 +362,19 @@ def _write_wc_standings(raw: dict) -> None:
 # ── Throttle check ────────────────────────────────────────────────────────────
 
 def _fd_is_throttled(force: bool) -> bool:
+    """Throttle actual FD API calls to once per FD_THROTTLE_MINS.
+
+    Reads the dedicated "fdFetched" field (set only when an FD call is actually
+    attempted), NOT the generic "updated" field — "updated" is rewritten by
+    every run including the 5-min --espn-only cron, so keying off it meant a
+    30-min full run almost always saw a "recent" write from the espn-only run
+    5 minutes prior and skipped FD entirely, every time. See AGENT-KNOWLEDGE.md
+    2026-08-09 entry.
+    """
     if force or not OUT_MATCH.exists():
         return False
     try:
-        upd = json.loads(OUT_MATCH.read_text()).get("updated", "")
+        upd = json.loads(OUT_MATCH.read_text()).get("fdFetched", "")
         if not upd:
             return False
         last     = datetime.fromisoformat(upd)
@@ -349,7 +382,7 @@ def _fd_is_throttled(force: bool) -> bool:
             last = last.replace(tzinfo=timezone.utc)
         age_mins = (datetime.now(timezone.utc) - last).total_seconds() / 60
         if age_mins < FD_THROTTLE_MINS:
-            print(f"  FD throttled — last fetch {age_mins:.1f} min ago (< {FD_THROTTLE_MINS} min)")
+            print(f"  FD throttled — last FD fetch {age_mins:.1f} min ago (< {FD_THROTTLE_MINS} min)")
             return True
     except Exception:
         pass
@@ -358,7 +391,7 @@ def _fd_is_throttled(force: bool) -> bool:
 
 # ── Build and write output ────────────────────────────────────────────────────
 
-def _write_matches(matches: list[dict], now: datetime) -> None:
+def _write_matches(matches: list[dict], now: datetime, fd_fetched_at: str) -> None:
     by_date: dict[str, list[dict]] = {}
     cutoff  = (now - timedelta(hours=2)).strftime("%Y-%m-%d")
 
@@ -389,6 +422,7 @@ def _write_matches(matches: list[dict], now: datetime) -> None:
 
     out = {
         "updated":   now.isoformat(),
+        "fdFetched": fd_fetched_at,
         "dateFrom":  now.strftime("%Y-%m-%d"),
         "dateTo":    (now + timedelta(days=6)).strftime("%Y-%m-%d"),
         "total":     total,
@@ -413,6 +447,15 @@ def main() -> None:
 
     matches: list[dict] = []
 
+    # Preserve the last real FD-fetch timestamp across runs unless this run
+    # performs a fresh (unthrottled) FD fetch below.
+    fd_fetched_at = ""
+    if OUT_MATCH.exists():
+        try:
+            fd_fetched_at = json.loads(OUT_MATCH.read_text()).get("fdFetched", "")
+        except Exception:
+            pass
+
     if espn_only:
         # Load previous FD matches as the base, then patch with ESPN live data
         if OUT_MATCH.exists():
@@ -435,8 +478,12 @@ def main() -> None:
                 fd_index[key] = m
 
         for em in espn_matches:
-            if em["compId"] == 2000:
-                # Patch WC match live status/score back into the FD match
+            # Any FD-equivalent competition (int compId, matching FD's own numeric
+            # ID — WC, Premier League, La Liga, etc.) patches into a cached FD
+            # match if one exists, rather than being added as a duplicate. Purely
+            # ESPN-sourced competitions (African leagues) use string compIds like
+            # "espn:rsa.1" and always fall through to a plain add.
+            if isinstance(em["compId"], int):
                 day = em["utcDate"][:10]
                 key = f"{day}:{em['home'].lower()}:{em['away'].lower()}"
                 if key in fd_index:
@@ -450,7 +497,8 @@ def main() -> None:
                             fd_m["hScore"] = em["hScore"]
                             fd_m["aScore"] = em["aScore"]
                     continue
-            # Non-WC ESPN match — add if not already present from FD
+                # No cached FD match for this fixture (e.g. FD_TOKEN unset/broken) —
+                # add the ESPN-sourced match so the page still shows real data.
             matches.append(em)
 
     else:
@@ -462,6 +510,7 @@ def main() -> None:
             print(f"  Fetching FD matches {date_from}→{date_to} …")
             raw = _fd_fetch_matches(date_from, date_to)
             matches = [_fd_normalise(m) for m in raw]
+            fd_fetched_at = now.isoformat()
             print(f"  FD: {len(matches)} matches")
 
             print("  Fetching WC 2026 standings …")
@@ -490,7 +539,7 @@ def main() -> None:
         if added:
             print(f"  ESPN added {added} African/WC matches")
 
-    _write_matches(matches, now)
+    _write_matches(matches, now, fd_fetched_at)
     print(f"✅ Done — {now.isoformat()}")
 
 

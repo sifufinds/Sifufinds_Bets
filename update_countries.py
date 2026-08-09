@@ -2,10 +2,11 @@
 """
 SifuFinds — Real-time countries page data updater.
 
-Scrapes live bonus offers and bookmaker availability free-first (trafilatura
--> Jina Reader -> Firecrawl last resort, via agents/python/utils/
-free_scrape.py) plus Apify REST API, then writes data/countries_live.json
-for the frontend to consume.
+Scrapes live bonus offers and bookmaker availability free-only (trafilatura
+-> Jina Reader, via agents/python/utils/free_scrape.py with
+allow_firecrawl=False — Firecrawl is scoped exclusively to the
+tips/odds/leagues pipelines, not this one) plus Apify REST API, then writes
+data/countries_live.json for the frontend to consume.
 
 Run:     python3 update_countries.py
 Schedule: every 4–6 hours via cron or GitHub Actions
@@ -88,21 +89,25 @@ BONUS_PATTERNS = [
 
 
 def fc_scrape(url: str, out_name: str) -> str | None:
-    """Free-first scrape (trafilatura -> Jina Reader -> Firecrawl last resort)
-    via agents/python/utils/free_scrape.py. Previously called the Firecrawl
-    CLI exclusively for all 16 bookmaker pages every run (~5x/day, no free
-    fallback at all) — a direct violation of the repo's "Multi-Source
-    Scraping, Firecrawl-Last" standing rule, and (together with
+    """Free-first scrape (trafilatura -> Jina Reader) via agents/python/utils/
+    free_scrape.py, Firecrawl-free (allow_firecrawl=False). Previously called
+    the Firecrawl CLI exclusively for all 16 bookmaker pages every run
+    (~5x/day, no free fallback at all) — a direct violation of the repo's
+    "Multi-Source Scraping, Firecrawl-Last" standing rule, and (together with
     update_predictions.py's identical Firecrawl-only pattern, fixed
     separately) the primary cause of running out of Firecrawl credits in the
-    first week of usage (see AGENT-KNOWLEDGE.md 2026-07-28). Bonus/promo
-    pages are marketing content, not long-form articles, so trafilatura's
-    readability extraction often returns nothing for them (confirmed live
-    testing) — Jina Reader is what actually carries this most of the time.
-    `extract_bonus()` below is plain regex over whatever text comes back, so
-    it works identically regardless of which layer supplied it.
+    first week of usage (see AGENT-KNOWLEDGE.md 2026-07-28). Migrated off
+    Firecrawl entirely (not just last-resort) on 2026-08-09: this feeds
+    countries_live.json, which powers the homepage/country pages/etc., not
+    tips/odds/leagues — Firecrawl usage is now scoped exclusively to those
+    three pipelines. Bonus/promo pages are marketing content, not long-form
+    articles, so trafilatura's readability extraction often returns nothing
+    for them (confirmed live testing) — Jina Reader is what actually carries
+    this most of the time. `extract_bonus()` below is plain regex over
+    whatever text comes back, so it works identically regardless of which
+    free layer supplied it.
     """
-    return _free_scrape(url, name=out_name, min_chars=200) or None
+    return _free_scrape(url, name=out_name, min_chars=200, allow_firecrawl=False) or None
 
 
 def extract_bonus(content: str) -> str | None:

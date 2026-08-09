@@ -26,9 +26,10 @@ specific country's own search comes up empty this run.
 
 Free-first, no LLM calls: news comes from utils/news_fetcher.py (DuckDuckGo
 + site feeds, no API key) and SERP checks come from utils/serp_research.py's
-fc_search()/find_site_position() (DuckDuckGo, Firecrawl only as an opt-in
-last resort) — the same free pipeline every other keyword/SERP agent in
-this repo already uses.
+fc_search()/find_site_position() (DuckDuckGo only — Firecrawl is hard-disabled
+in serp_research.py, scoped exclusively to the tips/odds/leagues pipelines) —
+the same free pipeline every other keyword/SERP agent in this repo already
+uses.
 
 Usage:
     python agent_trending_keywords.py                # next batch of countries

@@ -7,10 +7,14 @@ Free-first pipeline (no login, no API key, no credits burned):
   - Jina AI Reader (r.jina.ai) as a free fallback for JS-heavy/blocked pages
   - PAA/related-question hints derived from the free search snippets
 
-Firecrawl (search + scrape) and Apify (RAG web browser) are kept only as an
-explicit opt-in fallback — set SIFU_ALLOW_PAID_CRAWL=1 to re-enable them when
-free sources come back empty. They never fire by default, so a normal blog
-run costs zero Firecrawl/Apify credits.
+Firecrawl (search + scrape) and Apify (RAG web browser) are HARD DISABLED here
+(added 2026-08-09): per standing policy, Firecrawl usage is scoped exclusively
+to the tips/odds/leagues live-data pipelines (utils/free_scrape.py, called by
+agent_scrape_tips.py / agent_multi_scrape.py / agent_firecrawl_odds.py, and
+update_leagues.py if it's ever added there) — blog/content research must never
+call Firecrawl or Apify, even opt-in. SIFU_ALLOW_PAID_CRAWL previously let a
+human re-enable this fallback; that escape hatch is intentionally removed, not
+just defaulted off, so a stray env var can't reintroduce Firecrawl usage here.
 
 Returns a formatted research block ready to inject into an LLM prompt.
 Fails silently so a network issue never blocks content generation.
@@ -26,7 +30,8 @@ load_dotenv(Path(__file__).parent.parent / ".env")
 
 FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY", "")
 APIFY_TOKEN = os.getenv("APIFY_TOKEN", "")
-ALLOW_PAID_CRAWL = os.getenv("SIFU_ALLOW_PAID_CRAWL", "").lower() in ("1", "true", "yes")
+# Hard-disabled — see module docstring. Do not wire this back to an env var.
+ALLOW_PAID_CRAWL = False
 
 _FC_BASE = "https://api.firecrawl.dev/v1"
 _APIFY_BASE = "https://api.apify.com/v2"
@@ -291,12 +296,14 @@ def build_keyword_from_category(category: str) -> str:
 
 # ── Public wrappers (for agents that need raw search/scrape, not the full
 #    research() block) ──
-#    Free-first: DuckDuckGo + trafilatura/Jina try first; Firecrawl only fires
-#    if free sources come back empty AND SIFU_ALLOW_PAID_CRAWL=1 is set.
+#    Free-first: DuckDuckGo + trafilatura/Jina try first; the Firecrawl call
+#    below is unreachable in practice since ALLOW_PAID_CRAWL is hard-disabled
+#    (see module docstring) — free results are simply returned as-is.
 
 def fc_search(query: str, limit: int = 8) -> list[dict]:
-    """Free-first search. Falls back to Firecrawl only if free search is empty
-    and paid crawl is explicitly allowed. See _ddg_search for return shape."""
+    """Free-first search. Firecrawl fallback is hard-disabled (see module
+    docstring); this always returns the free DuckDuckGo results, even empty.
+    See _ddg_search for return shape."""
     results = _ddg_search(query, limit)
     if results:
         return results
@@ -304,8 +311,9 @@ def fc_search(query: str, limit: int = 8) -> list[dict]:
 
 
 def fc_scrape(url: str) -> str:
-    """Free-first scrape (trafilatura + Jina Reader). Falls back to Firecrawl
-    only if free scrape is empty and paid crawl is explicitly allowed."""
+    """Free-first scrape (trafilatura + Jina Reader). Firecrawl fallback is
+    hard-disabled (see module docstring); this always returns the free
+    scrape result, even empty."""
     text = _free_scrape(url)
     if text:
         return text
@@ -337,8 +345,8 @@ def research(keyword: str, country_name: str = "") -> str:
     """
     Run full SERP + competitor research for a keyword using free sources
     (DuckDuckGo search + trafilatura/Jina Reader scrape) combined together.
-    Firecrawl/Apify only engage as an opt-in fallback (SIFU_ALLOW_PAID_CRAWL=1)
-    when the free pipeline comes back empty, so a normal run costs zero credits.
+    Firecrawl/Apify are hard-disabled here (see module docstring) — content
+    research runs free-only, always, so it costs zero Firecrawl/Apify credits.
     Returns a formatted string block to inject into the agent1 LLM prompt.
     Returns empty string if no source produced any data.
     """

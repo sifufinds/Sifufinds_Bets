@@ -1,6 +1,7 @@
 """
 free_scrape.py — Shared free-first scrape helper for the live-data agents
-(agent_multi_scrape.py, agent_scrape_tips.py, agent_firecrawl_odds.py).
+(agent_multi_scrape.py, agent_scrape_tips.py, agent_firecrawl_odds.py) that
+feed sifufinds.com/tips/, /odds/, and /leagues/.
 
 Priority order:
   1. trafilatura direct fetch (free, no key, no login)
@@ -19,6 +20,13 @@ Free sources still handle the large majority of calls (trafilatura + Jina
 cover most public sports pages), so real Firecrawl usage drops drastically
 compared to the old Firecrawl-only implementation without disappearing
 entirely when it's genuinely needed.
+
+Standing policy (added 2026-08-09): Firecrawl usage sitewide is scoped
+exclusively to the tips/odds/leagues pipelines above. Any OTHER caller of
+scrape() — e.g. update_countries.py, which feeds countries_live.json for
+the homepage, all 23 country pages, and other non-tips/odds/leagues
+surfaces — MUST pass allow_firecrawl=False so this module still gives it
+trafilatura + Jina Reader but never falls through to Firecrawl.
 """
 import os
 
@@ -79,7 +87,13 @@ def _firecrawl_scrape(url: str, wait_ms: int = 4000) -> str:
     return ""
 
 
-def scrape(url: str, name: str = "", wait_ms: int = 4000, min_chars: int = _MIN_CHARS) -> str:
+def scrape(
+    url: str,
+    name: str = "",
+    wait_ms: int = 4000,
+    min_chars: int = _MIN_CHARS,
+    allow_firecrawl: bool = True,
+) -> str:
     """Free-first scrape: trafilatura -> Jina Reader -> Firecrawl (last resort).
 
     Both free layers are always tried and the larger result is kept — a
@@ -88,6 +102,10 @@ def scrape(url: str, name: str = "", wait_ms: int = 4000, min_chars: int = _MIN_
     would otherwise clear a naive length gate while missing the actual
     rendered content Jina Reader provides, so we never skip Jina based on
     trafilatura alone clearing min_chars.
+
+    allow_firecrawl must be explicitly False for any caller that isn't one
+    of the tips/odds/leagues pipelines (see module docstring) — the free
+    layers still run either way.
 
     Returns markdown/text content, or the empty string if every layer fails.
     """
@@ -100,6 +118,9 @@ def scrape(url: str, name: str = "", wait_ms: int = 4000, min_chars: int = _MIN_
     if len(best_free) >= min_chars:
         source = "Jina Reader" if best_free is jina_text else "trafilatura"
         print(f"    {source} [{label}]: {len(best_free)} chars")
+        return best_free
+
+    if not allow_firecrawl:
         return best_free
 
     fc_text = _firecrawl_scrape(url, wait_ms)
