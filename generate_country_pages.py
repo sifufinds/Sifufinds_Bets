@@ -372,8 +372,8 @@ def generate_page(code, c):
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
-<link rel="preload" href="../../assets/shared.css?v=10" as="style">
-<link rel="stylesheet" href="../../assets/shared.css?v=10">
+<link rel="preload" href="../../assets/shared.css?v=11" as="style">
+<link rel="stylesheet" href="../../assets/shared.css?v=11">
 <style>
 .reg-badge{{display:inline-block;background:#edf7f0;border:1px solid #c8e6c9;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;color:#1a6b35;margin-bottom:10px}}
 .pay-grid{{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}}
@@ -436,9 +436,6 @@ def generate_page(code, c):
 
 <!-- HEADER BRANDS BAR -->
 <div id="hbrands" class="hbrands"></div>
-
-<!-- SPONSORED OFFERS -->
-<div id="sponsor-strip" class="sponsor-strip"></div>
 
 <!-- HERO -->
 <div class="hero"><div class="wrap">
@@ -548,7 +545,7 @@ def generate_page(code, c):
   </div>
 </div>
 
-<script src="../../assets/shared.js?v=14"></script>
+<script src="../../assets/shared.js?v=15"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../'
 }};
@@ -626,7 +623,7 @@ function renderBooks(){{
 }}
 
 function renderFeatCards(){{
-  const books=(BOOKS[_PAGE_CTY]||[]).slice(0,6);
+  const books=(BOOKS[_PAGE_CTY]||[]).slice(0,12);
   H('feat-cards',books.map(b=>`
   <div class="fc">
     <div class="fc-img" style="background:${{b.bg}}">

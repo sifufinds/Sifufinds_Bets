@@ -502,8 +502,8 @@ def build_page(bk, country_slug, country, combo):
 }}
 </script>
 
-<link rel="preload" href="{assets}assets/shared.css?v=10" as="style">
-<link rel="stylesheet" href="{assets}assets/shared.css?v=10">
+<link rel="preload" href="{assets}assets/shared.css?v=11" as="style">
+<link rel="stylesheet" href="{assets}assets/shared.css?v=11">
 <style>
 .bkr-hero{{background:linear-gradient(135deg,{color} 0%,{color}cc 100%);color:#fff;padding:28px 0}}
 .bkr-hero h1{{font-size:clamp(20px,3.5vw,30px);font-weight:900;margin-bottom:8px;letter-spacing:-.5px}}
@@ -691,7 +691,7 @@ def build_page(bk, country_slug, country, combo):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{assets}assets/shared.js?v=14"></script>
+<script src="{assets}assets/shared.js?v=15"></script>
 <script>
 const SITE={{home:'{assets}',tips:'{assets}tips/',casino:'{assets}casino/',odds:'{assets}odds/',countries:'{assets}countries/'}};
 const _BK_CTY='{code}';
