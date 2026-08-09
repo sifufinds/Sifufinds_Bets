@@ -974,15 +974,17 @@ document.addEventListener('click',e=>{
 });
 
 // ── HEADER BRANDS BAR ─────────────────────────────────────────────────────────
+// Order: TicTacBets, BetXchange, Bettabets first (per 2026-08-08 direction),
+// then the rest in their prior relative order.
 const HEADER_BRANDS=[
-  {name:'Bettabets',abbr:'BTB',bg:'#1B5E20',tc:'#fff',url:'https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777',domain:'bettabets.co.za',tag:'R200 Free Bet on First Deposit'},
+  {name:'TicTacBets',abbr:'TTC',bg:'#00838F',tc:'#fff',url:'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023',domain:'tictacbets.co.za',tag:'25 Free Spins + R5K'},
   {name:'BetXchange',abbr:'BX',bg:'#0D47A1',tc:'#fff',url:'https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226',domain:'betxchange.co.za',tag:'R200 Free Bet on First Deposit'},
+  {name:'Bettabets',abbr:'BTB',bg:'#1B5E20',tc:'#fff',url:'https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777',domain:'bettabets.co.za',tag:'R200 Free Bet on First Deposit'},
   {name:'1xBet',abbr:'1X',bg:'#E60000',tc:'#fff',url:'https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97',domain:'1xbet.com',tag:'Up to ₦1.2M Bonus'},
   {name:'BetWinner',abbr:'BW',bg:'#0055A4',tc:'#fff',url:'https://bwredir.com/1Lvf?p=%2Fregistration%2F',domain:'betwinner.com',tag:'200% Welcome Bonus'},
   {name:'HelaBet',abbr:'HB',bg:'#1565C0',tc:'#fff',url:'https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235',domain:'helabet.com',tag:'100% Welcome Bonus'},
   {name:'Melbet',abbr:'MB',bg:'#FD1B26',tc:'#fff',url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559',domain:'melbet.com',tag:'200% + 150 Sports'},
-  {name:'Paripesa',abbr:'PP',bg:'#2E7D32',tc:'#fff',url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',domain:'paripesa.com',tag:'200% First Deposit'},
-  {name:'TicTacBets',abbr:'TTC',bg:'#00838F',tc:'#fff',url:'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023',domain:'tictacbets.co.za',tag:'25 Free Spins + R5K'}
+  {name:'Paripesa',abbr:'PP',bg:'#2E7D32',tc:'#fff',url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',domain:'paripesa.com',tag:'200% First Deposit'}
 ];
 function renderBrandsBar(){
   const el=document.getElementById('hbrands');
