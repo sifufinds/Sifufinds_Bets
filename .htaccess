@@ -87,34 +87,36 @@ RewriteRule ^bettabets/?$ "https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-
 # Plain mod_alias "Redirect 301" directives were not firing on the live host
 # (LiteSpeed/Hostinger) despite mod_rewrite rules working — using RewriteRule
 # for every legacy slug instead, since that mechanism is confirmed working live.
-# Countries -> Best Bonus Sites rename (2026-08-09): countries/<slug>/ was
-# "Best Betting Sites in {Country}"; content moved to best-bonus-in-<slug>/
-# as "Best Bonus Sites in {Country}" (see generate_country_pages.py). Anchored
-# with $ so this only matches the exact top-level country URL, never
-# countries/<slug>/<city>/ sub-pages, which stay at their existing path.
-RewriteRule ^countries/nigeria/?$ /best-bonus-in-nigeria/ [R=301,L]
-RewriteRule ^countries/kenya/?$ /best-bonus-in-kenya/ [R=301,L]
-RewriteRule ^countries/ghana/?$ /best-bonus-in-ghana/ [R=301,L]
-RewriteRule ^countries/south-africa/?$ /best-bonus-in-south-africa/ [R=301,L]
-RewriteRule ^countries/tanzania/?$ /best-bonus-in-tanzania/ [R=301,L]
-RewriteRule ^countries/uganda/?$ /best-bonus-in-uganda/ [R=301,L]
-RewriteRule ^countries/zambia/?$ /best-bonus-in-zambia/ [R=301,L]
-RewriteRule ^countries/ethiopia/?$ /best-bonus-in-ethiopia/ [R=301,L]
-RewriteRule ^countries/ivory-coast/?$ /best-bonus-in-ivory-coast/ [R=301,L]
-RewriteRule ^countries/cameroon/?$ /best-bonus-in-cameroon/ [R=301,L]
-RewriteRule ^countries/senegal/?$ /best-bonus-in-senegal/ [R=301,L]
-RewriteRule ^countries/rwanda/?$ /best-bonus-in-rwanda/ [R=301,L]
-RewriteRule ^countries/zimbabwe/?$ /best-bonus-in-zimbabwe/ [R=301,L]
-RewriteRule ^countries/malawi/?$ /best-bonus-in-malawi/ [R=301,L]
-RewriteRule ^countries/mozambique/?$ /best-bonus-in-mozambique/ [R=301,L]
-RewriteRule ^countries/angola/?$ /best-bonus-in-angola/ [R=301,L]
-RewriteRule ^countries/dr-congo/?$ /best-bonus-in-dr-congo/ [R=301,L]
-RewriteRule ^countries/botswana/?$ /best-bonus-in-botswana/ [R=301,L]
-RewriteRule ^countries/namibia/?$ /best-bonus-in-namibia/ [R=301,L]
-RewriteRule ^countries/egypt/?$ /best-bonus-in-egypt/ [R=301,L]
-RewriteRule ^countries/morocco/?$ /best-bonus-in-morocco/ [R=301,L]
-RewriteRule ^countries/sierra-leone/?$ /best-bonus-in-sierra-leone/ [R=301,L]
-RewriteRule ^countries/liberia/?$ /best-bonus-in-liberia/ [R=301,L]
+# Countries -> Best Betting Sites rename (2026-08-09, corrected same day):
+# countries/<slug>/ was "Best Betting Sites in {Country}"; content now lives at
+# best-betting-in-<slug>/ (see gen_best_betting_pages.py) — restored as its own
+# distinct page after an earlier same-day rename briefly collapsed it into the
+# bonus-focused best-bonus-in-<slug>/ page instead. Anchored with $ so this only
+# matches the exact top-level country URL, never countries/<slug>/<city>/
+# sub-pages, which stay at their existing path.
+RewriteRule ^countries/nigeria/?$ /best-betting-in-nigeria/ [R=301,L]
+RewriteRule ^countries/kenya/?$ /best-betting-in-kenya/ [R=301,L]
+RewriteRule ^countries/ghana/?$ /best-betting-in-ghana/ [R=301,L]
+RewriteRule ^countries/south-africa/?$ /best-betting-in-south-africa/ [R=301,L]
+RewriteRule ^countries/tanzania/?$ /best-betting-in-tanzania/ [R=301,L]
+RewriteRule ^countries/uganda/?$ /best-betting-in-uganda/ [R=301,L]
+RewriteRule ^countries/zambia/?$ /best-betting-in-zambia/ [R=301,L]
+RewriteRule ^countries/ethiopia/?$ /best-betting-in-ethiopia/ [R=301,L]
+RewriteRule ^countries/ivory-coast/?$ /best-betting-in-ivory-coast/ [R=301,L]
+RewriteRule ^countries/cameroon/?$ /best-betting-in-cameroon/ [R=301,L]
+RewriteRule ^countries/senegal/?$ /best-betting-in-senegal/ [R=301,L]
+RewriteRule ^countries/rwanda/?$ /best-betting-in-rwanda/ [R=301,L]
+RewriteRule ^countries/zimbabwe/?$ /best-betting-in-zimbabwe/ [R=301,L]
+RewriteRule ^countries/malawi/?$ /best-betting-in-malawi/ [R=301,L]
+RewriteRule ^countries/mozambique/?$ /best-betting-in-mozambique/ [R=301,L]
+RewriteRule ^countries/angola/?$ /best-betting-in-angola/ [R=301,L]
+RewriteRule ^countries/dr-congo/?$ /best-betting-in-dr-congo/ [R=301,L]
+RewriteRule ^countries/botswana/?$ /best-betting-in-botswana/ [R=301,L]
+RewriteRule ^countries/namibia/?$ /best-betting-in-namibia/ [R=301,L]
+RewriteRule ^countries/egypt/?$ /best-betting-in-egypt/ [R=301,L]
+RewriteRule ^countries/morocco/?$ /best-betting-in-morocco/ [R=301,L]
+RewriteRule ^countries/sierra-leone/?$ /best-betting-in-sierra-leone/ [R=301,L]
+RewriteRule ^countries/liberia/?$ /best-betting-in-liberia/ [R=301,L]
 # Bookmakers
 RewriteRule ^bet9ja-review/?$ /bookmakers/bet9ja/ [R=301,L]
 RewriteRule ^sportybet-review/?$ /bookmakers/sportybet/ [R=301,L]

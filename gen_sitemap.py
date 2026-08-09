@@ -17,7 +17,7 @@ def _is_noindex(index_html_path: str) -> bool:
     """True if the page's own <meta name="robots"> carries noindex.
 
     Redirect-stub pages (e.g. countries/<slug>/ after the 2026-08-09
-    best-bonus-in-<slug>/ rename) are intentionally noindex — never submit
+    best-betting-in-<slug>/ rename) are intentionally noindex — never submit
     those to Google via sitemap even though the file still physically
     exists (kept only so nested sub-pages retain a non-403 parent dir).
     """
@@ -65,6 +65,10 @@ def classify(url: str):
     if path.startswith('countries/') and path.count('/') == 2:
         # city page
         return '0.75', 'weekly'
+    if path.startswith('best-betting-in-') or path.startswith('best-bonus-in-'):
+        # per-country flagship pages — best-betting-in-<slug>/ is each
+        # country's geo-routed homepage, best-bonus-in-<slug>/ its sibling
+        return '0.9', 'daily'
     if path.startswith('bookmakers/') and path.count('/') == 1:
         # main bookmaker review
         return '0.85', 'weekly'
@@ -159,7 +163,9 @@ CHILD_SITEMAPS = [
     ('sitemap-core.xml',       lambda p: p in ('', 'tips', 'casino', 'odds', 'blog', 'countries',
                                                 'bookmakers', 'betting', 'guides', 'bonuses',
                                                 'about', 'contact')),
-    ('sitemap-countries.xml',  lambda p: p.startswith('countries/')),
+    ('sitemap-countries.xml',  lambda p: p.startswith('countries/') or
+                                         p.startswith('best-betting-in-') or
+                                         p.startswith('best-bonus-in-')),
     ('sitemap-blog.xml',       lambda p: p.startswith('blog/') and p != 'blog'),
     ('sitemap-tips.xml',       lambda p: p.startswith('tips/')),
     ('sitemap-betting.xml',    lambda p: p.startswith('betting/') or p.startswith('bookmakers/')),

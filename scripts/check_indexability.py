@@ -53,8 +53,8 @@ NOT_DEPLOYED_DIRS = {
 
 # Pages that are intentionally noindex — do not "fix" these.
 # The 23 countries/<slug>/index.html entries are redirect stubs left behind
-# by the 2026-08-09 rename to best-bonus-in-<slug>/ (see
-# generate_country_pages.py + gen_country_redirect_stubs.py) — the real 301
+# by the 2026-08-09 rename to best-betting-in-<slug>/ (see
+# gen_best_betting_pages.py + gen_country_redirect_stubs.py) — the real 301
 # lives in .htaccess, these are noindex defense-in-depth only.
 _RENAMED_COUNTRY_SLUGS = [
     "nigeria", "kenya", "ghana", "south-africa", "tanzania", "uganda",
