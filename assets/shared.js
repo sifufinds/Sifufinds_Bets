@@ -734,7 +734,7 @@ const BRAND_DOMAINS={
 const LOCAL_LOGOS={
   '1X':'/assets/logos/1xbet.png','MB':'/assets/logos/melbet.png',
   'BN':'/assets/logos/betwinner.png','PP':'/assets/logos/paripesa.png',
-  'HB':'/assets/logos/helabet.png','TTC':'/assets/logos/tictacbets.png',
+  'HB':'/assets/logos/helabet.png','TTC':'/assets/logos/tictacbets.png?v=2',
   'B9':'/assets/logos/bet9ja.png','SB':'/assets/logos/sportybet.png',
   'BK':'/assets/logos/betking.png','BW':'/assets/logos/betway.png',
   '22':'/assets/logos/22bet.png','MZ':'/assets/logos/mozzartbet.png',
