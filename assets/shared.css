@@ -314,24 +314,6 @@ select.csel option{color:#222;background:#fff}
 @media(max-width:600px){.hbrands-lbl{display:none}.hbrand-tag{display:none}.hbrand-cta{display:none}}
 .fbot button:hover{color:#fff}
 
-/* ── SPONSORED COUNTRY PLACEMENTS ── paid country_sponsor:<slug>:<pos> strip */
-.sponsor-strip{background:var(--dk);padding:16px 0 18px}
-.sponsor-strip:empty{display:none}
-.spc-lbl{font-size:11px;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
-.spc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,280px));gap:12px}
-.spc{position:relative;background:#fff;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 18px rgba(0,0,0,.22);transition:transform .15s}
-.spc:hover{transform:translateY(-2px)}
-.spc-tag{position:absolute;top:10px;left:10px;z-index:4;background:rgba(212,175,55,.94);color:#3d2c02;font-size:9.5px;font-weight:800;letter-spacing:.3px;padding:3px 9px;border-radius:20px;text-transform:uppercase}
-.spc-img{height:140px;position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.spc-img img{padding:16px!important}
-.spc-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:9px}
-.spc-off{font-size:13.5px;font-weight:800;color:#111;line-height:1.35}
-.spc-cta{font-size:13px;padding:10px 14px}
-.spc-terms{font-size:10px;color:#888;line-height:1.5}
-.spc-dis{font-size:10.5px;color:rgba(255,255,255,.5);line-height:1.5;margin-top:12px}
-.spc-dis a{color:rgba(255,255,255,.75);text-decoration:underline}
-@media(max-width:640px){.spc-grid{grid-template-columns:repeat(auto-fit,minmax(150px,220px))}.spc-img{height:110px}}
-
 /* Hamburger button — desktop: hidden */
 .mob-menu-btn{display:none;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;width:40px;height:40px;border-radius:8px;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:background .15s;line-height:1;padding:0}
 .mob-menu-btn:hover{background:rgba(255,255,255,.28)}

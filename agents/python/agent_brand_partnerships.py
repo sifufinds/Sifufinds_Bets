@@ -34,7 +34,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import smtplib
 import sys
 from dataclasses import dataclass
@@ -57,11 +56,6 @@ VALID_SLOT_PREFIXES = (
     "homepage_hero", "top_sportsbook", "featured_casino", "editors_pick",
     "category_sponsor:", "country_sponsor:", "newsletter_sponsor",
 )
-
-# country_sponsor slots power the 5-card paid strip at the top of every
-# countries/<slug>/index.html page (see assets/shared.js renderSponsorStrip()).
-# <slug> must match the page's own directory name, <position> is 1-5.
-_COUNTRY_SPONSOR_SLOT_RE = re.compile(r"^country_sponsor:[a-z-]+:[1-5]$")
 
 SITE_URL = "https://sifufinds.com"
 SENDER_NAME = "Kai from SifuFinds"
@@ -322,11 +316,6 @@ def add_listing(slot: str, brand_slug: str, ends_at: str, criteria_note: str,
     if not any(slot == p or slot.startswith(p) for p in VALID_SLOT_PREFIXES):
         print(f"❌ Unknown slot '{slot}' — must be one of {VALID_SLOT_PREFIXES}")
         return 1
-    if slot.startswith("country_sponsor:") and not _COUNTRY_SPONSOR_SLOT_RE.match(slot):
-        print(f"❌ '{slot}' is not a valid country_sponsor slot — must be "
-              f"'country_sponsor:<country-slug>:<position 1-5>', e.g. 'country_sponsor:nigeria:1' "
-              f"(<country-slug> is the countries/<slug>/ directory name)")
-        return 1
     if not criteria_note:
         print("❌ --criteria is required — every sponsored placement must state why this brand holds it "
               "(CLAUDE.md: 'Editor's Pick (with transparent criteria)')")
@@ -354,11 +343,6 @@ def add_listing(slot: str, brand_slug: str, ends_at: str, criteria_note: str,
     data["listings"] = entries
     _save_listings(data)
     print(f"✅ '{brand_slug}' now holds slot '{slot}' until {ends_at}")
-    if slot.startswith("country_sponsor:"):
-        print(f"   Note: this only renders as 'Sponsored' if '{brand_slug}' is the domain-derived slug "
-              f"(assets/shared.js BRAND_DOMAINS) of a live BOOKS[] entry with a real affiliate-tracking "
-              f"URL for that country — verify before invoicing, or it silently falls back to an "
-              f"unlabeled organic pick.")
     return 0
 
 
@@ -384,7 +368,7 @@ if __name__ == "__main__":
     parser.add_argument("--manage-listings", action="store_true", help="List all Featured Listings and their status")
     parser.add_argument("--add-listing", action="store_true", help="Add/replace a Featured Listing (needs --slot/--brand-slug/--ends/--criteria)")
     parser.add_argument("--remove-listing", metavar="SLOT", help="Remove any Featured Listing occupying this slot")
-    parser.add_argument("--slot", help="Slot name, e.g. top_sportsbook or country_sponsor:nigeria:1 (position 1-5)")
+    parser.add_argument("--slot", help="Slot name, e.g. top_sportsbook or country_sponsor:nigeria")
     parser.add_argument("--brand-slug", help="Brand slug for --add-listing")
     parser.add_argument("--starts", help="ISO 8601 start timestamp (omit for immediately active)")
     parser.add_argument("--ends", help="ISO 8601 end timestamp (required for --add-listing)")
