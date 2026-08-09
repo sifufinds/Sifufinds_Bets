@@ -414,7 +414,7 @@ def generate_page(code, c):
   </div>
 </div>
 
-<script src="../assets/shared.js?v=15"></script>
+<script src="../assets/shared.js?v=16"></script>
 <script>
 const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'}};
 const _PAGE_CTY='{code}';
