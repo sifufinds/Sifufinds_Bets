@@ -1,19 +1,13 @@
 {
-  "date": "2026-08-08",
-  "total": 2,
+  "date": "2026-08-09",
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "how-to-bet-online-zambia-beginners-guide",
-      "detail": "Excerpt 183 chars (max 155)"
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
