@@ -37,6 +37,7 @@ FD_BASE          = "https://api.football-data.org/v4"
 FD_THROTTLE_MINS = 25
 
 ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer"
+ESPN_STANDINGS_BASE = "https://site.api.espn.com/apis/v2/sports/soccer"
 
 # Competition priority — lower = displayed first on the page
 COMP_PRIORITY: dict = {
@@ -152,6 +153,63 @@ def _fd_fetch_standings() -> dict | None:
     except Exception as exc:
         print(f"  FD standings ERROR: {exc}", file=sys.stderr)
         return None
+
+
+# ── ESPN WC standings (free fallback — no FD_TOKEN required) ───────────────────
+# FD_TOKEN is unset in this repo's secrets (see AGENT-KNOWLEDGE.md 2026-08-09),
+# so _fd_fetch_standings() never returns real data. ESPN's undocumented
+# standings endpoint covers the exact same WC2026 group tables for free, no
+# auth, so it's tried as a fallback whenever FD comes back empty — the whole
+# leagues pipeline no longer depends on FD_TOKEN being set at all.
+
+def _espn_fetch_wc_standings() -> dict | None:
+    try:
+        r = SESSION.get(f"{ESPN_STANDINGS_BASE}/fifa.world/standings", timeout=20)
+        print(f"  ESPN fifa.world/standings → HTTP {r.status_code}")
+        return r.json() if r.status_code == 200 else None
+    except Exception as exc:
+        print(f"  ESPN standings ERROR: {exc}", file=sys.stderr)
+        return None
+
+
+def _espn_stat(stats: list[dict], name: str, default=0):
+    for s in stats:
+        if s.get("name") == name:
+            return s.get("value", default)
+    return default
+
+
+def _espn_standings_groups(raw: dict) -> list[dict]:
+    groups: list[dict] = []
+    for g in raw.get("children", []):
+        display = g.get("name", "")
+        entries = (g.get("standings") or {}).get("entries", [])
+        if not display or not entries:
+            continue
+        table = []
+        for e in entries:
+            team  = e.get("team", {})
+            stats = e.get("stats", [])
+            logos = team.get("logos", [])
+            table.append({
+                "pos":    int(_espn_stat(stats, "rank", 0)),
+                "team":   team.get("shortDisplayName") or team.get("name", ""),
+                "tla":    team.get("abbreviation", ""),
+                "crest":  logos[0].get("href", "") if logos else "",
+                "played": int(_espn_stat(stats, "gamesPlayed", 0)),
+                "won":    int(_espn_stat(stats, "wins", 0)),
+                "draw":   int(_espn_stat(stats, "ties", 0)),
+                "lost":   int(_espn_stat(stats, "losses", 0)),
+                "gf":     int(_espn_stat(stats, "pointsFor", 0)),
+                "ga":     int(_espn_stat(stats, "pointsAgainst", 0)),
+                "gd":     int(_espn_stat(stats, "pointDifferential", 0)),
+                "points": int(_espn_stat(stats, "points", 0)),
+                # ESPN's standings endpoint doesn't expose a recent-form
+                "form":   "",
+            })
+        if table:
+            groups.append({"group": display, "table": table})
+    return groups
 
 
 def _fd_normalise(m: dict) -> dict:
@@ -314,8 +372,7 @@ def _fetch_espn_leagues(days: int) -> list[dict]:
 
 # ── WC standings ──────────────────────────────────────────────────────────────
 
-def _write_wc_standings(raw: dict) -> None:
-    now    = datetime.now(timezone.utc)
+def _fd_standings_groups(raw: dict) -> list[dict]:
     groups: list[dict] = []
     for s in raw.get("standings", []):
         if s.get("type") != "TOTAL":
@@ -346,11 +403,15 @@ def _write_wc_standings(raw: dict) -> None:
             })
         if table:
             groups.append({"group": display, "table": table})
+    return groups
 
+
+def _write_wc_standings(groups: list[dict]) -> None:
     if not groups:
         print("  WC standings: no group data returned")
         return
 
+    now = datetime.now(timezone.utc)
     OUT_WC.write_text(
         json.dumps({"updated": now.isoformat(), "groups": groups},
                    ensure_ascii=False, separators=(",", ":")),
@@ -515,8 +576,14 @@ def main() -> None:
 
             print("  Fetching WC 2026 standings …")
             raw_st = _fd_fetch_standings()
-            if raw_st and raw_st.get("standings"):
-                _write_wc_standings(raw_st)
+            groups = _fd_standings_groups(raw_st) if raw_st else []
+            if not groups:
+                # FD_TOKEN unset/invalid or FD returned nothing — free ESPN
+                # fallback covers the same WC2026 group tables, no auth needed.
+                espn_st = _espn_fetch_wc_standings()
+                if espn_st:
+                    groups = _espn_standings_groups(espn_st)
+            _write_wc_standings(groups)
         else:
             # FD throttled — load previous FD data
             if OUT_MATCH.exists():

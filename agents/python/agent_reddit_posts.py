@@ -158,7 +158,7 @@ POSTS = {
             "- Bet9ja has more markets and live betting options\n\n"
             "Most serious Nigerian bettors hold accounts on both and pick the better "
             "odds per match. That's honestly the optimal play.\n\n"
-            f"Full comparison with current bonuses: {SITE_URL}/countries/nigeria/\n\n"
+            f"Full comparison with current bonuses: {SITE_URL}/best-bonus-in-nigeria/\n\n"
             "What's everyone's experience? Any other bookmakers worth adding to this comparison?"
         ),
         "subreddits": ["Nigeria", "sportsbetting", "AfricanFootball"],
@@ -179,7 +179,7 @@ POSTS = {
             "**What to watch:**\n"
             "Withholding tax on winnings is 20% in Kenya — factor this into your "
             "expected value calculations. Some sites show pre-tax, others post-tax.\n\n"
-            f"Full breakdown with current bonuses: {SITE_URL}/countries/kenya/\n\n"
+            f"Full breakdown with current bonuses: {SITE_URL}/best-bonus-in-kenya/\n\n"
             "Any Kenyan bettors here with recent experience on these sites?"
         ),
         "subreddits": ["Kenya", "africa", "AfricanFootball"],
