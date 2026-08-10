@@ -6,16 +6,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-08T21:49:22.486119+00:00",
+    "checked_at": "2026-08-10T05:01:56.842703+00:00",
     "candidates_available": 80,
-    "attempted": 1,
-    "written": 1,
+    "attempted": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Nottingham Forest vs Barcelona - prediction betting tips Nigeria",
+        "keyword": "Lagos man beaten death over missing phone betting tips Nigeria",
         "country": "Nigeria",
-        "result": "written",
-        "slug": "nottingham-forest-vs-barcelona-prediction-betting-tips-nigeria"
+        "result": "failed",
+        "reason": "fact_check: \"Bet9ja currently offers a ₦2,500 free bet on signup plus a 170% accumulator boost on multi-bets\"; \"BetKing provides a ₦100 no-deposit free bet alongside 10 Aviator flights\"; \"To claim Bet9ja’s ₦2,500 free bet, register with the code 9BONUS and complete verification with a minimum deposit of ₦100\"; \"For BetKing’s ₦100 no-deposit free bet, use the code BONUSKG during registration; no deposit is required\"; The detailed signup bonuses, promo codes, and payment methods for Bet9ja and BetKing as described in the draft article"
+      },
+      {
+        "keyword": "WAFCON 2026 Malawi beat Ghana reach historic semi-finals, betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "fact_check: 'Ghana entered the quarter-final clash as favourites, given their strong football pedigree and previous friendly win over Malawi by 4-0.'; 'at the Al Medina Stadium in Rabat.'"
+      },
+      {
+        "keyword": "MTN8 Semi-Finals Bucs avoid Sundowns betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: \"Pirates will face Sekhukhune United, while Sundowns land on the other side of the bracket\""
       }
     ]
   }
