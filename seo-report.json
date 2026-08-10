@@ -1,13 +1,37 @@
 {
   "date": "2026-08-10",
-  "total": 1,
+  "total": 5,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 4,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-fever-2026-seys-solomon-khalaili",
+      "detail": "Title 77 chars (max 60): 'Transfer Fever Hits 2026: Seys, Solomon, Khalaili & More Shake Premier'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-frenzy-man-uni-arsenal-chase-club-brugge-joaquin-seys-premier-league-deals-heat-up",
+      "detail": "Title 108 chars (max 60): \"Transfer Frenzy: Manchester United, Arsenal Chase Club Brugge's Joaqui\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-fever-2026-seys-solomon-khalaili",
+      "detail": "Excerpt 187 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-frenzy-man-uni-arsenal-chase-club-brugge-joaquin-seys-premier-league-deals-heat-up",
+      "detail": "Excerpt 254 chars (max 155)"
+    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
