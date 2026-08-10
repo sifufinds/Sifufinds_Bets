@@ -1088,6 +1088,40 @@ function getCurrentCountry(){{return _PAGE_CTY;}}
 function setFilt(btn){{document.querySelectorAll('.fp').forEach(b=>b.classList.remove('on'));btn.classList.add('on');_activeFilt=btn.dataset.f;renderBooks();}}
 function filterBooks(books){{const f=_activeFilt;if(f==='all')return books;if(f==='nodep')return books.filter(b=>b.nodep);if(f==='cashout')return books.filter(b=>b.cashout);return books;}}
 function sortBooks(books){{const s=document.getElementById('srt')?.value||'default';if(s==='stars')return[...books].sort((a,b)=>b.stars-a.stars);if(s==='bonus')return[...books].sort((a,b)=>(b.nodep?1:0)-(a.nodep?1:0));return books;}}
+const bookCard=(b,i,rank)=>{{
+  const badge=b.badge==='new'?'<span class="badge-new">NEW</span>':b.badge==='hot'?'<span class="badge-hot">HOT</span>':b.nodep?'<span class="badge-nd">NO DEP</span>':'';
+  return`<div class="bkcard ${{rank<3?'top3':''}} ${{b.nodep?'nodep-card':''}}">
+  <div class="bk-main">
+    <span class="bk-rk">#${{rank+1}}</span>
+    <div class="bk-logo" style="background:${{b.bg}}">${{logoImg(b.url,b.name,b.abbr,b.tc,60,8)}}</div>
+    <div>
+      <div class="bk-tag">${{b.tag}}</div>
+      <div class="bk-nm">${{b.name}}${{badge}}</div>
+      <div class="bk-off">${{b.off}}</div>
+      <div class="bk-meta"><span>Min: ${{b.min}}</span><span>${{b.sports}} sports</span><span>${{b.lic}}</span></div>
+    </div>
+    <div class="bk-act">
+      <div class="bk-stars">${{stars(b.stars)}}</div>
+      <a class="gbtn${{b.nodep?' gold':''}}" href="${{b.url}}" target="_blank" rel="noopener noreferrer sponsored">Claim Bonus →</a>
+      <div class="tc-n">T&amp;Cs Apply · 18+</div>
+    </div>
+  </div>
+  <div class="pm-row">${{(b.pms||[]).map(pm).join('')}}</div>
+  <button class="xbtn" onclick="toggleDet(this)">▼ More details</button>
+  <div class="xdet">
+    <div class="xg">
+      <div class="xi"><div class="xl">Min Deposit</div><div class="xv">${{b.min}}</div></div>
+      <div class="xi"><div class="xl">Cash Out</div><div class="xv ${{b.cashout?'yes':'no'}}">${{b.cashout?'✓ Yes':'✗ No'}}</div></div>
+      <div class="xi"><div class="xl">Live Stream</div><div class="xv ${{b.stream?'yes':'no'}}">${{b.stream?'✓ Yes':'✗ No'}}</div></div>
+      <div class="xi"><div class="xl">Instant Pay</div><div class="xv ${{b.instant?'yes':'no'}}">${{b.instant?'✓ Yes':'✗ No'}}</div></div>
+      <div class="xi"><div class="xl">No Deposit</div><div class="xv ${{b.nodep?'yes':'no'}}">${{b.nodep?'✓ Yes':'✗ No'}}</div></div>
+      <div class="xi"><div class="xl">Sports</div><div class="xv">${{b.sports}}+</div></div>
+    </div>
+    <div class="trms">${{b.terms}}</div>
+    <a class="gbtn" href="${{b.url}}" target="_blank" rel="noopener noreferrer sponsored">Claim Bonus →</a>
+  </div>
+</div>`;
+}};
 function renderBooks(){{const books=filterBooks(sortBooks(BOOKS[_PAGE_CTY]||[]));const el=document.getElementById('bk-cards');if(!books.length){{el.innerHTML='<div class="no-results">No bookmakers match this filter.</div>';return;}}el.innerHTML=books.map((b,i)=>bookCard(b,i,i)).join('');H('mcount',`Showing ${{books.length}} bookmaker${{books.length!==1?'s':''}}`);}}
 function init(){{const sel=document.getElementById('ctySel');if(sel)sel.value=_PAGE_CTY;H('foot-yr',NOW.getFullYear());renderBooks();}}
 init();
