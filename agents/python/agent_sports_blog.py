@@ -270,7 +270,12 @@ Write the article now. Base it on the REAL news provided above — do not invent
 
     try:
         print(f"  🤖 Generating article with Groq LLM...")
-        raw = ask(SYSTEM_PROMPT, user_message)
+        # transfers content names specific fees/deal stages — the single
+        # most fact-check-fragile category (see llm.py's prefer_accuracy
+        # docstring and AGENT-KNOWLEDGE.md's 2026-08-10 entry for the 3-day
+        # content blackout this caused when g4f's fallback tier kept
+        # inventing fees other categories don't hinge on as heavily).
+        raw = ask(SYSTEM_PROMPT, user_message, prefer_accuracy=(category == "transfers"))
 
         meta_raw = _extract(raw, "===META===", "===BLOG===")
         blog_body = _extract(raw, "===BLOG===", "===END===", end_required=False)

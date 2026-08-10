@@ -73,6 +73,17 @@ Get a free Groq key at: https://console.groq.com → API Keys → Create
 Get an Anthropic key at: https://console.anthropic.com
 Get a free Gemini key at: https://aistudio.google.com/app/apikey
 g4f and Ollama need no key or signup at all — see tiers 5-6 above.
+
+ask()/ask_long() accept prefer_accuracy=True to swap tiers 5-6 to
+Ollama-then-g4f instead of the default g4f-then-Ollama. Added 2026-08-10
+after a live 3-day content blackout (2026-08-07 to 2026-08-10, see
+AGENT-KNOWLEDGE.md) in which g4f kept returning non-empty drafts for
+transfer_news.yml that agent_fact_checker.py correctly rejected for
+inventing specific transfer fees — g4f "succeeding" isn't the same as g4f
+being accurate. Use this for any caller whose output is fact-sensitive
+(specific figures/dates/quotes that are cheap for a weak free model to
+invent and expensive to get wrong on a betting site); leave it off for
+everything else so the common case keeps g4f's latency advantage.
 """
 import os
 import re
@@ -357,12 +368,12 @@ def _parse_retry_seconds(err: str, cap: int = 60) -> int:
     return 0
 
 
-def ask(system_prompt: str, user_message: str) -> str:
-    return _ask_with_fallback(system_prompt, user_message, max_tokens=4096)
+def ask(system_prompt: str, user_message: str, prefer_accuracy: bool = False) -> str:
+    return _ask_with_fallback(system_prompt, user_message, max_tokens=4096, prefer_accuracy=prefer_accuracy)
 
 
-def ask_long(system_prompt: str, user_message: str) -> str:
-    return _ask_with_fallback(system_prompt, user_message, max_tokens=8000)
+def ask_long(system_prompt: str, user_message: str, prefer_accuracy: bool = False) -> str:
+    return _ask_with_fallback(system_prompt, user_message, max_tokens=8000, prefer_accuracy=prefer_accuracy)
 
 
 # Set once all 4 Groq models are confirmed exhausted/empty in this process.
@@ -389,7 +400,57 @@ _groq_exhausted_this_process = False
 _g4f_exhausted_this_process = False
 
 
-def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -> str:
+def _try_g4f(system_prompt: str, user_message: str, max_tokens: int) -> str | None:
+    """Tier 5 in the default order — free, no-signup, no-API-key aggregator of
+    hosted free LLM front-ends. Hosted (seconds, not CPU-bound minutes), but
+    proxies reverse-engineered chat front-ends with no real guarantee of
+    following strict negative instructions ("never invent a fee") — see
+    _try_ollama()'s docstring for why prefer_accuracy=True runs this tier
+    second instead of first."""
+    global _g4f_exhausted_this_process
+    if not (_g4f_client and _G4F_PROVIDERS and not _g4f_exhausted_this_process):
+        if _g4f_exhausted_this_process:
+            print("[llm] g4f already confirmed exhausted earlier this run — skipping")
+        return None
+    for i, (provider, model, label) in enumerate(_G4F_PROVIDERS):
+        result = None
+        try:
+            result = _ask_g4f(system_prompt, user_message, max_tokens, provider, model)
+        except Exception as e:
+            print(f"[llm] g4f/{label} failed: {e}")
+        if result:
+            return result
+        next_step = _G4F_PROVIDERS[i + 1][2] if i + 1 < len(_G4F_PROVIDERS) else "next tier"
+        print(f"[llm] g4f/{label} exhausted or empty — trying {next_step}")
+    _g4f_exhausted_this_process = True
+    return None
+
+
+def _try_ollama(system_prompt: str, user_message: str, max_tokens: int) -> str | None:
+    """Tier 6 in the default order — local, self-hosted open-weight model.
+    Slower than g4f (CPU-bound minutes, not hosted seconds) but empirically
+    more likely to follow "never invent a fee/quote" (see the 2026-08-08
+    3b→8b upgrade note in this module's docstring, which was driven by
+    exactly this instruction-following gap).
+
+    Confirmed live 2026-08-07 to 2026-08-10 (see AGENT-KNOWLEDGE.md): with
+    Groq saturated most of the day, transfer_news.yml's g4f-first calls kept
+    "succeeding" (non-empty text) while inventing specific transfer fees
+    that agent_fact_checker.py correctly rejected — a 3-day content
+    blackout despite the job itself reporting healthy cycles. Callers whose
+    output is fact-check-sensitive (specific figures/dates that are easy to
+    hallucinate and expensive to get wrong on a betting site) should pass
+    prefer_accuracy=True to try this tier before g4f instead of after it."""
+    if _ensure_ollama():
+        try:
+            return _ask_ollama(system_prompt, user_message, max_tokens)
+        except Exception as e:
+            print(f"[llm] Local Ollama fallback failed: {e}")
+    return None
+
+
+def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int,
+                        prefer_accuracy: bool = False) -> str:
     global _groq_exhausted_this_process, _g4f_exhausted_this_process
     if _groq_client and not _groq_exhausted_this_process:
         # Tiers 1-4 — four Groq models, each with its own separate free TPD
@@ -416,46 +477,29 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int) -
             # reasoning models (gpt-oss) can also come back with empty content
             # when hidden reasoning tokens consume the whole max_tokens budget —
             # that's not an exception, so it needs its own empty-result check.
-            next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else "g4f"
+            next_step = _GROQ_MODELS[i + 1] if i + 1 < len(_GROQ_MODELS) else \
+                ("Ollama (accuracy-preferring order)" if prefer_accuracy else "g4f")
             print(f"[llm] Groq {model} exhausted or empty — trying {next_step}")
         _groq_exhausted_this_process = True
     elif _groq_exhausted_this_process:
-        print("[llm] Groq already confirmed exhausted earlier this run — skipping straight to g4f")
+        next_tier = "Ollama (accuracy-preferring order)" if prefer_accuracy else "g4f"
+        print(f"[llm] Groq already confirmed exhausted earlier this run — skipping straight to {next_tier}")
 
-    # Tier 5 — g4f: free, no-signup, no-API-key aggregator of hosted free
-    # LLM front-ends. Tried before Ollama because it's hosted (seconds, not
-    # CPU-bound minutes) and a meaningfully stronger writer than the local
-    # model — see module docstring. Pinned to specific known-working
-    # providers, not g4f's own auto-selection (see _G4F_PROVIDERS comment
-    # for why). Any failure (bad provider, timeout, empty response) just
-    # moves to the next one in the list; if all of them fail, falls through
-    # to Ollama exactly like Groq exhaustion does.
-    if _g4f_client and _G4F_PROVIDERS and not _g4f_exhausted_this_process:
-        for i, (provider, model, label) in enumerate(_G4F_PROVIDERS):
-            result = None
-            try:
-                result = _ask_g4f(system_prompt, user_message, max_tokens, provider, model)
-            except Exception as e:
-                print(f"[llm] g4f/{label} failed: {e}")
-            if result:
-                return result
-            next_step = _G4F_PROVIDERS[i + 1][2] if i + 1 < len(_G4F_PROVIDERS) else "local Ollama fallback"
-            print(f"[llm] g4f/{label} exhausted or empty — trying {next_step}")
-        _g4f_exhausted_this_process = True
-    elif _g4f_exhausted_this_process:
-        print("[llm] g4f already confirmed exhausted earlier this run — skipping straight to local fallback")
-
-    # Tier 6 — local, self-hosted open-weight model via Ollama. No signup,
-    # no API key, no billing, no dependency on any third-party service
-    # staying up — installed/started on demand (see _ensure_ollama()'s
-    # docstring). The only tier below this point that's currently reliably
-    # configured at all: Claude has no API key, Gemini's free tier is
-    # billing-gated (see module docstring).
-    if _ensure_ollama():
-        try:
-            return _ask_ollama(system_prompt, user_message, max_tokens)
-        except Exception as e:
-            print(f"[llm] Local Ollama fallback failed: {e} — trying Claude")
+    # Tiers 5-6 — g4f (hosted, fast, weaker instruction-following) and local
+    # Ollama (slow, CPU-bound, stronger instruction-following). Default order
+    # is g4f-then-Ollama, optimising for latency on the common case. Callers
+    # generating fact-sensitive content (specific fees/dates/stats that are
+    # cheap for a weak free model to invent and expensive to get wrong) pass
+    # prefer_accuracy=True to flip the order — see _try_ollama()'s docstring
+    # for the live incident that motivated this.
+    if prefer_accuracy:
+        result = _try_ollama(system_prompt, user_message, max_tokens) \
+            or _try_g4f(system_prompt, user_message, max_tokens)
+    else:
+        result = _try_g4f(system_prompt, user_message, max_tokens) \
+            or _try_ollama(system_prompt, user_message, max_tokens)
+    if result:
+        return result
 
     # Tier 7 — Claude (reliable paid fallback, fast)
     if _anthropic_client:

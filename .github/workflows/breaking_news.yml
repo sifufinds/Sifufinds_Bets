@@ -75,6 +75,7 @@ jobs:
         run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core fonts-noto-color-emoji
 
       - name: Run Sports Blog Agent — Football + Sport News
+        id: cat_football_sportnews
         working-directory: agents/python
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -88,21 +89,30 @@ jobs:
           # above) to cover the local-Ollama fallback tier's install+pull+
           # generate time, but the SAME DAY llm.py's fallback model was
           # upgraded 3b→8b ("needs more headroom" — see its own comment),
-          # silently invalidating that sizing again. This run hit the
-          # external job timeout mid-generation (conclusion: "cancelled"),
-          # which neither workflow_watchdog.yml nor retry_failed.yml
-          # retries (both only act on conclusion: "failure") — a
-          # GitHub-level timeout kill is invisible to both safety nets, so
-          # the run silently vanished from the retry pipeline instead of
-          # being retried. A per-call shell timeout bounds each attempt so
-          # the job can never reach its own external timeout in the first
-          # place — a capped call fails with a real non-zero exit instead,
-          # which normal `set -e` step failure + the retry safety nets can
-          # actually see and act on.
-          timeout 600 python agent_sports_blog.py --category football
-          timeout 600 python agent_sports_blog.py --category sportnews
+          # silently invalidating that sizing again.
+          #
+          # Each call is now `|| true` (added 2026-08-10): a single category
+          # hitting this timeout used to fail the ENTIRE step outright
+          # (GitHub Actions runs `run:` blocks under `bash -e`), which meant
+          # sportnews never even got attempted, and — because a failed step
+          # skips every later step by default — the Rotating category step,
+          # the ticker step, and the commit/push step all got skipped too.
+          # Confirmed live 2026-08-09: a run that successfully generated the
+          # football article still published nothing that cycle because
+          # sportnews's Ollama fallback ran past 600s. `|| true` isolates
+          # each category so one slow/exhausted attempt can't take the
+          # others down with it; FAILED_CATEGORIES (surfaced as a step
+          # output, checked by the final step below) still gets the run
+          # reported as failed — so workflow_watchdog.yml/retry_failed.yml
+          # still retry a degraded run — but only AFTER whatever did
+          # succeed this cycle has already been committed and pushed.
+          FAILED=""
+          timeout 600 python agent_sports_blog.py --category football || { echo "⚠️  football category failed/timed out — continuing to sportnews"; FAILED="$FAILED football"; }
+          timeout 600 python agent_sports_blog.py --category sportnews || { echo "⚠️  sportnews category failed/timed out — continuing"; FAILED="$FAILED sportnews"; }
+          echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
 
       - name: Run Sports Blog Agent — Rotating category (all 10 covered daily)
+        id: cat_rotating
         working-directory: agents/python
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -112,25 +122,33 @@ jobs:
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
         run: |
           # Rotate all 10 blog categories across the day in 2-hour windows.
-          # 10-min per-call cap — see the timeout comment on the step above.
+          # 10-min per-call cap, non-fatal on timeout/failure — see the
+          # step above for why this must never take down later steps.
           HOUR=$(date -u +%H)
-          if   [ "$HOUR" -lt 7  ]; then timeout 600 python agent_sports_blog.py --category basketball
-          elif [ "$HOUR" -lt 9  ]; then timeout 600 python agent_sports_blog.py --category betting
-          elif [ "$HOUR" -lt 11 ]; then timeout 600 python agent_sports_blog.py --category tennis
-          elif [ "$HOUR" -lt 13 ]; then timeout 600 python agent_sports_blog.py --category cricket
-          elif [ "$HOUR" -lt 15 ]; then timeout 600 python agent_sports_blog.py --category rugby
-          elif [ "$HOUR" -lt 17 ]; then timeout 600 python agent_sports_blog.py --category boxing
-          elif [ "$HOUR" -lt 19 ]; then timeout 600 python agent_sports_blog.py --category f1
-          elif [ "$HOUR" -lt 21 ]; then timeout 600 python agent_sports_blog.py --category igaming
-          else timeout 600 python agent_sports_blog.py --category basketball
+          CATEGORY=basketball
+          if   [ "$HOUR" -lt 7  ]; then CATEGORY=basketball
+          elif [ "$HOUR" -lt 9  ]; then CATEGORY=betting
+          elif [ "$HOUR" -lt 11 ]; then CATEGORY=tennis
+          elif [ "$HOUR" -lt 13 ]; then CATEGORY=cricket
+          elif [ "$HOUR" -lt 15 ]; then CATEGORY=rugby
+          elif [ "$HOUR" -lt 17 ]; then CATEGORY=boxing
+          elif [ "$HOUR" -lt 19 ]; then CATEGORY=f1
+          elif [ "$HOUR" -lt 21 ]; then CATEGORY=igaming
           fi
+          FAILED=""
+          timeout 600 python agent_sports_blog.py --category "$CATEGORY" || { echo "⚠️  $CATEGORY category failed/timed out — continuing"; FAILED="$CATEGORY"; }
+          echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
 
       - name: Update live ticker
+        id: ticker
         working-directory: agents/python
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: timeout 300 python agent_sports_blog.py --ticker-only
+        run: |
+          FAILED=""
+          timeout 300 python agent_sports_blog.py --ticker-only || { echo "⚠️  ticker update failed/timed out — continuing"; FAILED="ticker"; }
+          echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
 
       - name: Generate static blog post pages
         run: python3 gen_blog_post_pages.py
@@ -176,3 +194,22 @@ jobs:
             git add -A
             git commit -m "🔴 Breaking news: $(date -u '+%Y-%m-%d %H:%M') UTC (merged)" --allow-empty
           done
+
+      - name: Report degraded categories
+        if: always()
+        run: |
+          # Runs last, after content that DID succeed is already committed
+          # and pushed above. Any category that timed out/failed still fails
+          # this job on purpose (non-empty FAILED) so workflow_watchdog.yml /
+          # retry_failed.yml pick it up and retry — see the 2026-08-10 note
+          # on the "Football + Sport News" step for why this is now split
+          # out from the generation steps themselves instead of letting one
+          # slow category take the whole job (and every category after it)
+          # down before anything could be published.
+          FAILED="${{ steps.cat_football_sportnews.outputs.failed }} ${{ steps.cat_rotating.outputs.failed }} ${{ steps.ticker.outputs.failed }}"
+          FAILED="$(echo "$FAILED" | xargs)"
+          if [ -n "$FAILED" ]; then
+            echo "::warning::Degraded categories this run: $FAILED"
+            exit 1
+          fi
+          echo "✅ All categories completed cleanly this run"
