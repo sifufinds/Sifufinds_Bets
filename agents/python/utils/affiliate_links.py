@@ -23,6 +23,7 @@ SITE_URL = "https://sifufinds.com"
 # Explicit slug per brand (not auto-derived) so the masked URL always matches
 # the .htaccess RewriteRule exactly, even if a display name ever changes.
 BRAND_SLUGS: dict[str, str] = {
+    "fairpari": "fairpari",
     "1xbet": "1xbet",
     "melbet": "melbet",
     "betwinner": "betwinner",

@@ -615,7 +615,7 @@ def generate_page(code, c):
   </div>
 </div>
 
-<script src="../assets/shared.js?v=17"></script>
+<script src="../assets/shared.js?v=18"></script>
 <script>
 const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'
 }};
