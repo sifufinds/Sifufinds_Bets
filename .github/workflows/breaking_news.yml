@@ -79,7 +79,6 @@ jobs:
         working-directory: agents/python
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
@@ -116,7 +115,6 @@ jobs:
         working-directory: agents/python
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
@@ -144,7 +142,6 @@ jobs:
         working-directory: agents/python
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           FAILED=""
           timeout 300 python agent_sports_blog.py --ticker-only || { echo "⚠️  ticker update failed/timed out — continuing"; FAILED="ticker"; }

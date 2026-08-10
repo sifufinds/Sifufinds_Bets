@@ -74,8 +74,6 @@ jobs:
         working-directory: agents/python
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           set +e
           # Capped at 30 min (added 2026-08-08) — same root cause and fix as

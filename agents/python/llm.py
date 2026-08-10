@@ -1,7 +1,8 @@
 """
 AI wrapper — Groq primary (4 models, each its own free daily quota), then
-two genuinely-free-and-keyless fallbacks (g4f, then local Ollama), then
-Claude/Gemini as optional paid/billing-gated tiers if ever configured.
+two genuinely-free, open-source, no-signup, no-API-key fallbacks: g4f, then
+local Ollama. Deliberately does NOT fall back to any paid or signup-gated
+API (Claude, Gemini, etc.) — see the 2026-08-10 removal note below.
 
 Fallback chain (each tier is tried before the next):
   1. Groq llama-3.3-70b-versatile  — best quality, separate free TPD quota
@@ -10,23 +11,20 @@ Fallback chain (each tier is tried before the next):
   4. Groq openai/gpt-oss-20b       — separate free TPD quota
   5. g4f (gpt-4o-mini → gpt-4 →    — no signup, no API key, no billing;
      llama-3.3-70b)                  hosted (seconds, not CPU-bound
-                                      minutes) aggregator of free
-                                      reverse-engineered LLM front-ends
-                                      (github.com/xtekky/gpt4free)
+                                      minutes) open-source aggregator of
+                                      free reverse-engineered LLM
+                                      front-ends (github.com/xtekky/gpt4free)
   6. Local Ollama (llama3.1:8b)    — no signup, no API key, no billing;
-                                     installed + started on demand only
-                                     once every tier above has failed;
-                                     the only tier below that has zero
-                                     dependency on a third-party service
+                                     open-weight model, installed + started
+                                     on demand only once every tier above
+                                     has failed; the only tier with zero
+                                     dependency on any third-party service
                                      staying up
-  7. Claude claude-haiku-4-5        — reliable paid fallback, very cheap
-  8. Gemini gemini-2.0-flash-lite  — higher free-tier RPM than full flash
-  9. Gemini gemini-2.0-flash       — separate daily quota fallback
 
 Groq bills tokens-per-day (TPD) per model, not per account, so a model
 sitting near its cap doesn't touch the other three — that's why tiers 1-4
 are all Groq: each exhausted model just falls through to the next one on
-the same free key instead of jumping straight to a paid/billing-gated tier.
+the same free key instead of jumping straight to tier 5.
 
 Per-minute rate limits (RPM) are retried once after the suggested delay.
 Daily token limits (TPD) are NOT retried inline — Groq's real TPD reset is a
@@ -37,19 +35,17 @@ just wastes job time. They fall through to the next tier immediately instead.
 Tiers 5-6 exist because this repo runs ~10 different scheduled agents off
 one shared free Groq key (see AGENT-KNOWLEDGE.md 2026-08-01) — cumulative
 usage across all of them can exhaust every Groq model's daily quota on a
-busy day, and neither Claude nor Gemini billing is set up, which previously
-meant total content silence until Groq's quota rolled over.
+busy day.
 
 g4f (tier 5, added 2026-08-08) is tried before Ollama because it is hosted
 (a real GPT-4o-mini/GPT-4-class response in 1-9s in testing, vs. Ollama's
-multi-minute CPU-only inference) and meaningfully better than the local
-model at following "don't invent a fee/quote" instructions — but it works by
-proxying free public chat front-ends, not a stable documented API, so
-individual g4f providers/models can and do break without notice. Every
-call is wrapped in a hard wall-clock timeout and any failure (exception,
-timeout, or empty response) falls straight through to the next model in
-_G4F_MODELS, then to Ollama — this tier is a pure bonus, never a
-dependency the rest of the pipeline assumes is up.
+multi-minute CPU-only inference) — but it works by proxying free public
+chat front-ends, not a stable documented API, so individual g4f
+providers/models can and do break without notice. Every call is wrapped in
+a hard wall-clock timeout and any failure (exception, timeout, or empty
+response) falls straight through to the next model in _G4F_PROVIDERS, then
+to Ollama — this tier is a pure bonus, never a dependency the rest of the
+pipeline assumes is up.
 
 Local Ollama (tier 6) is deliberately only installed/started lazily inside
 _ensure_ollama() the first time it's actually needed in a given process —
@@ -59,20 +55,14 @@ below the 70B-class Groq models; this is a last resort, not a replacement.
 
 Upgraded from llama3.2:3b to llama3.1:8b on 2026-08-08 (see
 AGENT-KNOWLEDGE.md): with Groq TPD saturated most of the day across the
-growing agent fleet and Gemini still billing-gated, Ollama had become the
-*de facto primary* writer for transfers content, not an occasional
-fallback — and 3b was hallucinating specific transfer fees/quotes not in
-the source snippets often enough that agent_fact_checker.py was correctly
-blocking essentially 100% of drafts for a 12+ hour stretch. 8b is still a
-genuinely free/local/no-signup model (same zero-cost property that made 3b
-the chosen tier over a paid key or Gemini billing) but follows the
+growing agent fleet, Ollama had become the *de facto primary* writer for
+transfers content, not an occasional fallback — and 3b was hallucinating
+specific transfer fees/quotes not in the source snippets often enough that
+agent_fact_checker.py was correctly blocking essentially 100% of drafts
+for a 12+ hour stretch. 8b is still a genuinely free/local/no-signup model
+(same zero-cost property that made 3b the chosen tier) but follows the
 "never invent a fee/quote" instruction meaningfully more reliably. g4f
 (added the same day) further reduces how often Ollama is even reached.
-
-Get a free Groq key at: https://console.groq.com → API Keys → Create
-Get an Anthropic key at: https://console.anthropic.com
-Get a free Gemini key at: https://aistudio.google.com/app/apikey
-g4f and Ollama need no key or signup at all — see tiers 5-6 above.
 
 ask()/ask_long() accept prefer_accuracy=True to swap tiers 5-6 to
 Ollama-then-g4f instead of the default g4f-then-Ollama. Added 2026-08-10
@@ -84,6 +74,18 @@ being accurate. Use this for any caller whose output is fact-sensitive
 (specific figures/dates/quotes that are cheap for a weak free model to
 invent and expensive to get wrong on a betting site); leave it off for
 everything else so the common case keeps g4f's latency advantage.
+
+Claude and Gemini tiers were removed entirely on 2026-08-10 at the user's
+explicit direction: no paid, billing-gated, or signup/API-key-requiring
+fallback of any kind, full stop — free, open-source, no-signup tools only.
+Groq itself still needs a (free) API key, but it was already the
+established primary before this policy and isn't a new dependency; g4f and
+Ollama need no key or signup at all. If Groq + g4f + Ollama are all
+unavailable, generation fails loudly (AIProvidersExhausted) rather than
+reaching for a paid tier.
+
+Get a free Groq key at: https://console.groq.com → API Keys → Create
+g4f and Ollama need no key or signup at all — see tiers 5-6 above.
 """
 import os
 import re
@@ -107,18 +109,16 @@ class AIProvidersExhausted(RuntimeError):
     """
 
 
-_groq_key      = os.getenv("GROQ_API_KEY", "")
-_gemini_key    = os.getenv("GEMINI_API_KEY", "")
-_anthropic_key = os.getenv("ANTHROPIC_API_KEY", "")
-
-if not _groq_key and not _gemini_key and not _anthropic_key:
-    raise RuntimeError("No AI key found. Set GROQ_API_KEY or ANTHROPIC_API_KEY in agents/python/.env")
+_groq_key = os.getenv("GROQ_API_KEY", "")
 
 # ── Groq client (tiers 1-4 — all free, separate quota per model) ────────────
 _groq_client = None
 if _groq_key:
     from groq import Groq
     _groq_client = Groq(api_key=_groq_key)
+else:
+    print("[llm] ⚠ GROQ_API_KEY not set — relying entirely on the free "
+          "no-signup g4f + Ollama tiers.")
 
 _GROQ_MODELS = [
     "llama-3.3-70b-versatile",
@@ -131,8 +131,7 @@ _GROQ_MODELS = [
 # github.com/xtekky/gpt4free — aggregates many free reverse-engineered LLM
 # front-ends behind one OpenAI-style interface. Genuinely optional: if the
 # package isn't installed (e.g. a local dev env that skipped it), this tier
-# is just absent from the chain rather than raising, same pattern as the
-# Anthropic import guard below.
+# is just absent from the chain rather than raising.
 _g4f_client = None
 _G4F_PROVIDERS: list[tuple[object, str, str]] = []  # (provider_class, model, label)
 
@@ -173,7 +172,7 @@ try:
 except ImportError as e:
     print(f"[llm] g4f package not installed ({e}) — skipping the free "
           "no-signup g4f fallback tier entirely (falls through to "
-          "Ollama/Claude/Gemini instead). Add 'g4f' to requirements.txt.")
+          "Ollama instead). Add 'g4f' to requirements.txt.")
 
 if _g4f_client is not None:
     for _provider_name, _model, _label in (
@@ -224,30 +223,6 @@ def _ask_g4f(system_prompt: str, user_message: str, max_tokens: int, provider, m
             raise TimeoutError(f"g4f {model} did not respond within {_G4F_TIMEOUT}s")
 
 
-# ── Anthropic client (tier 7 — reliable paid fallback) ───────────────────────
-_anthropic_client = None
-if _anthropic_key:
-    try:
-        import anthropic as _anthropic_lib
-        _anthropic_client = _anthropic_lib.Anthropic(api_key=_anthropic_key)
-    except ImportError:
-        # Confirmed live 2026-07-31: this silently swallowed the fact that
-        # "anthropic" was missing from requirements.txt, so the "reliable
-        # paid fallback" tier this module's own docstring promises had
-        # never actually been installed in any CI workflow, and every
-        # scheduled job silently fell straight through to Gemini/exhaustion
-        # with nothing in the logs pointing at why — see AGENT-KNOWLEDGE.md.
-        # A `print` here can't be missed the way a silently-empty client
-        # can: it shows up in every single workflow run's log output.
-        print("[llm] ⚠ ANTHROPIC_API_KEY is set but the 'anthropic' package "
-              "isn't installed — Claude fallback tier is DISABLED this run. "
-              "Check agents/python/requirements.txt.")
-else:
-    print("[llm] ⚠ ANTHROPIC_API_KEY not set — Claude fallback tier is "
-          "DISABLED, relying on Groq + g4f + Ollama + Gemini instead.")
-
-_ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"  # fast + cheapest Claude
-
 # ── Local Ollama fallback (tier 6 — no signup, no API key, no billing) ──────
 _OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 _OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
@@ -269,8 +244,7 @@ def _ensure_ollama() -> bool:
     install/pull that already failed (e.g. no internet egress, disk full).
     Returns False fast on any environment where this can't work (a local
     dev machine without Ollama and without sudo, a sandboxed runner with no
-    outbound network) so those environments fall through to Claude/Gemini
-    exactly as before."""
+    outbound network)."""
     global _ollama_setup_attempted
     if _ollama_reachable():
         return True
@@ -321,14 +295,6 @@ def _ask_ollama(system_prompt: str, user_message: str, max_tokens: int) -> str:
     resp.raise_for_status()
     return resp.json()["message"]["content"].strip()
 
-# ── Gemini client (tiers 8 & 9) ───────────────────────────────────────────────
-# Tried in order; each model has its own separate daily quota bucket.
-_gemini_client = None
-if _gemini_key:
-    from google import genai
-    _gemini_client = genai.Client(api_key=_gemini_key)
-
-_GEMINI_MODELS = ["gemini-2.0-flash-lite", "gemini-2.0-flash"]
 
 _RPM_KEYWORDS = ("requests per minute", "per minute", "rpm", "retry_delay", "retrydelay",
                  "please retry in", "rate limit")
@@ -344,11 +310,9 @@ def _is_daily_limit(err: str) -> bool:
     """True when the error is a daily (TPD) cap — cannot be resolved by a short wait.
 
     Groq reports real TPD exhaustion as e.g. "...on tokens per day (TPD): Limit
-    100000, Used 97772... Please try again in 27m44s" — note there is no
-    "limit: 0" in that message, that pattern is specific to Gemini's
-    billing-not-enabled case. Matching on the TPD/day keywords alone is
-    correct for both: neither can be fixed by sleeping the RPM-sized cap
-    below, so both should fall through to the next tier immediately.
+    100000, Used 97772... Please try again in 27m44s". Matching on the TPD/day
+    keywords means it falls through to the next tier immediately instead of
+    waiting the RPM-sized cap below.
     """
     return any(k in err.lower() for k in _TPD_KEYWORDS)
 
@@ -361,10 +325,6 @@ def _parse_retry_seconds(err: str, cap: int = 60) -> int:
         mins = int(m.group(1) or 0)
         secs = float(m.group(2) or 0)
         return min(int(mins * 60 + secs), cap)
-    # Gemini: retryDelay: "34s"
-    m = re.search(r"retrydelay.*?['\"](\d+)s['\"]", err.lower())
-    if m:
-        return min(int(m.group(1)), cap)
     return 0
 
 
@@ -501,68 +461,14 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int,
     if result:
         return result
 
-    # Tier 7 — Claude (reliable paid fallback, fast)
-    if _anthropic_client:
-        try:
-            return _ask_claude(system_prompt, user_message, max_tokens)
-        except Exception as e:
-            err = str(e)
-            if _is_rate_limit(err.lower()):
-                print(f"[llm] Claude rate-limited — falling back to Gemini")
-            else:
-                raise
-
-    # Tiers 8 & 9 — Gemini models tried in order, each with its own daily quota
-    if _gemini_client:
-        last_err: Exception | None = None
-        for model in _GEMINI_MODELS:
-            try:
-                return _ask_gemini(system_prompt, user_message, max_tokens, model)
-            except Exception as e:
-                err = str(e)
-                if not _is_rate_limit(err.lower()):
-                    raise
-                if _is_daily_limit(err):
-                    # Daily limit=0 means billing not enabled for this model — skip it
-                    print(f"[llm] Gemini {model} daily limit=0 (billing required) — skipping")
-                    last_err = e
-                    continue
-                wait = _parse_retry_seconds(err)
-                if wait:
-                    print(f"[llm] Gemini {model} RPM limit — waiting {wait}s then retrying")
-                    time.sleep(wait)
-                    try:
-                        return _ask_gemini(system_prompt, user_message, max_tokens, model)
-                    except Exception:
-                        pass
-                print(f"[llm] Gemini {model} rate-limited — trying next model")
-                last_err = e
-        if last_err:
-            raise AIProvidersExhausted(
-                "All AI providers exhausted: all 4 Groq models are over their daily "
-                "token quota (each resets on its own rolling window, typically "
-                "minutes to a few hours after that model was last used, not a fixed "
-                "midnight-UTC cliff), every free g4f model failed or timed out, the "
-                "local Ollama fallback failed, and Gemini's free tier requires "
-                "billing to be enabled on the Google Cloud project."
-            )
-
     raise AIProvidersExhausted(
-        "All AI providers exhausted or rate-limited: all 4 Groq models are over "
-        "their daily token quota (each resets on its own rolling window, minutes "
-        "to a few hours since last used, not a fixed midnight-UTC cliff), every "
-        "free g4f model failed or timed out, and the local Ollama fallback failed."
+        "All free AI providers exhausted or rate-limited: all 4 Groq models are "
+        "over their daily token quota (each resets on its own rolling window, "
+        "minutes to a few hours since last used, not a fixed midnight-UTC "
+        "cliff), every free g4f model failed or timed out, and the local Ollama "
+        "fallback failed. No paid/signup-gated tier is configured by design — "
+        "see this module's docstring."
     )
-
-
-def _ask_claude(system_prompt: str, user_message: str, max_tokens: int) -> str:
-    response = _anthropic_client.messages.create(
-        model=_ANTHROPIC_MODEL,
-        max_tokens=min(max_tokens, 4096),
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_message}],
-    )
-    return response.content[0].text.strip()
 
 
 def _ask_groq(system_prompt: str, user_message: str, max_tokens: int, model: str) -> str:
@@ -576,17 +482,3 @@ def _ask_groq(system_prompt: str, user_message: str, max_tokens: int, model: str
         max_tokens=max_tokens,
     )
     return response.choices[0].message.content.strip()
-
-
-def _ask_gemini(system_prompt: str, user_message: str, max_tokens: int, model: str) -> str:
-    from google.genai import types as _gtypes
-    response = _gemini_client.models.generate_content(
-        model=model,
-        contents=user_message,
-        config=_gtypes.GenerateContentConfig(
-            system_instruction=system_prompt,
-            temperature=0.8,
-            max_output_tokens=max_tokens,
-        ),
-    )
-    return response.text.strip()

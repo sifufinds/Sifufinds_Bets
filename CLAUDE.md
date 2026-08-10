@@ -39,6 +39,15 @@
 - Local tasks / scripts: re-run the failed command after a short wait. If a git push fails, retry up to 3 times before stopping.
 - Never leave a failed job unaddressed. If a retry also fails, flag it and keep retrying on schedule.
 
+## STANDING RULE — No Paid, Billing-Gated, or Signup/API-Key LLM Fallbacks (added 2026-08-10)
+
+**Every LLM call in this repo must resolve through free, open-source, no-signup, no-API-key tools only, aside from the pre-existing Groq key.** The user explicitly rejected adding an `ANTHROPIC_API_KEY` (or any other paid/keyed fallback) to fix an LLM-reliability gap: "i don't want any of this just free open sources that don't require sign up or API."
+
+- `agents/python/llm.py`'s fallback chain is Groq (already-configured, free-tier, the one pre-existing keyed dependency — not a new one) → g4f (free, open-source, no signup, `github.com/xtekky/gpt4free`) → local Ollama (free, open-weight, no signup). No Claude, Gemini, OpenAI, or any other paid/billing-gated/signup-API tier may be added back as a fallback tier. If all three tiers are exhausted, generation fails loudly (`AIProvidersExhausted`) — that is the accepted tradeoff, not a bug to fix by reaching for a keyed API.
+- Do not re-suggest adding a paid API key to solve a future content-pipeline reliability problem in this repo. If Groq + g4f + Ollama genuinely can't cover a case, the fix is a better free/open-source tier (a new g4f provider, a different open-weight Ollama model, smarter tier-ordering like `prefer_accuracy`) — not a new signup-gated dependency.
+- This does not apply to `GEMINI_API_KEY`'s unrelated, currently-inactive use in `agents/python/utils/social_image.py` for opt-in AI image generation (`SIFU_ALLOW_AI_IMAGES=1`, never enabled in any workflow as of 2026-08-10) — that's a distinct feature from the LLM text-fallback chain this rule governs. If that feature is ever actually turned on, revisit whether it should be re-scoped under this same no-paid-API policy at that time.
+- See AGENT-KNOWLEDGE.md's 2026-08-10 "STANDING POLICY" entry for the full incident history (a 3-day transfer-news content blackout) that led to `llm.py` needing a fallback fix in the first place, and exactly what was removed/kept.
+
 ## STANDING RULE — Always Commit and Push (added 2026-07-24)
 
 **Every code/content change made by Claude Code (or any agent) in this repo must be committed and pushed immediately, without asking the user for confirmation first.** The user has explicitly authorized this — do not wait for a prompt to commit, and do not leave work sitting uncommitted "for review."
