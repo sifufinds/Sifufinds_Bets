@@ -1088,6 +1088,7 @@ document.addEventListener('DOMContentLoaded',function(){
     logLocal(name,params);
     gtag('event',name,params||{});
   }
+  window.sfTrack=track; // exposed so other modules (e.g. exit-intent engine) share one event pipe
 
   // Page impression (GA4 fires automatically; log locally too)
   logLocal('page_view',{page:location.pathname});
@@ -1147,6 +1148,328 @@ document.addEventListener('DOMContentLoaded',function(){
       if(q.length>2)track('search',{q:q.slice(0,50)});
     },900);
   });
+})();
+
+// ── EXIT INTENT ENGINE ───────────────────────────────────────────────────────
+// Behaviourally-triggered (not load-triggered) conversion surface — distinct
+// from the 30s time-based showOfferPopup() above. Fires at most once per
+// session, gated by genuine engagement, and shares showOfferPopup()'s own
+// _OFFER_POPUP_SS session flag in both directions so a visitor is never shown
+// two promotional interruptions in the same session (whichever fires first
+// suppresses the other — see AGENT-KNOWLEDGE.md for the reasoning).
+(function(){
+  'use strict';
+
+  const EXIT_INTENT_CONFIG={
+    enabled:true,
+    desktop:{enabled:true,minimumTime:15000,minimumScrollDepth:20},
+    mobile:{enabled:true,minimumTime:15000,minimumScrollDepth:20},
+    frequency:{sessionLimit:1,cooldownDays:7},
+    // remaining (1-controlPct) traffic sees the page-appropriate experience below;
+    // the control group's suppressed-but-logged sessions are what let GA4 measure
+    // incremental lift instead of just popup-interaction rate.
+    variants:{controlPct:0.15},
+    experienceByCategory:{
+      homepage:'commercial',country_home:'commercial',comparison:'commercial',
+      review:'commercial',commercial_tool:'commercial',article:'content'
+    },
+    excludedCategories:['excluded'],
+    analytics:{enabled:true}
+  };
+  if(!EXIT_INTENT_CONFIG.enabled)return;
+
+  function lsGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+  function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+  function ssGet(k){try{return sessionStorage.getItem(k);}catch(e){return null;}}
+  function ssSet(k,v){try{sessionStorage.setItem(k,v);}catch(e){}}
+
+  const LS_LAST_SHOWN='sf_ei_last_shown';
+  const LS_BUCKET='sf_ei_bucket';
+  const LS_FIRST_SEEN='sf_ei_first_seen';
+  const SS_SESSION_LOGGED='sf_ei_session_logged';
+
+  function pageCategory(){
+    const p=location.pathname;
+    if(/^\/(about|contact|privacy|press|analytics)(\/|\.html)?$/.test(p))return'excluded';
+    if(p==='/'||p==='/index.html')return'homepage';
+    if(/^\/best-betting-in-[^/]+\/?$/.test(p))return'country_home';
+    if(/^\/best-bonus-in-[^/]+\/?$/.test(p))return'comparison';
+    if(/^\/countries\/[^/]+\/[^/]+\/?$/.test(p))return'other';
+    if(/^\/countries\/[^/]+\/?$/.test(p))return'country_home';
+    if(/^\/blog\/[^/]+\/?$/.test(p))return'article';
+    if(/^\/bookmakers\/[^/]+\/?$/.test(p))return'review';
+    if(/^\/(tips|odds|leagues|casino)\/?$/.test(p))return'commercial_tool';
+    if(/^\/(bonuses|guides|payments)\//.test(p))return'commercial_tool';
+    return'other';
+  }
+
+  // Country -> URL slug. Kept in sync with index.html's geo-redirect MAP by hand
+  // (see "Geo Homepage Routing" in CLAUDE.md) — add new countries to both.
+  const CTY_SLUG={NG:'nigeria',KE:'kenya',GH:'ghana',ZA:'south-africa',TZ:'tanzania',UG:'uganda',ZM:'zambia',ET:'ethiopia',CI:'ivory-coast',CM:'cameroon',SN:'senegal',RW:'rwanda',ZW:'zimbabwe',MW:'malawi',MZ:'mozambique',AO:'angola',CD:'dr-congo',BW:'botswana',NA:'namibia',EG:'egypt',MA:'morocco',SL:'sierra-leone',LR:'liberia'};
+
+  function trafficSource(){
+    const ref=document.referrer;
+    if(!ref)return'direct';
+    try{
+      const h=new URL(ref).hostname.replace(/^www\./,'');
+      if(h.includes('sifufinds.com'))return'internal';
+      if(/google\.|bing\.|duckduckgo\.|yahoo\./.test(h))return'search';
+      if(/facebook\.|instagram\.|twitter\.|x\.com|t\.me|tiktok\./.test(h))return'social';
+      return'referral';
+    }catch(e){return'referral';}
+  }
+
+  function bucket(){
+    let v=lsGet(LS_BUCKET);
+    if(v==='control'||v==='treatment')return v;
+    v=Math.random()<EXIT_INTENT_CONFIG.variants.controlPct?'control':'treatment';
+    lsSet(LS_BUCKET,v);
+    return v;
+  }
+
+  // First call ever (no LS_FIRST_SEEN yet) both answers "is this a returning
+  // visitor?" (no) and plants the flag for next time — deliberately called
+  // exactly once per trigger (cached in `returning` below) so the answer can't
+  // flip mid-popup.
+  function isReturningVisitor(){
+    if(lsGet(LS_FIRST_SEEN))return true;
+    lsSet(LS_FIRST_SEEN,String(Date.now()));
+    return false;
+  }
+
+  const cat=pageCategory();
+  if(EXIT_INTENT_CONFIG.excludedCategories.includes(cat))return;
+
+  const device=('ontouchstart'in window||navigator.maxTouchPoints>0)?'mobile':'desktop';
+  const cfg=device==='mobile'?EXIT_INTENT_CONFIG.mobile:EXIT_INTENT_CONFIG.desktop;
+  if(!cfg.enabled)return;
+
+  const last=parseInt(lsGet(LS_LAST_SHOWN)||'0',10);
+  if(last&&Date.now()-last<EXIT_INTENT_CONFIG.frequency.cooldownDays*86400000)return;
+
+  let converted=false,scrollPct=0,fired=false,eligibleLogged=false,lastModalCloseTs=0;
+  const startTs=Date.now();
+
+  // Reuses the click delegation the analytics tracker already installed above —
+  // this is a second, independent listener, not a duplicate of that one.
+  document.addEventListener('click',function(e){
+    const a=e.target.closest('a[href]');
+    if(!a)return;
+    const href=a.href||'';
+    if(typeof AFFILIATE_DOMAINS!=='undefined'&&AFFILIATE_DOMAINS.some(d=>href.includes(d)))converted=true;
+  },true);
+
+  window.addEventListener('scroll',function(){
+    const el=document.documentElement,body=document.body;
+    const top=el.scrollTop||body.scrollTop;
+    const h=Math.max(el.scrollHeight,body.scrollHeight)-el.clientHeight;
+    if(h>0)scrollPct=Math.max(scrollPct,Math.min(100,Math.round(top/h*100)));
+  },{passive:true});
+
+  function engaged(){
+    return Date.now()-startTs>=cfg.minimumTime&&scrollPct>=cfg.minimumScrollDepth;
+  }
+
+  function midInteraction(){
+    const ae=document.activeElement;
+    if(ae&&/INPUT|TEXTAREA|SELECT/.test(ae.tagName))return true;
+    if(document.getElementById('cmp-modal')?.classList.contains('open'))return true;
+    if(document.getElementById('page-modal')?.classList.contains('open'))return true;
+    if(document.getElementById('offer-popup-bg'))return true;
+    if(Date.now()-lastModalCloseTs<5000)return true;
+    return false;
+  }
+
+  function trackEvent(name,extra){
+    if(!EXIT_INTENT_CONFIG.analytics.enabled||!window.sfTrack)return;
+    window.sfTrack(name,Object.assign({page:location.pathname,category:cat,device,bucket:bucket(),source:trafficSource()},extra||{}));
+  }
+
+  function maybeTrigger(trigger){
+    if(fired||converted||midInteraction())return;
+    if(ssGet(_OFFER_POPUP_SS))return; // showOfferPopup() already interrupted this session
+    if(!engaged())return;
+    // Logged once per browser session (not once per qualifying page) so
+    // control-bucket sessions — which never trip the suppression flag above —
+    // can't rack up multiple exit_intent_session events across multi-page
+    // browsing and skew the control-vs-treatment comparison this exists for.
+    if(!eligibleLogged&&!ssGet(SS_SESSION_LOGGED)){
+      eligibleLogged=true;
+      ssSet(SS_SESSION_LOGGED,'1');
+      trackEvent('exit_intent_session',{shown:bucket()==='treatment'});
+    }
+    if(bucket()!=='treatment')return; // control group: measured, never shown
+    fired=true;
+    open(trigger);
+  }
+
+  if(device==='desktop'){
+    document.addEventListener('mouseleave',function(e){
+      if(e.clientY>0||e.relatedTarget)return;
+      maybeTrigger('mouseleave');
+    });
+  }else{
+    // Fast upward scroll after real engagement — the closest natural analogue
+    // to desktop exit intent on touch devices. Deliberately does NOT hook
+    // popstate/back-button interception: that requires effectively hijacking
+    // navigation (pushing a fake history entry to intercept "back"), which is
+    // explicitly out of scope — it breaks the real back button for the visitor.
+    let lastY=window.scrollY,lastT=Date.now(),ticking=false;
+    window.addEventListener('scroll',function(){
+      if(ticking)return;
+      ticking=true;
+      requestAnimationFrame(function(){
+        const y=window.scrollY,t=Date.now(),dt=t-lastT;
+        if(dt>0){
+          const v=(lastY-y)/dt; // px/ms, positive = scrolling up
+          if(v>0.9&&lastY-y>120)maybeTrigger('scroll_velocity');
+        }
+        lastY=y;lastT=t;ticking=false;
+      });
+    },{passive:true});
+  }
+
+  // Wrap (not replace) the existing close handlers so exit-intent inherits the
+  // "don't ambush right after another modal closes" cooldown without touching
+  // their own definitions above.
+  ['closePage','closeOfferPopup'].forEach(fn=>{
+    const orig=window[fn];
+    if(typeof orig==='function'){
+      window[fn]=function(){lastModalCloseTs=Date.now();return orig.apply(this,arguments);};
+    }
+  });
+
+  const HEADLINES={
+    homepage:n=>`Still deciding where to bet in ${n}?`,
+    country_home:n=>`Still deciding where to bet in ${n}?`,
+    comparison:n=>`Ready to claim the best bonus in ${n}?`,
+    review:()=>'Before you decide, see today\'s top offer',
+    commercial_tool:()=>'Don\'t miss today\'s top betting offer'
+  };
+
+  function buildExperience(){
+    const cty=getCurrentCountry();
+    const cd=(typeof COUNTRY_DATA!=='undefined'&&COUNTRY_DATA[cty])||null;
+    const slug=CTY_SLUG[cty]||'nigeria';
+    const cname=cd?cd.name:'Africa';
+
+    if(cat==='article'){
+      const links=Array.from(document.querySelectorAll('.related-posts a')).slice(0,2)
+        .map(a=>({title:a.textContent.trim(),href:a.getAttribute('href')}));
+      if(links.length){
+        return{
+          id:'content',goal:'engagement',
+          headline:'Still exploring this topic?',
+          bodyHtml:'<div class="ei-links">'+links.map(l=>`<a class="ei-link" href="${l.href}" data-ei-cta="content_link">${l.title} →</a>`).join('')+'</div>'
+        };
+      }
+      // falls through to 'final' below if this post has no related-posts block
+    }
+
+    const expType=EXIT_INTENT_CONFIG.experienceByCategory[cat];
+    if(expType==='commercial'&&typeof BOOKS!=='undefined'){
+      const offer=_pickRandomOffers(cty,1)[0];
+      if(offer){
+        const hl=(HEADLINES[cat]||(()=>`Still deciding where to bet in ${cname}?`))(cname);
+        return{
+          id:'commercial',goal:'affiliate',
+          headline:hl,
+          bodyHtml:`<div data-ei-cta="commercial_offer" data-ei-goal="affiliate">${_offerCard(offer)}</div>`,
+          secondaryHref:`/best-betting-in-${slug}/`,secondaryText:`See all bookmakers in ${cname} →`
+        };
+      }
+    }
+
+    // Default / fallback: alternate between a soft lead-gen ask (real Telegram
+    // channel — there's no email/ESP backend on this static site, so a genuine
+    // ongoing-value channel that actually exists stands in for "email capture")
+    // and a plain compare CTA, decided once per popup since it only fires once
+    // per session anyway.
+    if(Math.random()<0.5){
+      return{
+        id:'social',goal:'lead',
+        headline:'Before you go, get free tips daily',
+        bodyHtml:'<p class="ei-sub">Join the SifuFinds Telegram channel for daily match tips and live odds updates. No spam, just picks.</p>',
+        ctaText:'Get free tips on Telegram →',ctaHref:'https://t.me/sifufinds',ctaTarget:'_blank'
+      };
+    }
+    return{
+      id:'final',goal:'engagement',
+      headline:`See today's best betting sites in ${cname}`,
+      bodyHtml:'<p class="ei-sub">Compare verified bonuses and licensed bookmakers before you decide.</p>',
+      ctaText:'See the best options →',ctaHref:`/best-betting-in-${slug}/`,ctaTarget:'_self'
+    };
+  }
+
+  let lastFocused=null;
+
+  function onKeydown(e){
+    if(e.key==='Escape')dismiss('escape');
+  }
+
+  function trapFocus(card){
+    card.addEventListener('keydown',function(e){
+      if(e.key!=='Tab')return;
+      const f=card.querySelectorAll('a[href],button:not([disabled])');
+      if(!f.length)return;
+      const first=f[0],last=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    });
+  }
+
+  function open(trigger){
+    trackEvent('exit_intent_detected',{trigger});
+    const returning=isReturningVisitor();
+    const exp=buildExperience();
+    ssSet(_OFFER_POPUP_SS,'1'); // suppress showOfferPopup() for the rest of this session too
+    lsSet(LS_LAST_SHOWN,String(Date.now()));
+    lastFocused=document.activeElement;
+
+    const el=document.createElement('div');
+    el.id='exit-intent-bg';
+    el.className='exit-intent-bg open';
+    el.innerHTML=`<div class="exit-intent-card" role="dialog" aria-modal="true" aria-labelledby="ei-headline" tabindex="-1">
+      <button class="exit-intent-close" id="ei-close" aria-label="Close">×</button>
+      <div class="ei-eyebrow">${returning?'Welcome back':'Before you go'}</div>
+      <h2 id="ei-headline">${exp.headline}</h2>
+      ${exp.bodyHtml||''}
+      ${exp.ctaText?`<a class="gbtn ei-cta" href="${exp.ctaHref}" target="${exp.ctaTarget||'_self'}"${exp.ctaTarget==='_blank'?` rel="noopener noreferrer${exp.goal==='affiliate'?' sponsored':''}"`:''} data-ei-cta="${exp.id}" data-ei-goal="${exp.goal}">${exp.ctaText}</a>`:''}
+      ${exp.secondaryHref?`<a class="ei-secondary" href="${exp.secondaryHref}" data-ei-cta="${exp.id}_secondary">${exp.secondaryText}</a>`:''}
+      <p class="ei-dis">18+ only. Bet responsibly. <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a></p>
+    </div>`;
+    document.body.appendChild(el);
+    document.body.style.overflow='hidden';
+
+    trackEvent('exit_intent_variant_viewed',{variant:exp.id});
+    trackEvent('exit_intent_displayed',{variant:exp.id,trigger});
+
+    el.addEventListener('click',function(e){
+      if(e.target===el){dismiss('backdrop');return;}
+      const cta=e.target.closest('[data-ei-cta]');
+      if(cta){
+        const goal=cta.dataset.eiGoal;
+        trackEvent('exit_intent_cta_clicked',{variant:exp.id,ctaId:cta.dataset.eiCta});
+        if(goal==='affiliate'||goal==='lead')trackEvent('exit_intent_converted',{variant:exp.id,ctaId:cta.dataset.eiCta});
+      }
+    });
+    document.getElementById('ei-close').addEventListener('click',function(){dismiss('close_button');});
+    document.addEventListener('keydown',onKeydown);
+
+    const card=el.querySelector('.exit-intent-card');
+    trapFocus(card);
+    card.focus();
+  }
+
+  function dismiss(reason){
+    const el=document.getElementById('exit-intent-bg');
+    if(el)el.remove();
+    document.body.style.overflow='';
+    document.removeEventListener('keydown',onKeydown);
+    lastModalCloseTs=Date.now();
+    trackEvent('exit_intent_dismissed',{reason});
+    if(lastFocused&&typeof lastFocused.focus==='function')lastFocused.focus();
+  }
 })();
 
 // ── LANGUAGE (I18N) ────────────────────────────────────────────────────────────

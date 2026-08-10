@@ -952,8 +952,8 @@ def build_page(city_data):
 }}
 </script>
 
-<link rel="preload" href="{assets}assets/shared.css?v=11" as="style">
-<link rel="stylesheet" href="{assets}assets/shared.css?v=11">
+<link rel="preload" href="{assets}assets/shared.css?v=12" as="style">
+<link rel="stylesheet" href="{assets}assets/shared.css?v=12">
 <style>
 .reg-badge{{display:inline-block;background:#edf7f0;border:1px solid #c8e6c9;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;color:#1a6b35;margin-bottom:10px}}
 .pay-grid{{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}}
@@ -1079,7 +1079,7 @@ def build_page(city_data):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{assets}assets/shared.js?v=16"></script>
+<script src="{assets}assets/shared.js?v=17"></script>
 <script>
 const SITE={{home:'{assets}',tips:'{assets}tips/',casino:'{assets}casino/',odds:'{assets}odds/',countries:'{assets}countries/'}};
 const _PAGE_CTY='{code}';

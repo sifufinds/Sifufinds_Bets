@@ -89,6 +89,7 @@ tr:last-child td{border-bottom:none;}
 .ev-name.oc{color:var(--green);}
 .ev-name.sc{color:var(--amber);}
 .ev-name.en{color:var(--purple);}
+.ev-name.ei{color:var(--amber);}
 .ev-name.ot{color:var(--muted);}
 .ev-time{color:var(--muted);}
 .empty-state{color:var(--muted);font-size:.85rem;padding:20px 0;text-align:center;}
@@ -162,6 +163,11 @@ tr:last-child td{border-bottom:none;}
       <div class="stat-val" id="s-total">–</div>
       <div class="stat-sub">total in local store (≤500)</div>
     </div>
+    <div class="card">
+      <div class="card-title">Exit-Intent Shown / Converted</div>
+      <div class="stat-val" id="s-ei">–</div>
+      <div class="stat-sub" id="s-ei-sub">exit_intent_displayed vs exit_intent_converted</div>
+    </div>
   </div>
 
   <!-- Two-col row -->
@@ -206,6 +212,7 @@ tr:last-child td{border-bottom:none;}
           <button class="tab" data-f="page_view" onclick="filterEvents('page_view',this)">Views</button>
           <button class="tab" data-f="outbound_click" onclick="filterEvents('outbound_click',this)">Clicks</button>
           <button class="tab" data-f="engagement" onclick="filterEvents('engagement',this)">Engage</button>
+          <button class="tab" data-f="exit_intent" onclick="filterEvents('exit_intent',this)">Exit Intent</button>
         </div>
         <button onclick="clearLog()" style="background:none;border:1px solid var(--red);border-radius:6px;color:var(--red);cursor:pointer;font-size:.75rem;padding:5px 10px;">Clear</button>
       </div>
@@ -254,6 +261,11 @@ tr:last-child td{border-bottom:none;}
       <div><span class="ev-name en">engagement</span><div style="margin-top:4px;color:var(--muted);">Active seconds on page</div></div>
       <div><span class="ev-name ot">filter</span><div style="margin-top:4px;color:var(--muted);">Filter / sort button clicks</div></div>
       <div><span class="ev-name ot">search</span><div style="margin-top:4px;color:var(--muted);">Site search queries (≥3 chars)</div></div>
+      <div><span class="ev-name ei">exit_intent_session</span><div style="margin-top:4px;color:var(--muted);">Engaged session reached exit-intent eligibility (control vs treatment)</div></div>
+      <div><span class="ev-name ei">exit_intent_displayed</span><div style="margin-top:4px;color:var(--muted);">Popup shown — variant + trigger (mouseleave / scroll_velocity)</div></div>
+      <div><span class="ev-name ei">exit_intent_cta_clicked</span><div style="margin-top:4px;color:var(--muted);">Visitor clicked the popup's CTA</div></div>
+      <div><span class="ev-name oc">exit_intent_converted</span><div style="margin-top:4px;color:var(--muted);">CTA click was affiliate or Telegram lead-gen (the real goal)</div></div>
+      <div><span class="ev-name ei">exit_intent_dismissed</span><div style="margin-top:4px;color:var(--muted);">Closed via Escape / backdrop / close button</div></div>
     </div>
   </div>
 
@@ -332,10 +344,13 @@ function renderStats(){
   var pv=events.filter(function(e){return e.n==='page_view';}).length;
   var oc=events.filter(function(e){return e.n==='outbound_click';}).length;
   var aff=events.filter(function(e){return e.n==='outbound_click'&&e.p&&e.p.affiliate;}).length;
+  var eiShown=events.filter(function(e){return e.n==='exit_intent_displayed';}).length;
+  var eiConv=events.filter(function(e){return e.n==='exit_intent_converted';}).length;
   document.getElementById('s-pv').textContent=pv;
   document.getElementById('s-oc').textContent=oc;
   document.getElementById('s-aff').textContent=aff;
   document.getElementById('s-total').textContent=events.length;
+  document.getElementById('s-ei').textContent=eiShown+' / '+eiConv;
   renderSetup();
 }
 
@@ -349,7 +364,9 @@ function filterEvents(f,btn){
 
 function renderEvents(){
   var events=getEvents();
-  var filtered=curFilter==='all'?events:events.filter(function(e){return e.n===curFilter;});
+  var filtered=curFilter==='all'?events:events.filter(function(e){
+    return curFilter==='exit_intent'?e.n.indexOf('exit_intent')===0:e.n===curFilter;
+  });
   var tbody=document.getElementById('ev-tbody');
   var empty=document.getElementById('ev-empty');
 
@@ -383,6 +400,7 @@ function nameClass(n){
   if(n==='outbound_click')return 'oc';
   if(n==='scroll_depth')return 'sc';
   if(n==='engagement')return 'en';
+  if(n.indexOf('exit_intent')===0)return n==='exit_intent_converted'?'oc':'ei';
   return 'ot';
 }
 function detailStr(n,p){
@@ -392,6 +410,7 @@ function detailStr(n,p){
   if(n==='engagement')return p.secs+'s';
   if(n==='search')return'"'+(p.q||'')+'"';
   if(n==='filter')return p.v||'';
+  if(n.indexOf('exit_intent')===0)return[p.variant,p.trigger,p.reason,p.ctaId].filter(Boolean).join(' / ')||(p.bucket||'');
   return'';
 }
 function extraStr(n,p){
