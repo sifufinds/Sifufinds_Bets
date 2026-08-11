@@ -174,6 +174,8 @@ Static HTML site targeting African sports betting markets. Blog posts live in `b
 
 ## Blog Post Creation — MANDATORY Research Protocol
 
+**Read `CONTENT-RULEBOOK.md` in full before writing or substantially editing any blog post, country page, bookmaker review, or comparison page — added 2026-08-11, this is a standing rule, not a one-off read.** It's the SifuFinds Africa-First Ranking Framework: 75 rules on why an article deserves to exist (the Golden Rule test — "what can SifuFinds tell the reader that the next ten Google results cannot?"), honest verification labelling, no thin/duplicated country pages, no fake first-hand-testing claims, the Africa Fit score and review scorecard methodology, and the 10-point pre-publish quality gate. The mechanical SEO checklist below (research steps, title/meta length, schema, internal-linking tables) tells you *how* to execute technically; `CONTENT-RULEBOOK.md` tells you *whether the article is worth writing at all* and governs when the two are in tension — e.g. its Section 44 ("don't write to a word count") supersedes this file's "minimum 1,000 words" line below: satisfy the reader's question fully, don't pad to hit a number.
+
 **Every time a blog post is created or written**, run the full SEO research workflow below before writing a single word of content. No exceptions.
 
 ### Crawl agent is free-first (added 2026-07-18 — do not burn Firecrawl credits)
