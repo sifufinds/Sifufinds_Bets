@@ -8,6 +8,8 @@ Checks:
   - Key pages: H1 presence, meta description, og:image, canonical
   - Duplicate detection: flags posts with high title-token overlap
     that don't have canonical_override set
+  - Every deployed HTML page (not just blog): rendered <title>/meta
+    description length, and duplicate <h1> tags — see section 7
 
 Usage:
   python3 scripts/seo_check.py              # audit only
@@ -225,6 +227,63 @@ for html_path in BASE.rglob('*.html'):
         rel = str(html_path.relative_to(BASE))
         issue(CRITICAL, 'shared_js_defer', rel,
               'shared.js loaded with defer — will break page rendering')
+
+# ── 7. Site-wide title / meta-description length + duplicate H1 (every page
+# type, not just blog) ─────────────────────────────────────────────────────────
+# Checks #1/#2 above only ever read blog/posts.json — every non-blog template
+# (bookmaker reviews, country pages, guides, tools...) hand-authors its own
+# <title>/<meta name="description"> directly in a Python f-string with zero
+# length enforcement. That gap let dozens of pages across every one of those
+# generators ship a meta description over Google's 155-char display limit
+# undetected (technical SEO audit, 2026-08-11; fixed at the source via the
+# shared seo_meta.seo_meta_description() helper, this check is the permanent
+# regression guard). This section walks every deployed HTML file directly
+# (title/meta-desc regexed from the rendered page, not upstream JSON) so no
+# template — present or future — can drift past these limits unnoticed.
+#
+# Duplicate <h1> is the same story: gen_blog_post_pages.py's markdown_to_html()
+# used to render a body line starting with '# ' as a second <h1> (69 of 1209
+# posts affected, one with 11), fixed the same day this check was added. The
+# fix stops new duplicates; this check is the regression guard against it (or
+# any other template) reintroducing the bug later.
+NOT_DEPLOYED_DIRS = {
+    'agents', 'scripts', 'supabase', 'firecrawl', 'geo-content-writer',
+    'node_modules', '.git', '.github', '.venv', '.vscode',
+    '__pycache__', '.firecrawl', '.claude',
+}
+# Blog posts are excluded from the title/meta-desc length re-check here (but
+# not the H1 check below) — they're already covered by checks #1/#2 against
+# their posts.json source, and re-checking the rendered HTML too would just
+# double-report the same underlying issue under a different check name.
+_TITLE_RE = re.compile(r'<title>([^<]*)</title>', re.IGNORECASE)
+_DESC_RE = re.compile(r'<meta\s+name="description"\s+content="([^"]*)"', re.IGNORECASE)
+
+for html_path in BASE.rglob('*.html'):
+    rel_parts = html_path.relative_to(BASE).parts
+    if rel_parts and rel_parts[0] in NOT_DEPLOYED_DIRS:
+        continue
+    try:
+        content = html_path.read_text(errors='replace')
+    except Exception:
+        continue
+    rel = str(html_path.relative_to(BASE))
+
+    # Skip noindex pages (redirect stubs, verification files) — a short/absent
+    # description there is by design, not a bug.
+    _robots_m = re.search(r'<meta\s+name="robots"[^>]*content="([^"]*)"', content)
+    is_noindex = bool(_robots_m and 'noindex' in _robots_m.group(1).lower())
+
+    if rel_parts[0] != 'blog' and not is_noindex:
+        m = _TITLE_RE.search(content)
+        if m and len(m.group(1)) > 60:
+            issue(HIGH, 'title_length', rel, f"Title {len(m.group(1))} chars (max 60): {m.group(1)[:70]!r}")
+        m = _DESC_RE.search(content)
+        if m and len(m.group(1)) > 155:
+            issue(HIGH, 'meta_desc_length', rel, f"Meta description {len(m.group(1))} chars (max 155)")
+
+    h1_count = len(re.findall(r'<h1[\s>]', content, re.IGNORECASE))
+    if h1_count > 1:
+        issue(HIGH, 'duplicate_h1', rel, f"{h1_count} <h1> tags on one page (must be exactly 1)")
 
 # ── Report ────────────────────────────────────────────────────────────────────
 by_severity = {CRITICAL: [], HIGH: [], MEDIUM: [], INFO: []}

@@ -3,25 +3,11 @@
 
 import json
 import os
+import sys
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-
-
-def seo_title(title: str, max_len: int = 60) -> str:
-    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix."""
-    suffix = "| SifuFinds"
-    full = f"{title} {suffix}"
-    if len(full) <= max_len:
-        return full
-    for sep in [" — ", " - ", ": ", " | "]:
-        idx = title.find(sep)
-        if idx > 10:
-            candidate = f"{title[:idx]} {suffix}"
-            if len(candidate) <= max_len:
-                return candidate
-    available = max_len - len(suffix) - 2
-    truncated = title[:available].rsplit(" ", 1)[0]
-    return f"{truncated}… {suffix}"
+sys.path.insert(0, BASE)
+from seo_meta import seo_title, seo_meta_description  # noqa: E402
 
 COUNTRY_SELECTOR = """\
       <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
@@ -213,6 +199,12 @@ def make_html(bk):
     compare_cty = bk['country_code']
     pay_str = ', '.join(bk['payments'][:3])
     page_title = seo_title(f"{bk['name']} Review 2026 | {bk['tagline']}")
+    meta_desc = seo_meta_description(
+        f"Comprehensive {bk['name']} review 2026. {bk['tagline']} — {bk['bonus_desc']} {bk['licence']}. Updated June 2026."
+    )
+    og_desc = seo_meta_description(
+        f"{bk['name']} review: {bk['bonus_desc']} {bk['licence']}. Full independent review.", max_len=200
+    )
 
     return f"""<!DOCTYPE html>
 <!-- sifufinds.com/bookmakers/{slug}/ — {bk['name']} Review 2026 -->
@@ -221,7 +213,7 @@ def make_html(bk):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{page_title}</title>
-<meta name="description" content="Comprehensive {bk['name']} review 2026. {bk['tagline']} — {bk['bonus_desc']} {bk['licence']}. Updated June 2026.">
+<meta name="description" content="{meta_desc}">
 <meta name="keywords" content="{bk['name'].lower()} review 2026, {bk['name'].lower()} bonus, {bk['name'].lower()} {bk['country_name'].lower()}, is {bk['name'].lower()} legit, {bk['name'].lower()} withdrawal, {bk['name'].lower()} app">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="SifuFinds Editorial Team">
@@ -233,7 +225,7 @@ def make_html(bk):
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SifuFinds">
 <meta property="og:title" content="{bk['name']} Review 2026 | {bk['tagline']} | SifuFinds">
-<meta property="og:description" content="{bk['name']} review: {bk['bonus_desc']} {bk['licence']}. Full independent review.">
+<meta property="og:description" content="{og_desc}">
 <meta property="og:url" content="https://sifufinds.com/bookmakers/{slug}/">
 <meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -353,7 +345,7 @@ def make_html(bk):
 
 <nav class="mnav">
   <div class="mnav-in">
-    <a class="logo" href="../../"><img src="../../assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
+    <a class="logo" href="../../"><img src="../../assets/icon.png" width="38" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
     <div class="ntabs">
       <a class="nt on" href="../../">⭐ Best Bonuses</a>
       <a class="nt" href="../../tips/">💡 Tips</a>

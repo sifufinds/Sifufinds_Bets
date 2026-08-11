@@ -8,9 +8,10 @@ Also generates 50+ new SEO-targeted posts and appends them to posts.json.
 """
 from __future__ import annotations
 
-import os, json, re, zlib
+import os, json, re, zlib, html
 from datetime import datetime, timezone
 from urllib.parse import quote as urlquote
+from seo_meta import seo_title, seo_meta_description  # noqa: E402
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 POSTS_JSON = os.path.join(BASE, 'blog', 'posts.json')
@@ -918,34 +919,9 @@ Al-Ahly of Egypt have won the CAF Champions League 11 times — more than any ot
 ]
 
 
-def seo_title(title: str, max_len: int = 60) -> str:
-    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix.
-
-    Only truncates at a ' — '/' - '/': ' separator when the separator sits
-    past 35% of the title's length — otherwise a short generic lead-in
-    ("World Cup 2026:", "Transfer News:") swallows the whole truncation and
-    every post sharing that lead-in collapses onto one identical, duplicate
-    <title> tag (confirmed live on ~85 of 236 posts, GEO/technical audit
-    2026-07-26). Falling back to word-boundary ellipsis truncation instead
-    keeps the distinctive, keyword-rich tail of the title intact.
-    """
-    suffix = "| SifuFinds"
-    full = f"{title} {suffix}"
-    if len(full) <= max_len:
-        return full
-    best = None
-    for sep in [" — ", " - ", ": "]:
-        idx = title.find(sep)
-        if idx > 10 and idx >= len(title) * 0.35:
-            candidate = f"{title[:idx]} {suffix}"
-            if len(candidate) <= max_len and (best is None or idx > best[0]):
-                best = (idx, candidate)
-    if best:
-        return best[1]
-    available = max_len - len(suffix) - 4
-    truncated = title[:available].rsplit(' ', 1)[0]
-    return f"{truncated}... {suffix}"
-
+# seo_title() / seo_meta_description() now live in seo_meta.py (imported
+# above) — shared across every generator so the truncation fix can't drift
+# out of sync between them again.
 
 _TITLE_TAG_OVERRIDES: dict[str, str] = {}
 
@@ -1077,7 +1053,14 @@ def markdown_to_html(md: str) -> str:
             if in_ol: html_lines.append('</ol>'); in_ol = False
             html_lines.append(f'<h2>{_inline_md(line[3:])}</h2>')
         elif line.startswith('# '):
-            html_lines.append(f'<h1>{_inline_md(line[2:])}</h1>')
+            # Never <h1> — the post template already renders its own <h1> from
+            # the title field, so a body markdown line starting with a single
+            # '# ' (the writer echoing the title back into the body, seen on
+            # 69 of 1209 posts, one with 11 <h1>s) must not produce a second,
+            # competing <h1> (technical SEO audit, 2026-08-11).
+            if in_ul: html_lines.append('</ul>'); in_ul = False
+            if in_ol: html_lines.append('</ol>'); in_ol = False
+            html_lines.append(f'<h2>{_inline_md(line[2:])}</h2>')
         # Tables
         elif line.startswith('|'):
             if not in_table:
@@ -1763,7 +1746,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{_TITLE_TAG_OVERRIDES.get(out_slug) or seo_title(title)}</title>
-<meta name="description" content="{excerpt}">
+<meta name="description" content="{seo_meta_description(excerpt)}">
 <meta name="keywords" content="{', '.join(tags[:8]).lower()}">
 <meta name="robots" content="{robots_content}">
 <meta name="author" content="{author}">
@@ -1773,7 +1756,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SifuFinds">
 <meta property="og:title" content="{title}">
-<meta property="og:description" content="{excerpt}">
+<meta property="og:description" content="{seo_meta_description(excerpt, max_len=200)}">
 <meta property="og:url" content="{canonical_href}">
 <meta property="og:image" content="{og_image_url}">
 <meta property="og:image:width" content="1200">
@@ -1785,7 +1768,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sifufinds">
 <meta name="twitter:title" content="{title}">
-<meta name="twitter:description" content="{excerpt}">
+<meta name="twitter:description" content="{seo_meta_description(excerpt, max_len=200)}">
 <meta name="twitter:image" content="{og_image_url}">
 
 <script type="application/ld+json">
@@ -1884,7 +1867,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 
 <nav class="mnav">
   <div class="mnav-in">
-    <a class="logo" href="../../"><img src="../../assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
+    <a class="logo" href="../../"><img src="../../assets/icon.png" width="38" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
     <div class="ntabs">
       <a class="nt" href="../../">⭐ Best Bonuses</a>
       <a class="nt" href="../../tips/">💡 Tips</a>
@@ -1897,7 +1880,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 </nav>
 
 <div class="post-hero">
-  {f'<img class="post-hero-img" src="{og_image_url}" alt="" width="1200" height="630" loading="eager" fetchpriority="high">' if has_feature_image else ''}
+  {f'<img class="post-hero-img" src="{og_image_url}" alt="{html.escape(title)}" width="1200" height="630" loading="eager" fetchpriority="high">' if has_feature_image else ''}
   <div class="post-hero-overlay"></div>
   <div class="wrap">
     <h1>{title}</h1>

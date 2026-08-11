@@ -4,8 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <script>
-// GEO HOMEPAGE ROUTING — see CLAUDE.md STANDING RULE. Sends every visitor straight to
-// their own country's page (e.g. Kenya -> /best-betting-in-kenya/) instead of this generic page.
+// GEO HOMEPAGE ROUTING — see CLAUDE.md STANDING RULE. Sends visitors with a confidently
+// detected supported country straight to that country's page (e.g. Kenya ->
+// /best-betting-in-kenya/) instead of this generic page.
 // Bypass with ?cty=XX (an old shared link still honours this) or ?intl=1 (force this page).
 // changeCountry() (assets/shared.js) no longer writes ?cty= into the URL itself — the
 // pick is carried via localStorage, so this just falls through to the manual/fresh
@@ -13,6 +14,18 @@
 // 2026-08-09: routes to /best-betting-in-<slug>/ — the general "Best Betting Sites"
 // page, distinct from the bonus-focused /best-bonus-in-<slug>/ page (see the
 // gen_best_betting_pages.py docstring for why the two are separate).
+// 2026-08-11 (technical SEO audit fix): an unmatched country or a failed/timed-out
+// IP lookup used to fall back to redirecting to Nigeria anyway, so this script
+// redirected away from '/' unconditionally for every visitor that reached it,
+// including Googlebot's JS-render wave — contradicting this page's own
+// <link rel="canonical" href="https://sifufinds.com/"> and letting Google collapse
+// the homepage's distinct title/meta/JSON-LD into the Nigeria page's. Fixed to only
+// redirect on a confident match; everyone else renders this generic homepage in
+// place, exactly like waitForCountry() (assets/shared.js) already does on every
+// other page — it never navigates away, it only defaults BOOKS rendering to NG on
+// the current page. No user-agent branching was added (that would be a sneaky
+// redirect / cloaking pattern Google explicitly prohibits) — the fix applies
+// identically to bots and humans.
 (function(){
   var qs=new URLSearchParams(location.search);
   if(qs.has('cty')||qs.has('intl'))return;
@@ -23,7 +36,7 @@
   // apparent country gets reflected instead of staying pinned to whatever was first
   // detected. Keep in sync with _CTY_TTL_MS in assets/shared.js.
   var CTY_TTL_MS=30*60*1000;
-  function go(code){location.replace('/best-betting-in-'+(MAP[code]||MAP.NG)+'/');}
+  function go(code){location.replace('/best-betting-in-'+MAP[code]+'/');}
   function stamp(code){
     localStorage.setItem('sf_cty',code);
     localStorage.setItem('sf_cty_ts',String(Date.now()));
@@ -32,18 +45,16 @@
   var saved=localStorage.getItem('sf_cty');
   var ts=+localStorage.getItem('sf_cty_ts')||0;
   var fresh=(Date.now()-ts)<CTY_TTL_MS;
-  if(saved&&(manual||fresh)){go(saved);return;}
+  // MAP[saved] guards against a stale 'NG' fallback stamp written by the old
+  // version of this script before every unmatched code was a genuine match.
+  if(saved&&MAP[saved]&&(manual||fresh)){go(saved);return;}
   var req=fetch('https://ipapi.co/json/').then(function(r){return r.json();});
   var timeout=new Promise(function(res){setTimeout(function(){res(null);},2000);});
   Promise.race([req,timeout]).then(function(d){
     var code=(d&&d.country_code||'').toUpperCase();
-    var resolved=MAP[code]?code:'NG';
-    stamp(resolved);
-    go(resolved);
-  }).catch(function(){
-    stamp('NG');
-    go('NG');
-  });
+    if(MAP[code]){stamp(code);go(code);}
+    // else: no redirect — render this generic homepage as-is.
+  }).catch(function(){/* no redirect — render this generic homepage as-is */});
 })();
 </script>
 <link rel="preload" href="assets/shared.js?v=20" as="script">
