@@ -18,10 +18,19 @@ reliably has yet — see _extract_metrics()'s docstring).
 This is a monitoring check, not a pre-deploy gate — deploy_hostinger.yml
 pushes new content to the SAME live URLs this script measures, so probing
 mid-deploy would just measure a race, not a real signal. Runs on its own
-schedule instead (performance_check.yml), always exits 0 at the top level
-(a CRITICAL finding is worth a human looking at, not blocking every future
-deploy the way a broken link does) but still reports CRITICAL/WARN severity
-so the workflow log/report makes real regressions visible.
+schedule instead (performance_check.yml). A single slow page (CRITICAL/WARN
+on one metric) still exits 0 — that's a real CWV regression worth a human
+looking at, not an infrastructure failure, and shouldn't fail the scheduled
+job. But "0/N pages returned any data at all" (the ALL_PAGES case) is a
+total pipeline failure, not a performance signal — confirmed live 2026-08-07
+through at least 2026-08-11 (five straight days of HTTP 429 from PageSpeed's
+free unauthenticated quota, no PAGESPEED_API_KEY secret configured) reporting
+workflow "success" every single day because this always returned 0
+regardless. Fixed 2026-08-11 (technical SEO audit): the ALL_PAGES case now
+exits 1, so the scheduled job actually shows red and this repo's existing
+auto-retry infrastructure (workflow_watchdog.yml / retry_failed.yml, which
+already watches every workflow — see CLAUDE.md's Auto-Retry standing rule)
+picks it up instead of it staying invisible in a log nobody opens.
 
 Usage:
     python3 scripts/performance_check.py            # check + report
@@ -184,7 +193,8 @@ def main() -> int:
     # a slow metric" — nothing escalated "0/5 pages produced any data at
     # all" to something a human would actually notice. That silent-failure
     # shape is exactly what this repo's error-handling rules exist to catch.
-    if pages and checked == 0:
+    total_outage = bool(pages) and checked == 0
+    if total_outage:
         issue(
             CRITICAL,
             "ALL_PAGES",
@@ -222,8 +232,14 @@ def main() -> int:
     if not critical and not warnings:
         print("\n✅ All checked pages within Core Web Vitals targets")
 
-    # Monitoring check, not a deploy gate — see module docstring for why.
-    return 0
+    # A single slow-metric CRITICAL/WARN still exits 0 — that's a real CWV
+    # regression for a human to look at, not an infra failure, and this is a
+    # monitoring check, not a pre-deploy gate (see module docstring). But a
+    # total outage (0/N pages returned any data) exits 1 so the scheduled
+    # job goes red and this repo's auto-retry infrastructure catches it
+    # instead of it silently reporting "success" every day (see ALL_PAGES
+    # above, and CLAUDE.md's Auto-Retry standing rule).
+    return 1 if total_outage else 0
 
 
 if __name__ == "__main__":
