@@ -1,108 +1,18 @@
 {
   "date": "2026-08-11",
-  "total": 316,
+  "total": 311,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 315,
+    "HIGH": 310,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "transfer-drama-2026-chelsea-enquiry-aston-villa-loan-deal",
-      "detail": "Title 88 chars (max 60): \"Transfer Drama Unfolds: Chelsea's Enquiry, Aston Villa's Loan Deal, an\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "transfer-window-heats-up-africa-betting-insights",
-      "detail": "Title 119 chars (max 60): \"Transfer Window Heats Up: Real Madrid's Endrick, Man Utd's Raum, and M\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "transfer-drama-2026-chelsea-enquiry-aston-villa-loan-deal",
-      "detail": "Excerpt 206 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "transfer-window-heats-up-africa-betting-insights",
-      "detail": "Excerpt 243 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "transfer-window-update-african-bettors",
-      "detail": "Excerpt 170 chars (max 155)"
-    },
-    {
       "severity": "INFO",
       "check": "formulaic_opener",
       "page": "75 posts",
       "detail": "75 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "terms/index.html",
-      "detail": "Meta description 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-betting-in-sierra-leone/index.html",
-      "detail": "Meta description 177 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-betting-in-tanzania/index.html",
-      "detail": "Meta description 162 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "leagues/index.html",
-      "detail": "Meta description 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-betting-in-angola/index.html",
-      "detail": "Meta description 157 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bonuses/welcome-bonus/index.html",
-      "detail": "Meta description 204 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bonuses/cashback-bonus/index.html",
-      "detail": "Meta description 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bonuses/reload-bonus/index.html",
-      "detail": "Meta description 192 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bonuses/no-deposit/index.html",
-      "detail": "Meta description 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bonuses/free-bet/index.html",
-      "detail": "Meta description 181 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -113,62 +23,8 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-betting-in-zimbabwe/index.html",
-      "detail": "Meta description 167 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-bonus-in-south-africa/index.html",
-      "detail": "Meta description 161 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-betting-in-ethiopia/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-betting-in-mozambique/index.html",
-      "detail": "Meta description 159 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-bonus-in-cameroon/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "about/index.html",
-      "detail": "Meta description 159 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-bonus-in-zimbabwe/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-bonus-in-tanzania/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-betting-in-namibia/index.html",
-      "detail": "Meta description 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-betting-in-rwanda/index.html",
-      "detail": "Meta description 166 chars (max 155)"
+      "page": "best-bonus-in-sierra-leone/index.html",
+      "detail": "Meta description 160 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -179,332 +35,320 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-betting-in-botswana/index.html",
+      "page": "best-betting-in-zimbabwe/index.html",
       "detail": "Meta description 167 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "contact/index.html",
+      "page": "best-bonus-in-ivory-coast/index.html",
+      "detail": "Meta description 159 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-bonus-in-south-africa/index.html",
       "detail": "Meta description 161 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-bonus-in-sierra-leone/index.html",
-      "detail": "Meta description 160 chars (max 155)"
+      "page": "best-betting-in-ivory-coast/index.html",
+      "detail": "Meta description 157 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tables/index.html",
-      "detail": "Meta description 187 chars (max 155)"
+      "page": "countries/tanzania/arusha/index.html",
+      "detail": "Meta description 192 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/caf-champions-league/index.html",
+      "page": "countries/tanzania/moshi/index.html",
+      "detail": "Meta description 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/tanzania/dodoma/index.html",
+      "detail": "Meta description 182 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/tanzania/dar-es-salaam/index.html",
+      "detail": "Meta description 199 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/tanzania/mwanza/index.html",
+      "detail": "Meta description 182 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/tanzania/zanzibar/index.html",
+      "detail": "Meta description 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/botswana/gaborone/index.html",
+      "detail": "Meta description 197 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/zimbabwe/bulawayo/index.html",
+      "detail": "Meta description 202 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/zimbabwe/harare/index.html",
+      "detail": "Meta description 200 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/zambia/lusaka/index.html",
       "detail": "Meta description 184 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/afcon/index.html",
-      "detail": "Meta description 163 chars (max 155)"
+      "page": "countries/zambia/ndola/index.html",
+      "detail": "Meta description 189 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/index.html",
-      "detail": "Meta description 188 chars (max 155)"
+      "page": "countries/zambia/livingstone/index.html",
+      "detail": "Meta description 195 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/tunisia/index.html",
+      "page": "countries/zambia/kitwe/index.html",
+      "detail": "Meta description 183 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/ghana/tamale/index.html",
       "detail": "Meta description 181 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/canada/index.html",
-      "detail": "Meta description 169 chars (max 155)"
+      "page": "countries/ghana/sekondi-takoradi/index.html",
+      "detail": "Meta description 191 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/belgium/index.html",
-      "detail": "Meta description 169 chars (max 155)"
+      "page": "countries/ghana/cape-coast/index.html",
+      "detail": "Meta description 185 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/australia/index.html",
-      "detail": "Meta description 174 chars (max 155)"
+      "page": "countries/ghana/kumasi/index.html",
+      "detail": "Meta description 181 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/nigeria/index.html",
-      "detail": "Meta description 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/serbia/index.html",
-      "detail": "Meta description 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/iraq/index.html",
-      "detail": "Meta description 176 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/netherlands/index.html",
-      "detail": "Meta description 169 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/croatia/index.html",
-      "detail": "Meta description 170 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/poland/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/south-africa/index.html",
+      "page": "countries/ghana/ho/index.html",
       "detail": "Meta description 177 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/south-korea/index.html",
-      "detail": "Meta description 179 chars (max 155)"
+      "page": "countries/ghana/accra/index.html",
+      "detail": "Meta description 183 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/spain/index.html",
-      "detail": "Meta description 164 chars (max 155)"
+      "page": "countries/liberia/monrovia/index.html",
+      "detail": "Meta description 204 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/germany/index.html",
-      "detail": "Meta description 173 chars (max 155)"
+      "page": "countries/uganda/kampala/index.html",
+      "detail": "Meta description 188 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/jordan/index.html",
-      "detail": "Meta description 169 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/england/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/panama/index.html",
-      "detail": "Meta description 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/denmark/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/venezuela/index.html",
-      "detail": "Meta description 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/uzbekistan/index.html",
-      "detail": "Meta description 178 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/turkey/index.html",
-      "detail": "Meta description 172 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/mali/index.html",
-      "detail": "Meta description 166 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/portugal/index.html",
-      "detail": "Meta description 180 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/colombia/index.html",
-      "detail": "Meta description 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/ecuador/index.html",
-      "detail": "Meta description 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/czech-republic/index.html",
-      "detail": "Meta description 175 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/uruguay/index.html",
-      "detail": "Meta description 169 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/new-zealand/index.html",
-      "detail": "Meta description 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/morocco/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/mexico/index.html",
-      "detail": "Meta description 164 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/argentina/index.html",
-      "detail": "Meta description 175 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/switzerland/index.html",
-      "detail": "Meta description 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/dr-congo/index.html",
-      "detail": "Meta description 172 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/austria/index.html",
-      "detail": "Meta description 167 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/ghana/index.html",
-      "detail": "Meta description 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/jamaica/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/saudi-arabia/index.html",
+      "page": "countries/uganda/jinja/index.html",
       "detail": "Meta description 181 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/ivory-coast/index.html",
-      "detail": "Meta description 178 chars (max 155)"
+      "page": "countries/uganda/entebbe/index.html",
+      "detail": "Meta description 188 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/united-states/index.html",
-      "detail": "Meta description 170 chars (max 155)"
+      "page": "countries/uganda/gulu/index.html",
+      "detail": "Meta description 180 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/honduras/index.html",
-      "detail": "Meta description 173 chars (max 155)"
+      "page": "countries/uganda/mbarara/index.html",
+      "detail": "Meta description 183 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/scotland/index.html",
-      "detail": "Meta description 175 chars (max 155)"
+      "page": "countries/egypt/cairo/index.html",
+      "detail": "Meta description 179 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/france/index.html",
-      "detail": "Meta description 167 chars (max 155)"
+      "page": "countries/egypt/alexandria/index.html",
+      "detail": "Meta description 184 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/egypt/index.html",
-      "detail": "Meta description 169 chars (max 155)"
+      "page": "countries/sierra-leone/bo/index.html",
+      "detail": "Meta description 199 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/chile/index.html",
-      "detail": "Meta description 164 chars (max 155)"
+      "page": "countries/sierra-leone/freetown/index.html",
+      "detail": "Meta description 212 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/senegal/index.html",
-      "detail": "Meta description 176 chars (max 155)"
+      "page": "countries/mozambique/beira/index.html",
+      "detail": "Meta description 204 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/brazil/index.html",
-      "detail": "Meta description 165 chars (max 155)"
+      "page": "countries/mozambique/maputo/index.html",
+      "detail": "Meta description 198 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/japan/index.html",
-      "detail": "Meta description 169 chars (max 155)"
+      "page": "countries/rwanda/kigali/index.html",
+      "detail": "Meta description 182 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "tips/world-cup-2026/iran/index.html",
-      "detail": "Meta description 166 chars (max 155)"
+      "page": "countries/nigeria/abeokuta/index.html",
+      "detail": "Meta description 191 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/uyo/index.html",
+      "detail": "Meta description 186 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/onitsha/index.html",
+      "detail": "Meta description 190 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/owerri/index.html",
+      "detail": "Meta description 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/ilorin/index.html",
+      "detail": "Meta description 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/kaduna/index.html",
+      "detail": "Meta description 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/warri/index.html",
+      "detail": "Meta description 188 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/jos/index.html",
+      "detail": "Meta description 186 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/port-harcourt/index.html",
+      "detail": "Meta description 196 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/aba/index.html",
+      "detail": "Meta description 186 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/abuja/index.html",
+      "detail": "Meta description 188 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/ibadan/index.html",
+      "detail": "Meta description 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/enugu/index.html",
+      "detail": "Meta description 188 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/lagos/index.html",
+      "detail": "Meta description 188 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/calabar/index.html",
+      "detail": "Meta description 190 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/kano/index.html",
+      "detail": "Meta description 187 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/nigeria/benin-city/index.html",
+      "detail": "Meta description 193 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -527,164 +371,14 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/botswana/gaborone/index.html",
-      "detail": "Meta description 197 chars (max 155)"
+      "page": "countries/ivory-coast/abidjan/index.html",
+      "detail": "Meta description 206 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/sierra-leone/bo/index.html",
-      "detail": "Meta description 199 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/sierra-leone/freetown/index.html",
-      "detail": "Meta description 212 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/ibadan/index.html",
-      "detail": "Meta description 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/lagos/index.html",
-      "detail": "Meta description 188 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/abuja/index.html",
-      "detail": "Meta description 188 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/aba/index.html",
-      "detail": "Meta description 186 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/warri/index.html",
-      "detail": "Meta description 188 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/enugu/index.html",
-      "detail": "Meta description 188 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/ilorin/index.html",
-      "detail": "Meta description 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/kaduna/index.html",
-      "detail": "Meta description 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/uyo/index.html",
-      "detail": "Meta description 186 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/abeokuta/index.html",
-      "detail": "Meta description 191 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/owerri/index.html",
-      "detail": "Meta description 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/jos/index.html",
-      "detail": "Meta description 186 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/kano/index.html",
-      "detail": "Meta description 187 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/benin-city/index.html",
-      "detail": "Meta description 193 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/calabar/index.html",
-      "detail": "Meta description 190 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/port-harcourt/index.html",
-      "detail": "Meta description 196 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/nigeria/onitsha/index.html",
-      "detail": "Meta description 190 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/south-africa/port-elizabeth/index.html",
-      "detail": "Meta description 202 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/south-africa/pretoria/index.html",
-      "detail": "Meta description 196 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/south-africa/durban/index.html",
-      "detail": "Meta description 194 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/south-africa/bloemfontein/index.html",
+      "page": "countries/ivory-coast/bouake/index.html",
       "detail": "Meta description 200 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/south-africa/cape-town/index.html",
-      "detail": "Meta description 203 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/south-africa/johannesburg/index.html",
-      "detail": "Meta description 194 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/malawi/blantyre/index.html",
-      "detail": "Meta description 184 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -695,8 +389,56 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/angola/huambo/index.html",
-      "detail": "Meta description 199 chars (max 155)"
+      "page": "countries/malawi/blantyre/index.html",
+      "detail": "Meta description 184 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/senegal/dakar/index.html",
+      "detail": "Meta description 193 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/namibia/windhoek/index.html",
+      "detail": "Meta description 190 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/south-africa/bloemfontein/index.html",
+      "detail": "Meta description 200 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/south-africa/durban/index.html",
+      "detail": "Meta description 194 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/south-africa/pretoria/index.html",
+      "detail": "Meta description 196 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/south-africa/johannesburg/index.html",
+      "detail": "Meta description 194 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/south-africa/cape-town/index.html",
+      "detail": "Meta description 203 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/south-africa/port-elizabeth/index.html",
+      "detail": "Meta description 202 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -707,20 +449,68 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/rwanda/kigali/index.html",
-      "detail": "Meta description 182 chars (max 155)"
+      "page": "countries/angola/huambo/index.html",
+      "detail": "Meta description 199 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/mozambique/beira/index.html",
-      "detail": "Meta description 204 chars (max 155)"
+      "page": "countries/kenya/kitale/index.html",
+      "detail": "Meta description 191 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/mozambique/maputo/index.html",
-      "detail": "Meta description 198 chars (max 155)"
+      "page": "countries/kenya/nakuru/index.html",
+      "detail": "Meta description 191 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/kenya/eldoret/index.html",
+      "detail": "Meta description 192 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/kenya/nairobi/index.html",
+      "detail": "Meta description 192 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/kenya/kisumu/index.html",
+      "detail": "Meta description 191 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/kenya/nyeri/index.html",
+      "detail": "Meta description 190 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/kenya/thika/index.html",
+      "detail": "Meta description 190 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/kenya/malindi/index.html",
+      "detail": "Meta description 192 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/kenya/mombasa/index.html",
+      "detail": "Meta description 192 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "countries/morocco/fes/index.html",
+      "detail": "Meta description 208 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -743,86 +533,8 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/morocco/fes/index.html",
-      "detail": "Meta description 208 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/namibia/windhoek/index.html",
-      "detail": "Meta description 190 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/dr-congo/lubumbashi/index.html",
-      "detail": "Meta description 214 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/dr-congo/kinshasa/index.html",
-      "detail": "Meta description 212 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/zambia/livingstone/index.html",
-      "detail": "Meta description 195 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/zambia/ndola/index.html",
-      "detail": "Meta description 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/zambia/lusaka/index.html",
-      "detail": "Meta description 184 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/zambia/kitwe/index.html",
-      "detail": "Meta description 183 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/ghana/ho/index.html",
-      "detail": "Meta description 177 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/ghana/kumasi/index.html",
-      "detail": "Meta description 181 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/ghana/tamale/index.html",
-      "detail": "Meta description 181 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/ghana/cape-coast/index.html",
-      "detail": "Meta description 185 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/ghana/sekondi-takoradi/index.html",
-      "detail": "Meta description 191 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/ghana/accra/index.html",
-      "detail": "Meta description 183 chars (max 155)"
+      "page": "countries/cameroon/douala/index.html",
+      "detail": "Meta description 200 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -833,205 +545,37 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/cameroon/douala/index.html",
-      "detail": "Meta description 200 chars (max 155)"
+      "page": "countries/dr-congo/kinshasa/index.html",
+      "detail": "Meta description 212 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/ivory-coast/abidjan/index.html",
-      "detail": "Meta description 206 chars (max 155)"
+      "page": "countries/dr-congo/lubumbashi/index.html",
+      "detail": "Meta description 214 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/ivory-coast/bouake/index.html",
-      "detail": "Meta description 200 chars (max 155)"
+      "page": "terms/index.html",
+      "detail": "Meta description 165 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "countries/liberia/monrovia/index.html",
-      "detail": "Meta description 204 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/kenya/malindi/index.html",
-      "detail": "Meta description 192 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/kenya/kisumu/index.html",
-      "detail": "Meta description 191 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/kenya/nakuru/index.html",
-      "detail": "Meta description 191 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/kenya/mombasa/index.html",
-      "detail": "Meta description 192 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/kenya/thika/index.html",
-      "detail": "Meta description 190 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/kenya/kitale/index.html",
-      "detail": "Meta description 191 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/kenya/nairobi/index.html",
-      "detail": "Meta description 192 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/kenya/eldoret/index.html",
-      "detail": "Meta description 192 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/kenya/nyeri/index.html",
-      "detail": "Meta description 190 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/tanzania/arusha/index.html",
-      "detail": "Meta description 192 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/tanzania/mwanza/index.html",
-      "detail": "Meta description 182 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/tanzania/zanzibar/index.html",
-      "detail": "Meta description 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/tanzania/dodoma/index.html",
-      "detail": "Meta description 182 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/tanzania/moshi/index.html",
-      "detail": "Meta description 181 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/tanzania/dar-es-salaam/index.html",
-      "detail": "Meta description 199 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/egypt/cairo/index.html",
-      "detail": "Meta description 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/egypt/alexandria/index.html",
-      "detail": "Meta description 184 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/senegal/dakar/index.html",
-      "detail": "Meta description 193 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/zimbabwe/bulawayo/index.html",
-      "detail": "Meta description 202 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/zimbabwe/harare/index.html",
-      "detail": "Meta description 200 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/uganda/entebbe/index.html",
-      "detail": "Meta description 188 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/uganda/kampala/index.html",
-      "detail": "Meta description 188 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/uganda/mbarara/index.html",
-      "detail": "Meta description 183 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/uganda/gulu/index.html",
-      "detail": "Meta description 180 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "countries/uganda/jinja/index.html",
-      "detail": "Meta description 181 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "best-betting-in-dr-congo/index.html",
-      "detail": "Meta description 170 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tools/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tools/parlay-calculator/index.html",
-      "detail": "Meta description 164 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tools/odds-calculator/index.html",
+      "page": "best-betting-in-tanzania/index.html",
       "detail": "Meta description 162 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-bonus-in-botswana/index.html",
+      "page": "contact/index.html",
+      "detail": "Meta description 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-bonus-in-zimbabwe/index.html",
       "detail": "Meta description 156 chars (max 155)"
     },
     {
@@ -1043,92 +587,62 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-bonus-in-dr-congo/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/sportpesa/south-africa/index.html",
-      "detail": "Meta description 176 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/sportpesa/ghana/index.html",
-      "detail": "Meta description 177 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/sportpesa/kenya/index.html",
-      "detail": "Meta description 178 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/sportpesa/tanzania/index.html",
-      "detail": "Meta description 182 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/sportpesa/uganda/index.html",
-      "detail": "Meta description 181 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/bet9ja/nigeria/index.html",
-      "detail": "Meta description 169 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/bet9ja/ghana/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/sportybet/nigeria/index.html",
-      "detail": "Meta description 172 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/sportybet/zambia/index.html",
-      "detail": "Meta description 178 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/sportybet/ghana/index.html",
-      "detail": "Meta description 177 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/sportybet/ivory-coast/index.html",
+      "page": "leagues/index.html",
       "detail": "Meta description 189 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/sportybet/kenya/index.html",
+      "page": "bookmakers/hollywoodbets/botswana/index.html",
+      "detail": "Meta description 183 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/hollywoodbets/zimbabwe/index.html",
+      "detail": "Meta description 167 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/hollywoodbets/zambia/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/hollywoodbets/mozambique/index.html",
+      "detail": "Meta description 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/hollywoodbets/malawi/index.html",
       "detail": "Meta description 178 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/sportybet/tanzania/index.html",
-      "detail": "Meta description 182 chars (max 155)"
+      "page": "bookmakers/hollywoodbets/namibia/index.html",
+      "detail": "Meta description 179 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/sportybet/uganda/index.html",
-      "detail": "Meta description 182 chars (max 155)"
+      "page": "bookmakers/hollywoodbets/south-africa/index.html",
+      "detail": "Meta description 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/hollywoodbets/kenya/index.html",
+      "detail": "Meta description 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/betking/ghana/index.html",
+      "detail": "Meta description 175 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1145,12 +659,6 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/betking/ghana/index.html",
-      "detail": "Meta description 175 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
       "page": "bookmakers/betking/ivory-coast/index.html",
       "detail": "Meta description 187 chars (max 155)"
     },
@@ -1163,140 +671,8 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/ethiopia/index.html",
-      "detail": "Meta description 186 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/botswana/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/sierra-leone/index.html",
-      "detail": "Meta description 201 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/nigeria/index.html",
+      "page": "bookmakers/betway-africa/tanzania/index.html",
       "detail": "Meta description 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/south-africa/index.html",
-      "detail": "Meta description 167 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/malawi/index.html",
-      "detail": "Meta description 178 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/angola/index.html",
-      "detail": "Meta description 183 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/rwanda/index.html",
-      "detail": "Meta description 177 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/mozambique/index.html",
-      "detail": "Meta description 181 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/morocco/index.html",
-      "detail": "Meta description 196 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/namibia/index.html",
-      "detail": "Meta description 170 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/dr-congo/index.html",
-      "detail": "Meta description 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/zambia/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/ghana/index.html",
-      "detail": "Meta description 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/cameroon/index.html",
-      "detail": "Meta description 191 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/ivory-coast/index.html",
-      "detail": "Meta description 194 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/liberia/index.html",
-      "detail": "Meta description 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/kenya/index.html",
-      "detail": "Meta description 175 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/tanzania/index.html",
-      "detail": "Meta description 178 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/egypt/index.html",
-      "detail": "Meta description 198 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/senegal/index.html",
-      "detail": "Meta description 186 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/zimbabwe/index.html",
-      "detail": "Meta description 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/1xbet-africa/uganda/index.html",
-      "detail": "Meta description 178 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1307,38 +683,8 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/nigeria/index.html",
+      "page": "bookmakers/betway-africa/zimbabwe/index.html",
       "detail": "Meta description 169 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/south-africa/index.html",
-      "detail": "Meta description 175 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/malawi/index.html",
-      "detail": "Meta description 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/rwanda/index.html",
-      "detail": "Meta description 178 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/mozambique/index.html",
-      "detail": "Meta description 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/namibia/index.html",
-      "detail": "Meta description 180 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1355,8 +701,44 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/cameroon/index.html",
-      "detail": "Meta description 183 chars (max 155)"
+      "page": "bookmakers/betway-africa/uganda/index.html",
+      "detail": "Meta description 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/betway-africa/mozambique/index.html",
+      "detail": "Meta description 171 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/betway-africa/rwanda/index.html",
+      "detail": "Meta description 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/betway-africa/nigeria/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/betway-africa/malawi/index.html",
+      "detail": "Meta description 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/betway-africa/namibia/index.html",
+      "detail": "Meta description 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/betway-africa/south-africa/index.html",
+      "detail": "Meta description 175 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1367,98 +749,248 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/tanzania/index.html",
-      "detail": "Meta description 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/zimbabwe/index.html",
-      "detail": "Meta description 169 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/betway-africa/uganda/index.html",
-      "detail": "Meta description 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/hollywoodbets/botswana/index.html",
+      "page": "bookmakers/betway-africa/cameroon/index.html",
       "detail": "Meta description 183 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/hollywoodbets/south-africa/index.html",
-      "detail": "Meta description 177 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/hollywoodbets/malawi/index.html",
+      "page": "bookmakers/1xbet-africa/tanzania/index.html",
       "detail": "Meta description 178 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/hollywoodbets/mozambique/index.html",
-      "detail": "Meta description 170 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/hollywoodbets/namibia/index.html",
-      "detail": "Meta description 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/hollywoodbets/zambia/index.html",
+      "page": "bookmakers/1xbet-africa/botswana/index.html",
       "detail": "Meta description 174 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/hollywoodbets/kenya/index.html",
+      "page": "bookmakers/1xbet-africa/zimbabwe/index.html",
       "detail": "Meta description 179 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bookmakers/hollywoodbets/zimbabwe/index.html",
+      "page": "bookmakers/1xbet-africa/zambia/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/ghana/index.html",
+      "detail": "Meta description 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/liberia/index.html",
+      "detail": "Meta description 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/uganda/index.html",
+      "detail": "Meta description 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/egypt/index.html",
+      "detail": "Meta description 198 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/sierra-leone/index.html",
+      "detail": "Meta description 201 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/mozambique/index.html",
+      "detail": "Meta description 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/rwanda/index.html",
+      "detail": "Meta description 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/nigeria/index.html",
+      "detail": "Meta description 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/ethiopia/index.html",
+      "detail": "Meta description 186 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/ivory-coast/index.html",
+      "detail": "Meta description 194 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/malawi/index.html",
+      "detail": "Meta description 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/senegal/index.html",
+      "detail": "Meta description 186 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/namibia/index.html",
+      "detail": "Meta description 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/south-africa/index.html",
       "detail": "Meta description 167 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-bonus-in-ethiopia/index.html",
-      "detail": "Meta description 156 chars (max 155)"
+      "page": "bookmakers/1xbet-africa/angola/index.html",
+      "detail": "Meta description 183 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-betting-in-egypt/index.html",
-      "detail": "Meta description 168 chars (max 155)"
+      "page": "bookmakers/1xbet-africa/kenya/index.html",
+      "detail": "Meta description 175 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "guides/how-to-bet-on-football/index.html",
-      "detail": "Meta description 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "guides/what-is-accumulator-betting/index.html",
+      "page": "bookmakers/1xbet-africa/morocco/index.html",
       "detail": "Meta description 196 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "guides/live-betting/index.html",
+      "page": "bookmakers/1xbet-africa/cameroon/index.html",
+      "detail": "Meta description 191 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/1xbet-africa/dr-congo/index.html",
       "detail": "Meta description 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportpesa/tanzania/index.html",
+      "detail": "Meta description 182 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportpesa/ghana/index.html",
+      "detail": "Meta description 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportpesa/uganda/index.html",
+      "detail": "Meta description 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportpesa/south-africa/index.html",
+      "detail": "Meta description 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportpesa/kenya/index.html",
+      "detail": "Meta description 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportybet/tanzania/index.html",
+      "detail": "Meta description 182 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportybet/zambia/index.html",
+      "detail": "Meta description 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportybet/ghana/index.html",
+      "detail": "Meta description 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportybet/uganda/index.html",
+      "detail": "Meta description 182 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportybet/nigeria/index.html",
+      "detail": "Meta description 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportybet/ivory-coast/index.html",
+      "detail": "Meta description 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/sportybet/kenya/index.html",
+      "detail": "Meta description 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/bet9ja/ghana/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/bet9ja/nigeria/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-betting-in-mozambique/index.html",
+      "detail": "Meta description 159 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-betting-in-angola/index.html",
+      "detail": "Meta description 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-betting-in-dr-congo/index.html",
+      "detail": "Meta description 170 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1475,8 +1007,14 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "guides/responsible-gambling/index.html",
-      "detail": "Meta description 180 chars (max 155)"
+      "page": "guides/live-betting/index.html",
+      "detail": "Meta description 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "guides/what-is-accumulator-betting/index.html",
+      "detail": "Meta description 196 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1487,20 +1025,452 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/telebirr-betting/ethiopia/index.html",
+      "page": "guides/responsible-gambling/index.html",
+      "detail": "Meta description 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "guides/how-to-bet-on-football/index.html",
+      "detail": "Meta description 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-bonus-in-ethiopia/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tools/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tools/odds-calculator/index.html",
+      "detail": "Meta description 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tools/parlay-calculator/index.html",
       "detail": "Meta description 164 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/tennis-betting/index.html",
+      "page": "best-bonus-in-cameroon/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-betting-in-ethiopia/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-betting-in-egypt/index.html",
+      "detail": "Meta description 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-bonus-in-dr-congo/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "about/index.html",
+      "detail": "Meta description 159 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-bonus-in-tanzania/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/caf-champions-league/index.html",
+      "detail": "Meta description 184 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/afcon/index.html",
+      "detail": "Meta description 163 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/index.html",
+      "detail": "Meta description 188 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/jordan/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/uzbekistan/index.html",
+      "detail": "Meta description 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/belgium/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/denmark/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/new-zealand/index.html",
+      "detail": "Meta description 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/united-states/index.html",
+      "detail": "Meta description 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/ghana/index.html",
+      "detail": "Meta description 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/saudi-arabia/index.html",
+      "detail": "Meta description 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/germany/index.html",
+      "detail": "Meta description 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/south-korea/index.html",
+      "detail": "Meta description 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/austria/index.html",
+      "detail": "Meta description 167 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/mexico/index.html",
+      "detail": "Meta description 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/brazil/index.html",
+      "detail": "Meta description 165 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/panama/index.html",
+      "detail": "Meta description 171 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/portugal/index.html",
+      "detail": "Meta description 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/egypt/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/spain/index.html",
+      "detail": "Meta description 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/switzerland/index.html",
+      "detail": "Meta description 171 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/scotland/index.html",
+      "detail": "Meta description 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/france/index.html",
+      "detail": "Meta description 167 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/nigeria/index.html",
+      "detail": "Meta description 171 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/ivory-coast/index.html",
+      "detail": "Meta description 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/colombia/index.html",
+      "detail": "Meta description 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/croatia/index.html",
+      "detail": "Meta description 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/ecuador/index.html",
+      "detail": "Meta description 165 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/senegal/index.html",
+      "detail": "Meta description 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/netherlands/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/jamaica/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/argentina/index.html",
+      "detail": "Meta description 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/uruguay/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/czech-republic/index.html",
+      "detail": "Meta description 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/south-africa/index.html",
+      "detail": "Meta description 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/iran/index.html",
+      "detail": "Meta description 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/australia/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/mali/index.html",
+      "detail": "Meta description 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/morocco/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/japan/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/turkey/index.html",
+      "detail": "Meta description 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/iraq/index.html",
+      "detail": "Meta description 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/honduras/index.html",
+      "detail": "Meta description 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/serbia/index.html",
+      "detail": "Meta description 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/england/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/canada/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/chile/index.html",
+      "detail": "Meta description 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/poland/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/tunisia/index.html",
+      "detail": "Meta description 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/venezuela/index.html",
+      "detail": "Meta description 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tips/world-cup-2026/dr-congo/index.html",
+      "detail": "Meta description 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-betting-in-namibia/index.html",
+      "detail": "Meta description 165 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-betting-in-rwanda/index.html",
+      "detail": "Meta description 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-betting-in-botswana/index.html",
+      "detail": "Meta description 167 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bonuses/reload-bonus/index.html",
+      "detail": "Meta description 192 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bonuses/no-deposit/index.html",
+      "detail": "Meta description 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bonuses/free-bet/index.html",
+      "detail": "Meta description 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bonuses/cashback-bonus/index.html",
+      "detail": "Meta description 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bonuses/welcome-bonus/index.html",
+      "detail": "Meta description 204 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-betting-in-malawi/index.html",
       "detail": "Meta description 161 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/tennis-betting/south-africa/index.html",
-      "detail": "Meta description 157 chars (max 155)"
+      "page": "best-betting-in-sierra-leone/index.html",
+      "detail": "Meta description 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-bonus-in-botswana/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tables/index.html",
+      "detail": "Meta description 187 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1511,20 +1481,8 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting/index.html",
-      "detail": "Meta description 183 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/ecocash-betting/index.html",
-      "detail": "Meta description 182 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/ecocash-betting/zimbabwe/index.html",
-      "detail": "Meta description 160 chars (max 155)"
+      "page": "betting/cricket-betting/south-africa/index.html",
+      "detail": "Meta description 159 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1535,8 +1493,86 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
+      "page": "betting/football-betting/botswana/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/football-betting/sierra-leone/index.html",
+      "detail": "Meta description 159 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/football-betting/mozambique/index.html",
+      "detail": "Meta description 158 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/football-betting/ethiopia/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/football-betting/ivory-coast/index.html",
+      "detail": "Meta description 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/football-betting/senegal/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/football-betting/south-africa/index.html",
+      "detail": "Meta description 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/football-betting/cameroon/index.html",
+      "detail": "Meta description 158 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/football-betting/dr-congo/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
       "page": "betting/airtel-money-betting/index.html",
       "detail": "Meta description 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/airtel-money-betting/tanzania/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/airtel-money-betting/zambia/index.html",
+      "detail": "Meta description 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/airtel-money-betting/uganda/index.html",
+      "detail": "Meta description 171 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/airtel-money-betting/rwanda/index.html",
+      "detail": "Meta description 171 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1553,8 +1589,8 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/airtel-money-betting/rwanda/index.html",
-      "detail": "Meta description 171 chars (max 155)"
+      "page": "betting/airtel-money-betting/kenya/index.html",
+      "detail": "Meta description 168 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1565,62 +1601,38 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/airtel-money-betting/zambia/index.html",
-      "detail": "Meta description 169 chars (max 155)"
+      "page": "betting/ecocash-betting/index.html",
+      "detail": "Meta description 182 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/airtel-money-betting/kenya/index.html",
-      "detail": "Meta description 168 chars (max 155)"
+      "page": "betting/ecocash-betting/zimbabwe/index.html",
+      "detail": "Meta description 160 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/airtel-money-betting/tanzania/index.html",
-      "detail": "Meta description 169 chars (max 155)"
+      "page": "betting/mtn-momo-betting/index.html",
+      "detail": "Meta description 183 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/airtel-money-betting/uganda/index.html",
-      "detail": "Meta description 171 chars (max 155)"
+      "page": "betting/mpesa-betting-sites/index.html",
+      "detail": "Meta description 167 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/vodacom-betting-sites/index.html",
-      "detail": "Meta description 162 chars (max 155)"
+      "page": "betting/tennis-betting/index.html",
+      "detail": "Meta description 161 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/vodacom-betting-sites/south-africa/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/vodacom-betting-sites/mozambique/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/vodacom-betting-sites/dr-congo/index.html",
-      "detail": "Meta description 175 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/vodacom-betting-sites/tanzania/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/cricket-betting/south-africa/index.html",
-      "detail": "Meta description 159 chars (max 155)"
+      "page": "betting/tennis-betting/south-africa/index.html",
+      "detail": "Meta description 157 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1631,8 +1643,26 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
+      "page": "betting/orange-money-betting/liberia/index.html",
+      "detail": "Meta description 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
       "page": "betting/orange-money-betting/sierra-leone/index.html",
       "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/orange-money-betting/ivory-coast/index.html",
+      "detail": "Meta description 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/orange-money-betting/senegal/index.html",
+      "detail": "Meta description 173 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1655,182 +1685,44 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/orange-money-betting/ivory-coast/index.html",
-      "detail": "Meta description 172 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/orange-money-betting/liberia/index.html",
-      "detail": "Meta description 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/orange-money-betting/senegal/index.html",
-      "detail": "Meta description 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/basketball-betting/nigeria/index.html",
-      "detail": "Meta description 159 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/basketball-betting/south-africa/index.html",
-      "detail": "Meta description 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/basketball-betting/ghana/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/basketball-betting/kenya/index.html",
-      "detail": "Meta description 157 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/basketball-betting/egypt/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/basketball-betting/senegal/index.html",
-      "detail": "Meta description 160 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mpesa-betting-sites/index.html",
-      "detail": "Meta description 167 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting-sites/nigeria/index.html",
-      "detail": "Meta description 175 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting-sites/south-africa/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting-sites/rwanda/index.html",
-      "detail": "Meta description 176 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting-sites/zambia/index.html",
-      "detail": "Meta description 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting-sites/ghana/index.html",
-      "detail": "Meta description 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting-sites/cameroon/index.html",
-      "detail": "Meta description 180 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting-sites/ivory-coast/index.html",
-      "detail": "Meta description 177 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting-sites/liberia/index.html",
-      "detail": "Meta description 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/mtn-momo-betting-sites/uganda/index.html",
-      "detail": "Meta description 176 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/football-betting/ethiopia/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/football-betting/botswana/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/football-betting/sierra-leone/index.html",
-      "detail": "Meta description 159 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/football-betting/south-africa/index.html",
-      "detail": "Meta description 161 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/football-betting/mozambique/index.html",
-      "detail": "Meta description 158 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/football-betting/dr-congo/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/football-betting/cameroon/index.html",
-      "detail": "Meta description 158 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/football-betting/ivory-coast/index.html",
-      "detail": "Meta description 161 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/football-betting/senegal/index.html",
-      "detail": "Meta description 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
       "page": "betting/bank-transfer-betting/index.html",
       "detail": "Meta description 176 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
+      "page": "betting/bank-transfer-betting/tanzania/index.html",
+      "detail": "Meta description 185 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/bank-transfer-betting/ghana/index.html",
+      "detail": "Meta description 184 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/bank-transfer-betting/uganda/index.html",
+      "detail": "Meta description 184 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/bank-transfer-betting/egypt/index.html",
+      "detail": "Meta description 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
       "page": "betting/bank-transfer-betting/nigeria/index.html",
       "detail": "Meta description 185 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/bank-transfer-betting/senegal/index.html",
+      "detail": "Meta description 179 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -1847,62 +1739,140 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/bank-transfer-betting/morocco/index.html",
-      "detail": "Meta description 183 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting/bank-transfer-betting/ghana/index.html",
-      "detail": "Meta description 184 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
       "page": "betting/bank-transfer-betting/kenya/index.html",
       "detail": "Meta description 182 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/bank-transfer-betting/tanzania/index.html",
-      "detail": "Meta description 185 chars (max 155)"
+      "page": "betting/bank-transfer-betting/morocco/index.html",
+      "detail": "Meta description 183 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/bank-transfer-betting/egypt/index.html",
-      "detail": "Meta description 179 chars (max 155)"
+      "page": "betting/mtn-momo-betting-sites/zambia/index.html",
+      "detail": "Meta description 174 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/bank-transfer-betting/senegal/index.html",
-      "detail": "Meta description 179 chars (max 155)"
+      "page": "betting/mtn-momo-betting-sites/ghana/index.html",
+      "detail": "Meta description 171 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "betting/bank-transfer-betting/uganda/index.html",
-      "detail": "Meta description 184 chars (max 155)"
+      "page": "betting/mtn-momo-betting-sites/liberia/index.html",
+      "detail": "Meta description 173 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-bonus-in-ivory-coast/index.html",
+      "page": "betting/mtn-momo-betting-sites/uganda/index.html",
+      "detail": "Meta description 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/mtn-momo-betting-sites/rwanda/index.html",
+      "detail": "Meta description 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/mtn-momo-betting-sites/nigeria/index.html",
+      "detail": "Meta description 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/mtn-momo-betting-sites/ivory-coast/index.html",
+      "detail": "Meta description 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/mtn-momo-betting-sites/south-africa/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/mtn-momo-betting-sites/cameroon/index.html",
+      "detail": "Meta description 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/basketball-betting/ghana/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/basketball-betting/egypt/index.html",
+      "detail": "Meta description 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/basketball-betting/nigeria/index.html",
       "detail": "Meta description 159 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-betting-in-malawi/index.html",
-      "detail": "Meta description 161 chars (max 155)"
+      "page": "betting/basketball-betting/senegal/index.html",
+      "detail": "Meta description 160 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "best-betting-in-ivory-coast/index.html",
+      "page": "betting/basketball-betting/south-africa/index.html",
+      "detail": "Meta description 165 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/basketball-betting/kenya/index.html",
       "detail": "Meta description 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/telebirr-betting/ethiopia/index.html",
+      "detail": "Meta description 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/vodacom-betting-sites/index.html",
+      "detail": "Meta description 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/vodacom-betting-sites/tanzania/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/vodacom-betting-sites/mozambique/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/vodacom-betting-sites/south-africa/index.html",
+      "detail": "Meta description 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betting/vodacom-betting-sites/dr-congo/index.html",
+      "detail": "Meta description 175 chars (max 155)"
     }
   ]
 }
