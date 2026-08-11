@@ -834,19 +834,26 @@ function changeCountry(code){
   // Let the new country's default language (COUNTRY_LANG) take over unless the
   // visitor explicitly picks a language again afterward via the language switcher.
   localStorage.removeItem(_LANG_LS);
+  // Reload the current page with no ?cty= param — the pick is carried entirely via
+  // localStorage (see getCurrentCountry), so the URL bar never shows ?cty=XX. On
+  // index.html this also lets the GEO HOMEPAGE ROUTING script send the visitor
+  // straight to their real /best-betting-in-<slug>/ page on reload.
   const u=new URL(window.location.href);
-  u.searchParams.set('cty',code);
+  u.searchParams.delete('cty');
   window.location.href=u.toString();
 }
 function syncCountryUI(){
   const cty=getCurrentCountry();
-  // If a URL param is present, keep localStorage in sync (e.g. shared links) and
-  // treat it as an explicit choice, same as the dropdown, so it isn't silently
-  // overwritten by IP re-detection on the visitor's next page view.
+  // If a URL param is present (e.g. an old shared ?cty= link), keep localStorage in
+  // sync and treat it as an explicit choice, same as the dropdown, then strip it
+  // from the visible URL immediately so ?cty= never lingers in the address bar.
   const urlCty=new URLSearchParams(window.location.search).get('cty');
   if(urlCty){
     localStorage.setItem(_CTY_LS,urlCty);
     localStorage.setItem(_CTY_MANUAL_LS,'1');
+    const u=new URL(window.location.href);
+    u.searchParams.delete('cty');
+    history.replaceState(null,'',u.toString());
   }
   const sel=document.getElementById('ctySel');
   if(sel)sel.value=cty;
