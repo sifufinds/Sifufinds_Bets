@@ -1955,7 +1955,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=19"></script>
+<script src="../../assets/shared.js?v=20"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 function copyPostLink(btn,url){{

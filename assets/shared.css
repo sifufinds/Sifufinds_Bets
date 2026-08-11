@@ -13,9 +13,9 @@ a,button,select,input,label,[role="button"]{touch-action:manipulation}
 select.csel{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:11.5px;padding:3px 8px;border-radius:5px;cursor:pointer}
 select.csel option{color:#222;background:#fff}
 .mnav{background:var(--g);box-shadow:0 2px 8px rgba(0,0,0,.2)}
-.mnav-in{max-width:1200px;margin:auto;padding:0 18px;display:flex;align-items:center;height:56px;gap:6px}
-.logo{display:flex;align-items:center;gap:8px;background:none;border:none;color:#fff;font-size:18px;font-weight:800;padding:0;margin-right:10px;white-space:nowrap;cursor:pointer;letter-spacing:-.3px;text-decoration:none}
-.logo-icon{display:block;object-fit:contain}
+.mnav-in{max-width:1200px;margin:auto;padding:0 18px;display:flex;align-items:center;height:64px;gap:6px}
+.logo{display:flex;align-items:center;gap:9px;background:none;border:none;color:#fff;font-size:19px;font-weight:800;padding:0;margin-right:10px;white-space:nowrap;cursor:pointer;letter-spacing:-.3px;text-decoration:none}
+.logo-icon{display:block;object-fit:contain;width:52px;height:52px}
 .ntabs{display:flex;gap:1px;flex:1;overflow-x:auto}
 .nt{background:none;border:none;color:rgba(255,255,255,.8);font-size:12.5px;padding:9px 12px;border-radius:6px;white-space:nowrap;font-weight:500;transition:all .15s;display:flex;align-items:center;gap:5px;text-decoration:none}
 .nt:hover,.nt.on{background:rgba(255,255,255,.18);color:#fff}
