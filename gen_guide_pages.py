@@ -332,7 +332,7 @@ def make_guide_page(g):
   <div class="tbar-l">
     <a href="../../">🏠 Home</a>
     <a href="../../guides/">📚 Guides</a>
-    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <a href="../../responsible/">Responsible Gambling</a>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
   <div class="tbar-r">
@@ -345,7 +345,7 @@ def make_guide_page(g):
 
 <nav class="mnav">
   <div class="mnav-in">
-    <a class="logo" href="../../"><img src="../../assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
+    <a class="logo" href="../../"><img src="../../assets/icon.png" width="38" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
     <div class="ntabs">
       <a class="nt" href="../../">⭐ Best Bonuses</a>
       <a class="nt" href="../../tips/">💡 Tips</a>

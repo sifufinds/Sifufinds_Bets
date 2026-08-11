@@ -230,7 +230,7 @@ def generate_page(code, c):
   <div class="tbar-l">
     <a href="../">🏠 Home</a>
     <a href="../countries/">🌍 Africa</a>
-    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <a href="../responsible/">Responsible Gambling</a>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
   <div class="tbar-r">
@@ -356,9 +356,9 @@ def generate_page(code, c):
   </div>
 
   <div class="resp">⚠️ Gambling involves risk. Only bet what you can afford to lose.
-    <button onclick="openPage('responsible')">GamCare</button> ·
-    <button onclick="openPage('responsible')">BeGambleAware</button> ·
-    <button onclick="openPage('responsible')">NCPG Africa</button>. 18+ only.
+    <a href="../responsible/">GamCare</a> ·
+    <a href="../responsible/">BeGambleAware</a> ·
+    <a href="../responsible/">NCPG Africa</a>. 18+ only.
   </div>
 </div></div>
 

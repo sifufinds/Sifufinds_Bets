@@ -281,7 +281,7 @@ def render_bookmaker_page(facts: dict) -> str:
 <div class="tbar">
   <div class="tbar-l">
     <a href="../../">🏠 Home</a>
-    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <a href="../../responsible/">Responsible Gambling</a>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
   <div class="tbar-r">
@@ -294,7 +294,7 @@ def render_bookmaker_page(facts: dict) -> str:
 
 <nav class="mnav">
   <div class="mnav-in">
-    <a class="logo" href="../../"><img src="../../assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain" fetchpriority="high">SifuFinds</a>
+    <a class="logo" href="../../"><img src="../../assets/icon.png" width="38" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain" fetchpriority="high">SifuFinds</a>
     <div class="ntabs">
       <a class="nt on" href="../../">⭐ Best Bonuses</a>
       <a class="nt" href="../../tips/">💡 Tips</a>
@@ -452,7 +452,7 @@ def render_discontinued_page(slug: str, name: str, evidence: str) -> str:
 </div>
 <nav class="mnav">
   <div class="mnav-in">
-    <a class="logo" href="../../"><img src="../../assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
+    <a class="logo" href="../../"><img src="../../assets/icon.png" width="38" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
   </div>
 </nav>
 <div class="wrap" style="padding:32px 16px;max-width:640px;margin:0 auto">

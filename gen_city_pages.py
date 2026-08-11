@@ -276,7 +276,7 @@ def make_city_page(c):
   <div class="tbar-l">
     <a href="{ap}">🏠 Home</a>
     <a href="{cp}">🌍 {c['country']}</a>
-    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <a href="{ap}responsible/">Responsible Gambling</a>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
   <div class="tbar-r">
@@ -289,7 +289,7 @@ def make_city_page(c):
 
 <nav class="mnav">
   <div class="mnav-in">
-    <a class="logo" href="{ap}"><img src="{ap}assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
+    <a class="logo" href="{ap}"><img src="{ap}assets/icon.png" width="38" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
     <div class="ntabs">
       <a class="nt" href="{ap}">⭐ Best Bonuses</a>
       <a class="nt" href="{ap}tips/">💡 Tips</a>

@@ -1854,7 +1854,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
   <div class="tbar-l">
     <a href="../../">🏠 Home</a>
     <a href="../">📰 Blog</a>
-    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <a href="../../responsible/">Responsible Gambling</a>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
   <div class="tbar-r">

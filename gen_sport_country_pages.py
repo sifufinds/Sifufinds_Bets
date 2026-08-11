@@ -309,7 +309,7 @@ def build_page(sport, country_slug, country_data):
   <div class="tbar-l">
     <a href="{assets}">🏠 Home</a>
     <a href="{assets}best-bonus-in-{country_slug}/">{flag} {cname}</a>
-    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <a href="{assets}responsible/">Responsible Gambling</a>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
   <div class="tbar-r">
@@ -322,7 +322,7 @@ def build_page(sport, country_slug, country_data):
 
 <nav class="mnav">
   <div class="mnav-in">
-    <a class="logo" href="{assets}"><img src="{assets}assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
+    <a class="logo" href="{assets}"><img src="{assets}assets/icon.png" width="38" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">SifuFinds</a>
     <div class="ntabs">
       <a class="nt on" href="{assets}">⭐ Best Bonuses</a>
       <a class="nt" href="{assets}tips/">💡 Tips</a>

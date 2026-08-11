@@ -332,7 +332,7 @@ def make_html(bk):
   <div class="tbar-l">
     <a href="../../">🏠 Home</a>
     {country_link}
-    <button onclick="openPage('responsible')">Responsible Gambling</button>
+    <a href="../../responsible/">Responsible Gambling</a>
     <button onclick="openPage('about')">18+ Only</button>
   </div>
   <div class="tbar-r">
