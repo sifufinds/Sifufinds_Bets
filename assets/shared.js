@@ -1034,7 +1034,7 @@ const HEADER_BRANDS=[
 {name:'Bettabets',abbr:'BTB',bg:'#1B5E20',tc:'#fff',url:'https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777',domain:'bettabets.co.za',tag:'R200 Free Bet on First Deposit'},
 {name:'FairPari',abbr:'FP',bg:'#1677FF',tc:'#fff',url:'https://fairpaff.top/L?tag=d_5941712m_72465c_&site=5941712&ad=72465&r=registration',domain:'fairpari.com',tag:'100% Bonus – Up to €100'},
 {name:'1xBet',abbr:'1X',bg:'#276AA5',tc:'#fff',url:'https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97',domain:'1xbet.com',tag:'Up to ₦1.2M Bonus'},
-{name:'BetWinner',abbr:'BW',bg:'#232323',tc:'#fff',url:'https://bwredir.com/1Lvf?p=%2Fregistration%2F',domain:'betwinner.com',tag:'200% Welcome Bonus'},
+{name:'BetWinner',abbr:'BN',bg:'#009277',tc:'#fff',url:'https://bwredir.com/1Lvf?p=%2Fregistration%2F',domain:'betwinner.com',tag:'200% Welcome Bonus'},
 {name:'HelaBet',abbr:'HB',bg:'#430084',tc:'#fff',url:'https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235',domain:'helabet.com',tag:'100% Welcome Bonus'},
 {name:'Melbet',abbr:'MB',bg:'#212121',tc:'#fff',url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559',domain:'melbet.com',tag:'200% + 150 Sports'},
 {name:'Paripesa',abbr:'PP',bg:'#172BE2',tc:'#fff',url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',domain:'paripesa.com',tag:'200% First Deposit'}
