@@ -8,6 +8,7 @@ searches like "Betway Nigeria review 2026", "SportPesa Kenya bonus", etc.
 
 import json
 import os
+from seo_meta import seo_meta_description
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -432,7 +433,7 @@ def build_page(bk, country_slug, country, combo):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="{description}">
+<meta name="description" content="{seo_meta_description(description)}">
 <meta name="keywords" content="{keywords}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="SifuFinds Editorial Team">

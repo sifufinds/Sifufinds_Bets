@@ -13,6 +13,7 @@ countries/<slug>/<city>/ sub-pages still live inside that same directory.
 
 import json
 import os
+from seo_meta import seo_meta_description
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 COUNTRIES_DIR = os.path.join(BASE_DIR, 'countries')
@@ -365,7 +366,7 @@ def generate_page(code, c):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="{meta_desc}">
+<meta name="description" content="{seo_meta_description(meta_desc)}">
 <meta name="keywords" content="best bonus sites {name.lower()}, betting bonus {name.lower()} {YEAR}, welcome bonus {name.lower()}, no deposit bonus {name.lower()}, free bet {name.lower()}, {key_payment.lower()} betting bonus">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="SifuFinds">

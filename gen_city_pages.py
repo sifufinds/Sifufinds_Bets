@@ -3,6 +3,7 @@
 
 import json
 import os
+from seo_meta import seo_meta_description
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -188,7 +189,7 @@ def make_city_page(c):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="{meta_desc}">
+<meta name="description" content="{seo_meta_description(meta_desc)}">
 <meta name="keywords" content="betting sites {c['city'].lower()}, {c['city'].lower()} bookmakers, sports betting {c['city'].lower()} 2026, best betting {c['city'].lower()} {c['country'].lower()}, online betting {c['city'].lower()}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="SifuFinds">

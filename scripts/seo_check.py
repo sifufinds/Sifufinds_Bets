@@ -338,7 +338,12 @@ if args.fix:
             p = slug_map.get(slug)
             if p and len(p.get('title', '')) > 60:
                 original = p['title']
-                truncated = original[:57].rsplit(' ', 1)[0] + '…'
+                # Clean word-boundary truncation, no ellipsis — a trailing "…"
+                # bakes a broken-looking title into posts.json itself, which
+                # then survives seo_title()'s own truncation untouched since
+                # it's already short enough by the time that runs (technical
+                # SEO audit, 2026-08-11 — same fix as seo_meta.seo_title()).
+                truncated = original[:60].rsplit(' ', 1)[0]
                 p['title'] = truncated
                 print(f"  FIX title: {original[:70]!r} → {truncated!r}")
                 fixed += 1
@@ -347,7 +352,7 @@ if args.fix:
             p = slug_map.get(slug)
             if p and len(p.get('excerpt', '')) > 155:
                 original = p['excerpt']
-                truncated = original[:152].rsplit(' ', 1)[0] + '…'
+                truncated = original[:155].rsplit(' ', 1)[0]
                 p['excerpt'] = truncated
                 print(f"  FIX excerpt [{slug[:40]}]: {len(original)} → {len(truncated)} chars")
                 fixed += 1

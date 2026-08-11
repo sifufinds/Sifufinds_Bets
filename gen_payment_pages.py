@@ -3,6 +3,7 @@
 
 import json
 import os
+from seo_meta import seo_title, seo_meta_description
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -261,8 +262,8 @@ def make_payment_page(p):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{p['title']}</title>
-<meta name="description" content="{p['desc']}">
+<title>{seo_title(p['title'].removesuffix(' | SifuFinds'))}</title>
+<meta name="description" content="{seo_meta_description(p['desc'])}">
 <meta name="keywords" content="{p['keywords']}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="SifuFinds">

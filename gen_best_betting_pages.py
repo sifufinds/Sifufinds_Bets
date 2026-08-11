@@ -24,6 +24,7 @@ import json
 import os
 
 from generate_country_pages import COUNTRIES, COUNTRY_SELECTOR_OPTIONS
+from seo_meta import seo_meta_description
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_PREFIX = 'best-betting-in-'
@@ -126,7 +127,7 @@ def generate_page(code, c):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="{meta_desc}">
+<meta name="description" content="{seo_meta_description(meta_desc)}">
 <meta name="keywords" content="betting sites {name.lower()}, best bookmakers {name.lower()}, {name.lower()} betting bonuses {YEAR}, online betting {name.lower()}, {key_payment.lower()} betting">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="SifuFinds">

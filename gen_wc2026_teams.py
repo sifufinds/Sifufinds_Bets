@@ -7,6 +7,7 @@ Run:  python3 gen_wc2026_teams.py
 """
 import os, json, re
 from datetime import datetime
+from seo_meta import seo_title, seo_meta_description
 
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR    = os.path.join(BASE_DIR, "tips", "world-cup-2026")
@@ -222,8 +223,8 @@ def page_html(t: dict) -> str:
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{name} World Cup 2026 Odds, Predictions & Betting Tips | SifuFinds</title>
-<meta name="description" content="{name} ({nick}) FIFA World Cup 2026 betting tips, odds, and predictions. Expert analysis for African bettors — compare Bet9ja, Sportybet, 1xBet odds. Updated daily.">
+<title>{seo_title(f'{name} World Cup 2026 Odds, Predictions & Betting Tips')}</title>
+<meta name="description" content="{seo_meta_description(f'{name} ({nick}) FIFA World Cup 2026 betting tips, odds, and predictions. Expert analysis for African bettors — compare Bet9ja, Sportybet, 1xBet odds. Updated daily.')}">
 <meta name="keywords" content="{name} World Cup 2026, {name} WC2026 odds, {name} betting tips, {nick} World Cup 2026, FIFA World Cup 2026 {name}">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <meta name="author" content="SifuFinds World Cup Desk">

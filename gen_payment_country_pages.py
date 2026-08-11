@@ -8,6 +8,7 @@ valid payment × country combination — targeting searches like
 
 import json
 import os
+from seo_meta import seo_meta_description
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -356,7 +357,7 @@ def build_page(payment, country_slug, country_data):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="{description}">
+<meta name="description" content="{seo_meta_description(description)}">
 <meta name="keywords" content="{keywords}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="SifuFinds">
