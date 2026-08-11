@@ -756,9 +756,9 @@ const BRAND_DOMAINS={
 // Local logo assets — served from /assets/logos/ on the site root.
 // These take priority over any remote service. Add new entries as logos are downloaded.
 const LOCAL_LOGOS={
-  'FP':'/assets/logos/fairpari.png',
-  '1X':'/assets/logos/1xbet.png','MB':'/assets/logos/melbet.png',
-  'BN':'/assets/logos/betwinner.png','PP':'/assets/logos/paripesa.png',
+  'FP':'/assets/logos/fairpari.png?v=2',
+  '1X':'/assets/logos/1xbet.png?v=2','MB':'/assets/logos/melbet.png',
+  'BN':'/assets/logos/betwinner.png?v=2','PP':'/assets/logos/paripesa.png',
   'HB':'/assets/logos/helabet.png','TTC':'/assets/logos/tictacbets.png?v=2',
   'B9':'/assets/logos/bet9ja.png','SB':'/assets/logos/sportybet.png',
   'BK':'/assets/logos/betking.png','BW':'/assets/logos/betway.png',
