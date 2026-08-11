@@ -245,7 +245,7 @@ def generate_page(code, c):
 <nav class="mnav">
   <div class="mnav-in">
     <a class="logo" href="../">
-      <img src="../assets/icon.png" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">
+      <img src="../assets/icon.png" width="38" height="38" alt="SifuFinds logo" style="display:block;object-fit:contain">
       SifuFinds
     </a>
     <div class="ntabs">
