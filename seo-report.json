@@ -1,18 +1,48 @@
 {
   "date": "2026-08-11",
-  "total": 1,
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 5,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
     {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-drama-2026-chelsea-enquiry-aston-villa-loan-deal",
+      "detail": "Title 88 chars (max 60): \"Transfer Drama Unfolds: Chelsea's Enquiry, Aston Villa's Loan Deal, an\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-window-heats-up-africa-betting-insights",
+      "detail": "Title 119 chars (max 60): \"Transfer Window Heats Up: Real Madrid's Endrick, Man Utd's Raum, and M\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-drama-2026-chelsea-enquiry-aston-villa-loan-deal",
+      "detail": "Excerpt 206 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-window-heats-up-africa-betting-insights",
+      "detail": "Excerpt 243 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-window-update-african-bettors",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "73 posts",
-      "detail": "73 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "75 posts",
+      "detail": "75 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
