@@ -270,8 +270,8 @@ def render_bookmaker_page(facts: dict) -> str:
 @media(max-width:600px){{.pros-cons{{grid-template-columns:1fr}}}}
 .sec-bg~.sec-bg,.cbox2,.footer-bar,[class*="section"]:not(:first-of-type){{content-visibility:auto;contain-intrinsic-size:0 500px}}
 </style>
-<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=2">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=3">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=3">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=3">
 <link rel="manifest" href="/manifest.json">
@@ -444,7 +444,7 @@ def render_discontinued_page(slug: str, name: str, evidence: str) -> str:
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://sifufinds.com/bookmakers/{slug}/">
 <link rel="stylesheet" href="../../assets/shared.css?v=12">
-<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=3">
 </head>
 <body>
 <div class="tbar">
