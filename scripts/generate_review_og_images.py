@@ -39,6 +39,7 @@ BOOKMAKERS = {
     "betking-review":      ("betking_hq.png",       "BetKing"),
     "betpawa-review":      ("betpawa_hq.png",       "betPawa"),
     "betway-review":       ("betway_hq.png",        "Betway"),
+    "fairpari-review":     ("fairpari.png",         "FairPari"),
     "hollywoodbets-review": ("hollywoodbets_hq.png", "Hollywoodbets"),
     "melbet-review":       ("melbet_hq.png",        "Melbet"),
     "mozzartbet-review":   ("mozzartbet_hq.png",    "Mozzartbet"),
