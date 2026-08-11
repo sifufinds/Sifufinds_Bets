@@ -1,31 +1,13 @@
 {
   "date": "2026-08-11",
-  "total": 4,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "villa-endrick-tottenham-gakpo-transfer-betting",
-      "detail": "Title 87 chars (max 60): 'Aston Villa chase Endrick, Tottenham eye Gakpo and more \u2013 transfer win'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "premier-league-transfer-fever-villa-arsenal-man-city",
-      "detail": "Title 78 chars (max 60): 'Premier League Transfer Fever: Villa, Arsenal, Man City & More in the '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "villa-endrick-tottenham-gakpo-transfer-betting",
-      "detail": "Excerpt 197 chars (max 155)"
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
