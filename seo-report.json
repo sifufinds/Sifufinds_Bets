@@ -1,13 +1,25 @@
 {
   "date": "2026-08-12",
-  "total": 1,
+  "total": 3,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-fever-2026",
+      "detail": "Title 85 chars (max 60): 'Transfer Fever 2026: Chelsea, Liverpool, Tottenham & City Moves Shift '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-fever-2026",
+      "detail": "Excerpt 174 chars (max 155)"
+    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
