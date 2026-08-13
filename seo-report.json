@@ -1,18 +1,30 @@
 {
   "date": "2026-08-13",
-  "total": 1,
+  "total": 3,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
     {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfers-galore-premier-league-summer-window-african-bettors",
+      "detail": "Title 89 chars (max 60): 'Transfers Galore: Exploring the Premier League Summer Window with Afri'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfers-galore-premier-league-summer-window-african-bettors",
+      "detail": "Excerpt 233 chars (max 155)"
+    },
+    {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "73 posts",
-      "detail": "73 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "74 posts",
+      "detail": "74 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
