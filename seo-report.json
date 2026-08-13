@@ -1,30 +1,36 @@
 {
-  "date": "2026-08-12",
-  "total": 3,
+  "date": "2026-08-13",
+  "total": 4,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 2,
-    "MEDIUM": 0,
+    "MEDIUM": 1,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "transfer-fever-2026",
-      "detail": "Title 85 chars (max 60): 'Transfer Fever 2026: Chelsea, Liverpool, Tottenham & City Moves Shift '"
+      "page": "premier-league-transfer-fever-2026-squad-depth-betting-insights",
+      "detail": "Title 81 chars (max 60): 'Premier League Transfer Fever: Chelsea, Tottenham & Man City Shake Up '"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "transfer-fever-2026",
-      "detail": "Excerpt 174 chars (max 155)"
+      "page": "premier-league-transfer-fever-2026-squad-depth-betting-insights",
+      "detail": "Excerpt 213 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "premier-league-transfer-fever-2026-squad-depth-betting-insights",
+      "detail": "High title overlap (5 meaningful tokens) with 'transfer-fever-2026' \u2014 consider noindex"
     },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "74 posts",
-      "detail": "74 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "73 posts",
+      "detail": "73 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
