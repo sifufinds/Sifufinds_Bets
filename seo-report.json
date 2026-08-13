@@ -1,9 +1,9 @@
 {
   "date": "2026-08-13",
-  "total": 3,
+  "total": 4,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 3,
     "MEDIUM": 0,
     "INFO": 1
   },
@@ -11,14 +11,20 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "transfers-galore-premier-league-summer-window-african-bettors",
-      "detail": "Title 89 chars (max 60): 'Transfers Galore: Exploring the Premier League Summer Window with Afri'"
+      "page": "african-transfers-betting-guide-breaking-down-the-latest-news-and-odds",
+      "detail": "Title 71 chars (max 60): 'African Transfers Betting Guide: Breaking Down the Latest News and Odd'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-news-african-clubs-players-make-big-moves-ahead-new-season",
+      "detail": "Title 79 chars (max 60): 'Transfer News: African Clubs and Players Make Big Moves Ahead of the N'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "transfers-galore-premier-league-summer-window-african-bettors",
-      "detail": "Excerpt 233 chars (max 155)"
+      "page": "transfer-news-african-clubs-players-make-big-moves-ahead-new-season",
+      "detail": "Excerpt 158 chars (max 155)"
     },
     {
       "severity": "INFO",
