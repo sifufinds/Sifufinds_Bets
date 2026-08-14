@@ -58,9 +58,40 @@ CTA_FREE_BETS = "FREE BETS"
 CTA_CLAIM_BONUS = "CLAIM BONUS NOW"
 CTA_BET_NOW = "BET NOW"
 
+# SifuFinds' own promo code. Only include it in content for a brand the site
+# owner has explicitly confirmed accepts it — never assume a brand with a
+# real affiliate link also has SIFUKAI wired up on their end. See
+# AGENT-KNOWLEDGE.md's 2026-08-14 "SIFUKAI promo code" standing policy entry
+# for the confirmation history. Update this set only when the owner names a
+# new brand explicitly, not because a brand shows up elsewhere with an
+# affiliate link.
+PROMO_CODE = "SIFUKAI"
+PROMO_CODE_BRANDS: frozenset[str] = frozenset({
+    "linebet",
+    "tictacbet",
+    "tictacbets",
+    "playbet",
+    "1xbet",
+})
+
 
 def _brand_key(brand_name: str) -> str:
     return re.sub(r"[^a-z0-9]", "", brand_name.lower())
+
+
+def has_promo_code(brand_name: str) -> bool:
+    """True only for brands the owner has explicitly confirmed accept SIFUKAI."""
+    return _brand_key(brand_name) in PROMO_CODE_BRANDS
+
+
+def promo_code_line(brand_name: str) -> str | None:
+    """Natural CTA line offering SIFUKAI, or None if this brand isn't
+    confirmed-eligible. Callers must skip the line entirely on None rather
+    than falling back to a generic phrasing — never imply the code works
+    for an unconfirmed brand."""
+    if not has_promo_code(brand_name):
+        return None
+    return f"Use promo code {PROMO_CODE} to claim your bonus."
 
 
 def brand_slug(brand_name: str) -> str:

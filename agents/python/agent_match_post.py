@@ -53,7 +53,7 @@ load_dotenv(Path(__file__).parent / ".env")
 sys.path.insert(0, str(Path(__file__).parent))
 
 from utils.logger import log
-from utils.affiliate_links import masked_url, pick_cta, cta_html, cta_plain, CTA_CLAIM_BONUS, CTA_BET_NOW
+from utils.affiliate_links import masked_url, pick_cta, cta_html, cta_plain, promo_code_line, CTA_CLAIM_BONUS, CTA_BET_NOW
 from utils.tweet_text import tweet_len as _tweet_len, trim_to_limit as _trim_to_limit
 from agent_telegram_offers import (
     BRANDS,
@@ -415,13 +415,19 @@ def build_bookmaker_block(cta: dict, html: bool) -> str:
     claim_link = cta_html(cta, label=CTA_CLAIM_BONUS) if html else cta_plain(cta, label=CTA_CLAIM_BONUS)
     bet_link = cta_html(cta, label=CTA_BET_NOW) if html else cta_plain(cta, label=CTA_BET_NOW)
 
-    return (
+    block = (
         f"🏅 {b(cta['name'])} {_stars(cta['stars'])} — {cta['tag']}\n"
         f"🛡 {trust_line}\n"
         f"💰 {b(cta['welcome'])}\n\n"
         f"🎁 New here? {claim_link}\n"
         f"✅ Already registered? {bet_link}"
     )
+
+    promo_line = promo_code_line(cta["name"])
+    if promo_line:
+        block += f"\n🎟 {promo_line}"
+
+    return block
 
 
 # ── TIP CARD (shared structure, HTML for Telegram / plain for other platforms) ─
