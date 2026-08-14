@@ -256,7 +256,12 @@ COUNTRY_SELECTOR_OPTIONS = """\
       <option value="EG">🇪🇬 Egypt · EGP</option>
       <option value="MA">🇲🇦 Morocco · MAD</option>
       <option value="SL">🇸🇱 Sierra Leone · Le SLL</option>
-      <option value="LR">🇱🇷 Liberia · $ LRD</option>"""
+      <option value="LR">🇱🇷 Liberia · $ LRD</option>
+      <option value="BJ">🇧🇯 Benin · CFA XOF</option>
+      <option value="BF">🇧🇫 Burkina Faso · CFA XOF</option>
+      <option value="GM">🇬🇲 Gambia · D GMD</option>
+      <option value="TG">🇹🇬 Togo · CFA XOF</option>
+      <option value="CG">🇨🇬 Congo-Brazzaville · CFA XAF</option>"""
 
 BONUS_TYPE_LINKS = [
     ('🎉', 'Welcome Bonuses', '../bonuses/welcome-bonus/'),

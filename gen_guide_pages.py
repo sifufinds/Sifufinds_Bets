@@ -121,7 +121,7 @@ Other common lines you'll see at African bookmakers:
         'og_title': 'Responsible Gambling Guide Africa 2026 | SifuFinds',
         'h1': 'Responsible Gambling — Safe Betting Guide for Africa &middot; 2026',
         'icon': '🛡',
-        'intro': "Betting should be fun — but it carries real financial risks. SifuFinds is committed to promoting responsible gambling across all 23 African countries we cover. This guide explains how to gamble safely, recognise the early signs of problem gambling, and access support in Nigeria, Kenya, South Africa, Ghana, and beyond. <strong>All licensed bookmakers on SifuFinds offer free responsible gambling tools.</strong>",
+        'intro': "Betting should be fun — but it carries real financial risks. SifuFinds is committed to promoting responsible gambling across all 33 African countries we cover. This guide explains how to gamble safely, recognise the early signs of problem gambling, and access support in Nigeria, Kenya, South Africa, Ghana, and beyond. <strong>All licensed bookmakers on SifuFinds offer free responsible gambling tools.</strong>",
         'sections': [
             ('Golden Rules for Safe Betting', """<ol>
 <li><strong>Only bet what you can afford to lose.</strong> Your betting bankroll should come from entertainment money — never from rent, food, or essential expenses.</li>
@@ -364,7 +364,7 @@ def make_guide_page(g):
   <p>{g['intro']}</p>
   <div class="trust">
     <div class="tb">📚 Expert Guide</div>
-    <div class="tb">🌍 All 23 African Countries</div>
+    <div class="tb">🌍 All 33 African Countries</div>
     <div class="tb">🔄 Updated 2026</div>
     <div class="tb">✅ Verified Info</div>
   </div>

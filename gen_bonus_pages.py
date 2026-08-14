@@ -40,7 +40,7 @@ PAGES = [
         'keywords': 'betting welcome bonus Africa, sports betting bonus Nigeria, welcome offer Kenya bookmakers, best welcome bonus Ghana, deposit match bonus South Africa, first deposit bonus Africa 2026',
         'og_title': 'Best Betting Welcome Bonuses Africa 2026 | SifuFinds',
         'h1': 'Best Betting Welcome Bonuses in Africa &middot; 2026',
-        'intro': "A welcome bonus is the first bonus offered to new bettors when they register and make their first deposit. Most African bookmakers offer a <strong>100% match welcome bonus</strong> — meaning if you deposit ₦5,000, you get another ₦5,000 in bonus funds. Welcome bonuses are available at licensed bookmakers in all 23 African countries covered by SifuFinds.",
+        'intro': "A welcome bonus is the first bonus offered to new bettors when they register and make their first deposit. Most African bookmakers offer a <strong>100% match welcome bonus</strong> — meaning if you deposit ₦5,000, you get another ₦5,000 in bonus funds. Welcome bonuses are available at licensed bookmakers across SifuFinds' 33 African countries, though bookmaker availability varies by market.",
         'filter_default': 'all',
         'faq': [
             ('What is a sports betting welcome bonus?', "A welcome bonus is a promotional offer for new customers. Most bookmakers in Africa offer a 100% deposit match — they double your first deposit up to a set limit. For example, deposit ₦10,000 and get ₦10,000 bonus = ₦20,000 total to bet with. You must meet wagering requirements (usually 5–10× the bonus) before withdrawing winnings."),
@@ -62,7 +62,7 @@ PAGES = [
         'keywords': 'free bet Africa, free bet Nigeria 2026, free bet Kenya bookmakers, free sports bet South Africa, free bet offer Ghana, free bet no deposit Africa, free bets African bookmakers 2026',
         'og_title': 'Best Free Bet Offers Africa 2026 | SifuFinds',
         'h1': 'Best Free Bet Offers in Africa &middot; 2026',
-        'intro': "A <strong>free bet</strong> lets you place a wager without risking your own money. African bookmakers offer free bets as welcome offers, loyalty rewards, and weekly promotions. Free bets come in two types: <strong>No Deposit Free Bets</strong> (available just for registering) and <strong>Deposit Free Bets</strong> (credited after your first deposit). SifuFinds verifies all free bet offers daily across 23 African countries.",
+        'intro': "A <strong>free bet</strong> lets you place a wager without risking your own money. African bookmakers offer free bets as welcome offers, loyalty rewards, and weekly promotions. Free bets come in two types: <strong>No Deposit Free Bets</strong> (available just for registering) and <strong>Deposit Free Bets</strong> (credited after your first deposit). SifuFinds verifies all free bet offers daily across its 33 African countries, where available.",
         'filter_default': 'nodep',
         'faq': [
             ('What is a free bet at an African bookmaker?', "A free bet lets you place a wager without using your own money. If your free bet wins, you receive the winnings (minus the stake). For example, if you have a KSh 500 free bet and win at 3.00 odds, you receive KSh 1,000 (profit only — the KSh 500 stake is not returned). Free bets are one of the most popular promotions at African bookmakers."),
@@ -257,7 +257,7 @@ def make_bonus_page(p):
   <p>{p['intro']}</p>
   <div class="trust">
     <div class="tb">✅ Verified Bonuses</div>
-    <div class="tb">📱 All 23 African Countries</div>
+    <div class="tb">📱 33 African Countries</div>
     <div class="tb">🔄 Updated Daily</div>
     <div class="tb">🏛 Licensed Only</div>
   </div>
