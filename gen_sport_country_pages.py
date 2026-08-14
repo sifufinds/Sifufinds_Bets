@@ -402,13 +402,13 @@ def build_page(sport, country_slug, country_data):
 
 <div class="footer-bar">
   <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison<br>
-  <a href="{assets}">Home</a> · <a href="{assets}best-bonus-in-{country_slug}/">{cname} Betting</a> · <a href="{assets}betting/{sport_slug}/">{sport_sport} Betting Africa</a> · <a href="{assets}tips/">{sport_sport} Tips</a><br>
+  <a href="{assets}">Home</a> · <a href="{assets}best-bonus-in-{country_slug}/">{cname} Betting</a> · <a href="{assets}betting/{sport_slug}/">{sport_sport} Betting Africa</a> · <a href="{assets}tips/">{sport_sport} Tips</a> · <a href="{assets}about/">About</a><br>
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only.
 </div>
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{assets}assets/shared.js?v=22"></script>
+<script src="{assets}assets/shared.js?v=23"></script>
 <script>
 const SITE={{home:'{assets}',tips:'{assets}tips/',casino:'{assets}casino/',odds:'{assets}odds/',countries:'{assets}countries/'}};
 const _PAGE_CTY='{code}';

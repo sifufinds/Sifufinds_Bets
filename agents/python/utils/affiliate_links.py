@@ -25,6 +25,7 @@ SITE_URL = "https://sifufinds.com"
 BRAND_SLUGS: dict[str, str] = {
     "fairpari": "fairpari",
     "1xbet": "1xbet",
+    "linebet": "linebet",
     "melbet": "melbet",
     "betwinner": "betwinner",
     "helabet": "helabet",

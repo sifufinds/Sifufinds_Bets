@@ -1078,11 +1078,17 @@ const HEADER_BRANDS=[
 {name:'Melbet',abbr:'MB',bg:'#212121',tc:'#fff',url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559',domain:'melbet.com',tag:'200% + 150 Sports'},
 {name:'Paripesa',abbr:'PP',bg:'#172BE2',tc:'#fff',url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',domain:'paripesa.com',tag:'200% First Deposit'}
 ];
+// FairPari is withdrawn from Nigeria and Kenya (per 2026-08-14 direction) — the
+// header bar has no other per-country logic, so filter it out here specifically
+// for those two countries while it stays visible in the bar everywhere else.
+const _HEADER_BRANDS_HIDE={NG:['FairPari'],KE:['FairPari']};
 function renderBrandsBar(){
   const el=document.getElementById('hbrands');
   if(!el)return;
+  const hide=_HEADER_BRANDS_HIDE[getCurrentCountry()]||[];
+  const brands=HEADER_BRANDS.filter(b=>!hide.includes(b.name));
   el.innerHTML=`<div class="hbrands-in"><span class="hbrands-lbl">🔥 Featured</span><div class="hbrands-list">${
-    HEADER_BRANDS.map(b=>{const logoSrc=b.domain?`https://${b.domain}`:b.url;return`<a class="hbrand" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored" style="background:${b.bg};color:${b.tc}"><div class="hbrand-logo">${logoImg(logoSrc,b.name,b.abbr,b.tc,22,3,true)}</div><div class="hbrand-body"><span class="hbrand-name">${b.name}</span><span class="hbrand-tag">${b.tag}</span></div><span class="hbrand-cta">Bet Now →</span></a>`;}).join('')
+    brands.map(b=>{const logoSrc=b.domain?`https://${b.domain}`:b.url;return`<a class="hbrand" href="${b.url}" target="_blank" rel="noopener noreferrer sponsored" style="background:${b.bg};color:${b.tc}"><div class="hbrand-logo">${logoImg(logoSrc,b.name,b.abbr,b.tc,22,3,true)}</div><div class="hbrand-body"><span class="hbrand-name">${b.name}</span><span class="hbrand-tag">${b.tag}</span></div><span class="hbrand-cta">Bet Now →</span></a>`;}).join('')
   }</div></div>`;
 }
 document.addEventListener('DOMContentLoaded',renderBrandsBar);
