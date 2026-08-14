@@ -795,6 +795,40 @@ const logoImg=(url,name,abbr,tc,w,r,hasBg)=>{
   const lfb=logoFb(url,abbr);
   return`<img src="${lsrc}" data-fb="${lfb}" alt="${name} logo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0;opacity:0;transition:opacity .2s" loading="eager" onload="_logoLoaded(this)" onerror="_imgFallback(this)">`;};;
 
+// _offerLogoImg/_offerLogoLoaded: used by the offer popup cards only. `object-fit:contain`
+// can leave letterbox bands around a logo that don't match its own baked-in background
+// (e.g. a hardcoded orange card `bg` behind a logo image that's actually black), so once
+// the image loads this samples its own edge pixels and repaints the card to that colour
+// instead of trusting the per-brand hex — works for every brand without hand-tuning.
+function _offerLogoImg(url,name,abbr){
+  const lsrc=logoUrl(url,abbr);
+  if(!lsrc)return'';
+  const lfb=logoFb(url,abbr);
+  return`<img src="${lsrc}" data-fb="${lfb}" alt="${name} logo" crossorigin="anonymous" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0;opacity:0;transition:opacity .2s" loading="eager" onload="_offerLogoLoaded(this)" onerror="_imgFallback(this)">`;
+}
+function _offerLogoLoaded(img){
+  img.style.opacity='1';
+  try{
+    const w=img.naturalWidth,h=img.naturalHeight;
+    if(!w||!h)return;
+    const c=document.createElement('canvas');
+    c.width=w;c.height=h;
+    const ctx=c.getContext('2d');
+    ctx.drawImage(img,0,0,w,h);
+    const mx=Math.floor(w/2),my=Math.floor(h/2);
+    const pts=[[1,1],[w-2,1],[1,h-2],[w-2,h-2],[mx,1],[mx,h-2],[1,my],[w-2,my]];
+    const samples=pts.map(([x,y])=>ctx.getImageData(x,y,1,1).data).filter(d=>d[3]>240);
+    if(samples.length<5)return;
+    const ref=samples[0];
+    const consistent=samples.every(d=>Math.abs(d[0]-ref[0])<40&&Math.abs(d[1]-ref[1])<40&&Math.abs(d[2]-ref[2])<40);
+    if(!consistent)return;
+    const sum=samples.reduce((a,d)=>[a[0]+d[0],a[1]+d[1],a[2]+d[2]],[0,0,0]);
+    const avg=sum.map(v=>Math.round(v/samples.length));
+    const wrap=img.closest('.fc-img');
+    if(wrap)wrap.style.background=`rgb(${avg[0]},${avg[1]},${avg[2]})`;
+  }catch(e){/* tainted canvas or unsupported API — keep the per-brand fallback bg */}
+}
+
 // ── COUNTRY MANAGEMENT ────────────────────────────────────────────────────────
 const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA','EG','MA','SL','LR']);
 const _CTY_LS='sf_cty';
@@ -936,7 +970,7 @@ function _pickRandomOffers(cty,n){
 function _offerCard(b){
   return`<div class="fc">
     <div class="fc-img" style="background:${b.bg}">
-      ${logoImg(b.url,b.name,b.abbr,b.tc,140,12,true)}
+      ${_offerLogoImg(b.url,b.name,b.abbr)}
       <span class="fc-nm">${b.name}</span>
     </div>
     <div class="fc-body">
