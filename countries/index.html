@@ -444,6 +444,13 @@ async function init(){
   }
   syncCountryUI();
   H('foot-yr',NOW.getFullYear());
+  // True site-wide totals (not the region-filtered count renderGrid() shows) —
+  // computed live from COUNTRY_DATA so these never need a manual update again
+  // when a country is added or removed. See CLAUDE.md's "Country Count Is
+  // Continuously Self-Healing" standing rule.
+  const allCodes=Object.keys(COUNTRY_DATA);
+  H('ctr-countries',allCodes.length);
+  H('ctr-currencies',new Set(allCodes.map(c=>COUNTRY_DATA[c].currency)).size);
   renderGrid();
   if(urlSel&&COUNTRY_DATA[urlSel]){
     _selectedCty=urlSel;
