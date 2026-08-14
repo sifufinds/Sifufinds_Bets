@@ -12,7 +12,19 @@ logos used elsewhere on the site for each bookmaker's own listing) composited
 onto a template that reuses the site's own brand gradient (#0a3d1e→#1a6b35,
 identical to .post-hero in gen_blog_post_pages.py) — no AI image generation,
 no fabricated branding.
+
+Also writes the resulting image path back to each post's `feature_image`
+field in blog/posts.json (and mirrors blog/posts-data.js) — found 2026-08-14
+that this was the actual source of a real bug: gen_blog_post_pages.py's own
+hero/og:image picks up assets/og/{slug}.png purely by checking the file
+exists on disk, so a composite written here always "worked" on the post's
+own page, but blog/index.html's listing cards read posts.json's
+feature_image field directly (no fallback for the 'review' category), so a
+post whose composite was generated/refreshed here without this write-back
+showed no logo at all on the blog listing grid. See AGENT-KNOWLEDGE.md's
+2026-08-14 "Brand-review feature images" entry for the full incident.
 """
+import json
 import sys
 from pathlib import Path
 
@@ -22,6 +34,7 @@ ROOT = Path(__file__).parent.parent
 LOGOS = ROOT / "assets" / "logos"
 OUT = ROOT / "assets" / "og"
 FONT_DIR = Path("/System/Library/Fonts/Supplemental")
+POSTS_JSON = ROOT / "blog" / "posts.json"
 
 W, H = 1200, 630
 GREEN_DARK = (10, 61, 30)
@@ -133,10 +146,37 @@ def build_image(logo_file: str, display_name: str) -> Image.Image:
     return img.convert("RGB")
 
 
+def _update_posts_json(slugs: set[str]) -> None:
+    """Sets feature_image on every post in `slugs` to its just-generated
+    composite and mirrors blog/posts-data.js — see the module docstring for
+    why this write-back has to happen here, not as a separate manual step."""
+    if not slugs or not POSTS_JSON.exists():
+        return
+    with open(POSTS_JSON, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    changed = False
+    for post in data.get("posts", []):
+        slug = post.get("slug")
+        if slug in slugs:
+            expected = f"/assets/og/{slug}.png"
+            if post.get("feature_image") != expected:
+                post["feature_image"] = expected
+                changed = True
+    if not changed:
+        return
+    with open(POSTS_JSON, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    js_path = POSTS_JSON.parent / "posts-data.js"
+    with open(js_path, "w", encoding="utf-8") as f:
+        f.write(f"window.POSTS_DATA={json.dumps(data, ensure_ascii=False)};\n")
+    print(f"  ✓ updated feature_image for {len(slugs)} post(s) in posts.json + posts-data.js")
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     only = sys.argv[1] if len(sys.argv) > 1 else None
     targets = {only: BOOKMAKERS[only]} if only else BOOKMAKERS
+    written: set[str] = set()
     for slug, (logo_file, display_name) in targets.items():
         if not (LOGOS / logo_file).exists():
             print(f"SKIP {slug} — logo not found: {logo_file}")
@@ -144,7 +184,9 @@ def main():
         img = build_image(logo_file, display_name)
         out_path = OUT / f"{slug}.png"
         img.save(out_path, "PNG", optimize=True)
+        written.add(slug)
         print(f"wrote {out_path} ({out_path.stat().st_size // 1024} KB)")
+    _update_posts_json(written)
 
 
 if __name__ == "__main__":
