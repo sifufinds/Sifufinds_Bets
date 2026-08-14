@@ -604,7 +604,7 @@ def generate_page(code, c):
 <!-- FOOTER -->
 <div class="footer-bar">
   <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison · <span id="foot-date"></span><br>
-  <a href="../">Home</a> · <a href="../bonuses/">All Bonuses</a> · <a href="../countries/">All Countries</a> · <a href="../tips/">Tips</a> · <a href="../casino/">Casino</a> · <a href="../odds/">Odds</a> · <a href="../blog/">Blog</a><br>
+  <a href="../">Home</a> · <a href="../bonuses/">All Bonuses</a> · <a href="../countries/">All Countries</a> · <a href="../tips/">Tips</a> · <a href="../casino/">Casino</a> · <a href="../odds/">Odds</a> · <a href="../blog/">Blog</a> · <a href="../about/">About</a><br>
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only. Gambling can be addictive. Play responsibly.
 </div>
 
@@ -616,7 +616,7 @@ def generate_page(code, c):
   </div>
 </div>
 
-<script src="../assets/shared.js?v=22"></script>
+<script src="../assets/shared.js?v=23"></script>
 <script>
 const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'
 }};

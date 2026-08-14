@@ -299,7 +299,7 @@ def make_bonus_page(p):
 
 <div class="footer-bar">
   <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison<br>
-  <a href="../../">Home</a> · <a href="../../bonuses/">Bonuses</a> · <a href="../../countries/">Countries</a> · <a href="../../tips/">Tips</a> · <a href="../../blog/">Blog</a><br>
+  <a href="../../">Home</a> · <a href="../../bonuses/">Bonuses</a> · <a href="../../countries/">Countries</a> · <a href="../../tips/">Tips</a> · <a href="../../blog/">Blog</a> · <a href="../../about/">About</a><br>
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only.
 </div>
 

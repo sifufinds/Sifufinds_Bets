@@ -376,7 +376,7 @@ def make_city_page(c):
 
 <div class="footer-bar">
   <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison<br>
-  <a href="{ap}">Home</a> · <a href="{ap}countries/">Countries</a> · <a href="{cp}">{c['country']} Betting</a> · <a href="{ap}tips/">Tips</a> · <a href="{ap}blog/">Blog</a><br>
+  <a href="{ap}">Home</a> · <a href="{ap}countries/">Countries</a> · <a href="{cp}">{c['country']} Betting</a> · <a href="{ap}tips/">Tips</a> · <a href="{ap}blog/">Blog</a> · <a href="{ap}about/">About</a><br>
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only.
 </div>
 
