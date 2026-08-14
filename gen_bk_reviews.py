@@ -143,7 +143,7 @@ BOOKMAKERS = [
         'min_withdrawal': '₦200',
         'payments': ['OPay', 'PalmPay', 'M-Pesa', 'MTN MoMo', 'Airtel Money', 'Bank Transfer', 'Visa', 'Mastercard'],
         'sports': '50+',
-        'url': 'https://reffpa.com/L?tag=d_5968690m_1599c_&site=5968690&ad=1599',
+        'url': 'https://reffpa.com/L?tag=d_5969542m_1599c_&site=5969542&ad=1599',
         'live_stream': True,
         'cashout': True,
         'verdict': "1xBet offers the highest welcome bonuses in Africa across 21 countries, the widest range of sports and markets (50+), and genuinely competitive odds. The 300% first deposit bonus is unmatched on the continent. It is the go-to choice for bettors who want maximum value from their first deposit. Available across all African countries SifuFinds covers.",
