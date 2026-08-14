@@ -1,24 +1,18 @@
 {
   "date": "2026-08-14",
-  "total": 3,
+  "total": 2,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 1,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
-      "check": "title_length",
-      "page": "transfer-saga-heats-up-arsenal-chelsea-more-whats-next-for-african-bettors",
-      "detail": "Title 85 chars (max 60): \"Transfer Saga Heats Up: Arsenal, Chelsea, and More - What's Next for A\""
-    },
-    {
-      "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "transfer-saga-heats-up-arsenal-chelsea-more-whats-next-for-african-bettors",
-      "detail": "Excerpt 263 chars (max 155)"
+      "page": "sifufinds-expands-33-african-countries",
+      "detail": "Excerpt 166 chars (max 155)"
     },
     {
       "severity": "INFO",
