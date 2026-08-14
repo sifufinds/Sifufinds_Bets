@@ -224,6 +224,10 @@ jobs:
         run: |
           python3 scripts/compliance_check.py
 
+      - name: Validate site — country-count guard (catches stale "N African countries" copy)
+        run: |
+          python3 scripts/check_country_count.py
+
       - name: Validate deploy token
         env:
           HOSTINGER_API_TOKEN: ${{ secrets.HOSTINGER_API_TOKEN }}

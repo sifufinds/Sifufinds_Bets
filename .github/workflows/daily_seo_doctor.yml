@@ -67,6 +67,15 @@ jobs:
           python3 gen_sitemap.py
           exit 0
 
+      - name: Fix stale "N African countries" copy (auto-heal)
+        id: country_count
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/check_country_count.py --fix
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
       - name: Run SEO Doctor
         id: doctor
         working-directory: agents/python
@@ -134,6 +143,13 @@ jobs:
             echo "✅ SEO audit — no CRITICAL issues (duplicate slugs, etc.)"
           else
             echo "🚨 SEO audit found CRITICAL issue(s) it could NOT auto-fix — see 'Fix duplicate slugs' step above and seo-report.json"
+          fi
+
+          CC_CODE="${{ steps.country_count.outputs.exit_code }}"
+          if [ -z "$CC_CODE" ] || [ "$CC_CODE" = "0" ]; then
+            echo "✅ Country-count guard — no stale 'N African countries' copy"
+          else
+            echo "🚨 Country-count guard found issue(s) it could NOT auto-fix (needs a reword, not just a number swap) — see 'Fix stale' step above"
           fi
 
           CODE="${{ steps.doctor.outputs.exit_code }}"
