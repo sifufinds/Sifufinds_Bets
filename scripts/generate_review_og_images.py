@@ -44,7 +44,10 @@ BOOKMAKERS = {
     "linebet-review":      ("linebet.png",          "Linebet"),
     "melbet-review":       ("melbet_hq.png",        "Melbet"),
     "mozzartbet-review":   ("mozzartbet_hq.png",    "Mozzartbet"),
+    "msport-review":       ("msport.png",           "MSport"),
+    "nairabet-review":     ("nairabet.png",         "NairaBet"),
     "odibets-review":      ("odibets_hq.png",       "Odibets"),
+    "parimatch-review":    ("parimatch.png",        "PariMatch"),
     "sportpesa-review":    ("sportpesa_hq.png",     "SportPesa"),
     "sportybet-review":    ("sportybet.png",        "SportyBet"),
 }
