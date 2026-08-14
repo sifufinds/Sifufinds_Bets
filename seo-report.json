@@ -1,13 +1,43 @@
 {
   "date": "2026-08-14",
-  "total": 1,
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 5,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-window-heats-up-latest-news-and-betting-insights-for-african-football",
+      "detail": "Title 79 chars (max 60): 'Transfer Window Heats Up: Latest News and Betting Insights for African'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-window-drama-african-clubs-shaping-up-2026",
+      "detail": "Title 64 chars (max 60): 'Transfer Window Drama: How African Clubs Are Shaping Up for 2026'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-window-heats-up-2",
+      "detail": "Excerpt 191 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-window-heats-up-latest-news-and-betting-insights-for-african-football",
+      "detail": "Excerpt 206 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-window-drama-african-clubs-shaping-up-2026",
+      "detail": "Excerpt 198 chars (max 155)"
+    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
