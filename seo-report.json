@@ -1,31 +1,13 @@
 {
   "date": "2026-08-14",
-  "total": 4,
+  "total": 1,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 0,
     "MEDIUM": 0,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "transfer-drama-osimhen-fernandez-kellyman-spotlight",
-      "detail": "Title 65 chars (max 60): 'Transfer Drama: Osimhen, Fernandez, and Kellyman in the Spotlight'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "transfer-drama-osimhen-fernandez-kellyman-spotlight",
-      "detail": "Excerpt 160 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sifufinds-expands-33-african-countries",
-      "detail": "Excerpt 166 chars (max 155)"
-    },
     {
       "severity": "INFO",
       "check": "formulaic_opener",
