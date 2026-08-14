@@ -55,7 +55,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania", "Uganda", "Zambia"],
         "welcome": "300% First Deposit Bonus – Up to ₦1,200,000",
         "highlight": "Highest welcome bonus in Africa",
-        "url": "https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97",
+        "url": "https://reffpa.com/L?tag=d_5968690m_1599c_&site=5968690&ad=1599",
         "min_deposit": "₦100",
         "licence": "NLRC + BCLB",
         "hashtags": "#1xBet #Africa #SportsBetting #300Bonus",

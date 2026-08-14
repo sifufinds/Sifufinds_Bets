@@ -106,7 +106,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania", "Uganda", "Zambia"],
         "welcome": "300% First Deposit Bonus – Up to ₦1,200,000",
         "bonus_highlight": "Highest welcome bonus in Africa",
-        "url": "https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97",
+        "url": "https://reffpa.com/L?tag=d_5968690m_1599c_&site=5968690&ad=1599",
         "affiliate": True,
         "min_deposit": "₦100",
         "stars": 4,

@@ -59,7 +59,7 @@ RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 # for these slugs; keep the two in sync). External 301 redirect to the real
 # affiliate/brand URL. NC = also match any casing a share might use.
 RewriteRule ^fairpari/?$ "https://fairpaff.top/L?tag=d_5941712m_72465c_&site=5941712&ad=72465&r=registration" [R=301,L,NC]
-RewriteRule ^1xbet/?$ "https://reffpa.com/L?tag=d_3805082m_97c_&site=3805082&ad=97" [R=301,L,NC]
+RewriteRule ^1xbet/?$ "https://reffpa.com/L?tag=d_5968690m_1599c_&site=5968690&ad=1599" [R=301,L,NC]
 RewriteRule ^melbet/?$ "https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559" [R=301,L,NC]
 RewriteRule ^betwinner/?$ "https://bwredir.com/1Lvf?p=%2Fregistration%2F&s1=sifufinds" [R=301,L,NC]
 RewriteRule ^helabet/?$ "https://1212fghnna.com/L?tag=d_5833683m_52235c_sifufinds&site=5833683&ad=52235" [R=301,L,NC]
