@@ -382,7 +382,7 @@ def make_city_page(c):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{ap}assets/shared.js?v=24"></script>
+<script src="{ap}assets/shared.js?v=26"></script>
 <script>
 const SITE={{home:'{ap}',tips:'{ap}tips/',casino:'{ap}casino/',odds:'{ap}odds/',countries:'{ap}countries/'}};
 const _PAGE_CTY='{c['country_code']}';
