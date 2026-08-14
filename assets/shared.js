@@ -724,12 +724,12 @@ const ODDS_DATA=[
 // ── PAGE CONTENT (modals) ─────────────────────────────────────────────────────
 const PAGE_CONTENT={
 about:`<h1>About SifuFinds</h1>
-<p>SifuFinds is Africa's leading independent betting comparison platform, providing verified bonus information, live odds, free tips, and country-specific bookmaker reviews across 33 African countries.</p>
+<p>SifuFinds is Africa's leading independent betting comparison platform, providing verified bonus information, live odds, free tips, and country-specific bookmaker reviews across ${Object.keys(COUNTRY_DATA).length} African countries.</p>
 <h2>Our Mission</h2>
 <p>We help African bettors find the best bonuses, safest licensed operators, and most relevant local payment methods — all in their local currency.</p>
 <div class="info-box">All bonuses are independently verified by our editorial team. Odds data refreshes every 15 seconds. Country data is updated daily.</div>
 <h2>What We Cover</h2>
-<div class="cg"><div class="cc"><h3>🏆 Best Bonuses</h3><p>Verified welcome bonuses, no-deposit offers, and free bets from licensed bookmakers.</p></div><div class="cc"><h3>💡 Free Tips</h3><p>Daily expert predictions and AI-powered tips for African and international football.</p></div><div class="cc"><h3>📊 Live Odds</h3><p>Real-time odds comparison across CAF CL, AFCON, EPL, and local leagues.</p></div><div class="cc"><h3>🌍 Countries</h3><p>33 African countries covered with local currency, payment methods, and licensed operators where available.</p></div></div>
+<div class="cg"><div class="cc"><h3>🏆 Best Bonuses</h3><p>Verified welcome bonuses, no-deposit offers, and free bets from licensed bookmakers.</p></div><div class="cc"><h3>💡 Free Tips</h3><p>Daily expert predictions and AI-powered tips for African and international football.</p></div><div class="cc"><h3>📊 Live Odds</h3><p>Real-time odds comparison across CAF CL, AFCON, EPL, and local leagues.</p></div><div class="cc"><h3>🌍 Countries</h3><p>${Object.keys(COUNTRY_DATA).length} African countries covered with local currency, payment methods, and licensed operators where available.</p></div></div>
 <h2>18+ Only</h2><p>SifuFinds is strictly for adults aged 18 and over. Gambling involves financial risk. Please gamble responsibly.</p>`,
 responsible:`<h1>Responsible Gambling</h1>
 <div class="danger-box">⚠️ Gambling involves risk. Never bet more than you can afford to lose. If gambling is affecting your life, seek help immediately.</div>
