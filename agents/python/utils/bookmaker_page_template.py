@@ -391,7 +391,7 @@ def render_bookmaker_page(facts: dict) -> str:
 
 <div class="footer-bar">
   <strong style="color:#fff">SifuFinds</strong> — Africa's #1 Independent Betting Comparison<br>
-  <a href="../../">Home</a> · <a href="../../countries/">Countries</a> · <a href="../">All Bookmaker Reviews</a><br>
+  <a href="../../">Home</a> · <a href="../../countries/">Countries</a> · <a href="../">All Bookmaker Reviews</a> · <a href="../../about/">About</a><br>
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only.
 </div>
 
