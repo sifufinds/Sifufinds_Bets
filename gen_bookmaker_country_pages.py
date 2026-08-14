@@ -111,7 +111,7 @@ BOOKMAKERS = [
         'pros': [
             '50+ sports and 1,000+ betting markets per event',
             'Highest welcome bonus in Africa',
-            'Available in all 23 African countries on SifuFinds',
+            'Available in most of SifuFinds\' 33 African countries',
             'Excellent live betting platform',
             'Accepts all major mobile money providers',
         ],

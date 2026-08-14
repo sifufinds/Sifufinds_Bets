@@ -161,7 +161,7 @@ PAGES = [
         'hreflang_extra': '',
         'icon': '🏦',
         'color': '#2c3e50',
-        'intro': "<strong>Bank transfer</strong> is the most universal payment method at African betting sites — available in all 23 countries covered by SifuFinds. Whether you bank with Access Bank, GTBank, KCB, Standard Bank, Absa, CIH Banque, or any other African bank, you can make betting deposits directly from your account. Bank transfers are ideal for larger deposits where mobile money limits apply.",
+        'intro': "<strong>Bank transfer</strong> is the most universal payment method at African betting sites, available at licensed bookmakers across SifuFinds' 33 African countries where a bookmaker operates. Whether you bank with Access Bank, GTBank, KCB, Standard Bank, Absa, CIH Banque, or any other African bank, you can make betting deposits directly from your account. Bank transfers are ideal for larger deposits where mobile money limits apply.",
         'step_title': 'How to Deposit via Bank Transfer at African Bookmakers',
         'steps': [
             ('Get the bookmaker\'s bank account details', 'After selecting Bank Transfer in the Deposit section, the bookmaker will provide a dedicated bank account number and reference code. Note the exact reference — it is essential for your deposit to be matched.'),
@@ -176,7 +176,7 @@ PAGES = [
             'Ghana — GCB Bank, MTN, Fidelity Bank at GCA-licensed bookmakers',
             'Egypt — National Bank of Egypt, CIB, Banque Misr',
             'Morocco — CIH Bank, Attijariwafa Bank, BMCE at MDJS-licensed operators',
-            'All 23 African countries — local bank options available at each bookmaker',
+            'All 33 African countries SifuFinds covers — local bank options available at each licensed bookmaker',
         ],
         'faq': [
             ('How long does a bank transfer deposit take at African bookmakers?', "It depends on the country and bookmaker. In Nigeria: instant with GTBank/Access Bank API integration, 30 min–4 hours otherwise. In Kenya: 15 min–2 hours via direct bank API. South Africa: instant with FNB/Capitec, 1–24 hours for other banks. Morocco and Egypt: 1–24 hours via standard wire. Bank transfers are slower than mobile money but support larger amounts."),
