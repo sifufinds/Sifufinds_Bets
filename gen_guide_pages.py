@@ -4,6 +4,9 @@
 import json
 import os
 from seo_meta import seo_title, seo_meta_description
+from site_stats import total_country_count
+
+TOTAL_COUNTRIES = total_country_count()
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -121,7 +124,7 @@ Other common lines you'll see at African bookmakers:
         'og_title': 'Responsible Gambling Guide Africa 2026 | SifuFinds',
         'h1': 'Responsible Gambling — Safe Betting Guide for Africa &middot; 2026',
         'icon': '🛡',
-        'intro': "Betting should be fun — but it carries real financial risks. SifuFinds is committed to promoting responsible gambling across all 33 African countries we cover. This guide explains how to gamble safely, recognise the early signs of problem gambling, and access support in Nigeria, Kenya, South Africa, Ghana, and beyond. <strong>All licensed bookmakers on SifuFinds offer free responsible gambling tools.</strong>",
+        'intro': f"Betting should be fun — but it carries real financial risks. SifuFinds is committed to promoting responsible gambling across all {TOTAL_COUNTRIES} African countries we cover. This guide explains how to gamble safely, recognise the early signs of problem gambling, and access support in Nigeria, Kenya, South Africa, Ghana, and beyond. <strong>All licensed bookmakers on SifuFinds offer free responsible gambling tools.</strong>",
         'sections': [
             ('Golden Rules for Safe Betting', """<ol>
 <li><strong>Only bet what you can afford to lose.</strong> Your betting bankroll should come from entertainment money — never from rent, food, or essential expenses.</li>
@@ -364,7 +367,7 @@ def make_guide_page(g):
   <p>{g['intro']}</p>
   <div class="trust">
     <div class="tb">📚 Expert Guide</div>
-    <div class="tb">🌍 All 33 African Countries</div>
+    <div class="tb">🌍 All {TOTAL_COUNTRIES} African Countries</div>
     <div class="tb">🔄 Updated 2026</div>
     <div class="tb">✅ Verified Info</div>
   </div>
@@ -414,7 +417,7 @@ def make_guide_page(g):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=24"></script>
+<script src="../../assets/shared.js?v=26"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 let _activeFilt='all';

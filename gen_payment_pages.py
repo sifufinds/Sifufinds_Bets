@@ -4,6 +4,9 @@
 import json
 import os
 from seo_meta import seo_title, seo_meta_description
+from site_stats import total_country_count
+
+TOTAL_COUNTRIES = total_country_count()
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -161,7 +164,7 @@ PAGES = [
         'hreflang_extra': '',
         'icon': '🏦',
         'color': '#2c3e50',
-        'intro': "<strong>Bank transfer</strong> is the most universal payment method at African betting sites, available at licensed bookmakers across SifuFinds' 33 African countries where a bookmaker operates. Whether you bank with Access Bank, GTBank, KCB, Standard Bank, Absa, CIH Banque, or any other African bank, you can make betting deposits directly from your account. Bank transfers are ideal for larger deposits where mobile money limits apply.",
+        'intro': f"<strong>Bank transfer</strong> is the most universal payment method at African betting sites, available at licensed bookmakers across SifuFinds' {TOTAL_COUNTRIES} African countries where a bookmaker operates. Whether you bank with Access Bank, GTBank, KCB, Standard Bank, Absa, CIH Banque, or any other African bank, you can make betting deposits directly from your account. Bank transfers are ideal for larger deposits where mobile money limits apply.",
         'step_title': 'How to Deposit via Bank Transfer at African Bookmakers',
         'steps': [
             ('Get the bookmaker\'s bank account details', 'After selecting Bank Transfer in the Deposit section, the bookmaker will provide a dedicated bank account number and reference code. Note the exact reference — it is essential for your deposit to be matched.'),
@@ -176,7 +179,7 @@ PAGES = [
             'Ghana — GCB Bank, MTN, Fidelity Bank at GCA-licensed bookmakers',
             'Egypt — National Bank of Egypt, CIB, Banque Misr',
             'Morocco — CIH Bank, Attijariwafa Bank, BMCE at MDJS-licensed operators',
-            'All 33 African countries SifuFinds covers — local bank options available at each licensed bookmaker',
+            f'All {TOTAL_COUNTRIES} African countries SifuFinds covers — local bank options available at each licensed bookmaker',
         ],
         'faq': [
             ('How long does a bank transfer deposit take at African bookmakers?', "It depends on the country and bookmaker. In Nigeria: instant with GTBank/Access Bank API integration, 30 min–4 hours otherwise. In Kenya: 15 min–2 hours via direct bank API. South Africa: instant with FNB/Capitec, 1–24 hours for other banks. Morocco and Egypt: 1–24 hours via standard wire. Bank transfers are slower than mobile money but support larger amounts."),
@@ -453,7 +456,7 @@ def make_payment_page(p):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{ap}assets/shared.js?v=24"></script>
+<script src="{ap}assets/shared.js?v=26"></script>
 <script>
 const SITE={{home:'{ap}',tips:'{ap}tips/',casino:'{ap}casino/',odds:'{ap}odds/',countries:'{ap}countries/'}};
 let _activeFilt='all';
