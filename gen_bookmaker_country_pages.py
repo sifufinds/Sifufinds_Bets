@@ -692,7 +692,7 @@ def build_page(bk, country_slug, country, combo):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{assets}assets/shared.js?v=23"></script>
+<script src="{assets}assets/shared.js?v=24"></script>
 <script>
 const SITE={{home:'{assets}',tips:'{assets}tips/',casino:'{assets}casino/',odds:'{assets}odds/',countries:'{assets}countries/'}};
 const _BK_CTY='{code}';

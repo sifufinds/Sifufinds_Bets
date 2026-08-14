@@ -332,8 +332,8 @@ def make_payment_page(p):
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=3">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=3">
-<link rel="preload" href="{ap}assets/shared.css" as="style">
-<link rel="stylesheet" href="{ap}assets/shared.css">
+<link rel="preload" href="{ap}assets/shared.css?v=12" as="style">
+<link rel="stylesheet" href="{ap}assets/shared.css?v=12">
 <style>
 .pay-badge{{display:inline-block;background:#edf7f0;border:1px solid #c8e6c9;border-radius:6px;padding:5px 14px;font-size:12px;font-weight:700;color:{p['color']};margin-bottom:10px}}
 .how-steps{{list-style:none;padding:0;margin:0;counter-reset:steps}}
@@ -453,7 +453,7 @@ def make_payment_page(p):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{ap}assets/shared.js"></script>
+<script src="{ap}assets/shared.js?v=24"></script>
 <script>
 const SITE={{home:'{ap}',tips:'{ap}tips/',casino:'{ap}casino/',odds:'{ap}odds/',countries:'{ap}countries/'}};
 let _activeFilt='all';

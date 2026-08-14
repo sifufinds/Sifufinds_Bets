@@ -29,7 +29,7 @@
 (function(){
   var qs=new URLSearchParams(location.search);
   if(qs.has('cty')||qs.has('intl'))return;
-  var MAP={NG:'nigeria',KE:'kenya',GH:'ghana',ZA:'south-africa',TZ:'tanzania',UG:'uganda',ZM:'zambia',ET:'ethiopia',CI:'ivory-coast',CM:'cameroon',SN:'senegal',RW:'rwanda',ZW:'zimbabwe',MW:'malawi',MZ:'mozambique',AO:'angola',CD:'dr-congo',BW:'botswana',NA:'namibia',EG:'egypt',MA:'morocco',SL:'sierra-leone',LR:'liberia'};
+  var MAP={NG:'nigeria',KE:'kenya',GH:'ghana',ZA:'south-africa',TZ:'tanzania',UG:'uganda',ZM:'zambia',ET:'ethiopia',CI:'ivory-coast',CM:'cameroon',SN:'senegal',RW:'rwanda',ZW:'zimbabwe',MW:'malawi',MZ:'mozambique',AO:'angola',CD:'dr-congo',BW:'botswana',NA:'namibia',EG:'egypt',MA:'morocco',SL:'sierra-leone',LR:'liberia',BJ:'benin',BF:'burkina-faso',GM:'gambia',TG:'togo',CG:'congo-brazzaville'};
   // A manual pick (dropdown/quick-switch via assets/shared.js changeCountry, or an old
   // shared ?cty= link via syncCountryUI) never expires. An auto-detected country is
   // only trusted for this long before we re-check the IP, so a VPN'd visitor's
@@ -57,7 +57,7 @@
   }).catch(function(){/* no redirect — render this generic homepage as-is */});
 })();
 </script>
-<link rel="preload" href="assets/shared.js?v=23" as="script">
+<link rel="preload" href="assets/shared.js?v=24" as="script">
 <link rel="preload" href="assets/shared.css?v=12" as="style">
 <!-- Critical-path connections -->
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
@@ -648,7 +648,7 @@
 <script>
 const SITE={home:'/',tips:'tips/',casino:'casino/',odds:'odds/',countries:'countries/'};
 </script>
-<script src="assets/shared.js?v=23"></script>
+<script src="assets/shared.js?v=24"></script>
 <script>
 // ── PAGE-SPECIFIC JS ──────────────────────────────────────────────────────────
 const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BW:'Botswana',NA:'Namibia',EG:'Egypt',MA:'Morocco',SL:'Sierra Leone',LR:'Liberia'};

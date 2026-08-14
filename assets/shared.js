@@ -53,7 +53,17 @@ const COUNTRY_DATA={
   EG:{name:'Egypt',flag:'🇪🇬',currency:'EGP',symbol:'EGP',region:'north',regulator:'Egyptian Gambling Regulatory Authority (EGRA)',about:'Egypt is one of Africa\'s largest sports betting markets with a passionate football culture. The Egyptian Premier League is among Africa\'s strongest domestic competitions. International bookmakers accept Egyptian bettors and the market is growing rapidly with mobile penetration. Vodafone Cash Egypt and bank transfer are the main payment routes.',payments:['Vodafone Cash Egypt','Orange Money Egypt','Bank Transfer','Visa','Mastercard'],leagues:['Egyptian Premier League','CAF Champions League','Premier League','La Liga','World Cup 2026']},
   MA:{name:'Morocco',flag:'🇲🇦',currency:'MAD',symbol:'MAD',region:'north',regulator:'MDJS (Marocaine des Jeux et des Sports)',about:'Morocco has a regulated gambling market overseen by MDJS. PMU Maroc (Pari Mutuel Urbain) is the state-licensed operator. International bookmakers also serve Moroccan bettors. Morocco\'s 2022 World Cup semi-final run ignited massive betting interest. The Botola Pro is the top domestic league and La Liga, Serie A and Champions League draw huge volumes.',payments:['Bank Transfer','CIH Bank','Attijari Bank','Orange Money Morocco','Visa','Mastercard'],leagues:['Botola Pro','CAF Champions League','Premier League','La Liga','World Cup 2026']},
   SL:{name:'Sierra Leone',flag:'🇸🇱',currency:'SLL',symbol:'Le',region:'west',regulator:'National Lotteries Authority (NLA)',about:'Sierra Leone has a growing sports betting market regulated by the National Lotteries Authority. Orange Money Sierra Leone and Africell Money are the main mobile payment channels. The Sierra Leone Premier League and AFCON attract the most betting interest.',payments:['Orange Money Sierra Leone','Africell Money','Bank Transfer','Visa'],leagues:['Sierra Leone Premier League','CAF Confederation Cup','Premier League','AFCON']},
-  LR:{name:'Liberia',flag:'🇱🇷',currency:'LRD',symbol:'$',region:'west',regulator:'National Lottery of Liberia',about:'Liberia has an emerging sports betting market. The National Lottery of Liberia oversees gambling activities. Lonestar Cell MTN Mobile Money and Orange Liberia are the main mobile payment options. Football is the dominant sport with the LFA League and AFCON drawing most interest.',payments:['Lonestar MTN Mobile Money','Orange Liberia','Bank Transfer','Visa'],leagues:['LFA League','CAF Confederation Cup','Premier League','AFCON']}
+  LR:{name:'Liberia',flag:'🇱🇷',currency:'LRD',symbol:'$',region:'west',regulator:'National Lottery of Liberia',about:'Liberia has an emerging sports betting market. The National Lottery of Liberia oversees gambling activities. Lonestar Cell MTN Mobile Money and Orange Liberia are the main mobile payment options. Football is the dominant sport with the LFA League and AFCON drawing most interest.',payments:['Lonestar MTN Mobile Money','Orange Liberia','Bank Transfer','Visa'],leagues:['LFA League','CAF Confederation Cup','Premier League','AFCON']},
+  BJ:{name:'Benin',flag:'🇧🇯',currency:'XOF',symbol:'CFA',region:'west',regulator:'Cellule de Supervision du Secteur des Jeux (CSJ) / Loterie Nationale du Bénin',about:'Benin\'s online betting market has historically operated without dedicated licensing, but the Cellule de Supervision du Secteur des Jeux (CSJ), created in 2023, now actively supervises operators, and a 2025 finance law introduced a 25% tax on online gambling revenue. MTN Mobile Money and Moov Money are the main payment channels. The Benin Premier League and CAF competitions draw the most betting interest.',payments:['MTN MoMo','Moov Money','Celtiis Cash','Bank Transfer'],leagues:['Benin Premier League','CAF Champions League','Premier League','AFCON']},
+  BF:{name:'Burkina Faso',flag:'🇧🇫',currency:'XOF',symbol:'CFA',region:'west',regulator:'Commission Nationale des Jeux de Hasard (CNJH) / LONAB',about:'Burkina Faso\'s government ordered its telecoms regulator to block all online betting platforms not partnered with the state lottery LONAB from February 2025, leaving only LONAB\'s own Lonabet.bf and a small number of confirmed-compliant international partners operating legally. SifuFinds only lists operators with confirmed compliant status. Orange Money is the dominant mobile payment method. The Burkinabé Premier League and CAF competitions draw the most betting interest.',payments:['Orange Money','Moov Money','Coris Money'],leagues:['Burkinabé Premier League','CAF Champions League','Premier League','AFCON']},
+  GM:{name:'Gambia',flag:'🇬🇲',currency:'GMD',symbol:'D',region:'west',regulator:'Gambia Gaming Board (GGB)',about:'The Gambia\'s online betting market operates without a functioning licensing regime — it is neither explicitly banned nor formally regulated, and the nominal regulator, the Gambia Gaming Board, has limited practical oversight of online operators. QMoney and AfriMoney are the main mobile payment channels. Football is the country\'s most popular sport, with the GFF League and AFCON drawing the most betting interest.',payments:['QMoney','AfriMoney (Africell Money)','Bank Transfer'],leagues:['GFF League First Division','CAF Champions League','Premier League','AFCON']},
+  TG:{name:'Togo',flag:'🇹🇬',currency:'XOF',symbol:'CFA',region:'west',regulator:'LONATO (Loterie Nationale Togolaise)',about:'Togo\'s land-based gambling market is regulated by LONATO, but online betting currently has no dedicated licensing framework. SifuFinds has not yet independently verified a licensed online bookmaker operating in Togo and does not list unverified operators — check back as our research continues. Flooz (Moov) and T-Money (Togocom) are the main mobile payment channels. The Togolese Championnat National and CAF competitions draw the most betting interest.',payments:['Flooz (Moov)','T-Money (Togocom)','Bank Transfer'],leagues:['Togolese Championnat National','CAF Champions League','Premier League','AFCON']},
+  CG:{name:'Congo-Brazzaville',flag:'🇨🇬',currency:'XAF',symbol:'CFA',region:'central',regulator:'Autorité de Régulation des Jeux de Hasard et d\'Argent (ARJHA)',about:'The Republic of the Congo (Congo-Brazzaville) introduced a formal licensing regime for sports betting, including online, under a 2024 law, with the regulator ARJHA created in 2025. MTN Mobile Money and Airtel Money are the main payment channels. Congo Ligue 1 and CAF competitions draw the most betting interest. Note: this market uses the Central African CFA franc (XAF), distinct from West African CFA (XOF) and from DR Congo\'s currency.',payments:['MTN MoMo','Airtel Money','Bank Transfer'],leagues:['Congo Ligue 1','CAF Champions League','Premier League','AFCON']},
+  DZ:{name:'Algeria',flag:'🇩🇿',currency:'DZD',symbol:'DA',region:'north',regulator:'None — online gambling has no licensing framework',restricted:true,about:'Note: Online sports betting and gambling are prohibited in Algeria under Law 18-05, with only the state lottery and horse-racing tote legally permitted (land-based only). A 2025 law also criminalised VPN use to access banned content, including gambling sites. SifuFinds does not list or promote any betting operator for Algeria — this page exists for informational purposes only. Always follow local law.',payments:['CIB (Carte Interbancaire)','Edahabia','Bank Transfer'],leagues:['Ligue Professionnelle 1','CAF Champions League','AFCON']},
+  LY:{name:'Libya',flag:'🇱🇾',currency:'LYD',symbol:'LD',region:'north',regulator:'None — no gambling regulator exists',restricted:true,about:'Note: Gambling is fully prohibited in Libya under the Penal Code and a 2022 cybercrime law that criminalises operating an online gambling site, carrying a minimum 2-year prison sentence. SifuFinds does not list or promote any betting operator for Libya — this page exists for informational purposes only. Always follow local law.',payments:['LYPAY/ONEPAY interbank transfer','Aman Pay','Bank Transfer'],leagues:['Libyan Premier League','CAF Champions League','AFCON']},
+  MR:{name:'Mauritania',flag:'🇲🇷',currency:'MRU',symbol:'UM',region:'north',regulator:'None — no gambling regulator exists',restricted:true,about:'Note: Gambling is fully prohibited in Mauritania, with advertising or marketing of gambling products also explicitly banned. SifuFinds does not list or promote any betting operator for Mauritania — this page exists for informational purposes only. Always follow local law.',payments:['Bankily','Masrvi'],leagues:['Mauritanian Premier League','CAF Champions League','AFCON']},
+  SO:{name:'Somalia',flag:'🇸🇴',currency:'SOS',symbol:'Sh',region:'east',regulator:'None — enforcement runs through NAMLC/FRC (anti-money-laundering bodies), not a gambling regulator',restricted:true,about:'Note: Gambling is banned in Somalia. The Federal Government formalised this in 2023, and the National Anti-Money Laundering & Countering Terrorist Financing Commission explicitly named the operator 1xBet in a November 2023 order directing banks to freeze related accounts. SifuFinds does not list or promote any betting operator for Somalia — this page exists for informational purposes only. Always follow local law.',payments:['EVC Plus','Zaad','Sahal','eDahab'],leagues:['Somali First Division','Premier League','UEFA Champions League']},
+  TN:{name:'Tunisia',flag:'🇹🇳',currency:'TND',symbol:'DT',region:'north',regulator:'Ministry of Youth, Sports and Physical Education / Promosport (state monopoly)',restricted:true,about:'Note: Only the state-run Promosport pools product is legally licensed for sports predictions in Tunisia. All fixed-odds bookmakers, including international brands, are illegal for Tunisian residents to use, and a law reported in 2026 would criminalise promoting unlicensed platforms. SifuFinds does not list or promote any unlicensed betting operator for Tunisia — this page exists for informational purposes only. Always follow local law.',payments:['e-Dinar (La Poste Tunisienne)','Visa','Mastercard'],leagues:['Ligue Professionnelle 1','CAF Champions League','AFCON']}
 };
 
 // ── AFFILIATE FILTER ──────────────────────────────────────────────────────────
@@ -480,6 +490,31 @@ LR:[
 {abbr:'STB',bg:'#FBC02D',tc:'#111',name:'Starbet Liberia',url:'https://www.starbet.com.lr',tag:'Star Bets – Shine in Liberia',off:'100% Welcome Bonus',top:'100% Match',stars:3,min:'$1',instant:true,cashout:true,stream:false,sports:15,lic:'NLC Licensed',nodep:false,badge:'',terms:'100% match on first deposit. MTN MoMo. T&Cs. 18+.',pms:['MTN MoMo Liberia','Orange Money','Bank Transfer']},
 {abbr:'WNL',bg:'#1565C0',tc:'#fff',name:'Winner Liberia',url:'https://www.winner.com',tag:'International – AFCON & EPL Coverage',off:'100% Welcome Bonus',top:'100% Match',stars:3,min:'$1',instant:true,cashout:true,stream:false,sports:25,lic:'NLC Licensed',nodep:false,badge:'',terms:'100% match on first deposit. MTN MoMo. T&Cs. 18+.',pms:['MTN MoMo Liberia','Orange Money','Visa','Mastercard']},
 {abbr:'BTL',bg:'#880E4F',tc:'#fff',name:'Bettomax Liberia',url:'https://www.bettomax.com',tag:'West Africa Multi-Market Brand',off:'100% Welcome Bonus',top:'100% Match',stars:3,min:'$1',instant:true,cashout:true,stream:false,sports:18,lic:'NLC Licensed',nodep:false,badge:'',terms:'100% match on first deposit. MTN MoMo. T&Cs. 18+.',pms:['MTN MoMo Liberia','Orange Money','Bank Transfer']}
+],
+BJ:[
+{abbr:'1X',bg:'#276AA5',tc:'#fff',name:'1xBet Benin',url:'https://reffpa.com/L?tag=d_5968690m_1599c_&site=5968690&ad=1599',tag:'International Operator — Benin National Lottery Licensed',off:'Welcome bonus available on registration',top:'Check site for current offer',stars:3,min:'Varies',instant:true,cashout:true,stream:true,sports:50,lic:'Benin National Lottery Licensed (via IBET SARL)',nodep:false,badge:'',terms:'Welcome offer terms and conditions apply. Always confirm current promotions and deposit limits on the official site. 18+.',pms:['MTN MoMo','Moov Money','Celtiis Cash','Bank Transfer']},
+{abbr:'PB',bg:'#0D6E3D',tc:'#fff',name:'Premier Bet Benin',url:'https://www.premierbet.com/bj',tag:'International Operator — Active in Benin',off:'Welcome offer available on registration',top:'Check site for current offer',stars:3,min:'Varies',instant:true,cashout:true,stream:true,sports:35,lic:'Licensing status not independently verified',nodep:false,badge:'',terms:'Welcome offer terms and conditions apply. Always confirm current promotions on the official site. 18+.',pms:['MTN MoMo','Moov Money','Bank Transfer']}
+],
+BF:[
+{abbr:'1X',bg:'#276AA5',tc:'#fff',name:'1xBet Burkina Faso',url:'https://reffpa.com/L?tag=d_5968690m_1599c_&site=5968690&ad=1599',tag:'LONAB-Partnered — Confirmed Compliant Operator',off:'Welcome bonus available on registration',top:'Check site for current offer',stars:4,min:'Varies',instant:true,cashout:true,stream:true,sports:50,lic:'Operates under a confirmed LONAB partnership contract',nodep:false,badge:'',terms:'Welcome offer terms and conditions apply. Always confirm current promotions on the official site. 18+.',pms:['Orange Money','Moov Money','Coris Money']}
+],
+GM:[
+{abbr:'1X',bg:'#276AA5',tc:'#fff',name:'1xBet Gambia',url:'https://reffpa.com/L?tag=d_5968690m_1599c_&site=5968690&ad=1599',tag:'International Operator — Accepts Gambian Dalasi (GMD)',off:'Welcome bonus available on registration',top:'Check site for current offer',stars:3,min:'Varies',instant:true,cashout:true,stream:true,sports:50,lic:'Licensing status not independently verified',nodep:false,badge:'',terms:'Welcome offer terms and conditions apply. Always confirm current promotions on the official site. 18+.',pms:['QMoney','AfriMoney (Africell Money)','Bank Transfer']}
+],
+TG:[
+],
+CG:[
+{abbr:'PB',bg:'#0D6E3D',tc:'#fff',name:'Premier Bet Congo',url:'https://www.premierbet.com/cg',tag:'International Operator — Active in Congo-Brazzaville',off:'Welcome offer available on registration',top:'Check site for current offer',stars:3,min:'Varies',instant:true,cashout:true,stream:true,sports:35,lic:'Licensing status not independently verified',nodep:false,badge:'',terms:'Welcome offer terms and conditions apply. Always confirm current promotions on the official site. 18+.',pms:['MTN MoMo','Airtel Money','Bank Transfer']}
+],
+DZ:[
+],
+LY:[
+],
+MR:[
+],
+SO:[
+],
+TN:[
 ]
 };
 
@@ -828,7 +863,7 @@ function _offerLogoLoaded(img){
 }
 
 // ── COUNTRY MANAGEMENT ────────────────────────────────────────────────────────
-const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA','EG','MA','SL','LR']);
+const _SUPPORTED_CTYS=new Set(['NG','KE','GH','ZA','TZ','UG','ZM','ET','CI','CM','SN','RW','ZW','MW','MZ','AO','CD','BW','NA','EG','MA','SL','LR','BJ','BF','GM','TG','CG','DZ','LY','MR','SO','TN']);
 const _CTY_LS='sf_cty';
 const _CTY_TS_LS='sf_cty_ts';
 const _CTY_MANUAL_LS='sf_cty_manual';
@@ -1093,26 +1128,6 @@ function renderBrandsBar(){
 }
 document.addEventListener('DOMContentLoaded',renderBrandsBar);
 
-// Relative path prefix from the current page back to the site root, e.g.
-// '../../' from /countries/nigeria/, '../' from /tips/, '' from /.
-function _pathRoot(){
-  const segs=location.pathname.split('/').filter(Boolean);
-  return '../'.repeat(segs.length);
-}
-
-// Inject About link into nav on every page (E-E-A-T trust signal)
-document.addEventListener('DOMContentLoaded',function(){
-  const tabs=document.querySelector('.ntabs');
-  if(tabs&&!tabs.querySelector('[href*="about"]')){
-    const root=_pathRoot();
-    const a=document.createElement('a');
-    a.className='nt';
-    a.href=root+'about/';
-    a.textContent='ℹ️ About';
-    tabs.appendChild(a);
-  }
-});
-
 // Mobile hamburger nav
 document.addEventListener('DOMContentLoaded',function(){
   const mnavIn=document.querySelector('.mnav-in');
@@ -1303,7 +1318,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
   // Country -> URL slug. Kept in sync with index.html's geo-redirect MAP by hand
   // (see "Geo Homepage Routing" in CLAUDE.md) — add new countries to both.
-  const CTY_SLUG={NG:'nigeria',KE:'kenya',GH:'ghana',ZA:'south-africa',TZ:'tanzania',UG:'uganda',ZM:'zambia',ET:'ethiopia',CI:'ivory-coast',CM:'cameroon',SN:'senegal',RW:'rwanda',ZW:'zimbabwe',MW:'malawi',MZ:'mozambique',AO:'angola',CD:'dr-congo',BW:'botswana',NA:'namibia',EG:'egypt',MA:'morocco',SL:'sierra-leone',LR:'liberia'};
+  const CTY_SLUG={NG:'nigeria',KE:'kenya',GH:'ghana',ZA:'south-africa',TZ:'tanzania',UG:'uganda',ZM:'zambia',ET:'ethiopia',CI:'ivory-coast',CM:'cameroon',SN:'senegal',RW:'rwanda',ZW:'zimbabwe',MW:'malawi',MZ:'mozambique',AO:'angola',CD:'dr-congo',BW:'botswana',NA:'namibia',EG:'egypt',MA:'morocco',SL:'sierra-leone',LR:'liberia',BJ:'benin',BF:'burkina-faso',GM:'gambia',TG:'togo',CG:'congo-brazzaville',DZ:'algeria',LY:'libya',MR:'mauritania',SO:'somalia',TN:'tunisia'};
 
   function trafficSource(){
     const ref=document.referrer;
