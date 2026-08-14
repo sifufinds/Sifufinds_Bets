@@ -748,7 +748,7 @@ contact:`<h1>Contact Us</h1>
 </div>
 <div class="warn-box">We aim to respond within 2 business days. For urgent bonus corrections please include the bookmaker name and specific error in your subject line.</div>`,
 advertise:`<h1>Advertise With Us</h1>
-<p>SifuFinds reaches over 500,000 monthly visitors across 33 African markets. Our audience are active sports bettors looking for the best bonuses and bookmakers.</p>
+<p>SifuFinds reaches over 500,000 monthly visitors across ${Object.keys(COUNTRY_DATA).length} African markets. Our audience are active sports bettors looking for the best bonuses and bookmakers.</p>
 <h2>Advertising Options</h2>
 <div class="cg">
 <div class="cc"><h3>Featured Listing</h3><p>Top placement on the bonuses page for your target country. Includes logo, bonus highlight, and CTA button.</p></div>
