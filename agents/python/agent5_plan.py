@@ -156,7 +156,7 @@ Engagement topics: {queue_summary['engagement_topics']}
 Real keyword research (agent_keyword_research.py) — evergreen money keywords SifuFinds does NOT yet rank for:
 {gap_block}
 
-Real trending keyword research (agent_trending_keywords.py) — current news-driven keyword opportunities across our 23 African markets:
+Real trending keyword research (agent_trending_keywords.py) — current news-driven keyword opportunities across our 28 African markets:
 {trending_block}
 
 Use the recent content, SEO signals, and community priorities to propose:

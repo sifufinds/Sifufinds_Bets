@@ -1,5 +1,5 @@
 """
-Trending Keywords Agent — researches each of SifuFinds' 23 African markets'
+Trending Keywords Agent — researches each of SifuFinds' 28 African markets'
 OWN genuinely trending stories (not a shared pool reused across countries)
 and pairs them with country intent modifiers to surface time-sensitive
 keyword opportunities, for direct use by blog/news/guide writers.
@@ -53,7 +53,7 @@ from utils.news_fetcher import fetch_category, fetch_country_trending
 from utils.serp_research import fc_search, find_site_position
 
 STATE_PATH = Path(__file__).parent / "trending_keywords.json"
-# All 23 countries every run, not a handful — this research step makes no
+# All 28 countries every run, not a handful — this research step makes no
 # LLM calls (free DuckDuckGo/RSS only, see module docstring), so there's no
 # per-run cost pressure to ration coverage the way agent_keyword_research.py
 # rations its LLM-adjacent SERP checks. "Each country" genuinely means each
@@ -194,7 +194,7 @@ def _topics_for_country(country_name: str) -> list[dict]:
 
 
 def _pick_countries(last_checked: dict, batch_size: int) -> list[dict]:
-    """Oldest-checked-first rotation across all 23 countries, mirroring
+    """Oldest-checked-first rotation across all 28 countries, mirroring
     agent_keyword_research.py, so trending coverage reaches every market
     instead of always refreshing the same first few."""
     ordered = sorted(AFRICAN_COUNTRIES, key=lambda c: last_checked.get(c["code"], ""))
