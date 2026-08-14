@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from utils.logger import log
 from utils.blog_match import find_matching_post, mark_used, bookmaker_review_url
 from utils.social_image import build_social_image, brand_color
-from utils.affiliate_links import masked_url, pick_cta, cta_html, cta_plain
+from utils.affiliate_links import masked_url, pick_cta, cta_html, cta_plain, promo_code_line
 from agent3_social import post_facebook
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
@@ -438,6 +438,9 @@ def build_offer_message(brand: dict) -> str:
     if len(brand["countries"]) > 5:
         countries_str += f" +{len(brand['countries']) - 5} more"
 
+    promo_line = promo_code_line(brand["name"])
+    promo_bit = f"🎁 {promo_line}\n" if promo_line else ""
+
     msg = (
         f"🔥 <b>TODAY'S TOP DEAL</b> — {brand['name']} {flags}\n"
         f"━━━━━━━━━━━━━━━━━━━━━\n"
@@ -450,6 +453,7 @@ def build_offer_message(brand: dict) -> str:
         f"💸 Cash-Out: {_yes_no(brand['cashout'])}\n"
         f"🛡 {brand['licence']}\n\n"
         f"🌍 Available in: {countries_str}\n\n"
+        f"{promo_bit}"
         f"👉 {cta_html(brand)}\n"
         f"📊 Compare all bonuses → <a href=\"{SITE_URL}\">{SITE_URL}</a>\n"
         f"📲 Join our channel → @sifufinds\n\n"
@@ -475,6 +479,9 @@ def build_facebook_offer_message(brand: dict, link: str) -> str:
         countries_str += f" +{len(brand['countries']) - 5} more"
     top_hashtags = " ".join(brand["hashtags"].split()[:5])
 
+    promo_line = promo_code_line(brand["name"])
+    promo_bit = f"{promo_line}\n" if promo_line else ""
+
     return (
         f"🔥 Today's Top Deal — {brand['name']} {flags}\n\n"
         f"{brand['welcome']}\n"
@@ -483,6 +490,7 @@ def build_facebook_offer_message(brand: dict, link: str) -> str:
         f"Min deposit {brand['min_deposit']} · {brand['licence']}\n"
         f"Available in: {countries_str}\n\n"
         f"Read the full review → {link}\n"
+        f"{promo_bit}"
         f"{cta_plain(brand)}\n\n"
         f"{top_hashtags} #SifuFinds #BettingBonus\n\n"
         f"18+ | Bet Responsibly | BeGambleAware.org"
