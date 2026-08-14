@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Wave 3 city pages — capital/major cities for all 23 African countries."""
+"""Generate Wave 3 city pages — capital/major cities for the 23 established African countries."""
 
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

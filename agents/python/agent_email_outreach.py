@@ -60,13 +60,13 @@ TEMPLATES = {
 Hi {site_name} team,
 
 I run SifuFinds ({site_url}) — Africa's independent betting comparison platform covering
-23 countries including Nigeria, Kenya, Ghana, South Africa and Tanzania.
+28 countries including Nigeria, Kenya, Ghana, South Africa and Tanzania.
 
 I noticed {site_name} covers {niche} in Africa, and I think our verified data could be
 useful to your readers.
 
 What we have that might interest you:
-• Live bookmaker bonus data across 23 African markets (updated daily)
+• Live bookmaker bonus data across 28 African markets (updated daily)
 • Country-by-country breakdown of licensed operators and regulators
 • Free tools: odds calculator and parlay calculator built for African bettors
 
@@ -119,7 +119,7 @@ SifuFinds ({site_url})
 Hi {site_name} team,
 
 I run SifuFinds ({site_url}), an independent betting comparison platform focused on
-African markets — we cover 23 countries and compare 7+ licensed bookmakers.
+African markets — we cover 28 countries and compare 7+ licensed bookmakers.
 
 I came across {site_name} while researching {niche} content and thought there might
 be a good fit for cross-linking or data sharing.
@@ -150,7 +150,7 @@ Hi {site_name} team,
 My name is Sifu Kai and I run SifuFinds ({site_url}), Africa's independent sports
 betting comparison platform.
 
-We cover 23 African countries with verified bookmaker bonuses, live odds, free daily
+We cover 28 African countries with verified bookmaker bonuses, live odds, free daily
 tips, and country-specific regulatory guides.
 
 I also recently built two free tools that African bettors have found useful:

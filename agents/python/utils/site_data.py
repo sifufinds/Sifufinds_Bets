@@ -100,13 +100,13 @@ def _load_block(varname: str) -> dict[str, Any]:
 
 def load_country_data() -> dict[str, dict]:
     """{code: {name, flag, currency, symbol, region, regulator, about,
-    payments[], leagues[]}} for all 23 countries — mirrors shared.js's
+    payments[], leagues[]}} for all 33 countries — mirrors shared.js's
     COUNTRY_DATA exactly."""
     return _load_block("const COUNTRY_DATA")
 
 
 def load_bookmakers() -> dict[str, list[dict]]:
-    """{code: [bookmaker entries]} for all 23 countries — mirrors
+    """{code: [bookmaker entries]} for all 33 countries — mirrors
     shared.js's BOOKS exactly. Each entry carries name/url/off/top/stars/
     min/lic/terms/pms among other display fields."""
     return _load_block("const BOOKS")

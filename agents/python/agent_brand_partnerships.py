@@ -70,8 +70,8 @@ COMMISSION_ASK = "30 percent revenue share on new customers only (NNCO)"
 # Two openers and two closers, rotated by brand name so a batch of emails
 # does not read as one mail merge with the brand name swapped in and out.
 OPENERS = [
-    "My name's Kai and I run SifuFinds, an independent betting comparison site covering 23 African countries.",
-    "I'm Kai. I put together SifuFinds, a betting comparison site that now covers 23 countries across Africa.",
+    "My name's Kai and I run SifuFinds, an independent betting comparison site covering 28 African countries.",
+    "I'm Kai. I put together SifuFinds, a betting comparison site that now covers 28 countries across Africa.",
 ]
 
 CLOSERS = [

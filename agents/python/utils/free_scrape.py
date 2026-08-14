@@ -24,7 +24,7 @@ entirely when it's genuinely needed.
 Standing policy (added 2026-08-09): Firecrawl usage sitewide is scoped
 exclusively to the tips/odds/leagues pipelines above. Any OTHER caller of
 scrape() — e.g. update_countries.py, which feeds countries_live.json for
-the homepage, all 23 country pages, and other non-tips/odds/leagues
+the homepage, all country pages, and other non-tips/odds/leagues
 surfaces — MUST pass allow_firecrawl=False so this module still gives it
 trafilatura + Jina Reader but never falls through to Firecrawl.
 """

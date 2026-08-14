@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate city-level betting pages for all 23 African countries.
+"""Generate city-level betting pages for the 23 established African countries.
 
 Scales from 8 cities to 200+ cities, targeting searches like:
 "betting sites in Kano Nigeria", "best bookmakers Kisumu Kenya", etc.
