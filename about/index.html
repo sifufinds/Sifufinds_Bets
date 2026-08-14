@@ -137,53 +137,133 @@
 <link rel="preload" href="../assets/shared.css?v=12" as="style">
 <link rel="stylesheet" href="../assets/shared.css?v=12">
 <style>
-.about-hero{background:linear-gradient(135deg,#0a3d1e 0%,#1a6b35 100%);color:#fff;padding:40px 0}
-.about-hero h1{font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:10px;letter-spacing:-.5px}
-.about-hero p{font-size:15px;color:rgba(255,255,255,.8);max-width:640px;line-height:1.7}
-.stat-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px}
-.stat-box{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:14px 20px;min-width:100px}
-.stat-n{font-size:28px;font-weight:900;color:#fff}
+/* ── HERO ─────────────────────────────────────────────────────────────── */
+.about-hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#0a3d1e 0%,#125a2c 48%,#1a6b35 100%);color:#fff;padding:52px 0 40px}
+.about-hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(circle at 88% 12%,rgba(212,175,55,.18) 0%,transparent 42%),
+  radial-gradient(circle at 6% 96%,rgba(255,255,255,.07) 0%,transparent 38%)}
+.hero-in{position:relative;z-index:1}
+.hero-kicker{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.about-hero h1{font-size:clamp(24px,4.2vw,40px);font-weight:900;margin-bottom:12px;letter-spacing:-.6px;line-height:1.12;max-width:680px}
+.hero-lead{font-size:15px;color:rgba(255,255,255,.82);max-width:620px;line-height:1.75;margin-bottom:18px}
+.trust-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.trust-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:6px 13px;font-size:11.5px;font-weight:700;color:#fff}
+.stat-row{display:flex;gap:14px;flex-wrap:wrap}
+.stat-box{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 18px;min-width:112px;transition:transform .18s ease,background .18s ease}
+.stat-box:hover{transform:translateY(-3px);background:rgba(255,255,255,.15)}
+.stat-ico{font-size:15px;margin-bottom:4px;opacity:.9}
+.stat-n{font-size:26px;font-weight:900;color:#fff;letter-spacing:-.3px}
 .stat-l{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
-.about-sec{margin-bottom:16px}
-.about-sec h2{font-size:18px;font-weight:800;color:#111;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
-.about-sec p{font-size:13.5px;color:#444;line-height:1.75;margin-bottom:10px}
+
+/* ── IN-PAGE NAV ──────────────────────────────────────────────────────── */
+.about-subnav{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid #e6e6e0;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.subnav-in{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.subnav-in::-webkit-scrollbar{display:none}
+.subnav-in a{flex:0 0 auto;padding:13px 15px;font-size:12.5px;font-weight:700;color:#555;border-bottom:3px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s}
+.subnav-in a:hover,.subnav-in a:focus-visible{color:#1a6b35;border-bottom-color:#c8e6c9}
+
+/* ── SECTION RHYTHM ───────────────────────────────────────────────────── */
+.ab-band{padding:34px 0}
+.ab-band.alt{background:#f5f8f4}
+.sec-kicker{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;color:#1a6b35;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:8px}
+.sec-kicker::before{content:'';width:20px;height:2px;background:var(--gold);flex:0 0 auto}
+.about-sec{margin-bottom:0}
+.about-sec h2{font-size:clamp(19px,2.6vw,25px);font-weight:900;color:#111;margin-bottom:12px;letter-spacing:-.3px}
+.about-sec p{font-size:13.5px;color:#444;line-height:1.8;margin-bottom:10px;max-width:760px}
 .about-sec ul{padding-left:18px;margin:0 0 10px}
-.about-sec li{font-size:13.5px;color:#444;line-height:1.75;margin-bottom:4px}
-.methodology-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px}
-.method-card{background:#fff;border:1px solid #e8e8e8;border-radius:10px;padding:16px}
-.method-num{display:inline-block;background:var(--g);color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.method-card h3{font-size:13.5px;font-weight:800;color:#111;margin-bottom:5px}
-.method-card p{font-size:12px;color:#666;line-height:1.65;margin:0}
-.regulator-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:12px}
-.reg-card{background:#fff;border:1px solid #e8e8e8;border-radius:9px;padding:12px}
-.reg-card strong{font-size:13px;color:#1a6b35;display:block;margin-bottom:3px}
-.reg-card span{font-size:11.5px;color:#666}
-.editorial-note{background:#fffbf0;border:1px solid #f0e0a0;border-radius:9px;padding:14px 16px;font-size:13px;color:#555;line-height:1.7;margin-bottom:12px}
+.about-sec li{font-size:13.5px;color:#444;line-height:1.8;margin-bottom:5px}
+.breadcrumb{font-size:12px;color:#aaa;margin:14px 0}
+.breadcrumb a{color:#1a6b35;text-decoration:none}
+.breadcrumb span{margin:0 5px;color:#ccc}
+
+/* ── EDITORIAL NOTE / PULL QUOTE ──────────────────────────────────────── */
+.editorial-note{background:#fffbf0;border:1px solid #f0e0a0;border-left:4px solid var(--gold);border-radius:9px;padding:14px 16px;font-size:13px;color:#555;line-height:1.7}
 .editorial-note strong{color:#333}
+.pull-quote{position:relative;margin:20px 0 4px;padding:4px 0 4px 22px;border-left:3px solid var(--g);max-width:640px}
+.pull-quote p{font-size:16px;font-style:italic;color:#1a3d26;line-height:1.6;margin:0 0 8px}
+.pull-quote cite{font-size:12px;font-weight:700;color:#1a6b35;font-style:normal}
+
+/* ── TEAM ─────────────────────────────────────────────────────────────── */
+.author-card{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;background:#fff;border:1px solid #e8e8e2;border-radius:14px;padding:22px;box-shadow:0 4px 18px rgba(10,61,30,.06);margin-top:16px}
+.author-avatar-wrap{flex:0 0 auto;padding:4px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--g));}
+.author-avatar{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#0a3d1e,#1a6b35);display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;font-weight:900;border:3px solid #fff}
+.author-info{flex:1;min-width:220px}
+.author-name{font-size:18px;font-weight:900;color:#111;margin-bottom:2px}
+.author-role{font-size:12px;color:#1a6b35;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.author-bio{font-size:13.5px;color:#444;line-height:1.8;margin-bottom:12px}
+.author-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.author-tag{background:#edf7f0;color:#1a6b35;font-size:11px;font-weight:700;padding:4px 11px;border-radius:12px}
+.author-links{display:flex;flex-wrap:wrap;gap:4px 16px}
+.author-links a{display:inline-flex;align-items:center;gap:5px;color:#1a6b35;font-size:12px;font-weight:700;text-decoration:none;transition:opacity .15s}
+.author-links a:hover,.author-links a:focus-visible{opacity:.7}
+.desk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+.desk-card{background:#fff;border:1px solid #e8e8e2;border-radius:12px;padding:16px;transition:transform .18s ease,box-shadow .18s ease}
+.desk-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(10,61,30,.08)}
+.desk-card strong{font-size:13.5px;font-weight:800;color:#111;display:block;margin-bottom:6px}
+.desk-card span{font-size:12.5px;color:#555;line-height:1.7}
+
+/* ── METHODOLOGY ──────────────────────────────────────────────────────── */
+.methodology-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px}
+.method-card{position:relative;background:#fff;border:1px solid #e8e8e2;border-radius:12px;padding:18px 16px 16px;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+.method-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g),var(--gold))}
+.method-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(10,61,30,.1)}
+.method-top{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.method-ico{font-size:19px}
+.method-num{display:inline-block;background:#edf7f0;color:#1a6b35;font-size:11px;font-weight:800;padding:2px 8px;border-radius:20px}
+.method-card h3{font-size:13.5px;font-weight:800;color:#111;margin-bottom:5px}
+.method-card p{font-size:12px;color:#666;line-height:1.7;margin:0}
+
+/* ── REGULATORS ───────────────────────────────────────────────────────── */
+.regulator-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:16px}
+.reg-card{display:flex;align-items:flex-start;gap:10px;background:#fff;border:1px solid #e8e8e2;border-radius:10px;padding:12px 13px;transition:transform .18s ease,box-shadow .18s ease}
+.reg-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(10,61,30,.08)}
+.reg-flag{font-size:17px;line-height:1;margin-top:1px}
+.reg-card strong{font-size:12.5px;color:#1a6b35;display:block;margin-bottom:2px}
+.reg-card span{font-size:11px;color:#666}
+
+/* ── COVERAGE ─────────────────────────────────────────────────────────── */
+.coverage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.cov-card{background:#fff;border:1px solid #e8e8e2;border-radius:12px;padding:15px 16px;transition:transform .18s ease,box-shadow .18s ease}
+.cov-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(10,61,30,.08)}
+.cov-card .cov-ico{font-size:18px;margin-bottom:6px;display:block}
+.cov-card strong{font-size:13px;color:#111;display:block;margin-bottom:4px}
+.cov-card span{font-size:12px;color:#666;line-height:1.65}
+
+/* ── RESPONSIBLE GAMBLING ─────────────────────────────────────────────── */
+.rg-list{list-style:none;padding:0;margin:12px 0}
+.rg-list li{display:flex;gap:9px;font-size:13.5px;color:#444;line-height:1.75;margin-bottom:7px}
+.rg-list li::before{content:'✓';color:var(--g);font-weight:900;flex:0 0 auto}
+.helpline{background:var(--dk);color:#fff;border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.8;margin-top:10px}
+.helpline strong{color:var(--gold)}
+
+/* ── CTA BANNER ───────────────────────────────────────────────────────── */
+.cta-banner{background:linear-gradient(120deg,#0a3d1e,#1a6b35);border-radius:16px;padding:28px 26px;color:#fff;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.cta-banner h3{font-size:18px;font-weight:900;margin-bottom:4px}
+.cta-banner p{font-size:13px;color:rgba(255,255,255,.78);margin:0;max-width:440px}
+.cta-btn{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#1a1a1a;font-size:13px;font-weight:800;padding:11px 22px;border-radius:8px;text-decoration:none;white-space:nowrap;transition:transform .15s ease,box-shadow .15s ease}
+.cta-btn:hover,.cta-btn:focus-visible{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.25)}
+
+/* ── CONTACT ──────────────────────────────────────────────────────────── */
 .contact-box{background:#edf7f0;border:1px solid #c8e6c9;border-radius:10px;padding:16px}
 .contact-box h3{font-size:14px;font-weight:800;color:#1a6b35;margin-bottom:8px}
 .contact-box p{font-size:13px;color:#444;line-height:1.65;margin:0}
 .contact-box a{color:#1a6b35;font-weight:700}
-.author-card{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
-.author-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#0a3d1e,#1a6b35);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;font-weight:900}
-.author-info{flex:1;min-width:200px}
-.author-name{font-size:17px;font-weight:900;color:#111;margin-bottom:2px}
-.author-role{font-size:12px;color:#1a6b35;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
-.author-bio{font-size:13.5px;color:#444;line-height:1.75;margin-bottom:10px}
-.author-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.author-tag{background:#edf7f0;color:#1a6b35;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px}
-.author-links a{display:inline-flex;align-items:center;gap:5px;color:#1a6b35;font-size:12px;font-weight:700;text-decoration:none;margin-right:14px}
-.desk-card{background:#fff;border:1px solid #e8e8e8;border-radius:10px;padding:14px 16px;margin-top:10px}
-.desk-card strong{font-size:13.5px;font-weight:800;color:#111;display:block;margin-bottom:4px}
-.desk-card span{font-size:12.5px;color:#555;line-height:1.65}
-.breadcrumb{font-size:12px;color:#aaa;margin-bottom:14px;padding:8px 0}
-.breadcrumb a{color:#1a6b35;text-decoration:none}
-.breadcrumb span{margin:0 5px;color:#ccc}
-.footer-bar{background:#0a3d1e;color:rgba(255,255,255,.55);text-align:center;padding:18px;font-size:12px;line-height:1.8;margin-top:20px}
+
+.footer-bar{background:#0a3d1e;color:rgba(255,255,255,.55);text-align:center;padding:18px;font-size:12px;line-height:1.8;margin-top:0}
 .footer-bar a{color:rgba(255,255,255,.7);text-decoration:none}
 
+@media(max-width:640px){
+  .about-hero{padding:38px 0 30px}
+  .ab-band{padding:26px 0}
+  .author-card{padding:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  .stat-box,.desk-card,.method-card,.reg-card,.cov-card,.cta-btn{transition:none}
+  .stat-box:hover,.desk-card:hover,.method-card:hover,.reg-card:hover,.cov-card:hover,.cta-btn:hover{transform:none}
+}
+
 /* CWV: content-visibility for below-fold sections */
-.sec-bg~.sec-bg,.cbox2,.footer-bar,[class*="section"]:not(:first-of-type){
+.ab-band:not(:first-of-type),.footer-bar{
   content-visibility:auto;
   contain-intrinsic-size:0 500px;
 }
@@ -255,44 +335,75 @@
 
 <!-- ABOUT HERO -->
 <div class="about-hero">
-  <div class="wrap">
-    <h1>About SifuFinds</h1>
-    <p>Africa's #1 independent betting comparison platform — verified bonuses, licensed bookmaker reviews, and daily betting tips across 23 African countries. Founded in 2024 with one mission: help African bettors find the safest, most rewarding betting sites in their country.</p>
+  <div class="wrap hero-in">
+    <div class="hero-kicker">✦ Independent since 2024</div>
+    <h1>Built by African bettors, for African bettors.</h1>
+    <p class="hero-lead">SifuFinds is Africa's #1 independent betting comparison platform — verified bonuses, licensed bookmaker reviews, and daily betting tips across 23 African countries. One mission: help you find the safest, most rewarding betting sites in your country.</p>
+    <div class="trust-row">
+      <span class="trust-chip">🔒 Editorially independent</span>
+      <span class="trust-chip">✅ Licensed operators only</span>
+      <span class="trust-chip">🌍 23 African countries</span>
+    </div>
     <div class="stat-row">
-      <div class="stat-box"><div class="stat-n">23</div><div class="stat-l">African countries</div></div>
-      <div class="stat-box"><div class="stat-n">80+</div><div class="stat-l">bookmakers reviewed</div></div>
-      <div class="stat-box"><div class="stat-n">Daily</div><div class="stat-l">bonus updates</div></div>
-      <div class="stat-box"><div class="stat-n">100%</div><div class="stat-l">independent</div></div>
+      <div class="stat-box"><div class="stat-ico">🌍</div><div class="stat-n">23</div><div class="stat-l">African countries</div></div>
+      <div class="stat-box"><div class="stat-ico">🏢</div><div class="stat-n">80+</div><div class="stat-l">bookmakers reviewed</div></div>
+      <div class="stat-box"><div class="stat-ico">🔄</div><div class="stat-n">Daily</div><div class="stat-l">bonus updates</div></div>
+      <div class="stat-box"><div class="stat-ico">🛡️</div><div class="stat-n">100%</div><div class="stat-l">independent</div></div>
     </div>
   </div>
 </div>
 
+<!-- IN-PAGE NAV -->
+<nav class="about-subnav" aria-label="On this page">
+  <div class="wrap subnav-in">
+    <a href="#story">Our Story</a>
+    <a href="#team">Team</a>
+    <a href="#method">Methodology</a>
+    <a href="#regulators">Regulators</a>
+    <a href="#coverage">Coverage</a>
+    <a href="#responsible">Responsible Gambling</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
 <!-- MAIN CONTENT -->
-<div class="sec-bg"><div class="wrap" style="padding-top:16px">
-  <div class="breadcrumb">
-    <a href="../">Home</a><span>›</span>About SifuFinds
-  </div>
+<section class="ab-band">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="../">Home</a><span>›</span>About SifuFinds
+    </div>
 
-  <!-- Editorial Independence -->
-  <div class="editorial-note">
-    📢 <strong>Editorial Independence:</strong> SifuFinds editorial content is produced independently of commercial relationships. We receive affiliate commissions from some bookmakers listed on this site. This never influences our ratings, rankings, or editorial content — we will always tell you the truth about a bookmaker's weaknesses even if we have a commercial relationship with them.
+    <!-- Editorial Independence -->
+    <div class="editorial-note">
+      📢 <strong>Editorial Independence:</strong> SifuFinds editorial content is produced independently of commercial relationships. We receive affiliate commissions from some bookmakers listed on this site. This never influences our ratings, rankings, or editorial content — we will always tell you the truth about a bookmaker's weaknesses even if we have a commercial relationship with them.
+    </div>
   </div>
+</section>
 
-  <!-- What We Do -->
-  <div class="cbox2 about-sec">
+<!-- What We Do -->
+<section class="ab-band" id="story">
+  <div class="wrap about-sec">
+    <div class="sec-kicker">Our Story</div>
     <h2>What Is SifuFinds?</h2>
     <p>SifuFinds is an <strong>independent online comparison platform</strong> for sports betting and casino products across Africa. We research, test, and compare bookmakers so that African bettors can make informed decisions about where to place their bets and claim bonuses.</p>
     <p>We cover <strong>23 African countries</strong> — Nigeria, Kenya, South Africa, Ghana, Tanzania, Uganda, Zambia, Ethiopia, Ivory Coast, Cameroon, Senegal, Rwanda, Zimbabwe, Malawi, Mozambique, Angola, DR Congo, Botswana, Namibia, Egypt, Morocco, Sierra Leone, and Liberia.</p>
     <p>Every bookmaker listed on SifuFinds must hold a valid operating licence from the relevant national gambling authority. We do not list unlicensed or grey-market operators.</p>
+    <div class="pull-quote">
+      <p>"I started SifuFinds because every comparison site I found was built for European bettors and lazily reskinned for Africa. Nobody was checking whether OPay actually worked at checkout, or whether the 'welcome bonus' survived contact with real wagering requirements."</p>
+      <cite>— Sifu Kai, Founder &amp; Editor-in-Chief</cite>
+    </div>
   </div>
+</section>
 
-  <!-- Editorial Team -->
-  <div class="cbox2 about-sec" id="team">
+<!-- Editorial Team -->
+<section class="ab-band alt" id="team">
+  <div class="wrap about-sec">
+    <div class="sec-kicker">Our People</div>
     <h2>Meet the SifuFinds Editorial Team</h2>
     <p>Every article, review, and tip on SifuFinds is produced by our editorial team — experienced bettors and analysts who cover African sports betting markets full-time. Here's who's behind the content you read.</p>
 
-    <div class="author-card" style="margin-top:14px">
-      <div class="author-avatar">SK</div>
+    <div class="author-card">
+      <div class="author-avatar-wrap"><div class="author-avatar">SK</div></div>
       <div class="author-info">
         <div class="author-name">Sifu Kai</div>
         <div class="author-role">Lead Betting Analyst &amp; Editor-in-Chief</div>
@@ -313,115 +424,145 @@
       </div>
     </div>
 
-    <div class="desk-card">
-      <strong>Sports News Desk</strong>
-      <span>Our sports news desk covers breaking African football, transfer news, and tournament previews — with a focus on stories that directly affect betting markets. Contributors span Nigeria, Kenya, South Africa, and Senegal. All news content is fact-checked against at least two primary sources before publication.</span>
-    </div>
+    <div class="desk-grid">
+      <div class="desk-card">
+        <strong>⚽ Sports News Desk</strong>
+        <span>Our sports news desk covers breaking African football, transfer news, and tournament previews — with a focus on stories that directly affect betting markets. Contributors span Nigeria, Kenya, South Africa, and Senegal. All news content is fact-checked against at least two primary sources before publication.</span>
+      </div>
 
-    <div class="desk-card">
-      <strong>Rugby &amp; Cricket Desk</strong>
-      <span>Specialist coverage of Super Rugby, the URC, and international cricket from an African betting perspective — focused on South African bettors using Hollywoodbets and Betway. Markets covered include match result, top try scorer, and tournament winner futures.</span>
-    </div>
+      <div class="desk-card">
+        <strong>🏉 Rugby &amp; Cricket Desk</strong>
+        <span>Specialist coverage of Super Rugby, the URC, and international cricket from an African betting perspective — focused on South African bettors using Hollywoodbets and Betway. Markets covered include match result, top try scorer, and tournament winner futures.</span>
+      </div>
 
-    <div class="desk-card">
-      <strong>Our Editorial Policy</strong>
-      <span>All content on SifuFinds is produced editorially independent of our commercial relationships. Bookmakers cannot pay for higher ratings, better placement, or more favourable reviews. We report weaknesses (withdrawal delays, bonus restrictions, poor odds) even for bookmakers we have affiliate relationships with. Our editorial email is <a href="mailto:editor@sifufinds.com" style="color:#1a6b35;font-weight:700">editor@sifufinds.com</a>.</span>
+      <div class="desk-card">
+        <strong>🧭 Our Editorial Policy</strong>
+        <span>All content on SifuFinds is produced editorially independent of our commercial relationships. Bookmakers cannot pay for higher ratings, better placement, or more favourable reviews. We report weaknesses even for bookmakers we have affiliate relationships with. Editorial email: <a href="mailto:editor@sifufinds.com" style="color:#1a6b35;font-weight:700">editor@sifufinds.com</a>.</span>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- How We Review -->
-  <div class="cbox2 about-sec">
+<!-- How We Review -->
+<section class="ab-band" id="method">
+  <div class="wrap about-sec">
+    <div class="sec-kicker">Methodology</div>
     <h2>How We Review and Rate Bookmakers</h2>
     <p>Our editorial team evaluates every bookmaker across six dimensions before it appears on SifuFinds. No bookmaker can pay for a higher rating — all scores reflect our independent assessment.</p>
     <div class="methodology-steps">
       <div class="method-card">
-        <div class="method-num">1</div>
+        <div class="method-top"><span class="method-ico">🛡️</span><span class="method-num">Step 1</span></div>
         <h3>Licence Verification</h3>
         <p>We confirm the operator holds a valid licence from the relevant national regulator before listing. Unlicensed operators are never listed.</p>
       </div>
       <div class="method-card">
-        <div class="method-num">2</div>
+        <div class="method-top"><span class="method-ico">💰</span><span class="method-num">Step 2</span></div>
         <h3>Bonus Accuracy</h3>
         <p>We verify every bonus claim directly with the operator. Bonus amounts, wagering requirements, and expiry dates are checked and updated daily.</p>
       </div>
       <div class="method-card">
-        <div class="method-num">3</div>
+        <div class="method-top"><span class="method-ico">💳</span><span class="method-num">Step 3</span></div>
         <h3>Payment Methods</h3>
         <p>We confirm which local mobile money and banking options are accepted. We test deposit and withdrawal processes for each operator.</p>
       </div>
       <div class="method-card">
-        <div class="method-num">4</div>
-        <h3>Mobile & App Quality</h3>
+        <div class="method-top"><span class="method-ico">📱</span><span class="method-num">Step 4</span></div>
+        <h3>Mobile &amp; App Quality</h3>
         <p>We test the mobile experience on Android and iOS, including load speed, usability, and in-play betting functionality.</p>
       </div>
       <div class="method-card">
-        <div class="method-num">5</div>
+        <div class="method-top"><span class="method-ico">💬</span><span class="method-num">Step 5</span></div>
         <h3>Customer Support</h3>
         <p>We assess response times and quality via live chat, WhatsApp, and phone where available. All in local business hours.</p>
       </div>
       <div class="method-card">
-        <div class="method-num">6</div>
+        <div class="method-top"><span class="method-ico">🏆</span><span class="method-num">Step 6</span></div>
         <h3>Market Coverage</h3>
         <p>We count available sports and markets, with particular attention to African leagues: NPFL, KPL, Ghana Premier League, PSL, and CAF competitions.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Regulatory Framework -->
-  <div class="cbox2 about-sec">
+<!-- Regulatory Framework -->
+<section class="ab-band alt" id="regulators">
+  <div class="wrap about-sec">
+    <div class="sec-kicker">Regulation</div>
     <h2>Regulatory Authorities We Recognise</h2>
     <p>SifuFinds only lists bookmakers licensed by these national gambling regulators. We link to each authority so bettors can independently verify operator licences.</p>
     <div class="regulator-grid">
-      <div class="reg-card"><strong>NLRC — Nigeria</strong><span>National Lottery Regulatory Commission</span></div>
-      <div class="reg-card"><strong>BCLB — Kenya</strong><span>Betting Control and Licensing Board</span></div>
-      <div class="reg-card"><strong>WCGRB/NGB — South Africa</strong><span>Provincial Gambling Boards</span></div>
-      <div class="reg-card"><strong>GCA — Ghana</strong><span>Gaming Commission of Ghana</span></div>
-      <div class="reg-card"><strong>GBT — Tanzania</strong><span>Gaming Board of Tanzania</span></div>
-      <div class="reg-card"><strong>UNCS — Uganda</strong><span>Uganda National Council for Sports</span></div>
-      <div class="reg-card"><strong>GLB — Zambia</strong><span>Gaming and Lotteries Board</span></div>
-      <div class="reg-card"><strong>RGC — Rwanda</strong><span>Rwanda Gaming Commission</span></div>
-      <div class="reg-card"><strong>GAB — Botswana</strong><span>Gambling Authority of Botswana</span></div>
-      <div class="reg-card"><strong>GBN — Namibia</strong><span>Gambling Board of Namibia</span></div>
-      <div class="reg-card"><strong>ARJEL CI — Ivory Coast</strong><span>Autorité de Régulation des Jeux en Ligne</span></div>
-      <div class="reg-card"><strong>NLA — Ethiopia</strong><span>National Lottery Administration</span></div>
+      <div class="reg-card"><span class="reg-flag">🇳🇬</span><div><strong>NLRC — Nigeria</strong><span>National Lottery Regulatory Commission</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇰🇪</span><div><strong>BCLB — Kenya</strong><span>Betting Control and Licensing Board</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇿🇦</span><div><strong>WCGRB/NGB — South Africa</strong><span>Provincial Gambling Boards</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇬🇭</span><div><strong>GCA — Ghana</strong><span>Gaming Commission of Ghana</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇹🇿</span><div><strong>GBT — Tanzania</strong><span>Gaming Board of Tanzania</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇺🇬</span><div><strong>UNCS — Uganda</strong><span>Uganda National Council for Sports</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇿🇲</span><div><strong>GLB — Zambia</strong><span>Gaming and Lotteries Board</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇷🇼</span><div><strong>RGC — Rwanda</strong><span>Rwanda Gaming Commission</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇧🇼</span><div><strong>GAB — Botswana</strong><span>Gambling Authority of Botswana</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇳🇦</span><div><strong>GBN — Namibia</strong><span>Gambling Board of Namibia</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇨🇮</span><div><strong>ARJEL CI — Ivory Coast</strong><span>Autorité de Régulation des Jeux en Ligne</span></div></div>
+      <div class="reg-card"><span class="reg-flag">🇪🇹</span><div><strong>NLA — Ethiopia</strong><span>National Lottery Administration</span></div></div>
     </div>
   </div>
+</section>
 
-  <!-- Our Coverage -->
-  <div class="cbox2 about-sec">
+<!-- Our Coverage -->
+<section class="ab-band" id="coverage">
+  <div class="wrap about-sec">
+    <div class="sec-kicker">Coverage</div>
     <h2>What SifuFinds Covers</h2>
-    <ul>
-      <li><strong>Betting Bonuses</strong> — Welcome bonuses, no-deposit offers, free bets, cashback, and reload bonuses across all 23 markets</li>
-      <li><strong>Bookmaker Reviews</strong> — In-depth ratings of licensed operators including Bet9ja, Sportpesa, Hollywoodbets, 1xBet, Betway, Sportybet, Melbet, and more</li>
-      <li><strong>Free Betting Tips</strong> — Daily predictions for AFCON, CAF Champions League, NPFL, KPL, Ghana Premier League, DStv Premiership, and EPL</li>
-      <li><strong>Live Odds</strong> — Real-time odds comparison across major African and international competitions</li>
-      <li><strong>Casino Promotions</strong> — Online casino bonuses, no-deposit casino offers, and live casino promotions from licensed operators</li>
-      <li><strong>Payment Methods</strong> — M-Pesa, MTN MoMo, OPay, PalmPay, Airtel Money, EcoCash, and 40+ other African payment options</li>
-    </ul>
+    <div class="coverage-grid">
+      <div class="cov-card"><span class="cov-ico">🎁</span><strong>Betting Bonuses</strong><span>Welcome bonuses, no-deposit offers, free bets, cashback, and reload bonuses across all 23 markets.</span></div>
+      <div class="cov-card"><span class="cov-ico">⭐</span><strong>Bookmaker Reviews</strong><span>In-depth ratings of licensed operators including Bet9ja, Sportpesa, Hollywoodbets, 1xBet, Betway, Sportybet, Melbet, and more.</span></div>
+      <div class="cov-card"><span class="cov-ico">💡</span><strong>Free Betting Tips</strong><span>Daily predictions for AFCON, CAF Champions League, NPFL, KPL, Ghana Premier League, DStv Premiership, and EPL.</span></div>
+      <div class="cov-card"><span class="cov-ico">📊</span><strong>Live Odds</strong><span>Real-time odds comparison across major African and international competitions.</span></div>
+      <div class="cov-card"><span class="cov-ico">🎰</span><strong>Casino Promotions</strong><span>Online casino bonuses, no-deposit casino offers, and live casino promotions from licensed operators.</span></div>
+      <div class="cov-card"><span class="cov-ico">💳</span><strong>Payment Methods</strong><span>M-Pesa, MTN MoMo, OPay, PalmPay, Airtel Money, EcoCash, and 40+ other African payment options.</span></div>
+    </div>
   </div>
+</section>
 
-  <!-- Responsible Gambling -->
-  <div class="cbox2 about-sec">
+<!-- Responsible Gambling -->
+<section class="ab-band alt" id="responsible">
+  <div class="wrap about-sec">
+    <div class="sec-kicker">Player Safety</div>
     <h2>Responsible Gambling Commitment</h2>
     <p>SifuFinds is committed to promoting safe and responsible gambling across Africa. We:</p>
-    <ul>
+    <ul class="rg-list">
       <li>Only list bookmakers that offer deposit limits, self-exclusion, and responsible gambling tools</li>
       <li>Display the 18+ warning on every page</li>
       <li>Link to GamCare, BeGambleAware, and NCPG Africa on every page</li>
       <li>Do not target advertising at minors or vulnerable individuals</li>
-      <li>Include T&Cs and wagering requirement information on every bonus listing</li>
+      <li>Include T&amp;Cs and wagering requirement information on every bonus listing</li>
     </ul>
-    <p>If gambling is affecting you or someone you know, contact <strong>GamCare</strong> (+44 808 8020 133) or <strong>BeGambleAware</strong> (begambleaware.org) for free, confidential support.</p>
+    <div class="helpline">If gambling is affecting you or someone you know, contact <strong>GamCare</strong> (+44 808 8020 133) or <strong>BeGambleAware</strong> (begambleaware.org) for free, confidential support.</div>
   </div>
+</section>
 
-  <!-- Contact -->
-  <div class="contact-box">
-    <h3>Contact SifuFinds</h3>
-    <p>For editorial queries, partnership enquiries, or to report a bonus inaccuracy, contact our team at <a href="mailto:editor@sifufinds.com">editor@sifufinds.com</a>. We review and update all bonus information within 24 hours of notification.</p>
-    <p style="margin-top:8px">Follow us on Telegram: <a href="https://t.me/sifufinds" target="_blank" rel="noopener">t.me/sifufinds</a></p>
+<!-- CTA -->
+<section class="ab-band">
+  <div class="wrap">
+    <div class="cta-banner">
+      <div>
+        <h3>Spotted a bonus that's out of date?</h3>
+        <p>We update every listing within 24 hours of notification. Tell us and we'll fix it — no account needed.</p>
+      </div>
+      <a class="cta-btn" href="mailto:editor@sifufinds.com">✉️ Report an Inaccuracy</a>
+    </div>
   </div>
+</section>
 
-</div></div>
+<!-- Contact -->
+<section class="ab-band alt" id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h3>Contact SifuFinds</h3>
+      <p>For editorial queries, partnership enquiries, or to report a bonus inaccuracy, contact our team at <a href="mailto:editor@sifufinds.com">editor@sifufinds.com</a>. We review and update all bonus information within 24 hours of notification.</p>
+      <p style="margin-top:8px">Follow us on Telegram: <a href="https://t.me/sifufinds" target="_blank" rel="noopener">t.me/sifufinds</a></p>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <div class="footer-bar">
