@@ -142,7 +142,7 @@ def sync(dry_run: bool = False) -> tuple[int, int]:
     return added, updated
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument(
