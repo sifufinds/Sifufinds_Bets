@@ -9,6 +9,9 @@ searches like "Betway Nigeria review 2026", "SportPesa Kenya bonus", etc.
 import json
 import os
 from seo_meta import seo_meta_description
+from site_stats import total_country_count
+
+TOTAL_COUNTRIES = total_country_count()
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -111,7 +114,7 @@ BOOKMAKERS = [
         'pros': [
             '50+ sports and 1,000+ betting markets per event',
             'Highest welcome bonus in Africa',
-            'Available in most of SifuFinds\' 33 African countries',
+            f'Available in most of SifuFinds\' {TOTAL_COUNTRIES} African countries',
             'Excellent live betting platform',
             'Accepts all major mobile money providers',
         ],
@@ -692,7 +695,7 @@ def build_page(bk, country_slug, country, combo):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{assets}assets/shared.js?v=24"></script>
+<script src="{assets}assets/shared.js?v=26"></script>
 <script>
 const SITE={{home:'{assets}',tips:'{assets}tips/',casino:'{assets}casino/',odds:'{assets}odds/',countries:'{assets}countries/'}};
 const _BK_CTY='{code}';
