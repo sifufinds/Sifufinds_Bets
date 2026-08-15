@@ -1,18 +1,30 @@
 {
   "date": "2026-08-15",
-  "total": 2,
+  "total": 4,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 1,
-    "MEDIUM": 0,
+    "MEDIUM": 2,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bruno-guimaraes-stalls-arsenal-move-newcastle-hold-firm-betting-odds",
-      "detail": "Excerpt 157 chars (max 155)"
+      "page": "celtic-kasper-hogh-record-deal-real-madrid-vinicius-jr-betting",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "bruno-guimaraes-arsenal-transfer-saga-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'arsenal-bruno-guimaraes-transfer-saga-2026' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "rodri-block-chelsea-welbeck-transfer-betting",
+      "detail": "High title overlap (5 meaningful tokens) with 'transfer-update-rodri-welbeck-african-bettors' \u2014 consider noindex"
     },
     {
       "severity": "INFO",
