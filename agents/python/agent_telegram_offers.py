@@ -1,6 +1,6 @@
 """
 Telegram Brand Offers Agent — SifuFinds
-Posts one brand offer per run to @sifufinds, rotating through all 24 bookmakers.
+Posts one brand offer per run to @sifufinds, rotating through all 27 bookmakers.
 Uses the existing Bot Token (no Telethon needed for own channel).
 
 Also posts a Facebook Page photo post for the same brand (image generated
@@ -195,6 +195,28 @@ BRANDS = [
         "licence": "NLRC + BCLB + Curaçao Licensed",
         "tag": "150+ Sports — Widest Market Range",
         "hashtags": "#Melbet #Africa #200Bonus #SportsBetting #Esports",
+    },
+    # "Mebet" is a second, separately-tracked affiliate ID for this same Melbet
+    # platform (its masked link 301s to melbet.org's own registration page —
+    # confirmed by resolving the redirect, same brand/logo/bonus as above), not
+    # a distinct operator. Facts intentionally mirror the Melbet entry above
+    # since they describe the same real platform; only the tracked url/tag/
+    # hashtags differ.
+    {
+        "name": "Mebet",
+        "flag": "🌍",
+        "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania", "Ethiopia"],
+        "welcome": "200% First Deposit Bonus – Up to ₦480,000",
+        "bonus_highlight": "150+ sports markets — most in Africa",
+        "url": "https://refpa3665.com/L?tag=d_5833716m_66335c_sifufinds&site=5833716&ad=66335",
+        "affiliate": True,
+        "min_deposit": "₦100",
+        "stars": 4,
+        "instant_withdrawal": False,
+        "cashout": False,
+        "licence": "NLRC + BCLB + Curaçao Licensed",
+        "tag": "150+ Sports — Widest Market Range",
+        "hashtags": "#Mebet #Africa #200Bonus #SportsBetting #Esports",
     },
     {
         "name": "MozzartBet",
