@@ -1,18 +1,54 @@
 {
-  "date": "2026-08-14",
-  "total": 1,
+  "date": "2026-08-15",
+  "total": 7,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 0,
+    "HIGH": 5,
+    "MEDIUM": 1,
     "INFO": 1
   },
   "issues": [
     {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "summer-2026-transfer-saga-man-united-city-chelsea-stones",
+      "detail": "Title 61 chars (max 60): \"Man City's Stones Completes Inter Move as Rodri Saga Rolls On\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "john-stones-inter-rodri-rumours-african-betting-odds",
+      "detail": "Title 61 chars (max 60): \"John Stones Joins Inter as Rodri's Real Madrid Saga Continues\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "spurs-souza-inter-romero-diomande-transfer-saga",
+      "detail": "Title 66 chars (max 60): \"Romero Completes Atletico Move as Tottenham's Souza Deal Confirmed\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "africa-transfer-news-mbappe-rodris-new-deal",
+      "detail": "Title 70 chars (max 60): \"Correcting the Record: Mbappe's World Cup Exit, Rodri's Real Situation\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "real-madrid-transfer-news",
+      "detail": "Title 66 chars (max 60): 'Real Madrid Transfer News: Vinicius Stays, Rodri Pursuit Continues'"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "bruno-guimaraes-stalls-arsenal-move-newcastle-hold-firm-betting-odds",
+      "detail": "High title overlap (5 meaningful tokens) with 'breaking-transfer-news-african-betting-markets' \u2014 consider noindex"
+    },
+    {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "75 posts",
-      "detail": "75 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "74 posts",
+      "detail": "74 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
