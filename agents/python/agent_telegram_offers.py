@@ -1,6 +1,6 @@
 """
 Telegram Brand Offers Agent — SifuFinds
-Posts one brand offer per run to @sifufinds, rotating through all 19 bookmakers.
+Posts one brand offer per run to @sifufinds, rotating through all 24 bookmakers.
 Uses the existing Bot Token (no Telethon needed for own channel).
 
 Also posts a Facebook Page photo post for the same brand (image generated
@@ -355,6 +355,140 @@ BRANDS = [
         "licence": "NLRC + BCLB + Curaçao Licensed",
         "tag": "200% Bonus — 50+ Sports, Rising Fast in Africa",
         "hashtags": "#Paripesa #200Bonus #Africa #LiveBetting #SportsBetting",
+    },
+    # Facts below mirror the same brand's existing verified BOOKS entry in
+    # assets/shared.js (already live on the relevant country pages) rather
+    # than being re-researched from scratch — see that file for the source.
+    {
+        "name": "Rasbet",
+        "flag": "🇪🇹",
+        "countries": ["Ethiopia"],
+        "welcome": "Welcome Bonus on First Deposit",
+        "bonus_highlight": "Rising sportsbook built for the Ethiopian market",
+        "url": "https://rasbet.goaffnk.com/t/MTRfMQ==/",
+        "affiliate": True,
+        "min_deposit": "Br 50",
+        "stars": 3,
+        "instant_withdrawal": True,
+        "cashout": True,
+        "licence": "Licensed",
+        "tag": "Rising Sportsbook for the Ethiopian Market",
+        "hashtags": "#Rasbet #Ethiopia #SportsBetting #FreeBet #AfricanBetting",
+    },
+    {
+        "name": "TicTacBets",
+        "flag": "🇿🇦",
+        "countries": ["South Africa"],
+        "welcome": "25 Free Spins + 100% Match Up to R5,000 + 50 Spins",
+        "bonus_highlight": "25 free spins on registration, no deposit needed",
+        "url": "https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023",
+        "affiliate": True,
+        "min_deposit": "R5",
+        "stars": 4,
+        "instant_withdrawal": True,
+        "cashout": True,
+        "licence": "NCGLB Licensed",
+        "tag": "SA-Owned Since 2015 — 25 Free Spins No Deposit",
+        "hashtags": "#TicTacBets #SouthAfrica #FreeSpins #NoDeposit #SportsBetting",
+    },
+    {
+        "name": "BetXchange",
+        "flag": "🇿🇦",
+        "countries": ["South Africa"],
+        "welcome": "R200 Free Bet on First Deposit",
+        "bonus_highlight": "Betting exchange with competitive odds",
+        "url": "https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226",
+        "affiliate": True,
+        "min_deposit": "R10",
+        "stars": 4,
+        "instant_withdrawal": True,
+        "cashout": True,
+        "licence": "WCGRB Licensed",
+        "tag": "SA Betting Exchange — Competitive Odds",
+        "hashtags": "#BetXchange #SouthAfrica #FreeBet #SportsBetting #AfricanBetting",
+    },
+    {
+        "name": "Bettabets",
+        "flag": "🇿🇦",
+        "countries": ["South Africa"],
+        "welcome": "R200 Free Bet on First Deposit",
+        "bonus_highlight": "Local South African brand focused on PSL and cricket",
+        "url": "https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777",
+        "affiliate": True,
+        "min_deposit": "R10",
+        "stars": 3,
+        "instant_withdrawal": True,
+        "cashout": True,
+        "licence": "NGB Licensed",
+        "tag": "SA Local Brand — PSL & Cricket",
+        "hashtags": "#Bettabets #SouthAfrica #FreeBet #PSL #SportsBetting",
+    },
+    {
+        "name": "Playbet",
+        "flag": "🇿🇦",
+        "countries": ["South Africa"],
+        "welcome": "100% Deposit Bonus – Up to R2,000",
+        "bonus_highlight": "Sports and casino in one platform",
+        "url": "https://trk.playbet.net/o/5tgJzp?site_id=284",
+        "affiliate": True,
+        "min_deposit": "R10",
+        "stars": 3,
+        "instant_withdrawal": True,
+        "cashout": True,
+        "licence": "WCGRB Licensed",
+        "tag": "SA Bookmaker — Sports & Casino",
+        "hashtags": "#Playbet #SouthAfrica #DepositBonus #SportsBetting #AfricanBetting",
+    },
+    {
+        # Real per-country data mirrored from assets/shared.js's BOOKS entries
+        # (added 2026-08-14 — see AGENT-KNOWLEDGE.md's "Linebet added to BOOKS"
+        # entry for the research/verification trail). Welcome figure uses the
+        # Nigeria entry, the one with the highest verified bonus amount, same
+        # convention every other multi-country brand in this list follows.
+        "name": "Linebet",
+        "flag": "🌍",
+        "countries": [
+            "Nigeria", "Kenya", "Ghana", "South Africa", "Tanzania", "Uganda",
+            "Zambia", "Ethiopia", "Ivory Coast", "Cameroon", "Senegal", "Rwanda",
+            "Zimbabwe", "Malawi", "Mozambique", "Angola", "DR Congo", "Botswana",
+            "Egypt", "Morocco", "Namibia", "Sierra Leone", "Liberia",
+        ],
+        "welcome": "100% First Deposit Bonus – Up to ₦180,000",
+        "bonus_highlight": "100% match on first deposit, wager x5 accumulators at min odds 1.40",
+        "url": "https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611",
+        "affiliate": True,
+        "min_deposit": "₦100",
+        "stars": 4,
+        "instant_withdrawal": True,
+        "cashout": True,
+        "licence": "Curaçao Licensed",
+        "tag": "International Brand – 1,000+ Daily Events",
+        "hashtags": "#Linebet #Africa #Curacao #SportsBetting #AfricanBetting",
+    },
+    {
+        # Real per-country data mirrored from assets/shared.js's BOOKS entries.
+        # No Nigeria/Kenya presence found there, unlike most other multi-country
+        # brands in this list — min_deposit varies by market since the bonus
+        # itself is denominated in EUR uniformly rather than local currency.
+        "name": "FairPari",
+        "flag": "🌍",
+        "countries": [
+            "Ghana", "South Africa", "Tanzania", "Uganda", "Zambia", "Ethiopia",
+            "Ivory Coast", "Cameroon", "Senegal", "Rwanda", "Zimbabwe", "Malawi",
+            "Mozambique", "Angola", "DR Congo", "Botswana", "Egypt", "Morocco",
+            "Namibia", "Sierra Leone", "Liberia",
+        ],
+        "welcome": "100% First Deposit Bonus – Up to €100",
+        "bonus_highlight": "63+ sports, 4,000+ casino games, wide payment options",
+        "url": "https://fairpaff.top/L?tag=d_5941712m_72465c_&site=5941712&ad=72465&r=registration",
+        "affiliate": True,
+        "min_deposit": "Varies by country",
+        "stars": 4,
+        "instant_withdrawal": True,
+        "cashout": True,
+        "licence": "Locally licensed per market",
+        "tag": "63+ Sports – 4,000+ Casino Games",
+        "hashtags": "#FairPari #Africa #SportsBetting #AfricanBetting #CasinoGames",
     },
 ]
 
