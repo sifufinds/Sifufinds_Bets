@@ -70,6 +70,7 @@ PRED_JSON = REPO_ROOT / "data" / "predictions.json"
 TIPS_JSON = REPO_ROOT / "data" / "tips.json"
 LIVE_JSON = REPO_ROOT / "data" / "live.json"
 STATE_FILE = Path(__file__).parent / "match_post_state.json"
+CTA_ROTATION_STATE_FILE = Path(__file__).parent / "cta_rotation_state.json"
 
 _BRAND_BY_NAME = {b["name"].lower(): b for b in BRANDS}
 
@@ -391,9 +392,33 @@ def format_extra_lines(m: dict) -> list[str]:
     return lines[:2]
 
 
+def _load_cta_rotation_state() -> dict:
+    if CTA_ROTATION_STATE_FILE.exists():
+        try:
+            return json.loads(CTA_ROTATION_STATE_FILE.read_text())
+        except Exception:
+            pass
+    return {"last_index": -1}
+
+
 def pick_cta_brand() -> dict:
-    """Highest-rated brand with a real affiliate link — the only ones we push CTAs to."""
-    return max(AFFILIATE_BRANDS, key=lambda b: b["stars"])
+    """Round-robins through every brand with a real affiliate link — the only
+    ones we push CTAs to — so accumulator, match-tip, and casino posts rotate
+    across all partner brands over time. Previously `max(AFFILIATE_BRANDS,
+    key=lambda b: b["stars"])`, which always resolved to the same brand since
+    Python's max() keeps the first entry on a tie: whichever brand happened to
+    be listed first in agent_telegram_offers.BRANDS at the top star rating
+    (1xBet) won every single post, so most partner brands never actually
+    appeared here even after being added. Mirrors the oldest-first round-robin
+    agent_telegram_offers._next_brand() already uses for the welcome-bonus
+    rotation, in its own state file since this covers a different set of post
+    types on a different cadence."""
+    state = _load_cta_rotation_state()
+    n = len(AFFILIATE_BRANDS)
+    idx = (state.get("last_index", -1) + 1) % n
+    state["last_index"] = idx
+    CTA_ROTATION_STATE_FILE.write_text(json.dumps(state, indent=2))
+    return AFFILIATE_BRANDS[idx]
 
 
 def build_bookmaker_block(cta: dict, html: bool) -> str:
