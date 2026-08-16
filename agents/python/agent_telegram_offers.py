@@ -594,7 +594,7 @@ def build_offer_message(brand: dict) -> str:
     if len(brand["countries"]) > 5:
         countries_str += f" +{len(brand['countries']) - 5} more"
 
-    promo_line = promo_code_line(brand["name"])
+    promo_line = promo_code_line(brand["name"], html=True)
     promo_bit = f"🎁 {promo_line}\n" if promo_line else ""
 
     msg = (

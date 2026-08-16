@@ -84,14 +84,20 @@ def has_promo_code(brand_name: str) -> bool:
     return _brand_key(brand_name) in PROMO_CODE_BRANDS
 
 
-def promo_code_line(brand_name: str) -> str | None:
+def promo_code_line(brand_name: str, html: bool = False) -> str | None:
     """Natural CTA line offering SIFUKAI, or None if this brand isn't
     confirmed-eligible. Callers must skip the line entirely on None rather
     than falling back to a generic phrasing — never imply the code works
-    for an unconfirmed brand."""
+    for an unconfirmed brand. The code itself is wrapped in <b> when
+    html=True (Telegram parse_mode="html"), matching the same conditional-bold
+    convention every other emphasized field in these builders already uses
+    (see the local b() helpers in agent_match_post.py/agent_telegram_offers.py).
+    Plain-text platforms (Facebook, Twitter, Instagram) don't render markup,
+    so they get the unstyled code."""
     if not has_promo_code(brand_name):
         return None
-    return f"Use promo code {PROMO_CODE} to claim your bonus."
+    code = f"<b>{PROMO_CODE}</b>" if html else PROMO_CODE
+    return f"Use promo code {code} to claim your bonus."
 
 
 def brand_slug(brand_name: str) -> str:
