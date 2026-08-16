@@ -123,31 +123,39 @@
     "Champions St Joseph's Kitale, Nyamira Ng'iya off flying betting tips Kenya": {
       "slug": "champions-st-josephs-kitale-betting-tips-kenya",
       "posted_at": "2026-08-16T12:26:52.948591+00:00"
+    },
+    "Debut Delight Plaatjies' hat-trick seals first win Stellies betting tips South Africa": {
+      "slug": "debut-delight-plaatjies-hat-trick-stellies-betting-tips-south-africa",
+      "posted_at": "2026-08-16T14:25:31.105766+00:00"
+    },
+    "Saudi Pro League Théo Bongonda décisif mais Al-Faysaly betting tips Tanzania": {
+      "slug": "saudi-pro-league-theo-bongonda-decisif-al-faysaly-betting-tips-tanzania",
+      "posted_at": "2026-08-16T14:26:11.223453+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-08-16T12:26:57.881391+00:00",
-    "candidates_available": 322,
+    "checked_at": "2026-08-16T14:40:05.970828+00:00",
+    "candidates_available": 319,
     "attempted": 3,
-    "written": 3,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Why Michaely Bihina is keeper making waves Wafcon betting tips Tanzania",
+        "keyword": "Debut Delight Plaatjies' hat-trick seals first win Stellies betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "debut-delight-plaatjies-hat-trick-stellies-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Saudi Pro League Théo Bongonda décisif mais Al-Faysaly betting tips Tanzania",
         "country": "Tanzania",
         "result": "written",
-        "slug": "why-michaely-bihina-keeper-making-waves-wafcon-betting-tips-tanzania"
+        "slug": "saudi-pro-league-theo-bongonda-decisif-al-faysaly-betting-tips-tanzania"
       },
       {
-        "keyword": "Aliyu Zubair takes charge Al Ahly Wad Madani betting tips Nigeria",
+        "keyword": "Nigeria's Sector betting tips Nigeria",
         "country": "Nigeria",
-        "result": "written",
-        "slug": "aliyu-zubair-takes-charge-al-ahly-wad-madani-betting-tips-nigeria"
-      },
-      {
-        "keyword": "Champions St Joseph's Kitale, Nyamira Ng'iya off flying betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "champions-st-josephs-kitale-betting-tips-kenya"
+        "result": "failed",
+        "reason": "quality_gate: only 816 words (minimum 1000); no '## FAQ' section heading found"
       }
     ]
   }
