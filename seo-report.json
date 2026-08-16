@@ -1,42 +1,222 @@
 {
   "date": "2026-08-16",
-  "total": 8,
+  "total": 38,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
-    "MEDIUM": 2,
+    "HIGH": 32,
+    "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "ghana-can-become-volleyball-powerhouse-fivb-coach-betting-tips-ghana",
-      "detail": "Title 70 chars (max 60): 'Ghana Can Become Volleyball Powerhouse \u2013 FIVB Coach Betting Tips Ghana'"
+      "page": "nigerias-betting-sector-bookmakers-and-tips-for-local-punters",
+      "detail": "Title 63 chars (max 60): 'Nigeria\u2019s betting sector, bookmakers and tips for local punters'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "shalulile-fires-yanga-winning-start-betting-tips-south-africa",
-      "detail": "Title 61 chars (max 60): 'Shalulile fires Yanga winning start betting tips South Africa'"
+      "page": "champions-st-josephs-kitale-nyamira-ngiya-flying-start-tanzania-kenya",
+      "detail": "Title 90 chars (max 60): \"Champions St Joseph's Kitale, Nyamira and Ng'iya Shine in Tanzania - K\""
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "air-peace-alleges-42m-loss-poor-aircraft-handling-betting-tips-nigeria",
-      "detail": "Title 80 chars (max 60): 'Air Peace alleges $42m loss from poor aircraft handling and betting ti'"
+      "page": "nonu-kickoff-rugby-nod-vs-nz-betting-tips-south-africa",
+      "detail": "Title 61 chars (max 60): \"Nonu gets KickOff Rugby's nod vs NZ betting tips South Africa\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "speaker-bagbin-democracy-cup-trophy-kotoko-hearts-betting-tips-ghana",
+      "detail": "Title 83 chars (max 60): 'Speaker Bagbin receives Democracy Cup trophy ahead Kotoko-Hearts betti'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "will-andersen-st-monica-bukokholo-finally-crack-netball-betting-tips-kenya",
+      "detail": "Title 75 chars (max 60): 'Will Andersen St Monica Bukokholo Finally Crack Netball Betting Tips K'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "rodri-barcelona-transfer-2026-premier-league-news",
+      "detail": "Title 94 chars (max 60): 'Rodri\u2019s Barcelona Switch, Man City Turmoil & More \u2013 Transfer News & Be'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "american-cola-revamped-ilupeju-basketball-court-betting-tips-nigeria",
+      "detail": "Title 76 chars (max 60): 'American Cola Unveils Revamped Ilupeju Basketball Court Betting Tips N'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "keeper-bihina-stars-cameroon-upset-morocco-betting-tips-tanzania",
+      "detail": "Title 68 chars (max 60): 'Keeper Bihina Stars as Cameroon Upset Morocco: Betting Tips Tanzania'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "how-to-watch-manchester-united-vs-leeds-live-today-betting-tips-south-africa",
+      "detail": "Title 66 chars (max 60): 'How to Watch Manchester United vs Leeds Live Today in South Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "theo-bongonda-al-faysaly-al-hilal-tanzania-betting-tips",
+      "detail": "Title 63 chars (max 60): 'Th\u00e9o Bongonda shines as Al-Faysaly lose to Al-Hilal in Tanzania'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "wafcon-2026-cameroon-vs-morocco-penalties-betting-tips-ghana",
+      "detail": "Title 63 chars (max 60): 'WAFCON 2026 Cameroon vs Morocco Penalties Betting Tips in Ghana'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "meet-yiembe-kenyan-referee-will-officiate-uefa-betting-tips-kenya",
+      "detail": "Title 70 chars (max 60): 'Meet Yiembe, Kenyan Referee Who Will Officiate UEFA Betting Tips Kenya'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "caesars-bidding-war-pixbet-suspension-africa-betting-integrity",
+      "detail": "Title 67 chars (max 60): 'Caesars bidding war, Pixbet suspension and Africa betting integrity'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "banyana-secure-world-cup-play-off-spot-betting-tips-south-africa",
+      "detail": "Title 64 chars (max 60): 'Banyana Secure World Cup Play-Off Spot Betting Tips South Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "debut-delight-plaatjies-hat-trick-stellies-first-win-south-africa",
+      "detail": "Title 80 chars (max 60): \"Debut Delight: Plaatjies' Hat-Trick Seals First Win for Stellies in So\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "south-africa-end-nigerias-2027-world-cup-hopes-betting-tips-ghana",
+      "detail": "Title 66 chars (max 60): \"South Africa End Nigeria's 2027 World Cup Hopes Betting Tips Ghana\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "bulls-all-blacks-wallabies-wales-rugby-betting-news",
+      "detail": "Title 64 chars (max 60): 'Bulls, All Blacks, Wallabies and Wales news shakes rugby betting'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "saudi-pro-league-theo-bongonda-decisif-al-faysaly-betting-tips-tanzania",
+      "detail": "Title 76 chars (max 60): 'Saudi Pro League Th\u00e9o Bongonda d\u00e9cisif mais Al-Faysaly betting tips Ta'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "debut-delight-plaatjies-hat-trick-stellies-betting-tips-south-africa",
+      "detail": "Title 70 chars (max 60): 'Debut Delight Plaatjies\u2019 hat-trick: Stellies betting tips South Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-transfer-buzz-community-shield-betting-insights-africa",
+      "detail": "Title 94 chars (max 60): 'Premier League Transfer Buzz & Community Shield Showdown: Betting Insi'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "senegal-coach-pirates-chippa-preview-osun-election-football-betting",
+      "detail": "Title 81 chars (max 60): \"Senegal's New Coach, Pirates vs Chippa Preview & Osun Election Impact \""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "shalulile-fires-yanga-to-winning-start-south-africa-betting-tips",
+      "detail": "Title 65 chars (max 60): 'Shalulile fires Yanga to winning start: South Africa betting tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "aliyu-zubair-takes-charge-al-ahly-wad-madani-betting-tips-nigeria",
+      "detail": "Title 65 chars (max 60): 'Aliyu Zubair Takes Charge Al Ahly Wad Madani Betting Tips Nigeria'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "why-michaely-bihina-keeper-making-waves-wafcon-betting-tips-tanzania",
+      "detail": "Title 71 chars (max 60): 'Why Michaely Bihina is Keeper Making Waves Wafcon Betting Tips Tanzani'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "ghana-can-become-volleyball-powerhouse-fivb-coach-betting-tips-ghana",
-      "detail": "Excerpt 168 chars (max 155)"
+      "page": "nigerias-betting-sector-bookmakers-and-tips-for-local-punters",
+      "detail": "Excerpt 162 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "air-peace-alleges-42m-loss-poor-aircraft-handling-betting-tips-nigeria",
+      "page": "speaker-bagbin-democracy-cup-trophy-kotoko-hearts-betting-tips-ghana",
+      "detail": "Excerpt 167 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rodri-barcelona-transfer-2026-premier-league-news",
+      "detail": "Excerpt 158 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "keeper-bihina-stars-cameroon-upset-morocco-betting-tips-tanzania",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "meet-yiembe-kenyan-referee-will-officiate-uefa-betting-tips-kenya",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "banyana-secure-world-cup-play-off-spot-betting-tips-south-africa",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bulls-all-blacks-wallabies-wales-rugby-betting-news",
+      "detail": "Excerpt 159 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-transfer-buzz-community-shield-betting-insights-africa",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "debut-delight-plaatjies-hat-trick-stellies-first-win-south-africa",
+      "detail": "High title overlap (6 meaningful tokens) with 'debut-delight-plaatjies-hat-trick-stellies-betting-tips-south-africa' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "aliyu-zubair-al-ahly-wad-madani-betting-tips-nigeria",
+      "detail": "High title overlap (5 meaningful tokens) with 'aliyu-zubair-takes-charge-al-ahly-wad-madani-betting-tips-nigeria' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "shalulile-fires-yanga-to-winning-start-south-africa-betting-tips",
+      "detail": "High title overlap (6 meaningful tokens) with 'shalulile-fires-yanga-winning-start-betting-tips-south-africa' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
