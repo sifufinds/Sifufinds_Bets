@@ -44,6 +44,7 @@ from utils.serp_research import research
 from utils.story_dedup import headline_key, load_covered_keys, record_covered_keys
 from agent_fact_checker import check_post as fact_check_post
 from agent_priority_writer import _country_block, _bookmaker_block, _COUNTRY_CODE_BY_NAME
+from utils.title_content_match import check_africa_framing
 from agent_sports_blog import (
     CATEGORIES, _extract, _clean_json, load_posts, save_posts,
     announce_to_facebook, discard_feature_image,
@@ -270,6 +271,15 @@ Write the article now, following every rule in the system prompt exactly."""
         feature_image = ensure_feature_image(post)
         if feature_image:
             post["feature_image"] = feature_image
+
+        # Same title/content topic-match gate as agent_sports_blog.py — see
+        # utils/title_content_match.py's docstring for the live "Transfer
+        # Frenzy in Africa" incident this guards against.
+        africa_violation = check_africa_framing(post["title"], post["slug"], post["body"])
+        if africa_violation:
+            print(f"  ✗ Title/content check held back this article: {africa_violation}")
+            discard_feature_image(post)
+            return None, "africa_framing: " + africa_violation
 
         passed, flags = fact_check_post(post)
         if not passed:
