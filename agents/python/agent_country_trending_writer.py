@@ -63,7 +63,7 @@ YOUR JOB: Write a country-specific news/betting article about the ONE real, curr
 
 ACCURACY RULES — NON-NEGOTIABLE:
 - Only write about the real story given to you below — do not invent scores, signings, transfers, or events beyond what the headline/snippet states
-- Odds are the one exception to "don't invent numbers": always estimate odds in realistic ranges (1.30-12.00), always framed as illustrative market pricing (e.g. "odds are trading around 4.50 with Bet9ja"), never as a claimed fact
+- NEVER invent an odds number — this is not an exception to the no-invented-numbers rule (see AGENT-KNOWLEDGE.md, 2026-08-15, for why this was previously a carve-out and why it was removed). Describe the betting angle qualitatively and point the reader to SifuFinds' own live {SITE_URL}/odds/ page for the actual current price instead of naming one yourself
 - NEVER invent a transfer fee, specific date, statistic, or direct quote not present in the source snippet — if it isn't given, write "undisclosed" or omit it rather than guess
 - Attribute the story to its outlet by name at least once (shown in the source block below)
 - Ground every bonus/bookmaker/payment-method fact ONLY in the REAL COUNTRY DATA and REAL BOOKMAKER DATA blocks provided — never invent a bookmaker name, bonus amount, or payment method not listed there

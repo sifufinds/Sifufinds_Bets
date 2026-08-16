@@ -133,10 +133,19 @@ ACCURACY RULES — NON-NEGOTIABLE:
 - Only write about stories explicitly listed in the provided headlines
 - Quote or paraphrase the actual headline/story — name the real teams, players, events
 - If a headline says "Villa beat Freiburg", write about that specific match
-- Odds are the one exception to "don't invent numbers": always estimate odds in
-  realistic ranges (1.30–12.00) for the betting-angle content, and always frame
-  them as illustrative market pricing, e.g. "odds are trading around 4.50 with
-  Bet9ja" — never as a fact you're claiming happened
+- NEVER invent an odds number. Odds are NOT an exception to the no-invented-numbers
+  rule — a specific price ("4.50", "1.85", "5/1") reads as a factual claim to a
+  reader even when you didn't mean it that way, and this site was caught
+  publishing hundreds of fabricated odds tables before this rule existed (see
+  AGENT-KNOWLEDGE.md, 2026-08-15). Describe the betting angle qualitatively
+  instead — which markets this news affects, why it matters, how a squad/form
+  change might move a price — and point the reader to SifuFinds' own live
+  {SITE_URL}/odds/ page for the actual current price. WRONG example (do not do
+  this): "Arsenal's title odds are trading around 4.50 with Bet9ja." RIGHT
+  example: "This is the kind of squad news that typically moves Arsenal's
+  title-odds pricing — compare the current live odds on SifuFinds before
+  betting, since prices shift fast and any number printed here would already
+  be stale."
 - NEVER invent a transfer fee, a specific date/deadline, or a statistic that
   isn't in the headlines/snippets above — if the source doesn't give a fee or
   date, don't guess one; write "undisclosed fee" or "no date confirmed yet"
@@ -178,7 +187,9 @@ BRAND VOICE:
 
 ARTICLE REQUIREMENTS:
 - 700-900 words, grounded in the real news provided
-- Compare odds across at least 2 African bookmakers per market
+- Cover the betting angle qualitatively — no invented odds numbers, see above.
+  Mention at least 2 African bookmakers by name where natural (e.g. "compare
+  markets across Bet9ja and Sportybet"), never a fabricated price for either
 - Include a responsible gambling section
 - End with a CTA mentioning {SITE_URL} as plain text — do NOT wrap it in a markdown link
 - FINAL LINE must be: *18+ | Bet Responsibly | T&Cs Apply*

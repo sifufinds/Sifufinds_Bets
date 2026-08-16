@@ -516,6 +516,37 @@ html,body{max-width:100%;overflow-x:hidden}
 }
 .sb-bk-go:hover{background:var(--dg)}
 
+/* Sidebar featured-partners ad widget */
+.sb-partners-widget{background:#fff;border-radius:10px;border:1px solid #e0e0e0;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.sb-partners-hd{
+  background:linear-gradient(135deg,#0a3d1e,#1a6b35);color:#fff;padding:11px 14px;
+  font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.sb-partners-hd-badge{background:var(--gold);color:#3d2e00;font-size:9px;font-weight:800;padding:2px 7px;border-radius:3px;letter-spacing:.4px}
+.sb-partners-body{padding:4px 12px}
+.sb-partner-item{
+  display:flex;align-items:center;gap:10px;padding:9px 0;
+  border-bottom:1px solid #f0f0f0;text-decoration:none;color:inherit;transition:background .12s;
+}
+.sb-partner-item:last-child{border:none}
+.sb-partner-item:hover{background:#fafafa}
+.sb-partner-logo{
+  width:36px;height:36px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9.5px;font-weight:900;border:1px solid rgba(0,0,0,.08);
+}
+.sb-partner-body{flex:1;min-width:0}
+.sb-partner-name{font-size:12.5px;font-weight:800;color:#111}
+.sb-partner-off{font-size:10.5px;color:#666;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-partner-cta{
+  background:var(--g);color:#fff;padding:6px 10px;border-radius:5px;
+  font-size:10.5px;font-weight:700;white-space:nowrap;flex-shrink:0;transition:background .15s;
+}
+.sb-partner-item:hover .sb-partner-cta{background:var(--dg)}
+.sb-partners-dis{padding:9px 14px;font-size:9.5px;color:#999;border-top:1px solid #f0f0f0;line-height:1.5}
+.sb-partners-dis a{color:#999}
+
 /* Sidebar admin panel */
 .sb-admin-toggle{
   background:#fff;border:1px dashed #ccc;border-radius:8px;padding:10px 14px;
@@ -1271,6 +1302,45 @@ window.addEventListener('popstate',()=>{
   }
 });
 
+// ── FEATURED PARTNERS AD RAIL ────────────────────────────────────────────────
+// Fixed set of 7 affiliate brands shown on the right-hand sidebar of the blog.
+// Kept separate from _allBanners/banners.json (the rotating top/mid/bottom
+// banner slots) so this rail always shows exactly these brands regardless of
+// admin-panel edits to the rotating banners. URLs match the live .htaccess
+// AFFILIATE LINK MASKING block / agents/python/utils/affiliate_links.py
+// BRAND_SLUGS — keep both in sync if any of these tracking links change.
+const SIDEBAR_AD_BRANDS=[
+  {name:'1xBet',abbr:'1X',bg:'#E60000',tc:'#fff',off:'Get ₦600,000 Bonus',cta:'Claim Bonus →',url:'https://reffpa.com/L?tag=d_5969542m_1599c_&site=5969542&ad=1599'},
+  {name:'TicTacBets',abbr:'TTB',bg:'#1a1a2e',tc:'#FFD700',off:"South Africa's Rising Star",cta:'Join Now →',url:'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023'},
+  {name:'BetXchange',abbr:'BX',bg:'#0f766e',tc:'#fff',off:'New Player Welcome Offer',cta:'Bet Now →',url:'https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226'},
+  {name:'Melbet',abbr:'MB',bg:'#FD1B26',tc:'#fff',off:'Get ₦320,000 Bonus',cta:'Claim Bonus →',url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559'},
+  {name:'Playbet',abbr:'PB',bg:'#4338CA',tc:'#fff',off:'Check Latest Welcome Offer',cta:'Bet Now →',url:'https://trk.playbet.net/o/5tgJzp?site_id=284'},
+  {name:'Linebet',abbr:'LB',bg:'#007035',tc:'#fff',off:'Claim Your Welcome Bonus',cta:'Explore →',url:'https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611'},
+  {name:'Bettabets',abbr:'BTB',bg:'#EA580C',tc:'#fff',off:'New Player Welcome Offer',cta:'Bet Now →',url:'https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777'}
+];
+
+function buildPartnersWidget(){
+  return`
+  <div class="sb-partners-widget">
+    <div class="sb-partners-hd">
+      <span>🔥 Featured Betting Partners</span>
+      <span class="sb-partners-hd-badge">AD</span>
+    </div>
+    <div class="sb-partners-body">
+      ${SIDEBAR_AD_BRANDS.map(p=>`
+      <a class="sb-partner-item" href="${p.url}" target="_blank" rel="noopener noreferrer sponsored">
+        <div class="sb-partner-logo" style="background:${p.bg};color:${p.tc}">${p.abbr}</div>
+        <div class="sb-partner-body">
+          <div class="sb-partner-name">${p.name}</div>
+          <div class="sb-partner-off">${p.off}</div>
+        </div>
+        <span class="sb-partner-cta">${p.cta}</span>
+      </a>`).join('')}
+    </div>
+    <div class="sb-partners-dis">Sponsored · 18+ · Bet Responsibly · <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a></div>
+  </div>`;
+}
+
 // ── SIDEBAR ───────────────────────────────────────────────────────────────────
 function renderSidebar(){
   const cty=getCurrentCountry();
@@ -1286,6 +1356,8 @@ function renderSidebar(){
   const topBks=(BOOKS[cty]||BOOKS.NG).slice(0,4);
 
   sidebar.innerHTML=`
+  ${buildPartnersWidget()}
+
   ${top?buildSidebarBanner(top):''}
 
   <!-- Trending Widget -->
