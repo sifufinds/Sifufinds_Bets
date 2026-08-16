@@ -1,13 +1,19 @@
 {
-  "date": "2026-08-15",
-  "total": 3,
+  "date": "2026-08-16",
+  "total": 4,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 1,
     "MEDIUM": 2,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "africas-transfer-window-heats-up-insider-analysis-and-betting-insights",
+      "detail": "Title 72 chars (max 60): \"Africa's Transfer Window Heats Up: Insider Analysis and Betting Insigh\""
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
@@ -23,8 +29,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "70 posts",
-      "detail": "70 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "69 posts",
+      "detail": "69 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
