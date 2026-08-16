@@ -1,13 +1,43 @@
 {
   "date": "2026-08-16",
-  "total": 3,
+  "total": 8,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 5,
     "MEDIUM": 2,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ghana-can-become-volleyball-powerhouse-fivb-coach-betting-tips-ghana",
+      "detail": "Title 70 chars (max 60): 'Ghana Can Become Volleyball Powerhouse \u2013 FIVB Coach Betting Tips Ghana'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "shalulile-fires-yanga-winning-start-betting-tips-south-africa",
+      "detail": "Title 61 chars (max 60): 'Shalulile fires Yanga winning start betting tips South Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "air-peace-alleges-42m-loss-poor-aircraft-handling-betting-tips-nigeria",
+      "detail": "Title 80 chars (max 60): 'Air Peace alleges $42m loss from poor aircraft handling and betting ti'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ghana-can-become-volleyball-powerhouse-fivb-coach-betting-tips-ghana",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "air-peace-alleges-42m-loss-poor-aircraft-handling-betting-tips-nigeria",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",

@@ -1,0 +1,27 @@
+{
+  "fixed": {
+    "premier-league-transfer-news-west-ham-sunderland-deals": {
+      "mode": "fixed_rewrite",
+      "fixed_at": "2026-08-16T12:16:36.399659+00:00"
+    },
+    "premier-league-transfer-window-forest-psgs-latest-moves": {
+      "mode": "fixed_rewrite",
+      "fixed_at": "2026-08-16T12:17:07.146919+00:00"
+    },
+    "transfer-window-heats-up-2": {
+      "mode": "fixed_rewrite",
+      "fixed_at": "2026-08-16T12:17:27.480881+00:00"
+    },
+    "transfer-window-heats-up-latest-news-and-betting-insights-for-african-football": {
+      "mode": "fixed_strip",
+      "fixed_at": "2026-08-16T12:17:49.864154+00:00"
+    },
+    "transfer-drama-osimhen-fernandez-kellyman-spotlight": {
+      "mode": "fixed_strip",
+      "fixed_at": "2026-08-16T12:18:18.883204+00:00"
+    }
+  },
+  "skipped": {},
+  "runs": 1,
+  "last_run": "2026-08-16T12:18:18.883264+00:00"
+}
