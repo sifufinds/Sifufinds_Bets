@@ -448,7 +448,7 @@ def build_bookmaker_block(cta: dict, html: bool) -> str:
         f"✅ Already registered? {bet_link}"
     )
 
-    promo_line = promo_code_line(cta["name"])
+    promo_line = promo_code_line(cta["name"], html=html)
     if promo_line:
         block += f"\n🎟 {promo_line}"
 
