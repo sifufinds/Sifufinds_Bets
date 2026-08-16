@@ -143,31 +143,39 @@
     "South Africa end Nigeria’s 2027 World Cup hopes betting tips Ghana": {
       "slug": "south-africa-end-nigerias-2027-world-cup-hopes-betting-tips-ghana",
       "posted_at": "2026-08-16T16:54:41.629314+00:00"
+    },
+    "Banyana secure World Cup play-off spot betting tips South Africa": {
+      "slug": "banyana-secure-world-cup-play-off-spot-betting-tips-south-africa",
+      "posted_at": "2026-08-16T18:53:37.603328+00:00"
+    },
+    "Malawi face Cameroon WAFCON final betting tips Nigeria": {
+      "slug": "malawi-vs-cameroon-wafcon-final-betting-tips-nigeria",
+      "posted_at": "2026-08-16T18:54:23.185709+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-08-16T16:54:47.085682+00:00",
-    "candidates_available": 317,
+    "checked_at": "2026-08-16T19:06:55.429017+00:00",
+    "candidates_available": 314,
     "attempted": 3,
-    "written": 3,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Nigeria's Sector betting tips Nigeria",
+        "keyword": "Banyana secure World Cup play-off spot betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "banyana-secure-world-cup-play-off-spot-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Malawi face Cameroon WAFCON final betting tips Nigeria",
         "country": "Nigeria",
         "result": "written",
-        "slug": "nigerias-sector-betting-tips-nigeria"
+        "slug": "malawi-vs-cameroon-wafcon-final-betting-tips-nigeria"
       },
       {
-        "keyword": "World Cup bound Kenya Chipu savour Barthes Cup betting tips Kenya",
+        "keyword": "Meet Yiembe, Kenyan referee who will officiate UEFA betting tips Kenya",
         "country": "Kenya",
-        "result": "written",
-        "slug": "world-cup-bound-kenya-chipu-barthes-cup-betting-tips-kenya"
-      },
-      {
-        "keyword": "South Africa end Nigeria’s 2027 World Cup hopes betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "south-africa-end-nigerias-2027-world-cup-hopes-betting-tips-ghana"
+        "result": "failed",
+        "reason": "quality_gate: only 931 words (minimum 1000); found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Note: The article has been expanded to meet the minimum word count requirement of 1000 words.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
