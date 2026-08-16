@@ -80,7 +80,23 @@ _AFRICAN_LEAGUES_RE = re.compile(
 # between. Verified against a 21-case suite spanning both title/slug
 # phrasing and full body sentences — see AGENT-KNOWLEDGE.md's 2026-08-16
 # entries for the false positives this replaced.
-_SUBJECT_NOUNS = r"(transfer|club|star|footballer|player|squad|deal|window|team|league)s?"
+# Deliberately excludes "team"/"league" — those words are too broad for
+# general sports content: "African teams" is routine, TRUE commentary on
+# World Cup/AFCON coverage ("African teams have exited the tournament" is
+# real, not a false claim), unlike "club"/"transfer"/"window" which rarely
+# appear in a genuine collective-Africa sentence outside the exact false-
+# claim pattern this module exists to catch. Found 2026-08-16: adding
+# "team"/"league" (to catch one real violation's "African teams and
+# leagues" phrasing, already fixed by hand) immediately false-flagged
+# several legitimate World Cup recap posts once the check started scanning
+# body sentences, not just titles.
+#
+# Also excludes "player" for the same reason, but a subtler collision: in
+# betting copy "player" routinely means "bettor/gambler" ("African players
+# often look for value in the 1.20-1.35 range"), not "footballer" — the
+# word is genuinely ambiguous between the two senses and this module has no
+# way to disambiguate them. "footballer" (unambiguous) stays in the list.
+_SUBJECT_NOUNS = r"(transfer|club|star|footballer|squad|deal|window)s?"
 _GAP = r"(\s+\S+)?"
 _FALSE_AFRICA_CLAIM_RE = re.compile(
     rf"\b{_SUBJECT_NOUNS}{_GAP}\s+in africa\b"
