@@ -1,19 +1,13 @@
 {
   "date": "2026-08-16",
-  "total": 4,
+  "total": 3,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 2,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "africas-transfer-window-heats-up-insider-analysis-and-betting-insights",
-      "detail": "Title 72 chars (max 60): \"Africa's Transfer Window Heats Up: Insider Analysis and Betting Insigh\""
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
