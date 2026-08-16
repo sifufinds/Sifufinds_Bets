@@ -450,6 +450,7 @@ html,body{max-width:100%;overflow-x:hidden}
   display:flex;align-items:center;justify-content:center;
   font-size:13px;font-weight:900;flex-shrink:0;
   border:1px solid rgba(255,255,255,.25);
+  position:relative;overflow:hidden;
 }
 .sb-ad-name{font-size:15px;font-weight:900;line-height:1.1}
 .sb-ad-tagline{font-size:10.5px;opacity:.8;margin-top:1px}
@@ -1290,14 +1291,17 @@ window.addEventListener('popstate',()=>{
 // admin-panel edits to the rotating banners. URLs match the live .htaccess
 // AFFILIATE LINK MASKING block / agents/python/utils/affiliate_links.py
 // BRAND_SLUGS — keep both in sync if any of these tracking links change.
+// abbr/bg/tc match HEADER_BRANDS in assets/shared.js — the site's one canonical
+// per-brand palette — so logoImg() resolves each brand's real logo via
+// BRAND_DOMAINS[abbr] and the banner background matches the brand's actual colour.
 const SIDEBAR_AD_BRANDS=[
-  {name:'1xBet',abbr:'1X',bg:'#E60000',tc:'#fff',off:'Get ₦600,000 Bonus',cta:'Claim Bonus →',url:'https://reffpa.com/L?tag=d_5969542m_1599c_&site=5969542&ad=1599'},
-  {name:'TicTacBets',abbr:'TTB',bg:'#1a1a2e',tc:'#FFD700',off:"South Africa's Rising Star",cta:'Join Now →',url:'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023'},
-  {name:'BetXchange',abbr:'BX',bg:'#0f766e',tc:'#fff',off:'New Player Welcome Offer',cta:'Bet Now →',url:'https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226'},
-  {name:'Melbet',abbr:'MB',bg:'#FD1B26',tc:'#fff',off:'Get ₦320,000 Bonus',cta:'Claim Bonus →',url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559'},
-  {name:'Playbet',abbr:'PB',bg:'#4338CA',tc:'#fff',off:'Check Latest Welcome Offer',cta:'Bet Now →',url:'https://trk.playbet.net/o/5tgJzp?site_id=284'},
-  {name:'Linebet',abbr:'LB',bg:'#007035',tc:'#fff',off:'Claim Your Welcome Bonus',cta:'Explore →',url:'https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611'},
-  {name:'Bettabets',abbr:'BTB',bg:'#EA580C',tc:'#fff',off:'New Player Welcome Offer',cta:'Bet Now →',url:'https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777'}
+  {name:'1xBet',abbr:'1X',bg:'#276AA5',tc:'#fff',off:'Get ₦600,000 Bonus',cta:'Claim Bonus →',url:'https://reffpa.com/L?tag=d_5969542m_1599c_&site=5969542&ad=1599'},
+  {name:'TicTacBets',abbr:'TTC',bg:'#CC0000',tc:'#fff',off:"South Africa's Rising Star",cta:'Join Now →',url:'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023'},
+  {name:'BetXchange',abbr:'BX',bg:'#0D47A1',tc:'#fff',off:'New Player Welcome Offer',cta:'Bet Now →',url:'https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226'},
+  {name:'Melbet',abbr:'MB',bg:'#212121',tc:'#fff',off:'Get ₦320,000 Bonus',cta:'Claim Bonus →',url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559'},
+  {name:'Playbet',abbr:'PLB',bg:'#6A1B9A',tc:'#fff',off:'Check Latest Welcome Offer',cta:'Bet Now →',url:'https://trk.playbet.net/o/5tgJzp?site_id=284'},
+  {name:'Linebet',abbr:'LB',bg:'#0B8A4B',tc:'#fff',off:'Claim Your Welcome Bonus',cta:'Explore →',url:'https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611'},
+  {name:'Bettabets',abbr:'BTB',bg:'#1B5E20',tc:'#fff',off:'New Player Welcome Offer',cta:'Bet Now →',url:'https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777'}
 ];
 
 function buildPartnersWidget(){
@@ -1325,7 +1329,7 @@ function buildPartnerBanner(p){
     <div class="sb-banner-ad-content">
       <div class="sb-ad-tag" style="color:${p.tc}">ADVERTISEMENT · 18+</div>
       <div class="sb-ad-logo-row">
-        <div class="sb-ad-logo" style="color:${p.tc}">${p.abbr}</div>
+        <div class="sb-ad-logo">${logoImg(p.url,p.name,p.abbr,p.tc,44,10,true)}</div>
         <div>
           <div class="sb-ad-name" style="color:${p.tc}">${p.name}</div>
           <div class="sb-ad-tagline" style="color:${p.tc}">Africa's Best Odds</div>
@@ -1348,8 +1352,11 @@ function renderSidebar(){
   const cty=getCurrentCountry();
   const sidebar=document.getElementById('sidebar');
 
-  // Only show affiliate brands in the sidebar
-  const affiliateBanners=_allBanners.filter(b=>b.active&&b.affiliate);
+  // Only show affiliate brands in the sidebar. Brands already shown as their own
+  // card in SIDEBAR_AD_BRANDS (the Featured Betting Partners rail) are excluded
+  // here so the same brand never shows up twice (e.g. 1xBet in both places).
+  const partnerNames=new Set(SIDEBAR_AD_BRANDS.map(p=>p.name.toLowerCase()));
+  const affiliateBanners=_allBanners.filter(b=>b.active&&b.affiliate&&!partnerNames.has((b.bookmaker||'').toLowerCase()));
   const top=affiliateBanners[0]||null;
   const mid=affiliateBanners[1]||null;
   const bot=affiliateBanners[2]||null;
@@ -1358,10 +1365,6 @@ function renderSidebar(){
   const topBks=(BOOKS[cty]||BOOKS.NG).slice(0,4);
 
   sidebar.innerHTML=`
-  ${buildPartnersWidget()}
-
-  ${top?buildSidebarBanner(top):''}
-
   <!-- Trending Widget -->
   <div class="sb-widget">
     <div class="sb-widget-hd">
@@ -1379,6 +1382,10 @@ function renderSidebar(){
       </a>`).join('')}
     </div>
   </div>
+
+  ${buildPartnersWidget()}
+
+  ${top?buildSidebarBanner(top):''}
 
   ${mid?buildSidebarBanner(mid):''}
 
