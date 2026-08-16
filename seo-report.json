@@ -1,8 +1,8 @@
 {
   "date": "2026-08-16",
-  "total": 3,
+  "total": 16,
   "by_severity": {
-    "CRITICAL": 0,
+    "CRITICAL": 13,
     "HIGH": 0,
     "MEDIUM": 2,
     "INFO": 1
@@ -25,6 +25,84 @@
       "check": "formulaic_opener",
       "page": "69 posts",
       "detail": "69 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "hot-transfer-news-impact-on-african-teams-and-odds",
+      "detail": "Title/URL claims an African transfer/club story ('Transfer News: Trafford, Hogh, Karetsas Deals Confirmed') but the body names no real African country, league, or competition \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "celtics-record-signing-arsenal-drama-2026-transfer-buzz",
+      "detail": "Body claims an African transfer/club story ('African players often look for value in the 1.20\u20111.35 range for top\u2011tier clubs.*\\n\\n### Why It Matters for African Bettors\\n\\nBetting on Celtic\u2019s title bid can be lucrative in NGN, with Bet9ja offering a 1.20\u2011to\u20111.25 margin on the top\u20114 market.') but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "transfer-window-frenzy-how-squad-changes-impact-betting-value",
+      "detail": "Body claims an African transfer/club story (\"To give you a better understanding of how these transfers impact betting value, let's take a look at the odds for some African teams.\") but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "fulham-benfica-dortmund-transfer-fever-africa",
+      "detail": "Body claims an African transfer/club story ('While the headlines focus on European clubs, the ripple effect can influence global betting markets, including African leagues.') but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "rodri-injury-blow-impact-on-manchester-city",
+      "detail": "Body claims an African transfer/club story ('## Europa League Qualifying Fixtures\\nThe Europa League qualifying fixtures are also underway, with several African teams participating.') but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "aston-villa-signs-japan-goalkeeper",
+      "detail": "Body claims an African transfer/club story ('What we do in Confirmbets is provide football tips for all football competitions playing across Africa, this ranges from competition that involves the top teams in the top leagues down to the lower leagues in Africa?') but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "world-cup-2026-africa-eyes-on-argentina",
+      "detail": "Body claims an African transfer/club story ('With many African teams having exited the tournament, fans are now backing other teams, including Argentina.') but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "world-cup-2026-semi-finals-betting-tips",
+      "detail": "Body claims an African transfer/club story ('### Champions League Qualifying\\nThe Champions League qualifying matches are also underway, with several African teams competing for a spot in the group stages.') but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "world-cup-2026-england-spain-shine",
+      "detail": "Body claims an African transfer/club story ('While there may not be any African teams left in the World Cup, fans from the continent can still get involved in the action.') but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "world-cup-2026-messi-missed-penalty-african-teams",
+      "detail": "Title/URL claims an African transfer/club story (\"World Cup 2026: Messi's Missed Penalty, African Teams'\u2026\") but the body names no real African country, league, or competition \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "spanish-world-cup-sweden-wolves-preview",
+      "detail": "Body claims an African transfer/club story (\"As we analyze the latest developments, we're also keeping an eye on domestic leagues like the Premier League and top African leagues.\") but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "world-cup-2026-usa-shine-scotland-return",
+      "detail": "Body claims an African transfer/club story ('This could have significant implications for the transfer market, with several African players potentially being affected by the move.') but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
+    },
+    {
+      "severity": "CRITICAL",
+      "check": "false_africa_framing",
+      "page": "football-news-betting-insights",
+      "detail": "Body claims an African transfer/club story ('* **What are the most popular football leagues in Africa?**: The most popular football leagues in Africa include the English Premier League, the Spanish La Liga, and the Champions League.') but names no real African country, league, or competition anywhere \u2014 this looks like European/global transfer news mislabelled as African. See CLAUDE.md's SEO self-healing table, 'Title/URL claims a topic the content never delivers' row."
     }
   ]
 }
