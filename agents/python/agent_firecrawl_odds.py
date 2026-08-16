@@ -11,7 +11,7 @@ from datetime import datetime, timedelta, timezone
 
 from utils.free_scrape import scrape as free_scrape
 from utils.live_data_helpers import fmt_time, league_key
-from utils.live_json_store import enrich_existing, load_live_json, match_key, save_live_json
+from utils.live_json_store import enrich_existing, load_live_json, save_live_json
 from utils.oddsportal_parser import parse_oddsportal
 
 TODAY = datetime.now(timezone.utc).strftime("%Y%m%d")
