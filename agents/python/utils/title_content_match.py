@@ -10,18 +10,37 @@ Down the Latest Deals and Their Impact on Odds" was entirely about West Ham,
 Sunderland, Chelsea and Newcastle (English clubs) with zero African clubs,
 players, or leagues mentioned anywhere in the body. A repo-wide audit the
 same day found this same pattern recurring across multiple posts generated
-by agent_sports_blog.py's "transfers" category — see CLAUDE.md's SEO
-self-healing table and AGENT-KNOWLEDGE.md's 2026-08-16 entry for the full
-incident. This module is the permanent, deterministic guard against it:
-called both at generation time (agent_sports_blog.generate_post(), to hold
-a bad draft back before it's ever published) and by scripts/seo_check.py
-(as a regression tripwire scanning every existing post before deploy).
+by agent_sports_blog.py's "transfers" category, and a same-day follow-up
+found the same false claim could also survive inside a post's own body
+prose even after its title/slug were corrected — see CLAUDE.md's SEO
+self-healing table and AGENT-KNOWLEDGE.md's 2026-08-16 entries for the full
+incident. This module is the permanent, deterministic guard against it,
+wired into every content-writing agent's generation/rewrite path so a bad
+draft is held back before it's ever published, not just caught later:
+  - agent_sports_blog.py's generate_post() (covers agent_transfer_post.py
+    too, which imports generate_post directly)
+  - agent_priority_writer.py's generate_priority_post()
+  - agent_country_trending_writer.py's generate_country_trending_post()
+  - agent_content_backfill.py's run() (checked against the newly-expanded
+    body, since a rewrite is exactly where new prose — and a new false
+    claim — could be introduced)
+scripts/seo_check.py (section 4c) is the last-resort backstop on top of all
+of the above — a blocking pre-deploy CRITICAL check scanning every post in
+blog/posts.json, so a violation reaching posts.json through ANY other path
+(a manual edit, Sanity CMS sync) still gets caught before it goes live.
 
 Deliberately regex/word-list based, not LLM based — the failure mode is a
 concrete, checkable fact ("does the body name any real African place or
 competition?"), not a judgement call, so a deterministic check is both
 cheaper and more reliable than another LLM pass that could itself
 hallucinate a pass/fail.
+
+Scope note: only reliable on English text — the regex patterns (\"africa\",
+\"transfer\", \"club\", etc.) are English words, so this is NOT wired into
+agent_translate.py's fr/de/es/pt/sw output. Translations are generated from
+an already-passing English `post` dict at call time, so this is a low-risk
+gap in practice (a faithful translation of clean source content has no
+reason to introduce a claim the source never made), not an unguarded path.
 """
 import re
 

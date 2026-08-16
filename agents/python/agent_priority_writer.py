@@ -40,6 +40,7 @@ from utils.serp_research import research
 from utils.site_data import load_country_data, load_bookmakers
 from agent_fact_checker import check_post as fact_check_post
 from agent_content_priority import EVERGREEN_CONTENT_TYPES
+from utils.title_content_match import check_africa_framing
 from agent_sports_blog import (
     CATEGORIES, _extract, _clean_json, load_posts, save_posts, announce_to_facebook,
 )
@@ -323,6 +324,17 @@ Write the guide now, following every rule in the system prompt exactly."""
         feature_image = ensure_feature_image(post)
         if feature_image:
             post["feature_image"] = feature_image
+
+        # Same title/content topic-match gate as agent_sports_blog.py — see
+        # utils/title_content_match.py's docstring for the live "Transfer
+        # Frenzy in Africa" incident this guards against. Low-risk for this
+        # writer specifically (every guide is already anchored to a real
+        # country_name), but cheap and deterministic, so applied uniformly
+        # across every content-writing agent rather than assumed safe here.
+        africa_violation = check_africa_framing(post["title"], post["slug"], post["body"])
+        if africa_violation:
+            print(f"  ✗ Title/content check held back this article: {africa_violation}")
+            return None, "africa_framing: " + africa_violation
 
         # No _source_items — evergreen guides aren't grounded in news
         # headlines, so check_post() trivially passes (see its own

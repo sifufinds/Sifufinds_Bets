@@ -35,6 +35,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from llm import ask_long
 from utils.serp_research import research
 from gen_blog_post_pages import extract_faq_schema  # reuse the exact schema validation logic
+from utils.title_content_match import check_africa_framing
 
 POSTS_JSON = REPO_ROOT / "blog" / "posts.json"
 STATE_PATH = Path(__file__).parent / "content_backfill_state.json"
@@ -212,6 +213,17 @@ def run() -> int:
         if words_after < MIN_WORDS or not has_faq:
             state["attempts"][slug] = state["attempts"].get(slug, 0) + 1
             print(f"    ✗ result still short of standard (words={words_after}, faq_schema={has_faq}) "
+                  f"— attempt {state['attempts'][slug]}/{MAX_ATTEMPTS}")
+            continue
+
+        # Title/slug are unchanged by an expansion, but the newly-written
+        # body could still introduce (or fail to shed) a false "this is an
+        # African transfer/club story" claim — see utils/title_content_match.py's
+        # docstring. Checked against the NEW body, not the old one.
+        africa_violation = check_africa_framing(post["title"], slug, new_body)
+        if africa_violation:
+            state["attempts"][slug] = state["attempts"].get(slug, 0) + 1
+            print(f"    ✗ expansion held back — {africa_violation} "
                   f"— attempt {state['attempts'][slug]}/{MAX_ATTEMPTS}")
             continue
 
