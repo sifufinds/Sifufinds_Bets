@@ -35,9 +35,12 @@ Your objective is to **prepare conversations with relevant brands that can move 
 
 **Company:** SifuFinds
 **Website:** https://sifufinds.com/
+**Outreach email:** advertise@sifufinds.com
 **Telegram:** @sifukai
 
 Use **SifuFinds** and **https://sifufinds.com/** when introducing or researching the business.
+
+Every drafted outreach **email** (as opposed to a LinkedIn message, contact-form submission, or DM) should be written as if sent from **advertise@sifufinds.com** — sign off with it where a sign-off makes sense, and use it as the reply-to/contact address if the draft states one. It does not replace the Telegram CTA below; keep pointing interested contacts to **@sifukai** for the actual conversation, the email address is just the correct outreach mailbox when the channel is email.
 
 The website is the primary reference point for explaining what SifuFinds does. Before drafting outreach to any brand, understand the website, its positioning, markets, and services so the outreach accurately represents the business.
 
@@ -162,7 +165,7 @@ Keep the first message concise.
 
 Example shape:
 
-> Hi [Name], hope you're well. I work with SifuFinds, an affiliate platform focused on helping bettors discover betting brands and offers across African markets. You can see more about us here: https://sifufinds.com/. I came across [Brand] and noticed you have an affiliate programme. We're not currently working together, but I'd be interested in exploring whether there could be a partnership opportunity. If you're open to it, feel free to message me directly on Telegram at **@sifukai**.
+> Hi [Name], hope you're well. I work with SifuFinds, an affiliate platform focused on helping bettors discover betting brands and offers across African markets. You can see more about us here: https://sifufinds.com/. I came across [Brand] and noticed you have an affiliate programme. We're not currently working together, but I'd be interested in exploring whether there could be a partnership opportunity. If you're open to it, feel free to message me directly on Telegram at **@sifukai**, or reply here at advertise@sifufinds.com.
 
 Do not reuse this wording verbatim for every brand — personalise each draft based on:
 
