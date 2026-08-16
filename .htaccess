@@ -181,6 +181,19 @@ RewriteRule ^betting-tips-knockout-stage/?$ /blog/world-cup-2026-preview/ [R=301
 # 2026-08-02: dedupe_slugs() collapsed this long duplicate slug into the
 # shorter canonical one — GSC still has the old long-slug URL indexed.
 RewriteRule ^blog/best-betting-sites-nigeria-2026-compare-top-bookmakers-and-find-your-perfect-match/?$ /blog/best-betting-sites-nigeria-2026/ [R=301,L]
+# 2026-08-16: retitled/re-slugged 3 "transfers" posts whose title falsely
+# framed pure Premier League/European transfer news as African clubs/transfers
+# (e.g. "Transfer Frenzy in Africa" for a West Ham/Sunderland/Chelsea/Newcastle
+# story with zero African clubs mentioned) — see CLAUDE.md's SEO self-healing
+# table, "Title/URL claims a topic the content never delivers" row.
+RewriteRule ^blog/transfer-frenzy-in-africa-breaking-down-the-latest-deals-and-their-impact-on-odds/?$ /blog/premier-league-transfer-news-west-ham-sunderland-deals/ [R=301,L]
+RewriteRule ^blog/africas-transfer-window-heats-up-insider-analysis-and-betting-insights/?$ /blog/premier-league-transfer-window-forest-psgs-latest-moves/ [R=301,L]
+RewriteRule ^blog/transfer-frenzy-top-stories-from-africas-biggest-clubs/?$ /blog/premier-league-transfer-news-tottenham-arsenal-latest/ [R=301,L]
+RewriteRule ^blog/africa-transfer-stories-2026/?$ /blog/transfer-news-roundup-chelsea-roma-real-madrid-more/ [R=301,L]
+RewriteRule ^blog/transfer-window-drama-african-clubs-shaping-up-2026/?$ /blog/transfer-window-drama-romero-confirmed-savinho-still-live/ [R=301,L]
+RewriteRule ^blog/africa-transfer-window-2026-expert-analysis-betting-tips/?$ /blog/transfer-analysis-savinho-talks-on-rodri-unresolved/ [R=301,L]
+RewriteRule ^blog/africas-transfer-window-latest-news-betting-insights/?$ /blog/guimaraes-completes-arsenal-move-savinho-talks-on/ [R=301,L]
+RewriteRule ^blog/africa-transfer-news-mbappe-rodris-new-deal/?$ /blog/correcting-the-record-mbappes-exit-rodris-situation/ [R=301,L]
 # Person/event blog slugs with no matching page
 RewriteRule ^alexander-zverev-next-big-thing-tennis/?$ /blog/ [R=301,L]
 RewriteRule ^serena-williams-queen-tennis-returns/?$ /blog/ [R=301,L]

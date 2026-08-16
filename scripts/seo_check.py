@@ -10,6 +10,9 @@ Checks:
     that don't have canonical_override set
   - Every deployed HTML page (not just blog): rendered <title>/meta
     description length, and duplicate <h1> tags — see section 7
+  - Title/URL falsely claiming an African transfer/club story that the body
+    never delivers (e.g. "Transfer Frenzy in Africa" about English clubs) —
+    see section 4c
 
 Usage:
   python3 scripts/seo_check.py              # audit only
@@ -27,6 +30,8 @@ BLOG_DIR = BASE / 'blog'
 
 sys.path.insert(0, str(BASE))
 from gen_blog_post_pages import extract_faq_schema  # noqa: E402
+sys.path.insert(0, str(BASE / 'agents' / 'python'))
+from utils.title_content_match import check_africa_framing  # noqa: E402
 
 # ── Severity constants ────────────────────────────────────────────────────────
 CRITICAL = 'CRITICAL'
@@ -184,6 +189,18 @@ if _opener_hits:
           f"{len(_opener_hits)} posts still open with a banned formulaic phrase "
           f"(see CLAUDE.md Voice & Language Rules) — queued in "
           f"agent_content_backfill.py's rewrite pipeline, not auto-fixable here")
+
+# ── 4c. Title/URL claims an African transfer/club story the body never
+# delivers ("Transfer Frenzy in Africa" about West Ham/Sunderland/Chelsea/
+# Newcastle, zero African clubs mentioned) — found 2026-08-16. Same
+# deterministic check agent_sports_blog.py's generate_post() runs at
+# generation time (utils/title_content_match.py); this is the permanent
+# regression tripwire for anything that reaches posts.json through another
+# path (manual edit, Sanity CMS sync, content_backfill rewrites).
+for p in posts:
+    violation = check_africa_framing(p.get('title', ''), p.get('slug', ''), p.get('body', ''))
+    if violation:
+        issue(CRITICAL, 'false_africa_framing', p['slug'], violation)
 
 # ── 5. Key static pages audit ─────────────────────────────────────────────────
 STATIC_CHECKS = [

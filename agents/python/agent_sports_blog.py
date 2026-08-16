@@ -32,6 +32,7 @@ from utils.serp_research import research, build_keyword_from_category
 from utils.story_dedup import source_keys as _source_keys, \
     load_covered_keys as _load_covered_keys, record_covered_keys as _record_covered_keys
 from agent_fact_checker import check_post as fact_check_post
+from utils.title_content_match import check_africa_framing
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
 from generate_blog_feature_image import ensure_feature_image
@@ -154,6 +155,20 @@ ACCURACY RULES — NON-NEGOTIABLE:
   article rejected
 - If the news shows the story is X hours old, reflect that timing accurately in the article
 - Attribute the story to the outlet that reported it, by name, at least once in the article (e.g. "as per BBC Sport", "Sky Sports News reports", "according to Fabrizio Romano") — the source for each headline is shown in brackets in the headlines list below
+- NEVER title or frame an article as being about "Africa"/"African clubs"/an
+  "African transfer window" unless the actual clubs, players, or league in
+  the headlines are genuinely African. It is fine, and expected, to say the
+  article is written FOR African bettors/punters — that describes the
+  audience and is true of every article regardless of which clubs are
+  involved. It is NOT fine to imply the STORY itself is African when it
+  isn't. WRONG example (do not do this): headlines are about West Ham,
+  Sunderland, Chelsea, and Newcastle (all English clubs) — do not title
+  this "Transfer Frenzy in Africa" or "Africa's Top Transfer Stories", and
+  do not open the article with "Africa's transfer window is heating up" or
+  "the transfer window in Africa is buzzing". RIGHT example: title it
+  "Premier League Transfer News: West Ham, Sunderland Deals" and open with
+  "The Premier League transfer window is heating up" — then connect it to
+  the African betting angle in the body/CTA, not the headline claim
 
 BRAND VOICE:
 - Confident, knowledgeable, street-smart African analyst
@@ -324,6 +339,19 @@ Write the article now. Base it on the REAL news provided above — do not invent
         feature_image = ensure_feature_image(post)
         if feature_image:
             post["feature_image"] = feature_image
+
+        # Title/content topic-match gate — deterministic check that the
+        # title/slug don't claim an African transfer/club story the body
+        # never delivers (see utils/title_content_match.py's docstring for
+        # the live incident this was built from: a "transfers" post titled
+        # "Transfer Frenzy in Africa" that was entirely about West Ham,
+        # Sunderland, Chelsea and Newcastle). Held back the same way a
+        # fact-check FLAG is — nothing publishable this run, not a crash.
+        africa_violation = check_africa_framing(post["title"], post["slug"], post["body"])
+        if africa_violation:
+            print(f"  ✗ Title/content check held back this article: {africa_violation}")
+            discard_feature_image(post)
+            return None
 
         # Fact-check gate — second LLM pass cross-checking the draft against
         # its own source snippets before it's ever returned to a caller.
