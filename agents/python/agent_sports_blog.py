@@ -596,7 +596,12 @@ def announce_to_facebook(post: dict) -> bool:
             candidate = REPO_ROOT / feature_image.lstrip("/")
             if candidate.exists():
                 image_path = candidate
-        post["_facebook_image_path"] = image_path
+        # Stored as a str, never the Path itself — this dict is `post`,
+        # which save_posts() later json.dump()s wholesale into posts.json.
+        # A raw PosixPath here crashed every run that reached this line
+        # with a real feature image (json.dump has no default encoder for
+        # Path), which was most runs — see AGENT-KNOWLEDGE.md 2026-08-16.
+        post["_facebook_image_path"] = str(image_path) if image_path else None
 
         ok = post_facebook(build_facebook_caption(post), image_path=image_path)
         log("sports_blog", "facebook_announce", "success" if ok else "failed", post["title"])
