@@ -14,6 +14,8 @@ import requests
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
+from utils.live_data_helpers import american_to_decimal
+
 ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports"
 OPENFOOTBALL_WC_URL = "https://raw.githubusercontent.com/openfootball/world-cup.json/master/2026/worldcup.json"
 HEADERS = {"User-Agent": "Mozilla/5.0 (SifuFinds/2.0; live-odds-agent)"}
@@ -37,15 +39,6 @@ ENDPOINTS = [
 ]
 
 NO_DRAW_SPORTS = {"basketball", "tennis", "cricket", "rugby", "boxing", "baseball"}
-
-
-def american_to_decimal(odds_str: str) -> float:
-    """Convert American odds string (+164, -198) to decimal odds."""
-    try:
-        o = int(str(odds_str).replace("+", "").strip())
-        return round((100 / abs(o) + 1) if o < 0 else (o / 100 + 1), 2)
-    except Exception:
-        return 0.0
 
 
 def format_time(event: dict, is_live: bool, is_complete: bool) -> str:

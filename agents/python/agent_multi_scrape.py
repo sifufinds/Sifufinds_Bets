@@ -11,21 +11,23 @@ every 5 min). FIRECRAWL_API_KEY is optional — the free pipeline needs no key.
 
 from __future__ import annotations
 
-import json
 import re
-import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
 from utils.free_scrape import scrape as free_scrape
+from utils.live_data_helpers import fmt_time, league_key
+from utils.live_json_store import enrich_existing, load_live_json, match_key, save_live_json
+from utils.oddsportal_parser import parse_oddsportal as _parse_oddsportal
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 LIVE_JSON = REPO_ROOT / "data" / "live.json"
 TODAY = datetime.now(timezone.utc).strftime("%Y%m%d")
+TOMORROW = (datetime.now(timezone.utc) + timedelta(days=1)).strftime("%Y%m%d")
 
 # Sites to scrape — ordered by data quality for our use case
 SOURCES: list[dict[str, Any]] = [
@@ -54,8 +56,8 @@ SOURCES: list[dict[str, Any]] = [
         "priority": 4,
     },
     {
-        "name": "oddsportal_africa",
-        "url": "https://www.oddsportal.com/football/africa/",
+        "name": "oddsportal_tomorrow",
+        "url": f"https://www.oddsportal.com/matches/football/{TOMORROW}/",
         "wait": 3000,
         "priority": 4,
     },
@@ -65,29 +67,6 @@ SOURCES: list[dict[str, Any]] = [
         "wait": 3000,
         "priority": 5,
     },
-]
-
-# Sport key map: league name keywords → internal key
-LEAGUE_KEY_MAP: list[tuple[re.Pattern, str]] = [
-    (re.compile(r"world cup|fifa world|championship 2026", re.I), "world"),
-    (re.compile(r"caf champions|champions league.*africa|african champions", re.I), "cafl"),
-    (re.compile(r"afcon|africa cup|african cup of nations|caf.*qualifier|worldq.*caf", re.I), "afcon"),
-    (re.compile(r"npfl|nigeria premier|nigeria.*league", re.I), "local"),
-    (re.compile(r"kenya premier|kpl|kenya.*league", re.I), "local"),
-    (re.compile(r"ghana premier|gpl|ghana.*league", re.I), "local"),
-    (re.compile(r"south africa.*premier|psl|dstv premiership|betway premiership", re.I), "local"),
-    (re.compile(r"tanzania premier|ugandan premier|zambia.*league|zimbabwe.*league", re.I), "local"),
-    (re.compile(r"nba|wnba|euroleague|ncaa basketball", re.I), "basketball"),
-    (re.compile(r"mlb|baseball", re.I), "baseball"),
-    (re.compile(r"tennis|atp|wta|french open|wimbledon|us open|roland.?garros", re.I), "tennis"),
-    (re.compile(r"cricket|icc|test match|odi|t20", re.I), "cricket"),
-    (re.compile(r"rugby|nrl|six nations|super rugby", re.I), "rugby"),
-    (re.compile(r"boxing|wbc|wba|wbo|ibf|heavyweight|lightweight", re.I), "boxing"),
-    (re.compile(r"premier league|epl|english premier", re.I), "epl"),
-    (re.compile(r"champions league|ucl|uefa champions", re.I), "ucl"),
-    (re.compile(r"la liga|laliga|primera division.*spain", re.I), "laliga"),
-    (re.compile(r"friendly international|international friendly|world.*friendly", re.I), "world"),
-    (re.compile(r"africa|african|caf|afcon", re.I), "local"),
 ]
 
 # Known multi-word country/team slugs (lowercase, hyphenated form)
@@ -139,13 +118,6 @@ def scrape_url(url: str, wait_ms: int = 3000, name: str = "") -> str:
 # ── Parsers ───────────────────────────────────────────────────────────────────
 
 
-def league_key(label: str) -> str:
-    for pattern, key in LEAGUE_KEY_MAP:
-        if pattern.search(label):
-            return key
-    return "local"
-
-
 def slug_to_teams(slug: str) -> tuple[str, str]:
     """
     Convert a Sofascore/OddsPortal URL slug like 'china-singapore' or
@@ -182,24 +154,6 @@ def slug_to_single_team(slug: str) -> str:
         if slug.lower() == mw_slug:
             return mw_name
     return slug.replace("-", " ").title()
-
-
-def fmt_time(raw_time: str, is_live: bool = False) -> str:
-    """Format a HH:MM string into a SifuFinds-compatible time label."""
-    now = datetime.now(timezone.utc)
-    t = raw_time.strip()
-    if is_live:
-        return t
-    try:
-        h, m = map(int, t.split(":"))
-        match_dt = now.replace(hour=h, minute=m, second=0, microsecond=0)
-        if match_dt < now:
-            match_dt = match_dt + timedelta(days=1)
-        day_mon_year = f"{match_dt.day} {match_dt.strftime('%b %Y')}"
-        return f"{day_mon_year} · {t} UTC"
-    except Exception:
-        day_mon_year = f"{now.day} {now.strftime('%b %Y')}"
-        return f"{day_mon_year} · {t} UTC"
 
 
 # ── Sofascore parser ──────────────────────────────────────────────────────────
@@ -332,8 +286,6 @@ def parse_sofascore(text: str) -> list[dict]:
             else:
                 break
         return league, key
-
-    AFRICAN_BKS = ["Bet9ja", "Betway", "1xBet", "Sportybet", "Betika", "22Bet", "Melbet"]
 
     for m in _SOFA_MATCH_LINK.finditer(text):
         content = m.group(1)
@@ -579,92 +531,11 @@ def parse_livescore(text: str) -> list[dict]:
     return matches_out
 
 
-# ── OddsPortal parser ─────────────────────────────────────────────────────────
-
-_OP_TIME_RE = re.compile(r"^(\d{2}:\d{2})$")
-_OP_ODDS_RE = re.compile(r"^(\d+\.\d{2})$")
+# ── OddsPortal parser (utils/oddsportal_parser.py — extracts real 1X2 odds) ────
 
 
 def parse_oddsportal(text: str, label_hint: str = "All Football") -> list[dict]:
-    matches_out: list[dict] = []
-    seen: set[str] = set()
-    lines = [l.strip() for l in text.split("\n") if l.strip()]
-
-    current_league = "World / Friendly International"
-    current_key = "world"
-    pending_time: str = ""
-    teams: list[str] = []
-    odds_buf: list[float] = []
-
-    AFRICAN_BKS = ["Bet9ja", "Betway", "1xBet", "Sportybet", "Betika", "22Bet", "Melbet"]
-
-    for line in lines:
-        # Competition header from link text
-        comp_m = re.search(r"\[([A-Z][^\]]{5,55})\]\(https://www\.oddsportal\.com/football/", line)
-        if comp_m and not _OP_TIME_RE.match(line):
-            candidate = comp_m.group(1).strip()
-            if not re.search(r"^\d|\d{4}$", candidate):
-                current_league = candidate
-                current_key = league_key(candidate)
-            teams = []
-            odds_buf = []
-            pending_time = ""
-            continue
-
-        if _OP_TIME_RE.match(line):
-            pending_time = line
-            teams = []
-            odds_buf = []
-            continue
-
-        odds_m = _OP_ODDS_RE.match(line)
-        if odds_m and pending_time and len(teams) >= 2:
-            odds_buf.append(float(odds_m.group(1)))
-            if len(odds_buf) == 3:
-                key_str = f"{teams[0]}|{teams[1]}"
-                if key_str not in seen:
-                    seen.add(key_str)
-                    h, d, a = odds_buf[0], odds_buf[1], odds_buf[2]
-                    bk = AFRICAN_BKS[len(seen) % len(AFRICAN_BKS)]
-                    matches_out.append(
-                        {
-                            "league": current_league,
-                            "key": current_key,
-                            "live": False,
-                            "complete": False,
-                            "home": teams[0],
-                            "away": teams[1],
-                            "hScore": None,
-                            "aScore": None,
-                            "time": fmt_time(pending_time),
-                            "h": h,
-                            "d": d,
-                            "a": a,
-                            "hBk": bk,
-                            "dBk": bk,
-                            "aBk": bk,
-                            "_src": "oddsportal",
-                        }
-                    )
-                pending_time = ""
-                teams = []
-                odds_buf = []
-            continue
-
-        # Team names: non-empty lines between time and odds
-        if (
-            pending_time
-            and len(teams) < 2
-            and line
-            and not line.startswith("!")
-            and not line.startswith("[")
-            and not line.startswith("|")
-            and not re.match(r"^\d+\.?\d*$", line)
-            and 2 < len(line) < 55
-        ):
-            teams.append(line)
-
-    return matches_out
+    return _parse_oddsportal(text, league_key, fmt_time, label_hint)
 
 
 # ── BetExplorer parser ────────────────────────────────────────────────────────
@@ -744,68 +615,9 @@ PARSERS: dict[str, Any] = {
     "flashscore": parse_flashscore,
     "livescore": parse_livescore,
     "oddsportal_today": lambda t: parse_oddsportal(t, "All Football"),
-    "oddsportal_africa": lambda t: parse_oddsportal(t, "Africa"),
+    "oddsportal_tomorrow": lambda t: parse_oddsportal(t, "All Football"),
     "betexplorer": parse_betexplorer,
 }
-
-
-# ── live.json helpers ─────────────────────────────────────────────────────────
-
-
-def load_live_json() -> dict:
-    try:
-        if LIVE_JSON.exists():
-            return json.loads(LIVE_JSON.read_text(encoding="utf-8"))
-    except Exception as exc:
-        print(f"  Could not read live.json: {exc}")
-    return {"events": [], "updated": ""}
-
-
-def save_live_json(data: dict) -> None:
-    LIVE_JSON.parent.mkdir(parents=True, exist_ok=True)
-    LIVE_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-
-
-def match_key(e: dict) -> str:
-    return f"{(e.get('home') or '').lower()}|{(e.get('away') or '').lower()}"
-
-
-def enrich_existing(existing_events: list[dict], new_events: list[dict]) -> list[dict]:
-    """
-    Update existing events with live score info from new_events.
-    For new matches not in existing, append them.
-    Preserves ESPN odds (h/d/a > 0) and only overwrites scores/live status.
-    """
-    existing_map: dict[str, dict] = {match_key(e): e for e in existing_events}
-
-    for new in new_events:
-        k = match_key(new)
-        if k in existing_map:
-            ex = existing_map[k]
-            # Only update live/score if the new source has score data
-            if new.get("live") and new.get("hScore") is not None:
-                ex["live"] = True
-                ex["hScore"] = new["hScore"]
-                ex["aScore"] = new["aScore"]
-                ex["time"] = new["time"]
-            elif new.get("complete") and not ex.get("complete"):
-                ex["complete"] = True
-                ex["hScore"] = new.get("hScore")
-                ex["aScore"] = new.get("aScore")
-                ex["time"] = "FT"
-            # Enrich odds only if existing has none
-            if ex.get("h", 0) == 0 and new.get("h", 0) > 0:
-                ex["h"] = new["h"]
-                ex["d"] = new["d"]
-                ex["a"] = new["a"]
-                ex["hBk"] = new.get("hBk", "")
-                ex["dBk"] = new.get("dBk", "")
-                ex["aBk"] = new.get("aBk", "")
-        else:
-            # New match not seen before
-            existing_map[k] = new
-
-    return list(existing_map.values())
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -854,18 +666,24 @@ def main() -> None:
 
     print(f"\n  Total raw matches from all sources: {len(all_new)}")
 
-    # Deduplicate across sources (higher-priority sources win)
-    seen_keys: set[str] = set()
-    deduped: list[dict] = []
+    # Deduplicate across sources (higher-priority source's fixture data wins,
+    # but a lower-priority duplicate's odds are still backfilled onto it —
+    # e.g. Sofascore usually wins the fixture, OddsPortal still contributes
+    # its real 1X2 prices onto that same match instead of being dropped).
+    dedup_map: dict[str, dict] = {}
     for src_name in [s["name"] for s in sorted(SOURCES, key=lambda x: x["priority"])]:
         for m in all_new:
             if m.get("_src") != src_name:
                 continue
             k = match_key(m)
-            if k not in seen_keys:
-                seen_keys.add(k)
-                deduped.append(m)
+            if k not in dedup_map:
+                dedup_map[k] = m
+            elif dedup_map[k].get("h", 0) == 0 and m.get("h", 0) > 0:
+                kept = dedup_map[k]
+                kept["h"], kept["d"], kept["a"] = m["h"], m["d"], m["a"]
+                kept["hBk"], kept["dBk"], kept["aBk"] = m.get("hBk", ""), m.get("dBk", ""), m.get("aBk", "")
 
+    deduped = list(dedup_map.values())
     print(f"  Deduped new matches: {len(deduped)}")
 
     # Merge: update existing events and add new ones
