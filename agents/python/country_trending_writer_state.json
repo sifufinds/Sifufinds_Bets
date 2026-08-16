@@ -11,31 +11,39 @@
     "Shalulile fires Yanga winning start betting tips South Africa": {
       "slug": "shalulile-fires-yanga-winning-start-betting-tips-south-africa",
       "posted_at": "2026-08-16T12:31:39.166845+00:00"
+    },
+    "Air Peace alleges $42m loss poor aircraft handling betting tips Nigeria": {
+      "slug": "air-peace-42m-claim-nigeria-betting-tips",
+      "posted_at": "2026-08-16T14:40:54.089178+00:00"
+    },
+    "Aliyu Zubair takes charge Al Ahly Wad Madani betting tips Nigeria": {
+      "slug": "aliyu-zubair-al-ahly-wad-madani-betting-tips-nigeria",
+      "posted_at": "2026-08-16T14:42:16.620767+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-08-16T12:43:50.721238+00:00",
-    "candidates_available": 246,
+    "checked_at": "2026-08-16T14:42:20.633308+00:00",
+    "candidates_available": 245,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Air Peace alleges $42m loss poor aircraft handling betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "fact_check: \"Bet9ja Odds: Home Win (1.85) | Draw (3.20) | Away Win (4.50)\"; \"BetKing Odds: Home Win (1.88) | Draw (3.15) | Away Win (4.65)\"; \"Air Peace alleges $42m loss poor aircraft handling betting tips Nigeria\"; \"When Air Peace alleges $42m loss poor aircraft handling, savvy bettors look for these slight edges to offset any market volatility caused by national economic news.\"; \"Bet9ja offers a ₦2,500 free bet on signup plus a 170% accumulator boost\"; \"BetKing provides ₦100 free bets with no deposit required and additional Aviator flights.\""
-      },
-      {
-        "keyword": "Shalulile fires Yanga winning start betting tips South Africa",
-        "country": "South Africa",
         "result": "written",
-        "slug": "shalulile-fires-yanga-winning-start-betting-tips-south-africa"
+        "slug": "air-peace-42m-claim-nigeria-betting-tips"
       },
       {
         "keyword": "Why Michaely Bihina is keeper making waves Wafcon betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
+        "reason": "fact_check: \"Bihina’s story is not just about penalty saves. She has already won multiple Player of the Match awards at Wafcon 2026\"; \"Her nine saves in the quarter-final against Nigeria set a tournament record for most saves in a single match.\""
+      },
+      {
+        "keyword": "Aliyu Zubair takes charge Al Ahly Wad Madani betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "aliyu-zubair-al-ahly-wad-madani-betting-tips-nigeria"
       }
     ]
   }
