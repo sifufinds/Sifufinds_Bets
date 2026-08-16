@@ -64,22 +64,32 @@ _AFRICAN_LEAGUES_RE = re.compile(
 # the transfer window, etc.) — not phrases like "for African bettors"/
 # "African punters" which describe the audience, not the subject, and are
 # legitimate on every post regardless of which clubs are actually involved.
-# Deliberately does NOT include a generic "africa...transfer" proximity
-# fallback — an earlier version of this regex had one, and it false-matched
-# legitimate audience framing like "transfer news for African bettors"
-# (fine) as if it were "Transfer Frenzy in Africa" (not fine). Only these
-# three explicit shapes are treated as a claim about the subject.
+#
+# Allows AT MOST ONE filler word between "africa(n)/africa's" and the
+# subject noun (e.g. "African TOP clubs", "Africa's BIGGEST transfer", or
+# "transfer FRENZY in Africa") in either direction. This one-word tolerance
+# is deliberately narrow: an earlier version allowed a wide 20-30 char gap,
+# which correctly caught headline phrasing ("Transfer Frenzy in Africa")
+# but also false-matched real sentences like "African bettors follow the
+# transfer market closely" — the gap didn't care that "bettors" (an
+# audience noun, not a subject noun) was the actual word connecting them.
+# Tightening to a single-word gap keeps every known headline case matching
+# (there's rarely more than one filler word — "Frenzy"/"Top"/"Biggest" —
+# between the claim and its subject) while rejecting sentences where an
+# audience phrase ("bettors", "punters", "for African fans") sits in
+# between. Verified against a 21-case suite spanning both title/slug
+# phrasing and full body sentences — see AGENT-KNOWLEDGE.md's 2026-08-16
+# entries for the false positives this replaced.
+_SUBJECT_NOUNS = r"(transfer|club|star|footballer|player|squad|deal|window|team|league)s?"
+_GAP = r"(\s+\S+)?"
 _FALSE_AFRICA_CLAIM_RE = re.compile(
-    r"\b(transfer|club|star|footballer|player|squad|deal|window)s?\b.{0,25}\bin africa\b"
-    r"|\bafrica'?s\b.{0,30}\b(transfer|club|star|footballer|player|window|deal)"
-    r"|\bafrican\b.{0,20}\b(transfer|club|footballer|window|star)s?\b"
-    # Bare "africa" directly adjacent to a subject noun (no word in between)
-    # — e.g. "africa transfer window". Deliberately requires direct
-    # adjacency rather than a proximity gap: a gap version previously
-    # false-matched legitimate audience framing like "transfer news for
-    # African bettors", where a word (bettors/punters) sits between
-    # "africa" and any subject noun.
-    r"|\bafrica\s+(transfer|club|star|footballer|player|window|deal)s?\b",
+    rf"\b{_SUBJECT_NOUNS}{_GAP}\s+in africa\b"
+    rf"|\bafrica'?s{_GAP}\s+{_SUBJECT_NOUNS}\b"
+    rf"|\bafrican{_GAP}\s+{_SUBJECT_NOUNS}\b"
+    # Bare "africa" (no possessive 's) directly/near a subject noun — e.g.
+    # slug form "africa-transfer-window-2026" (-> "africa transfer window
+    # 2026"), which has no apostrophe to match the "africa's" alternative.
+    rf"|\bafrica{_GAP}\s+{_SUBJECT_NOUNS}\b",
     re.IGNORECASE,
 )
 
@@ -94,30 +104,64 @@ def mentions_real_africa_entity(body: str) -> bool:
     return bool(_AFRICAN_LEAGUES_RE.search(body))
 
 
-def check_africa_framing(title: str, slug: str, body: str) -> str | None:
-    """Return a violation message if title/slug falsely claim an African
-    transfer/club story, or None if the post is fine.
+def _first_body_claim(body: str) -> str | None:
+    """Return the first body sentence that itself claims the story is
+    African (e.g. "the transfer window in Africa is heating up", "African
+    clubs are making some exciting moves"), or None.
 
-    A post is only flagged when BOTH: (1) the title or slug makes an
-    explicit claim the story/clubs/window are African, AND (2) the body
-    genuinely names no real African country, league, or competition. Posts
-    that only mention "African bettors"/"African punters" as the audience
-    never match (1), so this cannot false-positive on ordinary betting-angle
-    copy — see BETTING_ANGLES/AFRICAN CONTEXT in agent_sports_blog.py, which
-    every post legitimately carries regardless of which clubs are involved.
+    Found 2026-08-16, same day as the original incident: two posts whose
+    TITLE had already been corrected still opened or closed with this exact
+    claim baked into the prose — a title-only check never sees it. Split
+    into sentences (rather than running the gap-based regex against the
+    whole multi-paragraph body) so the `.{0,30}` proximity windows in
+    _FALSE_AFRICA_CLAIM_RE can't accidentally bridge two unrelated
+    sentences that happen to sit close together.
+    """
+    for sentence in re.split(r"(?<=[.!?])\s+", body):
+        if _FALSE_AFRICA_CLAIM_RE.search(sentence):
+            return sentence.strip()
+    return None
+
+
+def check_africa_framing(title: str, slug: str, body: str) -> str | None:
+    """Return a violation message if the title, slug, or the body's own
+    prose falsely claims an African transfer/club story, or None if the
+    post is fine.
+
+    A post is only flagged when BOTH: (1) the title, slug, or a body
+    sentence makes an explicit claim the story/clubs/window/team/league are
+    African, AND (2) the body genuinely names no real African country,
+    league, or competition anywhere. Posts that only mention "African
+    bettors"/"African punters" as the audience never match (1), so this
+    cannot false-positive on ordinary betting-angle copy — see
+    BETTING_ANGLES/AFRICAN CONTEXT in agent_sports_blog.py, which every post
+    legitimately carries regardless of which clubs are involved.
     """
     # Checked separately, never concatenated — concatenating "...African
     # Bettors" (end of title) with "transfer window..." (start of slug)
     # created a false cross-boundary match ("African Bettors transfer
     # window") for a title that never actually made an Africa claim.
     slug_as_words = slug.replace('-', ' ')
-    if not _FALSE_AFRICA_CLAIM_RE.search(title) and not _FALSE_AFRICA_CLAIM_RE.search(slug_as_words):
+    title_or_slug_claim = (
+        _FALSE_AFRICA_CLAIM_RE.search(title) is not None
+        or _FALSE_AFRICA_CLAIM_RE.search(slug_as_words) is not None
+    )
+    body_claim = _first_body_claim(body) if not title_or_slug_claim else None
+    if not title_or_slug_claim and not body_claim:
         return None
     if mentions_real_africa_entity(body):
         return None
+    if title_or_slug_claim:
+        return (
+            f"Title/URL claims an African transfer/club story ({title!r}) but "
+            f"the body names no real African country, league, or competition — "
+            f"this looks like European/global transfer news mislabelled as "
+            f"African. See CLAUDE.md's SEO self-healing table, 'Title/URL "
+            f"claims a topic the content never delivers' row."
+        )
     return (
-        f"Title/URL claims an African transfer/club story ({title!r}) but "
-        f"the body names no real African country, league, or competition — "
+        f"Body claims an African transfer/club story ({body_claim!r}) but "
+        f"names no real African country, league, or competition anywhere — "
         f"this looks like European/global transfer news mislabelled as "
         f"African. See CLAUDE.md's SEO self-healing table, 'Title/URL "
         f"claims a topic the content never delivers' row."
