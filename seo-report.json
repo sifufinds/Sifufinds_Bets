@@ -1,13 +1,25 @@
 {
   "date": "2026-08-16",
-  "total": 3,
+  "total": 5,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 2,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-frenzy-in-africa-breaking-down-the-latest-deals-and-their-impact-on-odds",
+      "detail": "Title 82 chars (max 60): 'Transfer Frenzy in Africa: Breaking Down the Latest Deals and Their Im'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-frenzy-in-africa-breaking-down-the-latest-deals-and-their-impact-on-odds",
+      "detail": "Excerpt 297 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
