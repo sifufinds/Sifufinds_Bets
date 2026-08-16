@@ -24,14 +24,14 @@ import json
 import os
 
 from generate_country_pages import COUNTRIES, COUNTRY_SELECTOR_OPTIONS
-from seo_meta import seo_meta_description
+from seo_meta import current_month_year, current_year, seo_meta_description
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_PREFIX = 'best-betting-in-'
 BONUS_PREFIX = 'best-bonus-in-'
 
-YEAR = '2026'
-MONTH_YEAR = 'June 2026'
+YEAR = current_year()
+MONTH_YEAR = current_month_year()
 DOMAIN = 'https://sifufinds.com'
 
 # ── EMERGING MARKETS (added 2026-08-14) ─────────────────────────────────────

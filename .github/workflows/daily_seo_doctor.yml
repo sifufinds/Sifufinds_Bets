@@ -67,6 +67,28 @@ jobs:
           python3 gen_sitemap.py
           exit 0
 
+      - name: Refresh "Updated <Month Year>" freshness dates (auto-heal)
+        id: freshness_dates
+        shell: bash
+        run: |
+          set +e
+          # These generators read the real current month/year via
+          # seo_meta.current_month_year()/current_year() (fixed 2026-08-16 —
+          # 6 of them had 'June 2026' hardcoded literally, 238 deployed
+          # pages stuck showing that date two months on). Re-running them
+          # daily is a harmless no-op except on the day the month actually
+          # rolls over, when every "Updated <Month Year>" / "Reviewed
+          # <Month Year>" stamp and dateModified field advances for free.
+          python3 gen_sport_country_pages.py
+          python3 gen_payment_country_pages.py
+          python3 gen_bookmaker_country_pages.py
+          python3 gen_bk_reviews.py
+          python3 gen_more_reviews.py
+          python3 generate_country_pages.py
+          python3 gen_best_betting_pages.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
       - name: Fix stale "N African countries" copy (auto-heal)
         id: country_count
         shell: bash
@@ -136,6 +158,13 @@ jobs:
             echo "✅ Indexability guard — nothing is stopping Google from crawling the site"
           else
             echo "🚨 Indexability guard found issues it could NOT auto-fix — see 'Run indexability guard' step above and indexability-report.json"
+          fi
+
+          FRESH_CODE="${{ steps.freshness_dates.outputs.exit_code }}"
+          if [ -z "$FRESH_CODE" ] || [ "$FRESH_CODE" = "0" ]; then
+            echo "✅ Freshness-date guard — all 'Updated/Reviewed <Month Year>' stamps regenerated from today's real date"
+          else
+            echo "🚨 Freshness-date guard failed to run — see 'Refresh freshness dates' step above"
           fi
 
           SEO_CODE="${{ steps.seo_check.outputs.exit_code }}"

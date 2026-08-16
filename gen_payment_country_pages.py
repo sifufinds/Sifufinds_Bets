@@ -8,9 +8,11 @@ valid payment × country combination — targeting searches like
 
 import json
 import os
-from seo_meta import seo_meta_description
+from seo_meta import current_month_year, current_year, seo_meta_description
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+YEAR = current_year()
+MONTH_YEAR = current_month_year()
 
 
 def seo_title(title: str, max_len: int = 60) -> str:
@@ -308,9 +310,9 @@ def build_page(payment, country_slug, country_data):
     assets = '../../../'
     canonical = f'https://sifufinds.com/betting/{pm_slug}/{country_slug}/'
 
-    title = seo_title(f'Best {pm_name} Betting Sites {cname} 2026')
-    description = f'Best {pm_name} betting sites in {cname} 2026. Deposit and withdraw instantly via {pm_name} ({provider_local}) at licensed bookmakers. Min deposit {min_dep}. Updated daily.'
-    keywords = f'{pm_name.lower()} betting sites {cname.lower()}, bet with {pm_name.lower()} {cname.lower()}, {pm_name.lower()} bookmakers {cname.lower()}, {pm_name.lower()} sports betting {cname.lower()} 2026'
+    title = seo_title(f'Best {pm_name} Betting Sites {cname} {YEAR}')
+    description = f'Best {pm_name} betting sites in {cname} {YEAR}. Deposit and withdraw instantly via {pm_name} ({provider_local}) at licensed bookmakers. Min deposit {min_dep}. Updated daily.'
+    keywords = f'{pm_name.lower()} betting sites {cname.lower()}, bet with {pm_name.lower()} {cname.lower()}, {pm_name.lower()} bookmakers {cname.lower()}, {pm_name.lower()} sports betting {cname.lower()} {YEAR}'
 
     how_to_html = ''.join(f'<li>{step}</li>' for step in how_to)
 
@@ -343,7 +345,7 @@ def build_page(payment, country_slug, country_data):
 '''
 
     return f'''<!DOCTYPE html>
-<!-- sifufinds.com/betting/{pm_slug}/{country_slug}/ — {pm_name} Betting Sites {cname} 2026 -->
+<!-- sifufinds.com/betting/{pm_slug}/{country_slug}/ — {pm_name} Betting Sites {cname} {YEAR} -->
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -369,7 +371,7 @@ def build_page(payment, country_slug, country_data):
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SifuFinds">
-<meta property="og:title" content="Best {pm_name} Betting Sites {cname} 2026 | SifuFinds">
+<meta property="og:title" content="Best {pm_name} Betting Sites {cname} {YEAR} | SifuFinds">
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
@@ -379,7 +381,7 @@ def build_page(payment, country_slug, country_data):
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sifufinds">
-<meta name="twitter:title" content="Best {pm_name} Betting Sites {cname} 2026 | SifuFinds">
+<meta name="twitter:title" content="Best {pm_name} Betting Sites {cname} {YEAR} | SifuFinds">
 <meta name="twitter:description" content="{description}">
 <meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
 
@@ -477,8 +479,8 @@ def build_page(payment, country_slug, country_data):
 
 <div class="pm-hero">
   <div class="wrap">
-    <h1>{flag} Best {pm_name} Betting Sites in {cname} 2026</h1>
-    <p>Deposit and withdraw instantly via <strong>{pm_name}</strong> ({provider_local}) at licensed {cname} bookmakers. Minimum deposit: <strong>{min_dep}</strong>. All bookmakers verified and regulated by {regulator}. Updated June 2026.</p>
+    <h1>{flag} Best {pm_name} Betting Sites in {cname} {YEAR}</h1>
+    <p>Deposit and withdraw instantly via <strong>{pm_name}</strong> ({provider_local}) at licensed {cname} bookmakers. Minimum deposit: <strong>{min_dep}</strong>. All bookmakers verified and regulated by {regulator}. Updated {MONTH_YEAR}.</p>
     <div class="pm-badge">{pm_icon} {pm_name} · {provider_local} · {ussd}</div>
   </div>
 </div>
@@ -505,8 +507,8 @@ def build_page(payment, country_slug, country_data):
     </table>
   </div>
 
-  <div class="sec-lbl" style="font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">BOOKMAKERS ACCEPTING {pm_name.upper()} · {cname.upper()} · 2026</div>
-  <h2 style="font-size:17px;font-weight:800;color:#111;margin-bottom:9px">Best {pm_name} Betting Sites in {cname} — Verified 2026</h2>
+  <div class="sec-lbl" style="font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">BOOKMAKERS ACCEPTING {pm_name.upper()} · {cname.upper()} · {YEAR}</div>
+  <h2 style="font-size:17px;font-weight:800;color:#111;margin-bottom:9px">Best {pm_name} Betting Sites in {cname} — Verified {YEAR}</h2>
 
   <div class="fbar"><div class="fr">
     <span class="fr-label">Sort:</span>

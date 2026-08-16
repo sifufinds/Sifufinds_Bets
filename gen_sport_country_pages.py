@@ -7,9 +7,11 @@ Creates /betting/{sport-slug}/{country-slug}/index.html targeting searches like
 
 import json
 import os
-from seo_meta import seo_meta_description
+from seo_meta import current_month_year, current_year, seo_meta_description
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+YEAR = current_year()
+MONTH_YEAR = current_month_year()
 
 
 def seo_title(title: str, max_len: int = 60) -> str:
@@ -171,9 +173,9 @@ def build_page(sport, country_slug, country_data):
     assets = '../../../'
     canonical = f'https://sifufinds.com/betting/{sport_slug}/{country_slug}/'
 
-    title = seo_title(f'Best {sport_sport} Betting Sites {cname} 2026')
-    description = f'Best {sport_sport.lower()} betting sites in {cname} 2026. Compare verified bonuses, {sport_sport.lower()} odds and bookmaker reviews. All bookmakers licensed by {regulator}. Updated daily.'
-    keywords = f'{sport_sport.lower()} betting {cname.lower()}, {sport_sport.lower()} betting sites {cname.lower()} 2026, best {sport_sport.lower()} bookmakers {cname.lower()}, {sport_sport.lower()} odds {cname.lower()}'
+    title = seo_title(f'Best {sport_sport} Betting Sites {cname} {YEAR}')
+    description = f'Best {sport_sport.lower()} betting sites in {cname} {YEAR}. Compare verified bonuses, {sport_sport.lower()} odds and bookmaker reviews. All bookmakers licensed by {regulator}. Updated daily.'
+    keywords = f'{sport_sport.lower()} betting {cname.lower()}, {sport_sport.lower()} betting sites {cname.lower()} {YEAR}, best {sport_sport.lower()} bookmakers {cname.lower()}, {sport_sport.lower()} odds {cname.lower()}'
 
     leagues_html = ''.join(f'<li>{lg}</li>' for lg in leagues)
     bet_types_html = ''.join(f'<span class="pay-chip">{bt}</span>' for bt in bet_types)
@@ -207,7 +209,7 @@ def build_page(sport, country_slug, country_data):
 '''
 
     return f'''<!DOCTYPE html>
-<!-- sifufinds.com/betting/{sport_slug}/{country_slug}/ — {sport_sport} Betting {cname} 2026 -->
+<!-- sifufinds.com/betting/{sport_slug}/{country_slug}/ — {sport_sport} Betting {cname} {YEAR} -->
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -233,7 +235,7 @@ def build_page(sport, country_slug, country_data):
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SifuFinds">
-<meta property="og:title" content="Best {sport_sport} Betting Sites {cname} 2026 | SifuFinds">
+<meta property="og:title" content="Best {sport_sport} Betting Sites {cname} {YEAR} | SifuFinds">
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
@@ -243,7 +245,7 @@ def build_page(sport, country_slug, country_data):
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sifufinds">
-<meta name="twitter:title" content="Best {sport_sport} Betting Sites {cname} 2026 | SifuFinds">
+<meta name="twitter:title" content="Best {sport_sport} Betting Sites {cname} {YEAR} | SifuFinds">
 <meta name="twitter:description" content="{description}">
 <meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
 
@@ -338,8 +340,8 @@ def build_page(sport, country_slug, country_data):
 
 <div class="sport-hero">
   <div class="wrap">
-    <h1>{flag} {sport_icon} Best {sport_sport} Betting Sites in {cname} 2026</h1>
-    <p>Compare the best licensed {sport_sport.lower()} bookmakers in {cname}. Verified bonuses, competitive {sport_sport.lower()} odds, and all regulated by {regulator}. Updated June 2026.</p>
+    <h1>{flag} {sport_icon} Best {sport_sport} Betting Sites in {cname} {YEAR}</h1>
+    <p>Compare the best licensed {sport_sport.lower()} bookmakers in {cname}. Verified bonuses, competitive {sport_sport.lower()} odds, and all regulated by {regulator}. Updated {MONTH_YEAR}.</p>
   </div>
 </div>
 
@@ -357,8 +359,8 @@ def build_page(sport, country_slug, country_data):
     <p>{top_tip}</p>
   </div>
 
-  <div class="sec-lbl" style="font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">BEST {sport_sport.upper()} BOOKMAKERS · {cname.upper()} · 2026</div>
-  <h2 style="font-size:17px;font-weight:800;color:#111;margin-bottom:9px">Best {sport_sport} Betting Sites in {cname} — Verified 2026</h2>
+  <div class="sec-lbl" style="font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">BEST {sport_sport.upper()} BOOKMAKERS · {cname.upper()} · {YEAR}</div>
+  <h2 style="font-size:17px;font-weight:800;color:#111;margin-bottom:9px">Best {sport_sport} Betting Sites in {cname} — Verified {YEAR}</h2>
 
   <div class="fbar"><div class="fr">
     <span class="fr-label">Sort:</span>

@@ -1,19 +1,13 @@
 {
-  "date": "2026-08-15",
-  "total": 4,
+  "date": "2026-08-16",
+  "total": 3,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 2,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "celtic-kasper-hogh-record-deal-real-madrid-vinicius-jr-betting",
-      "detail": "Excerpt 156 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",

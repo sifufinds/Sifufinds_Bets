@@ -8,12 +8,15 @@ searches like "Betway Nigeria review 2026", "SportPesa Kenya bonus", etc.
 
 import json
 import os
-from seo_meta import seo_meta_description
+from seo_meta import current_iso_date, current_month_year, current_year, seo_meta_description
 from site_stats import total_country_count
 
 TOTAL_COUNTRIES = total_country_count()
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+YEAR = current_year()
+MONTH_YEAR = current_month_year()
+TODAY_ISO = current_iso_date()
 
 
 def seo_title(title: str, max_len: int = 60) -> str:
@@ -378,9 +381,9 @@ def build_page(bk, country_slug, country, combo):
     assets = '../../../'
     canonical = f'https://sifufinds.com/bookmakers/{bk_slug}/{country_slug}/'
 
-    title = seo_title(f'{name} {cname} Review 2026')
-    description = f'Independent {name} {cname} review 2026. {bonus_desc}. Accepts {payments[0]} and {payments[1] if len(payments) > 1 else "cards"}. Licensed by {lic}. Verified by SifuFinds. Updated June 2026.'
-    keywords = f'{name.lower()} {cname.lower()}, {name.lower()} {cname.lower()} review 2026, {name.lower()} {cname.lower()} bonus, {name.lower()} {cname.lower()} registration, {name.lower()} {cname.lower()} app, {name.lower()} {cname.lower()} withdrawal'
+    title = seo_title(f'{name} {cname} Review {YEAR}')
+    description = f'Independent {name} {cname} review {YEAR}. {bonus_desc}. Accepts {payments[0]} and {payments[1] if len(payments) > 1 else "cards"}. Licensed by {lic}. Verified by SifuFinds. Updated {MONTH_YEAR}.'
+    keywords = f'{name.lower()} {cname.lower()}, {name.lower()} {cname.lower()} review {YEAR}, {name.lower()} {cname.lower()} bonus, {name.lower()} {cname.lower()} registration, {name.lower()} {cname.lower()} app, {name.lower()} {cname.lower()} withdrawal'
 
     pay_str = payments_html(payments)
     pro_str = pros_html(bk['pros'])
@@ -422,7 +425,7 @@ def build_page(bk, country_slug, country, combo):
     stars_display = '★' * rating_int + ('½' if (rating - rating_int) >= 0.5 else '') + '☆' * (5 - rating_int - (1 if (rating - rating_int) >= 0.5 else 0))
 
     return f'''<!DOCTYPE html>
-<!-- sifufinds.com/bookmakers/{bk_slug}/{country_slug}/ — {name} {cname} Review 2026 -->
+<!-- sifufinds.com/bookmakers/{bk_slug}/{country_slug}/ — {name} {cname} Review {YEAR} -->
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -448,7 +451,7 @@ def build_page(bk, country_slug, country, combo):
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SifuFinds">
-<meta property="og:title" content="{name} {cname} Review 2026 | SifuFinds">
+<meta property="og:title" content="{name} {cname} Review {YEAR} | SifuFinds">
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
@@ -458,7 +461,7 @@ def build_page(bk, country_slug, country, combo):
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sifufinds">
-<meta name="twitter:title" content="{name} {cname} Review 2026 | SifuFinds">
+<meta name="twitter:title" content="{name} {cname} Review {YEAR} | SifuFinds">
 <meta name="twitter:description" content="{description}">
 <meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
 
@@ -484,8 +487,8 @@ def build_page(bk, country_slug, country, combo):
       "author": {{"@type": "Organization", "name": "SifuFinds", "url": "https://sifufinds.com"}},
       "publisher": {{"@type": "Organization", "name": "SifuFinds"}},
       "datePublished": "2026-06-01",
-      "dateModified": "2026-06-07",
-      "name": "{name} {cname} Review 2026"
+      "dateModified": "{TODAY_ISO}",
+      "name": "{name} {cname} Review {YEAR}"
     }},
     {{
       "@type": "BreadcrumbList",
@@ -588,12 +591,12 @@ def build_page(bk, country_slug, country, combo):
 
 <div class="bkr-hero">
   <div class="wrap">
-    <h1>{flag} {name} {cname} Review 2026 — {bonus_desc}</h1>
-    <p>Independent review of {name} in {cname} by SifuFinds. {bonus_desc}. Accepts {", ".join(payments[:3])}. Licensed by {lic}. Updated June 2026.</p>
+    <h1>{flag} {name} {cname} Review {YEAR} — {bonus_desc}</h1>
+    <p>Independent review of {name} in {cname} by SifuFinds. {bonus_desc}. Accepts {", ".join(payments[:3])}. Licensed by {lic}. Updated {MONTH_YEAR}.</p>
     <div class="rating-big"><span>{rating}/5</span><span class="stars-big">{stars_display}</span></div>
     <div class="verdict-badge">✅ Recommended — Licensed by {lic}</div>
     <div class="review-meta">
-      <span>📅 Reviewed June 2026</span>
+      <span>📅 Reviewed {MONTH_YEAR}</span>
       <span>✅ {lic}</span>
       <span>🌍 {cname}</span>
       <span>📱 {"App available" if bk["app"] else "Mobile web"}</span>
@@ -612,7 +615,7 @@ def build_page(bk, country_slug, country, combo):
   <div class="adv">📢 <strong>Advertiser Disclosure:</strong> SifuFinds may earn commission if you sign up via our links. This does not affect our ratings. Always check {name}'s official site for current T&Cs.</div>
 
   <div class="claim-box">
-    <h3>🎁 {name} {cname} Bonus — June 2026</h3>
+    <h3>🎁 {name} {cname} Bonus — {MONTH_YEAR}</h3>
     <p>{bonus_desc} · Min deposit: {min_dep}</p>
     <a class="claim-btn" href="{url}" target="_blank" rel="noopener noreferrer sponsored">Claim {name} {cname} Bonus →</a>
     <p style="font-size:11px;color:#888;margin-top:8px;margin-bottom:0">T&amp;Cs Apply · 18+ only · {cname} residents only</p>
@@ -666,7 +669,7 @@ def build_page(bk, country_slug, country, combo):
 
   <div class="cbox2" style="border:2px solid #4ade80">
     <h2>SifuFinds Verdict — Is {name} Worth It in {cname}?</h2>
-    <p style="font-size:13.5px;color:#333;line-height:1.75">{name} is a <strong>{rating}/5 rated</strong> bookmaker for {cname} bettors. It is licensed by <strong>{lic}</strong>, accepts {", ".join(payments[:2])}, and offers <strong>{bonus_desc}</strong> for new customers. With {sports}+ sports markets{"and live streaming" if bk["live_stream"] else ""}, it is one of the best options for {cname} sports bettors in 2026.</p>
+    <p style="font-size:13.5px;color:#333;line-height:1.75">{name} is a <strong>{rating}/5 rated</strong> bookmaker for {cname} bettors. It is licensed by <strong>{lic}</strong>, accepts {", ".join(payments[:2])}, and offers <strong>{bonus_desc}</strong> for new customers. With {sports}+ sports markets{"and live streaming" if bk["live_stream"] else ""}, it is one of the best options for {cname} sports bettors in {YEAR}.</p>
     <div style="text-align:center;margin-top:12px">
       <a class="claim-btn" style="display:inline-block" href="{url}" target="_blank" rel="noopener noreferrer sponsored">Get {name} {cname} Bonus →</a>
     </div>

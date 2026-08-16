@@ -13,14 +13,14 @@ countries/<slug>/<city>/ sub-pages still live inside that same directory.
 
 import json
 import os
-from seo_meta import seo_meta_description
+from seo_meta import current_month_year, current_year, seo_meta_description
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 COUNTRIES_DIR = os.path.join(BASE_DIR, 'countries')
 OUT_PREFIX = 'best-bonus-in-'
 
-YEAR = '2026'
-MONTH_YEAR = 'June 2026'
+YEAR = current_year()
+MONTH_YEAR = current_month_year()
 DOMAIN = 'https://sifufinds.com'
 
 COUNTRIES = {

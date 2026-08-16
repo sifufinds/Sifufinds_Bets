@@ -1697,8 +1697,9 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
         pub_date = pub_dt.strftime('%B %d, %Y')
         pub_iso = pub_dt.strftime('%Y-%m-%d')
     except Exception:
-        pub_date = 'June 2026'
-        pub_iso = '2026-06-07'
+        _fallback_now = datetime.now(timezone.utc)
+        pub_date = _fallback_now.strftime('%B %d, %Y')
+        pub_iso = _fallback_now.strftime('%Y-%m-%d')
 
     # dateModified must reflect a genuine content edit, not just today's
     # regen — hardcoding it to always equal datePublished (pre-2026-07-26)

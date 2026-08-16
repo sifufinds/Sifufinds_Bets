@@ -25,6 +25,30 @@ Usage:
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
+
+
+def current_month_year() -> str:
+    """Return e.g. 'August 2026' — always the real date at call time.
+
+    Single source of truth for every "Updated <Month Year>" / "Reviewed
+    <Month Year>" freshness string across generators, so none of them can
+    drift back into a hardcoded month that goes stale (found 2026-08-16:
+    'June 2026' was still hardcoded in 6 generators, 238 deployed pages,
+    two months after it was first written).
+    """
+    return datetime.now(timezone.utc).strftime("%B %Y")
+
+
+def current_year() -> str:
+    """Return e.g. '2026' — always the real year at call time."""
+    return str(datetime.now(timezone.utc).year)
+
+
+def current_iso_date() -> str:
+    """Return e.g. '2026-08-16' — for dateModified fields with no real edit tracking."""
+    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
 
 def seo_title(title: str, max_len: int = 60, suffix: str = "| SifuFinds") -> str:
     """Return a <= max_len char <title> string with a '| SifuFinds'-style suffix.

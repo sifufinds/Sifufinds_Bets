@@ -7,7 +7,11 @@ import sys
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE)
-from seo_meta import seo_title, seo_meta_description  # noqa: E402
+from seo_meta import current_iso_date, current_month_year, current_year, seo_title, seo_meta_description  # noqa: E402
+
+YEAR = current_year()
+MONTH_YEAR = current_month_year()
+TODAY_ISO = current_iso_date()
 
 COUNTRY_SELECTOR = """\
       <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>
@@ -198,23 +202,23 @@ def make_html(bk):
     )
     compare_cty = bk['country_code']
     pay_str = ', '.join(bk['payments'][:3])
-    page_title = seo_title(f"{bk['name']} Review 2026 | {bk['tagline']}")
+    page_title = seo_title(f"{bk['name']} Review {YEAR} | {bk['tagline']}")
     meta_desc = seo_meta_description(
-        f"Comprehensive {bk['name']} review 2026. {bk['tagline']} — {bk['bonus_desc']} {bk['licence']}. Updated June 2026."
+        f"Comprehensive {bk['name']} review {YEAR}. {bk['tagline']} — {bk['bonus_desc']} {bk['licence']}. Updated {MONTH_YEAR}."
     )
     og_desc = seo_meta_description(
         f"{bk['name']} review: {bk['bonus_desc']} {bk['licence']}. Full independent review.", max_len=200
     )
 
     return f"""<!DOCTYPE html>
-<!-- sifufinds.com/bookmakers/{slug}/ — {bk['name']} Review 2026 -->
+<!-- sifufinds.com/bookmakers/{slug}/ — {bk['name']} Review {YEAR} -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{page_title}</title>
 <meta name="description" content="{meta_desc}">
-<meta name="keywords" content="{bk['name'].lower()} review 2026, {bk['name'].lower()} bonus, {bk['name'].lower()} {bk['country_name'].lower()}, is {bk['name'].lower()} legit, {bk['name'].lower()} withdrawal, {bk['name'].lower()} app">
+<meta name="keywords" content="{bk['name'].lower()} review {YEAR}, {bk['name'].lower()} bonus, {bk['name'].lower()} {bk['country_name'].lower()}, is {bk['name'].lower()} legit, {bk['name'].lower()} withdrawal, {bk['name'].lower()} app">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="SifuFinds Editorial Team">
 <link rel="canonical" href="https://sifufinds.com/bookmakers/{slug}/">
@@ -224,7 +228,7 @@ def make_html(bk):
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SifuFinds">
-<meta property="og:title" content="{bk['name']} Review 2026 | {bk['tagline']} | SifuFinds">
+<meta property="og:title" content="{bk['name']} Review {YEAR} | {bk['tagline']} | SifuFinds">
 <meta property="og:description" content="{og_desc}">
 <meta property="og:url" content="https://sifufinds.com/bookmakers/{slug}/">
 <meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
@@ -234,7 +238,7 @@ def make_html(bk):
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sifufinds">
-<meta name="twitter:title" content="{bk['name']} Review 2026 | SifuFinds">
+<meta name="twitter:title" content="{bk['name']} Review {YEAR} | SifuFinds">
 <meta name="twitter:description" content="{bk['name']}: {bk['bonus_desc']}">
 <meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
 
@@ -260,8 +264,8 @@ def make_html(bk):
       "author": {{"@type": "Organization", "name": "SifuFinds", "url": "https://sifufinds.com"}},
       "publisher": {{"@type": "Organization", "name": "SifuFinds"}},
       "datePublished": "2026-06-01",
-      "dateModified": "2026-06-01",
-      "name": "{bk['name']} Review 2026"
+      "dateModified": "{TODAY_ISO}",
+      "name": "{bk['name']} Review {YEAR}"
     }},
     {{
       "@type": "BreadcrumbList",
@@ -361,12 +365,12 @@ def make_html(bk):
 
 <div class="bkr-hero">
   <div class="wrap">
-    <h1>{bk['name']} Review 2026 — {bk['tagline']}</h1>
-    <p>Independent review of {bk['name']} by SifuFinds. {bk['bonus_desc']} Updated June 2026.</p>
+    <h1>{bk['name']} Review {YEAR} — {bk['tagline']}</h1>
+    <p>Independent review of {bk['name']} by SifuFinds. {bk['bonus_desc']} Updated {MONTH_YEAR}.</p>
     <div class="rating-big"><span>{bk['rating']}/5</span><span class="stars-big">★★★★{'★' if float(bk['rating'])>=4.8 else '☆'}</span></div>
     <div class="verdict-badge">✅ Recommended — {bk['licence']}</div>
     <div class="review-meta">
-      <span>📅 Reviewed June 2026</span>
+      <span>📅 Reviewed {MONTH_YEAR}</span>
       <span>✅ {bk['licence']}</span>
       <span>🌍 {bk['country_name']}</span>
     </div>
@@ -381,7 +385,7 @@ def make_html(bk):
   <div class="adv">📢 <strong>Advertiser Disclosure:</strong> SifuFinds may earn commission if you sign up via our links. This does not affect our ratings. Always check {bk['name']}'s official site for current T&Cs.</div>
 
   <div class="claim-box">
-    <h3>🎁 {bk['name']} Bonus — June 2026</h3>
+    <h3>🎁 {bk['name']} Bonus — {MONTH_YEAR}</h3>
     <p>{bk['bonus']} · {bk['acca_boost']}</p>
     <a class="claim-btn" href="{bk['url']}" target="_blank" rel="noopener noreferrer sponsored">Claim {bk['name']} Bonus →</a>
     <p style="font-size:11px;color:#888;margin-top:8px;margin-bottom:0">{bk['bonus_code']} · T&Cs apply · 18+ only</p>
