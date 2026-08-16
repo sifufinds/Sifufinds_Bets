@@ -1,0 +1,183 @@
+name: Fabricated Content Fix — remove invented odds from legacy posts
+
+# 2026-08-15/16: an audit found ~643 (later ~596) legacy blog posts carrying
+# fabricated betting-odds tables — agent_sports_blog.py's own SYSTEM_PROMPT
+# used to explicitly instruct the LLM to invent odds under an "illustrative
+# pricing" carve-out. That carve-out is now removed (same date, across
+# agent_sports_blog.py, agent_fact_checker.py, and
+# agent_country_trending_writer.py), so no new fabricated post should be
+# created — but the existing backlog still needs fixing.
+#
+# This works through that backlog automatically, without anyone needing to
+# ask each day: 100 posts per run, either a real search-grounded rewrite
+# (verified by agent_fact_checker before it's accepted — a flagged rewrite
+# is never published) or, when real grounding can't be found, a
+# deterministic strip of the fabricated numbers with a dated correction
+# note. Progress is tracked in agents/python/fabricated_fix_state.json,
+# committed to the repo, so it survives across runs and eventually finishes
+# the backlog without a human needing to trigger each batch.
+#
+# Runs once daily. Stops running (0 posts left to fix) once the backlog is
+# clear — see agent_fabricated_content_fixer.py's own "nothing to do" exit,
+# which still succeeds so the schedule doesn't need to be manually disabled.
+
+on:
+  schedule:
+    - cron: "20 0 * * *"
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Posts to process this run (default 100)"
+        required: false
+        default: "100"
+
+concurrency:
+  group: fabricated-content-fix
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fix-backlog:
+    name: Fix next batch of fabricated-odds posts
+    runs-on: ubuntu-latest
+    # 100 posts, each needing a free-tier search + up to 2 LLM calls (rewrite
+    # + fact-check), realistically averaging well under a minute each on
+    # Groq but much slower on a g4f/Ollama fallback chain — same shape of
+    # risk documented in content_backfill.yml's own timeout history. 4 hours
+    # gives real headroom over the script's own 3-hour internal wall-clock
+    # budget (see WALL_CLOCK_BUDGET_SECONDS in the agent) plus the
+    # regen/validate/commit steps after it.
+    timeout-minutes: 240
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Run fabricated content fixer
+        id: fixer
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          BATCH_SIZE: ${{ github.event.inputs.batch_size || '100' }}
+        run: |
+          set +e
+          # Bounded the same way content_backfill.yml bounds its own LLM
+          # loop — a hung/slow fallback tier shouldn't be able to consume
+          # the whole job timeout and skip every step after it (regenerate
+          # pages, commit, push).
+          timeout 12600 python3 agent_fabricated_content_fixer.py --batch-size "$BATCH_SIZE"
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Regenerate static blog pages
+        run: python3 gen_blog_post_pages.py --force
+
+      - name: Regenerate sitemap
+        run: python3 gen_sitemap.py
+
+      - name: Validate before committing
+        id: validate
+        run: |
+          set +e
+          python3 scripts/validate_site.py
+          v1=$?
+          python3 scripts/compliance_check.py
+          v2=$?
+          python3 scripts/audit_titles.py
+          v3=$?
+          if [ "$v1" -ne 0 ] || [ "$v2" -ne 0 ] || [ "$v3" -ne 0 ]; then
+            echo "One or more pre-deploy gates failed — see logs above."
+            echo "passed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "passed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push fixed posts
+        if: steps.validate.outputs.passed == 'true'
+        run: |
+          git config --local user.email "fabricated-content-fix@sifufinds.com"
+          git config --local user.name "SifuFinds Fabricated Content Fixer"
+          git add blog/posts.json blog/posts-data.js blog/ sitemap*.xml \
+            agents/python/fabricated_fix_state.json blog/translations/
+          if git diff --cached --quiet; then
+            echo "No posts fixed this run — nothing to commit"
+            exit 0
+          fi
+          git commit -m "fix: fabricated-odds cleanup batch $(date -u '+%Y-%m-%d') UTC"
+
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "Push rejected (attempt $attempt/5) — merging and retrying..."
+            sleep 5
+            git fetch origin main
+            # Plain merge, never rebase — a rebase here would replay this
+            # commit as a patch against a moving base and can re-open the
+            # same conflict on every replay (confirmed live 2026-08-15, see
+            # AGENT-KNOWLEDGE.md). merge_posts.py unions posts.json by id
+            # the same way breaking_news.yml's push-retry already does.
+            git merge --no-edit origin/main || true
+            python3 agents/python/merge_posts.py
+            python3 gen_blog_post_pages.py --force
+            python3 gen_sitemap.py
+            git add -A
+            git commit -m "fix: fabricated-odds cleanup batch $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
+          done
+
+      - name: Skip push — validation failed
+        if: steps.validate.outputs.passed != 'true'
+        run: |
+          echo "⚠️ Pre-deploy gates failed after this run's changes — not committing."
+          echo "State file was not saved (see agent_fabricated_content_fixer.py), so the"
+          echo "same batch will be retried, not skipped, on the next scheduled run."
+          exit 1
+
+      - name: Trigger deploy if content changed
+        if: steps.validate.outputs.passed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          gh workflow run deploy_hostinger.yml \
+            --repo "${{ github.repository }}" \
+            --ref main && echo "✅ Deploy triggered" || echo "⚠️ Deploy trigger failed (will self-correct on next push)"
+          exit 0
+
+      - name: Report outcome
+        if: always()
+        run: |
+          CODE="${{ steps.fixer.outputs.exit_code }}"
+          if [ -z "$CODE" ] || [ "$CODE" = "0" ]; then
+            echo "✅ Fabricated content fixer ran — see logs above for posts fixed / backlog remaining"
+          else
+            echo "⚠️ Fabricated content fixer exit code $CODE — check logs above"
+          fi
