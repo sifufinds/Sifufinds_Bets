@@ -1,42 +1,36 @@
 {
   "date": "2026-08-17",
-  "total": 20,
+  "total": 24,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 15,
-    "MEDIUM": 4,
+    "HIGH": 18,
+    "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "kenyan-girls-and-boys-chase-second-volleyball-wins-betting-tips-kenya",
-      "detail": "Title 69 chars (max 60): 'Kenyan girls and boys chase second volleyball wins betting tips Kenya'"
+      "page": "somali-referee-omar-artan-salzburg-night-tanzania-betting-tips",
+      "detail": "Title 68 chars (max 60): \"Somali Referee Omar Artan's Salzburg Night Inspires Tanzania Bettors\""
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "cameroon-wafcon-win-nigeria-betting-tips-past-champions",
-      "detail": "Title 64 chars (max 60): 'Cameroon\u2019s WAFCON win and Nigeria betting tips on past champions'"
+      "page": "aussie-teen-record-breaking-transfer-fee-pl-betting-tips-nigeria",
+      "detail": "Title 80 chars (max 60): 'Aussie Teen\u2019s Record-Breaking Transfer Fee Revealed with PL Betting Ti'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "arsenal-thrash-manchester-city-win-2026-community-shield-betting-tips-ghana",
-      "detail": "Title 75 chars (max 60): 'Arsenal Thrash Manchester City Win 2026 Community Shield Betting Tips '"
+      "page": "somalia-somali-referee-omar-artans-salzburg-night-betting-tips-tanzania",
+      "detail": "Title 73 chars (max 60): \"Somalia Somali Referee, Omar Artan's Salzburg Night Betting Tips Tanza\""
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "kenyan-girls-boys-chase-second-volleyball-wins-betting-tips-kenya",
-      "detail": "Title 65 chars (max 60): 'Kenyan Girls Boys Chase Second Volleyball Wins Betting Tips Kenya'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "4-countries-that-have-won-womens-africa-cup-betting-tips-nigeria",
-      "detail": "Title 65 chars (max 60): '4 Countries That Have Won Women\u2019s Africa Cup Betting Tips Nigeria'"
+      "page": "sa-winger-joins-mabasa-moroccan-champions-betting-tips-south-africa",
+      "detail": "Title 67 chars (max 60): 'SA winger joins Mabasa Moroccan champions betting tips South Africa'"
     },
     {
       "severity": "HIGH",
@@ -83,6 +77,24 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
+      "page": "aussie-teen-record-breaking-transfer-fee-pl-betting-tips-nigeria",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "somalia-somali-referee-omar-artans-salzburg-night-betting-tips-tanzania",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "sa-winger-joins-mabasa-moroccan-champions-betting-tips-south-africa",
+      "detail": "Excerpt 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
       "page": "chiefs-impact-players-delight-coach-da-cruz-betting-tips-ghana",
       "detail": "Excerpt 166 chars (max 155)"
     },
@@ -99,10 +111,22 @@
       "detail": "Excerpt 158 chars (max 155)"
     },
     {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-news-boosts-and-blows-for-top-teams",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "somali-referee-omar-artan-salzburg-night-tanzania-betting-tips",
+      "detail": "High title overlap (7 meaningful tokens) with 'somalia-somali-referee-omar-artans-salzburg-night-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
       "page": "kenyan-girls-and-boys-chase-second-volleyball-wins-betting-tips-kenya",
-      "detail": "High title overlap (8 meaningful tokens) with 'kenyan-girls-boys-chase-second-volleyball-wins-betting-tips-kenya' \u2014 consider noindex"
+      "detail": "High title overlap (7 meaningful tokens) with 'kenyan-girls-boys-chase-second-volleyball-wins-betting-tips-kenya' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
