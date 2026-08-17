@@ -58,28 +58,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-17T07:36:27.156375+00:00",
-    "candidates_available": 234,
+    "checked_at": "2026-08-17T09:09:32.075492+00:00",
+    "candidates_available": 221,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Arsenal thrash Manchester City win 2026 Community Shield betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
       },
       {
         "keyword": "SA winger joins Mabasa Moroccan champions betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: \"Mabasa and Titus head to Morocco\"; \"Titus has completed a move to Moroccan champions, joining Tshegofatso Mabasa in North Africa.\"; \"For South Africa, the story matters because it shifts the discussion from PSL line-ups to how local clubs may replace quality, and how that can affect futures, squad depth, and season-long betting angles.\"; \"When a South African winger lands at a title-winning side abroad, the domestic market can react in two ways.\"; \"If Titus was part of a club’s chance creation, the replacement process could create short-term uncertainty.\"; \"Hollywoodbets | R25 Free Bet + 50 Free Spins, no deposit required | WCGRB Licensed | FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard, Instant EFT\"; \"Supabets | R50 Free Bet + 100% Match up to R5,000 + 100 Spins | NGB Licensed | FNB, Standard Bank, Nedbank, Visa, Mastercard, Instant EFT, Blue Voucher\"; \"BetXchange | R200 Free Bet on First Deposit | WCGRB Licensed | FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard, Instant EFT\"; \"FairPari South Africa | 100% First Deposit Bonus up to €100 | NGB Licensed | FNB, Standard Bank, Nedbank, Capitec, Instant EFT\""
+        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
       },
       {
-        "keyword": "Why Michaely Bihina is keeper making waves Wafcon betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "michaely-bihina-wafcon-betting-tips-tanzania"
+        "keyword": "South Africa end Nigeria’s 2027 World Cup hopes betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
       }
     ]
   }

@@ -234,28 +234,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-17T05:05:40.074503+00:00",
-    "candidates_available": 306,
+    "checked_at": "2026-08-17T09:09:22.822221+00:00",
+    "candidates_available": 285,
     "attempted": 3,
-    "written": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "SA winger joins Mabasa Moroccan champions betting tips South Africa",
+        "keyword": "CAN Féminine 2026 Ghana – Cameroun, un choc betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+      },
+      {
+        "keyword": "🎶 Son music legend signs German fourth-tier club betting tips South Africa",
         "country": "South Africa",
-        "result": "written",
-        "slug": "sa-winger-joins-mabasa-moroccan-champions-betting-tips-south-africa"
+        "result": "failed",
+        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
       },
       {
-        "keyword": "Somalia Somali Referee, Omar Artan's Salzburg Night Completes betting tips Tanzania",
+        "keyword": "Myles Lewis-Skelly transfer Man Utd considering move Arsenal betting tips Tanzania",
         "country": "Tanzania",
-        "result": "written",
-        "slug": "somalia-somali-referee-omar-artans-salzburg-night-betting-tips-tanzania"
-      },
-      {
-        "keyword": "Aussie teen’s record-breaking transfer fee revealed as PL betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "aussie-teen-record-breaking-transfer-fee-pl-betting-tips-nigeria"
+        "result": "failed",
+        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
       }
     ]
   }
