@@ -1,13 +1,43 @@
 {
   "date": "2026-08-17",
-  "total": 6,
+  "total": 11,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 5,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "rodri-barcelona-man-utd-transfer-betting-analysis-africa",
+      "detail": "Title 86 chars (max 60): \"Transfer Bombshells: Rodri to Barca, Man Utd's Rebuild, and African Be\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "burnley-kaizer-chiefs-scotland-boss-african-betting-impact-aug-2026",
+      "detail": "Title 87 chars (max 60): 'Burnley Season Opener, Kaizer Chiefs Praise & Scotland Boss Buzz Impac'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "juventus-jhon-lucumi-man-city-arsenal-barcelona-transfer-news",
+      "detail": "Title 69 chars (max 60): 'Juventus land Jhon Lucumi as City, Arsenal and Barca chatter heats up'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rodri-barcelona-man-utd-transfer-betting-analysis-africa",
+      "detail": "Excerpt 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "juventus-jhon-lucumi-man-city-arsenal-barcelona-transfer-news",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
