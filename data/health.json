@@ -1,19 +1,18 @@
 {
-  "checked_at": "2026-08-17T01:52:08.642600+00:00",
-  "healthy": false,
+  "checked_at": "2026-08-17T04:43:02.933690+00:00",
+  "healthy": true,
   "pages": {
-    "Home": false,
-    "Odds": false,
-    "Tips": false,
-    "Casino": false,
-    "Countries": false,
-    "shared.js": false,
-    "shared.css": false,
-    "live.json": false
+    "Home": true,
+    "Odds": true,
+    "Tips": true,
+    "Casino": true,
+    "Countries": true,
+    "shared.js": true,
+    "shared.css": true,
+    "live.json": true
   },
   "fixes_applied": [
-    "refreshed stale live.json (46 min old)",
     "patched missing football keys: afcon, cafl, local, world"
   ],
-  "fix_count": 2
+  "fix_count": 1
 }
