@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-19T03:30:06.890498+00:00",
+  "updated": "2026-08-19T04:11:21.877493+00:00",
   "count": 67,
   "tips": [
     {
@@ -201,6 +201,20 @@
     {
       "league": "Champions League",
       "key": "ucl",
+      "match": "Dynamo Zagreb vs Viking FK",
+      "pred": "Dynamo Zagreb Win",
+      "analysis": "PredictZ statistical model: Dynamo Zagreb Win. Predicted score: 2-1. Based on form, H2H, and league data.",
+      "odds": "1.85",
+      "via": "1xBet",
+      "conf": 72,
+      "time": "TBD",
+      "date": "19 Aug",
+      "isAI": false,
+      "source": "predictz"
+    },
+    {
+      "league": "Champions League",
+      "key": "ucl",
       "match": "Hapoel Sheva vs Sabah FK",
       "pred": "Hapoel Sheva Win",
       "analysis": "PredictZ statistical model: Hapoel Sheva Win. Predicted score: 2-1. Based on form, H2H, and league data.",
@@ -223,20 +237,6 @@
       "conf": 72,
       "time": "TBD",
       "date": "20 Aug",
-      "isAI": false,
-      "source": "predictz"
-    },
-    {
-      "league": "Champions League",
-      "key": "ucl",
-      "match": "Dynamo Zagreb vs Viking FK",
-      "pred": "Dynamo Zagreb Win",
-      "analysis": "PredictZ statistical model: Dynamo Zagreb Win. Predicted score: 2-1. Based on form, H2H, and league data.",
-      "odds": "1.85",
-      "via": "1xBet",
-      "conf": 72,
-      "time": "TBD",
-      "date": "19 Aug",
       "isAI": false,
       "source": "predictz"
     },
@@ -479,6 +479,34 @@
       "source": "freesupertips"
     },
     {
+      "league": "Copa Sudamericana",
+      "key": "local",
+      "match": "Recoleta vs Boca Juniors",
+      "pred": "Boca Juniors Win",
+      "analysis": "PredictZ statistical model: Boca Juniors Win. Predicted score: 1-2. Based on form, H2H, and league data.",
+      "odds": "1.85",
+      "via": "Melbet",
+      "conf": 68,
+      "time": "TBD",
+      "date": "19 Aug",
+      "isAI": false,
+      "source": "predictz"
+    },
+    {
+      "league": "Brazil Serie B",
+      "key": "local",
+      "match": "Londrina vs Atletico Goianiense",
+      "pred": "Atletico Goianiense Win",
+      "analysis": "PredictZ statistical model: Atletico Goianiense Win. Predicted score: 0-1. Based on form, H2H, and league data.",
+      "odds": "1.85",
+      "via": "Sportybet",
+      "conf": 68,
+      "time": "TBD",
+      "date": "19 Aug",
+      "isAI": false,
+      "source": "predictz"
+    },
+    {
       "league": "Copa Libertadores",
       "key": "local",
       "match": "Cerro Porteno vs Palmeiras",
@@ -577,28 +605,14 @@
       "source": "predictz"
     },
     {
-      "league": "Copa Sudamericana",
+      "league": "Copa Libertadores",
       "key": "local",
-      "match": "Recoleta vs Boca Juniors",
-      "pred": "Boca Juniors Win",
-      "analysis": "PredictZ statistical model: Boca Juniors Win. Predicted score: 1-2. Based on form, H2H, and league data.",
+      "match": "Independiente Rivadavia vs Fluminense",
+      "pred": "Draw",
+      "analysis": "PredictZ statistical model: Draw. Predicted score: 1-1. Based on form, H2H, and league data.",
       "odds": "1.85",
-      "via": "Melbet",
-      "conf": 68,
-      "time": "TBD",
-      "date": "19 Aug",
-      "isAI": false,
-      "source": "predictz"
-    },
-    {
-      "league": "Brazil Serie B",
-      "key": "local",
-      "match": "Londrina vs Atletico Goianiense",
-      "pred": "Atletico Goianiense Win",
-      "analysis": "PredictZ statistical model: Atletico Goianiense Win. Predicted score: 0-1. Based on form, H2H, and league data.",
-      "odds": "1.85",
-      "via": "Sportybet",
-      "conf": 68,
+      "via": "22Bet",
+      "conf": 62,
       "time": "TBD",
       "date": "19 Aug",
       "isAI": false,
@@ -769,20 +783,6 @@
       "conf": 62,
       "time": "TBD",
       "date": "20 Aug",
-      "isAI": false,
-      "source": "predictz"
-    },
-    {
-      "league": "Copa Libertadores",
-      "key": "local",
-      "match": "Independiente Rivadavia vs Fluminense",
-      "pred": "Draw",
-      "analysis": "PredictZ statistical model: Draw. Predicted score: 1-1. Based on form, H2H, and league data.",
-      "odds": "1.85",
-      "via": "22Bet",
-      "conf": 62,
-      "time": "TBD",
-      "date": "19 Aug",
       "isAI": false,
       "source": "predictz"
     },
