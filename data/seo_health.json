@@ -1,15 +1,17 @@
 {
-  "date": "2026-08-19",
-  "fixes_applied": 4,
+  "date": "2026-08-20",
+  "fixes_applied": 6,
   "warnings": 2,
   "fixes": [
-    "Blog HTML: refreshed dateModified on 801 stale pages",
+    "llms.txt: Last Updated \u2192 2026-08-20, blog post count refreshed",
+    "index.html: dateModified \u2192 2026-08-20",
+    "Blog HTML: refreshed dateModified on 774 stale pages",
     "Blog HTML regenerated:     Total blog posts in JSON: 929",
     "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 1654 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "379 posts below 900 words: rodri-barcelona-man-utd-transfer-betting-analysis-africa, burnley-kaizer-chiefs-scotland-boss-african-betting-impact-aug-2026, somali-referee-omar-artan-salzburg-night-tanzania-betting-tips, world-cup-bound-kenya-chipu-savour-barthes-cup-glory-kenya, champions-st-josephs-kitale-nyamira-ngiya-flying-start-tanzania-kenya...",
+    "380 posts below 900 words: rodri-barcelona-man-utd-transfer-betting-analysis-africa, burnley-kaizer-chiefs-scotland-boss-african-betting-impact-aug-2026, somali-referee-omar-artan-salzburg-night-tanzania-betting-tips, world-cup-bound-kenya-chipu-savour-barthes-cup-glory-kenya, champions-st-josephs-kitale-nyamira-ngiya-flying-start-tanzania-kenya...",
     "210 posts missing FAQ section: rodri-barcelona-man-utd-transfer-betting-analysis-africa, burnley-kaizer-chiefs-scotland-boss-african-betting-impact-aug-2026, juventus-jhon-lucumi-man-city-arsenal-barcelona-transfer-news, caesars-bidding-war-pixbet-suspension-africa-betting-integrity, transfer-window-heats-up-latest-news-and-betting-insights-for-african-football"
   ],
   "status": "warnings"
