@@ -37,6 +37,7 @@ import argparse
 import json
 import re
 import sys
+from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -49,12 +50,14 @@ from llm import ask
 from utils.logger import log
 from utils.serp_research import research
 from utils.tweet_text import trim_to_limit as _trim_to_limit
+from utils.gameweek_card import build_gameweek_card
 from utils.prediction_store import (
     add_prediction, already_predicted, make_id,
     grade_pending, aggregate_stats,
+    resolve_espn_slug, ESPN_BASE, SESSION, _expand_nickname,
 )
 from agent_accumulator_post import is_major_league
-from agent_telegram_offers import send_to_channel, SITE_URL
+from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
 from agent_twitter_posts import _post_tweet as post_twitter
 
@@ -114,7 +117,11 @@ def _competition_matches(filter_text: str, actual_competition: str) -> bool:
 
 
 def _tokens(s: str) -> set[str]:
-    return set(re.findall(r"[a-z0-9]+", (s or "").lower()))
+    # Shares prediction_store's nickname table (Spurs/Wolves/etc.) so a real
+    # fixture can't match here (predictions.json <-> matches_live.json merge)
+    # but then fail the same club's ESPN crest/grading lookup for the same
+    # reason, or vice versa.
+    return set(re.findall(r"[a-z0-9]+", _expand_nickname(s).lower()))
 
 
 def _team_match_score(a: str, b: str) -> float:
@@ -283,6 +290,67 @@ def list_fixtures(competition_filter: str | None, days: int, major_only: bool) -
     fixtures = _merge_fixture_lists(from_live, from_predictions)
     fixtures.sort(key=lambda f: (f.get("ko_utc") or "zzz", f["home"]))
     return fixtures
+
+
+# ── Real club crests (ESPN's own CDN — never a guessed/placeholder URL) ──────
+
+_espn_events_cache: dict[tuple[str, str], list[dict]] = {}
+
+
+def _espn_events_for(slug: str, date_str: str) -> list[dict]:
+    key = (slug, date_str)
+    if key in _espn_events_cache:
+        return _espn_events_cache[key]
+    try:
+        r = SESSION.get(f"{ESPN_BASE}/{slug}/scoreboard", params={"dates": date_str}, timeout=15)
+        events = r.json().get("events", [])
+    except Exception:
+        events = []
+    _espn_events_cache[key] = events
+    return events
+
+
+def enrich_crests(records: list[dict]) -> None:
+    """Attach real home_crest/away_crest image URLs from ESPN's own CDN
+    (mutates records in place). Leaves both fields absent when no confidently-
+    matching ESPN event is found for a competition/date — never guesses a
+    crest for the wrong club."""
+    for r in records:
+        slug = resolve_espn_slug(r.get("competition", ""))
+        ko = r.get("ko_utc")
+        if not slug or not ko:
+            continue
+        try:
+            ko_dt = datetime.fromisoformat(ko.replace("Z", "+00:00"))
+        except Exception:
+            continue
+
+        for offset in (0, 1, -1, 2):
+            date_str = (ko_dt + timedelta(days=offset)).strftime("%Y%m%d")
+            matched = False
+            for ev in _espn_events_for(slug, date_str):
+                comp = (ev.get("competitions") or [{}])[0]
+                competitors = comp.get("competitors", [])
+                if len(competitors) != 2:
+                    continue
+                h = next((c for c in competitors if c.get("homeAway") == "home"), None)
+                a = next((c for c in competitors if c.get("homeAway") == "away"), None)
+                if not h or not a:
+                    continue
+                h_team, a_team = h.get("team", {}), a.get("team", {})
+                h_name, a_name = h_team.get("displayName", ""), a_team.get("displayName", "")
+                straight = _team_match_score(r["home"], h_name) + _team_match_score(r["away"], a_name)
+                swapped = _team_match_score(r["home"], a_name) + _team_match_score(r["away"], h_name)
+                if max(straight, swapped) < 1.2:
+                    continue
+                if straight >= swapped:
+                    r["home_crest"], r["away_crest"] = h_team.get("logo"), a_team.get("logo")
+                else:
+                    r["home_crest"], r["away_crest"] = a_team.get("logo"), h_team.get("logo")
+                matched = True
+                break
+            if matched:
+                break
 
 
 # ── Analysis (grounded LLM synthesis, honest odds-only fallback) ─────────────
@@ -520,7 +588,8 @@ def pick_upset(records: list[dict]) -> dict | None:
 
 # ── Social copy builders ──────────────────────────────────────────────────────
 
-_DISCLAIMER = "🔞 18+ | Predictions are analysis and opinion, not guaranteed outcomes. Gamble responsibly."
+_DISCLAIMER = "🔞 18+ | Gamble responsibly"
+_LONG_DISCLAIMER = "🔞 18+ | Predictions are analysis and opinion, not guaranteed outcomes. Gamble responsibly."
 
 
 def _escape(s: str) -> str:
@@ -531,41 +600,139 @@ def _round_title(competition: str, round_label: str) -> str:
     return f"SifuFinds {competition} Predictions" + (f" — {round_label}" if round_label else "")
 
 
+def _round_label_or(round_label: str, fallback: str = "this round") -> str:
+    return round_label if round_label else fallback
+
+
+def _dominant_score(records: list[dict], threshold: float = 0.6) -> tuple[str, int, int] | None:
+    """Detect the funny-but-real case where the model landed on the same
+    scoreline for most or all of a round (typical of the odds-neutral fallback
+    firing across a whole batch — a real live batch came back 9 draws out of
+    10, not literally all 10) so the copy can lean into it honestly instead of
+    pretending every pick is independently bold. Returns (score, count, total)
+    once at least `threshold` of the round shares one scoreline, else None."""
+    if len(records) < 2:
+        return None
+    counts = Counter(r["predicted_score"] for r in records)
+    score, n = counts.most_common(1)[0]
+    total = len(records)
+    if n > 1 and n / total >= threshold:
+        return score, n, total
+    return None
+
+
+def _dominant_hook(dom: tuple[str, int, int]) -> str:
+    score, n, total = dom
+    if n == total:
+        return f"Our model is calling {score} in EVERY GAME"
+    return f"{n} of our {total} picks this round are ALL calling {score}"
+
+
+def _dominant_strongest_joke(dom: tuple[str, int, int]) -> str:
+    score, n, total = dom
+    if n == total:
+        return f"Apparently… ALL OF THEM! 🤷‍♂️😂 Yes... we're predicting {n} {score}s in a row!"
+    return f"Apparently… {n} OF THEM! 🤷‍♂️😂 Yes... {n} of our {total} picks are all {score}!"
+
+
+def _hashtags_for(competition: str, round_label: str) -> str:
+    tags = [f"#{competition.replace(' ', '')}"]
+    if round_label:
+        tags.append(f"#{re.sub(r'[^A-Za-z0-9]', '', round_label)}")
+    tags += ["#FootballPredictions", "#SifuFinds", "#Football"]
+    return " ".join(tags)
+
+
 def build_telegram_post(records: list[dict], competition: str, round_label: str) -> str:
-    title = _round_title(competition, round_label)
-    lines = [f"⚽ <b>{_escape(title)}</b>", ""]
+    round_upper = round_label.upper() if round_label else "THIS ROUND"
+    dom = _dominant_score(records)
+    best = pick_best(records)
+
+    lines = [f"⚽🔥 SIFUFINDS {competition.upper()} PREDICTIONS: {round_upper}! 🔥⚽", ""]
+
+    if dom:
+        lines += [
+            "The round is here… and we're kicking off with some VERY bold predictions! 👀",
+            "",
+            "But here's the twist… 👇",
+            "",
+            f"{_dominant_hook(dom)} 😭😂",
+            "",
+            "Do you agree, or is SifuFinds about to get cooked in the comments? 🔥",
+        ]
+    else:
+        lines += [
+            "Bold calls, tight matches, and one pick we're genuinely backing 👀",
+            "",
+            "Agree with us, or is SifuFinds about to get cooked in the comments? 🔥",
+        ]
+
+    lines += ["", f"🔮 {round_upper} PREDICTIONS", ""]
     for r in records:
-        lines.append(f"🔹 <b>{_escape(r['home'])} vs {_escape(r['away'])}</b>")
-        lines.append(f"   Predicted: {r['predicted_score']} ({r['predicted_result']} win)")
-        lines.append(f"   Confidence: {r['confidence']}% ({confidence_band(r['confidence'])})")
-        extras = []
-        if r.get("btts"):
-            extras.append(f"BTTS: {r['btts']}")
-        if r.get("over_2_5"):
-            extras.append(f"O2.5: {r['over_2_5']}")
-        if extras:
-            lines.append("   " + " · ".join(extras))
+        lines.append(f"🔹 {_escape(r['home'])} 🆚 {_escape(r['away'])}")
+        lines.append(f"🎯 {r['predicted_score']} | Confidence: {r['confidence']}%")
         lines.append("")
 
-    best = pick_best(records)
-    lines.append(f"⭐ Strongest prediction: {best['home']} vs {best['away']} — {best['predicted_score']} ({best['confidence']}%)")
-    upset = pick_upset(records)
-    if upset:
-        lines.append(f"⚠️ Potential upset: {upset['home']} vs {upset['away']} — our lean differs from the market favourite")
-    lines.append("")
-    lines.append("💬 What's your prediction? Drop your scores below 👇")
-    lines.append("")
-    lines.append(f"🌐 <a href=\"{SITE_URL}\">SifuFinds.com</a>")
-    lines.append("")
-    lines.append(_DISCLAIMER)
+    if dom:
+        lines += [
+            "😂 Our strongest prediction?",
+            _dominant_strongest_joke(dom),
+            "",
+            "Maybe we've spotted something nobody else has... or maybe this round is about to humble us. 👀",
+        ]
+    else:
+        lines += [f"⭐ STRONGEST PICK: {best['home']} {best['predicted_score']} {best['away']} ({best['confidence']}%)"]
+        upset = pick_upset(records)
+        if upset:
+            lines.append(f"⚠️ POTENTIAL UPSET: {upset['home']} vs {upset['away']} — our lean differs from the market favourite")
+
+    lines += [
+        "",
+        "👇 NOW IT'S YOUR TURN!",
+        "",
+        "Forget our predictions for a second...",
+        "",
+        "🔥 Who wins?",
+        "🤝 Who draws?",
+        "💥 Who pulls off the upset?",
+        "🎯 What's your exact score?",
+        "",
+        f"Drop your {_round_label_or(round_label)} predictions in the comments! 👇",
+        "",
+        "Let's see who knows their football! 🧠⚽",
+        "",
+        f"🌐 <a href=\"{SITE_URL}\">SifuFinds.com</a>",
+        "",
+        _DISCLAIMER,
+        "",
+        _hashtags_for(competition, round_label),
+    ]
     return "\n".join(lines)
 
 
 def build_facebook_post(records: list[dict], competition: str, round_label: str) -> str:
-    title = _round_title(competition, round_label)
-    lines = [f"🔥 {title} are here!", "", "Who wins this round?", ""]
+    round_upper = round_label.upper() if round_label else "THIS ROUND"
+    dom = _dominant_score(records)
+    best = pick_best(records)
+
+    lines = [f"⚽🔥 SIFUFINDS {competition.upper()} PREDICTIONS: {round_upper}! 🔥⚽", ""]
+    if dom:
+        lines += [
+            f"{_dominant_hook(dom)} 😭",
+            "Bold, or about to get cooked in the comments? You decide 👇",
+        ]
+    else:
+        lines += ["Who wins this round? Here's what our model is calling 👇"]
+    lines.append("")
+
     for r in records:
         lines.append(f"{r['home']} {r['predicted_score']} {r['away']}  ({r['confidence']}% confidence)")
+
+    lines.append("")
+    if dom:
+        lines.append(f"⭐ Our \"strongest\" pick? {_dominant_strongest_joke(dom)}")
+    else:
+        lines.append(f"⭐ Strongest pick: {best['home']} {best['predicted_score']} {best['away']} ({best['confidence']}%)")
     lines.append("")
     lines.append("👀 What's YOUR prediction? Drop your scores in the comments.")
     lines.append("")
@@ -573,13 +740,18 @@ def build_facebook_post(records: list[dict], competition: str, round_label: str)
     lines.append("")
     lines.append(_DISCLAIMER)
     lines.append("")
-    lines.append(f"#FootballPredictions #SifuFinds #{competition.replace(' ', '')}")
+    lines.append(_hashtags_for(competition, round_label))
     return "\n".join(lines)
 
 
 def build_instagram_post(records: list[dict], competition: str, round_label: str) -> str:
-    title = _round_title(competition, round_label)
-    body = [f"⚽ {title}", ""]
+    round_upper = round_label.upper() if round_label else "THIS ROUND"
+    dom = _dominant_score(records)
+
+    body = [f"⚽ SIFUFINDS {competition.upper()} PREDICTIONS: {round_upper} 🔥", ""]
+    if dom:
+        body.append(f"Plot twist: {_dominant_hook(dom).lower()} 😭👀")
+        body.append("")
     for r in records:
         body.append(f"{r['home']} {r['predicted_score']} {r['away']}")
     body.append("")
@@ -587,47 +759,64 @@ def build_instagram_post(records: list[dict], competition: str, round_label: str
     body.append("")
     body.append(_DISCLAIMER)
     body.append(".\n.\n.")
-    hashtags = f"#SifuFinds #FootballPredictions #{competition.replace(' ', '')} #Football #Predictions"
-    body.append(hashtags)
+    body.append(_hashtags_for(competition, round_label) + " #Predictions")
     return "\n".join(body)
 
 
 def build_twitter_post(records: list[dict], competition: str, round_label: str) -> str:
-    title = _round_title(competition, round_label)
-    lines = [f"⚽ {title}", ""]
+    round_upper = round_label.upper() if round_label else "this round"
+    dom = _dominant_score(records)
+    lines = [f"⚽🔥 SifuFinds {competition} predictions: {round_upper}!", ""]
+    if dom:
+        lines.append(f"😭 {_dominant_hook(dom)}. Bold or cooked? 👀")
+        lines.append("")
     for r in records[:5]:
         lines.append(f"{r['home']} {r['predicted_score']} {r['away']}")
     lines.append("")
     lines.append("What's your score prediction? 👇")
-    lines.append(f"#SifuFinds #{competition.replace(' ', '')} 🔞18+")
+    lines.append(f"{_hashtags_for(competition, round_label)} {_DISCLAIMER}")
     return _trim_to_limit("\n".join(lines))
 
 
 def build_threads_post(records: list[dict], competition: str, round_label: str) -> str:
+    dom = _dominant_score(records)
     best = pick_best(records)
-    title = _round_title(competition, round_label)
+    round_upper = round_label.upper() if round_label else "this round"
+    if dom:
+        return (
+            f"⚽ SifuFinds {competition} predictions: {round_upper} 👀\n\n"
+            f"Plot twist: {_dominant_hook(dom).lower()} 😭\n\n"
+            f"Bold, or about to get cooked in the comments? Drop your own scores below 👇\n\n"
+            f"{_hashtags_for(competition, round_label)}"
+        )
     return (
-        f"{title} 👀\n\n"
+        f"⚽ SifuFinds {competition} predictions: {round_upper} 👀\n\n"
         f"Our strongest lean: {best['home']} {best['predicted_score']} {best['away']} "
         f"({best['confidence']}% confidence).\n\n"
         f"Full set of picks on the SifuFinds channel — what's your score? 👇\n\n"
-        f"#SifuFinds #Football"
+        f"{_hashtags_for(competition, round_label)}"
     )
 
 
 def build_tiktok_script(records: list[dict], competition: str, round_label: str) -> str:
     best = pick_best(records)
     biggest = pick_biggest(records)
+    dom = _dominant_score(records)
     title = _round_title(competition, round_label)
+    hook = (
+        f"\"Okay so {_dominant_hook(dom).lower()} this round... are we cooked, or onto something?\""
+        if dom else
+        f"\"Here's what SifuFinds is calling for {competition}{' ' + round_label if round_label else ''}...\""
+    )
     return (
         f"[TIKTOK SCRIPT — {title}]\n\n"
-        f"HOOK: \"Here's what SifuFinds is calling for {competition}{' ' + round_label if round_label else ''}...\"\n\n"
+        f"HOOK: {hook}\n\n"
         f"BODY:\n"
         + "\n".join(f"- {r['home']} vs {r['away']}: {r['predicted_score']}, {r['confidence']}% confidence" for r in records[:5])
         + f"\n\nBIGGEST GAME: {biggest['home']} vs {biggest['away']} — {biggest['predicted_score']}\n"
         f"STRONGEST PICK: {best['home']} vs {best['away']} — {best['confidence']}% confidence\n\n"
-        f"CTA: \"Drop your score prediction in the comments. Follow for more.\"\n"
-        f"{_DISCLAIMER}"
+        f"CTA: \"Comment your own score prediction. Let's see who actually knows football. Follow for more.\"\n"
+        f"{_LONG_DISCLAIMER}"
     )
 
 
@@ -714,6 +903,7 @@ def run_generate(args: argparse.Namespace) -> None:
         return
 
     comp_label = competition or "Football"
+    enrich_crests(records)
     telegram_text = build_telegram_post(records, comp_label, args.round or "")
     facebook_text = build_facebook_post(records, comp_label, args.round or "")
     instagram_text = build_instagram_post(records, comp_label, args.round or "")
@@ -746,7 +936,25 @@ def run_generate(args: argparse.Namespace) -> None:
 
     results: dict[str, bool] = {}
     if args.telegram:
-        results["telegram"] = send_to_channel(telegram_text)
+        card_path = None
+        try:
+            card_path = build_gameweek_card(
+                records,
+                title=f"SIFUFINDS {comp_label.upper()}",
+                subtitle=(f"PREDICTIONS: {args.round.upper()}" if args.round else "PREDICTIONS"),
+            )
+        except Exception as exc:
+            print(f"  [warn] gameweek card image failed, posting text-only: {exc}")
+
+        photo_ok = True
+        if card_path:
+            short_caption = (
+                f"⚽🔥 SIFUFINDS {comp_label.upper()}"
+                f"{': ' + args.round.upper() if args.round else ''} PREDICTIONS! 🔥⚽\n\n"
+                f"Full breakdown + your turn to predict 👇"
+            )
+            photo_ok = send_photo_to_channel(str(card_path), short_caption)
+        results["telegram"] = photo_ok and send_to_channel(telegram_text)
         print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed.")
     if args.facebook:
         results["facebook"] = post_facebook(facebook_text)

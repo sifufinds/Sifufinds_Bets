@@ -1479,7 +1479,43 @@ BANNER_BRANDS: dict[str, dict] = {
         'sub': 'WCGRB licensed · FICA required',
         'promo_code': 'SIFUKAI',
     },
+    'fairpari': {
+        'name': 'FairPari', 'slug': 'fairpari', 'abbr': 'FP', 'bg': '#1677FF', 'tc': '#fff',
+        'headline': '63+ Sports · 4,000+ Casino Games', 'offer': '100% Deposit Bonus – Up to €100',
+        'sub': 'New player welcome offer · not valid for crypto deposits',
+        'promo_code': None,
+    },
+    '1xbet': {
+        'name': '1xBet', 'slug': '1xbet', 'abbr': '1X', 'bg': '#276AA5', 'tc': '#fff',
+        'headline': "Africa's Highest Bonus Bookmaker", 'offer': '300% Welcome Bonus',
+        'sub': 'Up to ₦1,200,000 · live in 21 African countries',
+        'promo_code': 'SIFUKAI',
+    },
+    'melbet': {
+        'name': 'Melbet', 'slug': 'melbet', 'abbr': 'MB', 'bg': '#212121', 'tc': '#fff',
+        'headline': '150+ Sports · Live Streaming', 'offer': '200% Deposit Bonus',
+        'sub': 'Up to ₦480,000 · widest range of niche markets',
+        'promo_code': None,
+    },
+    'pepeta': {
+        'name': 'Pepeta', 'slug': 'pepeta', 'abbr': 'PPT', 'bg': '#6A1B9A', 'tc': '#fff',
+        'headline': 'Crash Games & Casino · Kenya', 'offer': '100% Deposit Bonus',
+        'sub': 'BCLB licensed · M-Pesa and Airtel Money',
+        'promo_code': None,
+    },
 }
+
+# For a review post, the offer banner must feature only the brand actually
+# being reviewed, never an unrelated one — a reader on the Betika review
+# should never see a 22Bet ad. Maps post['bookmaker_featured'] to a
+# BANNER_BRANDS key using the same key-normalisation convention as
+# agents/python/utils/affiliate_links.py's _brand_key(). Returns None (no
+# banner at all) when the reviewed brand has no real tracked offer yet —
+# showing nothing is more honest than substituting a different brand's ad.
+def _review_banner_slug(post: dict) -> str | None:
+    name = post.get('bookmaker_featured', '')
+    key = re.sub(r'[^a-z0-9]', '', name.lower())
+    return key if key in BANNER_BRANDS else None
 
 
 def build_offer_banners(slugs: list[str]) -> str:
@@ -1739,11 +1775,17 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     body_html = markdown_to_html(body_md)
     body_html = inject_contextual_links(body_html, post)
     body_html = inject_external_links(body_html)
-    # Default every post to a 22Bet offer banner unless it explicitly overrides
-    # banner_brands with its own list (e.g. the Premier League season-start post's
-    # 6-brand strip) — per owner direction, 22Bet should show on every blog post,
-    # not just opt-in ones.
-    banners_html = build_offer_banners(post.get('banner_brands', ['22bet']))
+    # A review post's banner must feature only the brand actually being
+    # reviewed (owner direction) — never a generic default. Every other post
+    # (news, tips, guides) defaults to a 22Bet offer banner. Either default
+    # is skipped entirely if the post sets its own explicit banner_brands
+    # (e.g. the Premier League season-start post's 6-brand strip).
+    if post.get('category') == 'review':
+        _review_slug = _review_banner_slug(post)
+        _default_banner_brands = [_review_slug] if _review_slug else []
+    else:
+        _default_banner_brands = ['22bet']
+    banners_html = build_offer_banners(post.get('banner_brands', _default_banner_brands))
     resources_html = build_resources_box(post)
     related_html = build_related_html(post, _ALL_POSTS)
     author = post.get('author', 'SifuFinds Editorial Team')
