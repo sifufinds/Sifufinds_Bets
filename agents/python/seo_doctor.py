@@ -14,6 +14,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+from seo_meta import strip_dangling_words  # noqa: E402
 TODAY = datetime.now(timezone.utc).strftime('%Y-%m-%d')
 TODAY_ISO = datetime.now(timezone.utc).isoformat()
 YEAR = datetime.now(timezone.utc).year
@@ -42,19 +44,26 @@ def write(path, content):
     Path(path).write_text(content, encoding='utf-8')
 
 def truncate_title(t, max_len=60):
-    """Trim to last full word boundary at or under max_len chars."""
+    """Trim to last full word boundary at or under max_len chars.
+
+    Also runs strip_dangling_words() (seo_meta.py) — word-boundary
+    truncation alone still allows a cut ending on a bare conjunction/
+    preposition/possessive ("...Betting Tips Kenya: Best"), which is exactly
+    as broken-looking as splitting a word in half. See that function's
+    docstring for the full incident (2026-08-21).
+    """
     if len(t) <= max_len:
         return t
     cut = t[:max_len].rsplit(' ', 1)[0]
     if '|' in cut:
-        return cut
-    return cut.rstrip(' :-—|')
+        return strip_dangling_words(cut)
+    return strip_dangling_words(cut.rstrip(' :-—|'))
 
 def truncate_meta(m, max_len=160):
     if len(m) <= max_len:
         return m
     cut = m[:max_len - 1].rsplit(' ', 1)[0]
-    return cut.rstrip(' ,;.') + '.'
+    return strip_dangling_words(cut.rstrip(' ,;.')) + '.'
 
 
 # ── 1. Core HTML pages: title / meta / canonical / schema ────────────────────

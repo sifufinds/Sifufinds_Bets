@@ -8,28 +8,11 @@ valid payment × country combination — targeting searches like
 
 import json
 import os
-from seo_meta import current_month_year, current_year, seo_meta_description
+from seo_meta import current_month_year, current_year, seo_meta_description, seo_title
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 YEAR = current_year()
 MONTH_YEAR = current_month_year()
-
-
-def seo_title(title: str, max_len: int = 60) -> str:
-    """Return a ≤ max_len char <title> string with '| SifuFinds' suffix."""
-    suffix = "| SifuFinds"
-    full = f"{title} {suffix}"
-    if len(full) <= max_len:
-        return full
-    for sep in [" — ", " - ", ": ", " | "]:
-        idx = title.find(sep)
-        if idx > 10:
-            candidate = f"{title[:idx]} {suffix}"
-            if len(candidate) <= max_len:
-                return candidate
-    available = max_len - len(suffix) - 2
-    truncated = title[:available].rsplit(" ", 1)[0]
-    return f"{truncated}… {suffix}"
 
 SELECTOR = """\
       <option value="NG">🇳🇬 Nigeria · ₦ NGN</option>

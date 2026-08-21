@@ -33,8 +33,10 @@ import requests
 from dotenv import load_dotenv
 
 sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from llm import ask
 from utils.logger import log
+from seo_meta import strip_dangling_words
 
 load_dotenv(Path(__file__).parent / ".env")
 
@@ -359,7 +361,7 @@ def _is_plausible(extracted: dict, brand: dict) -> bool:
 
     # Headline length guard
     if len(headline) > 60:
-        extracted["bonus_headline"] = headline[:60]
+        extracted["bonus_headline"] = strip_dangling_words(headline[:60].rsplit(" ", 1)[0])
 
     # Brand name should not appear to belong to a competitor
     name_lower = brand["name"].lower()

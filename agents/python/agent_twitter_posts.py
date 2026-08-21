@@ -29,9 +29,11 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent / ".env")
 
 sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from utils.logger import log
 from utils.affiliate_links import cta_plain
 from utils.tweet_text import tweet_len as _tweet_len, trim_to_limit as _trim_to_limit, TWEET_MAX
+from seo_meta import strip_dangling_words
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 
@@ -308,8 +310,12 @@ def _build_news_tweet(post: dict) -> str:
     post_url = f"{BLOG_URL}{slug}/"
 
     # Budget: title ≤60, excerpt ≤100, rest fixed
-    title_short = title[:57] + "..." if len(title) > 60 else title
-    excerpt_short = excerpt[:97] + "..." if len(excerpt) > 100 else excerpt
+    title_short = (
+        strip_dangling_words(title[:57].rsplit(" ", 1)[0]) if len(title) > 60 else title
+    )
+    excerpt_short = (
+        strip_dangling_words(excerpt[:97].rsplit(" ", 1)[0]) if len(excerpt) > 100 else excerpt
+    )
 
     tweet = (
         f"{icon} {title_short}\n\n"

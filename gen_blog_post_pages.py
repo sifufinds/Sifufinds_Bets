@@ -11,7 +11,7 @@ from __future__ import annotations
 import os, json, re, zlib, html
 from datetime import datetime, timezone
 from urllib.parse import quote as urlquote
-from seo_meta import seo_title, seo_meta_description  # noqa: E402
+from seo_meta import seo_title, seo_meta_description, strip_dangling_words  # noqa: E402
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 POSTS_JSON = os.path.join(BASE, 'blog', 'posts.json')
@@ -992,8 +992,8 @@ def resolve_title_collisions(posts: list, locale_translations: dict | None = Non
         tag = ' '.join(w.capitalize() for w in words[:4]) or out_slug
         candidate = f"{tag} {suffix}"
         if len(candidate) > 60:
-            available = 60 - len(suffix) - 4
-            candidate = f"{tag[:available].rsplit(' ', 1)[0]}... {suffix}"
+            available = 60 - len(suffix) - 1
+            candidate = f"{strip_dangling_words(tag[:available].rsplit(' ', 1)[0])} {suffix}"
         n = 2
         base_candidate = candidate
         while candidate in seen:
@@ -1689,7 +1689,9 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     # (e.g. a translated pull-quote) otherwise breaks the whole ld+json block.
     title_json = json.dumps(title)
     excerpt_json = json.dumps(excerpt)
-    title_short_json = json.dumps(title[:60])
+    title_short_json = json.dumps(
+        strip_dangling_words(title[:60].rsplit(' ', 1)[0]) if len(title) > 60 else title
+    )
 
     # Format date
     try:
@@ -1899,7 +1901,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
   <div class="breadcrumb">
     <a href="../../">Home</a><span>›</span>
     <a href="../">Blog</a><span>›</span>
-    {title[:50] + '...' if len(title) > 50 else title}
+    {strip_dangling_words(title[:50].rsplit(' ', 1)[0]) if len(title) > 50 else title}
   </div>
 
   <div class="adv">📢 <strong>Advertiser Disclosure:</strong> SifuFinds may earn commission from bookmaker links. All bonuses verified. 18+.</div>

@@ -45,6 +45,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from llm import ask_long, AIProvidersExhausted  # noqa: E402
 from utils.logger import log  # noqa: E402
@@ -52,6 +53,7 @@ from utils.serp_research import fc_search  # noqa: E402
 from utils.title_content_match import check_africa_framing  # noqa: E402
 from agent_fact_checker import check_post  # noqa: E402
 from agent_sports_blog import load_posts, save_posts  # noqa: E402
+from seo_meta import strip_dangling_words  # noqa: E402
 
 BASE = Path(__file__).parent.parent.parent
 STATE_PATH = Path(__file__).parent / "fabricated_fix_state.json"
@@ -264,7 +266,11 @@ Rewrite this article now, following the system rules exactly."""
     if not title or not body:
         return None
     if len(title) > 60:
-        title = title[:57].rsplit(" ", 1)[0] + "..."
+        # No unconditional "..." here — that, plus a bare rsplit with no
+        # stopword check, is exactly the bug that produced ~790 live titles
+        # ending mid-thought ("...Man Utd's Rebuild, and") before this fix.
+        # strip_dangling_words() is the shared, tested fix (seo_meta.py).
+        title = strip_dangling_words(title[:60].rsplit(" ", 1)[0])
     if _has_fabricated_odds_table(body):
         log("fabricated_fixer", "rewrite_post", "still_fabricated",
             f"{post.get('slug', '')}: rewrite still contains an odds table, rejecting")
@@ -272,7 +278,14 @@ Rewrite this article now, following the system rules exactly."""
 
     new_post = dict(post)
     new_post["title"] = title
-    new_post["excerpt"] = data.get("excerpt", post.get("excerpt", ""))[:200]
+    raw_excerpt = data.get("excerpt", post.get("excerpt", ""))
+    # A bare [:200] slice can land mid-word or mid-thought the same way the
+    # title bug above did — route through the same word-boundary +
+    # dangling-word-safe helper instead.
+    new_post["excerpt"] = (
+        strip_dangling_words(raw_excerpt[:200].rsplit(" ", 1)[0])
+        if len(raw_excerpt) > 200 else raw_excerpt
+    )
     new_post["tags"] = data.get("tags", post.get("tags", []))
     new_post["body"] = body
     new_post["_source_items"] = source_items
