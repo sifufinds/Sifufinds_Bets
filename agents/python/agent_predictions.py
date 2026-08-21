@@ -49,12 +49,14 @@ from llm import ask
 from utils.logger import log
 from utils.serp_research import research
 from utils.tweet_text import trim_to_limit as _trim_to_limit
+from utils.gameweek_card import build_gameweek_card
 from utils.prediction_store import (
     add_prediction, already_predicted, make_id,
     grade_pending, aggregate_stats,
+    resolve_espn_slug, ESPN_BASE, SESSION,
 )
 from agent_accumulator_post import is_major_league
-from agent_telegram_offers import send_to_channel, SITE_URL
+from agent_telegram_offers import send_to_channel, send_photo_to_channel, SITE_URL
 from agent3_social import post_facebook, post_instagram
 from agent_twitter_posts import _post_tweet as post_twitter
 
