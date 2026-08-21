@@ -1429,8 +1429,10 @@ def build_resources_box(post: dict) -> str:
     )
 
 
-# Opt-in inline sponsor strip for a post — set post['banner_brands'] to a list
-# of slugs from this table to render their offer cards after the article body.
+# Inline sponsor strip for a post. Every post defaults to ['22bet'] (see the
+# build_offer_banners() call site) unless it sets its own post['banner_brands']
+# list of slugs from this table, e.g. the Premier League season-start post's
+# 6-brand strip.
 # Colours/copy mirror each brand's live BOOKS entry in assets/shared.js so the
 # cards don't invent a look the brand doesn't already have on the rest of the
 # site. masked_url follows the same https://sifufinds.com/<slug> convention as
@@ -1482,8 +1484,9 @@ BANNER_BRANDS: dict[str, dict] = {
 
 def build_offer_banners(slugs: list[str]) -> str:
     """Inline sponsor-offer card strip for the brands in `slugs` (see BANNER_BRANDS).
-    Returns '' if the post carries no banner_brands — this box never appears
-    uninvited on a post that didn't ask for it."""
+    Returns '' only if none of the given slugs resolve to a known brand — the
+    call site defaults every post to ['22bet'] unless it sets its own
+    banner_brands list, so this renders on every post by default."""
     cards = []
     for slug in slugs:
         b = BANNER_BRANDS.get(slug)
@@ -1507,7 +1510,7 @@ def build_offer_banners(slugs: list[str]) -> str:
     if not cards:
         return ''
     return f'''<div class="offer-banners">
-      <p class="ob-title">🎁 Where to Back the Premier League This Season</p>
+      <p class="ob-title">🎁 Featured Betting Offer</p>
       <div class="ob-grid">
         {''.join(cards)}
       </div>
@@ -1736,7 +1739,11 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     body_html = markdown_to_html(body_md)
     body_html = inject_contextual_links(body_html, post)
     body_html = inject_external_links(body_html)
-    banners_html = build_offer_banners(post.get('banner_brands', []))
+    # Default every post to a 22Bet offer banner unless it explicitly overrides
+    # banner_brands with its own list (e.g. the Premier League season-start post's
+    # 6-brand strip) — per owner direction, 22Bet should show on every blog post,
+    # not just opt-in ones.
+    banners_html = build_offer_banners(post.get('banner_brands', ['22bet']))
     resources_html = build_resources_box(post)
     related_html = build_related_html(post, _ALL_POSTS)
     author = post.get('author', 'SifuFinds Editorial Team')
