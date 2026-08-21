@@ -58,7 +58,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-21T14:43:13.122621+00:00",
+    "checked_at": "2026-08-21T15:16:14.551153+00:00",
     "candidates_available": 313,
     "attempted": 3,
     "written": 0,
@@ -67,7 +67,7 @@
         "keyword": "Gombe girl wins Qur’anic competition Saudi Arabia betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "missing_output_markers"
+        "reason": "quality_gate: only 1 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Players caught match-fixing risk jail, Sh1 million fine betting tips Kenya",
@@ -79,7 +79,7 @@
         "keyword": "Black Queens drawn against Ecuador, Uzbekistan Papua New betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: only 1 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 4 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '`, markdown content, `', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
