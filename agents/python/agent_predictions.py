@@ -51,6 +51,7 @@ from utils.logger import log
 from utils.serp_research import research
 from utils.tweet_text import trim_to_limit as _trim_to_limit
 from utils.gameweek_card import build_gameweek_card
+from utils.prediction_game import send_prediction_poll, close_and_grade_poll, season_tally
 from utils.prediction_store import (
     add_prediction, already_predicted, make_id,
     grade_pending, aggregate_stats,
@@ -956,6 +957,14 @@ def run_generate(args: argparse.Namespace) -> None:
             photo_ok = send_photo_to_channel(str(card_path), short_caption)
         results["telegram"] = photo_ok and send_to_channel(telegram_text)
         print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed.")
+
+        if results["telegram"]:
+            poll_target = pick_best(records)
+            poll_id = send_prediction_poll(poll_target["id"], poll_target["home"], poll_target["away"])
+            print(
+                f"✓ Prediction poll live for {poll_target['home']} vs {poll_target['away']}."
+                if poll_id else "✗ Prediction poll not sent (no bot token, or send failed)."
+            )
     if args.facebook:
         results["facebook"] = post_facebook(facebook_text)
         print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured.")
@@ -984,6 +993,17 @@ def run_grade(_: argparse.Namespace) -> None:
             f"{mark} {p['home']} {p['actual_score']} {p['away']} "
             f"(predicted {p['predicted_score']}, {p['points']} pt)"
         )
+        poll_result = grade_fixture_poll(p["id"], p["actual_result"])
+        if poll_result and poll_result["voters"]:
+            print(
+                f"   🎮 Poll: {poll_result['correct']}/{poll_result['voters']} followers "
+                f"correctly called {p['actual_result']}."
+            )
+            send_to_channel(
+                f"🎮 RESULT: {p['home']} {p['actual_score']} {p['away']}\n\n"
+                f"{poll_result['correct']} of {poll_result['voters']} of you called it right! 👏\n\n"
+                f"🏆 Check the leaderboard with the season's top predictors coming soon."
+            )
     log("predictions", "grade", "success", f"{len(graded)} graded")
 
 
@@ -994,6 +1014,22 @@ def run_stats(args: argparse.Namespace) -> None:
         print(f"No graded predictions yet for {scope}" + (f", season {args.season}" if args.season else "") + ".")
         return
     print(json.dumps(stats, indent=2))
+
+
+def run_collect_votes(_: argparse.Namespace) -> None:
+    n = collect_poll_votes()
+    print(f"Collected {n} new poll vote(s).")
+    log("predictions", "collect_votes", "success", str(n))
+
+
+def run_leaderboard(_: argparse.Namespace) -> None:
+    top = top_leaderboard()
+    if not top:
+        print("No graded poll votes yet — the leaderboard fills in once a polled fixture is graded.")
+        return
+    print("🏆 SifuFinds Prediction Game — Leaderboard\n")
+    for i, entry in enumerate(top, start=1):
+        print(f"{i}. {entry['name']} — {entry['points']} pt ({entry['correct']}/{entry['total']} correct)")
 
 
 # ── CLI ────────────────────────────────────────────────────────────────────────
@@ -1015,6 +1051,8 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", dest="dry_run")
     parser.add_argument("--grade", action="store_true", help="Grade completed predictions against real results")
     parser.add_argument("--stats", action="store_true", help="Print season/competition accuracy report")
+    parser.add_argument("--collect-votes", dest="collect_votes", action="store_true", help="Fetch new prediction-poll votes from Telegram")
+    parser.add_argument("--leaderboard", action="store_true", help="Print the follower prediction-game leaderboard")
     parser.set_defaults(telegram=True, facebook=True, instagram=True, twitter=True)
     args = parser.parse_args()
 
@@ -1023,6 +1061,12 @@ def main() -> None:
         return
     if args.stats:
         run_stats(args)
+        return
+    if args.collect_votes:
+        run_collect_votes(args)
+        return
+    if args.leaderboard:
+        run_leaderboard(args)
         return
     if not args.competition and not args.today:
         parser.error("Provide a competition (e.g. \"Premier League\") or use --today")
