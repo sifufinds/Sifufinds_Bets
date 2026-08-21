@@ -653,51 +653,26 @@ def _hashtags_for(competition: str, round_label: str) -> str:
     return " ".join(tags)
 
 
-def build_telegram_post(records: list[dict], competition: str, round_label: str) -> str:
+def build_telegram_caption(records: list[dict], competition: str, round_label: str) -> str:
+    """Short, fun caption sent WITH the gameweek card image — the image
+    itself already shows every fixture's score and confidence, so this stays
+    a hook, not a repeat of that data."""
     round_upper = round_label.upper() if round_label else "THIS ROUND"
     dom = _dominant_score(records)
-    best = pick_best(records)
-
-    lines = [f"⚽🔥 SIFUFINDS {competition.upper()} PREDICTIONS: {round_upper}! 🔥⚽", ""]
+    title = f"⚽🔥 SIFUFINDS {competition.upper()} PREDICTIONS: {round_upper}! 🔥⚽"
 
     if dom:
-        lines += [
-            "The round is here… and we're kicking off with some VERY bold predictions! 👀",
-            "",
-            "But here's the twist… 👇",
-            "",
-            f"{_dominant_hook(dom)} 😭😂",
-            "",
-            "Do you agree, or is SifuFinds about to get cooked in the comments? 🔥",
-        ]
+        hook = f"{_dominant_hook(dom)} 😭😂 Do you agree, or is SifuFinds about to get cooked below? 🔥"
     else:
-        lines += [
-            "Bold calls, tight matches, and one pick we're genuinely backing 👀",
-            "",
-            "Agree with us, or is SifuFinds about to get cooked in the comments? 🔥",
-        ]
+        hook = "Bold calls, tight matches, and one pick we're genuinely backing 👀"
 
-    lines += ["", f"🔮 {round_upper} PREDICTIONS", ""]
-    for r in records:
-        lines.append(f"🔹 {_escape(r['home'])} 🆚 {_escape(r['away'])}")
-        lines.append(f"🎯 {r['predicted_score']} | Confidence: {r['confidence']}%")
-        lines.append("")
+    return f"{title}\n\n{hook}"
 
-    if dom:
-        lines += [
-            "😂 Our strongest prediction?",
-            _dominant_strongest_joke(dom),
-            "",
-            "Maybe we've spotted something nobody else has... or maybe this round is about to humble us. 👀",
-        ]
-    else:
-        lines += [f"⭐ STRONGEST PICK: {best['home']} {best['predicted_score']} {best['away']} ({best['confidence']}%)"]
-        upset = pick_upset(records)
-        if upset:
-            lines.append(f"⚠️ POTENTIAL UPSET: {upset['home']} vs {upset['away']} — our lean differs from the market favourite")
 
-    lines += [
-        "",
+def build_telegram_post(records: list[dict], competition: str, round_label: str) -> str:
+    """Short follow-up text sent after the card image and the poll — a pure
+    call to action, since the fixtures/scores already live in the image."""
+    return "\n".join([
         "👇 NOW IT'S YOUR TURN!",
         "",
         "Forget our predictions for a second...",
@@ -709,15 +684,14 @@ def build_telegram_post(records: list[dict], competition: str, round_label: str)
         "",
         f"Drop your {_round_label_or(round_label)} predictions in the comments! 👇",
         "",
-        "Let's see who knows their football! 🧠⚽",
+        "Let's see who knows their football! ⚽",
         "",
         f"🌐 <a href=\"{SITE_URL}\">SifuFinds.com</a>",
         "",
         _DISCLAIMER,
         "",
         _hashtags_for(competition, round_label),
-    ]
-    return "\n".join(lines)
+    ])
 
 
 def build_facebook_post(records: list[dict], competition: str, round_label: str) -> str:
@@ -958,22 +932,18 @@ def run_generate(args: argparse.Namespace) -> None:
 
         photo_ok = True
         if card_path:
-            short_caption = (
-                f"⚽🔥 SIFUFINDS {comp_label.upper()}"
-                f"{': ' + args.round.upper() if args.round else ''} PREDICTIONS! 🔥⚽\n\n"
-                f"Full breakdown + your turn to predict 👇"
-            )
-            photo_ok = send_photo_to_channel(str(card_path), short_caption)
+            caption = build_telegram_caption(records, comp_label, args.round or "")
+            photo_ok = send_photo_to_channel(str(card_path), caption)
+
         results["telegram"] = photo_ok and send_to_channel(telegram_text)
         print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed.")
 
-        if results["telegram"]:
-            poll_target = pick_best(records)
-            poll_id = send_prediction_poll(poll_target["id"], poll_target["home"], poll_target["away"])
-            print(
-                f"✓ Prediction poll live for {poll_target['home']} vs {poll_target['away']}."
-                if poll_id else "✗ Prediction poll not sent (no bot token, or send failed)."
-            )
+        poll_target = pick_best(records)
+        poll_id = send_prediction_poll(poll_target["id"], poll_target["home"], poll_target["away"]) if results["telegram"] else None
+        print(
+            f"✓ Prediction poll live for {poll_target['home']} vs {poll_target['away']}."
+            if poll_id else "✗ Prediction poll not sent (no bot token, or send failed)."
+        )
     if args.facebook:
         results["facebook"] = post_facebook(facebook_text)
         print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured.")
