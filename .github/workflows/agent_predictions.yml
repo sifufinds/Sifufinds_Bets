@@ -1,0 +1,107 @@
+name: SifuFinds Predictions — Automatic Gameweek Posts
+
+# Runs once daily rather than on a specific weekly day: data/matches_live.json
+# (football-data.org/ESPN, refreshed every 5 minutes by update_leagues.yml)
+# exposes a real kick-off date for fixtures several days ahead, so a whole
+# gameweek is typically already visible before it's even played. A daily check
+# means each new gameweek's fixtures get discovered and posted (once each,
+# thanks to agent_predictions.py's own dedup against data/sifu_predictions.json)
+# as soon as they enter the --days lookahead window, without having to guess
+# which exact day of the week a given gameweek's fixtures will land on — kick-
+# off scheduling moves around for TV and European competition clashes.
+#
+# A day with no new Premier League fixtures in the window is a normal, silent
+# no-op (agent_predictions.py returns 0, not an error) — see its run_generate()
+# docstring/comment for why that matters for this repo's auto-retry-on-failure
+# watchdog.
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      competition:
+        description: "Competition to predict (must be real/verified in current data)"
+        required: false
+        default: "Premier League"
+      round:
+        description: "Round/gameweek label to attach (e.g. \"Gameweek 3\") — cosmetic only, not verified"
+        required: false
+        default: ""
+
+concurrency:
+  group: agent-predictions
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  post-predictions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Generate + post predictions to Telegram
+        working-directory: agents/python
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+          TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          COMPETITION="${{ github.event.inputs.competition }}"
+          ROUND="${{ github.event.inputs.round }}"
+          ARGS=(--no-facebook --no-instagram --no-twitter)
+          if [ -n "$ROUND" ]; then
+            ARGS+=(--round "$ROUND")
+          fi
+          python agent_predictions.py "${COMPETITION:-Premier League}" "${ARGS[@]}"
+
+      - name: Commit updated prediction record
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "agents@sifufinds.com"
+          git config --local user.name "SifuFinds Agent"
+          git add data/sifu_predictions.json agents/python/agent_log.json || true
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "predictions: posted $(date -u '+%Y-%m-%d %H:%M') UTC"
+
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "⚠ Push rejected (attempt $_attempt/5) — rebasing in 5s..."
+            sleep 5
+            git fetch origin main
+            git rebase FETCH_HEAD -X theirs || git rebase --abort
+          done

@@ -157,8 +157,18 @@ def save_db(db: dict) -> None:
     DB_PATH.write_text(json.dumps(db, ensure_ascii=False, indent=2))
 
 
-def make_id(home: str, away: str, ko_utc: str | None) -> str:
-    base = re.sub(r"[^a-z0-9]+", "-", f"{home}-{away}-{ko_utc or ''}".lower()).strip("-")
+def make_id(home: str, away: str, competition: str = "", season: str = "") -> str:
+    """Deterministic id for a real fixture. Deliberately NOT based on kick-off
+    time: the same real match can be discovered with or without a known ko_utc
+    depending on which data source happens to supply it on a given run (e.g.
+    data/predictions.json alone often has none, while merging in
+    data/matches_live.json adds a real one) — keying on ko_utc made the same
+    match hash differently across runs, breaking dedup and risking a duplicate
+    post. Competition + season + team names is stable across runs for the
+    normal case (each pair meets once at home in a league season); a cup
+    replay or two-legged tie between the same two sides is the one case this
+    can't disambiguate, which is an accepted limitation, not silently wrong."""
+    base = re.sub(r"[^a-z0-9]+", "-", f"{competition}-{home}-{away}-{season}".lower()).strip("-")
     return base or f"pred-{datetime.now(timezone.utc).timestamp():.0f}"
 
 

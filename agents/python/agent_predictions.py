@@ -60,9 +60,16 @@ from agent_twitter_posts import _post_tweet as post_twitter
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 PRED_JSON = REPO_ROOT / "data" / "predictions.json"
+LIVE_JSON = REPO_ROOT / "data" / "matches_live.json"
 
-DEFAULT_MAX_MATCHES = 8
+DEFAULT_MAX_MATCHES = 10
 DEFAULT_DAYS = 7
+
+_STALE_LIVE_STATUSES = {"FINISHED", "POSTPONED", "CANCELLED", "AWARDED", "SUSPENDED"}
+_MERGE_FIELDS = [
+    "ko_utc", "ko_display", "home_odds", "draw_odds", "away_odds",
+    "odds_favourite", "source_pick", "source_over25", "source_btts", "source_correct_score",
+]
 
 
 # ── Fixture discovery (real, already-scraped data only) ──────────────────────
@@ -106,8 +113,52 @@ def _competition_matches(filter_text: str, actual_competition: str) -> bool:
     return f in a
 
 
-def list_fixtures(competition_filter: str | None, days: int, major_only: bool) -> list[dict]:
-    """Real fixtures only, from data/predictions.json (predictz.com/forebet.com,
+def _tokens(s: str) -> set[str]:
+    return set(re.findall(r"[a-z0-9]+", (s or "").lower()))
+
+
+def _team_match_score(a: str, b: str) -> float:
+    ta, tb = _tokens(a), _tokens(b)
+    if not ta or not tb:
+        return 0.0
+    return len(ta & tb) / max(len(ta), 1)
+
+
+def _merge_fixture_lists(primary: list[dict], secondary: list[dict]) -> list[dict]:
+    """Merge two independently-real fixture lists describing the same real
+    matches rather than picking one source and discarding the other's fields —
+    same pattern as agent_match_post.find_football_match()."""
+    merged: list[dict] = []
+    used_secondary: set[int] = set()
+
+    for p in primary:
+        best_j, best_score = None, 0.0
+        for j, s in enumerate(secondary):
+            if j in used_secondary:
+                continue
+            score = _team_match_score(p["home"], s["home"]) + _team_match_score(p["away"], s["away"])
+            if score > best_score:
+                best_score, best_j = score, j
+        if best_j is not None and best_score >= 1.2:
+            s = secondary[best_j]
+            used_secondary.add(best_j)
+            combined = dict(p)
+            for field in _MERGE_FIELDS:
+                if not combined.get(field) and s.get(field):
+                    combined[field] = s[field]
+            merged.append(combined)
+        else:
+            merged.append(p)
+
+    for j, s in enumerate(secondary):
+        if j not in used_secondary:
+            merged.append(s)
+
+    return merged
+
+
+def _fixtures_from_predictions_json(competition_filter: str | None, days: int, major_only: bool) -> list[dict]:
+    """Real fixtures from data/predictions.json (predictz.com/forebet.com,
     refreshed independently by update_predictions.py). Never invents a match."""
     now = datetime.now(timezone.utc)
     window_end = now + timedelta(days=days)
@@ -160,6 +211,78 @@ def list_fixtures(competition_filter: str | None, days: int, major_only: bool) -
 
     out.sort(key=lambda f: (f.get("ko_utc") or "zzz", f["home"]))
     return out
+
+
+def _fixtures_from_live_json(competition_filter: str | None, days: int, major_only: bool) -> list[dict]:
+    """Real, dated fixtures from data/matches_live.json (football-data.org/ESPN,
+    refreshed independently by update_leagues.py for the /leagues/ page). Unlike
+    predictions.json, these carry a genuine kick-off timestamp for matches days
+    out, which is what actually makes a full gameweek's fixture list visible
+    ahead of time rather than only "today". compName values here are already
+    single, unambiguous competition names (this source's own competition IDs
+    disambiguate country, unlike predictz.com's scraped free-text headers), so
+    no _competition_matches() disambiguation is needed for this source."""
+    now = datetime.now(timezone.utc)
+    window_end = now + timedelta(days=days)
+    out: list[dict] = []
+    seen: set[str] = set()
+
+    for matches in _load_json(LIVE_JSON).get("byDate", {}).values():
+        for m in matches:
+            if m.get("status") in _STALE_LIVE_STATUSES:
+                continue
+            comp = m.get("compName", "")
+            if competition_filter and competition_filter.lower() not in comp.lower():
+                continue
+            if major_only and not is_major_league(comp):
+                continue
+
+            ko_dt = None
+            utc_date = m.get("utcDate")
+            if utc_date:
+                try:
+                    ko_dt = datetime.fromisoformat(utc_date.replace("Z", "+00:00"))
+                except Exception:
+                    ko_dt = None
+            if ko_dt and (ko_dt < now - timedelta(minutes=90) or ko_dt > window_end):
+                continue
+
+            home, away = m.get("home", ""), m.get("away", "")
+            key = f"{home.lower()}|{away.lower()}"
+            if not home or not away or key in seen:
+                continue
+            seen.add(key)
+
+            out.append({
+                "home": home,
+                "away": away,
+                "competition": comp,
+                "ko_utc": ko_dt.isoformat() if ko_dt else None,
+                "ko_display": f"{m.get('date', '')} · {m.get('time', '')}".strip(" ·"),
+                "home_odds": None,
+                "draw_odds": None,
+                "away_odds": None,
+                "odds_favourite": None,
+                "source_pick": "",
+                "source_over25": "",
+                "source_btts": "",
+                "source_correct_score": "",
+            })
+
+    out.sort(key=lambda f: (f.get("ko_utc") or "zzz", f["home"]))
+    return out
+
+
+def list_fixtures(competition_filter: str | None, days: int, major_only: bool) -> list[dict]:
+    """Real fixtures only, merged from data/predictions.json (odds + third-party
+    tipster picks) and data/matches_live.json (real kick-off dates days ahead,
+    which is what makes a whole gameweek visible rather than only "today").
+    Never invents a fixture."""
+    from_predictions = _fixtures_from_predictions_json(competition_filter, days, major_only)
+    from_live = _fixtures_from_live_json(competition_filter, days, major_only)
+    fixtures = _merge_fixture_lists(from_live, from_predictions)
+    fixtures.sort(key=lambda f: (f.get("ko_utc") or "zzz", f["home"]))
+    return fixtures
 
 
 # ── Analysis (grounded LLM synthesis, honest odds-only fallback) ─────────────
@@ -325,7 +448,7 @@ def analyze_match(fixture: dict, use_research: bool = True) -> dict:
 
 def build_record(fixture: dict, parsed: dict, round_label: str, season: str) -> dict:
     return {
-        "id": make_id(fixture["home"], fixture["away"], fixture.get("ko_utc")),
+        "id": make_id(fixture["home"], fixture["away"], fixture["competition"], season),
         "competition": fixture["competition"],
         "season": season,
         "round": round_label,
@@ -562,14 +685,18 @@ def run_generate(args: argparse.Namespace) -> None:
         print(f"✗ No verified fixtures found for {scope} in the current data window (next {args.days} day(s)).")
         print("  Refusing to invent a fixture. Try again once data/predictions.json has a refresh, or widen --days.")
         log("predictions", "generate", "no_fixtures", competition or "today")
-        sys.exit(1)
+        # Not a failure exit: on a scheduled run, "nothing in the window today"
+        # is a normal, frequent outcome (off-season, mid-week gap), not an
+        # error — exiting 1 here would falsely trip this repo's auto-retry-on-
+        # failure watchdog every time there's simply no fresh fixture yet.
+        return
 
     fixtures = fixtures[: args.max_matches]
     season = args.season or f"{datetime.now(timezone.utc).year}-{str(datetime.now(timezone.utc).year + 1)[-2:]}"
 
     records: list[dict] = []
     for fx in fixtures:
-        rid = make_id(fx["home"], fx["away"], fx.get("ko_utc"))
+        rid = make_id(fx["home"], fx["away"], fx["competition"], season)
         if already_predicted(rid):
             print(f"  [skip] already predicted: {fx['home']} vs {fx['away']}")
             continue
