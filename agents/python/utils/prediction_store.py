@@ -89,8 +89,35 @@ def resolve_espn_slug(competition: str) -> str | None:
     return None
 
 
+# Common club nicknames a data source may use that share zero tokens with
+# ESPN's own team.displayName (a plain token-overlap match can't bridge these
+# on its own — e.g. "Spurs" vs "Tottenham Hotspur" overlap on nothing). Found
+# live: a real Brentford vs Spurs fixture failed to match ESPN's event at all
+# without this, which would have silently broken both crest lookup AND
+# post-match grading for that fixture, not just a cosmetic miss. Deliberately
+# excludes ambiguous nicknames shared by more than one club (Reds, Blues).
+_NICKNAME_EXPANSIONS: dict[str, str] = {
+    "spurs": "tottenham hotspur",
+    "wolves": "wolverhampton wanderers",
+    "canaries": "norwich city",
+    "hammers": "west ham united",
+    "toffees": "everton",
+    "saints": "southampton",
+    "cherries": "bournemouth",
+    "seagulls": "brighton hove albion",
+    "magpies": "newcastle united",
+    "foxes": "leicester city",
+    "gunners": "arsenal",
+    "citizens": "manchester city",
+}
+
+
+def _expand_nickname(name: str) -> str:
+    return _NICKNAME_EXPANSIONS.get((name or "").strip().lower(), name)
+
+
 def _tokens(s: str) -> set[str]:
-    return set(re.findall(r"[a-z0-9]+", (s or "").lower()))
+    return set(re.findall(r"[a-z0-9]+", _expand_nickname(s).lower()))
 
 
 def _team_match_score(a: str, b: str) -> float:
