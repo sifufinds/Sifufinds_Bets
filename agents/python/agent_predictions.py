@@ -935,15 +935,15 @@ def run_generate(args: argparse.Namespace) -> None:
             caption = build_telegram_caption(records, comp_label, args.round or "")
             photo_ok = send_photo_to_channel(str(card_path), caption)
 
+        results["telegram"] = photo_ok and send_to_channel(telegram_text)
+        print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed.")
+
         poll_target = pick_best(records)
-        poll_id = send_prediction_poll(poll_target["id"], poll_target["home"], poll_target["away"]) if photo_ok else None
+        poll_id = send_prediction_poll(poll_target["id"], poll_target["home"], poll_target["away"]) if results["telegram"] else None
         print(
             f"✓ Prediction poll live for {poll_target['home']} vs {poll_target['away']}."
             if poll_id else "✗ Prediction poll not sent (no bot token, or send failed)."
         )
-
-        results["telegram"] = photo_ok and send_to_channel(telegram_text)
-        print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed.")
     if args.facebook:
         results["facebook"] = post_facebook(facebook_text)
         print("✓ Posted to Facebook." if results["facebook"] else "✗ Facebook post failed or not configured.")
