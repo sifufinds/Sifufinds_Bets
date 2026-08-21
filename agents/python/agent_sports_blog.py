@@ -296,12 +296,22 @@ Write the article now. Base it on the REAL news provided above — do not invent
 
     try:
         print(f"  🤖 Generating article with Groq LLM...")
-        # transfers content names specific fees/deal stages — the single
-        # most fact-check-fragile category (see llm.py's prefer_accuracy
-        # docstring and AGENT-KNOWLEDGE.md's 2026-08-10 entry for the 3-day
-        # content blackout this caused when g4f's fallback tier kept
-        # inventing fees other categories don't hinge on as heavily).
-        raw = ask(SYSTEM_PROMPT, user_message, prefer_accuracy=(category == "transfers"))
+        # Used to be transfers-only (fees/deal stages were the single most
+        # fact-check-fragile content — see llm.py's prefer_accuracy docstring
+        # and AGENT-KNOWLEDGE.md's 2026-08-10 entry for the 3-day blackout
+        # this caused when g4f's fallback tier kept inventing fees). Widened
+        # to every category 2026-08-21: Groq retired llama-3.3-70b-versatile
+        # and llama-3.1-8b-instant (see llm.py's _GROQ_MODELS note), and the
+        # replacement free models are noticeably more prone to inventing
+        # specific-sounding odds ranges/stats/quotes across ALL categories,
+        # not just transfers — confirmed live the same day via football and
+        # rugby drafts both fact-check-flagged for fabricated odds bands and
+        # invented match predictions. prefer_accuracy only changes the g4f-
+        # vs-Ollama order after Groq itself is exhausted, so it's a partial
+        # mitigation (most Groq drafts still come from Groq's own first
+        # model, which this doesn't touch) — not a full fix for the
+        # underlying drop in instruction-following quality.
+        raw = ask(SYSTEM_PROMPT, user_message, prefer_accuracy=True)
 
         meta_raw = _extract(raw, "===META===", "===BLOG===")
         blog_body = _extract(raw, "===BLOG===", "===END===", end_required=False)

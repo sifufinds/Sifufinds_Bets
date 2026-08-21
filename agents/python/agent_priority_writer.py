@@ -272,7 +272,12 @@ Write the guide now, following every rule in the system prompt exactly."""
         current_message = user_message
         for attempt in range(1, 3):
             print(f"  🤖 Generating guide with LLM (attempt {attempt}/2)...")
-            raw = ask_long(SYSTEM_PROMPT, current_message)
+            # prefer_accuracy=True since 2026-08-21 — see agent_sports_blog.py's
+            # generate_post() for the full incident (Groq retired its two
+            # previous default models; the current free replacements invent
+            # specific odds/stats noticeably more often across every writer,
+            # not just transfers).
+            raw = ask_long(SYSTEM_PROMPT, current_message, prefer_accuracy=True)
 
             meta_raw = _extract(raw, "===META===", "===BLOG===")
             body_candidate = _extract(raw, "===BLOG===", "===END===", end_required=False)
