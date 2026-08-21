@@ -25,8 +25,14 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 DB_PATH = REPO_ROOT / "data" / "sifu_predictions.json"
 
 ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer"
-_HTTP_HDR = {"User-Agent": "Mozilla/5.0 (compatible; SifuFinds/2.0)"}
 _STATUS_FINAL = {"STATUS_FULL_TIME", "STATUS_FINAL"}
+
+# No custom User-Agent on ESPN requests — its edge (site.api.espn.com) returns
+# HTTP 403 for ANY explicitly-set User-Agent (custom or realistic-browser
+# alike) while the default python-requests UA gets HTTP 200. Already
+# documented and fixed once in update_leagues.py (see its SESSION comment) —
+# reproduced live here too, so don't re-add one without re-verifying first.
+SESSION = requests.Session()
 
 # ESPN slugs used ONLY for post-match grading lookups (never for fixture
 # discovery/invention). "serie a" is deliberately absent as a bare key —
@@ -101,9 +107,9 @@ def fetch_final_score(slug: str, home: str, away: str, ko_dt: datetime) -> tuple
     for day_offset in (0, 1, -1, 2):
         date_str = (ko_dt + timedelta(days=day_offset)).strftime("%Y%m%d")
         try:
-            r = requests.get(
+            r = SESSION.get(
                 f"{ESPN_BASE}/{slug}/scoreboard",
-                params={"dates": date_str}, headers=_HTTP_HDR, timeout=15,
+                params={"dates": date_str}, timeout=15,
             )
             events = r.json().get("events", [])
         except Exception:
