@@ -193,7 +193,7 @@ BOOKMAKERS = [
         'min_withdrawal': 'Same as minimum deposit in each market',
         'payments': ['OPay', 'Bank Transfer', 'Visa', 'Mastercard', 'MTN MoMo', 'M-Pesa'],
         'sports': '35+',
-        'url': 'https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=17&bid=1484',
+        'url': 'https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=224&bid=1484',
         'live_stream': False,
         'cashout': True,
         'verdict': "22Bet is a Cyprus-based international operator running fully licensed local operations across seven of the African markets SifuFinds covers — Nigeria, Kenya, Ghana, Tanzania, Uganda, Zambia and Ivory Coast — rather than relying on a single offshore licence for the whole continent. The flat 100% first deposit bonus is easy to understand and repeats identically in every market, with 35+ sports and cash-out available throughout. It lacks the live streaming some rivals offer, but the straightforward 5x wagering requirement and consistently fast payout reputation make it a solid all-round pick, particularly for bettors who move between more than one of its live markets.",
@@ -582,7 +582,7 @@ def make_html(bk):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=27"></script>
+<script src="../../assets/shared.js?v=28"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 const _BK_CTY='{compare_cty}';
