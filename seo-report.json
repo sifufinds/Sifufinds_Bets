@@ -1,13 +1,25 @@
 {
   "date": "2026-08-21",
-  "total": 6,
+  "total": 8,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "pepeta-review",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "betika-review",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
