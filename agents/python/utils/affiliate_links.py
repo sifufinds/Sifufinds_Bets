@@ -52,6 +52,8 @@ BRAND_SLUGS: dict[str, str] = {
     "bettabets": "bettabets",
     "bettabet": "bettabets",
     "playbet": "playbet",
+    "pepeta": "pepeta",
+    "betikadrc": "betika-drc",
 }
 
 CTA_FREE_BETS = "FREE BETS"
@@ -72,6 +74,7 @@ PROMO_CODE_BRANDS: frozenset[str] = frozenset({
     "tictacbets",
     "playbet",
     "1xbet",
+    "22bet",
 })
 
 
