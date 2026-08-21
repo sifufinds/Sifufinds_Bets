@@ -28,6 +28,19 @@ _ACCENT_GOLD = (255, 200, 60)
 _crest_cache: dict[str, "Image.Image | None"] = {}
 
 
+def _with_light_backdrop(crest: "Image.Image") -> "Image.Image":
+    """Real club crests span every colour, including several (Spurs' navy
+    cockerel, for one — confirmed near-invisible in testing) that are far too
+    dark to read against this card's dark-green background on their own. A
+    light circular backdrop behind every crest keeps them legible regardless
+    of the crest's own palette."""
+    backdrop = Image.new("RGBA", (CREST_SIZE, CREST_SIZE), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(backdrop)
+    pad = 4
+    draw.ellipse((pad, pad, CREST_SIZE - pad, CREST_SIZE - pad), fill=(240, 240, 240, 235))
+    return Image.alpha_composite(backdrop, crest)
+
+
 def _download_crest(url: str | None) -> "Image.Image | None":
     if not url:
         return None
@@ -37,6 +50,7 @@ def _download_crest(url: str | None) -> "Image.Image | None":
         resp = requests.get(url, timeout=8)
         img = Image.open(io.BytesIO(resp.content)).convert("RGBA")
         img = img.resize((CREST_SIZE, CREST_SIZE), Image.LANCZOS)
+        img = _with_light_backdrop(img)
         _crest_cache[url] = img
         return img
     except Exception:
@@ -104,7 +118,10 @@ def build_gameweek_card(records: list[dict], title: str, subtitle: str = "", out
 
     footer_y = HEADER_H + n * ROW_H
     draw.rectangle([0, footer_y, CARD_W, height], fill=(6, 26, 18))
-    draw.text((50, footer_y + 28), "⚽ SIFUFINDS.COM", font=_font(30), fill=(255, 255, 255))
+    # No emoji here — PIL's plain TrueType rendering has no colour-emoji
+    # glyphs, so one shows as a tofu box (confirmed live) rather than silently
+    # being skipped.
+    draw.text((50, footer_y + 28), "SIFUFINDS.COM", font=_font(30), fill=(255, 255, 255))
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     out_path = OUT_DIR / out_name
