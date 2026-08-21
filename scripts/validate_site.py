@@ -264,6 +264,16 @@ def main() -> None:
             if m:
                 slug = m.group(1).rstrip("/?")
                 redirect_targets.add("https://sifufinds.com/" + slug.lstrip("/"))
+                continue
+            # Affiliate link masking form: RewriteRule ^slug/?$ "https://external-tracker..." [R=301,L,NC]
+            # (see the "AFFILIATE LINK MASKING" block in .htaccess) — the target
+            # is an external tracking URL, not a local page, but it's still a
+            # real 301, so a blog/social link to https://sifufinds.com/<slug>
+            # is not broken just because it doesn't resolve to on-site content.
+            m = re.match(r'^\s*RewriteRule\s+\^(.+?)\$\s+"?https?://\S+?"?\s+\[R=30[12]', line)
+            if m:
+                slug = m.group(1).rstrip("/?")
+                redirect_targets.add("https://sifufinds.com/" + slug.lstrip("/"))
     except OSError:
         pass
 

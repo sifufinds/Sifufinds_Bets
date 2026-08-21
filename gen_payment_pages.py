@@ -456,7 +456,7 @@ def make_payment_page(p):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{ap}assets/shared.js?v=26"></script>
+<script src="{ap}assets/shared.js?v=27"></script>
 <script>
 const SITE={{home:'{ap}',tips:'{ap}tips/',casino:'{ap}casino/',odds:'{ap}odds/',countries:'{ap}countries/'}};
 let _activeFilt='all';

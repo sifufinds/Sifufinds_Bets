@@ -1021,9 +1021,9 @@
     "22bet": {
       "name": "22Bet",
       "slug": "22bet",
-      "official_url": null,
-      "review_page": null,
-      "review_page_status": "missing",
+      "official_url": "https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=17&bid=1484",
+      "review_page": "https://sifufinds.com/bookmakers/22bet-africa/",
+      "review_page_status": "live",
       "identity": {
         "founded": "2018",
         "hq": "Limassol, Cyprus"
@@ -1866,9 +1866,9 @@
     "betika": {
       "name": "Betika",
       "slug": "betika",
-      "official_url": null,
-      "review_page": null,
-      "review_page_status": "missing",
+      "official_url": "https://www.betika.com/en-ke/",
+      "review_page": "https://sifufinds.com/bookmakers/betika/",
+      "review_page_status": "live",
       "identity": {
         "founded": "2016",
         "hq": "Nairobi, Kenya"
@@ -2102,6 +2102,55 @@
           "licence": {
             "value": null,
             "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "CD": {
+          "availability": {
+            "status": "documented",
+            "evidence": "DRC market entry confirmed 2026-08-21 via new SifuFinds affiliate deal (BigCat Partners tracking link) and cross-checked against independent web sources reporting Betika DRC is licensed by the National Lottery Company of DRC.",
+            "last_checked": "2026-08-21"
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": "National Lottery Company of DRC",
+            "status": "documented"
           },
           "africa_fit": {
             "score": null,
@@ -8119,6 +8168,75 @@
         },
         "review_page_copy": null,
         "bookmaker_links_entry": null
+      }
+    },
+    "pepeta": {
+      "name": "Pepeta",
+      "slug": "pepeta",
+      "official_url": "https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/",
+      "review_page": "https://sifufinds.com/bookmakers/pepeta/",
+      "review_page_status": "live",
+      "identity": {
+        "founded": "2023",
+        "hq": "Westlands, Nairobi, Kenya",
+        "operator": "Norm Kick Off Kenya Limited"
+      },
+      "countries": {
+        "KE": {
+          "availability": {
+            "status": "documented",
+            "evidence": "Verified 2026-08-21 via multiple independent Kenyan betting-review sources (Trustpilot, bettingcompanies.africa, telecomasia.net) cross-checked against SifuFinds' existing BOOKS listing for Kenya.",
+            "last_checked": "2026-08-21"
+          },
+          "payment_methods": {
+            "deposit": [
+              "M-Pesa",
+              "Airtel Money"
+            ],
+            "withdrawal": [
+              "M-Pesa",
+              "Airtel Money"
+            ],
+            "status": "documented",
+            "note": "Documented from independent third-party review sources, not independently re-tested first-hand."
+          },
+          "min_deposit": {
+            "value": "KSh 100",
+            "status": "documented"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": "20+",
+            "status": "documented"
+          },
+          "licence": {
+            "value": "BCLB Licence Nos. BK 0000694 & PG 0000421",
+            "status": "documented"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
       }
     }
   }

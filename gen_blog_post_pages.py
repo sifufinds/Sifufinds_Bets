@@ -1429,6 +1429,92 @@ def build_resources_box(post: dict) -> str:
     )
 
 
+# Opt-in inline sponsor strip for a post — set post['banner_brands'] to a list
+# of slugs from this table to render their offer cards after the article body.
+# Colours/copy mirror each brand's live BOOKS entry in assets/shared.js so the
+# cards don't invent a look the brand doesn't already have on the rest of the
+# site. masked_url follows the same https://sifufinds.com/<slug> convention as
+# agents/python/utils/affiliate_links.py's masked_url() (not imported directly —
+# this generator has no existing dependency on the agents/ tree) and every slug
+# here must have a matching RewriteRule in .htaccess or the link 404s.
+# promo_code is only set for brands the owner has explicitly confirmed accept
+# SIFUKAI (see AGENT-KNOWLEDGE.md's SIFUKAI promo code standing policy) — never
+# add one here on assumption alone.
+BANNER_BRANDS: dict[str, dict] = {
+    '22bet': {
+        'name': '22Bet', 'slug': '22bet', 'abbr': '22', 'bg': '#024147', 'tc': '#fff',
+        'headline': 'Deep Premier League Markets', 'offer': '100% Deposit Bonus',
+        'sub': 'Live betting, cash out and deep EPL match markets',
+        'promo_code': 'SIFUKAI',
+    },
+    'linebet': {
+        'name': 'Linebet', 'slug': 'linebet', 'abbr': 'LB', 'bg': '#0B8A4B', 'tc': '#fff',
+        'headline': '40+ Sports · Casino & Live Betting', 'offer': '100% First Deposit Bonus',
+        'sub': 'International brand, 1,000+ daily events across Africa',
+        'promo_code': 'SIFUKAI',
+    },
+    'tictacbet': {
+        'name': 'TicTacBets', 'slug': 'tictacbet', 'abbr': 'TTC', 'bg': '#CC0000', 'tc': '#fff',
+        'headline': "South Africa-Owned Since 2015", 'offer': '25 Free Spins + 100% Match Up to R5,000',
+        'sub': 'No deposit needed for the free spins · FICA required',
+        'promo_code': 'SIFUKAI',
+    },
+    'betxchange': {
+        'name': 'BetXchange', 'slug': 'betxchange', 'abbr': 'BX', 'bg': '#0D47A1', 'tc': '#fff',
+        'headline': 'SA Betting Exchange · Competitive Odds', 'offer': 'R200 Free Bet on First Deposit',
+        'sub': 'WCGRB licensed · FICA required',
+        'promo_code': None,
+    },
+    'bettabets': {
+        'name': 'Bettabets', 'slug': 'bettabets', 'abbr': 'BTB', 'bg': '#1B5E20', 'tc': '#fff',
+        'headline': 'SA Local Brand · PSL & Cricket', 'offer': 'R200 Free Bet on First Deposit',
+        'sub': 'NGB licensed · FICA required',
+        'promo_code': None,
+    },
+    'playbet': {
+        'name': 'Playbet', 'slug': 'playbet', 'abbr': 'PLB', 'bg': '#6A1B9A', 'tc': '#fff',
+        'headline': 'SA Bookmaker · Sports & Casino', 'offer': '100% Deposit Bonus – Up to R2,000',
+        'sub': 'WCGRB licensed · FICA required',
+        'promo_code': 'SIFUKAI',
+    },
+}
+
+
+def build_offer_banners(slugs: list[str]) -> str:
+    """Inline sponsor-offer card strip for the brands in `slugs` (see BANNER_BRANDS).
+    Returns '' if the post carries no banner_brands — this box never appears
+    uninvited on a post that didn't ask for it."""
+    cards = []
+    for slug in slugs:
+        b = BANNER_BRANDS.get(slug)
+        if not b:
+            continue
+        promo_html = (
+            f'<span class="ob-promo">Code <strong>{b["promo_code"]}</strong></span>'
+            if b.get('promo_code') else ''
+        )
+        url = f'https://sifufinds.com/{b["slug"]}'
+        cards.append(f'''<a class="ob-card" href="{url}" target="_blank" rel="noopener noreferrer sponsored" style="background:{b['bg']};color:{b['tc']}">
+          <span class="ob-sponsored">Sponsored</span>
+          <span class="ob-badge">{html.escape(b['abbr'])}</span>
+          <span class="ob-name">{html.escape(b['name'])}</span>
+          <span class="ob-headline">{html.escape(b['headline'])}</span>
+          <span class="ob-offer">{html.escape(b['offer'])}</span>
+          <span class="ob-sub">{html.escape(b['sub'])}</span>
+          {promo_html}
+          <span class="ob-cta">Claim Offer →</span>
+        </a>''')
+    if not cards:
+        return ''
+    return f'''<div class="offer-banners">
+      <p class="ob-title">🎁 Where to Back the Premier League This Season</p>
+      <div class="ob-grid">
+        {''.join(cards)}
+      </div>
+      <p class="ob-disclaimer">18+. Odds and offers correct at time of publishing and subject to change — check each bookmaker's site for current terms. Please gamble responsibly.</p>
+    </div>'''
+
+
 EXTERNAL_LINKS = [
     # Regulators (highest E-E-A-T value for gambling content)
     (r'\bNLRC\b',   'https://nlrc.gov.ng',           'Nigeria Lottery Regulatory Commission', 0),
@@ -1650,6 +1736,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     body_html = markdown_to_html(body_md)
     body_html = inject_contextual_links(body_html, post)
     body_html = inject_external_links(body_html)
+    banners_html = build_offer_banners(post.get('banner_brands', []))
     resources_html = build_resources_box(post)
     related_html = build_related_html(post, _ALL_POSTS)
     author = post.get('author', 'SifuFinds Editorial Team')
@@ -1848,6 +1935,21 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 .share-tg:hover{{background:#26a5e4;color:#fff;border-color:#26a5e4}}
 .share-copy{{font-size:12px;padding:0 14px}}
 .share-copy.copied{{background:#1a6b35;color:#fff;border-color:#1a6b35}}
+.offer-banners{{margin:30px 0 0;padding:20px 20px 16px;background:#0a3d1e;border-radius:14px}}
+.ob-title{{margin:0 0 14px;font-size:14px;font-weight:800;color:#fff;letter-spacing:.2px}}
+.ob-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}}
+.ob-card{{position:relative;display:flex;flex-direction:column;gap:4px;padding:16px 14px 14px;border-radius:11px;text-decoration:none;box-shadow:0 3px 0 rgba(0,0,0,.18),0 6px 16px rgba(0,0,0,.22);transition:transform .18s ease,box-shadow .18s ease;overflow:hidden}}
+.ob-card::after{{content:'';position:absolute;top:0;right:0;width:70px;height:70px;background:radial-gradient(circle at top right,rgba(255,255,255,.16),transparent 70%);pointer-events:none}}
+.ob-card:hover,.ob-card:focus-visible{{transform:translateY(-3px);box-shadow:0 5px 0 rgba(0,0,0,.2),0 10px 22px rgba(0,0,0,.3)}}
+.ob-sponsored{{position:absolute;top:8px;right:10px;font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;opacity:.55}}
+.ob-badge{{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.18);font-size:12px;font-weight:900;letter-spacing:.2px;margin-bottom:4px}}
+.ob-name{{font-size:15px;font-weight:900;letter-spacing:-.2px}}
+.ob-headline{{font-size:11px;font-weight:600;opacity:.85}}
+.ob-offer{{font-size:13px;font-weight:800;margin-top:6px;line-height:1.3}}
+.ob-sub{{font-size:10.5px;opacity:.8;line-height:1.4}}
+.ob-promo{{display:inline-block;align-self:flex-start;margin-top:4px;padding:3px 8px;border-radius:5px;background:rgba(0,0,0,.22);font-size:10.5px;font-weight:600}}
+.ob-cta{{margin-top:10px;font-size:12.5px;font-weight:800;display:inline-flex;align-items:center;gap:4px}}
+.ob-disclaimer{{margin:14px 0 0;font-size:10.5px;color:rgba(255,255,255,.55);line-height:1.6}}
 </style>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
@@ -1914,6 +2016,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
         <meta itemprop="headline" content="{title}">
         <meta itemprop="datePublished" content="{pub_iso}">
         {body_html}
+        {banners_html}
         {resources_html}
         {related_html}
       </article>
@@ -1941,7 +2044,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=26"></script>
+<script src="../../assets/shared.js?v=27"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 function copyPostLink(btn,url){{

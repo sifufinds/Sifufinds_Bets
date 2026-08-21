@@ -394,7 +394,7 @@ def build_page(sport, country_slug, country_data):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{assets}assets/shared.js?v=26"></script>
+<script src="{assets}assets/shared.js?v=27"></script>
 <script>
 const SITE={{home:'{assets}',tips:'{assets}tips/',casino:'{assets}casino/',odds:'{assets}odds/',countries:'{assets}countries/'}};
 const _PAGE_CTY='{code}';
