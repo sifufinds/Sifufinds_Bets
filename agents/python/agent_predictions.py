@@ -888,7 +888,13 @@ def run_generate(args: argparse.Namespace) -> None:
 
     comp_label = competition or "Football"
     enrich_crests(records)
-    telegram_text = build_telegram_post(records, comp_label, args.round or "")
+    # Sent together as one message (image caption if the card renders, plain
+    # text if it doesn't) — merged per user preference rather than a separate
+    # follow-up message, since the caption + CTA comfortably fit Telegram's
+    # 1024-char photo-caption limit.
+    telegram_caption = build_telegram_caption(records, comp_label, args.round or "")
+    telegram_cta = build_telegram_post(records, comp_label, args.round or "")
+    telegram_text = f"{telegram_caption}\n\n{telegram_cta}"
     facebook_text = build_facebook_post(records, comp_label, args.round or "")
     instagram_text = build_instagram_post(records, comp_label, args.round or "")
     twitter_text = build_twitter_post(records, comp_label, args.round or "")
@@ -930,12 +936,10 @@ def run_generate(args: argparse.Namespace) -> None:
         except Exception as exc:
             print(f"  [warn] gameweek card image failed, posting text-only: {exc}")
 
-        photo_ok = True
         if card_path:
-            caption = build_telegram_caption(records, comp_label, args.round or "")
-            photo_ok = send_photo_to_channel(str(card_path), caption)
-
-        results["telegram"] = photo_ok and send_to_channel(telegram_text)
+            results["telegram"] = send_photo_to_channel(str(card_path), telegram_text)
+        else:
+            results["telegram"] = send_to_channel(telegram_text)
         print("✓ Posted to Telegram." if results["telegram"] else "✗ Telegram post failed.")
 
         poll_target = pick_best(records)
