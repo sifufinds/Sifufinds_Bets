@@ -9,10 +9,12 @@ integrations agent_match_post.py already uses; Threads, TikTok, LinkedIn and
 YouTube have no posting API in this repo so their copy is printed for manual
 posting.
 
-Fixture source: data/predictions.json (predictz.com + forebet.com, refreshed by
-update_predictions.py — real competitions/teams/kick-offs/odds, never invented
-here). If a requested competition/round has no matching fixtures in the current
-scrape window, this agent says so and predicts nothing rather than fabricate one.
+Fixture source: merged from data/predictions.json (predictz.com + forebet.com)
+and data/matches_live.json (football-data.org/ESPN, real kick-off dates days
+ahead — what makes a whole gameweek visible before it's played). Never
+invented here. If a requested competition/round has no matching fixtures in
+the current window, this agent says so and predicts nothing rather than
+fabricate one.
 
 Analysis: for each fixture, a short free web research pass (utils/serp_research
 .research(), free-only, no Firecrawl) gathers real, sourced team-news snippets;
@@ -22,14 +24,21 @@ produce a probability split, predicted score, BTTS/O2.5 call, confidence and a
 short write-up. If research turns up nothing or the LLM is unreachable, a
 transparent odds-only fallback is used instead of guessing team-specific facts.
 
+Telegram posts also carry: a branded image with every fixture's real club
+crest (utils/gameweek_card.py, ESPN's own CDN) next to the predicted score,
+and a real Telegram poll (utils/prediction_game.py) on the round's strongest
+pick so followers can vote — graded against the actual result once the match
+finishes, tracking crowd-vs-model accuracy over the season (--game-tally).
+
 Usage:
   python3 agent_predictions.py "Premier League" --round "Gameweek 1"
   python3 agent_predictions.py "FA Cup" --round "Third Round" --days 10
   python3 agent_predictions.py --today                       # all major competitions, today
   python3 agent_predictions.py "Premier League" --dry-run     # preview only, nothing posted/saved
-  python3 agent_predictions.py --grade                        # grade completed predictions
+  python3 agent_predictions.py --grade                        # grade completed predictions + polls
   python3 agent_predictions.py --stats                         # season accuracy report
   python3 agent_predictions.py --stats --competition "Premier League" --season "2025-26"
+  python3 agent_predictions.py --game-tally                     # crowd-vs-model poll accuracy
 """
 from __future__ import annotations
 
@@ -993,16 +1002,20 @@ def run_grade(_: argparse.Namespace) -> None:
             f"{mark} {p['home']} {p['actual_score']} {p['away']} "
             f"(predicted {p['predicted_score']}, {p['points']} pt)"
         )
-        poll_result = grade_fixture_poll(p["id"], p["actual_result"])
-        if poll_result and poll_result["voters"]:
+        poll_result = close_and_grade_poll(p["id"], p["actual_result"], p["predicted_result"])
+        if poll_result and poll_result["total_votes"]:
+            crowd_mark = "✅" if poll_result["crowd_correct"] else "❌"
+            model_mark = "✅" if poll_result["model_correct"] else "❌"
             print(
-                f"   🎮 Poll: {poll_result['correct']}/{poll_result['voters']} followers "
-                f"correctly called {p['actual_result']}."
+                f"   🎮 Poll ({poll_result['total_votes']} votes): "
+                f"crowd said {poll_result['crowd_pick']} {crowd_mark} | "
+                f"SifuFinds said {p['predicted_result']} {model_mark}"
             )
             send_to_channel(
                 f"🎮 RESULT: {p['home']} {p['actual_score']} {p['away']}\n\n"
-                f"{poll_result['correct']} of {poll_result['voters']} of you called it right! 👏\n\n"
-                f"🏆 Check the leaderboard with the season's top predictors coming soon."
+                f"👥 The crowd voted {poll_result['crowd_pick']} {crowd_mark}\n"
+                f"🤖 SifuFinds called {p['predicted_result']} {model_mark}\n\n"
+                f"Who's got the sharper eye this season? 👀"
             )
     log("predictions", "grade", "success", f"{len(graded)} graded")
 
@@ -1016,20 +1029,17 @@ def run_stats(args: argparse.Namespace) -> None:
     print(json.dumps(stats, indent=2))
 
 
-def run_collect_votes(_: argparse.Namespace) -> None:
-    n = collect_poll_votes()
-    print(f"Collected {n} new poll vote(s).")
-    log("predictions", "collect_votes", "success", str(n))
-
-
-def run_leaderboard(_: argparse.Namespace) -> None:
-    top = top_leaderboard()
-    if not top:
-        print("No graded poll votes yet — the leaderboard fills in once a polled fixture is graded.")
+def run_game_tally(_: argparse.Namespace) -> None:
+    tally = season_tally()
+    if not tally.get("model_total"):
+        print("No graded polled fixtures yet — the tally fills in once a polled fixture is graded.")
         return
-    print("🏆 SifuFinds Prediction Game — Leaderboard\n")
-    for i, entry in enumerate(top, start=1):
-        print(f"{i}. {entry['name']} — {entry['points']} pt ({entry['correct']}/{entry['total']} correct)")
+    crowd_pct = round(100 * tally["crowd_correct"] / tally["crowd_total"], 1) if tally["crowd_total"] else None
+    model_pct = round(100 * tally["model_correct"] / tally["model_total"], 1)
+    print("🎮 SifuFinds Prediction Game — Crowd vs Model\n")
+    print(f"🤖 SifuFinds: {tally['model_correct']}/{tally['model_total']} correct ({model_pct}%)")
+    if crowd_pct is not None:
+        print(f"👥 The crowd: {tally['crowd_correct']}/{tally['crowd_total']} correct ({crowd_pct}%)")
 
 
 # ── CLI ────────────────────────────────────────────────────────────────────────
@@ -1051,8 +1061,7 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", dest="dry_run")
     parser.add_argument("--grade", action="store_true", help="Grade completed predictions against real results")
     parser.add_argument("--stats", action="store_true", help="Print season/competition accuracy report")
-    parser.add_argument("--collect-votes", dest="collect_votes", action="store_true", help="Fetch new prediction-poll votes from Telegram")
-    parser.add_argument("--leaderboard", action="store_true", help="Print the follower prediction-game leaderboard")
+    parser.add_argument("--game-tally", dest="game_tally", action="store_true", help="Print the crowd-vs-model prediction game tally")
     parser.set_defaults(telegram=True, facebook=True, instagram=True, twitter=True)
     args = parser.parse_args()
 
@@ -1062,11 +1071,8 @@ def main() -> None:
     if args.stats:
         run_stats(args)
         return
-    if args.collect_votes:
-        run_collect_votes(args)
-        return
-    if args.leaderboard:
-        run_leaderboard(args)
+    if args.game_tally:
+        run_game_tally(args)
         return
     if not args.competition and not args.today:
         parser.error("Provide a competition (e.g. \"Premier League\") or use --today")
