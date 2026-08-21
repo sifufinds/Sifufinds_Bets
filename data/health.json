@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-08-21T11:03:30.497830+00:00",
-  "healthy": true,
+  "checked_at": "2026-08-21T11:27:12.597375+00:00",
+  "healthy": false,
   "pages": {
     "Home": true,
     "Odds": true,
@@ -12,7 +12,8 @@
     "live.json": true
   },
   "fixes_applied": [
-    "patched missing football keys: afcon, cafl, local, world"
+    "patched missing football keys: afcon, cafl, local",
+    "regenerated blog/banners-data.js to match blog/banners.json"
   ],
-  "fix_count": 1
+  "fix_count": 2
 }
