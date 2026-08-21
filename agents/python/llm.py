@@ -5,10 +5,11 @@ local Ollama. Deliberately does NOT fall back to any paid or signup-gated
 API (Claude, Gemini, etc.) — see the 2026-08-10 removal note below.
 
 Fallback chain (each tier is tried before the next):
-  1. Groq llama-3.3-70b-versatile  — best quality, separate free TPD quota
-  2. Groq llama-3.1-8b-instant     — faster, separate free TPD quota
-  3. Groq openai/gpt-oss-120b      — separate free TPD quota
-  4. Groq openai/gpt-oss-20b       — separate free TPD quota
+  1. Groq openai/gpt-oss-120b      — best quality, separate free TPD quota
+  2. Groq qwen/qwen3.6-27b         — separate free TPD quota
+  3. Groq openai/gpt-oss-20b       — faster, separate free TPD quota
+  (llama-3.3-70b-versatile and llama-3.1-8b-instant, previously tiers 1-2,
+  were retired by Groq — see the 2026-08-21 note below on _GROQ_MODELS)
   5. g4f (gpt-4o-mini → gpt-4 →    — no signup, no API key, no billing;
      llama-3.3-70b)                  hosted (seconds, not CPU-bound
                                       minutes) open-source aggregator of
@@ -120,10 +121,24 @@ else:
     print("[llm] ⚠ GROQ_API_KEY not set — relying entirely on the free "
           "no-signup g4f + Ollama tiers.")
 
+# llama-3.3-70b-versatile and llama-3.1-8b-instant were retired by Groq —
+# confirmed 2026-08-21 via GET https://api.groq.com/openai/v1/models with
+# the live production key: neither appears in the current model list at
+# all. This was a total, silent content blackout (not just these two models
+# degraded): every single call hit llama-3.3-70b-versatile first, got a 404
+# invalid_request_error/model_not_found (not rate-limit shaped), and the
+# per-model exception handler in _ask_with_fallback() used to `raise` on
+# any non-rate-limit error — killing the whole function before it ever
+# reached the other 3 models, g4f, or Ollama. That handler is fixed now
+# (falls through instead of raising), but a dead model still wastes a
+# guaranteed-failed call every single time, so it's removed here too.
+# Replaced with qwen/qwen3.6-27b, confirmed present in that same live model
+# list, for a 3rd genuinely-distinct quota bucket alongside the two
+# gpt-oss sizes. Re-verify with the same GET request if content generation
+# ever silently stops again — Groq can retire/rename models without notice.
 _GROQ_MODELS = [
-    "llama-3.3-70b-versatile",
-    "llama-3.1-8b-instant",
     "openai/gpt-oss-120b",
+    "qwen/qwen3.6-27b",
     "openai/gpt-oss-20b",
 ]
 
@@ -421,17 +436,37 @@ def _ask_with_fallback(system_prompt: str, user_message: str, max_tokens: int,
                 result = _ask_groq(system_prompt, user_message, max_tokens, model)
             except Exception as e:
                 err = str(e)
-                if not _is_rate_limit(err.lower()):
-                    raise
-                if not _is_daily_limit(err):
+                if _is_rate_limit(err.lower()) and not _is_daily_limit(err):
                     wait = _parse_retry_seconds(err)
                     if wait:
                         print(f"[llm] Groq {model} RPM limit — waiting {wait}s then retrying")
                         time.sleep(wait)
                         try:
                             result = _ask_groq(system_prompt, user_message, max_tokens, model)
-                        except Exception:
+                        except Exception as e2:
+                            print(f"[llm] Groq {model} failed after retry ({str(e2)[:150]})")
                             result = None
+                else:
+                    # Used to `raise` here for anything that wasn't rate-limit
+                    # shaped — which killed this ENTIRE function (skipping the
+                    # other 3 Groq models, g4f, and Ollama) the instant Groq
+                    # deprecated/renamed a model. Confirmed live 2026-08-21:
+                    # "llama-3.3-70b-versatile does not exist" is a 404
+                    # invalid_request_error, not rate-limit shaped, so every
+                    # single call hit this branch and `raise`d — a silent,
+                    # total content blackout across every writer agent
+                    # (agent_sports_blog.py, agent_transfer_post.py,
+                    # agent_priority_writer.py, agent_fabricated_content_fixer.py,
+                    # ...) for ~4 days, invisible because AIProvidersExhausted
+                    # was never reached, so the "no paid fallback" error
+                    # message never surfaced either — every caller's own
+                    # try/except just logged a generic exception and moved on
+                    # as if nothing was published that cycle. A per-model
+                    # failure of ANY kind must fall through to the next
+                    # model/tier, never abort the whole resilience chain —
+                    # that's what the chain exists for.
+                    print(f"[llm] Groq {model} failed ({err[:150]}) — trying next model/tier")
+                    result = None
             if result:
                 return result
             # reasoning models (gpt-oss) can also come back with empty content
