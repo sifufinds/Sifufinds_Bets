@@ -58,7 +58,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-21T12:14:13.025148+00:00",
+    "checked_at": "2026-08-21T14:43:13.122621+00:00",
     "candidates_available": 313,
     "attempted": 3,
     "written": 0,
@@ -67,19 +67,19 @@
         "keyword": "Gombe girl wins Qur’anic competition Saudi Arabia betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+        "reason": "missing_output_markers"
       },
       {
         "keyword": "Players caught match-fixing risk jail, Sh1 million fine betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+        "reason": "missing_output_markers"
       },
       {
         "keyword": "Black Queens drawn against Ecuador, Uzbekistan Papua New betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+        "reason": "quality_gate: only 1 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
