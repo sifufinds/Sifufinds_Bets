@@ -23,31 +23,24 @@ SITE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP_DIRS = {".git", ".venv", "__pycache__", "node_modules", ".github",
              "agents", "firecrawl", "geo-content-writer"}
 
+sys.path.insert(0, SITE_ROOT)
+from seo_meta import seo_title as _seo_title_canonical  # noqa: E402
+
 
 def seo_title(title: str, max_len: int = MAX_LEN) -> str:
-    """Trim title to ≤ max_len chars with '| SifuFinds' suffix.
+    """Trim title to <= max_len chars with '| SifuFinds' suffix.
 
-    Mirrors gen_blog_post_pages.py's seo_title(): only truncates at a
-    separator when it sits past 35% of the title's length, otherwise a short
-    generic lead-in ("World Cup 2026:") swallows the whole truncation and
-    unrelated posts collapse onto one identical <title> (confirmed live on
-    ~85 posts, GEO/technical audit 2026-07-26).
+    Thin wrapper around seo_meta.seo_title() — this file used to carry its
+    own hand-mirrored copy of that function, which drifted (it still added a
+    trailing "…" that the canonical version dropped on 2026-08-11, and kept
+    the pre-separator-collapse-fix truncation strategy that caused two
+    different French World Cup match reports to both truncate to the
+    identical "Coupe du Monde 2026 | SifuFinds" and trip
+    find_duplicate_titles() below — confirmed live 2026-08-21). Importing the
+    one real implementation means this file can't drift out of sync with it
+    again.
     """
-    full = f"{title} {SUFFIX}"
-    if len(full) <= max_len:
-        return full
-    best = None
-    for sep in [" — ", " - ", ": ", " | "]:
-        idx = title.find(sep)
-        if idx > 10 and idx >= len(title) * 0.35:
-            candidate = f"{title[:idx]} {SUFFIX}"
-            if len(candidate) <= max_len and (best is None or idx > best[0]):
-                best = (idx, candidate)
-    if best:
-        return best[1]
-    available = max_len - len(SUFFIX) - 2
-    truncated = title[:available].rsplit(" ", 1)[0]
-    return f"{truncated}… {SUFFIX}"
+    return _seo_title_canonical(title, max_len=max_len, suffix=SUFFIX)
 
 
 def strip_to_content(raw_title: str) -> str:

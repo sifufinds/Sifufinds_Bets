@@ -25,6 +25,9 @@ from pathlib import Path
 from collections import defaultdict
 
 BASE = Path(__file__).parent.parent
+sys.path.insert(0, str(BASE))
+from seo_meta import strip_dangling_words, ends_with_dangling_word  # noqa: E402
+
 POSTS_JSON = BASE / 'blog' / 'posts.json'
 BLOG_DIR = BASE / 'blog'
 
@@ -78,6 +81,18 @@ for p in posts:
         issue(HIGH, 'meta_desc_length', p['slug'], f"Excerpt {len(exc)} chars (max 155)")
     elif len(exc) < 50:
         issue(MEDIUM, 'meta_desc_length', p['slug'], f"Excerpt too short ({len(exc)} chars)")
+
+# ── 2b. Dangling-word title/excerpt ───────────────────────────────────────────
+# A title/excerpt ending on a bare conjunction/article/preposition/possessive
+# ("...Man Utd's Rebuild, and") reads as visibly cut off mid-thought. Found
+# live 2026-08-21 across ~190 posts, all produced by earlier truncation code
+# that only guaranteed a word-boundary cut, not a grammatically complete one.
+# See seo_meta.strip_dangling_words()'s docstring for the full incident.
+for p in posts:
+    if ends_with_dangling_word(p.get('title', '')):
+        issue(HIGH, 'dangling_title', p['slug'], f"Title ends mid-thought: {p['title'][-50:]!r}")
+    if ends_with_dangling_word(p.get('excerpt', '')):
+        issue(HIGH, 'dangling_excerpt', p['slug'], f"Excerpt ends mid-thought: {p.get('excerpt', '')[-50:]!r}")
 
 # ── 3. Check generated HTML files ─────────────────────────────────────────────
 def read_html(slug):
@@ -360,7 +375,12 @@ if args.fix:
                 # then survives seo_title()'s own truncation untouched since
                 # it's already short enough by the time that runs (technical
                 # SEO audit, 2026-08-11 — same fix as seo_meta.seo_title()).
-                truncated = original[:60].rsplit(' ', 1)[0]
+                # strip_dangling_words() added 2026-08-21: word-boundary
+                # truncation alone still let ~190 posts truncate onto a
+                # dangling conjunction/preposition ("...Man Utd's Rebuild,
+                # and") — a valid word boundary but an obviously cut-off
+                # title. See seo_meta.strip_dangling_words()'s docstring.
+                truncated = strip_dangling_words(original[:60].rsplit(' ', 1)[0])
                 p['title'] = truncated
                 print(f"  FIX title: {original[:70]!r} → {truncated!r}")
                 fixed += 1
@@ -369,9 +389,25 @@ if args.fix:
             p = slug_map.get(slug)
             if p and len(p.get('excerpt', '')) > 155:
                 original = p['excerpt']
-                truncated = original[:155].rsplit(' ', 1)[0]
+                truncated = strip_dangling_words(original[:155].rsplit(' ', 1)[0])
                 p['excerpt'] = truncated
                 print(f"  FIX excerpt [{slug[:40]}]: {len(original)} → {len(truncated)} chars")
+                fixed += 1
+        elif iss['check'] == 'dangling_title':
+            slug = iss['page']
+            p = slug_map.get(slug)
+            if p and ends_with_dangling_word(p.get('title', '')):
+                original = p['title']
+                p['title'] = strip_dangling_words(original.rstrip('.…'))
+                print(f"  FIX dangling title [{slug[:40]}]: {original[-50:]!r} → {p['title'][-50:]!r}")
+                fixed += 1
+        elif iss['check'] == 'dangling_excerpt':
+            slug = iss['page']
+            p = slug_map.get(slug)
+            if p and ends_with_dangling_word(p.get('excerpt', '')):
+                original = p['excerpt']
+                p['excerpt'] = strip_dangling_words(original.rstrip('.…'))
+                print(f"  FIX dangling excerpt [{slug[:40]}]: {original[-50:]!r} → {p['excerpt'][-50:]!r}")
                 fixed += 1
 
     if fixed:
