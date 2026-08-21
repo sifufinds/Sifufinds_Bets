@@ -74,7 +74,7 @@ RewriteRule ^betika/?$ https://www.betika.com/en-ke/ [R=301,L,NC]
 RewriteRule ^sportpesa/?$ https://www.sportpesa.co.ke [R=301,L,NC]
 RewriteRule ^mozzartbet/?$ https://www.mozzartbet.com/en/ [R=301,L,NC]
 RewriteRule ^nairabet/?$ https://www.nairabet.com [R=301,L,NC]
-RewriteRule ^22bet/?$ https://22bet.com [R=301,L,NC]
+RewriteRule ^22bet/?$ "https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=17&bid=1484" [R=301,L,NC]
 RewriteRule ^betpawa/?$ https://www.betpawa.ng [R=301,L,NC]
 RewriteRule ^odibets/?$ https://odibets.com/ [R=301,L,NC]
 RewriteRule ^supabets/?$ https://www.supabets.com/ [R=301,L,NC]
@@ -85,6 +85,8 @@ RewriteRule ^tictacbet/?$ "https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=102
 RewriteRule ^betxchange/?$ "https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226" [R=301,L,NC]
 RewriteRule ^bettabets/?$ "https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777" [R=301,L,NC]
 RewriteRule ^playbet/?$ "https://trk.playbet.net/o/5tgJzp?site_id=284" [R=301,L,NC]
+RewriteRule ^pepeta/?$ "https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/" [R=301,L,NC]
+RewriteRule ^betika-drc/?$ "https://record.bigcatpartners.com/_-uNzaN20ZcLqaEn2LeVpkWNd7ZgqdRLk/1/" [R=301,L,NC]
 
 # ── 301 REDIRECTS — FIX BROKEN INTERNAL LINKS ────────────────────────────────
 # Plain mod_alias "Redirect 301" directives were not firing on the live host
