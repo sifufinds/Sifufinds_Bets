@@ -1,15 +1,15 @@
 {
-  "checked_at": "2026-08-22T14:50:56.717650+00:00",
+  "checked_at": "2026-08-22T15:46:32.794691+00:00",
   "healthy": false,
   "pages": {
-    "Home": false,
-    "Odds": false,
-    "Tips": false,
-    "Casino": false,
-    "Countries": false,
-    "shared.js": false,
-    "shared.css": false,
-    "live.json": false
+    "Home": true,
+    "Odds": true,
+    "Tips": true,
+    "Casino": true,
+    "Countries": true,
+    "shared.js": true,
+    "shared.css": true,
+    "live.json": true
   },
   "fixes_applied": [
     "patched missing football keys: afcon, cafl, local, world"
