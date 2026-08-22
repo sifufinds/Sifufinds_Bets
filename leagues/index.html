@@ -941,12 +941,14 @@ const COMP_PRIORITY = {
 
 /* Brand data for sidebars / bottom strip — affiliate links where available */
 // Order (per 2026-08-22 direction): 22Bet, Rasbet, Playbet, Pepeta, Linebet,
-// Betika first — the left/right sidebars render SIDE_BRANDS.slice(0,4) and
-// .slice(4,8), so these six land across both visible sidebar columns. Then
-// TicTacBets, BetXchange, Bettabets (per 2026-08-08 direction), then the rest
-// in their prior relative order. Betika's old entry (plain homepage URL, no
-// real affiliate tracking) was replaced in place rather than duplicated —
-// same bigcatpartners.com tracking link already used for it in HEADER_BRANDS.
+// Betika first, then TicTacBets, BetXchange, Bettabets (per 2026-08-08
+// direction), then the rest in their prior relative order. All brands here
+// are additive — nothing gets removed when new ones are prepended; the
+// left/right sidebars split the FULL list evenly (see renderBrandSidebars()),
+// so every entry stays visible as this list grows. Betika's old entry (plain
+// homepage URL, no real affiliate tracking) was replaced in place rather than
+// duplicated — same bigcatpartners.com tracking link already used for it in
+// HEADER_BRANDS.
 const SIDE_BRANDS = [
   {name:'22Bet',       abbr:'22',  bg:'#024147', tc:'#fff', url:'https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=224&bid=1484',                        offer:'100% Welcome Bonus',                      logo:'../assets/logos/22bet_hq.png'},
   {name:'Rasbet',      abbr:'RB',  bg:'#FFFFFF', tc:'#1B5E20', url:'https://rasbet.goaffnk.com/t/MTRfMQ==/',                                                  offer:'Welcome Bonus on First Deposit',          logo:'../assets/logos/rasbet.png'},
@@ -1240,13 +1242,20 @@ function renderBrandSidebars() {
   const left  = document.getElementById('side-left');
   const right = document.getElementById('side-right');
 
+  // Split the full SIDE_BRANDS list evenly across both columns instead of a
+  // hardcoded slice(0,4)/slice(4,8) — that cutoff used to silently drop every
+  // brand past index 7 from the visible sidebars (still in the array, but
+  // only ever reachable via the bottom strip). All brands should stay visible
+  // here as the list grows (see AGENT-KNOWLEDGE.md 2026-08-22).
+  const half = Math.ceil(SIDE_BRANDS.length / 2);
+
   if (left) {
     left.innerHTML = '<div class="lg-side-label">Featured Bookmakers</div>' +
-      SIDE_BRANDS.slice(0, 4).map(cardHtml).join('');
+      SIDE_BRANDS.slice(0, half).map(cardHtml).join('');
   }
   if (right) {
     right.innerHTML = '<div class="lg-side-label">Top Bookmakers</div>' +
-      SIDE_BRANDS.slice(4, 8).map(cardHtml).join('');
+      SIDE_BRANDS.slice(half).map(cardHtml).join('');
   }
 }
 
