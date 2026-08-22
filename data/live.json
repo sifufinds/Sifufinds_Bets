@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-22T21:56:54.100912+00:00",
+  "updated": "2026-08-22T22:16:10.638303+00:00",
   "count": 32,
   "events": [
     {
@@ -11,6 +11,23 @@
       "away": "Washington Nationals",
       "hScore": "4",
       "aScore": "2",
+      "time": "LIVE",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
+    {
+      "league": "MLB",
+      "key": "baseball",
+      "live": true,
+      "complete": false,
+      "home": "Philadelphia Phillies",
+      "away": "St. Louis Cardinals",
+      "hScore": "0",
+      "aScore": "0",
       "time": "LIVE",
       "h": 0.0,
       "d": 0.0,
@@ -63,9 +80,9 @@
       "hScore": null,
       "aScore": null,
       "time": "22 Aug 2026 \u00b7 23:00 UTC",
-      "h": 1.59,
+      "h": 1.65,
       "d": 0.0,
-      "a": 2.42,
+      "a": 2.3,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
@@ -100,23 +117,6 @@
       "h": 3.6,
       "d": 0.0,
       "a": 1.31,
-      "hBk": "DraftKings",
-      "dBk": "",
-      "aBk": "DraftKings"
-    },
-    {
-      "league": "MLB",
-      "key": "baseball",
-      "live": false,
-      "complete": false,
-      "home": "Philadelphia Phillies",
-      "away": "St. Louis Cardinals",
-      "hScore": null,
-      "aScore": null,
-      "time": "22 Aug 2026 \u00b7 22:05 UTC",
-      "h": 1.65,
-      "d": 0.0,
-      "a": 2.44,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
