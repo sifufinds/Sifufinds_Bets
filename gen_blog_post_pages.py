@@ -1183,6 +1183,53 @@ def extract_faq_schema(body_md: str) -> str:
 }}'''
 
 
+# Tracking-redirect domains that must never be surfaced as a bookmaker's own
+# "official" URL in structured data (Review.itemReviewed.url) — same list of
+# affiliate networks documented in CLAUDE.md's affiliate-link rules. A masked
+# affiliate link is correct for the page's own CTA button but would be a
+# misleading identity signal inside schema.org markup, which is meant to
+# describe the brand's real, independent web presence.
+_TRACKING_DOMAIN_MARKERS = (
+    'reffpa.com', 'refpa3665.com', 'bwredir.com', '1212fghnna.com',
+    'combodef.com', 'goaffnk.com', 'trackrt.tictacbets.co.za',
+    'track.trkbxa.click', 'track.bettapartners.co.za', 'lb-aff.com',
+    'trk.playbet.net', 'record.bigcatpartners.com', 'che.fluxbrox.com',
+)
+
+_RATING_RE = re.compile(r'(\d(?:\.\d)?)\s*(?:/|out of)\s*5\b', re.IGNORECASE)
+
+
+def extract_review_rating(body_md: str) -> str | None:
+    """Pull a "4.5/5" or "4 out of 5" style rating already stated in a
+    review post's own body text — never invented here. Only 'review'
+    category posts that genuinely state a score in their prose get Review
+    schema; everything else keeps the default Article type. Fabricating a
+    ratingValue with no source in the published text would be exactly the
+    kind of fake-review claim CONTENT-RULEBOOK.md's honesty rules forbid.
+    """
+    m = _RATING_RE.search(body_md)
+    return m.group(1) if m else None
+
+
+def official_bookmaker_url(brand_name: str) -> str | None:
+    """Best-effort real homepage for `brand_name`, sourced from the
+    canonical data/bookmakers.json — never an affiliate tracking redirect,
+    which several brands' 'official_url' entries actually are. Returns
+    None (omit the field) rather than guess when no clean URL is on file."""
+    try:
+        with open(os.path.join(BASE, 'data', 'bookmakers.json'), encoding='utf-8') as f:
+            db = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return None
+    key = re.sub(r'[^a-z0-9]', '', brand_name.lower())
+    for slug, entry in db.get('brands', {}).items():
+        if re.sub(r'[^a-z0-9]', '', slug) == key or re.sub(r'[^a-z0-9]', '', entry.get('name', '')) == key:
+            url = entry.get('official_url')
+            if url and not any(marker in url for marker in _TRACKING_DOMAIN_MARKERS):
+                return url
+    return None
+
+
 # ── INTERNAL LINKING ─────────────────────────────────────────────────────────
 
 # Country page slugs and keywords that trigger a link to the country page
@@ -1870,6 +1917,61 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
     tags_html = ''.join(f'<span class="post-tag">{t}</span>' for t in tags[:6])
     share_bar_html = build_share_bar(canonical_href, title)
 
+    # Review-category posts that state a real "X/5" score in their own body
+    # get Review + Rating schema (star-rating rich-result eligible) instead
+    # of bare Article — the same pattern already used on the dedicated
+    # /bookmakers/<brand>/ review pages. A review post with no stated score
+    # (e.g. one just published without an editorial rating yet) keeps the
+    # default Article schema rather than a fabricated ratingValue.
+    review_rating = extract_review_rating(body_md) if category == 'review' and featured_bk else None
+    if review_rating:
+        item_reviewed_url = official_bookmaker_url(featured_bk)
+        item_reviewed_url_json = f',\n        "url": {json.dumps(item_reviewed_url)}' if item_reviewed_url else ''
+        primary_schema = f'''{{
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "name": {title_json},
+  "itemReviewed": {{
+        "@type": "Organization",
+        "name": {json.dumps(featured_bk)}{item_reviewed_url_json}
+  }},
+  "reviewRating": {{"@type": "Rating", "ratingValue": "{review_rating}", "bestRating": "5", "worstRating": "1"}},
+  "reviewBody": {excerpt_json},
+  "author": {author_schema}{reviewed_by_schema},
+  "publisher": {{
+    "@type": "Organization",
+    "@id": "https://sifufinds.com/#organization",
+    "name": "SifuFinds",
+    "url": "https://sifufinds.com",
+    "logo": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/android-chrome-192x192.png", "width": 192, "height": 192}}
+  }},
+  "datePublished": "{pub_iso}",
+  "dateModified": "{mod_iso}",
+  "mainEntityOfPage": "{canonical}",
+  "image": {{"@type": "ImageObject", "url": "{og_image_url}", "width": 1200, "height": 630}}
+}}'''
+    else:
+        primary_schema = f'''{{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {title_json},
+  "description": {excerpt_json},
+  "author": {author_schema}{reviewed_by_schema},
+  "publisher": {{
+    "@type": "Organization",
+    "@id": "https://sifufinds.com/#organization",
+    "name": "SifuFinds",
+    "url": "https://sifufinds.com",
+    "logo": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/android-chrome-192x192.png", "width": 192, "height": 192}}
+  }},
+  "datePublished": "{pub_iso}",
+  "dateModified": "{mod_iso}",
+  "mainEntityOfPage": "{canonical}",
+  "keywords": "{', '.join(tags)}",
+  "articleSection": "{category}",
+  "image": {{"@type": "ImageObject", "url": "{og_image_url}", "width": 1200, "height": 630}}
+}}'''
+
     return f'''<!DOCTYPE html>
 <!-- sifufinds.com/blog/{out_slug}/ — {title} -->
 <html {html_lang_attr}>
@@ -1911,26 +2013,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 <meta name="twitter:image" content="{og_image_url}">
 
 <script type="application/ld+json">
-[{{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": {title_json},
-  "description": {excerpt_json},
-  "author": {author_schema}{reviewed_by_schema},
-  "publisher": {{
-    "@type": "Organization",
-    "@id": "https://sifufinds.com/#organization",
-    "name": "SifuFinds",
-    "url": "https://sifufinds.com",
-    "logo": {{"@type": "ImageObject", "url": "https://sifufinds.com/assets/android-chrome-192x192.png", "width": 192, "height": 192}}
-  }},
-  "datePublished": "{pub_iso}",
-  "dateModified": "{mod_iso}",
-  "mainEntityOfPage": "{canonical}",
-  "keywords": "{', '.join(tags)}",
-  "articleSection": "{category}",
-  "image": {{"@type": "ImageObject", "url": "{og_image_url}", "width": 1200, "height": 630}}
-}},
+[{primary_schema},
 {{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",

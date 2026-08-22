@@ -3,6 +3,7 @@
 
 import json
 import os
+import prerender_bookmakers
 from seo_meta import seo_meta_description, seo_title
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -328,7 +329,7 @@ def make_city_page(c):
   </div></div>
 
   <div class="mc" id="mcount"></div>
-  <div id="bk-cards"><noscript><p style="padding:16px;color:#666">Enable JavaScript to view bookmaker listings.</p></noscript></div>
+  <div id="bk-cards">{prerender_bookmakers.bookmaker_cards_html(c['country_code'])}</div>
 
   <div class="cbox2">
     <h2>Payment Methods in {c['city']}</h2>

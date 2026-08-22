@@ -6,8 +6,9 @@ Scales from 8 cities to 200+ cities, targeting searches like:
 """
 
 import json
-from seo_meta import seo_meta_description
+from seo_meta import seo_meta_description, seo_title
 import os
+import prerender_bookmakers
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -849,6 +850,7 @@ def build_page(city_data):
 
     pay_chips = ''.join(f'<span class="pay-chip">{p}</span>' for p in payments)
     sports_list = ''.join(f'<li>{s}</li>' for s in sports)
+    bk_cards_html = prerender_bookmakers.bookmaker_cards_html(code)
 
     faq_items = [
         (f'Is sports betting legal in {city}?',
@@ -894,7 +896,7 @@ def build_page(city_data):
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{title}</title>
+<title>{seo_title(title.removesuffix(' | SifuFinds'))}</title>
 <meta name="description" content="{seo_meta_description(description)}">
 <meta name="keywords" content="{keywords}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -1050,7 +1052,7 @@ def build_page(city_data):
   </div></div>
 
   <div class="mc" id="mcount"></div>
-  <div id="bk-cards"><noscript><p style="padding:16px;color:#666">Enable JavaScript to view bookmaker listings.</p></noscript></div>
+  <div id="bk-cards">{bk_cards_html}</div>
 
   <div class="cbox2">
     <h2>Payment Methods in {city}</h2>
@@ -1131,7 +1133,7 @@ init();
 </html>'''
 
 
-def main():
+def main(force: bool = False):
     created = 0
     skipped = 0
 
@@ -1141,7 +1143,10 @@ def main():
         out_path = os.path.join(out_dir, 'index.html')
 
         # Skip if already exists (preserve hand-crafted pages like Lagos, Nairobi)
-        if os.path.exists(out_path):
+        # unless --force is passed — needed to propagate a template-level fix
+        # (e.g. the 2026-08-21 #bk-cards server-render fix) to already-generated
+        # pages, same --force convention as gen_blog_post_pages.py/gen_wc2026_teams.py.
+        if os.path.exists(out_path) and not force:
             skipped += 1
             print(f'  ⟳  Skipped (exists): {path}/index.html')
             continue
@@ -1153,8 +1158,10 @@ def main():
         created += 1
         print(f'  ✓  {path}/index.html')
 
-    print(f'\n✅  {created} new city pages generated ({skipped} existing pages preserved).')
+    verb = 'regenerated' if force else 'new'
+    print(f'\n✅  {created} {verb} city pages generated ({skipped} existing pages preserved).')
 
 
 if __name__ == '__main__':
-    main()
+    import sys
+    main(force='--force' in sys.argv)

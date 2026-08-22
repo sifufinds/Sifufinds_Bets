@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 _SHARED_JS = os.path.join(BASE_DIR, 'assets', 'shared.js')
 
 _ENTRY_RE = re.compile(r'(?:^|\n)\s*([A-Z]{2}):\{')
+_NAME_ENTRY_RE = re.compile(r"([A-Z]{2}):\{name:'([^']+)'")
 _RESTRICTED_RE = re.compile(r'restricted:true')
 _CURRENCY_RE = re.compile(r"currency:'([A-Z]{3})'")
 
@@ -54,6 +55,14 @@ def distinct_currency_count() -> int:
     currency — XOF/XAF each cover multiple countries — so this is NOT the
     same as total_country_count())."""
     return len(set(_CURRENCY_RE.findall(_country_data_block())))
+
+
+def country_names() -> list[str]:
+    """Every country's display name, in COUNTRY_DATA's own order — the
+    canonical list for anything that needs to enumerate all N countries by
+    name (llms.txt, Organization schema areaServed arrays, etc.), never a
+    hand-copied list that can silently fall behind COUNTRY_DATA again."""
+    return [name for _code, name in _NAME_ENTRY_RE.findall(_country_data_block())]
 
 
 if __name__ == '__main__':

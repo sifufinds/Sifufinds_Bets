@@ -72,6 +72,28 @@ DANGLING_TRAILING_WORDS = frozenset({
     "o", "os", "as", "e", "um", "uma", "com",
 })
 
+# Nationality/demonym adjectives: grammatically these need a following noun
+# just as much as an article or preposition does ("...Is It Worth It for
+# African" is exactly as incomplete as "...Is It Worth It for the"), but
+# they're a different word class from DANGLING_TRAILING_WORDS above so they
+# get their own set. Missed by the original dangling-word fix (2026-08-21)
+# because that fix only ever targeted function words — found live the same
+# day on /blog/1xbet-review/, which truncated to "...Is It Worth It for
+# African | SifuFinds" (cutting "Bettors?") even though the full, correct
+# title exists in posts.json and in the page's own <h1>. Covers the
+# continental demonym plus every country this site covers (site_stats.py's
+# country_names(), adjective form) so a truncation landing on any of them
+# is caught the same way.
+DANGLING_TRAILING_ADJECTIVES = frozenset({
+    "african", "nigerian", "kenyan", "ghanaian", "tanzanian", "ugandan",
+    "zambian", "ethiopian", "ivorian", "cameroonian", "senegalese",
+    "rwandan", "zimbabwean", "malawian", "mozambican", "angolan",
+    "congolese", "botswanan", "namibian", "egyptian",
+    "moroccan", "leonean", "liberian", "beninese", "burkinabe",
+    "gambian", "togolese", "algerian", "libyan", "mauritanian",
+    "somali", "tunisian",
+})
+
 # Two-word endings that LOOK like a dangling preposition/particle but are
 # actually complete phrasal verbs in this site's own transfer-news headline
 # style ("Savinho Talks On", "Rodri Saga Rolls On") — checked before the
@@ -102,7 +124,7 @@ def _is_dangling_last_word(words: list[str]) -> bool:
     # as dangling-looking as a bare stopword.
     if not bare:
         return True
-    if bare in DANGLING_TRAILING_WORDS:
+    if bare in DANGLING_TRAILING_WORDS or bare in DANGLING_TRAILING_ADJECTIVES:
         return True
     return word.rstrip(" ,.;:!?\"").endswith(("'s", "’s", "s'", "s’"))
 

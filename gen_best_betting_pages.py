@@ -23,6 +23,7 @@ Reuses COUNTRIES/COUNTRY_SELECTOR_OPTIONS from generate_country_pages.py
 import json
 import os
 
+import prerender_bookmakers
 from generate_country_pages import COUNTRIES, COUNTRY_SELECTOR_OPTIONS
 from seo_meta import current_month_year, current_year, seo_meta_description
 
@@ -417,9 +418,7 @@ def generate_page(code, c):
   </div></div>
 
   <div class="mc" id="mcount"></div>
-  <div id="bk-cards">
-    <noscript><p style="padding:20px;color:#666">Enable JavaScript to view bookmaker listings, or visit <a href="../">SifuFinds.com</a>.</p></noscript>
-  </div>
+  <div id="bk-cards">{prerender_bookmakers.bookmaker_cards_html(code)}</div>
 
   <!-- Payment Methods -->
   <div class="cbox2">
@@ -799,9 +798,7 @@ def generate_emerging_page(code, c):
   <h2 style="font-size:17px;font-weight:800;color:#111;margin-bottom:9px">Betting Sites in {name} — Verified {YEAR}</h2>
 
   <div class="mc" id="mcount"></div>
-  <div id="bk-cards">
-    <noscript><p style="padding:20px;color:#666">Enable JavaScript to view bookmaker listings, or visit <a href="../">SifuFinds.com</a>.</p></noscript>
-  </div>
+  <div id="bk-cards">{prerender_bookmakers.bookmaker_cards_html(code)}</div>
 
   <!-- Payment Methods -->
   <div class="cbox2">
