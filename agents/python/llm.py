@@ -10,8 +10,8 @@ Fallback chain (each tier is tried before the next):
   3. Groq openai/gpt-oss-20b       — faster, separate free TPD quota
   (llama-3.3-70b-versatile and llama-3.1-8b-instant, previously tiers 1-2,
   were retired by Groq — see the 2026-08-21 note below on _GROQ_MODELS)
-  5. g4f (gpt-4o-mini → gpt-4 →    — no signup, no API key, no billing;
-     llama-3.3-70b)                  hosted (seconds, not CPU-bound
+  5. g4f (Yqcloud →                — no signup, no API key, no billing;
+     CohereForAI_C4AI_Command)        hosted (seconds, not CPU-bound
                                       minutes) open-source aggregator of
                                       free reverse-engineered LLM
                                       front-ends (github.com/xtekky/gpt4free)
@@ -157,18 +157,35 @@ _G4F_PROVIDERS: list[tuple[object, str, str]] = []  # (provider_class, model, la
 # credentials — "GithubCopilot: MissingAuthError ... run 'g4f auth
 # github-copilot'" and "Nvidia: PaymentRequiredError: No cake credits" — so
 # every g4f attempt failed and the tier was a total no-op in production
-# despite passing every local test. These three were individually
-# live-tested (both a short JSON fact-check prompt and a full 700+ word
-# article-generation prompt) and require no auth of any kind. WeWordle first
-# (fastest, ~2-11s, handles both prompt shapes cleanly); OperaAria next
-# (slower, ~30s, but the only other one that reliably handled the long
-# article-generation prompt); Cloudflare last (fast for short prompts like
-# fact-checking, but has a live bug — UnboundLocalError — on longer prompts,
-# so it's a weak bet for article drafts specifically but harmless to try
-# since a failure here just falls through to Ollama like any other).
-# Re-verify this list with the test snippet in AGENT-KNOWLEDGE.md's
-# 2026-08-08 entry if g4f is ever touched again — individual providers
-# break/get patched without notice.
+# despite passing every local test.
+#
+# REPLACED 2026-08-22: the original WeWordle/OperaAria/Cloudflare trio (all
+# individually live-tested on 2026-08-08) had silently rotted to a 100%
+# failure rate by this date — found while diagnosing a multi-day blog-post
+# drought (posts.json had zero new entries for 2026-08-22 despite 10+
+# breaking_news.yml runs). Live-tested against g4f 8.1.7 on this date:
+# WeWordle no longer exists in g4f.Provider at all (AttributeError);
+# OperaAria now 401s against oauth2.opera-api.com (needs auth it didn't
+# before); Cloudflare fails with "Failed to start shared Chrome" (needs a
+# local headless browser this environment doesn't have). With g4f
+# unconditionally dead, EVERY Groq-exhausted call across every writer agent
+# was falling straight through to local Ollama — which needs a fresh ~4.9GB
+# model pull on every ephemeral GitHub Actions runner (no cache persists
+# between jobs) plus multi-minute CPU-only inference, blowing every
+# per-category timeout in practice (see breaking_news.yml's football
+# category timing out at its full 600s with zero output).
+#
+# Replaced with two providers tested clean against both a short JSON
+# fact-check prompt and a full 700+ word article-generation prompt, same
+# methodology as the entry above: Yqcloud (fastest, ~3-42s, zero extra pip
+# deps) first; CohereForAI_C4AI_Command (~1-25s, zero extra pip deps, best
+# observed instruction-following — followed a strict "JSON only, no
+# markdown fences" instruction on the first attempt) second. Both confirmed
+# with zero additional packages beyond what requirements.txt already
+# installs — no browser, no HAR file, no API key. Re-verify this list with
+# the test snippet in AGENT-KNOWLEDGE.md's 2026-08-22 entry if g4f is ever
+# touched again — individual providers break/get patched without notice,
+# exactly as happened here.
 #
 # Each provider is imported independently (fixed 2026-08-08): the original
 # code imported all three under one try/except ImportError, so when g4f
@@ -191,9 +208,8 @@ except ImportError as e:
 
 if _g4f_client is not None:
     for _provider_name, _model, _label in (
-        ("WeWordle", "gpt-4o-mini", "WeWordle"),
-        ("OperaAria", "aria", "OperaAria"),
-        ("Cloudflare", "llama-3.3-70b", "Cloudflare"),
+        ("Yqcloud", "gpt-4", "Yqcloud"),
+        ("CohereForAI_C4AI_Command", "command-a", "CohereForAI_C4AI_Command"),
     ):
         try:
             import g4f.Provider as _g4f_provider_module

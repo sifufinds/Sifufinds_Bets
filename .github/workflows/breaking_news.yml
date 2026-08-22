@@ -68,6 +68,20 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-
 
+      # Added 2026-08-22: llm.py's local-Ollama fallback tier (only reached
+      # after Groq AND g4f both fail) pulls a ~4.9GB model on every fresh
+      # ephemeral runner with nothing cached — confirmed live as the cause
+      # of the football category timing out at its full 600s with zero
+      # output. Caching ~/.ollama means only the very first run after a
+      # cache-key change pays that cost; every run after restores the blob
+      # in seconds instead of re-downloading it.
+      - name: Cache local Ollama fallback model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama
+          key: ${{ runner.os }}-ollama-llama3.1-8b-v1
+          restore-keys: ${{ runner.os }}-ollama-
+
       - name: Install dependencies
         run: pip install -r agents/python/requirements.txt
 

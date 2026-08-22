@@ -63,6 +63,14 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-
 
+      # Added 2026-08-22 — see breaking_news.yml's identical step for why.
+      - name: Cache local Ollama fallback model
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama
+          key: ${{ runner.os }}-ollama-llama3.1-8b-v1
+          restore-keys: ${{ runner.os }}-ollama-
+
       - name: Install dependencies
         run: pip install -r agents/python/requirements.txt
 
