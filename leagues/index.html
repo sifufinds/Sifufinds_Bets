@@ -940,37 +940,37 @@ const COMP_PRIORITY = {
 };
 
 /* Brand data for sidebars / bottom strip — affiliate links where available */
-// Order (per 2026-08-22 direction): 22Bet, Rasbet, Playbet, Pepeta, Linebet,
-// Betika, FairPari, Mebet first, then TicTacBets, BetXchange, Bettabets (per
-// 2026-08-08 direction), then the rest in their prior relative order. All
-// brands here are additive — nothing gets removed when new ones are
-// prepended; the left/right sidebars split the FULL list evenly (see
-// renderBrandSidebars()), so every entry stays visible as this list grows.
-// Betika's old entry (plain homepage URL, no real affiliate tracking) was
-// replaced in place rather than duplicated — same bigcatpartners.com
-// tracking link already used for it in HEADER_BRANDS. FairPari and Mebet
-// were the last two brands in the repo with a real affiliate-tracking link
-// (agents/python/utils/affiliate_links.py's BRAND_SLUGS + .htaccess's
-// AFFILIATE LINK MASKING block) that weren't represented anywhere on this
-// page yet — cross-checked against every domain in shared.js's
-// AFFILIATE_DOMAINS to confirm no other real affiliate brand was missing.
+// Order (per 2026-08-22 direction): matches the site-wide "🔥 Featured" ads
+// banner order exactly — HEADER_BRANDS in assets/shared.js, rendered by
+// renderBrandsBar() — for every brand that appears in both places: 22Bet,
+// TicTacBets, BetXchange, Bettabets, Playbet, FairPari, Linebet, 1xBet,
+// BetWinner, HelaBet, Melbet, Paripesa, Pepeta, Betika. Rasbet and Mebet
+// have real affiliate links but aren't in HEADER_BRANDS yet, so they're
+// appended after (in their prior relative order), followed by the
+// non-affiliate brands (Bet9ja, SportyBet, Betway) as before. All brands
+// here are additive — nothing gets removed when new ones are added; the
+// left/right sidebars split the FULL list evenly (see renderBrandSidebars()),
+// so every entry stays visible as this list grows. Betika's old entry (plain
+// homepage URL, no real affiliate tracking) was replaced in place rather than
+// duplicated — same bigcatpartners.com tracking link already used for it in
+// HEADER_BRANDS.
 const SIDE_BRANDS = [
   {name:'22Bet',       abbr:'22',  bg:'#024147', tc:'#fff', url:'https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=224&bid=1484',                        offer:'100% Welcome Bonus',                      logo:'../assets/logos/22bet_hq.png'},
-  {name:'Rasbet',      abbr:'RB',  bg:'#FFFFFF', tc:'#1B5E20', url:'https://rasbet.goaffnk.com/t/MTRfMQ==/',                                                  offer:'Welcome Bonus on First Deposit',          logo:'../assets/logos/rasbet.png'},
-  {name:'Playbet',     abbr:'PLB', bg:'#6A1B9A', tc:'#fff', url:'https://trk.playbet.net/o/5tgJzp?site_id=284',                                               offer:'100% Deposit Bonus — Up to R2,000',       logo:'https://img.logo.dev/playbet.co.za?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
-  {name:'Pepeta',      abbr:'PPT', bg:'#6A1B9A', tc:'#fff', url:'https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/',                     offer:'100% Welcome Bonus — Win Big Everyday',   logo:'https://img.logo.dev/pepeta.co.ke?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
-  {name:'Linebet',     abbr:'LB',  bg:'#0B8A4B', tc:'#fff', url:'https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611',                 offer:'100% First Deposit Bonus',                logo:'../assets/logos/linebet.png'},
-  {name:'Betika',      abbr:'BTK', bg:'#FCED0E', tc:'#1B3A7A', url:'https://record.bigcatpartners.com/_-uNzaN20ZcLqaEn2LeVpkWNd7ZgqdRLk/1/',                  offer:'Free Bet Gifts on Signup',                logo:'../assets/logos/betika_hq.png'},
-  {name:'FairPari',    abbr:'FP',  bg:'#1677FF', tc:'#fff', url:'https://fairpaff.top/L?tag=d_5941712m_72465c_&site=5941712&ad=72465&r=registration',        offer:'100% Bonus — Up to €100',                 logo:'../assets/logos/fairpari.png?v=2'},
-  {name:'Mebet',       abbr:'MEB', bg:'#B45309', tc:'#fff', url:'https://refpa3665.com/L?tag=d_5833716m_66335c_sifufinds&site=5833716&ad=66335',              offer:'Welcome Bonus on First Deposit',          logo:'https://img.logo.dev/mebet.com?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
   {name:'TicTacBets',  abbr:'TTC', bg:'#CC0000', tc:'#fff', url:'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023',                                    offer:'25 Free Spins + 100% Up to R5,000',       logo:'../assets/logos/tictacbets.png?v=2'},
   {name:'BetXchange',  abbr:'BX',  bg:'#0D47A1', tc:'#fff', url:'https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226',                              offer:'R200 Free Bet on First Deposit',          logo:'https://img.logo.dev/betxchange.co.za?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
   {name:'Bettabets',   abbr:'BTB', bg:'#1B5E20', tc:'#fff', url:'https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777',                        offer:'R200 Free Bet on First Deposit',          logo:'https://img.logo.dev/bettabets.co.za?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
+  {name:'Playbet',     abbr:'PLB', bg:'#6A1B9A', tc:'#fff', url:'https://trk.playbet.net/o/5tgJzp?site_id=284',                                               offer:'100% Deposit Bonus — Up to R2,000',       logo:'https://img.logo.dev/playbet.co.za?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
+  {name:'FairPari',    abbr:'FP',  bg:'#1677FF', tc:'#fff', url:'https://fairpaff.top/L?tag=d_5941712m_72465c_&site=5941712&ad=72465&r=registration',        offer:'100% Bonus — Up to €100',                 logo:'../assets/logos/fairpari.png?v=2'},
+  {name:'Linebet',     abbr:'LB',  bg:'#0B8A4B', tc:'#fff', url:'https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611',                 offer:'100% First Deposit Bonus',                logo:'../assets/logos/linebet.png'},
   {name:'1xBet',       abbr:'1X',  bg:'#E60000', tc:'#fff', url:'https://reffpa.com/L?tag=d_5969542m_1599c_&site=5969542&ad=1599',                               offer:'300% First Deposit — Up to ₦1,200,000',  logo:'../assets/logos/1xbet_hq.png'},
-  {name:'Melbet',      abbr:'MB',  bg:'#FD1B26', tc:'#fff', url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559',                      offer:'200% Bonus — Up to ₦480,000',             logo:'../assets/logos/melbet_hq.png'},
   {name:'BetWinner',   abbr:'BW',  bg:'#0055A4', tc:'#fff', url:'https://bwredir.com/1Lvf?p=%2Fregistration%2F',                                            offer:'200% Bonus — Up to ₦130,000',             logo:'../assets/logos/betwinner_hq.png'},
-  {name:'Paripesa',    abbr:'PP',  bg:'#2E7D32', tc:'#fff', url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',                       offer:'200% First Deposit — Up to ₦200,000',     logo:'../assets/logos/paripesa_hq.png'},
   {name:'HelaBet',     abbr:'HB',  bg:'#1565C0', tc:'#fff', url:'https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235',                     offer:'100% Welcome Bonus + Free Bets',          logo:'../assets/logos/helabet.png'},
+  {name:'Melbet',      abbr:'MB',  bg:'#FD1B26', tc:'#fff', url:'https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559',                      offer:'200% Bonus — Up to ₦480,000',             logo:'../assets/logos/melbet_hq.png'},
+  {name:'Paripesa',    abbr:'PP',  bg:'#2E7D32', tc:'#fff', url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',                       offer:'200% First Deposit — Up to ₦200,000',     logo:'../assets/logos/paripesa_hq.png'},
+  {name:'Pepeta',      abbr:'PPT', bg:'#6A1B9A', tc:'#fff', url:'https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/',                     offer:'100% Welcome Bonus — Win Big Everyday',   logo:'https://img.logo.dev/pepeta.co.ke?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
+  {name:'Betika',      abbr:'BTK', bg:'#FCED0E', tc:'#1B3A7A', url:'https://record.bigcatpartners.com/_-uNzaN20ZcLqaEn2LeVpkWNd7ZgqdRLk/1/',                  offer:'Free Bet Gifts on Signup',                logo:'../assets/logos/betika_hq.png'},
+  {name:'Rasbet',      abbr:'RB',  bg:'#FFFFFF', tc:'#1B5E20', url:'https://rasbet.goaffnk.com/t/MTRfMQ==/',                                                  offer:'Welcome Bonus on First Deposit',          logo:'../assets/logos/rasbet.png'},
+  {name:'Mebet',       abbr:'MEB', bg:'#B45309', tc:'#fff', url:'https://refpa3665.com/L?tag=d_5833716m_66335c_sifufinds&site=5833716&ad=66335',              offer:'Welcome Bonus on First Deposit',          logo:'https://img.logo.dev/mebet.com?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
   {name:'Bet9ja',      abbr:'B9',  bg:'#00875A', tc:'#fff', url:'https://www.bet9ja.com',                                                                    offer:'₦2,500 Free Bet + 170% ACCA Boost',      logo:'../assets/logos/bet9ja_hq.png'},
   {name:'SportyBet',   abbr:'SB',  bg:'#00C851', tc:'#fff', url:'https://www.sportybet.com/ng/',                                                             offer:'150% Welcome — Up to ₦30,000',            logo:'../assets/logos/sportybet_hq.png'},
   {name:'Betway',      abbr:'BW2', bg:'#00aeef', tc:'#000', url:'https://www.betway.com/en-ng/',                                                             offer:'Up to ₦100,000 in Free Bets',             logo:'../assets/logos/betway_hq.png'},
