@@ -119,6 +119,18 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-
 
+      # Added 2026-08-22 — see breaking_news.yml's identical step for why:
+      # llm.py's local-Ollama fallback pulls a ~4.9GB model from scratch on
+      # every fresh runner otherwise, and this workflow's self-perpetuating
+      # 5-min loop can hit that fallback often when Groq is exhausted.
+      - name: Cache local Ollama fallback model
+        if: steps.window.outputs.open == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama
+          key: ${{ runner.os }}-ollama-llama3.1-8b-v1
+          restore-keys: ${{ runner.os }}-ollama-
+
       - name: Install dependencies
         if: steps.window.outputs.open == 'true'
         run: pip install -r agents/python/requirements.txt
