@@ -940,9 +940,20 @@ const COMP_PRIORITY = {
 };
 
 /* Brand data for sidebars / bottom strip — affiliate links where available */
-// Order: TicTacBets, BetXchange, Bettabets first (per 2026-08-08 direction),
-// then the rest in their prior relative order.
+// Order (per 2026-08-22 direction): 22Bet, Rasbet, Playbet, Pepeta, Linebet,
+// Betika first — the left/right sidebars render SIDE_BRANDS.slice(0,4) and
+// .slice(4,8), so these six land across both visible sidebar columns. Then
+// TicTacBets, BetXchange, Bettabets (per 2026-08-08 direction), then the rest
+// in their prior relative order. Betika's old entry (plain homepage URL, no
+// real affiliate tracking) was replaced in place rather than duplicated —
+// same bigcatpartners.com tracking link already used for it in HEADER_BRANDS.
 const SIDE_BRANDS = [
+  {name:'22Bet',       abbr:'22',  bg:'#024147', tc:'#fff', url:'https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=224&bid=1484',                        offer:'100% Welcome Bonus',                      logo:'../assets/logos/22bet_hq.png'},
+  {name:'Rasbet',      abbr:'RB',  bg:'#FFFFFF', tc:'#1B5E20', url:'https://rasbet.goaffnk.com/t/MTRfMQ==/',                                                  offer:'Welcome Bonus on First Deposit',          logo:'../assets/logos/rasbet.png'},
+  {name:'Playbet',     abbr:'PLB', bg:'#6A1B9A', tc:'#fff', url:'https://trk.playbet.net/o/5tgJzp?site_id=284',                                               offer:'100% Deposit Bonus — Up to R2,000',       logo:'https://img.logo.dev/playbet.co.za?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
+  {name:'Pepeta',      abbr:'PPT', bg:'#6A1B9A', tc:'#fff', url:'https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/',                     offer:'100% Welcome Bonus — Win Big Everyday',   logo:'https://img.logo.dev/pepeta.co.ke?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
+  {name:'Linebet',     abbr:'LB',  bg:'#0B8A4B', tc:'#fff', url:'https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611',                 offer:'100% First Deposit Bonus',                logo:'../assets/logos/linebet.png'},
+  {name:'Betika',      abbr:'BTK', bg:'#FCED0E', tc:'#1B3A7A', url:'https://record.bigcatpartners.com/_-uNzaN20ZcLqaEn2LeVpkWNd7ZgqdRLk/1/',                  offer:'Free Bet Gifts on Signup',                logo:'../assets/logos/betika_hq.png'},
   {name:'TicTacBets',  abbr:'TTC', bg:'#CC0000', tc:'#fff', url:'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023',                                    offer:'25 Free Spins + 100% Up to R5,000',       logo:'../assets/logos/tictacbets.png?v=2'},
   {name:'BetXchange',  abbr:'BX',  bg:'#0D47A1', tc:'#fff', url:'https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226',                              offer:'R200 Free Bet on First Deposit',          logo:'https://img.logo.dev/betxchange.co.za?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
   {name:'Bettabets',   abbr:'BTB', bg:'#1B5E20', tc:'#fff', url:'https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777',                        offer:'R200 Free Bet on First Deposit',          logo:'https://img.logo.dev/bettabets.co.za?token=pk_LOpmKYtCS3q3rhYX_rDd9A&size=256&format=png'},
@@ -954,7 +965,6 @@ const SIDE_BRANDS = [
   {name:'Bet9ja',      abbr:'B9',  bg:'#00875A', tc:'#fff', url:'https://www.bet9ja.com',                                                                    offer:'₦2,500 Free Bet + 170% ACCA Boost',      logo:'../assets/logos/bet9ja_hq.png'},
   {name:'SportyBet',   abbr:'SB',  bg:'#00C851', tc:'#fff', url:'https://www.sportybet.com/ng/',                                                             offer:'150% Welcome — Up to ₦30,000',            logo:'../assets/logos/sportybet_hq.png'},
   {name:'Betway',      abbr:'BW2', bg:'#00aeef', tc:'#000', url:'https://www.betway.com/en-ng/',                                                             offer:'Up to ₦100,000 in Free Bets',             logo:'../assets/logos/betway_hq.png'},
-  {name:'Betika',      abbr:'BTK', bg:'#007A4D', tc:'#fff', url:'https://www.betika.com',                                                                    offer:'Free Bet on Signup + Jackpot Daily',      logo:'../assets/logos/betika_hq.png'},
 ];
 
 /* Primary bet CTA on every match row — alternates between 22Bet and
