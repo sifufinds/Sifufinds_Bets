@@ -864,14 +864,25 @@ async function fetchLiveData(){
 const _yield=()=>new Promise(r=>(typeof scheduler!=='undefined'&&scheduler.yield)?scheduler.yield().then(r):setTimeout(r,0));
 
 async function init(){
-  await Promise.all([waitForCountry(),fetchLiveData()]);
-  // Apply URL filter param if present
+  // First paint uses getCurrentCountry()'s synchronous best guess (?cty=,
+  // cached localStorage country, or 'NG') instead of blocking on the geo-IP
+  // + live-data network round trips first. Previously EVERY render here sat
+  // behind `await Promise.all([waitForCountry(),fetchLiveData()])`, so a
+  // first-time visitor's featured cards — this page's actual LCP content —
+  // couldn't paint until a third-party geo-IP lookup and a live-data fetch
+  // both resolved. That's what pushed mobile LCP to 6.72s in a CWV audit
+  // (2026-08-21): desktop LCP on the identical page was 0.99s, confirming
+  // the gap was this network-gated render, not backend/server response
+  // time. Both calls are pure enhancement — confirming the real country and
+  // patching a few bonus figures onto otherwise-correct static BOOKS data —
+  // not required for a correct first paint.
   const params=new URLSearchParams(window.location.search);
   const urlFilt=params.get('filter');
   if(urlFilt){
     _activeFilt=urlFilt;
     document.querySelectorAll('.fp').forEach(b=>b.classList.toggle('on',b.dataset.f===urlFilt));
   }
+  const _initialCty=getCurrentCountry();
   syncCountryUI();
   renderHeroStats();
   renderSubnav();
@@ -883,6 +894,22 @@ async function init(){
   renderFAQ();
   H('foot-date',DATE_STR);
   H('foot-yr',NOW.getFullYear());
+
+  // Background enhancement, off the critical rendering path. Re-render the
+  // country-scoped sections only if the confirmed country actually differs
+  // from the synchronous guess above, so an already-correct (e.g. cached)
+  // visitor gets zero extra re-render or layout shift. renderBooks() always
+  // re-runs since fetchLiveData() patches BOOKS' bonus figures in place
+  // regardless of country match — a text-only update within existing cards,
+  // not a layout change.
+  await Promise.all([waitForCountry(),fetchLiveData()]);
+  if(getCurrentCountry()!==_initialCty){
+    syncCountryUI();
+    renderHeroStats();
+    renderSubnav();
+    renderFeatCards();
+  }
+  renderBooks();
 }
 init();
 </script>

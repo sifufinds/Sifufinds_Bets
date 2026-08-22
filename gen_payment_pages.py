@@ -3,6 +3,7 @@
 
 import json
 import os
+import prerender_bookmakers
 from seo_meta import seo_title, seo_meta_description
 from site_stats import total_country_count
 
@@ -438,7 +439,7 @@ def make_payment_page(p):
   </div></div>
 
   <div class="mc" id="mcount"></div>
-  <div id="bk-cards"><noscript><p style="padding:16px;color:#666">Enable JavaScript to view bookmaker listings.</p></noscript></div>
+  <div id="bk-cards">{prerender_bookmakers.bookmaker_cards_html('NG')}</div>
 
   <div class="cbox2">
     <h2>FAQ — {p['breadcrumb_name']}</h2>

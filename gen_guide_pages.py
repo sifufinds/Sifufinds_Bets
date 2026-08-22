@@ -3,6 +3,7 @@
 
 import json
 import os
+import prerender_bookmakers
 from seo_meta import seo_title, seo_meta_description
 from site_stats import total_country_count
 
@@ -404,7 +405,7 @@ def make_guide_page(g):
   </div></div>
 
   <div class="mc" id="mcount"></div>
-  <div id="bk-cards"><noscript><p style="padding:16px;color:#666">Enable JavaScript to view bookmaker listings.</p></noscript></div>
+  <div id="bk-cards">{prerender_bookmakers.bookmaker_cards_html('NG')}</div>
 
   <div class="resp">⚠️ Gambling involves risk. Only bet what you can afford to lose. 18+ only.</div>
 </div></div>

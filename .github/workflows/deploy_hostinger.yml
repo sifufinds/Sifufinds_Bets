@@ -245,7 +245,7 @@ jobs:
 
           # Build file list — skip missing optional files gracefully
           FILES=()
-          for f in index.html analytics.html robots.txt ai.txt llms.txt favicon.ico manifest.json; do
+          for f in index.html analytics.html robots.txt ai.txt llms.txt favicon.ico manifest.json 99f774fee94b3f7a1cd2ade69cdcefb6.txt; do
             [ -f "$f" ] && FILES+=("$f")
           done
           for f in sitemap*.xml; do
@@ -358,4 +358,50 @@ jobs:
           if [ "$SUCCESS" != "true" ]; then
             echo "❌ Deploy failed after $MAX_ATTEMPTS attempts"
             exit 1
+          fi
+
+      - name: Notify Bing/Yandex via IndexNow (best-effort)
+        # Only on an actual push (not the */20min schedule, which almost
+        # always re-deploys identical content — see the workflow's own
+        # comments on why a skipped/redundant deploy is harmless). Reads
+        # changed files straight from the push event payload rather than
+        # local git history, since checkout above uses fetch-depth:1 (no
+        # parent commit available for a git diff). continue-on-error is
+        # deliberate: see scripts/submit_indexnow.py's docstring — IndexNow
+        # is a best-effort indexing signal, never allowed to fail a deploy
+        # that already succeeded against Hostinger.
+        if: github.event_name == 'push'
+        continue-on-error: true
+        env:
+          COMMITS_JSON: ${{ toJson(github.event.commits) }}
+        run: |
+          python3 -c "
+          import json, os
+
+          commits = json.loads(os.environ['COMMITS_JSON'])
+          changed = set()
+          for c in commits:
+              changed.update(c.get('added', []))
+              changed.update(c.get('modified', []))
+
+          def to_url(path):
+              if not path.endswith('.html'):
+                  return None
+              if path == 'index.html':
+                  return 'https://sifufinds.com/'
+              if path.endswith('/index.html'):
+                  return 'https://sifufinds.com/' + path[: -len('index.html')]
+              return None
+
+          urls = sorted({u for p in changed if (u := to_url(p))})
+          print(f'{len(changed)} changed file(s) in this push -> {len(urls)} URL(s) to notify')
+          for u in urls:
+              print(f'  {u}')
+          with open('/tmp/indexnow_urls.txt', 'w') as f:
+              f.write('\n'.join(urls))
+          "
+          if [ -s /tmp/indexnow_urls.txt ]; then
+            python3 scripts/submit_indexnow.py $(cat /tmp/indexnow_urls.txt)
+          else
+            echo "No changed HTML pages in this push — nothing to submit."
           fi

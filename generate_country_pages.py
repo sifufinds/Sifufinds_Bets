@@ -13,6 +13,7 @@ countries/<slug>/<city>/ sub-pages still live inside that same directory.
 
 import json
 import os
+import prerender_bookmakers
 from seo_meta import current_month_year, current_year, seo_meta_description
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -28,7 +29,7 @@ COUNTRIES = {
         'slug': 'nigeria', 'name': 'Nigeria', 'flag': '🇳🇬',
         'currency': 'NGN', 'symbol': '₦',
         'regulator': 'NLRC (National Lottery Regulatory Commission)',
-        'about': "Nigeria is Africa's largest and most active sports betting market with over 60 million registered bettors. The market is regulated by the National Lottery Regulatory Commission (NLRC) with state-level oversight. Football dominates, particularly the Nigerian Premier Football League (NPFL), UEFA Champions League, and English Premier League.",
+        'about': "Nigeria is Africa's largest and most active sports betting market, with industry estimates putting active bettors at around 60 million. The market is regulated by the National Lottery Regulatory Commission (NLRC) with state-level oversight. Football dominates, particularly the Nigerian Premier Football League (NPFL), UEFA Champions League, and English Premier League.",
         'payments': ['OPay', 'PalmPay', 'Bank Transfer', 'Visa', 'Mastercard', 'USSD'],
         'leagues': ['NPFL', 'CAF Champions League', 'Premier League', 'UEFA Champions League', 'AFCON'],
         'top_bonus': '₦1,200,000', 'top_bookmaker': '1xBet Nigeria', 'min_deposit': '₦100', 'books_count': 6,
@@ -572,9 +573,7 @@ def generate_page(code, c):
   </div></div>
 
   <div class="mc" id="mcount"></div>
-  <div id="bk-cards">
-    <noscript><p style="padding:20px;color:#666">Enable JavaScript to view bonus listings, or visit <a href="../">SifuFinds.com</a>.</p></noscript>
-  </div>
+  <div id="bk-cards">{prerender_bookmakers.bookmaker_cards_html(code)}</div>
 
   <!-- Payment Methods -->
   <div class="cbox2">

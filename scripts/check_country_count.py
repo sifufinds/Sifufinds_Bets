@@ -24,6 +24,19 @@ countries" / "countries" / "African markets" / "African Countries" /
 `<div>23</div>...<div>countries</div>`), and flags any that doesn't match
 the current true count.
 
+Also checks two things the original 2026-08-14 sweep (and this script's
+own first version) missed entirely, found 2026-08-21 during an SEO/GEO
+audit: (1) `llms.txt` at the repo root, which is a plain-text file so the
+"every deployed HTML file" scan above never touched it, despite stating
+"23 African countries" in three places while every HTML page had already
+moved to 33; (2) JSON-LD `Organization` `"areaServed": [...]` arrays
+(`index.html`, `about/index.html`), which encode the country count as a
+list of `{"@type": "Country", ...}` objects rather than a bare number, so
+neither `_INLINE_RE` nor `_SPLIT_RE` ever matched them. Both are
+auto-fixed with --fix: llms.txt through the same number-swap path as
+everything else, areaServed arrays by replacing their contents with the
+canonical name list from `site_stats.country_names()`.
+
 A stale count where the surrounding sentence also implies universal
 licensed/bookmaker coverage ("licensed bookmakers in all N...", "available
 in all N...") is flagged as CRITICAL and requires a human to reword the
@@ -52,7 +65,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from site_stats import total_country_count  # noqa: E402
+from site_stats import country_names, total_country_count  # noqa: E402
 
 CRITICAL = "CRITICAL"
 WARN = "WARN"
@@ -85,6 +98,19 @@ _OVERCLAIM_RE = re.compile(
     re.IGNORECASE,
 )
 
+# JSON-LD Organization areaServed arrays: a list of Country objects, not a
+# bare number, so this needs its own pattern rather than reusing _INLINE_RE.
+_AREA_SERVED_RE = re.compile(r'"areaServed":\s*\[(.*?)\]', re.DOTALL)
+_AREA_SERVED_ENTRY_RE = re.compile(r'\{"@type":\s*"Country"')
+
+# Plain-text files that exist for exactly one purpose (describing
+# SifuFinds itself) rather than mixed page content — the "sifufinds" must
+# appear in the same sentence" guard in check_file() exists to avoid
+# touching an unrelated brand's own "N countries" claim on a normal page,
+# but that risk doesn't apply here, so every stale count in these files is
+# safe to flag/fix without the nearby-context requirement.
+SIFUFINDS_WIDE_FILES = {"llms.txt"}
+
 
 def find_html_files():
     for path in ROOT.rglob("*.html"):
@@ -96,21 +122,33 @@ def find_html_files():
         yield path
 
 
+def find_text_files():
+    for name in SIFUFINDS_WIDE_FILES:
+        path = ROOT / name
+        if path.exists():
+            yield path
+
+
 def check_file(path: Path, true_total: int, fix: bool):
     text = path.read_text(encoding="utf-8")
     orig = text
     issues = []
+    whole_file_context = path.name in SIFUFINDS_WIDE_FILES
 
     for pattern in (_INLINE_RE, _SPLIT_RE):
         for m in pattern.finditer(orig):
             num = int(m.group(1))
             if num == true_total:
                 continue
-            # Tight window deliberately — HTML is dense with meta tags, and a
-            # wider window pulls in an unrelated "SifuFinds" from a nearby
-            # attribute (e.g. og:site_name) rather than the same sentence.
-            start = max(0, m.start() - 50)
-            context = orig[start:m.end()]
+            if whole_file_context:
+                context = orig
+            else:
+                # Tight window deliberately — HTML is dense with meta tags,
+                # and a wider window pulls in an unrelated "SifuFinds" from
+                # a nearby attribute (e.g. og:site_name) rather than the
+                # same sentence.
+                start = max(0, m.start() - 50)
+                context = orig[start:m.end()]
             # Only flag this as SifuFinds' own site-wide total if "SifuFinds"
             # actually appears in the same sentence — countless pages
             # legitimately state a DIFFERENT, unrelated "N African countries"
@@ -119,7 +157,12 @@ def check_file(path: Path, true_total: int, fix: bool):
             if "sifufinds" not in context.lower():
                 continue
             level = CRITICAL if _OVERCLAIM_RE.search(context) else WARN
-            issues.append((level, num, m.group(0), context.strip()))
+            issues.append((level, num, m.group(0), context.strip()[:200]))
+
+    for m in _AREA_SERVED_RE.finditer(orig):
+        count = len(_AREA_SERVED_ENTRY_RE.findall(m.group(1)))
+        if count and count != true_total:
+            issues.append((WARN, count, "areaServed[]", m.group(0)[:200]))
 
     if not issues:
         return issues
@@ -128,6 +171,12 @@ def check_file(path: Path, true_total: int, fix: bool):
         for level, num, matched, _ in issues:
             if level == CRITICAL:
                 continue  # needs human rewording, do not blind-swap
+            if matched == "areaServed[]":
+                names_block = ",\n".join(
+                    f'        {{"@type": "Country", "name": "{n}"}}' for n in country_names()
+                )
+                text = _AREA_SERVED_RE.sub(f'"areaServed": [\n{names_block}\n      ]', text, count=1)
+                continue
             text = text.replace(str(num), str(true_total), 1) if matched.startswith(str(num)) else text
             # Split-element form: replace just the number between the tags
             text = re.sub(
@@ -157,7 +206,7 @@ def main():
     critical_count = 0
     warn_count = 0
 
-    for path in find_html_files():
+    for path in (*find_html_files(), *find_text_files()):
         issues = check_file(path, true_total, args.fix)
         for level, num, matched, context in issues:
             rel = path.relative_to(ROOT)
