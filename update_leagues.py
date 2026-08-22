@@ -3,13 +3,17 @@
 update_leagues.py — Fetch football match data for leagues/index.html
 
 Modes (CLI flag):
-  (none)        full — FD 7-day schedule + ESPN African/WC live patch + WC standings
+  (none)        full — FD 7-day schedule + ESPN African/WC live patch + major league standings
   --espn-only   ESPN live patch only — no FD quota used, patches today+tomorrow
   --force-fd    force FD fetch even if within the 25-min throttle window
 
 Writes:
-  data/matches_live.json   — byDate map, liveCount, wcLive, updated timestamp
-  data/wc_standings.json   — WC 2026 group tables (full runs only)
+  data/matches_live.json     — byDate map, liveCount, wcLive, updated timestamp
+  data/league_standings.json — Premier League / La Liga / Bundesliga / Serie A /
+                                Ligue 1 tables (full runs only). The World Cup 2026
+                                group stage concluded in July 2026, so it no longer
+                                belongs on the standings tab — see AGENT-KNOWLEDGE.md
+                                2026-08-22.
 
 FD throttle: skip FD if matches_live.json was written < 25 min ago (saves quota).
 """
@@ -28,9 +32,20 @@ try:
 except ImportError:
     sys.exit("ERROR: requests not installed — pip install requests")
 
-ROOT      = Path(__file__).parent
-OUT_MATCH = ROOT / "data" / "matches_live.json"
-OUT_WC    = ROOT / "data" / "wc_standings.json"
+ROOT       = Path(__file__).parent
+OUT_MATCH  = ROOT / "data" / "matches_live.json"
+OUT_LEAGUE = ROOT / "data" / "league_standings.json"
+
+# Major-league standings shown on the leagues page "League Tables" tab —
+# ESPN's free, no-auth standings endpoint (same one already used for African
+# league fixtures below), since FD_TOKEN is unset (see ESPN_LEAGUES note).
+MAJOR_LEAGUES = [
+    ("eng.1", "Premier League"),
+    ("esp.1", "La Liga"),
+    ("ger.1", "Bundesliga"),
+    ("ita.1", "Serie A"),
+    ("fra.1", "Ligue 1"),
+]
 
 FD_TOKEN         = os.getenv("FD_TOKEN", "")
 FD_BASE          = "https://api.football-data.org/v4"
@@ -141,34 +156,19 @@ def _fd_fetch_matches(date_from: str, date_to: str) -> list[dict]:
         return []
 
 
-def _fd_fetch_standings() -> dict | None:
-    try:
-        r = SESSION.get(
-            f"{FD_BASE}/competitions/2000/standings",
-            headers={"X-Auth-Token": FD_TOKEN},
-            timeout=25,
-        )
-        print(f"  FD /competitions/2000/standings → HTTP {r.status_code}")
-        return r.json() if r.status_code == 200 else None
-    except Exception as exc:
-        print(f"  FD standings ERROR: {exc}", file=sys.stderr)
-        return None
-
-
-# ── ESPN WC standings (free fallback — no FD_TOKEN required) ───────────────────
+# ── ESPN major-league standings (free, no-auth) ─────────────────────────────
 # FD_TOKEN is unset in this repo's secrets (see AGENT-KNOWLEDGE.md 2026-08-09),
-# so _fd_fetch_standings() never returns real data. ESPN's undocumented
-# standings endpoint covers the exact same WC2026 group tables for free, no
-# auth, so it's tried as a fallback whenever FD comes back empty — the whole
-# leagues pipeline no longer depends on FD_TOKEN being set at all.
+# so the FD standings endpoint is skipped entirely here — ESPN's undocumented
+# standings endpoint already covers these leagues for free, no auth, the same
+# way it does for the African-league fixtures fetched elsewhere in this file.
 
-def _espn_fetch_wc_standings() -> dict | None:
+def _espn_fetch_standings(slug: str) -> dict | None:
     try:
-        r = SESSION.get(f"{ESPN_STANDINGS_BASE}/fifa.world/standings", timeout=20)
-        print(f"  ESPN fifa.world/standings → HTTP {r.status_code}")
+        r = SESSION.get(f"{ESPN_STANDINGS_BASE}/{slug}/standings", timeout=20)
+        print(f"  ESPN {slug}/standings → HTTP {r.status_code}")
         return r.json() if r.status_code == 200 else None
     except Exception as exc:
-        print(f"  ESPN standings ERROR: {exc}", file=sys.stderr)
+        print(f"  ESPN standings ERROR ({slug}): {exc}", file=sys.stderr)
         return None
 
 
@@ -179,37 +179,60 @@ def _espn_stat(stats: list[dict], name: str, default=0):
     return default
 
 
-def _espn_standings_groups(raw: dict) -> list[dict]:
-    groups: list[dict] = []
+def _espn_table_from_entries(entries: list[dict]) -> list[dict]:
+    table = []
+    for e in entries:
+        team  = e.get("team", {})
+        stats = e.get("stats", [])
+        logos = team.get("logos", [])
+        table.append({
+            "pos":    int(_espn_stat(stats, "rank", 0)),
+            "team":   team.get("shortDisplayName") or team.get("name", ""),
+            "tla":    team.get("abbreviation", ""),
+            "crest":  logos[0].get("href", "") if logos else "",
+            "played": int(_espn_stat(stats, "gamesPlayed", 0)),
+            "won":    int(_espn_stat(stats, "wins", 0)),
+            "draw":   int(_espn_stat(stats, "ties", 0)),
+            "lost":   int(_espn_stat(stats, "losses", 0)),
+            "gf":     int(_espn_stat(stats, "pointsFor", 0)),
+            "ga":     int(_espn_stat(stats, "pointsAgainst", 0)),
+            "gd":     int(_espn_stat(stats, "pointDifferential", 0)),
+            "points": int(_espn_stat(stats, "points", 0)),
+            # ESPN's standings endpoint doesn't expose a recent-form string.
+            "form":   "",
+        })
+    table.sort(key=lambda r: r["pos"] or 999)
+    return table
+
+
+def _espn_league_table(raw: dict) -> list[dict]:
+    """Normalise one league's ESPN standings response into a single table.
+
+    Domestic top-flight leagues come back as a flat `standings.entries` list
+    (no group stage), unlike the WC2026 group-stage response this pipeline
+    used to parse, which nested tables under `children`. Handle both shapes
+    so a competition ESPN ever splits into sections (playoffs, etc.) still
+    resolves to *some* table instead of silently returning nothing.
+    """
+    entries = (raw.get("standings") or {}).get("entries", [])
+    if entries:
+        return _espn_table_from_entries(entries)
     for g in raw.get("children", []):
-        display = g.get("name", "")
         entries = (g.get("standings") or {}).get("entries", [])
-        if not display or not entries:
-            continue
-        table = []
-        for e in entries:
-            team  = e.get("team", {})
-            stats = e.get("stats", [])
-            logos = team.get("logos", [])
-            table.append({
-                "pos":    int(_espn_stat(stats, "rank", 0)),
-                "team":   team.get("shortDisplayName") or team.get("name", ""),
-                "tla":    team.get("abbreviation", ""),
-                "crest":  logos[0].get("href", "") if logos else "",
-                "played": int(_espn_stat(stats, "gamesPlayed", 0)),
-                "won":    int(_espn_stat(stats, "wins", 0)),
-                "draw":   int(_espn_stat(stats, "ties", 0)),
-                "lost":   int(_espn_stat(stats, "losses", 0)),
-                "gf":     int(_espn_stat(stats, "pointsFor", 0)),
-                "ga":     int(_espn_stat(stats, "pointsAgainst", 0)),
-                "gd":     int(_espn_stat(stats, "pointDifferential", 0)),
-                "points": int(_espn_stat(stats, "points", 0)),
-                # ESPN's standings endpoint doesn't expose a recent-form
-                "form":   "",
-            })
+        if entries:
+            return _espn_table_from_entries(entries)
+    return []
+
+
+def _fetch_major_league_standings() -> list[dict]:
+    leagues: list[dict] = []
+    for slug, name in MAJOR_LEAGUES:
+        raw = _espn_fetch_standings(slug)
+        table = _espn_league_table(raw) if raw else []
         if table:
-            groups.append({"group": display, "table": table})
-    return groups
+            leagues.append({"league": name, "table": table})
+        time.sleep(0.15)
+    return leagues
 
 
 def _fd_normalise(m: dict) -> dict:
@@ -370,54 +393,20 @@ def _fetch_espn_leagues(days: int) -> list[dict]:
     return results
 
 
-# ── WC standings ──────────────────────────────────────────────────────────────
+# ── Major league standings ──────────────────────────────────────────────────
 
-def _fd_standings_groups(raw: dict) -> list[dict]:
-    groups: list[dict] = []
-    for s in raw.get("standings", []):
-        if s.get("type") != "TOTAL":
-            continue
-        gname = s.get("group", "")
-        if not gname:
-            continue
-        display = gname.replace("GROUP_", "Group ").replace("_", " ").title()
-        table = []
-        for row in s.get("table", []):
-            team     = row.get("team", {})
-            form_raw = row.get("form") or ""
-            form     = "".join(f for f in form_raw.replace(",", "") if f in "WDL")[-5:]
-            table.append({
-                "pos":    row.get("position", 0),
-                "team":   team.get("shortName") or team.get("name", ""),
-                "tla":    team.get("tla", ""),
-                "crest":  team.get("crest", ""),
-                "played": row.get("playedGames", 0),
-                "won":    row.get("won", 0),
-                "draw":   row.get("draw", 0),
-                "lost":   row.get("lost", 0),
-                "gf":     row.get("goalsFor", 0),
-                "ga":     row.get("goalsAgainst", 0),
-                "gd":     row.get("goalDifference", 0),
-                "points": row.get("points", 0),
-                "form":   form,
-            })
-        if table:
-            groups.append({"group": display, "table": table})
-    return groups
-
-
-def _write_wc_standings(groups: list[dict]) -> None:
-    if not groups:
-        print("  WC standings: no group data returned")
+def _write_league_standings(leagues: list[dict]) -> None:
+    if not leagues:
+        print("  League standings: no data returned")
         return
 
     now = datetime.now(timezone.utc)
-    OUT_WC.write_text(
-        json.dumps({"updated": now.isoformat(), "groups": groups},
+    OUT_LEAGUE.write_text(
+        json.dumps({"updated": now.isoformat(), "leagues": leagues},
                    ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
     )
-    print(f"  ✓ wc_standings.json ({len(groups)} groups)")
+    print(f"  ✓ league_standings.json ({len(leagues)} leagues)")
 
 
 # ── Throttle check ────────────────────────────────────────────────────────────
@@ -574,16 +563,9 @@ def main() -> None:
             fd_fetched_at = now.isoformat()
             print(f"  FD: {len(matches)} matches")
 
-            print("  Fetching WC 2026 standings …")
-            raw_st = _fd_fetch_standings()
-            groups = _fd_standings_groups(raw_st) if raw_st else []
-            if not groups:
-                # FD_TOKEN unset/invalid or FD returned nothing — free ESPN
-                # fallback covers the same WC2026 group tables, no auth needed.
-                espn_st = _espn_fetch_wc_standings()
-                if espn_st:
-                    groups = _espn_standings_groups(espn_st)
-            _write_wc_standings(groups)
+            print("  Fetching major league standings …")
+            leagues = _fetch_major_league_standings()
+            _write_league_standings(leagues)
         else:
             # FD throttled — load previous FD data
             if OUT_MATCH.exists():

@@ -22,8 +22,17 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (SifuFinds/2.0; live-odds-agent)"}
 TIMEOUT = 12
 
 ENDPOINTS = [
-    # Soccer — African leagues return HTTP 400 from ESPN; WC2026 handled by openfootball below
-    # EPL/La Liga/UCL are in off-season; omitted to avoid stale data
+    # Soccer — African leagues return HTTP 400 from ESPN; WC2026 (concluded July
+    # 2026) handled by openfootball below. The top-5 European leagues are back
+    # in season as of Aug 2026 (see AGENT-KNOWLEDGE.md 2026-08-22) — they used
+    # to be omitted here as "off-season", which left this endpoint list with no
+    # football at all once the World Cup ended and data/live.json permanently
+    # empty for the odds page's football rows.
+    {"url": f"{ESPN_BASE}/soccer/eng.1/scoreboard",                    "key": "epl",        "label": "Premier League"},
+    {"url": f"{ESPN_BASE}/soccer/esp.1/scoreboard",                    "key": "laliga",     "label": "La Liga"},
+    {"url": f"{ESPN_BASE}/soccer/ger.1/scoreboard",                    "key": "bundesliga", "label": "Bundesliga"},
+    {"url": f"{ESPN_BASE}/soccer/ita.1/scoreboard",                    "key": "seriea",     "label": "Serie A"},
+    {"url": f"{ESPN_BASE}/soccer/fra.1/scoreboard",                    "key": "ligue1",     "label": "Ligue 1"},
     # Basketball
     {"url": f"{ESPN_BASE}/basketball/nba/scoreboard",              "key": "basketball", "label": "NBA"},
     {"url": f"{ESPN_BASE}/basketball/wnba/scoreboard",             "key": "basketball", "label": "WNBA"},
@@ -97,7 +106,12 @@ def map_event(event: dict, key: str, label: str):
     h_odds = a_odds = d_odds = 0.0
     h_bk = a_bk = d_bk = ""
 
-    odds_list = comp.get("odds") or []
+    # ESPN's soccer scoreboard can return `"odds": [null]` (no odds panel for
+    # that match) rather than omitting the key or using an empty list — crashed
+    # every event in a scoreboard the moment one match had no odds panel,
+    # which silently zeroed out entire leagues (verified 2026-08-22: eng.1,
+    # esp.1, fra.1 all failed this way on every single request).
+    odds_list = [o for o in (comp.get("odds") or []) if o]
     if odds_list:
         od = odds_list[0]
         provider = od.get("provider", {}).get("name", "DraftKings")
@@ -136,7 +150,13 @@ def map_event(event: dict, key: str, label: str):
 
 def fetch_endpoint(endpoint: dict):
     try:
-        r = requests.get(endpoint["url"], headers=HEADERS, timeout=TIMEOUT)
+        # No custom User-Agent — ESPN's edge (site.api.espn.com) returns HTTP
+        # 403 for ANY explicitly-set User-Agent header (verified 2026-08-22,
+        # same issue already documented and fixed in update_leagues.py on
+        # 2026-08-09, but never propagated here) while the default
+        # python-requests UA gets HTTP 200. This was silently zeroing out
+        # every ESPN-sourced sport in data/live.json.
+        r = requests.get(endpoint["url"], timeout=TIMEOUT)
         if r.status_code != 200:
             return []
         data = r.json()
@@ -344,7 +364,7 @@ def main():
         print(f"  → Dropped {dropped} stale non-live events (kickoff >3h ago)")
 
     # Sort: live first, then by key priority
-    KEY_ORDER = ["world", "cafl", "afcon", "local", "basketball", "tennis", "cricket", "rugby", "epl", "ucl", "laliga", "baseball"]
+    KEY_ORDER = ["world", "cafl", "afcon", "local", "epl", "laliga", "bundesliga", "seriea", "ligue1", "ucl", "basketball", "tennis", "cricket", "rugby", "baseball"]
     def sort_key(e):
         live_score = 0 if e["live"] else (2 if e["complete"] else 1)
         key_score = KEY_ORDER.index(e["key"]) if e["key"] in KEY_ORDER else 99

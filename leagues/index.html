@@ -17,8 +17,8 @@
 <link rel="preconnect" href="https://www.google-analytics.com">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Football Leagues — Live Scores 2026 | SifuFinds</title>
-<meta name="description" content="Live football scores and schedules across major leagues — World Cup 2026, Premier League, La Liga, Bundesliga, Serie A, CAF Champions League, AFCON.">
-<meta name="keywords" content="football leagues live scores, World Cup 2026 scores, Premier League schedule, La Liga matches, CAF Champions League live, AFCON 2026, football scores Africa">
+<meta name="description" content="Live football scores, schedules and league tables — Premier League, La Liga, Bundesliga, Serie A, Ligue 1, CAF Champions League, AFCON.">
+<meta name="keywords" content="football leagues live scores, league tables, Premier League schedule, La Liga matches, CAF Champions League live, AFCON 2026, football scores Africa">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="Sifu Kai">
 <link rel="canonical" href="https://sifufinds.com/leagues/">
@@ -29,7 +29,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SifuFinds">
 <meta property="og:title" content="Football Leagues — Live Scores &amp; Schedules · SifuFinds">
-<meta property="og:description" content="Live football scores across all major leagues. World Cup 2026, Premier League, La Liga, CAF CL, AFCON and more. Place bets with top African bookmakers.">
+<meta property="og:description" content="Live football scores and league tables across all major leagues. Premier League, La Liga, CAF CL, AFCON and more. Place bets with top African bookmakers.">
 <meta property="og:url" content="https://sifufinds.com/leagues/">
 <meta property="og:image" content="https://sifufinds.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -40,7 +40,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sifufinds">
 <meta name="twitter:title" content="Football Leagues — Live Scores · SifuFinds">
-<meta name="twitter:description" content="Live football scores: World Cup 2026, Premier League, La Liga, CAF CL, AFCON and more.">
+<meta name="twitter:description" content="Live football scores and league tables: Premier League, La Liga, CAF CL, AFCON and more.">
 <meta name="twitter:image" content="https://sifufinds.com/assets/og-image.png">
 
 <script type="application/ld+json">
@@ -51,7 +51,7 @@
       "@type": "WebPage",
       "@id": "https://sifufinds.com/leagues/#webpage",
       "name": "Football Leagues — Live Scores 2026 | SifuFinds",
-      "description": "Live football match scores and schedules across all major leagues — World Cup 2026, Premier League, La Liga, Bundesliga, Serie A, CAF Champions League, AFCON and more. Updated every minute.",
+      "description": "Live football match scores, schedules and league tables across all major leagues — Premier League, La Liga, Bundesliga, Serie A, Ligue 1, CAF Champions League, AFCON and more. Updated every minute.",
       "url": "https://sifufinds.com/leagues/",
       "inLanguage": "en-GB",
       "isPartOf": {"@id": "https://sifufinds.com/#website"}
@@ -614,6 +614,13 @@
 .wc-mini-name  { flex: 1; font-weight: 600; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .wc-mini-pts   { font-weight: 900; color: #111; font-size: 12px; }
 .wc-mini-gd    { font-size: 10px; color: #888; width: 30px; text-align: right; }
+.wc-mini-more  {
+  display: block; width: 100%; background: #fafafa; border: none;
+  border-top: 1px solid #f2f2f2; padding: 7px 11px; font-size: 10.5px;
+  font-weight: 800; color: #666; cursor: pointer; font-family: inherit;
+  transition: background .12s, color .12s;
+}
+.wc-mini-more:hover { background: #f0fdf4; color: #16a34a; }
 
 /* ── Bottom brand strip ── */
 .lg-bottom-brands {
@@ -797,7 +804,7 @@
     <!-- View toggle -->
     <div class="lg-view-tabs" role="tablist">
       <button class="lg-view-tab on" id="tab-matches"   onclick="switchView('matches')"   role="tab" aria-selected="true">⚽ Matches</button>
-      <button class="lg-view-tab"    id="tab-standings" onclick="switchView('standings')" role="tab" aria-selected="false">🏆 WC2026 Group Tables</button>
+      <button class="lg-view-tab"    id="tab-standings" onclick="switchView('standings')" role="tab" aria-selected="false">🏆 League Tables</button>
     </div>
 
     <!-- MATCHES VIEW -->
@@ -816,8 +823,8 @@
       <div class="wc-header">
         <span class="wc-trophy">🏆</span>
         <div>
-          <div class="wc-title">FIFA World Cup 2026 — Group Stage</div>
-          <div class="wc-sub">Top 2 from each group advance to Round of 32</div>
+          <div class="wc-title">Major League Tables</div>
+          <div class="wc-sub">Live standings — Premier League, La Liga, Bundesliga, Serie A, Ligue 1</div>
         </div>
         <span class="wc-upd" id="wc-upd-time"></span>
       </div>
@@ -950,8 +957,12 @@ const SIDE_BRANDS = [
   {name:'Betika',      abbr:'BTK', bg:'#007A4D', tc:'#fff', url:'https://www.betika.com',                                                                    offer:'Free Bet on Signup + Jackpot Daily',      logo:'../assets/logos/betika_hq.png'},
 ];
 
-/* Primary bet CTA on every match row — uses top affiliate */
-const PRIMARY_BET_URL = 'https://reffpa.com/L?tag=d_5969542m_1599c_&site=5969542&ad=1599';
+/* Primary bet CTA on every match row — alternates between 22Bet and
+   TicTacBets affiliate links (per 2026-08-22 direction — no longer 1xBet). */
+const PRIMARY_BET_URLS = [
+  'https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=224&bid=1484',   // 22Bet
+  'https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023',                // TicTacBets
+];
 
 /* ── Date utilities ── */
 function toDateParam(d) {
@@ -1159,9 +1170,10 @@ function renderMatches(matches) {
       ? `<img class="lg-comp-emblem" src="${comp.emblem}" alt="${comp.name}" loading="lazy" onerror="this.style.display='none'">`
       : '<span style="font-size:16px">⚽</span>';
 
-    const rows = ms.map(m => {
+    const rows = ms.map((m, i) => {
       const isLive  = ['IN_PLAY', 'PAUSED', 'EXTRA_TIME', 'PENALTY_SHOOTOUT'].includes(m.status);
       const mdLabel = m.matchday ? `MD ${m.matchday}` : (m.stage && m.stage !== 'REGULAR_SEASON' ? m.stage.replace(/_/g,' ') : '');
+      const betUrl  = PRIMARY_BET_URLS[i % PRIMARY_BET_URLS.length];
       return `<div class="lg-match">
         <div class="lg-time-col">
           <span class="lg-time">${isLive ? '<span class="lg-live-dot"></span> ' : ''}${m.time}</span>
@@ -1172,7 +1184,7 @@ function renderMatches(matches) {
         ${scoreCell(m)}
         ${teamCell(m, 'away')}
         <div class="lg-cta-col">
-          <a class="lg-bet-btn" href="${PRIMARY_BET_URL}" target="_blank" rel="noopener noreferrer sponsored">Bet →</a>
+          <a class="lg-bet-btn" href="${betUrl}" target="_blank" rel="noopener noreferrer sponsored">Bet →</a>
         </div>
       </div>`;
     }).join('');
@@ -1257,29 +1269,29 @@ function switchView(view) {
   document.getElementById('tab-standings').setAttribute('aria-selected', view === 'standings');
   document.getElementById('lg-matches-view').style.display = view === 'matches'   ? 'block' : 'none';
   document.getElementById('lg-standings').style.display    = view === 'standings' ? 'block' : 'none';
-  if (view === 'standings' && !wcStandingsData) fetchStandings(false);
+  if (view === 'standings' && !leagueStandingsData) fetchStandings(false);
 }
 
-/* ── WC2026 group standings ── */
-let wcStandingsData = null;
-let activeGroup     = 'all';
+/* ── Major league standings ── */
+let leagueStandingsData = null;
+let activeGroup         = 'all';
 
 async function fetchStandings(silent = false) {
   if (!silent) {
     document.getElementById('wc-group-body').innerHTML =
-      '<div class="lg-loading"><div class="lg-spinner"></div>Loading group tables...</div>';
+      '<div class="lg-loading"><div class="lg-spinner"></div>Loading league tables...</div>';
   }
   try {
-    const res = await fetch('../data/wc_standings.json?t=' + Date.now());
+    const res = await fetch('../data/league_standings.json?t=' + Date.now());
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    wcStandingsData = await res.json();
+    leagueStandingsData = await res.json();
 
-    const upd = wcStandingsData.updated
-      ? new Date(wcStandingsData.updated).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })
+    const upd = leagueStandingsData.updated
+      ? new Date(leagueStandingsData.updated).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })
       : '';
     document.getElementById('wc-upd-time').textContent = upd ? 'Updated ' + upd : '';
 
-    buildGroupTabs(wcStandingsData.groups);
+    buildGroupTabs(leagueStandingsData.leagues);
     renderGroup(activeGroup);
   } catch (err) {
     document.getElementById('wc-group-body').innerHTML =
@@ -1287,11 +1299,11 @@ async function fetchStandings(silent = false) {
   }
 }
 
-function buildGroupTabs(groups) {
+function buildGroupTabs(leagues) {
   const el = document.getElementById('wc-group-tabs');
-  const allBtn = `<button class="wc-gtab on" onclick="renderGroup('all')">All Groups</button>`;
-  const groupBtns = groups.map(g =>
-    `<button class="wc-gtab" onclick="renderGroup('${g.group}')">${g.group}</button>`
+  const allBtn = `<button class="wc-gtab on" onclick="renderGroup('all')">All Leagues</button>`;
+  const groupBtns = leagues.map(g =>
+    `<button class="wc-gtab" onclick="renderGroup('${g.league}')">${g.league}</button>`
   ).join('');
   el.innerHTML = allBtn + groupBtns;
 }
@@ -1305,33 +1317,34 @@ function renderGroup(groupName) {
     btn.classList.toggle('on', isAll || isMatch);
   });
 
-  if (!wcStandingsData) return;
+  if (!leagueStandingsData) return;
   const body = document.getElementById('wc-group-body');
 
   if (groupName === 'all') {
-    // Overview: 2-column mini cards
-    const grid = wcStandingsData.groups.map(g => `
+    // Overview: top 6 of each league in a mini-card grid
+    const grid = leagueStandingsData.leagues.map(g => `
       <div class="wc-mini-card">
-        <div class="wc-mini-hdr">${g.group}</div>
-        ${g.table.map((r, i) => `
-          <div class="wc-mini-row${i < 2 ? ' qualify' : ''}">
+        <div class="wc-mini-hdr">${g.league}</div>
+        ${g.table.slice(0, 6).map((r, i) => `
+          <div class="wc-mini-row${i < 4 ? ' qualify' : ''}">
             <span class="wc-mini-pos">${r.pos}</span>
             ${r.crest ? `<img class="wc-mini-crest" src="${r.crest}" alt="${r.tla}" loading="lazy" onerror="this.style.display='none'">` : ''}
             <span class="wc-mini-name">${r.team}</span>
             <span class="wc-mini-gd">${r.gd > 0 ? '+' : ''}${r.gd}</span>
             <span class="wc-mini-pts">${r.points}pts</span>
           </div>`).join('')}
+        <button class="wc-mini-more" onclick="renderGroup('${g.league}')">Full table →</button>
       </div>`).join('');
     body.innerHTML = `<div class="wc-all-grid">${grid}</div>`;
     return;
   }
 
-  // Single group detailed table
-  const g = wcStandingsData.groups.find(x => x.group === groupName);
+  // Single league detailed table
+  const g = leagueStandingsData.leagues.find(x => x.league === groupName);
   if (!g) return;
 
   const rows = g.table.map((r, i) => {
-    const qualify = i < 2;
+    const qualify = i < 4;
     const formDots = (r.form || '').split('').slice(-5).map(f => {
       const cls = f === 'W' ? 'form-w' : f === 'D' ? 'form-d' : 'form-l';
       return `<span class="wc-form-dot ${cls}">${f}</span>`;
@@ -1358,8 +1371,8 @@ function renderGroup(groupName) {
   body.innerHTML = `
     <div class="wc-group-card visible">
       <div class="wc-group-hdr">
-        <span class="wc-group-name">${g.group}</span>
-        <span class="wc-group-note">● Top 2 advance</span>
+        <span class="wc-group-name">${g.league}</span>
+        <span class="wc-group-note">● Champions League</span>
       </div>
       <table class="wc-table">
         <thead><tr>
@@ -1377,7 +1390,7 @@ function scheduleRefresh() {
   clearTimeout(refreshTimer);
   refreshTimer = setTimeout(() => {
     liveData = null;
-    wcStandingsData = null;
+    leagueStandingsData = null;
     Object.keys(matchCache).forEach(k => delete matchCache[k]);
     fetchMatches(activeDateIdx, true);   // true = silent refresh
     if (activeView === 'standings') fetchStandings(true);

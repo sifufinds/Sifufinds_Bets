@@ -92,7 +92,7 @@ jobs:
         run: |
           git config --local user.email "leaguesbot@sifufinds.com"
           git config --local user.name "LeaguesBot"
-          git add data/matches_live.json data/wc_standings.json
+          git add data/matches_live.json data/league_standings.json
           if git diff --cached --quiet; then
             echo "No changes"
           else

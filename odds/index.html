@@ -880,21 +880,21 @@
         <div class="fsb-cty" id="fsbc-de">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('de')">🇩🇪 Germany<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <button class="fsb-item" onclick="fsbFilt('epl',this)">Bundesliga</button>
+            <button class="fsb-item" onclick="fsbFilt('bundesliga',this)">Bundesliga</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-it">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('it')">🇮🇹 Italy<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <button class="fsb-item" onclick="fsbFilt('epl',this)">Serie A</button>
+            <button class="fsb-item" onclick="fsbFilt('seriea',this)">Serie A</button>
           </div>
         </div>
 
         <div class="fsb-cty" id="fsbc-fr">
           <button class="fsb-cty-hdr" onclick="fsbToggleCty('fr')">🇫🇷 France<span class="fsb-cchev">▸</span></button>
           <div class="fsb-lgs">
-            <button class="fsb-item" onclick="fsbFilt('epl',this)">Ligue 1</button>
+            <button class="fsb-item" onclick="fsbFilt('ligue1',this)">Ligue 1</button>
           </div>
         </div>
 
@@ -1319,10 +1319,11 @@ const ESPN_BASE='https://site.api.espn.com/apis/site/v2/sports';
 const ESPN_ENDPOINTS=[
   {url:`${ESPN_BASE}/soccer/eng.1/scoreboard`,key:'epl',label:'Premier League'},
   {url:`${ESPN_BASE}/soccer/esp.1/scoreboard`,key:'laliga',label:'La Liga'},
-  {url:`${ESPN_BASE}/soccer/ger.1/scoreboard`,key:'epl',label:'Bundesliga'},
-  {url:`${ESPN_BASE}/soccer/ita.1/scoreboard`,key:'epl',label:'Serie A'},
+  {url:`${ESPN_BASE}/soccer/ger.1/scoreboard`,key:'bundesliga',label:'Bundesliga'},
+  {url:`${ESPN_BASE}/soccer/ita.1/scoreboard`,key:'seriea',label:'Serie A'},
+  {url:`${ESPN_BASE}/soccer/fra.1/scoreboard`,key:'ligue1',label:'Ligue 1'},
   {url:`${ESPN_BASE}/soccer/uefa.champions/scoreboard`,key:'ucl',label:'UEFA Champions League'},
-  {url:`${ESPN_BASE}/soccer/fifa.worldcup/scoreboard`,key:'world',label:'World Cup 2026'},
+  {url:`${ESPN_BASE}/soccer/fifa.world/scoreboard`,key:'world',label:'World Cup 2026'},
   {url:`${ESPN_BASE}/basketball/nba/scoreboard`,key:'basketball',label:'NBA'},
   {url:`${ESPN_BASE}/baseball/mlb/scoreboard`,key:'baseball',label:'MLB'},
   {url:`${ESPN_BASE}/tennis/tennis_atp/scoreboard`,key:'tennis',label:'Tennis · ATP'},
@@ -1345,7 +1346,10 @@ const LG_TABS=[
   {key:'boxing',label:'🥊 Boxing'},
   {key:'epl',label:'Premier League'},
   {key:'ucl',label:'UEFA CL'},
-  {key:'laliga',label:'La Liga'}
+  {key:'laliga',label:'La Liga'},
+  {key:'bundesliga',label:'Bundesliga'},
+  {key:'seriea',label:'Serie A'},
+  {key:'ligue1',label:'Ligue 1'}
 ];
 
 const AFRICAN_COMPS=[
@@ -1673,7 +1677,7 @@ function renderLgFilter(){
   if(el)el.innerHTML=LG_TABS.map(t=>`<button class="op-tab${t.key===_activeLG?' on':''}" data-lg="${t.key}" onclick="lgFilt(this)">${t.label}</button>`).join('');
 }
 
-const LG_LABELS={all:'All Sports',world:'World Cup 2026',cafl:'CAF Champions League',afcon:'AFCON',local:'Local Football',basketball:'Basketball',tennis:'Tennis',cricket:'Cricket',rugby:'Rugby',boxing:'Boxing',epl:'Premier League',ucl:'UEFA Champions League',laliga:'La Liga',baseball:'MLB'};
+const LG_LABELS={all:'All Sports',world:'World Cup 2026',cafl:'CAF Champions League',afcon:'AFCON',local:'Local Football',basketball:'Basketball',tennis:'Tennis',cricket:'Cricket',rugby:'Rugby',boxing:'Boxing',epl:'Premier League',ucl:'UEFA Champions League',laliga:'La Liga',bundesliga:'Bundesliga',seriea:'Serie A',ligue1:'Ligue 1',baseball:'MLB'};
 
 function _buildMatchGroups(matches){
   const lgIcons={cafl:'🏆',afcon:'🌍',world:'🌍',local:'🏟️',basketball:'🏀',tennis:'🎾',cricket:'🏏',rugby:'🏉',boxing:'🥊',epl:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',ucl:'⭐',laliga:'🇪🇸',baseball:'⚾'};

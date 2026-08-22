@@ -402,6 +402,31 @@ def parse_predictz(text: str, date_override: str = "") -> list[dict]:
 
 _FST_TIME = re.compile(r"^(\d{2}:\d{2})$", re.M)
 
+def _predicted_team_in_match(candidate: str, match_name: str) -> bool:
+    """True if `candidate` plausibly names one of the two sides in `match_name`.
+
+    The lookahead line-scan below pulls the prediction line and the match line
+    from separate, unlabelled positions in the scraped markdown — when a tips
+    card's layout doesn't match the assumed shape, this let a "TeamX to Win"
+    prediction from one card get attached to a completely different match
+    (e.g. a real live bug: "Celta Vigo Win" was shown for "Borussia Dortmund
+    vs Bayern Munich"). Reject any "team to win" pick whose team isn't
+    actually one of the two sides playing, rather than publish a fabricated
+    result.
+    """
+    cand = re.sub(r"[^a-z0-9 ]", "", candidate.lower()).strip()
+    home, _, away = match_name.partition(" vs ")
+    for team in (home, away):
+        team_n = re.sub(r"[^a-z0-9 ]", "", team.lower()).strip()
+        if not cand or not team_n:
+            continue
+        if cand in team_n or team_n in cand:
+            return True
+        if cand.split() and team_n.split() and cand.split()[-1] == team_n.split()[-1]:
+            return True
+    return False
+
+
 def parse_freesupertips(text: str) -> list[dict]:
     tips: list[dict] = []
     seen: set[str] = set()
@@ -481,9 +506,16 @@ def parse_freesupertips(text: str) -> list[dict]:
         elif re.search(r'under 2\.5|under2\.5', pred_txt, re.I):
             norm_pred = "Under 2.5 Goals"
         elif re.search(r'\bto win\b', pred_txt, re.I):
-            # "Canada to Win" → extract team
+            # "Canada to Win" → extract team, but only trust it if that team
+            # is actually one of the two sides in `match_name` — see
+            # _predicted_team_in_match() for the live bug this guards against.
             win_m = re.match(r'^([A-Z][a-zA-Z\s\'-]+?)\s+to\s+Win', pred_txt, re.I)
-            norm_pred = f"{win_m.group(1)} Win" if win_m else "Home Win"
+            win_team = clean(win_m.group(1)) if win_m else ""
+            if win_team and _predicted_team_in_match(win_team, match_name):
+                norm_pred = f"{win_team} Win"
+            else:
+                i = j
+                continue
         else:
             norm_pred = pred_txt[:50]
 
