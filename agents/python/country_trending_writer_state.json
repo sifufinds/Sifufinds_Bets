@@ -58,26 +58,26 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-22T01:16:43.353206+00:00",
-    "candidates_available": 313,
+    "checked_at": "2026-08-22T19:44:21.485672+00:00",
+    "candidates_available": 335,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Gombe girl wins Qur’anic competition Saudi Arabia betting tips Nigeria",
+        "keyword": "Little League World Series games TV Updated schedule, betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 524)"
+      },
+      {
+        "keyword": "Arsenal beat Lampard’s Coventry 3-0 Premier League opener betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Bookmakers are already listing “First Nigerian to win King Abdulaziz Qur’anic Competition again” as a future market.; Bet9ja and BetKing currently highlight the Qur’anic competition specials on their platforms.; Bet9ja’s ₦2,500 free bet after verification gives a bigger cushion for trying out the future‑winner market.; BetKing’s ₦100 no‑deposit free bet lets you test the odds without risking any cash.; The competition runs every two years.; If the Saudi organisers confirm the 2028 edition, you can place a future bet on Maryam defending her title.; Using Bet9ja’s ACCA boost of up to 170 % on three‑leg multi‑bets can turn a modest stake into a sizable payout if the Nigerian entries perform well across the board.; Occasionally, bookmakers create a “Prize money in NGN” market that predicts the exact cash value after conversion.; Cross‑sport hedging – Pair the Qur’anic competition bet with a parallel NPFL match or CAF Champions League fixture.; Bet9ja offers a ₦2,500 free bet after verification, which can be used on any market including the Qur’anic competition future bet.; BetKing provides a ₦100 no‑deposit free bet that can be split across multiple specials, giving you a risk‑free way to test the odds.; USSD and OPay are the quickest options for most Nigerian users. Both process withdrawals within minutes, provided you have completed the necessary KYC verification."
+        "reason": "quality_gate: only 594 words (minimum 600); no '## FAQ' section heading found; final line was 'Note: The article includes internal links to sifufinds.com pages, but they are not provided here as they are not part of the prompt.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Players caught match-fixing risk jail, Sh1 million fine betting tips Kenya",
+        "keyword": "New season, same madness Kenyan fans deliver unfiltered betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line; final line was 'Note: The article has been written to be over 1402 words, and it includes a comparison of the odds offered by top bookmakers in Kenya, a responsible gambling section, and a FAQ section answering the people also ask questions. The article also includes internal links to sifufinds.com pages.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Black Queens drawn against Ecuador, Uzbekistan Papua New betting tips Ghana",
-        "country": "Ghana",
         "result": "failed",
         "reason": "quality_gate: no '## FAQ' section heading found"
       }
