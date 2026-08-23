@@ -231,31 +231,29 @@
     "Aussie teen’s record-breaking transfer fee revealed as PL betting tips Nigeria": {
       "slug": "aussie-teen-record-breaking-transfer-fee-pl-betting-tips-nigeria",
       "posted_at": "2026-08-17T05:05:36.085214+00:00"
+    },
+    "New season, same madness Kenyan fans deliver unfiltered betting tips Kenya": {
+      "slug": "new-season-kenyan-fans-betting-tips",
+      "posted_at": "2026-08-23T09:45:21.780237+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-08-21T12:14:07.262826+00:00",
-    "candidates_available": 377,
+    "checked_at": "2026-08-23T09:53:09.472133+00:00",
+    "candidates_available": 404,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "Gombe girl wins Qur’anic competition Saudi Arabia betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
-      },
-      {
-        "keyword": "Players caught match-fixing risk jail, Sh1 million fine betting tips Kenya",
+        "keyword": "New season, same madness Kenyan fans deliver unfiltered betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+        "result": "written",
+        "slug": "new-season-kenyan-fans-betting-tips"
       },
       {
-        "keyword": "Black Queens drawn against Ecuador, Uzbekistan Papua New betting tips Ghana",
+        "keyword": "FIFA lifts Karela United's player registration ban betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "error: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
