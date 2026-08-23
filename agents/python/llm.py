@@ -430,6 +430,25 @@ def _try_g4f(system_prompt: str, user_message: str, max_tokens: int) -> str | No
     return None
 
 
+# Wall-clock cap on the ENTIRE _try_ollama() attempt (install + server
+# start + model pull + inference combined), added 2026-08-22 after live
+# evidence in breaking_news.yml: with prefer_accuracy=True trying this tier
+# before g4f, and Groq exhausted (a now-common state — see the 429s
+# documented in AGENT-KNOWLEDGE.md's 2026-08-22 entries), a single football
+# category attempt spent the model pull (~2min) plus 8+ more minutes of
+# inference and STILL hit the workflow's outer 600s `timeout` with zero
+# output — Ollama consumed the entire per-category budget and never even
+# got a chance to fall through to the now-reliable g4f tier. Capping this
+# tier means a cold/slow runner falls through to g4f quickly instead of
+# silently eating the whole window; a warm runner (model already pulled,
+# server still running from an earlier category's subprocess in the same
+# job) still gets a real shot at a full CPU inference within the cap. The
+# subprocess doing the pull isn't killed when this thread is abandoned —
+# it keeps running in the background, so a later category's attempt in the
+# same job may find the model already pulled even after this one timed out.
+_OLLAMA_TIER_TIMEOUT = 240  # seconds
+
+
 def _try_ollama(system_prompt: str, user_message: str, max_tokens: int) -> str | None:
     """Tier 6 in the default order — local, self-hosted open-weight model.
     Slower than g4f (CPU-bound minutes, not hosted seconds) but empirically
@@ -445,9 +464,22 @@ def _try_ollama(system_prompt: str, user_message: str, max_tokens: int) -> str |
     output is fact-check-sensitive (specific figures/dates that are easy to
     hallucinate and expensive to get wrong on a betting site) should pass
     prefer_accuracy=True to try this tier before g4f instead of after it."""
-    if _ensure_ollama():
-        try:
+    from concurrent.futures import ThreadPoolExecutor
+    from concurrent.futures import TimeoutError as _FutureTimeout
+
+    def _call() -> str | None:
+        if _ensure_ollama():
             return _ask_ollama(system_prompt, user_message, max_tokens)
+        return None
+
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        future = pool.submit(_call)
+        try:
+            return future.result(timeout=_OLLAMA_TIER_TIMEOUT)
+        except _FutureTimeout:
+            print(f"[llm] Local Ollama fallback did not respond within "
+                  f"{_OLLAMA_TIER_TIMEOUT}s — falling through instead of "
+                  "waiting out the rest of this category's budget")
         except Exception as e:
             print(f"[llm] Local Ollama fallback failed: {e}")
     return None
