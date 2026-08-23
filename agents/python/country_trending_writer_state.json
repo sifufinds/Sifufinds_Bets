@@ -58,28 +58,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-22T19:44:21.485672+00:00",
-    "candidates_available": 335,
+    "checked_at": "2026-08-23T06:08:15.707810+00:00",
+    "candidates_available": 342,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Little League World Series games TV Updated schedule, betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 524)"
-      },
-      {
-        "keyword": "Arsenal beat Lampard’s Coventry 3-0 Premier League opener betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: only 594 words (minimum 600); no '## FAQ' section heading found; final line was 'Note: The article includes internal links to sifufinds.com pages, but they are not provided here as they are not part of the prompt.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
         "keyword": "New season, same madness Kenyan fans deliver unfiltered betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "fact_check: fact-checker response was not valid JSON"
+      },
+      {
+        "keyword": "FIFA lifts Karela United's player registration ban betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 532)"
+      },
+      {
+        "keyword": "Partey signs Al-Shabab Saudi Pro League betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "fact_check: Betika Tanzania is offering the most favorable odds, at 3.50; SportPesa Tanzania is offering a 250% Karibu Gift on first deposit; According to Al-Shabab's coach, Partey's signing is a significant boost to the team's chances. 'Thomas is a world-class player, and we're excited to have him on board,' he said. 'We believe he'll make a big impact on the pitch, and we're confident that he'll help us win the league title.'"
       }
     ]
   }
