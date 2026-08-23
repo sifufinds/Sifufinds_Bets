@@ -10,8 +10,8 @@ Fallback chain (each tier is tried before the next):
   3. Groq openai/gpt-oss-20b       — faster, separate free TPD quota
   (llama-3.3-70b-versatile and llama-3.1-8b-instant, previously tiers 1-2,
   were retired by Groq — see the 2026-08-21 note below on _GROQ_MODELS)
-  5. g4f (Yqcloud →                — no signup, no API key, no billing;
-     CohereForAI_C4AI_Command)        hosted (seconds, not CPU-bound
+  5. g4f (CohereForAI_C4AI_Command) — no signup, no API key, no billing;
+                                      hosted (seconds, not CPU-bound
                                       minutes) open-source aggregator of
                                       free reverse-engineered LLM
                                       front-ends (github.com/xtekky/gpt4free)
@@ -175,17 +175,31 @@ _G4F_PROVIDERS: list[tuple[object, str, str]] = []  # (provider_class, model, la
 # per-category timeout in practice (see breaking_news.yml's football
 # category timing out at its full 600s with zero output).
 #
-# Replaced with two providers tested clean against both a short JSON
-# fact-check prompt and a full 700+ word article-generation prompt, same
-# methodology as the entry above: Yqcloud (fastest, ~3-42s, zero extra pip
-# deps) first; CohereForAI_C4AI_Command (~1-25s, zero extra pip deps, best
-# observed instruction-following — followed a strict "JSON only, no
-# markdown fences" instruction on the first attempt) second. Both confirmed
-# with zero additional packages beyond what requirements.txt already
-# installs — no browser, no HAR file, no API key. Re-verify this list with
-# the test snippet in AGENT-KNOWLEDGE.md's 2026-08-22 entry if g4f is ever
-# touched again — individual providers break/get patched without notice,
-# exactly as happened here.
+# Replaced with a single provider, CohereForAI_C4AI_Command (~1-25s, zero
+# extra pip deps beyond what requirements.txt already installs — no
+# browser, no HAR file, no API key). A second candidate, Yqcloud, was
+# briefly pinned alongside it the same day but removed a few hours later:
+# it "succeeds" (non-empty response, so the naive `if result: return
+# result` check below accepts it) while silently ignoring the system
+# prompt's required output structure — confirmed on BOTH shapes this
+# codebase actually needs: the fact-checker's strict-JSON prompt got back
+# an unrelated Chinese-language response on one attempt and plain English
+# prose (no JSON at all) on two more, and the sports-blog writer's
+# ===META===/===BLOG===/===END=== marker format got back a normal-looking
+# article with none of the three markers present. Both failures are silent
+# to _try_g4f() (no exception, non-empty string) and only surface one
+# layer up as "fact-checker response was not valid JSON" or a failed
+# _extract() — exactly the kind of failure that's invisible without
+# re-testing a "working" provider against the actual prompts this repo
+# sends, not a generic JSON echo test. A provider that answers plausibly
+# but ignores the required structure is worse than no fallback at all here
+# (it consumes the one _try_g4f() attempt that would otherwise have
+# reached CohereForAI_C4AI_Command or Ollama), so it was dropped rather
+# than kept as a "bonus" second option. Re-verify this pin with the test
+# snippets in AGENT-KNOWLEDGE.md's 2026-08-22 entry if g4f is ever touched
+# again — test against the REAL fact-checker and article-marker prompt
+# shapes, not just a trivial JSON round-trip, since that's exactly what
+# missed this the first time.
 #
 # Each provider is imported independently (fixed 2026-08-08): the original
 # code imported all three under one try/except ImportError, so when g4f
@@ -208,7 +222,6 @@ except ImportError as e:
 
 if _g4f_client is not None:
     for _provider_name, _model, _label in (
-        ("Yqcloud", "gpt-4", "Yqcloud"),
         ("CohereForAI_C4AI_Command", "command-a", "CohereForAI_C4AI_Command"),
     ):
         try:
