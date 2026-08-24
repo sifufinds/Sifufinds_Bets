@@ -1,13 +1,85 @@
 {
   "date": "2026-08-24",
-  "total": 6,
+  "total": 18,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 12,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-snooker-scandal-college-football",
+      "detail": "Title 63 chars (max 60): 'Global Sports Roundup: From Snooker Scandal to College Football'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "cricket-betting-insights-disciplinary-actions-injuries-pitch-conditions",
+      "detail": "Title 78 chars (max 60): 'Cricket Betting Insights: Disciplinary Actions, Injuries, and Pitch Co'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "us-open-2026-cincinnati-results-rybakina-withdrawal",
+      "detail": "Title 68 chars (max 60): 'US Open 2026: Gauff & Fils Triumph in Cincinnati, Rybakina Withdraws'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-boxing-tennis-football",
+      "detail": "Title 61 chars (max 60): 'Global Sports Headlines: Boxing, Tennis, and Football Updates'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-2026-27-betting-insights-africa",
+      "detail": "Title 73 chars (max 60): 'Premier League 2026/27: Early Season Betting Insights for African Punt'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-transfer-news-2026",
+      "detail": "Excerpt 249 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rugby-news-spencer-injury-boks-selection",
+      "detail": "Excerpt 197 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-snooker-scandal-college-football",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "cricket-betting-insights-disciplinary-actions-injuries-pitch-conditions",
+      "detail": "Excerpt 202 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "us-open-2026-cincinnati-results-rybakina-withdrawal",
+      "detail": "Excerpt 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-boxing-tennis-football",
+      "detail": "Excerpt 165 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-2026-27-betting-insights-africa",
+      "detail": "Excerpt 203 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
