@@ -1,79 +1,13 @@
 {
   "date": "2026-08-24",
-  "total": 17,
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 11,
+    "HIGH": 0,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "hull-stuns-man-utd-premier-league-upsets-betting-insights",
-      "detail": "Title 74 chars (max 60): \"Hull's Secret Plan Stuns Man Utd: Premier League Upsets & Betting Insi\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "premier-league-transfer-news-palace-arsenal-liverpool",
-      "detail": "Title 72 chars (max 60): 'Premier League Transfer News: Palace, Arsenal, Liverpool Shake Up Squa'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kenyan-fans-premier-league-predictions",
-      "detail": "Title 65 chars (max 60): \"Kenyan Fans' Premier League Predictions: New Season, Same Passion\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "new-season-kenyan-fans-betting-tips",
-      "detail": "Title 69 chars (max 60): 'New Season, Same Madness: Kenyan Fans Deliver Unfiltered Betting Tips'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "hull-stuns-man-utd-premier-league-upsets-betting-insights",
-      "detail": "Excerpt 161 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-transfer-news-palace-arsenal-liverpool",
-      "detail": "Excerpt 164 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nba-preseason-player-prop-betting",
-      "detail": "Excerpt 163 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "kenyan-fans-premier-league-predictions",
-      "detail": "Excerpt 185 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "boxing-upsets-title-changes-african-betting-guide",
-      "detail": "Excerpt 180 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "new-season-kenyan-fans-betting-tips",
-      "detail": "Excerpt 178 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "accumulator-betting-tips-savinho-starc-pegula",
-      "detail": "Excerpt 180 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
