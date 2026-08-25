@@ -1,13 +1,49 @@
 {
   "date": "2026-08-25",
-  "total": 6,
+  "total": 12,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 6,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "us-open-2026-betting-insights-british-stars",
+      "detail": "Title 61 chars (max 60): 'US Open 2026: Early Betting Insights & British Stars to Watch'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "pirates-van-rooyen-exit-broos-pitso-warning-bet365-pl-news",
+      "detail": "Title 62 chars (max 60): \"Pirates' Van Rooyen Exit, Broos Pitso Warning & bet365 PL News\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "us-open-2026-betting-insights-british-stars",
+      "detail": "Excerpt 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "pirates-van-rooyen-exit-broos-pitso-warning-bet365-pl-news",
+      "detail": "Excerpt 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "accumulator-betting-tips-fulham-chelsea",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "efl-cup-ipswich-leicester-transfer-news",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
