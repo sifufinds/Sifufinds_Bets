@@ -1,79 +1,13 @@
 {
   "date": "2026-08-25",
-  "total": 17,
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 11,
+    "HIGH": 0,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nfl-wrestling-wnba-global-sports-news",
-      "detail": "Title 67 chars (max 60): 'NFL, Wrestling, and WNBA: Global Sports Stories for African Bettors'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "cote-divoire-caf-stadium-approval-betting-tips-tanzania",
-      "detail": "Title 72 chars (max 60): 'C\u00f4te d\u2019Ivoire\u2019s CAF Stadium Approval: Betting Tips for Tanzanian Punte'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "golden-arrows-coach-betting-tips-south-africa",
-      "detail": "Title 73 chars (max 60): 'Golden Arrows Coach Believes in More Goals: Betting Tips for South Afr'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "south-africa-vs-new-zealand-rugby-predictions-ghana",
-      "detail": "Title 72 chars (max 60): 'South Africa vs New Zealand Rugby Predictions and Betting Tips for Gha'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "roma-serie-a-statement-win-betting-implications-africa",
-      "detail": "Title 70 chars (max 60): \"Roma's Serie A Statement Win: Betting Implications for African Punters\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-transfer-saga-bowen-alvarez-watkins",
-      "detail": "Excerpt 183 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nfl-wrestling-wnba-global-sports-news",
-      "detail": "Excerpt 160 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "cote-divoire-caf-stadium-approval-betting-tips-tanzania",
-      "detail": "Excerpt 181 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "golden-arrows-coach-betting-tips-south-africa",
-      "detail": "Excerpt 209 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "south-africa-vs-new-zealand-rugby-predictions-ghana",
-      "detail": "Excerpt 164 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "roma-serie-a-statement-win-betting-implications-africa",
-      "detail": "Excerpt 173 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
