@@ -1,9 +1,9 @@
 {
-  "date": "2026-08-24",
-  "total": 18,
+  "date": "2026-08-25",
+  "total": 17,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 12,
+    "HIGH": 11,
     "MEDIUM": 5,
     "INFO": 1
   },
@@ -11,74 +11,68 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "global-sports-roundup-snooker-scandal-college-football",
-      "detail": "Title 63 chars (max 60): 'Global Sports Roundup: From Snooker Scandal to College Football'"
+      "page": "nfl-wrestling-wnba-global-sports-news",
+      "detail": "Title 67 chars (max 60): 'NFL, Wrestling, and WNBA: Global Sports Stories for African Bettors'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "cricket-betting-insights-disciplinary-actions-injuries-pitch-conditions",
-      "detail": "Title 78 chars (max 60): 'Cricket Betting Insights: Disciplinary Actions, Injuries, and Pitch Co'"
+      "page": "cote-divoire-caf-stadium-approval-betting-tips-tanzania",
+      "detail": "Title 72 chars (max 60): 'C\u00f4te d\u2019Ivoire\u2019s CAF Stadium Approval: Betting Tips for Tanzanian Punte'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "us-open-2026-cincinnati-results-rybakina-withdrawal",
-      "detail": "Title 68 chars (max 60): 'US Open 2026: Gauff & Fils Triumph in Cincinnati, Rybakina Withdraws'"
+      "page": "golden-arrows-coach-betting-tips-south-africa",
+      "detail": "Title 73 chars (max 60): 'Golden Arrows Coach Believes in More Goals: Betting Tips for South Afr'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "global-sports-headlines-boxing-tennis-football",
-      "detail": "Title 61 chars (max 60): 'Global Sports Headlines: Boxing, Tennis, and Football Updates'"
+      "page": "south-africa-vs-new-zealand-rugby-predictions-ghana",
+      "detail": "Title 72 chars (max 60): 'South Africa vs New Zealand Rugby Predictions and Betting Tips for Gha'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "premier-league-2026-27-betting-insights-africa",
-      "detail": "Title 73 chars (max 60): 'Premier League 2026/27: Early Season Betting Insights for African Punt'"
+      "page": "roma-serie-a-statement-win-betting-implications-africa",
+      "detail": "Title 70 chars (max 60): \"Roma's Serie A Statement Win: Betting Implications for African Punters\""
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "premier-league-transfer-news-2026",
-      "detail": "Excerpt 249 chars (max 155)"
+      "page": "premier-league-transfer-saga-bowen-alvarez-watkins",
+      "detail": "Excerpt 183 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "rugby-news-spencer-injury-boks-selection",
-      "detail": "Excerpt 197 chars (max 155)"
+      "page": "nfl-wrestling-wnba-global-sports-news",
+      "detail": "Excerpt 160 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "global-sports-roundup-snooker-scandal-college-football",
-      "detail": "Excerpt 162 chars (max 155)"
+      "page": "cote-divoire-caf-stadium-approval-betting-tips-tanzania",
+      "detail": "Excerpt 181 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "cricket-betting-insights-disciplinary-actions-injuries-pitch-conditions",
-      "detail": "Excerpt 202 chars (max 155)"
+      "page": "golden-arrows-coach-betting-tips-south-africa",
+      "detail": "Excerpt 209 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "us-open-2026-cincinnati-results-rybakina-withdrawal",
-      "detail": "Excerpt 179 chars (max 155)"
+      "page": "south-africa-vs-new-zealand-rugby-predictions-ghana",
+      "detail": "Excerpt 164 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "global-sports-headlines-boxing-tennis-football",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-2026-27-betting-insights-africa",
-      "detail": "Excerpt 203 chars (max 155)"
+      "page": "roma-serie-a-statement-win-betting-implications-africa",
+      "detail": "Excerpt 173 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
