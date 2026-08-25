@@ -1,16 +1,17 @@
 {
   "date": "2026-08-25",
-  "fixes_applied": 4,
+  "fixes_applied": 5,
   "warnings": 2,
   "fixes": [
+    "llms.txt: Last Updated \u2192 2026-08-25, blog post count refreshed",
     "Blog HTML: refreshed dateModified on 668 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 957",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 1695 total URLs",
+    "Blog HTML regenerated:     Total blog posts in JSON: 961",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 1699 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "403 posts below 900 words: premier-league-transfer-saga-bowen-alvarez-watkins, nfl-wrestling-wnba-global-sports-news, cote-divoire-caf-stadium-approval-betting-tips-tanzania, golden-arrows-coach-betting-tips-south-africa, south-africa-vs-new-zealand-rugby-predictions-ghana...",
-    "225 posts missing FAQ section: premier-league-transfer-saga-bowen-alvarez-watkins, nfl-wrestling-wnba-global-sports-news, roma-serie-a-statement-win-betting-implications-africa, chelsea-fulham-premier-league-alonso-era, igaming-shake-up-african-bettors"
+    "407 posts below 900 words: us-open-2026-betting-insights-british-stars, pirates-van-rooyen-exit-broos-pitso-warning-bet365-pl-news, accumulator-betting-tips-fulham-chelsea, efl-cup-ipswich-leicester-transfer-news, premier-league-transfer-saga-bowen-alvarez-watkins...",
+    "227 posts missing FAQ section: us-open-2026-betting-insights-british-stars, pirates-van-rooyen-exit-broos-pitso-warning-bet365-pl-news, premier-league-transfer-saga-bowen-alvarez-watkins, nfl-wrestling-wnba-global-sports-news, roma-serie-a-statement-win-betting-implications-africa"
   ],
   "status": "warnings"
 }
