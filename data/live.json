@@ -1,24 +1,7 @@
 {
-  "updated": "2026-08-25T20:55:20.041300+00:00",
+  "updated": "2026-08-25T21:13:22.923798+00:00",
   "count": 19,
   "events": [
-    {
-      "league": "La Liga",
-      "key": "laliga",
-      "live": true,
-      "complete": false,
-      "home": "Valencia",
-      "away": "Real Betis",
-      "hScore": "0",
-      "aScore": "1",
-      "time": "90'+3'",
-      "h": 2.7,
-      "d": 0.0,
-      "a": 2.7,
-      "hBk": "DraftKings",
-      "dBk": "",
-      "aBk": "DraftKings"
-    },
     {
       "league": "Premier League",
       "key": "epl",
@@ -131,9 +114,9 @@
       "hScore": null,
       "aScore": null,
       "time": "26 Aug 2026 \u00b7 00:00 UTC",
-      "h": 1.28,
+      "h": 1.29,
       "d": 0.0,
-      "a": 3.8,
+      "a": 3.7,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
@@ -324,6 +307,23 @@
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
+    },
+    {
+      "league": "La Liga",
+      "key": "laliga",
+      "live": false,
+      "complete": true,
+      "home": "Valencia",
+      "away": "Real Betis",
+      "hScore": "0",
+      "aScore": "1",
+      "time": "FT",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
     }
   ]
 }
