@@ -1,16 +1,17 @@
 {
   "date": "2026-08-26",
-  "fixes_applied": 4,
+  "fixes_applied": 5,
   "warnings": 2,
   "fixes": [
+    "llms.txt: Last Updated \u2192 2026-08-26, blog post count refreshed",
     "Blog HTML: refreshed dateModified on 664 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 964",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 1706 total URLs",
+    "Blog HTML regenerated:     Total blog posts in JSON: 968",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 1710 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "409 posts below 900 words: thunder-northern-kenya-championships-betting-tips-kenya, breaking-sports-news-scotney-vs-brown-angel-reese-record, us-open-2026-betting-insights-british-stars, pirates-van-rooyen-exit-broos-pitso-warning-bet365-pl-news, accumulator-betting-tips-fulham-chelsea...",
-    "228 posts missing FAQ section: igaming-updates-slots-regulations-industry-moves, us-open-2026-betting-insights-british-stars, pirates-van-rooyen-exit-broos-pitso-warning-bet365-pl-news, premier-league-transfer-saga-bowen-alvarez-watkins, nfl-wrestling-wnba-global-sports-news"
+    "413 posts below 900 words: cristiano-ronaldo-al-nassr-comeback, transfer-deadline-day-drama-premier-league-european-deals, transfer-frenzy-global-sports-updates-betting-odds, breaking-sports-news-transfers-cheating-allegations, thunder-northern-kenya-championships-betting-tips-kenya...",
+    "230 posts missing FAQ section: cristiano-ronaldo-al-nassr-comeback, transfer-deadline-day-drama-premier-league-european-deals, igaming-updates-slots-regulations-industry-moves, us-open-2026-betting-insights-british-stars, pirates-van-rooyen-exit-broos-pitso-warning-bet365-pl-news"
   ],
   "status": "warnings"
 }

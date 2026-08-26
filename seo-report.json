@@ -1,13 +1,49 @@
 {
   "date": "2026-08-26",
-  "total": 6,
+  "total": 12,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 6,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-deadline-day-drama-premier-league-european-deals",
+      "detail": "Title 71 chars (max 60): 'Transfer Deadline Day Drama: Premier League & European Deals Heating U'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-frenzy-global-sports-updates-betting-odds",
+      "detail": "Title 77 chars (max 60): 'Transfer Frenzy & Global Sports Updates: How Squad Changes Shift Betti'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "breaking-sports-news-transfers-cheating-allegations",
+      "detail": "Title 63 chars (max 60): 'Breaking Sports News: Transfers, Cheating Allegations, and More'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-deadline-day-drama-premier-league-european-deals",
+      "detail": "Excerpt 184 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-frenzy-global-sports-updates-betting-odds",
+      "detail": "Excerpt 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "breaking-sports-news-transfers-cheating-allegations",
+      "detail": "Excerpt 204 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
