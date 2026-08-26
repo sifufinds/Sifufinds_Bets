@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-26T07:02:35.488381+00:00",
+  "updated": "2026-08-26T07:52:59.145040+00:00",
   "count": 19,
   "events": [
     {
@@ -15,6 +15,23 @@
       "h": 0.0,
       "d": 0.0,
       "a": 0.0,
+      "hBk": "DraftKings",
+      "dBk": "",
+      "aBk": "DraftKings"
+    },
+    {
+      "league": "La Liga",
+      "key": "laliga",
+      "live": false,
+      "complete": false,
+      "home": "Real Madrid",
+      "away": "Real Sociedad",
+      "hScore": null,
+      "aScore": null,
+      "time": "26 Aug 2026 \u00b7 19:00 UTC",
+      "h": 1.28,
+      "d": 0.0,
+      "a": 9.5,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
@@ -80,23 +97,6 @@
       "hScore": null,
       "aScore": null,
       "time": "3 Oct 2026 \u00b7 23:00 UTC",
-      "h": 0.0,
-      "d": 0.0,
-      "a": 0.0,
-      "hBk": "",
-      "dBk": "",
-      "aBk": ""
-    },
-    {
-      "league": "La Liga",
-      "key": "laliga",
-      "live": false,
-      "complete": true,
-      "home": "Valencia",
-      "away": "Real Betis",
-      "hScore": "0",
-      "aScore": "1",
-      "time": "FT",
       "h": 0.0,
       "d": 0.0,
       "a": 0.0,
