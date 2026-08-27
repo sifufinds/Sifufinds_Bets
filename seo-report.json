@@ -1,103 +1,13 @@
 {
   "date": "2026-08-27",
-  "total": 21,
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 15,
+    "HIGH": 0,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "heavyweight-showdown-itauma-vs-hrgovic-fury-insights",
-      "detail": "Title 67 chars (max 60): \"Heavyweight Showdown: Itauma vs. Hrgovic and Fury's Latest Insights\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "atletico-madrid-arsenal-talks-uefa-infantino-probe-betting-implications",
-      "detail": "Title 76 chars (max 60): \"Atletico Madrid-Arsenal Talks & UEFA's Infantino Probe: Betting Implic\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "premier-league-transfer-saga-arsenal-man-city-ndiaye",
-      "detail": "Title 65 chars (max 60): 'Premier League Transfer Saga: Arsenal, Man City Battle for Ndiaye'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "liverpool-barcola-transfer-heavyweight-boxing-betting",
-      "detail": "Title 69 chars (max 60): \"Liverpool's \u00a3100m Barcola Bid & Heavyweight History: Betting Insights\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "us-open-afl-wnba-sports-news-august-2026",
-      "detail": "Title 70 chars (max 60): \"US Open, AFL Fines, and WNBA Drama: This Week's Hottest Sports Stories\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-roundup-champions-league-carabao-cup",
-      "detail": "Title 62 chars (max 60): 'Global Sports Roundup: Champions League, Carabao Cup, and More'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ethiopia-afcon-2028-bid-betting-tips-tanzania",
-      "detail": "Title 61 chars (max 60): 'Ethiopia\u2019s AFCON 2028 Bid: Betting Tips for Tanzanian Punters'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "osinbajo-nba-conference-betting-tips-nigeria",
-      "detail": "Title 70 chars (max 60): \"Osinbajo's NBA Conference Call for Justice: Betting Tips for Nigerians\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "heavyweight-showdown-itauma-vs-hrgovic-fury-insights",
-      "detail": "Excerpt 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "atletico-madrid-arsenal-talks-uefa-infantino-probe-betting-implications",
-      "detail": "Excerpt 193 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-transfer-saga-arsenal-man-city-ndiaye",
-      "detail": "Excerpt 192 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-transfer-rumours-grealish-paixao-scott",
-      "detail": "Excerpt 188 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "us-open-afl-wnba-sports-news-august-2026",
-      "detail": "Excerpt 158 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nfl-preseason-commanders-struggles-big-12-qb-drama",
-      "detail": "Excerpt 194 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "osinbajo-nba-conference-betting-tips-nigeria",
-      "detail": "Excerpt 158 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
