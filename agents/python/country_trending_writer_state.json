@@ -90,7 +90,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-27T13:15:02.553917+00:00",
+    "checked_at": "2026-08-27T20:50:40.865944+00:00",
     "candidates_available": 377,
     "attempted": 3,
     "written": 0,
@@ -99,19 +99,13 @@
         "keyword": "2026/27 Champions League draw – pots, date, time, betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "fact_check: Bet9ja currently leads with a ₦2,500 free bet on sign‑up and a 170 % ACCA boost, making it the most attractive choice for early draw betting.; BetKing’s ₦100 no‑deposit free bet can be placed on the first‑goal scorer market. Even a small stake can return a decent profit if the chosen striker nets early.; BetKing’s ₦100 free‑bet promotion requires no deposit. After registering with the code BONUSKG, the free bet can be used on the first‑goal scorer market once the draw is live."
       },
       {
         "keyword": "Malkia Strikers show their intent booking 2028 Olympic betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 463)"
-      },
-      {
-        "keyword": "Newcastle vs. West Brom Lineups betting tips Ghana",
-        "country": "Ghana",
-        "result": "failed",
-        "reason": "fact_check: Newcastle are likely to be the favourites, given their recent form and Premier League status.; Newcastle 2-1 West Brom could be a popular choice, with attractive odds available on **Melbet Ghana**."
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
