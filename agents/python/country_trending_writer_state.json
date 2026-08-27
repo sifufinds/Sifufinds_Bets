@@ -90,7 +90,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-27T20:50:40.865944+00:00",
+    "checked_at": "2026-08-27T22:45:38.112471+00:00",
     "candidates_available": 377,
     "attempted": 3,
     "written": 0,
@@ -99,13 +99,19 @@
         "keyword": "2026/27 Champions League draw – pots, date, time, betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Bet9ja currently leads with a ₦2,500 free bet on sign‑up and a 170 % ACCA boost, making it the most attractive choice for early draw betting.; BetKing’s ₦100 no‑deposit free bet can be placed on the first‑goal scorer market. Even a small stake can return a decent profit if the chosen striker nets early.; BetKing’s ₦100 free‑bet promotion requires no deposit. After registering with the code BONUSKG, the free bet can be used on the first‑goal scorer market once the draw is live."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 483)"
       },
       {
         "keyword": "Malkia Strikers show their intent booking 2028 Olympic betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 3 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '`, article, `', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Newcastle vs. West Brom Lineups betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'The Newcastle vs West Brom encounter offers a range of betting opportunities for Ghanaian punters. By analysing the lineups, understanding the betting markets and comparing odds across top local bookmakers, you can make informed decisions. Check the live odds on SifuFinds, place your stake with a trusted GCA‑licensed bookmaker, and enjoy the excitement of the Carabao Cup responsibly. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
