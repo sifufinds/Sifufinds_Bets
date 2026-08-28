@@ -87,31 +87,43 @@
     "Ethiopia submits official bid host Afcon 2028 betting tips Tanzania": {
       "slug": "ethiopia-afcon-2028-bid-betting-tips-tanzania",
       "posted_at": "2026-08-26T19:51:49.307025+00:00"
+    },
+    "JUST Mamudu strikes as Falconets beat Poland 1-0 betting tips Nigeria": {
+      "slug": "falconets-beat-poland-1-0-betting-tips-nigeria",
+      "posted_at": "2026-08-28T22:43:25.867532+00:00"
+    },
+    "Malkia Strikers storm through group stage African Championship betting tips Kenya": {
+      "slug": "malkia-strikers-african-championship-betting-tips-kenya",
+      "posted_at": "2026-08-28T22:50:23.663772+00:00"
+    },
+    "Nigeria's football leadership resigns amid governance concerns betting tips Ghana": {
+      "slug": "nigerias-football-leadership-resigns-betting-tips-ghana",
+      "posted_at": "2026-08-28T22:57:59.167659+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-08-28T20:31:08.729463+00:00",
+    "checked_at": "2026-08-28T22:58:02.472183+00:00",
     "candidates_available": 377,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
         "keyword": "JUST Mamudu strikes as Falconets beat Poland 1-0 betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "result": "written",
+        "slug": "falconets-beat-poland-1-0-betting-tips-nigeria"
       },
       {
         "keyword": "Malkia Strikers storm through group stage African Championship betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: Standard Media, 2026‑08‑27; Betika offers a free bet on signup plus Aviator free bets ranging from KSh 30 to KSh 500; SportPesa’s 300 % Karibu Gift; 22Bet Kenya – 100 % Match up to KSh 19,000; 1xBet Kenya – 200 % Match up to KSh 20,000; Melbet Kenya – 300 % Match tops out at KSh 1,500"
+        "result": "written",
+        "slug": "malkia-strikers-african-championship-betting-tips-kenya"
       },
       {
         "keyword": "Nigeria's football leadership resigns amid governance concerns betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "result": "written",
+        "slug": "nigerias-football-leadership-resigns-betting-tips-ghana"
       }
     ]
   }
