@@ -90,7 +90,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-08-27T22:45:38.112471+00:00",
+    "checked_at": "2026-08-28T06:54:23.819363+00:00",
     "candidates_available": 377,
     "attempted": 3,
     "written": 0,
@@ -99,19 +99,19 @@
         "keyword": "2026/27 Champions League draw – pots, date, time, betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 483)"
+        "reason": "fact_check: **BetKing** offering a **₦100 no-deposit free bet**; **22Bet Nigeria** offers a **100% first deposit bonus up to ₦207,500**; | **Bet9ja**      | ₦2,500 Free Bet + 170% ACCA Boost | ₦100           | OPay, PalmPay, Bank Transfer, Visa, USSD |; | **22Bet**       | 100% Bonus up to ₦207,500        | ₦100           | OPay, Bank Transfer, Visa, MTN MoMo      |; | **1xBet**       | 300% Bonus up to ₦1,200,000      | ₦100           | OPay, PalmPay, Bank Transfer, MTN MoMo   |; | **Melbet**      | 200% Bonus up to ₦480,000        | ₦100           | OPay, Bank Transfer, Visa, MTN MoMo      |"
       },
       {
         "keyword": "Malkia Strikers show their intent booking 2028 Olympic betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 3 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '`, article, `', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "fact_check: **SportPesa Kenya** are offering a **300% Welcome Karibu Gift**; | **SportPesa**   | 300% Karibu Gift                 | KSh 10         | M-Pesa, Airtel Money, Bank Transfer      |; | **Betika**      | Free Bet Gifts + Aviator Free Bets| KSh 10         | M-Pesa, Airtel Money, Equitel, USSD *644#|; | **22Bet**       | 100% Bonus up to KSh 19,000      | KSh 100        | M-Pesa, Airtel Money, Visa, Mastercard   |; | **1xBet**       | 200% Bonus up to KSh 20,000      | KSh 50         | M-Pesa, Airtel Money, Visa, Mastercard   |"
       },
       {
         "keyword": "Newcastle vs. West Brom Lineups betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'The Newcastle vs West Brom encounter offers a range of betting opportunities for Ghanaian punters. By analysing the lineups, understanding the betting markets and comparing odds across top local bookmakers, you can make informed decisions. Check the live odds on SifuFinds, place your stake with a trusted GCA‑licensed bookmaker, and enjoy the excitement of the Carabao Cup responsibly. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
