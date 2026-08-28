@@ -1,91 +1,13 @@
 {
   "date": "2026-08-28",
-  "total": 19,
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 13,
+    "HIGH": 0,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "europa-league-draw-sunderland-ac-milan-global-sports-updates",
-      "detail": "Title 71 chars (max 60): 'Europa League Draw: Sunderland\u2019s AC Milan Clash & Global Sports Update'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "premier-league-ufc-betting-insights-squad-news",
-      "detail": "Title 63 chars (max 60): 'Premier League & UFC Betting Insights: Latest Squad News Impact'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nfl-preseason-nba-trades-volleyball-triumphs-sports-news",
-      "detail": "Title 82 chars (max 60): \"NFL Preseason, NBA Trades, and Volleyball Triumphs: This Week's Top Sp\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "premier-league-transfer-news-goalkeepers-strikers-squad-depth",
-      "detail": "Title 68 chars (max 60): 'Premier League Transfer News: Goalkeepers, Strikers, and Squad Depth'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "latest-sports-headlines-ufc-nfl-nba-copa-do-brasil",
-      "detail": "Title 66 chars (max 60): 'Latest Sports Headlines: UFC, NFL, NBA, and Copa do Brasil Updates'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-roundup-august-2026",
-      "detail": "Title 64 chars (max 60): 'Global Sports Roundup: From Rugby Rotations to Tennis Tie-Breaks'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sal-stewart-rookie-feat-mlb-betting-africa",
-      "detail": "Title 63 chars (max 60): 'Sal Stewart\u2019s Rookie Feat Sparks MLB Betting Buzz Across Africa'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "europa-league-draw-sunderland-ac-milan-global-sports-updates",
-      "detail": "Excerpt 166 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-ufc-betting-insights-squad-news",
-      "detail": "Excerpt 196 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nfl-preseason-nba-trades-volleyball-triumphs-sports-news",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-transfer-news-goalkeepers-strikers-squad-depth",
-      "detail": "Excerpt 291 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "latest-sports-headlines-ufc-nfl-nba-copa-do-brasil",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sal-stewart-rookie-feat-mlb-betting-africa",
-      "detail": "Excerpt 203 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
