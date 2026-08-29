@@ -1,127 +1,13 @@
 {
   "date": "2026-08-29",
-  "total": 25,
+  "total": 6,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 19,
+    "HIGH": 0,
     "MEDIUM": 5,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sports-news-roundup-transfers-boxing-cricket",
-      "detail": "Title 65 chars (max 60): 'Sports News Roundup: Transfers, Boxing, and Cricket Controversies'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "arthur-fery-atp-final-betting-insights",
-      "detail": "Title 67 chars (max 60): \"Arthur Fery's ATP Final Entry: Betting Insights for African Punters\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-roundup-nascar-college-football-nba",
-      "detail": "Title 65 chars (max 60): 'Global Sports Roundup: NASCAR, College Football, and NBA Insights'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "2026-27-champions-league-draw-betting-tips-nigeria",
-      "detail": "Title 69 chars (max 60): '2026/27 UEFA Champions League Draw: Betting Tips for Nigerian Punters'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "trevor-noah-betting-tips-south-africa",
-      "detail": "Title 74 chars (max 60): \"Trevor Noah Captains South Africa's Comedy Squad: Best Betting Tips fo\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-roundup-kuminga-fery-preseason-nfl",
-      "detail": "Title 62 chars (max 60): 'Global Sports Roundup: Kuminga, Fery, and Preseason NFL Action'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-roundup-steelers-lpga-boxing-unification",
-      "detail": "Title 61 chars (max 60): 'Global Sports Roundup: Steelers, LPGA, and Boxing Unification'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nigerias-football-leadership-resigns-betting-tips-ghana",
-      "detail": "Title 69 chars (max 60): \"Nigeria's Football Leadership Resigns: Betting Tips for Ghana Punters\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "malkia-strikers-african-championship-betting-tips-kenya",
-      "detail": "Title 86 chars (max 60): 'Malkia Strikers Storm Through Group Stage: African Championship Bettin'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "falconets-beat-poland-1-0-betting-tips-nigeria",
-      "detail": "Title 84 chars (max 60): \"Falconets Beat Poland 1-0: Betting Tips for Nigeria's U-20 Women's Wor\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bankroll-management-tips-using-todays-matches",
-      "detail": "Excerpt 188 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sports-news-roundup-transfers-boxing-cricket",
-      "detail": "Excerpt 197 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "2026-27-champions-league-draw-betting-tips-nigeria",
-      "detail": "Excerpt 217 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "trevor-noah-betting-tips-south-africa",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nfl-preseason-wrap-falcons-dolphins-panthers",
-      "detail": "Excerpt 161 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-roundup-steelers-lpga-boxing-unification",
-      "detail": "Excerpt 188 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nigerias-football-leadership-resigns-betting-tips-ghana",
-      "detail": "Excerpt 203 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "malkia-strikers-african-championship-betting-tips-kenya",
-      "detail": "Excerpt 178 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "falconets-beat-poland-1-0-betting-tips-nigeria",
-      "detail": "Excerpt 212 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
