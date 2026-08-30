@@ -1,78 +1,54 @@
 {
   "date": "2026-08-30",
-  "total": 18,
+  "total": 14,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 11,
-    "MEDIUM": 6,
+    "HIGH": 6,
+    "MEDIUM": 7,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "premier-league-drama-transfer-buzz-african-punters",
-      "detail": "Title 77 chars (max 60): 'Premier League Drama & Transfer Buzz: What African Punters Need to Kno'"
+      "page": "messi-inter-miami-montreal-betting-tips-nigeria",
+      "detail": "Title 76 chars (max 60): 'Messi Scores Four: Inter Miami vs Montreal Betting Tips for Nigerian P'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "premier-league-transfer-frenzy-betting-odds-impact",
-      "detail": "Title 69 chars (max 60): 'Premier League Transfer Frenzy: How Squad Changes Impact Betting Odds'"
+      "page": "premier-league-transfers-betting-odds-shift",
+      "detail": "Title 62 chars (max 60): 'Premier League Squad Changes: How Transfers Shift Betting Odds'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "messi-four-goals-inter-miami-thrash-montreal-nigeria",
-      "detail": "Title 81 chars (max 60): 'Messi scores four as Inter Miami thrash Montreal \u2013 Betting tips for Ni'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "premier-league-transfer-news-jesus-barcelona-ndiaye-spurs",
-      "detail": "Title 65 chars (max 60): 'Premier League Transfer News: Jesus to Barcelona, Ndiaye to Spurs'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "arsenal-transfer-barcelona-chelsea-live",
-      "detail": "Title 78 chars (max 60): 'Arsenal Striker\u2019s Barcelona Switch & Chelsea\u2019s Bright Future: Betting '"
+      "page": "premier-league-transfer-frenzy-big-moves-shake-up-betting-markets",
+      "detail": "Title 66 chars (max 60): 'Premier League Transfer Frenzy: Big Moves Shake Up Betting Markets'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "premier-league-drama-transfer-buzz-african-punters",
-      "detail": "Excerpt 163 chars (max 155)"
+      "page": "messi-inter-miami-montreal-betting-tips-nigeria",
+      "detail": "Excerpt 189 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "premier-league-transfer-frenzy-betting-odds-impact",
-      "detail": "Excerpt 200 chars (max 155)"
+      "page": "premier-league-transfers-betting-odds-shift",
+      "detail": "Excerpt 179 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "global-sports-roundup-man-utd-us-open-nfl-cuts",
-      "detail": "Excerpt 156 chars (max 155)"
+      "page": "premier-league-transfer-frenzy-big-moves-shake-up-betting-markets",
+      "detail": "Excerpt 199 chars (max 155)"
     },
     {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-transfer-news-jesus-barcelona-ndiaye-spurs",
-      "detail": "Excerpt 195 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "arsenal-transfer-barcelona-chelsea-live",
-      "detail": "Excerpt 207 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-preview-manchester-united-chelsea",
-      "detail": "Excerpt 187 chars (max 155)"
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "messi-inter-miami-montreal-betting-tips-nigeria",
+      "detail": "High title overlap (6 meaningful tokens) with 'messi-four-goals-inter-miami-thrash-montreal-nigeria' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
