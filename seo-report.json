@@ -1,13 +1,223 @@
 {
-  "date": "2026-08-29",
-  "total": 6,
+  "date": "2026-08-30",
+  "total": 41,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 5,
+    "HIGH": 34,
+    "MEDIUM": 6,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "tottenham-everton-juventus-women-sports-news",
+      "detail": "Title 62 chars (max 60): \"Tottenham Exit Requests, Everton U-Turn & Juventus Women's Win\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "memphis-tigers-unlv-college-football-2026",
+      "detail": "Title 64 chars (max 60): 'Memphis Tigers Roar in Season Opener: College Football Kicks Off'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-transfer-frenzy-united-liverpool-city-2026-season",
+      "detail": "Title 87 chars (max 60): 'Premier League Transfer Frenzy: United, Liverpool, City, and More Shak'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nfl-cuts-marathon-records-boxing-shocks-sports-news",
+      "detail": "Title 75 chars (max 60): 'NFL Cuts, Marathon Records, and Boxing Shocks: This Week\u2019s Sports Head'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "heavyweight-boxing-nfl-cuts-and-tennis-this-weeks-global-sports-roundup",
+      "detail": "Title 75 chars (max 60): \"Heavyweight Boxing, NFL Cuts, and Tennis: This Week's Global Sports Ro\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "igaming-industry-updates-prediction-markets-slot-launches",
+      "detail": "Title 66 chars (max 60): 'iGaming Industry Updates: From Prediction Markets to Slot Launches'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "african-football-roundup-caf-womens-champions-league",
+      "detail": "Title 61 chars (max 60): \"African Football Roundup: CAF Women's Champions League & More\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "igaming-insights-prediction-markets-responsible-gambling",
+      "detail": "Title 65 chars (max 60): 'iGaming Insights: From Prediction Markets to Responsible Gambling'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "springboks-all-blacks-rugby-cricket-football-betting-news",
+      "detail": "Title 69 chars (max 60): 'Springboks Stun All Blacks: Rugby, Cricket, and Football Betting News'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-action-itauma-premier-league-boxing",
+      "detail": "Title 77 chars (max 60): \"Global Sports Action: Itauma's Historic Fight, Premier League Clash, a\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-transfer-saga-liverpool-aston-villa-arsenal-moves",
+      "detail": "Title 72 chars (max 60): 'Premier League Transfer Saga: Liverpool, Aston Villa, Arsenal Make Mov'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "psl-super-eagles-update-pirates-future-chiefs-transfer-hull-win-nff-row",
+      "detail": "Title 78 chars (max 60): 'PSL & Super Eagles Update: Pirates Future, Chiefs Transfer, Hull Win &'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "live-sports-action-premier-league-rugby-cricket-updates",
+      "detail": "Title 62 chars (max 60): 'Live Sports Action: Premier League, Rugby, and Cricket Updates'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-transfer-news-liverpool-aston-villa-fulham",
+      "detail": "Title 77 chars (max 60): 'Premier League Transfer Frenzy: Liverpool, Aston Villa, and Fulham Mak'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "steven-gerrard-apology-heavyweight-boxing-premier-league-action",
+      "detail": "Title 71 chars (max 60): \"Steven Gerrard's Apology, Heavyweight Boxing, and Premier League Actio\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tottenham-everton-juventus-women-sports-news",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bankroll-management-tips-using-today-top-sports-stories",
+      "detail": "Excerpt 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-titans-fernandes-hrgovic",
+      "detail": "Excerpt 158 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-transfer-frenzy-united-liverpool-city-2026-season",
+      "detail": "Excerpt 200 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nfl-cuts-marathon-records-boxing-shocks-sports-news",
+      "detail": "Excerpt 163 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "heavyweight-boxing-nfl-cuts-and-tennis-this-weeks-global-sports-roundup",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "igaming-industry-updates-prediction-markets-slot-launches",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "igaming-insights-prediction-markets-responsible-gambling",
+      "detail": "Excerpt 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sport-news-africa-betting-roundup-aug-29-2026",
+      "detail": "Excerpt 186 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-transfer-frenzy-barcola-alvarez",
+      "detail": "Excerpt 248 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "springboks-all-blacks-rugby-cricket-football-betting-news",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "f1-2026-norris-mclaren-haas-2027-lineup",
+      "detail": "Excerpt 167 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-action-itauma-premier-league-boxing",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "liverpools-barcola-deal-betting-implications",
+      "detail": "Excerpt 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-transfer-saga-liverpool-aston-villa-arsenal-moves",
+      "detail": "Excerpt 217 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "psl-super-eagles-update-pirates-future-chiefs-transfer-hull-win-nff-row",
+      "detail": "Excerpt 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "live-sports-action-premier-league-rugby-cricket-updates",
+      "detail": "Excerpt 214 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-transfer-news-liverpool-aston-villa-fulham",
+      "detail": "Excerpt 239 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "steven-gerrard-apology-heavyweight-boxing-premier-league-action",
+      "detail": "Excerpt 175 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "premier-league-transfer-saga-liverpool-aston-villa-arsenal-moves",
+      "detail": "High title overlap (7 meaningful tokens) with 'premier-league-transfer-news-liverpool-aston-villa-fulham' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
