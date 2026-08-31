@@ -1,13 +1,19 @@
 {
   "date": "2026-08-31",
-  "total": 9,
+  "total": 10,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 1,
     "MEDIUM": 8,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-transfer-window-chisholm-jr-mlb-record",
+      "detail": "Title 71 chars (max 60): 'Premier League Transfer Window Heats Up as Chisholm Jr. Sets MLB Recor'"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
