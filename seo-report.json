@@ -1,72 +1,18 @@
 {
   "date": "2026-08-31",
-  "total": 18,
+  "total": 9,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 9,
+    "HIGH": 0,
     "MEDIUM": 8,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "premier-league-transfer-deadline-day-2026",
-      "detail": "Title 80 chars (max 60): 'Premier League Transfer Deadline Day: Last-Minute Deals Shake Up Betti'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "deadline-day-drama-nfl-shocks-sports-news",
-      "detail": "Title 67 chars (max 60): \"Deadline Day Drama & NFL Shocks: This Week's Hottest Sports Stories\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ges-inter-regional-table-tennis-semifinal-betting-tips-ghana",
-      "detail": "Title 65 chars (max 60): 'GES Inter-Regional Table Tennis: Semifinal Betting Tips for Ghana'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "transfer-deadline-day-2026-premier-league-odds",
-      "detail": "Title 75 chars (max 60): 'Transfer Deadline Day 2026: How Last-Minute Deals Shift Premier League'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "premier-league-transfer-deadline-day-2026",
-      "detail": "Excerpt 265 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "us-open-2026-djokovic-venus-williams-upsets",
-      "detail": "Excerpt 159 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "ges-inter-regional-table-tennis-semifinal-betting-tips-ghana",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "transfer-deadline-day-2026-premier-league-odds",
-      "detail": "Excerpt 241 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "table-tennis-volta-ashanti-ges-betting-tips-ghana",
-      "detail": "Excerpt 169 chars (max 155)"
-    },
-    {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
       "page": "premier-league-transfer-deadline-day-2026",
-      "detail": "High title overlap (6 meaningful tokens) with 'transfer-deadline-day-2026-premier-league-odds' \u2014 consider noindex"
+      "detail": "High title overlap (5 meaningful tokens) with 'transfer-deadline-day-2026-premier-league-odds' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
