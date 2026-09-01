@@ -1,13 +1,31 @@
 {
   "date": "2026-09-01",
-  "total": 9,
+  "total": 12,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 3,
     "MEDIUM": 8,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "rugby-betting-springboks-all-blacks-transfers",
+      "detail": "Title 65 chars (max 60): 'Rugby Betting Spotlight: Springboks vs All Blacks & Transfer News'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "kruger-v-pirates-preview",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rugby-betting-springboks-all-blacks-transfers",
+      "detail": "Excerpt 182 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
