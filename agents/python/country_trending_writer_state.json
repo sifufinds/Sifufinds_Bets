@@ -142,28 +142,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-01T05:23:28.644229+00:00",
-    "candidates_available": 365,
+    "checked_at": "2026-09-01T06:14:21.129508+00:00",
+    "candidates_available": 364,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Boks' squad depth tested as Willemse becomes injury betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 486)"
-      },
-      {
-        "keyword": "Brentford sign £40m defender Diouf from West Ham betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "brentford-sign-diouf-tanzania-betting-tips"
+        "reason": "fact_check: 2.75; 1.40; 21.00; 2.80; 1.35; 20.50; 2.70; 1.45; 22.00"
       },
       {
         "keyword": "NPFL Salisu Yusuf backs Shooting Stars improve after betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Bookmakers like Bet9ja and BetKing are offering competitive odds on NPFL matches, with Bet9ja’s 170% ACCA Boost providing extra value for multi-bet enthusiasts.; Bet9ja’s 170% ACCA Boost"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
