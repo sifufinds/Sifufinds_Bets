@@ -1,9 +1,9 @@
 {
-  "date": "2026-08-31",
-  "total": 10,
+  "date": "2026-09-01",
+  "total": 37,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 28,
     "MEDIUM": 8,
     "INFO": 1
   },
@@ -11,8 +11,170 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "premier-league-transfer-window-chisholm-jr-mlb-record",
-      "detail": "Title 71 chars (max 60): 'Premier League Transfer Window Heats Up as Chisholm Jr. Sets MLB Recor'"
+      "page": "us-open-2026-alcaraz-djokovic-eala",
+      "detail": "Title 71 chars (max 60): \"US Open 2026: Alcaraz Returns, Djokovic's Future Uncertain, Eala Shine\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-deadline-day-injury-updates-betting-impact",
+      "detail": "Title 66 chars (max 60): 'Deadline Day Drama & Injury Shocks: How Today\u2019s News Moves Markets'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "arsenal-bayern-sabalenka-betting-angles",
+      "detail": "Title 65 chars (max 60): 'Arsenal, Bayern, Sabalenka, and More: Betting Angles for the Week'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-us-open-transfers-nba-inspiration",
+      "detail": "Title 64 chars (max 60): 'Global Sports Headlines: US Open, Transfers, and NBA Inspiration'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "shark-attacks-to-lebrons-move-sports-stories-shaking-up-betting-markets",
+      "detail": "Title 78 chars (max 60): \"From Shark Attacks to LeBron's Move: Sports Stories Shaking Up Betting\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "namibia-sundowns-caf-womens-champions-league-victory-tanzania-betting-tips",
+      "detail": "Title 77 chars (max 60): \"Namibia Sundowns' CAF Women's Champions League Victory: Tanzania Betti\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "kenya-international-league-t20-continental-cup-betting-tips",
+      "detail": "Title 83 chars (max 60): 'Kenya Ready for International League T20 Continental Cup: Betting Tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "fifa-ban-lifted-chiefs-striker-khanyisa-mayo-south-africa-betting-tips",
+      "detail": "Title 75 chars (max 60): 'FIFA Ban Lifted for Chiefs Striker Khanyisa Mayo: South Africa Betting'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-transfer-news-man-city-everton-spurs",
+      "detail": "Title 80 chars (max 60): 'Premier League Transfer Frenzy: Man City, Everton, and Spurs Shake Up '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "college-basketball-missouri-mark-mitchell-returns",
+      "detail": "Title 62 chars (max 60): 'College Basketball Shakes Up Early Rankings as Missouri Climbs'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-nfl-preseason-betting-insights",
+      "detail": "Title 63 chars (max 60): 'Premier League Kick-Off & NFL Preseason Moves: Betting Insights'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "eastern-macabes-dodowa-baseball-betting-tips-ghana",
+      "detail": "Title 65 chars (max 60): \"Eastern Macabes' 9-1 Win Over Dodowa: Baseball Betting Tips Ghana\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "chelsea-camara-transfer-nigeria-betting-tips",
+      "detail": "Title 78 chars (max 60): 'Chelsea in Advanced Talks to Sign Monaco Midfielder \u2013 Betting Tips for'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-deadline-day-newcastle-liverpool-man-city-deals",
+      "detail": "Title 72 chars (max 60): 'Transfer Deadline Day Drama: Newcastle, Liverpool, Man City Strike Dea'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "us-open-2026-alcaraz-djokovic-eala",
+      "detail": "Excerpt 192 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "arsenal-bayern-sabalenka-betting-angles",
+      "detail": "Excerpt 231 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "brentford-sign-diouf-tanzania-betting-tips",
+      "detail": "Excerpt 192 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-us-open-transfers-nba-inspiration",
+      "detail": "Excerpt 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "shark-attacks-to-lebrons-move-sports-stories-shaking-up-betting-markets",
+      "detail": "Excerpt 194 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "namibia-sundowns-caf-womens-champions-league-victory-tanzania-betting-tips",
+      "detail": "Excerpt 209 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-darts-nba-football-transfers",
+      "detail": "Excerpt 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-transfer-news-man-city-everton-spurs",
+      "detail": "Excerpt 219 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "college-basketball-missouri-mark-mitchell-returns",
+      "detail": "Excerpt 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-transfer-frenzy-mudryk-ndiaye",
+      "detail": "Excerpt 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "eastern-macabes-dodowa-baseball-betting-tips-ghana",
+      "detail": "Excerpt 208 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ongaki-double-win-nyali-club-kenya-betting-tips",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "chelsea-camara-transfer-nigeria-betting-tips",
+      "detail": "Excerpt 158 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-deadline-day-newcastle-liverpool-man-city-deals",
+      "detail": "Excerpt 171 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
