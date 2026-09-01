@@ -1,9 +1,9 @@
 {
   "date": "2026-09-01",
-  "total": 12,
+  "total": 16,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 7,
     "MEDIUM": 8,
     "INFO": 1
   },
@@ -11,20 +11,44 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "rugby-betting-springboks-all-blacks-transfers",
-      "detail": "Title 65 chars (max 60): 'Rugby Betting Spotlight: Springboks vs All Blacks & Transfer News'"
+      "page": "browns-coach-monken-backs-deshaun-watson-impact-african-betting",
+      "detail": "Title 75 chars (max 60): 'Browns coach Monken backs Deshaun Watson \u2013 impact on African sports be'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "springboks-vs-all-blacks-betting-tips-willemse-injury",
+      "detail": "Title 75 chars (max 60): \"Springboks vs All Blacks: Betting Tips as Willemse Injury Tests Boks' \""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-betting-guide-africa-2026",
+      "detail": "Title 62 chars (max 60): 'NBA Betting Guide for African Fans: Tips, Odds, and Strategies'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "medeama-champions-of-champions-betting-tips-ghana",
+      "detail": "Title 68 chars (max 60): 'Medeama Crowned Champions of Champions \u2013 Betting Tips for Ghana Fans'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "kruger-v-pirates-preview",
-      "detail": "Excerpt 161 chars (max 155)"
+      "page": "browns-coach-monken-backs-deshaun-watson-impact-african-betting",
+      "detail": "Excerpt 193 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "rugby-betting-springboks-all-blacks-transfers",
-      "detail": "Excerpt 182 chars (max 155)"
+      "page": "nba-betting-guide-africa-2026",
+      "detail": "Excerpt 194 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "medeama-champions-of-champions-betting-tips-ghana",
+      "detail": "Excerpt 168 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
