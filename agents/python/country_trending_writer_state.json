@@ -143,31 +143,35 @@
     "Medeama win Champions Champions Cup, strike early warning betting tips Ghana": {
       "slug": "medeama-champions-of-champions-betting-tips-ghana",
       "posted_at": "2026-09-01T20:55:03.587858+00:00"
+    },
+    "Boks' squad depth tested as Willemse becomes injury betting tips South Africa": {
+      "slug": "springboks-vs-all-blacks-betting-tips-willemse-injury",
+      "posted_at": "2026-09-01T21:55:36.755612+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-01T21:10:54.466757+00:00",
-    "candidates_available": 363,
+    "checked_at": "2026-09-01T21:55:44.415985+00:00",
+    "candidates_available": 362,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Medeama win Champions Champions Cup, strike early warning betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "medeama-champions-of-champions-betting-tips-ghana"
-      },
-      {
         "keyword": "Pirates coach outlines plan 'tricky' Kruger betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: 1.50; 1.45; 1.55; 3.75; 3.80; 3.60; 6.00; 6.50; 5.80; R25 Free Bet + 50 Free Spins; R50 Free Bet; 100% match up to R5,000; R200 Free Bet on first deposit"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 465)"
       },
       {
         "keyword": "Nigeria CAFWCLQ - Nigerian Champions Edo Queens Chase betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: 1.65; 1.70; 1.60; 1.75; 3.50; 3.40; 3.60; 3.30; 4.80; 4.50; 5.00; 4.70; 2.10; 2.00; 2.15; 2.05; 2.00; 1.95; 2.05; 1.90; 250% Karibu Gift on First Deposit; 100% First Deposit Bonus; 200% First Deposit Bonus"
+        "reason": "fact_check: Edo Queens have been in impressive form throughout the CAFWCL qualifiers. Their campaign began with a 7-0 thrashing of AS Garde Nationale, showcasing their attacking prowess.; Their most recent victory against ASEC Mimosas in the quarter-finals was a tighter affair, highlighting their ability to grind out results under pressure.; Coach Boboye’s side has demonstrated resilience and tactical flexibility, making them a formidable force in the tournament."
+      },
+      {
+        "keyword": "Boks' squad depth tested as Willemse becomes injury betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "springboks-vs-all-blacks-betting-tips-willemse-injury"
       }
     ]
   }
