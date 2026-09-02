@@ -151,19 +151,39 @@
     "Pirates coach outlines plan 'tricky' Kruger betting tips South Africa": {
       "slug": "orlando-pirates-vs-kruger-united-betting-tips-south-africa",
       "posted_at": "2026-09-02T06:45:26.555888+00:00"
+    },
+    "Kenyan team shines continental motocross tournament betting tips Kenya": {
+      "slug": "kenyan-team-continental-motocross-betting-tips",
+      "posted_at": "2026-09-02T19:02:55.535462+00:00"
+    },
+    "Ghana Armwrestling courts India support ahead World Championships betting tips Ghana": {
+      "slug": "ghana-armwrestling-world-championships-betting-tips",
+      "posted_at": "2026-09-02T19:11:02.718859+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-02T17:03:04.319240+00:00",
+    "checked_at": "2026-09-02T19:11:09.270472+00:00",
     "candidates_available": 364,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: Enzo Fernández has completed a record‑equalling £125 million move from Chelsea to Manchester City; The fee reported by Punch NG is £125 million, a record‑equalling amount for a British transfer"
+      },
+      {
+        "keyword": "Kenyan team shines continental motocross tournament betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "kenyan-team-continental-motocross-betting-tips"
+      },
+      {
+        "keyword": "Ghana Armwrestling courts India support ahead World Championships betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "ghana-armwrestling-world-championships-betting-tips"
       }
     ]
   }
