@@ -150,28 +150,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-01T21:55:44.415985+00:00",
-    "candidates_available": 362,
+    "checked_at": "2026-09-02T02:30:05.480572+00:00",
+    "candidates_available": 361,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Pirates coach outlines plan 'tricky' Kruger betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 465)"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Nigeria CAFWCLQ - Nigerian Champions Edo Queens Chase betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: Edo Queens have been in impressive form throughout the CAFWCL qualifiers. Their campaign began with a 7-0 thrashing of AS Garde Nationale, showcasing their attacking prowess.; Their most recent victory against ASEC Mimosas in the quarter-finals was a tighter affair, highlighting their ability to grind out results under pressure.; Coach Boboye’s side has demonstrated resilience and tactical flexibility, making them a formidable force in the tournament."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 473)"
       },
       {
-        "keyword": "Boks' squad depth tested as Willemse becomes injury betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "springboks-vs-all-blacks-betting-tips-willemse-injury"
+        "keyword": "NPFL Salisu Yusuf backs Shooting Stars improve after betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "fact_check: featured three first-half goals and two penalties; 2.20; 1.85; 1.90; 2.15; 1.90; 1.85; 2.25; 1.80; 1.95"
       }
     ]
   }
