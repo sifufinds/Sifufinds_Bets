@@ -154,28 +154,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-02T07:00:38.417708+00:00",
-    "candidates_available": 361,
+    "checked_at": "2026-09-02T08:36:51.053070+00:00",
+    "candidates_available": 364,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Pirates coach outlines plan 'tricky' Kruger betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "orlando-pirates-vs-kruger-united-betting-tips-south-africa"
-      },
-      {
-        "keyword": "Nigeria CAFWCLQ - Nigerian Champions Edo Queens Chase betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "fact_check: Edo Queens' performance against ASEC Mimosas, as highlighted by Premium Times; A 2-1 win for Edo Queens might be a plausible outcome, considering their recent performances"
-      },
-      {
-        "keyword": "NPFL Salisu Yusuf backs Shooting Stars improve after betting tips Nigeria",
+        "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: The match against Inter Lagos was a thriller, with three first-half goals and two penalties keeping fans on the edge of their seats.; The 3-2 scoreline in their opening match suggests that Shooting Stars’ games could be high-scoring affairs.; A 2-1 or 3-1 win for Shooting Stars might be worth considering, based on their recent performance."
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Kenyan team shines continental motocross tournament betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
