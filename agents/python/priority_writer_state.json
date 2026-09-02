@@ -271,19 +271,35 @@
     "Eastern Macabes beat Dodowa 9-1 claim Koshien Baseball betting tips Ghana": {
       "slug": "eastern-macabes-dodowa-baseball-betting-tips-ghana",
       "posted_at": "2026-09-02T06:07:33.642811+00:00"
+    },
+    "Kenyan team shines continental motocross tournament betting tips Kenya": {
+      "slug": "kenyan-team-shines-motocross-tournament-betting-tips-kenya",
+      "posted_at": "2026-09-02T20:28:30.311202+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-02T08:26:27.342764+00:00",
-    "candidates_available": 453,
+    "checked_at": "2026-09-02T20:47:26.630087+00:00",
+    "candidates_available": 457,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Kenyan team shines continental motocross tournament betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "kenyan-team-shines-motocross-tournament-betting-tips-kenya"
+      },
+      {
+        "keyword": "Ghana Armwrestling courts India support ahead World Championships betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: only 947 words (minimum 1000); final line was 'No, **FairPari Ghana** explicitly excludes crypto deposits from its bonus offer, and other bookmakers primarily focus on mobile money and card payments.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
