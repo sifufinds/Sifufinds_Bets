@@ -1,54 +1,24 @@
 {
-  "date": "2026-09-01",
-  "total": 16,
+  "date": "2026-09-02",
+  "total": 11,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
-    "MEDIUM": 8,
+    "HIGH": 0,
+    "MEDIUM": 10,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "browns-coach-monken-backs-deshaun-watson-impact-african-betting",
-      "detail": "Title 75 chars (max 60): 'Browns coach Monken backs Deshaun Watson \u2013 impact on African sports be'"
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "eastern-macabes-9-1-win-over-dodowa-baseball-betting-tips-for-ghana",
+      "detail": "High title overlap (5 meaningful tokens) with 'eastern-macabes-dodowa-baseball-betting-tips-ghana' \u2014 consider noindex"
     },
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "springboks-vs-all-blacks-betting-tips-willemse-injury",
-      "detail": "Title 75 chars (max 60): \"Springboks vs All Blacks: Betting Tips as Willemse Injury Tests Boks' \""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nba-betting-guide-africa-2026",
-      "detail": "Title 62 chars (max 60): 'NBA Betting Guide for African Fans: Tips, Odds, and Strategies'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "medeama-champions-of-champions-betting-tips-ghana",
-      "detail": "Title 68 chars (max 60): 'Medeama Crowned Champions of Champions \u2013 Betting Tips for Ghana Fans'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "browns-coach-monken-backs-deshaun-watson-impact-african-betting",
-      "detail": "Excerpt 193 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nba-betting-guide-africa-2026",
-      "detail": "Excerpt 194 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "medeama-champions-of-champions-betting-tips-ghana",
-      "detail": "Excerpt 168 chars (max 155)"
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "chelsea-sign-monaco-midfielder-betting-tips-nigeria",
+      "detail": "High title overlap (6 meaningful tokens) with 'chelsea-camara-transfer-nigeria-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
