@@ -1,54 +1,102 @@
 {
-  "date": "2026-09-01",
-  "total": 16,
+  "date": "2026-09-02",
+  "total": 24,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
-    "MEDIUM": 8,
+    "HIGH": 13,
+    "MEDIUM": 10,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "browns-coach-monken-backs-deshaun-watson-impact-african-betting",
-      "detail": "Title 75 chars (max 60): 'Browns coach Monken backs Deshaun Watson \u2013 impact on African sports be'"
+      "page": "orlando-pirates-vs-kruger-united-betting-tips-south-africa",
+      "detail": "Title 80 chars (max 60): \"Orlando Pirates vs Kruger United: Coach's Plan and Betting Tips for So\""
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "springboks-vs-all-blacks-betting-tips-willemse-injury",
-      "detail": "Title 75 chars (max 60): \"Springboks vs All Blacks: Betting Tips as Willemse Injury Tests Boks' \""
+      "page": "eastern-macabes-9-1-win-over-dodowa-baseball-betting-tips-for-ghana",
+      "detail": "Title 69 chars (max 60): 'Eastern Macabes\u2019 9-1 Win Over Dodowa: Baseball Betting Tips for Ghana'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "nba-betting-guide-africa-2026",
-      "detail": "Title 62 chars (max 60): 'NBA Betting Guide for African Fans: Tips, Odds, and Strategies'"
+      "page": "ongaki-rare-double-win-nyali-club-betting-tips-kenya",
+      "detail": "Title 71 chars (max 60): 'Ongaki\u2019s Rare Double Win at Nyali Club: Betting Tips for Kenyan Punter'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "medeama-champions-of-champions-betting-tips-ghana",
-      "detail": "Title 68 chars (max 60): 'Medeama Crowned Champions of Champions \u2013 Betting Tips for Ghana Fans'"
+      "page": "chelsea-sign-monaco-midfielder-betting-tips-nigeria",
+      "detail": "Title 83 chars (max 60): 'Chelsea Advanced Talks to Sign Monaco Midfielder: Betting Tips for Nig'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "edo-queens-cafwclq-betting-tips-tanzania",
+      "detail": "Title 61 chars (max 60): \"Edo Queens' CAFWCLQ Chase: Betting Tips for Tanzanian Punters\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "pirates-vs-kruger-betting-tips-south-africa",
+      "detail": "Title 80 chars (max 60): \"Pirates Coach's Plan for 'Tricky' Kruger: Betting Tips for South Afric\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "medeama-champions-cup-betting-tips-ghana",
+      "detail": "Title 65 chars (max 60): \"Medeama's Champions Cup Win: Early Betting Tips for Ghana Punters\""
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "browns-coach-monken-backs-deshaun-watson-impact-african-betting",
-      "detail": "Excerpt 193 chars (max 155)"
+      "page": "us-open-2026-zverev-gauff-highlights",
+      "detail": "Excerpt 176 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "nba-betting-guide-africa-2026",
-      "detail": "Excerpt 194 chars (max 155)"
+      "page": "orlando-pirates-vs-kruger-united-betting-tips-south-africa",
+      "detail": "Excerpt 207 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "medeama-champions-of-champions-betting-tips-ghana",
-      "detail": "Excerpt 168 chars (max 155)"
+      "page": "chelsea-sign-monaco-midfielder-betting-tips-nigeria",
+      "detail": "Excerpt 165 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "edo-queens-cafwclq-betting-tips-tanzania",
+      "detail": "Excerpt 197 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "pirates-vs-kruger-betting-tips-south-africa",
+      "detail": "Excerpt 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "medeama-champions-cup-betting-tips-ghana",
+      "detail": "Excerpt 160 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "orlando-pirates-vs-kruger-united-betting-tips-south-africa",
+      "detail": "High title overlap (5 meaningful tokens) with 'pirates-vs-kruger-betting-tips-south-africa' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "chelsea-sign-monaco-midfielder-betting-tips-nigeria",
+      "detail": "High title overlap (6 meaningful tokens) with 'chelsea-camara-transfer-nigeria-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
