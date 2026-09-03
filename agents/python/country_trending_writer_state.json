@@ -178,28 +178,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-03T19:01:21.213267+00:00",
-    "candidates_available": 354,
+    "checked_at": "2026-09-03T21:02:07.098018+00:00",
+    "candidates_available": 353,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Carlos Queiroz stays GFA hands Portuguese coach new betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 419)"
-      },
-      {
-        "keyword": "Williams' blunt goalkeeper message 'That is nature beast' betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "ronwen-williams-psl-message-south-africa-betting-tips"
+        "reason": "fact_check: Sportybet Ghana pushed the Black Stars win odds slightly higher; Betway Ghana, meanwhile, kept its odds steadier; Typical odds for a Black Stars win (qualifier); a minimum odds floor of 3.15; Slightly lower than Sportybet, reflecting a tighter margin; Competitive odds that sit between Sportybet and Betway; Often matches Sportybet’s high‑odd philosophy; Expect the odds to be slightly lower than they were during the coaching uncertainty period; a minimum odds floor of 3.15"
       },
       {
         "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "fact_check: £125m switch; Bet9ja and 1xBet Nigeria have adjusted their odds; BetKing offers a no-deposit free bet; 22Bet’s massive first deposit bonus; Bet9ja’s ACCA Boost; Melbet Nigeria’s 200% first deposit bonus; Man City to Win the PL; Fernández to Score 5+ Goals; Chelsea Top 4 Finish"
+      },
+      {
+        "keyword": "FIFA endorses player participation transfer fees betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: Hollywoodbets’ R25 no-deposit free bet; Supabets’ 100% match up to R5,000; BetXchange’s R200 free bet on your first deposit; PSL Club to Receive Solidarity Payment; Player to Score After Transfer; Club to Win DStv Premiership"
       }
     ]
   }
