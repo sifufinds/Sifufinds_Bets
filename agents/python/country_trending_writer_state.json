@@ -162,7 +162,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-03T04:04:26.454055+00:00",
+    "checked_at": "2026-09-03T06:03:26.267862+00:00",
     "candidates_available": 366,
     "attempted": 3,
     "written": 0,
@@ -171,19 +171,13 @@
         "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Bet9ja, one of Nigeria’s leading bookmakers, now offers City at shorter odds compared to pre-transfer window prices.; 22Bet Nigeria has also adjusted its markets, reflecting the increased confidence in Pep Guardiola’s side.; BetKing offering longer prices on the West London club.; Melbet Nigeria offers a range of player performance markets, including goals, assists, and cards, which could provide value in the coming weeks.; | Bookmaker       | Manchester City | Arsenal        | Liverpool      | Chelsea        |\n|-----------------|-----------------|----------------|----------------|-----------------|\n| Bet9ja          | 1.60            | 5.00           | 6.50           | 15.00          |\n| 22Bet Nigeria   | 1.55            | 4.80           | 6.30           | 14.50          |\n| Melbet Nigeria  | 1.60            | 5.20           | 6.70           | 15.50          |; Nigerian bookmakers like 1xBet and Melbet are likely to shorten City’s odds in this market, so now could be the time to back them before prices drop further."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 467)"
       },
       {
         "keyword": "FIFA endorses player participation transfer fees betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: Bookmakers like Hollywoodbets and Supabets may introduce more specific markets on player transfers, including odds on whether a player will move and the potential fee involved.; Hollywoodbets: Claim a R25 free bet and 50 free spins with no deposit required. Perfect for testing new markets without risking your own funds.; Supabets: Get a R50 free bet on registration and a 100% match up to R5,000 on your first deposit. Ideal for backing your predictions on player transfers or club performances.; BetXchange: Receive a R200 free bet on your first deposit, giving you extra funds to explore emerging markets.; | Bookmaker       | Mamelodi Sundowns | Kaizer Chiefs    | Orlando Pirates  | SuperSport United |\n|-----------------|-------------------|------------------|------------------|-------------------|\n| Hollywoodbets   | 1.50              | 5.00             | 6.00             | 12.00             |\n| Supabets        | 1.45              | 4.80             | 5.80             | 11.50             |\n| BetXchange      | 1.55              | 5.20             | 6.20             | 12.50             |; While not yet confirmed, bookmakers like Hollywoodbets and Supabets may introduce markets on player transfers, including potential fees."
-      },
-      {
-        "keyword": "Nigeria FIFA Accepts Gusau, Excos Resignation, As NFF betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "fact_check: Tanzanian bookmakers like Betika and SportPesa are likely to adjust their odds accordingly, offering punters fresh opportunities.; Betika Tanzania: Claim a free bet on signup and a TSh 5,000 welcome bonus on your first deposit. Perfect for exploring new markets.; SportPesa Tanzania: Get a 250% Karibu Gift on your first deposit, giving you ample funds to back your predictions.; 22Bet Tanzania: Their 100% first deposit bonus up to TSh 460,000 is ideal for those looking to maximise their stakes on regional football markets.; | Bookmaker       | Nigeria         | Tanzania        | Ghana           | Egypt           |\n|-----------------|-----------------|-----------------|-----------------|-----------------|\n| Betika Tanzania | 2.00            | 6.00            | 4.50            | 3.00            |\n| SportPesa Tanzania | 1.90          | 5.80            | 4.30            | 2.90            |\n| 22Bet Tanzania  | 2.10            | 6.20            | 4.60            | 3.10            |; While not yet confirmed, bookmakers like Betika and SportPesa may introduce specific markets on Nigerian football, including club and national team performances."
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
