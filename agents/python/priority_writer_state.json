@@ -286,14 +286,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-03T11:19:21.536633+00:00",
-    "candidates_available": 457,
+    "checked_at": "2026-09-03T15:17:17.593929+00:00",
+    "candidates_available": 456,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Hunt glory as stars descend Brussels Diamond League betting tips Kenya",
-        "country": "Kenya",
+        "keyword": "Carlos Queiroz stays GFA hands Portuguese coach new betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Williams' blunt goalkeeper message 'That is nature beast' betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
