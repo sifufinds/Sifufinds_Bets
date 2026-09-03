@@ -167,31 +167,35 @@
     "Hunt glory as stars descend Brussels Diamond League betting tips Kenya": {
       "slug": "diamond-league-brussels-2026-kenya-betting-tips",
       "posted_at": "2026-09-03T11:19:53.670724+00:00"
+    },
+    "NBA Khalifa Diop prend la direction de Cleveland betting tips Tanzania": {
+      "slug": "khalifa-diop-cleveland-cavaliers-tanzania-betting-tips",
+      "posted_at": "2026-09-03T16:40:09.973247+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-03T15:36:41.855530+00:00",
+    "checked_at": "2026-09-03T16:40:13.095519+00:00",
     "candidates_available": 368,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Carlos Queiroz stays GFA hands Portuguese coach new betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 459)"
+        "result": "skipped",
+        "reason": "similar_title_exists"
       },
       {
         "keyword": "Williams' blunt goalkeeper message 'That is nature beast' betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: R25 Free Bet + 50 Free Spins – No Deposit Required!; R50 Free Bet + 100% Match Up to R5,000 + 100 Spins; R200 Free Bet on First Deposit; 25 Free Spins + 100% Match Up to R5,000 + 50 Spins; 100% First Deposit Bonus – Up to €100; 100% First Deposit Bonus"
+        "reason": "fact_check: Williams' recent standout performance; Hollywoodbets' no-deposit offer is a fantastic way to try out their platform without risking your own money, but the free bet must be used within 24 hours."
       },
       {
         "keyword": "NBA Khalifa Diop prend la direction de Cleveland betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "fact_check: Free Bet on Signup + TSh 5,000 Welcome Bonus; 250% Karibu Gift on First Deposit; 100% First Deposit Bonus – Up to TSh 460,000; 200% First Deposit Bonus – Up to TSh 500,000; 100% First Deposit Bonus – Up to €100; 50% Welcome Bonus – Up to TSh 120,000"
+        "result": "written",
+        "slug": "khalifa-diop-cleveland-cavaliers-tanzania-betting-tips"
       }
     ]
   }

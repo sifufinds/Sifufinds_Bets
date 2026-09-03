@@ -283,25 +283,43 @@
     "FIFA endorses player participation transfer fees betting tips South Africa": {
       "slug": "fifa-player-participation-transfer-fees-betting-tips-south-africa",
       "posted_at": "2026-09-03T04:01:15.685868+00:00"
+    },
+    "Carlos Queiroz stays GFA hands Portuguese coach new betting tips Ghana": {
+      "slug": "carlos-queiroz-stays-gfa-hands-portuguese-coach-new-betting-tips-ghana",
+      "posted_at": "2026-09-03T16:20:37.034988+00:00"
+    },
+    "Williams' blunt goalkeeper message 'That is nature beast' betting tips South Africa": {
+      "slug": "williams-blunt-goalkeeper-message-betting-tips-south-africa",
+      "posted_at": "2026-09-03T16:20:53.484288+00:00"
+    },
+    "NBA Khalifa Diop prend la direction de Cleveland betting tips Tanzania": {
+      "slug": "nba-khalifa-diop-cleveland-tanzania-betting-tips",
+      "posted_at": "2026-09-03T16:21:56.361240+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-03T15:17:17.593929+00:00",
+    "checked_at": "2026-09-03T16:21:59.610339+00:00",
     "candidates_available": 456,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
         "keyword": "Carlos Queiroz stays GFA hands Portuguese coach new betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "carlos-queiroz-stays-gfa-hands-portuguese-coach-new-betting-tips-ghana"
       },
       {
         "keyword": "Williams' blunt goalkeeper message 'That is nature beast' betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "williams-blunt-goalkeeper-message-betting-tips-south-africa"
+      },
+      {
+        "keyword": "NBA Khalifa Diop prend la direction de Cleveland betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "nba-khalifa-diop-cleveland-tanzania-betting-tips"
       }
     ]
   }
