@@ -1,13 +1,217 @@
 {
-  "date": "2026-09-02",
-  "total": 11,
+  "date": "2026-09-03",
+  "total": 45,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 10,
+    "HIGH": 31,
+    "MEDIUM": 13,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-aubameyang-bailey-transfer-news",
+      "detail": "Title 74 chars (max 60): \"Global Sports Headlines: Aubameyang Retires, Bailey's Shock Move, and \""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nfl-tennis-basketball-latest-sports-news-african-bettors",
+      "detail": "Title 71 chars (max 60): 'NFL, Tennis, and Basketball: The Latest Sports News for African Bettor'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "transfer-deadline-day-betting-markets-richarlison-alcaraz",
+      "detail": "Title 79 chars (max 60): 'Transfer Deadline Day Shakes Up Betting Markets: Richarlison, Alcaraz,'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "fifa-player-participation-transfer-fees-betting-tips-south-africa",
+      "detail": "Title 82 chars (max 60): 'FIFA Endorses Player Participation in Transfer Fees: Betting Tips for '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ghana-armwrestling-india-support-betting-tips",
+      "detail": "Title 81 chars (max 60): 'Ghana Armwrestling Courts India Support: Betting Tips for the World Ch'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-wnba-buzz-embiid-clippers-clinton-team-usa-betting-africa",
+      "detail": "Title 98 chars (max 60): 'NBA & WNBA Buzz: Embiid Work Ethic, Clippers Sanctions & Team USA Plan'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "us-open-nba-drama-global-sports-headlines-african-bettors",
+      "detail": "Title 71 chars (max 60): 'US Open Upsets & NBA Drama: Global Sports Headlines for African Bettor'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-us-open-nba-drama-celtic-perfect-start",
+      "detail": "Title 69 chars (max 60): \"Global Sports Roundup: US Open, NBA Drama, and Celtic's Perfect Start\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "kenyan-team-shines-motocross-tournament-betting-tips-kenya",
+      "detail": "Title 63 chars (max 60): 'Kenyan Team Shines: Motocross Tournament Betting Tips for Kenya'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-igaming-shake-ups-from-brazil-policy-to-new-slot-franchises-what-african-bettors-need-to-know",
+      "detail": "Title 103 chars (max 60): 'Global iGaming Shake\u2011Ups: From Brazil Policy to New Slot Franchises \u2014 '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ghana-armwrestling-world-championships-betting-tips",
+      "detail": "Title 92 chars (max 60): 'Ghana Armwrestling Courts India Support Ahead of World Championships: '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "kenyan-team-continental-motocross-betting-tips",
+      "detail": "Title 78 chars (max 60): 'Kenyan Team Shines at Continental Motocross Tournament: Betting Tips f'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "harper-streak-premier-league-spend-nfl-rookie-betting-africa",
+      "detail": "Title 77 chars (max 60): 'Harper streak, Premier League spend & NFL rookie buzz: African betting'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ryan-garcia-conor-benn-boxing-betting-insights",
+      "detail": "Title 61 chars (max 60): 'Ryan Garcia vs. Conor Benn: Boxing Battle Sparks Betting Buzz'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-man-utd-barcelona-betting-offers",
+      "detail": "Title 63 chars (max 60): 'Global Sports Headlines: Man Utd, Barcelona, and Betting Offers'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-aubameyang-bailey-transfer-news",
+      "detail": "Excerpt 171 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nfl-tennis-basketball-latest-sports-news-african-bettors",
+      "detail": "Excerpt 203 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "transfer-deadline-day-betting-markets-richarlison-alcaraz",
+      "detail": "Excerpt 219 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "fifa-player-participation-transfer-fees-betting-tips-south-africa",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ghana-armwrestling-india-support-betting-tips",
+      "detail": "Excerpt 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-wnba-buzz-embiid-clippers-clinton-team-usa-betting-africa",
+      "detail": "Excerpt 216 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "us-open-nba-drama-global-sports-headlines-african-bettors",
+      "detail": "Excerpt 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-us-open-nba-drama-celtic-perfect-start",
+      "detail": "Excerpt 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "kenyan-team-shines-motocross-tournament-betting-tips-kenya",
+      "detail": "Excerpt 171 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-igaming-shake-ups-from-brazil-policy-to-new-slot-franchises-what-african-bettors-need-to-know",
+      "detail": "Excerpt 206 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ghana-armwrestling-world-championships-betting-tips",
+      "detail": "Excerpt 197 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "kenyan-team-continental-motocross-betting-tips",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rugby-betting-guide-springboks-six-nations",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "harper-streak-premier-league-spend-nfl-rookie-betting-africa",
+      "detail": "Excerpt 201 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ryan-garcia-conor-benn-boxing-betting-insights",
+      "detail": "Excerpt 195 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-man-utd-barcelona-betting-offers",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "ghana-armwrestling-india-support-betting-tips",
+      "detail": "High title overlap (6 meaningful tokens) with 'ghana-armwrestling-world-championships-betting-tips' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "kenyan-team-shines-motocross-tournament-betting-tips-kenya",
+      "detail": "High title overlap (6 meaningful tokens) with 'kenyan-team-continental-motocross-betting-tips' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "global-igaming-shake-ups-from-brazil-policy-to-new-slot-franchises-what-african-bettors-need-to-know",
+      "detail": "High title overlap (6 meaningful tokens) with 'igaming-shake-up-african-bettors' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
