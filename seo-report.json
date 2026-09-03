@@ -1,13 +1,43 @@
 {
   "date": "2026-09-03",
-  "total": 48,
+  "total": 56,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 34,
-    "MEDIUM": 13,
+    "HIGH": 41,
+    "MEDIUM": 14,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "khalifa-diop-cleveland-cavaliers-tanzania-betting-tips",
+      "detail": "Title 61 chars (max 60): 'Khalifa Diop Joins Cleveland Cavaliers: Tanzania Betting Tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-khalifa-diop-cleveland-tanzania-betting-tips",
+      "detail": "Title 74 chars (max 60): 'NBA Khalifa Diop Joins Cleveland \u2013 Tanzania Betting Tips & Best Bookma'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "williams-blunt-goalkeeper-message-betting-tips-south-africa",
+      "detail": "Title 83 chars (max 60): \"Williams' blunt goalkeeper message 'That is nature beast' betting tips\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "carlos-queiroz-stays-gfa-hands-portuguese-coach-new-betting-tips-ghana",
+      "detail": "Title 70 chars (max 60): 'Carlos Queiroz stays GFA hands Portuguese coach new betting tips Ghana'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "england-womens-cricket-ireland-live-betting-insights",
+      "detail": "Title 67 chars (max 60): 'England Women\u2019s Cricket vs Ireland: Live Updates & Betting Insights'"
+    },
     {
       "severity": "HIGH",
       "check": "title_length",
@@ -113,6 +143,18 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
+      "page": "nba-khalifa-diop-cleveland-tanzania-betting-tips",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-fantasy-football-f1-rugby-drama",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
       "page": "sundowns-queiroz-real-madrid-betting-afcon",
       "detail": "Excerpt 163 chars (max 155)"
     },
@@ -211,6 +253,12 @@
       "check": "meta_desc_length",
       "page": "global-sports-headlines-man-utd-barcelona-betting-offers",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "khalifa-diop-cleveland-cavaliers-tanzania-betting-tips",
+      "detail": "High title overlap (5 meaningful tokens) with 'nba-khalifa-diop-cleveland-tanzania-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
