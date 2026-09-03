@@ -171,31 +171,35 @@
     "NBA Khalifa Diop prend la direction de Cleveland betting tips Tanzania": {
       "slug": "khalifa-diop-cleveland-cavaliers-tanzania-betting-tips",
       "posted_at": "2026-09-03T16:40:09.973247+00:00"
+    },
+    "Williams' blunt goalkeeper message 'That is nature beast' betting tips South Africa": {
+      "slug": "ronwen-williams-psl-message-south-africa-betting-tips",
+      "posted_at": "2026-09-03T18:53:59.188874+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-03T16:40:13.095519+00:00",
-    "candidates_available": 368,
+    "checked_at": "2026-09-03T19:01:21.213267+00:00",
+    "candidates_available": 354,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "Carlos Queiroz stays GFA hands Portuguese coach new betting tips Ghana",
         "country": "Ghana",
-        "result": "skipped",
-        "reason": "similar_title_exists"
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 419)"
       },
       {
         "keyword": "Williams' blunt goalkeeper message 'That is nature beast' betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "fact_check: Williams' recent standout performance; Hollywoodbets' no-deposit offer is a fantastic way to try out their platform without risking your own money, but the free bet must be used within 24 hours."
+        "result": "written",
+        "slug": "ronwen-williams-psl-message-south-africa-betting-tips"
       },
       {
-        "keyword": "NBA Khalifa Diop prend la direction de Cleveland betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "khalifa-diop-cleveland-cavaliers-tanzania-betting-tips"
+        "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "fact_check: fact-checker response was not valid JSON"
       }
     ]
   }
