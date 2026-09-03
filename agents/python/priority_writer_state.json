@@ -275,31 +275,39 @@
     "Kenyan team shines continental motocross tournament betting tips Kenya": {
       "slug": "kenyan-team-shines-motocross-tournament-betting-tips-kenya",
       "posted_at": "2026-09-02T20:28:30.311202+00:00"
+    },
+    "Ghana Armwrestling courts India support ahead World Championships betting tips Ghana": {
+      "slug": "ghana-armwrestling-india-support-betting-tips",
+      "posted_at": "2026-09-03T04:00:30.478693+00:00"
+    },
+    "FIFA endorses player participation transfer fees betting tips South Africa": {
+      "slug": "fifa-player-participation-transfer-fees-betting-tips-south-africa",
+      "posted_at": "2026-09-03T04:01:15.685868+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-02T20:47:26.630087+00:00",
-    "candidates_available": 457,
+    "checked_at": "2026-09-03T04:01:19.525974+00:00",
+    "candidates_available": 456,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Kenyan team shines continental motocross tournament betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "kenyan-team-shines-motocross-tournament-betting-tips-kenya"
+        "reason": "quality_gate: final line was 'Always set a budget, avoid chasing losses, and take regular breaks. If you feel your gambling is becoming problematic, seek help from organisations like the **National Lottery Regulatory Commission** or local support groups. Betting is for 18+ only, and all offers come with T&Cs.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ghana Armwrestling courts India support ahead World Championships betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: only 947 words (minimum 1000); final line was 'No, **FairPari Ghana** explicitly excludes crypto deposits from its bonus offer, and other bookmakers primarily focus on mobile money and card payments.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "ghana-armwrestling-india-support-betting-tips"
+      },
+      {
+        "keyword": "FIFA endorses player participation transfer fees betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "fifa-player-participation-transfer-fees-betting-tips-south-africa"
       }
     ]
   }
