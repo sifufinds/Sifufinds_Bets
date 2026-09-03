@@ -1,13 +1,25 @@
 {
-  "date": "2026-09-02",
-  "total": 11,
+  "date": "2026-09-03",
+  "total": 13,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 10,
+    "MEDIUM": 12,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "ghana-armwrestling-india-support-betting-tips",
+      "detail": "High title overlap (5 meaningful tokens) with 'ghana-armwrestling-world-championships-betting-tips' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "kenyan-team-shines-motocross-tournament-betting-tips-kenya",
+      "detail": "High title overlap (5 meaningful tokens) with 'kenyan-team-continental-motocross-betting-tips' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
