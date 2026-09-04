@@ -178,7 +178,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-04T02:07:05.421025+00:00",
+    "checked_at": "2026-09-04T03:51:59.499342+00:00",
     "candidates_available": 353,
     "attempted": 3,
     "written": 0,
@@ -187,19 +187,19 @@
         "keyword": "Carlos Queiroz stays GFA hands Portuguese coach new betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "fact_check: Queiroz, who previously guided Portugal to the 2018 World Cup and managed clubs like Real Madrid and Manchester United; Queiroz has already announced a core group of players for the upcoming qualifiers.; Queiroz favours a flexible 4‑2‑3‑1 system that can adapt to opponent strengths.; Ghana’s home matches in the CAF Confederation Cup have historically produced a 60 % win rate.; Sportybet Ghana | Minimum Odds | 3.15; 22Bet Ghana | Minimum Odds | 1.40"
       },
       {
         "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 476)"
+        "reason": "quality_gate: no '## FAQ' section heading found"
       },
       {
         "keyword": "FIFA endorses player participation transfer fees betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: 2.00 - 3.50; 1.80 - 2.75; 2.20 - 4.00; over $6 million to African countries in 2022; R25 free bet; 100% match up to R5,000; R200 free bet on first deposit; R25 no-deposit free bet; R5,000 match bonus"
+        "reason": "fact_check: Hollywoodbets is offering 3.50 on Transfer Fee; Supabets is offering 3.20 on Transfer Fee; Hollywoodbets is offering 2.20 on Player Participation; Supabets is offering 2.10 on Player Participation"
       }
     ]
   }

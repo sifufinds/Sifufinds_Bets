@@ -299,25 +299,39 @@
     "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria": {
       "slug": "enzo-fernandez-man-city-chelsea-loan-betting-tips-nigeria",
       "posted_at": "2026-09-04T01:51:06.326747+00:00"
+    },
+    "Nigeria FIFA Accepts Gusau, Excos Resignation, As NFF betting tips Tanzania": {
+      "slug": "nigeria-fifa-accepts-gusau-excos-resignation-nff-betting-tanzania",
+      "posted_at": "2026-09-04T03:38:30.095792+00:00"
+    },
+    "CAFWCLQ Edo Queens battle USFA final ticket betting tips Nigeria": {
+      "slug": "cafwclq-edo-queens-usfa-final-ticket-betting-tips-nigeria",
+      "posted_at": "2026-09-04T03:38:58.018231+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-04T02:01:31.605902+00:00",
-    "candidates_available": 440,
+    "checked_at": "2026-09-04T03:40:25.793447+00:00",
+    "candidates_available": 439,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "enzo-fernandez-man-city-chelsea-loan-betting-tips-nigeria"
-      },
       {
         "keyword": "Nigeria FIFA Accepts Gusau, Excos Resignation, As NFF betting tips Tanzania",
         "country": "Tanzania",
+        "result": "written",
+        "slug": "nigeria-fifa-accepts-gusau-excos-resignation-nff-betting-tanzania"
+      },
+      {
+        "keyword": "CAFWCLQ Edo Queens battle USFA final ticket betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "cafwclq-edo-queens-usfa-final-ticket-betting-tips-nigeria"
+      },
+      {
+        "keyword": "David Wakhu wins Sigona Club betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
