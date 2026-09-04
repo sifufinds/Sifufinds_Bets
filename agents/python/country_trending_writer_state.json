@@ -182,7 +182,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-04T18:57:09.667915+00:00",
+    "checked_at": "2026-09-04T20:48:04.737911+00:00",
     "candidates_available": 368,
     "attempted": 3,
     "written": 0,
@@ -191,19 +191,19 @@
         "keyword": "‘It feels really good’ Crystal Palace move excites betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 461)"
       },
       {
         "keyword": "Currie Cup | Four teams left Who will betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: The Lions have historically dominated this fixture, but Griquas’ recent home form could level the playing field.; The Cheetahs have the edge in recent meetings, but the Pumas’ defensive resilience cannot be underestimated.; The Lions are currently considered the favourites to lift the Currie Cup, given their strong squad and recent performances."
+        "reason": "fact_check: Hollywoodbets offers a R25 free bet with no deposit required; Supabets is offering a R50 free bet and a 100% match up to R5,000 for new users; BetXchange’s R200 free bet on your first deposit provides a solid boost to your bankroll; The Lions and Cheetahs are generally considered favourites due to their attacking strengths; Hollywoodbets offers a R25 free bet with no deposit required; Supabets provides a R50 free bet on registration; Griquas’ strong defence could limit the Lions’ scoring opportunities, making under points totals or Griquas with a handicap an interesting bet"
       }
     ]
   }

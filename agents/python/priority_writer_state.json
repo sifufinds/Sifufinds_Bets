@@ -315,31 +315,43 @@
     "Namibia Sundowns Claim Victory CAF Women's Champions League betting tips Tanzania": {
       "slug": "namibia-sundowns-caf-womens-champions-league-betting-tips-tanzania",
       "posted_at": "2026-09-04T05:54:28.485318+00:00"
+    },
+    "‘It feels really good’ Crystal Palace move excites betting tips Nigeria": {
+      "slug": "crystal-palace-move-betting-tips-nigeria",
+      "posted_at": "2026-09-04T20:14:01.865147+00:00"
+    },
+    "Chinese WNBA star out World Cup after losing betting tips Kenya": {
+      "slug": "chinese-wnba-star-out-world-cup-kenya-betting-tips",
+      "posted_at": "2026-09-04T20:24:25.987016+00:00"
+    },
+    "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana": {
+      "slug": "queiroz-afcon-2030-world-cup-ghana-betting-tips",
+      "posted_at": "2026-09-04T20:33:45.327299+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-04T15:28:42.403981+00:00",
+    "checked_at": "2026-09-04T20:33:48.755194+00:00",
     "candidates_available": 455,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
         "keyword": "‘It feels really good’ Crystal Palace move excites betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was 'For high rollers or bettors who want to maximise their initial capital, 1xBet delivers the highest potential boost with its 300% First Deposit Bonus up to ₦1,200,000. This offer is ideal if you plan to deposit a significant amount and use the bonus to place larger stakes on Crystal Palace matches. The wagering requirement of x5 on accumulators at minimum odds of 1.40 demands a structured approach, as you need to build multi-leg slips to clear the', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "crystal-palace-move-betting-tips-nigeria"
       },
       {
         "keyword": "Chinese WNBA star out World Cup after losing betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: only 936 words (minimum 1000); no '## FAQ' section heading found"
+        "result": "written",
+        "slug": "chinese-wnba-star-out-world-cup-kenya-betting-tips"
       },
       {
         "keyword": "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "queiroz-afcon-2030-world-cup-ghana-betting-tips"
       }
     ]
   }
