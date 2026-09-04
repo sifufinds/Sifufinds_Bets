@@ -1,258 +1,108 @@
 {
-  "date": "2026-09-03",
-  "total": 56,
+  "date": "2026-09-04",
+  "total": 30,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 41,
-    "MEDIUM": 14,
+    "HIGH": 16,
+    "MEDIUM": 13,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "khalifa-diop-cleveland-cavaliers-tanzania-betting-tips",
-      "detail": "Title 61 chars (max 60): 'Khalifa Diop Joins Cleveland Cavaliers: Tanzania Betting Tips'"
+      "page": "us-open-monfils-farewell-zverev-5-set-betting-guide",
+      "detail": "Title 75 chars (max 60): \"US Open: Monfils' Grand Slam Farewell, Zverev's 5-Set Grind & Betting \""
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "nba-khalifa-diop-cleveland-tanzania-betting-tips",
-      "detail": "Title 74 chars (max 60): 'NBA Khalifa Diop Joins Cleveland \u2013 Tanzania Betting Tips & Best Bookma'"
+      "page": "namibia-sundowns-caf-womens-champions-league-betting-tips-tanzania",
+      "detail": "Title 80 chars (max 60): \"Namibia Sundowns CAF Women's Champions League Victory: Betting Tips fo\""
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "williams-blunt-goalkeeper-message-betting-tips-south-africa",
-      "detail": "Title 83 chars (max 60): \"Williams' blunt goalkeeper message 'That is nature beast' betting tips\""
+      "page": "david-wakhu-wins-sigona-club-betting-tips-kenya",
+      "detail": "Title 74 chars (max 60): 'David Wakhu Wins Sigona Club Betting Tips Kenya \u2013 Best Bookmakers Comp'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "carlos-queiroz-stays-gfa-hands-portuguese-coach-new-betting-tips-ghana",
-      "detail": "Title 70 chars (max 60): 'Carlos Queiroz stays GFA hands Portuguese coach new betting tips Ghana'"
+      "page": "cafwclq-edo-queens-usfa-final-ticket-betting-tips-nigeria",
+      "detail": "Title 88 chars (max 60): 'CAFWCLQ Edo Queens vs USFA Final Ticket Betting Tips Nigeria \u2013 Best Bo'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "england-womens-cricket-ireland-live-betting-insights",
-      "detail": "Title 67 chars (max 60): 'England Women\u2019s Cricket vs Ireland: Live Updates & Betting Insights'"
+      "page": "nigeria-fifa-accepts-gusau-excos-resignation-nff-betting-tanzania",
+      "detail": "Title 77 chars (max 60): 'Nigeria FIFA Accepts Gusau, Excos Resignation \u2013 NFF Betting Tips for T'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "sundowns-queiroz-real-madrid-betting-afcon",
-      "detail": "Title 85 chars (max 60): 'Sundowns win, Queiroz returns & Real Madrid drama \u2013 betting angles for'"
+      "page": "enzo-fernandez-man-city-chelsea-loan-betting-tips-nigeria",
+      "detail": "Title 63 chars (max 60): 'Enzo Fernandez Man City Move: Betting Tips for Nigerian Punters'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "fabregas-wins-serie-a-coach-year-betting-tips-nigeria",
-      "detail": "Title 74 chars (max 60): 'Fabregas Wins Serie A Coach of the Year: Betting Tips for Nigerian Pun'"
+      "page": "liverpool-champions-league-squad-chiesa-endo-omitted",
+      "detail": "Title 76 chars (max 60): 'Liverpool Squad Shake-Up: Chiesa & Endo Omitted from Champions League '"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "global-sports-headlines-aubameyang-bailey-transfer-news",
-      "detail": "Title 74 chars (max 60): \"Global Sports Headlines: Aubameyang Retires, Bailey's Shock Move, and \""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nfl-tennis-basketball-latest-sports-news-african-bettors",
-      "detail": "Title 71 chars (max 60): 'NFL, Tennis, and Basketball: The Latest Sports News for African Bettor'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "transfer-deadline-day-betting-markets-richarlison-alcaraz",
-      "detail": "Title 79 chars (max 60): 'Transfer Deadline Day Shakes Up Betting Markets: Richarlison, Alcaraz,'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "fifa-player-participation-transfer-fees-betting-tips-south-africa",
-      "detail": "Title 82 chars (max 60): 'FIFA Endorses Player Participation in Transfer Fees: Betting Tips for '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ghana-armwrestling-india-support-betting-tips",
-      "detail": "Title 81 chars (max 60): 'Ghana Armwrestling Courts India Support: Betting Tips for the World Ch'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nba-wnba-buzz-embiid-clippers-clinton-team-usa-betting-africa",
-      "detail": "Title 98 chars (max 60): 'NBA & WNBA Buzz: Embiid Work Ethic, Clippers Sanctions & Team USA Plan'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "us-open-nba-drama-global-sports-headlines-african-bettors",
-      "detail": "Title 71 chars (max 60): 'US Open Upsets & NBA Drama: Global Sports Headlines for African Bettor'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-roundup-us-open-nba-drama-celtic-perfect-start",
-      "detail": "Title 69 chars (max 60): \"Global Sports Roundup: US Open, NBA Drama, and Celtic's Perfect Start\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kenyan-team-shines-motocross-tournament-betting-tips-kenya",
-      "detail": "Title 63 chars (max 60): 'Kenyan Team Shines: Motocross Tournament Betting Tips for Kenya'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-igaming-shake-ups-from-brazil-policy-to-new-slot-franchises-what-african-bettors-need-to-know",
-      "detail": "Title 103 chars (max 60): 'Global iGaming Shake\u2011Ups: From Brazil Policy to New Slot Franchises \u2014 '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ghana-armwrestling-world-championships-betting-tips",
-      "detail": "Title 92 chars (max 60): 'Ghana Armwrestling Courts India Support Ahead of World Championships: '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kenyan-team-continental-motocross-betting-tips",
-      "detail": "Title 78 chars (max 60): 'Kenyan Team Shines at Continental Motocross Tournament: Betting Tips f'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "harper-streak-premier-league-spend-nfl-rookie-betting-africa",
-      "detail": "Title 77 chars (max 60): 'Harper streak, Premier League spend & NFL rookie buzz: African betting'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ryan-garcia-conor-benn-boxing-betting-insights",
-      "detail": "Title 61 chars (max 60): 'Ryan Garcia vs. Conor Benn: Boxing Battle Sparks Betting Buzz'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-headlines-man-utd-barcelona-betting-offers",
-      "detail": "Title 63 chars (max 60): 'Global Sports Headlines: Man Utd, Barcelona, and Betting Offers'"
+      "page": "alabama-wife-coaching-basketball-balance",
+      "detail": "Title 87 chars (max 60): \"Alabama Staff Shakeup: Nate Oats' Wife Joins Coaching Team & What It M\""
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "nba-khalifa-diop-cleveland-tanzania-betting-tips",
-      "detail": "Excerpt 162 chars (max 155)"
+      "page": "us-open-monfils-farewell-zverev-5-set-betting-guide",
+      "detail": "Excerpt 178 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "global-sports-roundup-fantasy-football-f1-rugby-drama",
-      "detail": "Excerpt 161 chars (max 155)"
+      "page": "david-wakhu-wins-sigona-club-betting-tips-kenya",
+      "detail": "Excerpt 177 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "sundowns-queiroz-real-madrid-betting-afcon",
-      "detail": "Excerpt 163 chars (max 155)"
+      "page": "cafwclq-edo-queens-usfa-final-ticket-betting-tips-nigeria",
+      "detail": "Excerpt 177 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "global-sports-headlines-aubameyang-bailey-transfer-news",
-      "detail": "Excerpt 171 chars (max 155)"
+      "page": "nigeria-fifa-accepts-gusau-excos-resignation-nff-betting-tanzania",
+      "detail": "Excerpt 199 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "nfl-tennis-basketball-latest-sports-news-african-bettors",
-      "detail": "Excerpt 203 chars (max 155)"
+      "page": "enzo-fernandez-man-city-chelsea-loan-betting-tips-nigeria",
+      "detail": "Excerpt 173 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "transfer-deadline-day-betting-markets-richarlison-alcaraz",
-      "detail": "Excerpt 219 chars (max 155)"
+      "page": "liverpool-champions-league-squad-chiesa-endo-omitted",
+      "detail": "Excerpt 227 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "fifa-player-participation-transfer-fees-betting-tips-south-africa",
-      "detail": "Excerpt 170 chars (max 155)"
+      "page": "alabama-wife-coaching-basketball-balance",
+      "detail": "Excerpt 175 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "ghana-armwrestling-india-support-betting-tips",
-      "detail": "Excerpt 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nba-wnba-buzz-embiid-clippers-clinton-team-usa-betting-africa",
-      "detail": "Excerpt 216 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "us-open-nba-drama-global-sports-headlines-african-bettors",
-      "detail": "Excerpt 157 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-roundup-us-open-nba-drama-celtic-perfect-start",
-      "detail": "Excerpt 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "kenyan-team-shines-motocross-tournament-betting-tips-kenya",
-      "detail": "Excerpt 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-igaming-shake-ups-from-brazil-policy-to-new-slot-franchises-what-african-bettors-need-to-know",
-      "detail": "Excerpt 206 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "ghana-armwrestling-world-championships-betting-tips",
-      "detail": "Excerpt 197 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "kenyan-team-continental-motocross-betting-tips",
-      "detail": "Excerpt 161 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "rugby-betting-guide-springboks-six-nations",
-      "detail": "Excerpt 170 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "harper-streak-premier-league-spend-nfl-rookie-betting-africa",
-      "detail": "Excerpt 201 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "ryan-garcia-conor-benn-boxing-betting-insights",
-      "detail": "Excerpt 195 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-headlines-man-utd-barcelona-betting-offers",
-      "detail": "Excerpt 156 chars (max 155)"
+      "page": "man-city-new-goalkeeper-moorhouse-betting",
+      "detail": "Excerpt 188 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
@@ -264,19 +114,13 @@
       "severity": "MEDIUM",
       "check": "potential_duplicate",
       "page": "ghana-armwrestling-india-support-betting-tips",
-      "detail": "High title overlap (6 meaningful tokens) with 'ghana-armwrestling-world-championships-betting-tips' \u2014 consider noindex"
+      "detail": "High title overlap (5 meaningful tokens) with 'ghana-armwrestling-world-championships-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
       "page": "kenyan-team-shines-motocross-tournament-betting-tips-kenya",
-      "detail": "High title overlap (6 meaningful tokens) with 'kenyan-team-continental-motocross-betting-tips' \u2014 consider noindex"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
-      "page": "global-igaming-shake-ups-from-brazil-policy-to-new-slot-franchises-what-african-bettors-need-to-know",
-      "detail": "High title overlap (6 meaningful tokens) with 'igaming-shake-up-african-bettors' \u2014 consider noindex"
+      "detail": "High title overlap (5 meaningful tokens) with 'kenyan-team-continental-motocross-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
