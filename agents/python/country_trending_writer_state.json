@@ -182,7 +182,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-04T15:37:51.231602+00:00",
+    "checked_at": "2026-09-04T18:57:09.667915+00:00",
     "candidates_available": 368,
     "attempted": 3,
     "written": 0,
@@ -191,19 +191,19 @@
         "keyword": "‘It feels really good’ Crystal Palace move excites betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: guided Portugal to the 2018 World Cup final; 150 % welcome bonus up to GH₵500 in free bets, with a minimum deposit of GH₵1; 50 % match up to GH₵200, requiring a GH₵2 minimum deposit; 100 % and 200 % first‑deposit bonuses respectively, up to GH₵1,491 and GH₵2,846. Both require a GH₵5 minimum stake and offer a 5‑fold wagering requirement; Sportybet Ghana | Slightly higher odds for a Ghana win | Competitive odds for a draw | Slightly lower odds for a loss; Betway Ghana | Competitive odds for a win | Slightly higher odds for a draw | Slightly higher odds for a loss"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Currie Cup | Four teams left Who will betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: 2.50; 1.50; 2.45; 1.55; 2.60; 1.45; 1.70; 2.10; 1.65; 2.20; 1.75; 2.05; R25 Free Bet + 50 Free Spins – No Deposit Required!; R50 Free Bet + 100% Match Up to R5,000 + 100 Spins; R200 Free Bet on First Deposit"
+        "reason": "fact_check: The Lions have historically dominated this fixture, but Griquas’ recent home form could level the playing field.; The Cheetahs have the edge in recent meetings, but the Pumas’ defensive resilience cannot be underestimated.; The Lions are currently considered the favourites to lift the Currie Cup, given their strong squad and recent performances."
       }
     ]
   }
