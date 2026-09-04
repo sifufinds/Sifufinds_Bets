@@ -307,31 +307,39 @@
     "CAFWCLQ Edo Queens battle USFA final ticket betting tips Nigeria": {
       "slug": "cafwclq-edo-queens-usfa-final-ticket-betting-tips-nigeria",
       "posted_at": "2026-09-04T03:38:58.018231+00:00"
+    },
+    "David Wakhu wins Sigona Club betting tips Kenya": {
+      "slug": "david-wakhu-wins-sigona-club-betting-tips-kenya",
+      "posted_at": "2026-09-04T05:38:18.252877+00:00"
+    },
+    "Namibia Sundowns Claim Victory CAF Women's Champions League betting tips Tanzania": {
+      "slug": "namibia-sundowns-caf-womens-champions-league-betting-tips-tanzania",
+      "posted_at": "2026-09-04T05:54:28.485318+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-04T03:40:25.793447+00:00",
-    "candidates_available": 439,
+    "checked_at": "2026-09-04T05:54:33.904573+00:00",
+    "candidates_available": 437,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "Nigeria FIFA Accepts Gusau, Excos Resignation, As NFF betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "nigeria-fifa-accepts-gusau-excos-resignation-nff-betting-tanzania"
-      },
-      {
-        "keyword": "CAFWCLQ Edo Queens battle USFA final ticket betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "cafwclq-edo-queens-usfa-final-ticket-betting-tips-nigeria"
-      },
-      {
         "keyword": "David Wakhu wins Sigona Club betting tips Kenya",
         "country": "Kenya",
+        "result": "written",
+        "slug": "david-wakhu-wins-sigona-club-betting-tips-kenya"
+      },
+      {
+        "keyword": "FIFA ban attached Chiefs striker finally lifted! betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 886 words (minimum 1000); no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Namibia Sundowns Claim Victory CAF Women's Champions League betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "namibia-sundowns-caf-womens-champions-league-betting-tips-tanzania"
       }
     ]
   }
