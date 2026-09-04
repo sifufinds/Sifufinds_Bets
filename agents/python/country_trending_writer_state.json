@@ -178,7 +178,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-04T01:36:47.619560+00:00",
+    "checked_at": "2026-09-04T02:07:05.421025+00:00",
     "candidates_available": 353,
     "attempted": 3,
     "written": 0,
@@ -193,13 +193,13 @@
         "keyword": "Transfer deadline Enzo completes City move, Chelsea loan betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 428)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 476)"
       },
       {
         "keyword": "FIFA endorses player participation transfer fees betting tips South Africa",
         "country": "South Africa",
-        "result": "skipped",
-        "reason": "similar_title_exists"
+        "result": "failed",
+        "reason": "fact_check: 2.00 - 3.50; 1.80 - 2.75; 2.20 - 4.00; over $6 million to African countries in 2022; R25 free bet; 100% match up to R5,000; R200 free bet on first deposit; R25 no-deposit free bet; R5,000 match bonus"
       }
     ]
   }
