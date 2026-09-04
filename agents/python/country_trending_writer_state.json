@@ -182,28 +182,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-04T11:46:28.953467+00:00",
-    "candidates_available": 356,
+    "checked_at": "2026-09-04T13:54:24.736353+00:00",
+    "candidates_available": 368,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "‘It feels really good’ Crystal Palace move excites betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 431)"
-      },
-      {
-        "keyword": "Chinese WNBA star out World Cup after losing betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "chinese-wnba-star-li-yueru-out-world-cup-kenya-betting-tips"
+        "reason": "fact_check: The draft article mentions specific odds values (e.g., '2.50', '3.20', '2.80') attributed to named bookmakers (e.g., 'Bet9ja', '22Bet Nigeria') in a comparative table, but these specific odds numbers do not appear in the provided source snippets. The source snippets only discuss general excitement around the transfer and do not provide any odds or bookmaker comparisons.; The draft includes detailed bookmaker offers (e.g., '₦2,500 free bet on signup', '170% ACCA Boost') with specific terms (e.g., 'minimum deposit of ₦100') attributed to named bookmakers (e.g., 'Bet9ja', 'BetKing'), but these offers and terms are not supported by the source snippets, which only mention the transfer and general betting interest.; The draft contains a FAQ section with specific claims (e.g., 'Bet9ja and 22Bet Nigeria often provide competitive odds') that are not backed by the source snippets, which do not discuss odds, bookmakers, or betting strategies in detail."
       },
       {
         "keyword": "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Queiroz’s focus on AFCON and the 2030 World Cup is a bold statement of intent.; Queiroz’s reputation as a seasoned coach is likely to boost Ghana’s standing in international competitions. His success with teams like Iran and Egypt demonstrates his ability to build competitive squads.; **Sportybet Ghana** offers a 150% welcome bonus up to GH₵500, making it one of the most attractive options for new users."
+        "reason": "fact_check: The draft article mentions specific odds values (e.g., '12.00', '5.50', '11.00') attributed to named bookmakers (e.g., 'Sportybet Ghana', 'Betway Ghana') in a comparative table, but these specific odds numbers do not appear in the provided source snippets. The source snippets only discuss Queiroz's contract extension and targets, not any betting odds.; The draft includes detailed bookmaker offers (e.g., '150% welcome bonus up to GH₵500', '50% welcome bonus up to GH₵200') with specific terms (e.g., 'minimum deposit of GH₵1') attributed to named bookmakers (e.g., 'Sportybet Ghana', 'Betway Ghana'), but these offers and terms are not supported by the source snippets, which only mention Queiroz's extension and goals.; The draft contains a FAQ section with specific claims (e.g., 'FairPari Ghana currently offers the best odds for Ghana to win the AFCON 2027') that are not backed by the source snippets, which do not discuss odds, bookmakers, or betting strategies in detail."
+      },
+      {
+        "keyword": "Currie Cup | Four teams left Who will betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: The draft article mentions specific odds values (e.g., '2.75', '1.40', '1.80') attributed to named bookmakers (e.g., 'Hollywoodbets', 'Supabets') in a comparative table, but these specific odds numbers do not appear in the provided source snippets. The source snippets only mention the teams involved in the semi-finals and do not provide any odds or bookmaker comparisons.; The draft includes detailed bookmaker offers (e.g., 'R25 free bet + 50 free spins', '100% match up to R5,000') with specific terms attributed to named bookmakers (e.g., 'Hollywoodbets', 'Supabets'), but these offers and terms are not supported by the source snippets, which only discuss the semi-final matchups.; The draft contains a FAQ section with specific claims (e.g., 'The Lions are generally considered favorites') that, while plausible, are not directly supported by the source snippets, which do not provide any analysis or favoritism regarding the teams."
       }
     ]
   }
