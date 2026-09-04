@@ -1,108 +1,18 @@
 {
   "date": "2026-09-04",
-  "total": 30,
+  "total": 15,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 16,
-    "MEDIUM": 13,
+    "HIGH": 0,
+    "MEDIUM": 14,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "us-open-monfils-farewell-zverev-5-set-betting-guide",
-      "detail": "Title 75 chars (max 60): \"US Open: Monfils' Grand Slam Farewell, Zverev's 5-Set Grind & Betting \""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
       "page": "namibia-sundowns-caf-womens-champions-league-betting-tips-tanzania",
-      "detail": "Title 80 chars (max 60): \"Namibia Sundowns CAF Women's Champions League Victory: Betting Tips fo\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "david-wakhu-wins-sigona-club-betting-tips-kenya",
-      "detail": "Title 74 chars (max 60): 'David Wakhu Wins Sigona Club Betting Tips Kenya \u2013 Best Bookmakers Comp'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "cafwclq-edo-queens-usfa-final-ticket-betting-tips-nigeria",
-      "detail": "Title 88 chars (max 60): 'CAFWCLQ Edo Queens vs USFA Final Ticket Betting Tips Nigeria \u2013 Best Bo'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nigeria-fifa-accepts-gusau-excos-resignation-nff-betting-tanzania",
-      "detail": "Title 77 chars (max 60): 'Nigeria FIFA Accepts Gusau, Excos Resignation \u2013 NFF Betting Tips for T'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "enzo-fernandez-man-city-chelsea-loan-betting-tips-nigeria",
-      "detail": "Title 63 chars (max 60): 'Enzo Fernandez Man City Move: Betting Tips for Nigerian Punters'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "liverpool-champions-league-squad-chiesa-endo-omitted",
-      "detail": "Title 76 chars (max 60): 'Liverpool Squad Shake-Up: Chiesa & Endo Omitted from Champions League '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "alabama-wife-coaching-basketball-balance",
-      "detail": "Title 87 chars (max 60): \"Alabama Staff Shakeup: Nate Oats' Wife Joins Coaching Team & What It M\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "us-open-monfils-farewell-zverev-5-set-betting-guide",
-      "detail": "Excerpt 178 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "david-wakhu-wins-sigona-club-betting-tips-kenya",
-      "detail": "Excerpt 177 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "cafwclq-edo-queens-usfa-final-ticket-betting-tips-nigeria",
-      "detail": "Excerpt 177 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nigeria-fifa-accepts-gusau-excos-resignation-nff-betting-tanzania",
-      "detail": "Excerpt 199 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "enzo-fernandez-man-city-chelsea-loan-betting-tips-nigeria",
-      "detail": "Excerpt 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "liverpool-champions-league-squad-chiesa-endo-omitted",
-      "detail": "Excerpt 227 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "alabama-wife-coaching-basketball-balance",
-      "detail": "Excerpt 175 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "man-city-new-goalkeeper-moorhouse-betting",
-      "detail": "Excerpt 188 chars (max 155)"
+      "detail": "High title overlap (5 meaningful tokens) with 'namibia-sundowns-caf-womens-champions-league-victory-tanzania-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
