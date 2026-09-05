@@ -183,31 +183,43 @@
     "PSG vs. AS Monaco Lineups betting tips Ghana": {
       "slug": "psg-vs-as-monaco-lineups-betting-tips-ghana",
       "posted_at": "2026-09-05T09:10:03.273387+00:00"
+    },
+    "Guendouzi, Greenwood Banned, Fined After Champions League Brawl betting tips Nigeria": {
+      "slug": "guendouzi-greenwood-banned-nigeria-betting-tips",
+      "posted_at": "2026-09-05T16:05:45.964593+00:00"
+    },
+    "USA vs. China winners betting tips Kenya": {
+      "slug": "usa-vs-china-betting-tips-kenya",
+      "posted_at": "2026-09-05T16:13:30.891820+00:00"
+    },
+    "Nabi reports former club FIFA over millions betting tips South Africa": {
+      "slug": "nabi-fifa-dispute-betting-tips-south-africa",
+      "posted_at": "2026-09-05T16:19:55.315075+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-05T13:44:37.713510+00:00",
+    "checked_at": "2026-09-05T16:19:58.534079+00:00",
     "candidates_available": 367,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
         "keyword": "Guendouzi, Greenwood Banned, Fined After Champions League Brawl betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "result": "written",
+        "slug": "guendouzi-greenwood-banned-nigeria-betting-tips"
       },
       {
         "keyword": "USA vs. China winners betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 455)"
+        "result": "written",
+        "slug": "usa-vs-china-betting-tips-kenya"
       },
       {
         "keyword": "Nabi reports former club FIFA over millions betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "fact_check: R25 Free Bet + 50 Free Spins; R50 Free Bet + 100% Match Up to R5,000; R200 Free Bet on First Deposit; 25 Free Spins + 100% Match Up to R5,000; 100% First Deposit Bonus – Up to €100; 100% First Deposit Bonus"
+        "result": "written",
+        "slug": "nabi-fifa-dispute-betting-tips-south-africa"
       }
     ]
   }
