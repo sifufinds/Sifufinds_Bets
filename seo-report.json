@@ -1,13 +1,199 @@
 {
-  "date": "2026-09-04",
-  "total": 15,
+  "date": "2026-09-05",
+  "total": 46,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 31,
     "MEDIUM": 14,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "us-open-2026-donski-williams-betting-insights",
+      "detail": "Title 102 chars (max 60): 'US Open 2026: Donski\u2019s debut win and Williams sisters\u2019 heartbreak \u2013 be'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-kickoff-welsh-derby-college-football",
+      "detail": "Title 63 chars (max 60): 'Premier League Kickoff, Welsh Derby, and College Football Drama'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "boxing-f1-wsl-news-ruiz-taylor-bettom-deals",
+      "detail": "Title 66 chars (max 60): 'Boxing, F1 & WSL News: Ruiz Jr Loss, Taylor Farewell, betTOM Deals'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "derrick-rose-oklahoma-rays-betting-insight",
+      "detail": "Title 64 chars (max 60): 'From Derrick Rose to the Rays: Betting Insights for African Fans'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "wnba-transformation-fantasy-insights-basketball-betting-guide",
+      "detail": "Title 66 chars (max 60): 'WNBA Transformation and Fantasy Insights: Basketball Betting Guide'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "queiroz-afcon-2030-world-cup-ghana-betting-tips",
+      "detail": "Title 71 chars (max 60): 'Queiroz Targets AFCON and 2030 World Cup: Ghana Betting Tips and Offer'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "chinese-wnba-star-out-world-cup-kenya-betting-tips",
+      "detail": "Title 65 chars (max 60): 'Chinese WNBA Star Out of World Cup: Kenya Betting Tips and Offers'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "crystal-palace-move-betting-tips-nigeria",
+      "detail": "Title 80 chars (max 60): '\u2018It Feels Really Good\u2019 Crystal Palace Move Sparks Betting Tips for Nig'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "gasly-loses-monaco-podium-appeals-win",
+      "detail": "Title 85 chars (max 60): 'Gasly Loses Monaco Podium After McLaren & Red Bull Appeal Wins \u2013 Betti'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "mosimane-bafana-vision-pirates-la-cure-waves-gor-mahia-betting",
+      "detail": "Title 94 chars (max 60): 'Mosimane\u2019s Bafana Vision, Pirates vs La Cure Waves & Gor Mahia\u2019s CAF S'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "rugby-union-news-faletau-caluori-wallabies",
+      "detail": "Title 87 chars (max 60): 'Rugby Union News: Faletau\u2019s Return, Caluori\u2019s Resilience, and Wallabie'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-monaco-gp-womens-champions-league",
+      "detail": "Title 65 chars (max 60): \"Global Sports Roundup: From Monaco GP to Women's Champions League\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "chinese-wnba-star-li-yueru-out-world-cup-kenya-betting-tips",
+      "detail": "Title 63 chars (max 60): 'Chinese WNBA Star Li Yueru Out of World Cup: Kenya Betting Tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "us-open-2026-donski-williams-betting-insights",
+      "detail": "Excerpt 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-kickoff-welsh-derby-college-football",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-rivers-united-afl-darts",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "boxing-f1-wsl-news-ruiz-taylor-bettom-deals",
+      "detail": "Excerpt 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "katie-taylor-final-fight-wsl-us-open-thrills",
+      "detail": "Excerpt 165 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "alexia-putellas-london-city-lionesses-beat-man-utd",
+      "detail": "Excerpt 158 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-college-football-boxing",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "chicago-sky-lawsuit-bal-odds-africa",
+      "detail": "Excerpt 212 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "wnba-transformation-fantasy-insights-basketball-betting-guide",
+      "detail": "Excerpt 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "queiroz-afcon-2030-world-cup-ghana-betting-tips",
+      "detail": "Excerpt 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "chinese-wnba-star-out-world-cup-kenya-betting-tips",
+      "detail": "Excerpt 171 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "igaming-trends-ontario-africa-september-2026",
+      "detail": "Excerpt 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "andy-ruiz-jr-vs-damian-knyba-fight-night-betting-guide",
+      "detail": "Excerpt 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "gasly-loses-monaco-podium-appeals-win",
+      "detail": "Excerpt 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "mosimane-bafana-vision-pirates-la-cure-waves-gor-mahia-betting",
+      "detail": "Excerpt 202 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rugby-union-news-faletau-caluori-wallabies",
+      "detail": "Excerpt 203 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "chinese-wnba-star-li-yueru-out-world-cup-kenya-betting-tips",
+      "detail": "Excerpt 160 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "breaking-sports-news-transfers-darts-nfl-drama",
+      "detail": "Excerpt 158 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
