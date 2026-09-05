@@ -198,28 +198,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-05T16:19:58.534079+00:00",
-    "candidates_available": 367,
+    "checked_at": "2026-09-05T18:20:45.502389+00:00",
+    "candidates_available": 364,
     "attempted": 3,
-    "written": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Guendouzi, Greenwood Banned, Fined After Champions League Brawl betting tips Nigeria",
+        "keyword": "Coupe CAF Hafia FC face à l’AS Douanes, betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 449)"
+      },
+      {
+        "keyword": "‘It feels really good’ Crystal Palace move excites betting tips Nigeria",
         "country": "Nigeria",
-        "result": "written",
-        "slug": "guendouzi-greenwood-banned-nigeria-betting-tips"
+        "result": "failed",
+        "reason": "fact_check: Bookmakers like Bet9ja, BetKing, and 22Bet Nigeria are already offering odds on Palace’s fixtures, making it easier for Nigerian punters to get in on the action.; | Bookmaker       | Crystal Palace Win | Draw | Opponent Win |\n|-----------------|--------------------|------|----------------|\n| Bet9ja          | 2.50               | 3.20 | 2.80          |\n| BetKing         | 2.45               | 3.15 | 2.75          |\n| 22Bet Nigeria   | 2.60               | 3.30 | 2.90          |; Bet9ja’s ₦2,500 free bet and BetKing’s ₦100 no-deposit offer are excellent starting points for new bettors. For those looking for bigger bonuses, 1xBet Nigeria’s 300% deposit bonus up to ₦1,200,000 is hard to ignore."
       },
       {
-        "keyword": "USA vs. China winners betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "usa-vs-china-betting-tips-kenya"
-      },
-      {
-        "keyword": "Nabi reports former club FIFA over millions betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "nabi-fifa-dispute-betting-tips-south-africa"
+        "keyword": "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "fact_check: Bookmakers like Sportybet Ghana, Betway Ghana, and 22Bet Ghana are already offering odds on Ghana’s upcoming fixtures, making it the perfect time to dive into the action.; | Bookmaker       | Ghana Win | Draw | Opponent Win |\n|-----------------|-----------|------|----------------|\n| Sportybet Ghana | 2.20      | 3.00 | 3.50          |\n| Betway Ghana    | 2.15      | 2.95 | 3.40          |\n| 22Bet Ghana     | 2.25      | 3.05 | 3.55          |; - **Sportybet Ghana**: 150% welcome bonus up to GH₵500.\n- **Melbet Ghana**: 300% first deposit bonus up to GH₵1,500.\n- **1xBet Ghana**: 200% first deposit bonus up to GH₵2,846."
       }
     ]
   }
