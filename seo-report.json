@@ -1,120 +1,42 @@
 {
   "date": "2026-09-05",
-  "total": 33,
+  "total": 20,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 17,
-    "MEDIUM": 15,
+    "HIGH": 5,
+    "MEDIUM": 14,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "nabi-fifa-dispute-betting-tips-south-africa",
-      "detail": "Title 72 chars (max 60): 'Nabi Reports Former Club to FIFA: Betting Tips for South African Punte'"
+      "page": "live-sports-action-hull-city-aston-villa-us-open-tennis",
+      "detail": "Title 70 chars (max 60): 'Live Sports Action: Hull City vs Aston Villa, US Open Tennis, and More'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "usa-vs-china-betting-tips-kenya",
-      "detail": "Title 65 chars (max 60): 'USA vs. China Women\u2019s Basketball: Betting Tips for Kenyan Punters'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "guendouzi-greenwood-banned-nigeria-betting-tips",
-      "detail": "Title 76 chars (max 60): 'Guendouzi, Greenwood Banned: How to Bet on Champions League Drama in N'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "coupe-caf-hafia-fc-vs-as-douanes-betting-tips-tanzania",
-      "detail": "Title 66 chars (max 60): 'Coupe CAF Hafia FC vs AS Douanes: Expert Betting Tips for Tanzania'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nabi-blames-kaizer-chiefs-fifa-over-millions-of-betting-tips-south-africa",
-      "detail": "Title 75 chars (max 60): 'Nabi Blames Kaizer Chiefs, FIFA Over Millions of Betting Tips: South A'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "guendouzi-greenwood-banned-fined-champions-league-brawl-betting-tips-nigeria",
-      "detail": "Title 84 chars (max 60): 'Guendouzi, Greenwood Banned, Fined After Champions League Brawl bettin'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "psg-vs-monaco-lineups-betting-tips-ghana",
-      "detail": "Title 71 chars (max 60): 'PSG vs. AS Monaco Lineups Betting Tips Ghana \u2013 Live Odds & Best Bonuse'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "african-football-buzz-caf-champions-league-npfl-premier-league",
-      "detail": "Title 76 chars (max 60): 'African Football Buzz: CAF Champions League, NPFL, and Premier League '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "county-championship-day-four-international-t20s-betting-insight",
-      "detail": "Title 83 chars (max 60): 'County Championship Day Four & International T20s: Betting Insight for'"
+      "page": "f1-italian-gp-2026-gasly-pole-betting-guide",
+      "detail": "Title 64 chars (max 60): \"F1 Italian GP 2026: Gasly's Shock Pole Shakes Up Betting Markets\""
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "nabi-fifa-dispute-betting-tips-south-africa",
-      "detail": "Excerpt 161 chars (max 155)"
+      "page": "global-sports-roundup-sunderland-seahawks",
+      "detail": "Excerpt 174 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "usa-vs-china-betting-tips-kenya",
-      "detail": "Excerpt 162 chars (max 155)"
+      "page": "live-sports-action-hull-city-aston-villa-us-open-tennis",
+      "detail": "Excerpt 183 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "guendouzi-greenwood-banned-nigeria-betting-tips",
-      "detail": "Excerpt 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "coupe-caf-hafia-fc-vs-as-douanes-betting-tips-tanzania",
-      "detail": "Excerpt 166 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nabi-blames-kaizer-chiefs-fifa-over-millions-of-betting-tips-south-africa",
+      "page": "f1-italian-gp-2026-gasly-pole-betting-guide",
       "detail": "Excerpt 187 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "guendouzi-greenwood-banned-fined-champions-league-brawl-betting-tips-nigeria",
-      "detail": "Excerpt 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "african-football-buzz-caf-champions-league-npfl-premier-league",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "county-championship-day-four-international-t20s-betting-insight",
-      "detail": "Excerpt 167 chars (max 155)"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
-      "page": "guendouzi-greenwood-banned-nigeria-betting-tips",
-      "detail": "High title overlap (5 meaningful tokens) with 'guendouzi-greenwood-banned-fined-champions-league-brawl-betting-tips-nigeria' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
