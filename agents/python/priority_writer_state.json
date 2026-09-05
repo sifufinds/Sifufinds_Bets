@@ -327,19 +327,39 @@
     "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana": {
       "slug": "queiroz-afcon-2030-world-cup-ghana-betting-tips",
       "posted_at": "2026-09-04T20:33:45.327299+00:00"
+    },
+    "USA vs. China winners betting tips Kenya": {
+      "slug": "usa-vs-china-winners-betting-tips-kenya",
+      "posted_at": "2026-09-05T15:11:40.372300+00:00"
+    },
+    "PSG vs. AS Monaco Lineups betting tips Ghana": {
+      "slug": "psg-vs-monaco-lineups-betting-tips-ghana",
+      "posted_at": "2026-09-05T15:12:05.276495+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-05T06:39:32.315974+00:00",
+    "checked_at": "2026-09-05T15:12:11.727233+00:00",
     "candidates_available": 452,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Currie Cup | Four teams left Who will betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "Guendouzi, Greenwood Banned, Fined After Champions League Brawl betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Each operator is licensed by the NLRC, which monitors compliance with Nigerian gambling law. The regulator ensures that promotional offers are transparent, that player funds are protected and that responsible gambling tools are available.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "USA vs. China winners betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "usa-vs-china-winners-betting-tips-kenya"
+      },
+      {
+        "keyword": "PSG vs. AS Monaco Lineups betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "psg-vs-monaco-lineups-betting-tips-ghana"
       }
     ]
   }
