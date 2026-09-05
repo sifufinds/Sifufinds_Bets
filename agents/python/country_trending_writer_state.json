@@ -195,31 +195,35 @@
     "Nabi reports former club FIFA over millions betting tips South Africa": {
       "slug": "nabi-fifa-dispute-betting-tips-south-africa",
       "posted_at": "2026-09-05T16:19:55.315075+00:00"
+    },
+    "Coupe CAF Hafia FC face à l’AS Douanes, betting tips Tanzania": {
+      "slug": "hafia-fc-vs-as-douanes-caf-cup-betting-tips-tanzania",
+      "posted_at": "2026-09-05T20:48:54.972366+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-05T20:12:47.337663+00:00",
+    "checked_at": "2026-09-05T21:03:17.673602+00:00",
     "candidates_available": 364,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Coupe CAF Hafia FC face à l’AS Douanes, betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "result": "written",
+        "slug": "hafia-fc-vs-as-douanes-caf-cup-betting-tips-tanzania"
       },
       {
         "keyword": "‘It feels really good’ Crystal Palace move excites betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 470)"
+        "reason": "fact_check: Get ₦2,500 Free Bet on Signup + 170% ACCA Boost; ₦100 Free Bets + 10 Aviator Flights – No Deposit; 100% First Deposit Bonus up to ₦207,500; 300% First Deposit Bonus up to ₦1,200,000"
       },
       {
         "keyword": "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: **Sportybet Ghana** provides a 150% welcome bonus up to GH₵500; **Betway Ghana** offers a 50% welcome bonus up to GH₵200; **22Bet Ghana** matches first deposits up to GH₵1,491; | Sportybet Ghana  | 150% up to GH₵500              | GH₵1            | MTN MoMo, Vodafone Cash, AirtelTigo Money, Visa, Mastercard |; | Betway Ghana     | 50% up to GH₵200               | GH₵2            | MTN MoMo, Vodafone Cash, Visa, Mastercard |; | 22Bet Ghana      | 100% up to GH₵1,491            | GH₵5            | MTN MoMo, Vodafone Cash, Visa, Mastercard |; | 1xBet Ghana      | 200% up to GH₵2,846            | GH₵5            | MTN MoMo, Vodafone Cash, Visa, Mastercard |; | Melbet Ghana     | 300% up to GH₵1,500            | GH₵1            | MTN MoMo, Vodafone Cash, Visa, Mastercard |; **1xBet Ghana** offers a 200% first deposit bonus up to GH₵2,846; **Melbet Ghana** provides a 300% match up to GH₵1,500 with the code MBMAX"
+        "reason": "fact_check: **Sportybet Ghana** offers a 150% welcome bonus to boost your stake; **Sportybet Ghana**: 150% Welcome Bonus up to GH₵500 Free Bet; **Betway Ghana**: 50% Welcome Bonus up to GH₵200; **22Bet Ghana**: 100% First Deposit Bonus up to GH₵1,491; **1xBet Ghana**: 200% First Deposit Bonus up to GH₵2,846"
       }
     ]
   }
