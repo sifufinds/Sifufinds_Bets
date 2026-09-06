@@ -1,13 +1,49 @@
 {
-  "date": "2026-09-05",
-  "total": 20,
+  "date": "2026-09-06",
+  "total": 29,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
-    "MEDIUM": 14,
+    "HIGH": 13,
+    "MEDIUM": 15,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "wafu-b-womens-champions-league-final-ampem-darkoa-edo-queens-betting-tips-ghana",
+      "detail": "Title 88 chars (max 60): 'WAFU B Women\u2019s Champions League Final: Ampem Darkoa vs Edo Queens Bett'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "gor-mahia-tusker-fc-caf-campaign-betting-tips-kenya",
+      "detail": "Title 81 chars (max 60): 'Gor Mahia and Tusker FC Face Litmus Tests in CAF Campaign: Betting Tip'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "fabregas-wins-serie-a-coach-of-the-year-betting-tips-nigeria",
+      "detail": "Title 74 chars (max 60): 'Fabregas Wins Serie A Coach of the Year: Betting Tips for Nigerian Pun'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "lague-des-champions-caf-betting-tips-zamalek-js-saoura-horoya-tanzania",
+      "detail": "Title 85 chars (max 60): 'Ligue des Champions CAF Betting Tips for Zamalek, JS Saoura & Horoya \u2013'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-premier-league-ufc-september-2026",
+      "detail": "Title 73 chars (max 60): 'Global Sports Roundup: From Premier League to UFC, the Action Never St'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-betting-guide-african-fans-tips-odds-strategies",
+      "detail": "Title 62 chars (max 60): 'NBA Betting Guide for African Fans: Tips, Odds, and Strategies'"
+    },
     {
       "severity": "HIGH",
       "check": "title_length",
@@ -19,6 +55,18 @@
       "check": "title_length",
       "page": "f1-italian-gp-2026-gasly-pole-betting-guide",
       "detail": "Title 64 chars (max 60): \"F1 Italian GP 2026: Gasly's Shock Pole Shakes Up Betting Markets\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "fabregas-wins-serie-a-coach-of-the-year-betting-tips-nigeria",
+      "detail": "Excerpt 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-betting-guide-african-fans-tips-odds-strategies",
+      "detail": "Excerpt 194 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -37,6 +85,12 @@
       "check": "meta_desc_length",
       "page": "f1-italian-gp-2026-gasly-pole-betting-guide",
       "detail": "Excerpt 187 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "fabregas-wins-serie-a-coach-of-the-year-betting-tips-nigeria",
+      "detail": "High title overlap (5 meaningful tokens) with 'fabregas-wins-serie-a-coach-year-betting-tips-nigeria' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
