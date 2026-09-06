@@ -199,31 +199,39 @@
     "Coupe CAF Hafia FC face à l’AS Douanes, betting tips Tanzania": {
       "slug": "hafia-fc-vs-as-douanes-caf-cup-betting-tips-tanzania",
       "posted_at": "2026-09-05T20:48:54.972366+00:00"
+    },
+    "Litmus tests Gor Tusker as Caf campaign kicks betting tips Kenya": {
+      "slug": "gor-mahia-tusker-fc-caf-campaign-betting-tips-kenya",
+      "posted_at": "2026-09-06T08:10:33.169239+00:00"
+    },
+    "WAFU B Women’s Champions League final Ampem Darkoa, betting tips Ghana": {
+      "slug": "wafu-b-womens-champions-league-final-ampem-darkoa-edo-queens-betting-tips-ghana",
+      "posted_at": "2026-09-06T08:19:58.436317+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-06T06:08:05.760328+00:00",
+    "checked_at": "2026-09-06T08:20:04.264353+00:00",
     "candidates_available": 364,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "‘It feels really good’ Crystal Palace move excites betting tips Nigeria",
+        "keyword": "Bundesliga Bayern fail score first time 59 matches betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 470)"
       },
       {
-        "keyword": "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana",
+        "keyword": "Litmus tests Gor Tusker as Caf campaign kicks betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "gor-mahia-tusker-fc-caf-campaign-betting-tips-kenya"
+      },
+      {
+        "keyword": "WAFU B Women’s Champions League final Ampem Darkoa, betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 474)"
-      },
-      {
-        "keyword": "Currie Cup | Four teams left Who will betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "fact_check: South African bookmakers like **Hollywoodbets** and **Supabets** are likely offering competitive odds on this fixture, reflecting the tight contest.; **BetXchange** and **TicTacBets** are likely offering intriguing odds on this fixture, particularly on markets like total points and try-scorers.; | Bookmaker       | Griquas vs Lions | Cheetahs vs Pumas |\n|-----------------|------------------|-------------------|\n| Hollywoodbets   | Check SifuFinds  | Check SifuFinds   |\n| Supabets        | Check SifuFinds  | Check SifuFinds   |\n| BetXchange      | Check SifuFinds  | Check SifuFinds   |\n| TicTacBets      | Check SifuFinds  | Check SifuFinds   |; **Hollywoodbets** offers a R25 free bet with no deposit required, while **Supabets** provides a R50 free bet and a 100% match up to R5,000. **BetXchange** and **TicTacBets** also have enticing offers, making it a great time to sign up and bet on the semi-finals.; While odds can fluctuate, the Lions are likely the favourites due to their experience and squad depth. However, Griquas’ home advantage could make this a closer contest than the odds suggest."
+        "result": "written",
+        "slug": "wafu-b-womens-champions-league-final-ampem-darkoa-edo-queens-betting-tips-ghana"
       }
     ]
   }
