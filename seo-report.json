@@ -1,42 +1,18 @@
 {
-  "date": "2026-09-05",
-  "total": 20,
+  "date": "2026-09-06",
+  "total": 16,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
-    "MEDIUM": 14,
+    "HIGH": 0,
+    "MEDIUM": 15,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "live-sports-action-hull-city-aston-villa-us-open-tennis",
-      "detail": "Title 70 chars (max 60): 'Live Sports Action: Hull City vs Aston Villa, US Open Tennis, and More'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "f1-italian-gp-2026-gasly-pole-betting-guide",
-      "detail": "Title 64 chars (max 60): \"F1 Italian GP 2026: Gasly's Shock Pole Shakes Up Betting Markets\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-roundup-sunderland-seahawks",
-      "detail": "Excerpt 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "live-sports-action-hull-city-aston-villa-us-open-tennis",
-      "detail": "Excerpt 183 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "f1-italian-gp-2026-gasly-pole-betting-guide",
-      "detail": "Excerpt 187 chars (max 155)"
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "fabregas-wins-serie-a-coach-of-the-year-betting-tips-nigeria",
+      "detail": "High title overlap (5 meaningful tokens) with 'fabregas-wins-serie-a-coach-year-betting-tips-nigeria' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
