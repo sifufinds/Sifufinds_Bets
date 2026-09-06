@@ -359,31 +359,35 @@
     "Currie Cup | Four teams left Who will betting tips South Africa": {
       "slug": "currie-cup-betting-tips-four-teams-left-south-africa",
       "posted_at": "2026-09-06T04:50:30.306467+00:00"
+    },
+    "FIFA ban attached Chiefs striker finally lifted! betting tips South Africa": {
+      "slug": "fifa-ban-lifted-kaizer-chiefs-striker-betting-tips-south-africa",
+      "posted_at": "2026-09-06T20:43:47.120407+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-06T05:08:15.855716+00:00",
-    "candidates_available": 446,
+    "checked_at": "2026-09-06T20:43:55.567358+00:00",
+    "candidates_available": 437,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Currie Cup | Four teams left Who will betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "currie-cup-betting-tips-four-teams-left-south-africa"
+        "keyword": "Ligue des champions CAF le MAS Fès retrouve betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Hunt glory as stars descend Brussels Diamond League betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 491)"
+        "reason": "quality_gate: only 986 words (minimum 1000); no '## FAQ' section heading found"
       },
       {
         "keyword": "FIFA ban attached Chiefs striker finally lifted! betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: only 958 words (minimum 1000); final line was 'Set a budget, avoid chasing losses, and use the responsible gambling tools provided by licensed bookmakers.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "fifa-ban-lifted-kaizer-chiefs-striker-betting-tips-south-africa"
       }
     ]
   }
