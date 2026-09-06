@@ -355,31 +355,35 @@
     "Fabregas Wins Serie Coach Year betting tips Nigeria": {
       "slug": "fabregas-wins-serie-a-coach-of-the-year-betting-tips-nigeria",
       "posted_at": "2026-09-06T03:09:46.332945+00:00"
+    },
+    "Currie Cup | Four teams left Who will betting tips South Africa": {
+      "slug": "currie-cup-betting-tips-four-teams-left-south-africa",
+      "posted_at": "2026-09-06T04:50:30.306467+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-06T03:09:49.510838+00:00",
-    "candidates_available": 448,
+    "checked_at": "2026-09-06T05:08:15.855716+00:00",
+    "candidates_available": 446,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Currie Cup | Four teams left Who will betting tips South Africa",
         "country": "South Africa",
+        "result": "written",
+        "slug": "currie-cup-betting-tips-four-teams-left-south-africa"
+      },
+      {
+        "keyword": "Hunt glory as stars descend Brussels Diamond League betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Withdrawals are processed via the same payment method you used to deposit. Instant EFT, FNB and Standard Bank usually complete within 24‑48 hours.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 491)"
       },
       {
-        "keyword": "Ligue des champions CAF Zamalek, JS Saoura, Horoya, betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "lague-des-champions-caf-betting-tips-zamalek-js-saoura-horoya-tanzania"
-      },
-      {
-        "keyword": "Fabregas Wins Serie Coach Year betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "fabregas-wins-serie-a-coach-of-the-year-betting-tips-nigeria"
+        "keyword": "FIFA ban attached Chiefs striker finally lifted! betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: only 958 words (minimum 1000); final line was 'Set a budget, avoid chasing losses, and use the responsible gambling tools provided by licensed bookmakers.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
