@@ -1,13 +1,163 @@
 {
   "date": "2026-09-06",
-  "total": 16,
+  "total": 41,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 15,
+    "HIGH": 24,
+    "MEDIUM": 16,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "fifa-ban-lifted-kaizer-chiefs-striker-betting-tips-south-africa",
+      "detail": "Title 77 chars (max 60): 'FIFA Ban Lifted: Kaizer Chiefs Striker Betting Tips for South African '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "arsenal-chelsea-premier-league-betting-insights",
+      "detail": "Title 65 chars (max 60): 'Arsenal Edge Chelsea in Premier League Thriller: Betting Insights'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "everton-man-united-arsenal-chelsea-betting-africa",
+      "detail": "Title 89 chars (max 60): 'Everton draw with Man United & Arsenal\u2011Chelsea clash \u2013 betting angles '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "infantino-re-election-pl-derbies-psg-drama",
+      "detail": "Title 64 chars (max 60): 'Infantino Re-Election, PL Derbies, PSG Drama: Global Sports News'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-transfers-injuries-betting-insights",
+      "detail": "Title 66 chars (max 60): 'Global Sports Headlines: Transfers, Injuries, and Betting Insights'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "arsenal-chelsea-afcon-betting-preview",
+      "detail": "Title 67 chars (max 60): 'Arsenal vs Chelsea preview and AFCON squad buzz for African bettors'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "wafu-b-womens-champions-league-final-ampem-darkoa-edo-queens-betting-tips-ghana",
+      "detail": "Title 88 chars (max 60): 'WAFU B Women\u2019s Champions League Final: Ampem Darkoa vs Edo Queens Bett'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "gor-mahia-tusker-fc-caf-campaign-betting-tips-kenya",
+      "detail": "Title 81 chars (max 60): 'Gor Mahia and Tusker FC Face Litmus Tests in CAF Campaign: Betting Tip'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "fabregas-wins-serie-a-coach-of-the-year-betting-tips-nigeria",
+      "detail": "Title 74 chars (max 60): 'Fabregas Wins Serie A Coach of the Year: Betting Tips for Nigerian Pun'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "lague-des-champions-caf-betting-tips-zamalek-js-saoura-horoya-tanzania",
+      "detail": "Title 85 chars (max 60): 'Ligue des Champions CAF Betting Tips for Zamalek, JS Saoura & Horoya \u2013'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-premier-league-ufc-september-2026",
+      "detail": "Title 73 chars (max 60): 'Global Sports Roundup: From Premier League to UFC, the Action Never St'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-betting-guide-african-fans-tips-odds-strategies",
+      "detail": "Title 62 chars (max 60): 'NBA Betting Guide for African Fans: Tips, Odds, and Strategies'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "live-sports-action-hull-city-aston-villa-us-open-tennis",
+      "detail": "Title 70 chars (max 60): 'Live Sports Action: Hull City vs Aston Villa, US Open Tennis, and More'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "f1-italian-gp-2026-gasly-pole-betting-guide",
+      "detail": "Title 64 chars (max 60): \"F1 Italian GP 2026: Gasly's Shock Pole Shakes Up Betting Markets\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "katie-taylor-retirement-boxing-news",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "everton-man-united-arsenal-chelsea-betting-africa",
+      "detail": "Excerpt 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "infantino-re-election-pl-derbies-psg-drama",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-transfers-injuries-betting-insights",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "arsenal-chelsea-afcon-betting-preview",
+      "detail": "Excerpt 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "fabregas-wins-serie-a-coach-of-the-year-betting-tips-nigeria",
+      "detail": "Excerpt 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-betting-guide-african-fans-tips-odds-strategies",
+      "detail": "Excerpt 194 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-sunderland-seahawks",
+      "detail": "Excerpt 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "live-sports-action-hull-city-aston-villa-us-open-tennis",
+      "detail": "Excerpt 183 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "f1-italian-gp-2026-gasly-pole-betting-guide",
+      "detail": "Excerpt 187 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "fifa-ban-lifted-kaizer-chiefs-striker-betting-tips-south-africa",
+      "detail": "High title overlap (5 meaningful tokens) with 'fifa-ban-lifted-chiefs-striker-khanyisa-mayo-south-africa-betting-tips' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
