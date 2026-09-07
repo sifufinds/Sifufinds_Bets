@@ -1,18 +1,36 @@
 {
-  "date": "2026-09-06",
-  "total": 41,
+  "date": "2026-09-07",
+  "total": 48,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 24,
-    "MEDIUM": 16,
+    "HIGH": 32,
+    "MEDIUM": 15,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "fifa-ban-lifted-kaizer-chiefs-striker-betting-tips-south-africa",
-      "detail": "Title 77 chars (max 60): 'FIFA Ban Lifted: Kaizer Chiefs Striker Betting Tips for South African '"
+      "page": "sports-news-roundup-mcilroy-vanderbilt-leeds-united",
+      "detail": "Title 73 chars (max 60): 'Sports News Roundup: McIlroy, Vanderbilt, and Leeds United Make Headli'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-fiba-world-cup-nba-comeback",
+      "detail": "Title 65 chars (max 60): 'Global Sports Roundup: From FIBA World Cup to NBA Comeback Dramas'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-nfl-tennis-college-football",
+      "detail": "Title 66 chars (max 60): 'Global Sports Headlines: NFL, Tennis, and College Football Updates'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-betting-insights-super-bowl-windows-college-football-kickoff",
+      "detail": "Title 69 chars (max 60): 'NBA Betting Insights: Super Bowl Windows and College Football Kickoff'"
     },
     {
       "severity": "HIGH",
@@ -95,6 +113,36 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
+      "page": "sports-news-roundup-mcilroy-vanderbilt-leeds-united",
+      "detail": "Excerpt 201 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-fiba-world-cup-nba-comeback",
+      "detail": "Excerpt 165 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-betting-guide-african-fans-2026",
+      "detail": "Excerpt 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-nfl-tennis-college-football",
+      "detail": "Excerpt 194 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-betting-insights-super-bowl-windows-college-football-kickoff",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
       "page": "katie-taylor-retirement-boxing-news",
       "detail": "Excerpt 162 chars (max 155)"
     },
@@ -151,12 +199,6 @@
       "check": "meta_desc_length",
       "page": "f1-italian-gp-2026-gasly-pole-betting-guide",
       "detail": "Excerpt 187 chars (max 155)"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
-      "page": "fifa-ban-lifted-kaizer-chiefs-striker-betting-tips-south-africa",
-      "detail": "High title overlap (5 meaningful tokens) with 'fifa-ban-lifted-chiefs-striker-khanyisa-mayo-south-africa-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
@@ -251,8 +293,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "65 posts",
-      "detail": "65 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "64 posts",
+      "detail": "64 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
