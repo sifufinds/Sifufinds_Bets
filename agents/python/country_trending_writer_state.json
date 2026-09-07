@@ -210,28 +210,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-07T08:28:46.291683+00:00",
-    "candidates_available": 359,
+    "checked_at": "2026-09-07T12:49:41.466919+00:00",
+    "candidates_available": 358,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "James Chelsea Will Learn From Loss Arsenal betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 429)"
-      },
-      {
         "keyword": "Youngster Shah wins Nyali Club betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: While specific odds for Shah’s win aren’t available, we can look at general golf betting markets to give you an idea of what to expect.; For extensive golf markets and competitive odds, 22Bet Kenya and 1xBet Kenya are top choices.; Betika Kenya and SportPesa Kenya are also great options, especially if you prefer using M-Pesa."
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Arsenal, Pirates & Real Madrid matches you cannot betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: With the Gunners aiming for a top-four finish, consider betting on them to win or both teams to score (BTTS) markets.; Given their recent form, backing the Pirates to win could be a solid bet.; Consider betting on Real Madrid to win or Karim Benzema to score anytime.; Hollywoodbets stands out with its no-deposit free bet, making it an excellent choice for new bettors.; Supabets offers a generous match bonus, ideal for those looking to maximize their deposits."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 486)"
+      },
+      {
+        "keyword": "Algeria Algerian Football Chiefs Name Hemdani Replace Petkovic betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "fact_check: 2.10; 3.20; 3.50; 2.05; 3.10; 3.40; 2.00; 3.00; 3.30; 1.95; 2.95; 3.25; 2.05; 3.15; 3.45; 2.15; 3.25; 3.60; 250% Karibu Gift; 200% first deposit bonus up to TSh 500,000; 100% first deposit bonus up to TSh 460,000"
       }
     ]
   }
