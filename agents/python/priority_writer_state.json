@@ -366,28 +366,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-06T20:43:55.567358+00:00",
-    "candidates_available": 437,
+    "checked_at": "2026-09-07T00:45:39.347724+00:00",
+    "candidates_available": 436,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Ligue des champions CAF le MAS Fès retrouve betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'To ensure safe betting in Tanzania, stick to **GBT-licensed bookmakers**, set a betting budget, and avoid chasing losses. Responsible gambling is key to a positive experience.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Hunt glory as stars descend Brussels Diamond League betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 986 words (minimum 1000); no '## FAQ' section heading found"
-      },
-      {
-        "keyword": "FIFA ban attached Chiefs striker finally lifted! betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "fifa-ban-lifted-kaizer-chiefs-striker-betting-tips-south-africa"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
