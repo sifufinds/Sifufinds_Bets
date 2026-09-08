@@ -371,31 +371,35 @@
     "Kenya ready International League T20 Continental Cup betting tips Kenya": {
       "slug": "kenya-ready-international-league-t20-continental-cup-betting-tips-kenya",
       "posted_at": "2026-09-08T03:29:01.324482+00:00"
+    },
+    "Youngster Shah wins Nyali Club betting tips Kenya": {
+      "slug": "youngster-shah-wins-nyali-club-betting-tips-kenya",
+      "posted_at": "2026-09-08T04:17:36.117354+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-08T03:29:04.736896+00:00",
-    "candidates_available": 407,
+    "checked_at": "2026-09-08T04:30:27.247939+00:00",
+    "candidates_available": 405,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Youngster Shah wins Nyali Club betting tips Kenya",
         "country": "Kenya",
+        "result": "written",
+        "slug": "youngster-shah-wins-nyali-club-betting-tips-kenya"
+      },
+      {
+        "keyword": "Boks' squad depth tested as Willemse becomes injury betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 481)"
       },
       {
-        "keyword": "Hunt glory as stars descend Brussels Diamond League betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "hunt-glory-stars-descend-brussels-diamond-league-betting-tips-kenya"
-      },
-      {
-        "keyword": "Kenya ready International League T20 Continental Cup betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "kenya-ready-international-league-t20-continental-cup-betting-tips-kenya"
+        "keyword": "Brentford sign £40m defender Diouf from West Ham betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Before placing bets, consider Brentford’s recent form, Diouf’s impact on the team, and the specific market odds. Always gamble responsibly and within your means.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
