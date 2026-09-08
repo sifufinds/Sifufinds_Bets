@@ -363,19 +363,39 @@
     "FIFA ban attached Chiefs striker finally lifted! betting tips South Africa": {
       "slug": "fifa-ban-lifted-kaizer-chiefs-striker-betting-tips-south-africa",
       "posted_at": "2026-09-06T20:43:47.120407+00:00"
+    },
+    "Hunt glory as stars descend Brussels Diamond League betting tips Kenya": {
+      "slug": "hunt-glory-stars-descend-brussels-diamond-league-betting-tips-kenya",
+      "posted_at": "2026-09-08T03:28:31.666291+00:00"
+    },
+    "Kenya ready International League T20 Continental Cup betting tips Kenya": {
+      "slug": "kenya-ready-international-league-t20-continental-cup-betting-tips-kenya",
+      "posted_at": "2026-09-08T03:29:01.324482+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-07T05:22:33.187449+00:00",
-    "candidates_available": 436,
+    "checked_at": "2026-09-08T03:29:04.736896+00:00",
+    "candidates_available": 407,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Ligue des champions CAF le MAS Fès retrouve betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "Youngster Shah wins Nyali Club betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Hunt glory as stars descend Brussels Diamond League betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "hunt-glory-stars-descend-brussels-diamond-league-betting-tips-kenya"
+      },
+      {
+        "keyword": "Kenya ready International League T20 Continental Cup betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "kenya-ready-international-league-t20-continental-cup-betting-tips-kenya"
       }
     ]
   }

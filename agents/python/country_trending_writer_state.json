@@ -222,28 +222,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-08T02:02:53.068998+00:00",
-    "candidates_available": 338,
+    "checked_at": "2026-09-08T03:40:31.254754+00:00",
+    "candidates_available": 330,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Youngster Shah wins Nyali Club betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
-      },
-      {
-        "keyword": "Algeria Algerian Football Chiefs Name Hemdani Replace Petkovic betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "algeria-new-coach-hemdani-tanzania-betting-tips"
+        "reason": "fact_check: Free Bet Gifts + Aviator Free Bets on Signup; KSh 10; 300 % Welcome Karibu Gift on First Deposit; Both platforms allow you to check the live odds for the Youngster Shah event on the SifuFinds odds page.; The BCLB regulates all betting activity, ensuring that bookmakers offer fair odds and transparent terms.; Popular payment methods for online sports betting in Kenya include M‑Pesa, Airtel Money, Equitel, and the convenient USSD *644#.; Both accept M‑Pesa and Airtel Money, making deposits instant and hassle‑free.; The event will be listed under “Golf” or “Other Sports”.; BCLB also provides resources for gambling addiction.; BCLB Licensed; BCLB Lic. BK0000679"
       },
       {
         "keyword": "‘It feels really good’ Crystal Palace move excites betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: \"It feels really good\"; ₦2,500 Free Bet + 170% ACCA Boost; ₦100 Free Bets + 10 Aviator Flights; 100% Bonus Up to ₦207,500; 300% first deposit bonus up to ₦1,200,000"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 476)"
+      },
+      {
+        "keyword": "Queiroz targets AFCON, 2030 World Cup after contract betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "fact_check: Sportybet Ghana: Offers a 150% welcome bonus up to GH₵500, with a minimum deposit of GH₵1.; Betway Ghana: Provides a 50% welcome bonus up to GH₵200, with a minimum deposit of GH₵2.; 22Bet Ghana: Features a 100% first deposit bonus up to GH₵1,491, with a minimum deposit of GH₵5."
       }
     ]
   }
