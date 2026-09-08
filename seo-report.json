@@ -1,103 +1,13 @@
 {
   "date": "2026-09-08",
-  "total": 31,
+  "total": 16,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 15,
+    "HIGH": 0,
     "MEDIUM": 15,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "williams-brothers-betting-tips-ghana",
-      "detail": "Title 62 chars (max 60): 'Williams Brothers Inspire Athletic Win: Betting Tips for Ghana'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "youngster-shah-wins-nyali-club-betting-tips-kenya",
-      "detail": "Title 71 chars (max 60): 'Youngster Shah wins Nyali Club betting tips Kenya \u2013 Best offers & guid'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kenya-ready-international-league-t20-continental-cup-betting-tips-kenya",
-      "detail": "Title 71 chars (max 60): 'Kenya Ready International League T20 Continental Cup Betting Tips Keny'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "hunt-glory-stars-descend-brussels-diamond-league-betting-tips-kenya",
-      "detail": "Title 70 chars (max 60): 'Hunt glory as stars descend Brussels Diamond League betting tips Kenya'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "algeria-new-coach-hemdani-tanzania-betting-tips",
-      "detail": "Title 78 chars (max 60): 'Algeria Names Brahim Hemdani as New Coach \u2013 Betting Tips for Tanzanian'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "mas-fes-vs-rahimo-fc-caf-champions-league-betting-tips-tanzania",
-      "detail": "Title 68 chars (max 60): 'CAF Champions League: MAS F\u00e8s vs Rahimo FC Betting Tips for Tanzania'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "arsenal-pirates-real-madrid-betting-tips-south-africa",
-      "detail": "Title 70 chars (max 60): 'Arsenal, Pirates & Real Madrid: Betting Tips for South African Punters'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sancho-dortmund-return-hadjar-spanish-gp-betting-insight",
-      "detail": "Title 100 chars (max 60): 'Sancho\u2019s Dortmund Return, Hadjar Misses Spanish GP & NFL Moves \u2013 Betti'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "youngster-shah-wins-nyali-club-betting-tips-kenya",
-      "detail": "Excerpt 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "kenya-ready-international-league-t20-continental-cup-betting-tips-kenya",
-      "detail": "Excerpt 185 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "hunt-glory-stars-descend-brussels-diamond-league-betting-tips-kenya",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "algeria-new-coach-hemdani-tanzania-betting-tips",
-      "detail": "Excerpt 201 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "arsenal-pirates-real-madrid-betting-tips-south-africa",
-      "detail": "Excerpt 173 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sancho-dortmund-return-hadjar-spanish-gp-betting-insight",
-      "detail": "Excerpt 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-roundup-us-open-premier-league-2026",
-      "detail": "Excerpt 184 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
