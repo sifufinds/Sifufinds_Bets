@@ -223,31 +223,35 @@
     "Kemunto Kiplagat win Stanchart Marathon warm up race betting tips Kenya": {
       "slug": "kemunto-kiplagat-win-stanchart-marathon-warm-up-betting-tips-kenya",
       "posted_at": "2026-09-08T11:09:02.875997+00:00"
+    },
+    "Da Cruz keen duo's return FIFA break betting tips South Africa": {
+      "slug": "da-cruz-kaizer-chiefs-fifa-break-betting-south-africa",
+      "posted_at": "2026-09-08T21:43:11.642981+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-08T21:07:37.899858+00:00",
+    "checked_at": "2026-09-08T21:43:15.308841+00:00",
     "candidates_available": 329,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 163 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was 'Premium Times Nigeria reported the latest update, confirming the forward has now found the net in six consecutive league matches. The sequence started against Bodrum FK and continued through competitive fixtures against Igdir FK, Karagümrük, Kayserispor, and Istanbulspor. His latest double against Manisa FK cements a remarkable adaptation period for a player navigating a highly physical domestic competition. Bursaspor supporters are riding a wave of optimism, while tactical analysts point to improved service and clearer finishing zones. The striker is reading defensive lines with precision and', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Williams brothers inspire Athletic win betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: only 3 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '` ... `', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "fact_check: Nico Williams opened the scoring, his first league goal in over a year; Athletic have won 5 of their last 6 league matches, with a 4‑goal difference in the final 3 games; San Mames has produced a win rate of 78 % for Athletic over the last 12 home fixtures; Sportybet typically offers a slightly higher payout for a 3‑0 win; a 3‑0 win market, which is also highly likely given the recent performance of both sides"
       },
       {
         "keyword": "Da Cruz keen duo's return FIFA break betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "fact_check: Hollywoodbets is offering a R25 free bet with no deposit required; Supabets, on the other hand, provides a R50 free bet and a 100% match up to R5,000; | Hollywoodbets   | 2.00     | 3.20     | 3.50     |; | Supabets        | 2.10     | 3.10     | 3.40     |; | BetXchange      | 1.95     | 3.30     | 3.60     |"
+        "result": "written",
+        "slug": "da-cruz-kaizer-chiefs-fifa-break-betting-south-africa"
       }
     ]
   }
