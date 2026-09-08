@@ -219,31 +219,35 @@
     "Algeria Algerian Football Chiefs Name Hemdani Replace Petkovic betting tips Tanzania": {
       "slug": "algeria-new-coach-hemdani-tanzania-betting-tips",
       "posted_at": "2026-09-08T01:53:08.981336+00:00"
+    },
+    "Kemunto Kiplagat win Stanchart Marathon warm up race betting tips Kenya": {
+      "slug": "kemunto-kiplagat-win-stanchart-marathon-warm-up-betting-tips-kenya",
+      "posted_at": "2026-09-08T11:09:02.875997+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-08T08:55:43.578228+00:00",
+    "checked_at": "2026-09-08T11:26:11.995157+00:00",
     "candidates_available": 330,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Bursaspor have kept clean sheets in most of those games, while Manisa have struggled to find the net.; Six consecutive matches with at least one goal from Iheanacho means the over 2.5 line is often priced favourably, especially when Bursaspor’s attack is firing.; Statistically, a striker on a streak of this length scores in roughly 70 % of his subsequent matches, especially when Bursaspor faces a defensively weaker opponent."
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Kemunto Kiplagat win Stanchart Marathon warm up race betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: Kemunto Kiplagat’s; athletes like Kiplagat and Kemunto’s warm-up wins; athletes like Victor Kiplagat and Millicent Kemunto are likely to be among the favorites based on their warm-up race performances."
+        "result": "written",
+        "slug": "kemunto-kiplagat-win-stanchart-marathon-warm-up-betting-tips-kenya"
       },
       {
         "keyword": "Williams brothers inspire Athletic win betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: The Williams brothers, Inaki and Nico, have once again proven their worth, inspiring Athletic Bilbao to a dominant 3-0 victory over Atletico Madrid.; Inaki’s performance was equally impressive.; Sportybet’s 150% welcome bonus up to GH₵500; Betway’s 50% up to GH₵200; 22Bet’s 100% up to GH₵1,491; 1xBet’s 200% up to GH₵2,846; Melbet’s 300% up to GH₵1,500"
       }
     ]
   }
