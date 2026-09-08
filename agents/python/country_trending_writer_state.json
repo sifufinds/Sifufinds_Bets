@@ -226,10 +226,10 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-08T11:26:11.995157+00:00",
-    "candidates_available": 330,
+    "checked_at": "2026-09-08T13:50:56.845986+00:00",
+    "candidates_available": 329,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
@@ -238,16 +238,16 @@
         "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
-        "keyword": "Kemunto Kiplagat win Stanchart Marathon warm up race betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "kemunto-kiplagat-win-stanchart-marathon-warm-up-betting-tips-kenya"
-      },
-      {
         "keyword": "Williams brothers inspire Athletic win betting tips Ghana",
         "country": "Ghana",
+        "result": "skipped",
+        "reason": "similar_title_exists"
+      },
+      {
+        "keyword": "Da Cruz keen duo's return FIFA break betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: The Williams brothers, Inaki and Nico, have once again proven their worth, inspiring Athletic Bilbao to a dominant 3-0 victory over Atletico Madrid.; Inaki’s performance was equally impressive.; Sportybet’s 150% welcome bonus up to GH₵500; Betway’s 50% up to GH₵200; 22Bet’s 100% up to GH₵1,491; 1xBet’s 200% up to GH₵2,846; Melbet’s 300% up to GH₵1,500"
+        "reason": "fact_check: Fernando Da Cruz's strategic vision for Kaizer Chiefs, particularly the return of key players, could shift the dynamics of upcoming matches.; The return of these players is likely to influence betting markets, especially in terms of match results, goal scorers, and team performance.; Bookmakers like **Hollywoodbets** and **Supabets** are expected to adjust their odds based on these developments, providing bettors with opportunities to capitalise on favourable prices.; With strengthened squad depth, Kaizer Chiefs may become favourites in upcoming fixtures, potentially lowering their odds to win.; The return of attacking players could increase the likelihood of BTTS outcomes, offering attractive odds for this market.; A bolstered attack might lead to more goals, making \"Over 2.5 Goals\" a popular choice."
       }
     ]
   }
