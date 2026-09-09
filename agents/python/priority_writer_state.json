@@ -379,19 +379,43 @@
     "Williams brothers inspire Athletic win betting tips Ghana": {
       "slug": "williams-brothers-betting-tips-ghana",
       "posted_at": "2026-09-08T08:34:40.299882+00:00"
+    },
+    "Morning Atiku, Obi, Makinde resist step-down pressure, bank betting tips Nigeria": {
+      "slug": "bank-betting-tips-nigeria",
+      "posted_at": "2026-09-09T16:38:41.734829+00:00"
+    },
+    "Lille vs. Real Betis Lineups betting tips Kenya": {
+      "slug": "lille-vs-real-betis-betting-tips-kenya",
+      "posted_at": "2026-09-09T16:45:05.550816+00:00"
+    },
+    "Lille vs. Real Betis Lineups betting tips Ghana": {
+      "slug": "lille-vs-real-betis-betting-tips-ghana",
+      "posted_at": "2026-09-09T16:50:39.250906+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-09T01:22:17.014693+00:00",
-    "candidates_available": 401,
+    "checked_at": "2026-09-09T16:50:44.849893+00:00",
+    "candidates_available": 434,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
-        "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
+        "keyword": "Morning Atiku, Obi, Makinde resist step-down pressure, bank betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "bank-betting-tips-nigeria"
+      },
+      {
+        "keyword": "Lille vs. Real Betis Lineups betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "lille-vs-real-betis-betting-tips-kenya"
+      },
+      {
+        "keyword": "Lille vs. Real Betis Lineups betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "lille-vs-real-betis-betting-tips-ghana"
       }
     ]
   }

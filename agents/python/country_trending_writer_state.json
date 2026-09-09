@@ -238,7 +238,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-09T14:05:43.129656+00:00",
+    "checked_at": "2026-09-09T16:58:34.115611+00:00",
     "candidates_available": 355,
     "attempted": 3,
     "written": 0,
@@ -247,19 +247,19 @@
         "keyword": "Morning Atiku, Obi, Makinde resist step-down pressure, bank betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 414)"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Lille vs. Real Betis Lineups betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: Enjoy a 300% Welcome Karibu Gift on your first deposit. Deposit as little as KSh 10 and get free bets to use on matches like Lille vs Real Betis.; Get a 100% first deposit bonus up to KSh 19,000. Perfect for boosting your bankroll for this Europa League clash.; Claim a 200% first deposit bonus up to KSh 20,000. Use it to explore various betting markets on this match."
+        "reason": "fact_check: On the 8th of September, 2026, Lille will host Spanish side Real Betis at the Stade Pierre-Mauroy.; The match is scheduled to kick off at 21:00 GMT, giving Kenyan viewers a late‑night viewing window.; The odds on Betika Kenya for a Lille victory are typically marginally higher than on SportPesa Kenya, meaning you could get more value if you choose Betika.; SportPesa Kenya’s odds for a draw tend to be slightly more generous than Betika’s, giving you a better chance of capitalising on a balanced game.; A 1–2 or 2–1 scoreline is a realistic outcome, and you can find competitive odds in both bookmakers.; Betika Kenya usually provides slightly higher odds for a Lille victory compared to SportPesa Kenya.; SportPesa Kenya tends to favour the draw and under‑2.5 markets."
       },
       {
         "keyword": "Lille vs. Real Betis Lineups betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Enjoy a 150% welcome bonus up to GH₵500 as a free bet. Deposit as little as GH₵1 and get started.; Claim a 50% welcome bonus up to GH₵200. Perfect for betting on matches like Lille vs Real Betis.; Get a 100% first deposit bonus up to GH₵1,491. Use it to explore various betting markets on this match."
+        "reason": "quality_gate: no '## FAQ' section heading found"
       }
     ]
   }
