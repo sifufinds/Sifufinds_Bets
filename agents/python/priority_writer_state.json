@@ -391,31 +391,39 @@
     "Lille vs. Real Betis Lineups betting tips Ghana": {
       "slug": "lille-vs-real-betis-betting-tips-ghana",
       "posted_at": "2026-09-09T16:50:39.250906+00:00"
+    },
+    "Nigeria Eguavoen Appointed Interim Super Falcons Coach Ahead betting tips Tanzania": {
+      "slug": "nigeria-vs-tanzania-betting-tips-eguavoen-super-falcons",
+      "posted_at": "2026-09-09T20:46:23.506328+00:00"
+    },
+    "Kemunto Kiplagat win Stanchart Marathon warm up race betting tips Kenya": {
+      "slug": "kemunto-kiplagat-stanchart-marathon-betting-tips-kenya",
+      "posted_at": "2026-09-09T20:51:20.437244+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-09T18:48:31.867686+00:00",
+    "checked_at": "2026-09-09T20:51:23.785351+00:00",
     "candidates_available": 431,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Guinea coach recognises Pitso factor ahead Bafana test betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, all the bookmakers mentioned are licensed by South African regulatory bodies such as the WCGRB, NGB, and NCGLB, ensuring a safe and fair betting environment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 825 words (minimum 1000)"
       },
       {
         "keyword": "Nigeria Eguavoen Appointed Interim Super Falcons Coach Ahead betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was '===', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "nigeria-vs-tanzania-betting-tips-eguavoen-super-falcons"
       },
       {
         "keyword": "Kemunto Kiplagat win Stanchart Marathon warm up race betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Note: The article has been expanded to meet the minimum word count requirement of 1000 words.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "kemunto-kiplagat-stanchart-marathon-betting-tips-kenya"
       }
     ]
   }

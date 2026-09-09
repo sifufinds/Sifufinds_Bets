@@ -238,7 +238,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-09T19:00:42.481137+00:00",
+    "checked_at": "2026-09-09T21:02:53.901521+00:00",
     "candidates_available": 355,
     "attempted": 3,
     "written": 0,
@@ -247,19 +247,19 @@
         "keyword": "Morning Atiku, Obi, Makinde resist step-down pressure, bank betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Bet9ja’s ₦2,500 Free Bet + 170 % ACCA Boost; BetKing’s ₦100 Free Bets + 10 Aviator Flights (No Deposit); 22Bet Nigeria’s 100 % First Deposit up to ₦207,500; 1xBet Nigeria’s 300 % First Deposit up to ₦1,200,000; odds will likely stay above 6.00 for each"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Lille vs. Real Betis Lineups betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: SportPesa Kenya | 2.10 | 3.20 | 3.50 | 1.80 | 1.90; Betika Kenya    | 2.05 | 3.10 | 3.40 | 1.75 | 1.85; 22Bet Kenya     | 2.15 | 3.30 | 3.60 | 1.85 | 1.95; SportPesa Kenya’s 300% Karibu Gift; Betika Kenya’s Free Bet Gifts + Aviator Free Bets; 22Bet Kenya’s 100% First Deposit Bonus up to KSh 19,000"
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was 'To make the most of this thrilling matchup, visit SifuFinds' live odds page and compare the odds from top Kenyan bookmakers. Don't forget to set a budget and gamble responsibly. Remember, *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Lille vs. Real Betis Lineups betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Sportybet Ghana | 2.50 | 3.25 | 2.75; Betway Ghana | 2.60 | 3.20 | 2.80; 22Bet Ghana | 2.45 | 3.15 | 2.65; 1xBet Ghana | 2.55 | 3.30 | 2.85; Melbet Ghana | 2.40 | 3.10 | 2.60; best odds for Lille to win are currently offered by Sportybet Ghana at 2.50"
+        "reason": "quality_gate: only 466 words (minimum 600); no '## FAQ' section heading found"
       }
     ]
   }
