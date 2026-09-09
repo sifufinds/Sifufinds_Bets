@@ -1,133 +1,13 @@
 {
   "date": "2026-09-09",
-  "total": 36,
+  "total": 16,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 20,
+    "HIGH": 0,
     "MEDIUM": 15,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "betting-buzz-rangers-celtic-us-open-nfl-kickoff",
-      "detail": "Title 62 chars (max 60): 'Betting Buzz: Rangers Chase Celtic, US Open Drama, NFL Kickoff'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "iheanacho-scoring-streak-betting-tips-nigeria",
-      "detail": "Title 61 chars (max 60): \"Iheanacho's Scoring Streak: Betting Tips for Nigerian Punters\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "us-open-2026-quarter-final-shelton-alcaraz-betting-insights",
-      "detail": "Title 94 chars (max 60): 'US Open 2026 Quarter\u2011Final Showdown: Shelton vs Alcaraz \u2013 Betting Insi'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "lille-vs-real-betis-uefa-champions-league-betting-tips-tanzania",
-      "detail": "Title 68 chars (max 60): 'Lille vs Real Betis: UEFA Champions League Betting Tips for Tanzania'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "latest-sports-news-nba-betting-strategy-africa",
-      "detail": "Title 86 chars (max 60): 'From LSU Drama to UFC KOs: How the Latest Sports News Shapes Your NBA '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "basketball-prop-betting-football-headlines",
-      "detail": "Title 80 chars (max 60): \"Basketball Prop Betting Meets Football Drama: From Ballon d'Or to Bake\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-headlines-man-city-liv-golf-us-open",
-      "detail": "Title 78 chars (max 60): 'Global Sports Headlines: Man City Wins, LIV Golf Bankruptcy, U.S. Open'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "da-cruz-kaizer-chiefs-fifa-break-betting-south-africa",
-      "detail": "Title 84 chars (max 60): 'Da Cruz Eyes Key Returns for Kaizer Chiefs: FIFA Break Betting Tips fo'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-action-champions-league-nfl-us-open",
-      "detail": "Title 64 chars (max 60): 'Global Sports Action: Champions League, NFL, and US Open Updates'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "breaking-sports-news-ayew-sheff-utd-champions-league",
-      "detail": "Title 70 chars (max 60): 'Breaking Sports News: Ayew Joins Sheff Utd, Champions League Kicks Off'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kemunto-kiplagat-win-stanchart-marathon-warm-up-betting-tips-kenya",
-      "detail": "Title 70 chars (max 60): 'Kemunto & Kiplagat win Stanchart Marathon warm\u2011up \u2013 Kenya betting tips'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nba-offseason-fantasy-football-buzz",
-      "detail": "Excerpt 180 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "us-open-2026-quarter-final-shelton-alcaraz-betting-insights",
-      "detail": "Excerpt 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "us-open-college-football-latest-news",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "basketball-prop-betting-football-headlines",
-      "detail": "Excerpt 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-headlines-man-city-liv-golf-us-open",
-      "detail": "Excerpt 160 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "da-cruz-kaizer-chiefs-fifa-break-betting-south-africa",
-      "detail": "Excerpt 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-action-champions-league-nfl-us-open",
-      "detail": "Excerpt 159 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "breaking-sports-news-ayew-sheff-utd-champions-league",
-      "detail": "Excerpt 175 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "kemunto-kiplagat-win-stanchart-marathon-warm-up-betting-tips-kenya",
-      "detail": "Excerpt 168 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
