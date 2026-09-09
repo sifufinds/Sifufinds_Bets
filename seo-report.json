@@ -1,13 +1,97 @@
 {
   "date": "2026-09-09",
-  "total": 16,
+  "total": 30,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 15,
+    "HIGH": 12,
+    "MEDIUM": 17,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "kemunto-kiplagat-stanchart-marathon-betting-tips-kenya",
+      "detail": "Title 73 chars (max 60): 'Kemunto Kiplagat\u2019s Stanchart Marathon Warm-Up Win: Betting Tips for Ke'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nigeria-vs-tanzania-betting-tips-eguavoen-super-falcons",
+      "detail": "Title 70 chars (max 60): 'Nigeria vs Tanzania Betting Tips: Eguavoen\u2019s Super Falcons Appointment'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "lille-vs-real-betis-betting-tips-ghana",
+      "detail": "Title 70 chars (max 60): 'Lille vs. Real Betis Lineups: Expert Betting Tips for Ghanaian Punters'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "lille-vs-real-betis-betting-tips-kenya",
+      "detail": "Title 68 chars (max 60): 'Lille vs. Real Betis Lineups: Expert Betting Tips for Kenyan Punters'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-scotland-staff-refresh-us-open-tennis-nfl-week-1",
+      "detail": "Title 79 chars (max 60): 'Global Sports Headlines: Scotland Staff Refresh, US Open Tennis, and N'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-joshua-vs-fury-conor-benn",
+      "detail": "Title 61 chars (max 60): 'Global Sports Headlines: Joshua vs Fury, Conor Benn, and More'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nigeria-vs-tanzania-betting-tips-eguavoen-super-falcons",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "lille-vs-real-betis-betting-tips-ghana",
+      "detail": "Excerpt 217 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "lille-vs-real-betis-betting-tips-kenya",
+      "detail": "Excerpt 196 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bank-betting-tips-nigeria",
+      "detail": "Excerpt 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-scotland-staff-refresh-us-open-tennis-nfl-week-1",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-cricket-f1-nfl-solheim-cup",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "kemunto-kiplagat-stanchart-marathon-betting-tips-kenya",
+      "detail": "High title overlap (6 meaningful tokens) with 'kemunto-kiplagat-win-stanchart-marathon-warm-up-betting-tips-kenya' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "lille-vs-real-betis-betting-tips-ghana",
+      "detail": "High title overlap (6 meaningful tokens) with 'lille-vs-real-betis-betting-tips-kenya' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
