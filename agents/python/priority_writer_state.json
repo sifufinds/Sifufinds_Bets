@@ -394,28 +394,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-09T16:50:44.849893+00:00",
-    "candidates_available": 434,
+    "checked_at": "2026-09-09T18:48:31.867686+00:00",
+    "candidates_available": 431,
     "attempted": 3,
-    "written": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Morning Atiku, Obi, Makinde resist step-down pressure, bank betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "bank-betting-tips-nigeria"
+        "keyword": "Guinea coach recognises Pitso factor ahead Bafana test betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, all the bookmakers mentioned are licensed by South African regulatory bodies such as the WCGRB, NGB, and NCGLB, ensuring a safe and fair betting environment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Lille vs. Real Betis Lineups betting tips Kenya",
+        "keyword": "Nigeria Eguavoen Appointed Interim Super Falcons Coach Ahead betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was '===', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Kemunto Kiplagat win Stanchart Marathon warm up race betting tips Kenya",
         "country": "Kenya",
-        "result": "written",
-        "slug": "lille-vs-real-betis-betting-tips-kenya"
-      },
-      {
-        "keyword": "Lille vs. Real Betis Lineups betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "lille-vs-real-betis-betting-tips-ghana"
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Note: The article has been expanded to meet the minimum word count requirement of 1000 words.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
