@@ -258,7 +258,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-10T21:43:11.472163+00:00",
+    "checked_at": "2026-09-10T22:18:32.633909+00:00",
     "candidates_available": 351,
     "attempted": 3,
     "written": 0,
@@ -267,19 +267,19 @@
         "keyword": "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: 2.10 / 3.20 / 3.50; 1.85; 2.05 / 3.10 / 3.40; 1.90; 2.15 / 3.30 / 3.60; 1.80"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Liverpool secure comeback win UCL opener betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: 1.65 / 3.80 / 5.20; 1.80; 1.60; 1.70 / 3.75 / 5.00; 1.85; 1.65; 1.60 / 3.90 / 5.50; 1.75; 1.55; R50 Free Bet"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 445)"
       },
       {
         "keyword": "Ligue des champions UEFA Première historique, Como au betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: 5.50 / 4.00 / 1.60; 1.80; 1.65; 5.80 / 4.20 / 1.55; 1.85; 1.70; 5.20 / 3.90 / 1.65; 1.75; 1.60; 250% Karibu Gift; TSh 5,000 Welcome Bonus; Free Bet on Signup"
+        "reason": "fact_check: Bookmakers like **Betika Tanzania** and **SportPesa Tanzania** are likely to offer competitive odds on Leipzig’s victory; | Bookmaker          | Como Win | Draw | RB Leipzig Win |; **Betika Tanzania**: Free Bet on Signup + TSh 5,000 Welcome Bonus. Perfect for new bettors looking to test the waters.; **SportPesa Tanzania**: 250% Karibu Gift on First Deposit. A great way to boost your initial bankroll.; **22Bet Tanzania**: 100% First Deposit Bonus up to TSh 460,000. Ideal for those looking to make a larger deposit.; **1xBet Tanzania**: 200% First Deposit Bonus up to TSh 500,000. One of the most generous offers available.; **FairPari Tanzania**: 100% First Deposit Bonus up to €100. A solid option for bettors who prefer smaller bonuses with manageable wagering requirements.; **Betway Tanzania**: 50% Welcome Bonus up to TSh 120,000. A reliable choice for those who value consistency."
       }
     ]
   }
