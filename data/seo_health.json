@@ -1,17 +1,18 @@
 {
-  "date": "2026-09-09",
-  "fixes_applied": 5,
+  "date": "2026-09-10",
+  "fixes_applied": 6,
   "warnings": 2,
   "fixes": [
-    "llms.txt: Last Updated \u2192 2026-09-09, blog post count refreshed",
-    "Blog HTML: refreshed dateModified on 791 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 1205",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 1980 total URLs",
+    "llms.txt: Last Updated \u2192 2026-09-10, blog post count refreshed",
+    "index.html: dateModified \u2192 2026-09-10",
+    "Blog HTML: refreshed dateModified on 800 stale pages",
+    "Blog HTML regenerated:     Total blog posts in JSON: 1216",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 1994 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "560 posts below 900 words: global-sports-headlines-scotland-staff-refresh-us-open-tennis-nfl-week-1, rugby-betting-guide-springboks-six-nations-and-more, arsenal-var-blunder-juventus-target-nba-news, global-sports-headlines-cricket-f1-nfl-solheim-cup, global-sports-headlines-joshua-vs-fury-conor-benn...",
-    "353 posts missing FAQ section: global-sports-headlines-scotland-staff-refresh-us-open-tennis-nfl-week-1, arsenal-var-blunder-juventus-target-nba-news, global-sports-headlines-cricket-f1-nfl-solheim-cup, global-sports-headlines-joshua-vs-fury-conor-benn, betting-buzz-rangers-celtic-us-open-nfl-kickoff"
+    "569 posts below 900 words: nfl-kickoff-premier-league-drama-betting-insights, sabah-coach-valdas-dambrauskas-champions-league-journey, kenya-boxers-reality-check-eurasian-dauria-cup-betting-tips, guinea-coach-pitso-factor-bafana-betting-tips-south-africa, lille-vs-real-betis-lineups-betting-tips-ghana...",
+    "358 posts missing FAQ section: nfl-kickoff-premier-league-drama-betting-insights, sabah-coach-valdas-dambrauskas-champions-league-journey, fiba-world-cup-quarterfinals-team-usa-vs-hungary-preview, nfl-kickoff-2026-seahawks-patriots-betting, nfl-seahawks-patriots-wednesday-kickoff-betting-preview"
   ],
   "status": "warnings"
 }
