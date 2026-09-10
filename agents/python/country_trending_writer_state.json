@@ -254,7 +254,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-10T15:40:26.718087+00:00",
+    "checked_at": "2026-09-10T17:33:39.388216+00:00",
     "candidates_available": 352,
     "attempted": 3,
     "written": 0,
@@ -263,19 +263,19 @@
         "keyword": "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 595 words (minimum 600)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 435)"
       },
       {
         "keyword": "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Sportybet Ghana’s 150% welcome bonus offers up to GH₵500 in free bets; Betway Ghana    | 50% up to GH₵200; 22Bet Ghana     | 100% up to GH₵1,491; 1xBet Ghana     | 200% up to GH₵2,846; Melbet Ghana    | 300% up to GH₵1,500; FairPari Ghana  | 100% up to €100"
+        "reason": "fact_check: 150% up to GH₵500 Free Bet; 50% up to GH₵200; 100% up to GH₵1,491; 200% up to GH₵2,846; 300% up to GH₵1,500; 100% up to €100; Min odds 3.15, 7-day expiry; MTN MoMo accepted, wagering requirements; Wager x5, min odds 1.40, 30 days; Code MBMAX, wager x5, min odds 1.40; Not valid for crypto deposits"
       },
       {
         "keyword": "Liverpool secure comeback win UCL opener betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: Hollywoodbets   | R25 Free Bet + 50 Free Spins           | R0          | FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard, Instant EFT; Supabets        | R50 Free Bet + 100% Match Up to R5,000 | R10         | FNB, Standard Bank, Nedbank, Visa, Mastercard, Instant EFT, Blue Voucher; BetXchange      | R200 Free Bet on First Deposit         | R10         | FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard, Instant EFT; TicTacBets      | 25 Free Spins + 100% Match Up to R5,000 | R5          | Visa, Mastercard, Instant EFT, 1Voucher, Ozow, Zapper, Apple Pay; FairPari SA     | 100% First Deposit Bonus Up to €100    | R10         | FNB, Standard Bank, Nedbank, Capitec, Instant EFT; Linebet SA      | 100% First Deposit Bonus               | R20         | Visa, Mastercard, Instant EFT; Hollywoodbets’ R25 free bet and 50 free spins require no deposit; Supabets’ 100% match up to R5,000; Supabets offers a R50 free bet on registration"
+        "reason": "fact_check: R25 Free Bet + 50 Free Spins; R50 Free Bet + 100% up to R5,000; R200 Free Bet on First Deposit; 25 Free Spins + 100% up to R5,000; 100% up to €100; 100% First Deposit Bonus; No deposit required, FICA needed; R50 free bet on registration + FICA; FICA required, wagering requirements; FICA required, 75 spins total; Not valid for crypto deposits; Wager x5 accumulators, 30 days"
       }
     ]
   }
