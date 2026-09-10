@@ -410,28 +410,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-10T01:20:18.052513+00:00",
-    "candidates_available": 429,
+    "checked_at": "2026-09-10T03:46:26.169323+00:00",
+    "candidates_available": 428,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '\\n[article]\\n', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Da Cruz keen duo's return FIFA break betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "da-cruz-keen-duo-return-fifa-break-betting-tips-south-africa"
+        "reason": "quality_gate: final line was 'OPay and PalmPay usually process deposits and withdrawals instantly, allowing you to claim your bonus and place a bet within minutes. Bank transfers are reliable but can take longer to clear.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ligue des champions UEFA où suivre Lille – betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: only 983 words (minimum 1000)"
+        "reason": "quality_gate: only 85 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; final line was 'Text...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "WAFU B Women’s Champions League final Ampem Darkoa, betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'All listed bookmakers support secure payment gateways for MTN MoMo, Vodafone Cash, Visa, and Mastercard. They are regulated by the GCA, which requires adherence to strict security protocols.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
