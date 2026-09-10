@@ -407,25 +407,35 @@
     "Da Cruz keen duo's return FIFA break betting tips South Africa": {
       "slug": "da-cruz-keen-duo-return-fifa-break-betting-tips-south-africa",
       "posted_at": "2026-09-10T01:04:56.510493+00:00"
+    },
+    "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana": {
+      "slug": "president-mahama-poor-refereeing-match-manipulation-betting-tips-ghana",
+      "posted_at": "2026-09-10T19:41:01.539238+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-10T11:30:39.420349+00:00",
+    "checked_at": "2026-09-10T19:41:05.325839+00:00",
     "candidates_available": 430,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All operators listed are licensed by the NLRC, which enforces strict regulatory standards. They maintain segregated accounts for player funds and are required to comply with anti‑money‑laundering laws.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Withdrawal speed depends on the method. Bank Transfers and card withdrawals typically take 1–2 business days, while mobile money like OPay may settle instantly. Always check the bookmaker’s withdrawal policy before betting.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Kenya boxers get reality check Eurasian Dauria Cup betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 868 words (minimum 1000); no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "president-mahama-poor-refereeing-match-manipulation-betting-tips-ghana"
       }
     ]
   }
