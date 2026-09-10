@@ -254,28 +254,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-10T07:50:27.526239+00:00",
+    "checked_at": "2026-09-10T13:25:10.402826+00:00",
     "candidates_available": 352,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
-      },
-      {
-        "keyword": "Kenya boxers get reality check Eurasian Dauria Cup betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "kenya-boxers-reality-check-eurasian-dauria-cup-betting-tips"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 461)"
       },
       {
         "keyword": "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Sportybet Ghana and Betway Ghana frequently adjust their odds based on pre-match and in-play events. If a match is suspected of manipulation, odds can shift dramatically, leaving bettors at a disadvantage.; | Bookmaker          | Welcome Bonus                     | Min Deposit | Payment Methods                          |\n|--------------------|-----------------------------------|-------------|------------------------------------------|\n| Sportybet Ghana    | 150% up to GH₵500                | GH₵1        | MTN MoMo, Vodafone Cash, AirtelTigo Money, Visa, Mastercard |\n| Betway Ghana       | 50% up to GH₵200                 | GH₵2        | MTN MoMo, Vodafone Cash, Visa, Mastercard |\n| 22Bet Ghana        | 100% up to GH₵1,491              | GH₵5        | MTN MoMo, Vodafone Cash, Visa, Mastercard |\n| 1xBet Ghana        | 200% up to GH₵2,846              | GH₵5        | MTN MoMo, Vodafone Cash, Visa, Mastercard |\n| Melbet Ghana       | 300% up to GH₵1,500              | GH₵1        | MTN MoMo, Vodafone Cash, Visa, Mastercard |\n| FairPari Ghana     | 100% up to €100                  | GH₵5        | MTN MoMo, Vodafone Cash, Visa, Mastercard |"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+      },
+      {
+        "keyword": "Liverpool secure comeback win UCL opener betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: Look for odds around **1.50–1.70** on platforms like **Hollywoodbets** and **Supabets**.; This market typically offers odds of **1.60–1.80**.; Odds for him to score anytime usually range from **1.80–2.20**.; | Hollywoodbets | 1.65          | 1.70     | 1.60       |; | Over 2.5 Goals       | 1.75          | 1.80     | 1.70       |; | Mohamed Salah to Score | 2.00         | 2.10     | 1.95       |"
       }
     ]
   }
