@@ -1,13 +1,55 @@
 {
-  "date": "2026-09-09",
-  "total": 30,
+  "date": "2026-09-10",
+  "total": 45,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 12,
-    "MEDIUM": 17,
+    "HIGH": 26,
+    "MEDIUM": 18,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nfl-kickoff-premier-league-drama-betting-insights",
+      "detail": "Title 72 chars (max 60): 'NFL Kickoff & Premier League Drama: Betting Insights for African Punte'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "kenya-boxers-reality-check-eurasian-dauria-cup-betting-tips",
+      "detail": "Title 80 chars (max 60): 'Kenya Boxers Get Reality Check at Eurasian Dauria Cup \u2013 Betting Tips f'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "guinea-coach-pitso-factor-bafana-betting-tips-south-africa",
+      "detail": "Title 81 chars (max 60): 'Guinea Coach Recognises Pitso Factor: Bafana Bafana Betting Tips for S'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "da-cruz-keen-duo-return-fifa-break-betting-tips-south-africa",
+      "detail": "Title 65 chars (max 60): 'Da Cruz Keen Duo Return: FIFA Break Betting Tips for South Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "atiku-obi-makinde-resist-step-down-pressure-nigeria-betting-tips",
+      "detail": "Title 67 chars (max 60): 'Atiku, Obi, Makinde Resist Step-Down Pressure: Nigeria Betting Tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "guinea-bafana-betting-tips-south-africa",
+      "detail": "Title 85 chars (max 60): 'Guinea vs Bafana betting tips: Pitso factor, offers and best South Afr'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nfl-seahawks-patriots-wednesday-kickoff-betting-preview",
+      "detail": "Title 65 chars (max 60): 'NFL Kicks Off on Wednesday: Seahawks vs. Patriots Betting Preview'"
+    },
     {
       "severity": "HIGH",
       "check": "title_length",
@@ -47,6 +89,48 @@
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
+      "page": "nfl-kickoff-premier-league-drama-betting-insights",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "kenya-boxers-reality-check-eurasian-dauria-cup-betting-tips",
+      "detail": "Excerpt 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "guinea-coach-pitso-factor-bafana-betting-tips-south-africa",
+      "detail": "Excerpt 196 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "lille-vs-real-betis-lineups-betting-tips-ghana",
+      "detail": "Excerpt 183 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "da-cruz-keen-duo-return-fifa-break-betting-tips-south-africa",
+      "detail": "Excerpt 197 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "atiku-obi-makinde-resist-step-down-pressure-nigeria-betting-tips",
+      "detail": "Excerpt 251 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "guinea-bafana-betting-tips-south-africa",
+      "detail": "Excerpt 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
       "page": "nigeria-vs-tanzania-betting-tips-eguavoen-super-falcons",
       "detail": "Excerpt 170 chars (max 155)"
     },
@@ -79,6 +163,12 @@
       "check": "meta_desc_length",
       "page": "global-sports-headlines-cricket-f1-nfl-solheim-cup",
       "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "guinea-coach-pitso-factor-bafana-betting-tips-south-africa",
+      "detail": "High title overlap (5 meaningful tokens) with 'guinea-bafana-betting-tips-south-africa' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
