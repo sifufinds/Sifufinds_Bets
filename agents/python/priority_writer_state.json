@@ -411,31 +411,39 @@
     "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana": {
       "slug": "president-mahama-poor-refereeing-match-manipulation-betting-tips-ghana",
       "posted_at": "2026-09-10T19:41:01.539238+00:00"
+    },
+    "Liverpool secure comeback win UCL opener betting tips South Africa": {
+      "slug": "liverpool-ucl-comeback-win-betting-tips-south-africa",
+      "posted_at": "2026-09-10T21:40:19.653459+00:00"
+    },
+    "Ligue des champions UEFA Première historique, Como au betting tips Tanzania": {
+      "slug": "ligue-des-champions-uefa-premiere-historique-conseils-paris-tanzanie",
+      "posted_at": "2026-09-10T21:41:39.580238+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-10T19:41:05.325839+00:00",
-    "candidates_available": 430,
+    "checked_at": "2026-09-10T21:41:42.722573+00:00",
+    "candidates_available": 428,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Withdrawal speed depends on the method. Bank Transfers and card withdrawals typically take 1–2 business days, while mobile money like OPay may settle instantly. Always check the bookmaker’s withdrawal policy before betting.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
       {
         "keyword": "Kenya boxers get reality check Eurasian Dauria Cup betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 868 words (minimum 1000); no '## FAQ' section heading found"
+        "reason": "quality_gate: final line was 'Betika offers free bet drops on Aviator, but no promo code is required.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana",
-        "country": "Ghana",
+        "keyword": "Liverpool secure comeback win UCL opener betting tips South Africa",
+        "country": "South Africa",
         "result": "written",
-        "slug": "president-mahama-poor-refereeing-match-manipulation-betting-tips-ghana"
+        "slug": "liverpool-ucl-comeback-win-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Ligue des champions UEFA Première historique, Como au betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "ligue-des-champions-uefa-premiere-historique-conseils-paris-tanzanie"
       }
     ]
   }
