@@ -254,7 +254,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-10T13:25:10.402826+00:00",
+    "checked_at": "2026-09-10T15:40:26.718087+00:00",
     "candidates_available": 352,
     "attempted": 3,
     "written": 0,
@@ -263,19 +263,19 @@
         "keyword": "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 461)"
+        "reason": "quality_gate: only 595 words (minimum 600)"
       },
       {
         "keyword": "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "fact_check: Sportybet Ghana’s 150% welcome bonus offers up to GH₵500 in free bets; Betway Ghana    | 50% up to GH₵200; 22Bet Ghana     | 100% up to GH₵1,491; 1xBet Ghana     | 200% up to GH₵2,846; Melbet Ghana    | 300% up to GH₵1,500; FairPari Ghana  | 100% up to €100"
       },
       {
         "keyword": "Liverpool secure comeback win UCL opener betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: Look for odds around **1.50–1.70** on platforms like **Hollywoodbets** and **Supabets**.; This market typically offers odds of **1.60–1.80**.; Odds for him to score anytime usually range from **1.80–2.20**.; | Hollywoodbets | 1.65          | 1.70     | 1.60       |; | Over 2.5 Goals       | 1.75          | 1.80     | 1.70       |; | Mohamed Salah to Score | 2.00         | 2.10     | 1.95       |"
+        "reason": "fact_check: Hollywoodbets   | R25 Free Bet + 50 Free Spins           | R0          | FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard, Instant EFT; Supabets        | R50 Free Bet + 100% Match Up to R5,000 | R10         | FNB, Standard Bank, Nedbank, Visa, Mastercard, Instant EFT, Blue Voucher; BetXchange      | R200 Free Bet on First Deposit         | R10         | FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard, Instant EFT; TicTacBets      | 25 Free Spins + 100% Match Up to R5,000 | R5          | Visa, Mastercard, Instant EFT, 1Voucher, Ozow, Zapper, Apple Pay; FairPari SA     | 100% First Deposit Bonus Up to €100    | R10         | FNB, Standard Bank, Nedbank, Capitec, Instant EFT; Linebet SA      | 100% First Deposit Bonus               | R20         | Visa, Mastercard, Instant EFT; Hollywoodbets’ R25 free bet and 50 free spins require no deposit; Supabets’ 100% match up to R5,000; Supabets offers a R50 free bet on registration"
       }
     ]
   }
