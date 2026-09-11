@@ -1,176 +1,50 @@
 {
-  "updated": "2026-09-10T23:54:16.359074+00:00",
+  "updated": "2026-09-11T09:25:25.951110+00:00",
   "source": "forebet.com, predictz.com",
-  "count": 172,
+  "count": 166,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-09-10T23:54:16.359074+00:00"
+      "ts": "2026-09-11T09:25:25.951110+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-09-10T23:54:16.359074+00:00"
+      "ts": "2026-09-11T09:25:25.951110+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-09-10T23:54:16.359074+00:00"
+      "ts": "2026-09-11T09:25:25.951110+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-09-10T23:54:16.359074+00:00"
+      "ts": "2026-09-11T09:25:25.951110+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-09-10T23:54:16.359074+00:00"
+      "ts": "2026-09-11T09:25:25.951110+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-09-10T23:54:16.359074+00:00"
+      "ts": "2026-09-11T09:25:25.951110+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-09-10T23:54:16.359074+00:00"
+      "ts": "2026-09-11T09:25:25.951110+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-09-10T23:54:16.359074+00:00"
+      "ts": "2026-09-11T09:25:25.951110+00:00"
     }
   ],
   "predictions": [
-    {
-      "id": "fb_2525392",
-      "home": "USM Alger",
-      "away": "JS El Biar",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "dz",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-10T16:00:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-0",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
-    },
-    {
-      "id": "fb_2528775",
-      "home": "San Antonio",
-      "away": "Atlético JBG",
-      "competition": "Ecuador LigaPro Div 2",
-      "comp_slug": "ec",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-10T16:30:00+00:00",
-      "match_winner": "X",
-      "match_winner_label": "X 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
-    },
-    {
-      "id": "fb_2542401",
-      "home": "Sao Paulo U20",
-      "away": "Grêmio Santo Antônio U20",
-      "competition": "Brazil Serie A",
-      "comp_slug": "br",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-10T16:30:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 4-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "4-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
-    },
-    {
-      "id": "fb_2476247",
-      "home": "Aurora",
-      "away": "CSD Municipal",
-      "competition": "Guatemala Liga Nacional",
-      "comp_slug": "gt",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-10T17:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 1-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-2",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
-    },
-    {
-      "id": "fb_2470316",
-      "home": "H&H Export",
-      "away": "Diriangén FC",
-      "competition": "Ni1 League",
-      "comp_slug": "ni",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-10T17:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 1-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-2",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
-    },
-    {
-      "id": "fb_2548707",
-      "home": "H&H Export",
-      "away": "Diriangén FC",
-      "competition": "Ni1 League",
-      "comp_slug": "ni",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-10T17:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 0-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-3",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
-    },
     {
       "id": "fb_2542403",
       "home": "Galvez U20",
@@ -190,7 +64,7 @@
       "over25": "",
       "correct_score": "0-5",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2535313",
@@ -211,7 +85,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2427871",
@@ -232,7 +106,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2548736",
@@ -253,7 +127,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2542402",
@@ -274,7 +148,7 @@
       "over25": "",
       "correct_score": "0-3",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2534780",
@@ -295,7 +169,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2534876",
@@ -316,7 +190,7 @@
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2470832",
@@ -337,7 +211,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2476248",
@@ -358,7 +232,7 @@
       "over25": "",
       "correct_score": "2-3",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2534786",
@@ -379,7 +253,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2534784",
@@ -400,7 +274,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2547772",
@@ -421,7 +295,7 @@
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2547761",
@@ -442,7 +316,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2442921",
@@ -463,7 +337,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2475134",
@@ -484,7 +358,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2476020",
@@ -505,7 +379,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "fb_2468123",
@@ -526,7 +400,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-10T23:54:21.459401+00:00"
+      "scraped_at": "2026-09-11T09:25:31.816089+00:00"
     },
     {
       "id": "1209005",
@@ -547,7 +421,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449673+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807150+00:00"
     },
     {
       "id": "1213427",
@@ -568,7 +442,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453111+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810334+00:00"
     },
     {
       "id": "1191904",
@@ -589,7 +463,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450412+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807852+00:00"
     },
     {
       "id": "1219186",
@@ -610,7 +484,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453331+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810540+00:00"
     },
     {
       "id": "1204595",
@@ -631,7 +505,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452219+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809506+00:00"
     },
     {
       "id": "1205838",
@@ -652,7 +526,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448464+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806230+00:00"
     },
     {
       "id": "1219790",
@@ -673,7 +547,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453997+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811162+00:00"
     },
     {
       "id": "1220480",
@@ -694,7 +568,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453612+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810812+00:00"
     },
     {
       "id": "1218370",
@@ -715,7 +589,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453717+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810910+00:00"
     },
     {
       "id": "1220479",
@@ -736,7 +610,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453585+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810787+00:00"
     },
     {
       "id": "1219792",
@@ -757,7 +631,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453918+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811088+00:00"
     },
     {
       "id": "1219185",
@@ -778,7 +652,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453364+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810571+00:00"
     },
     {
       "id": "1218371",
@@ -799,7 +673,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453747+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810938+00:00"
     },
     {
       "id": "1219793",
@@ -820,7 +694,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454029+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811193+00:00"
     },
     {
       "id": "1207737",
@@ -841,7 +715,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449503+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806953+00:00"
     },
     {
       "id": "1205843",
@@ -862,7 +736,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448548+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806275+00:00"
     },
     {
       "id": "1207432",
@@ -883,7 +757,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449459+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806908+00:00"
     },
     {
       "id": "1209013",
@@ -904,7 +778,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449710+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807190+00:00"
     },
     {
       "id": "1215590",
@@ -925,7 +799,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449878+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807332+00:00"
     },
     {
       "id": "1173685",
@@ -946,7 +820,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452586+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809855+00:00"
     },
     {
       "id": "1219878",
@@ -967,7 +841,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454143+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811300+00:00"
     },
     {
       "id": "1205840",
@@ -988,7 +862,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448633+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806319+00:00"
     },
     {
       "id": "1198528",
@@ -1009,7 +883,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450919+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808316+00:00"
     },
     {
       "id": "1219551",
@@ -1030,7 +904,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454277+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811424+00:00"
     },
     {
       "id": "1213732",
@@ -1051,7 +925,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450106+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807544+00:00"
     },
     {
       "id": "1208009",
@@ -1072,7 +946,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452777+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810034+00:00"
     },
     {
       "id": "1197798",
@@ -1093,7 +967,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452477+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809750+00:00"
     },
     {
       "id": "1209009",
@@ -1114,7 +988,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449746+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807231+00:00"
     },
     {
       "id": "1181090",
@@ -1135,7 +1009,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454073+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811233+00:00"
     },
     {
       "id": "1209006",
@@ -1156,7 +1030,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449785+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807267+00:00"
     },
     {
       "id": "1203430",
@@ -1177,7 +1051,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449193+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806610+00:00"
     },
     {
       "id": "1212646",
@@ -1198,7 +1072,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453788+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810977+00:00"
     },
     {
       "id": "1205842",
@@ -1219,7 +1093,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448725+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806365+00:00"
     },
     {
       "id": "1222229",
@@ -1240,7 +1114,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450996+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808386+00:00"
     },
     {
       "id": "1193214",
@@ -1261,7 +1135,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451034+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808420+00:00"
     },
     {
       "id": "1219822",
@@ -1282,7 +1156,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448136+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806052+00:00"
     },
     {
       "id": "1192900",
@@ -1303,7 +1177,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450215+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807649+00:00"
     },
     {
       "id": "1199676",
@@ -1324,7 +1198,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449094+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806534+00:00"
     },
     {
       "id": "1171405",
@@ -1345,7 +1219,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451826+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809145+00:00"
     },
     {
       "id": "1208326",
@@ -1366,7 +1240,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453218+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810436+00:00"
     },
     {
       "id": "1202137",
@@ -1387,7 +1261,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452295+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809578+00:00"
     },
     {
       "id": "1219876",
@@ -1408,7 +1282,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454181+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811335+00:00"
     },
     {
       "id": "1205203",
@@ -1429,7 +1303,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449272+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806698+00:00"
     },
     {
       "id": "1215219",
@@ -1450,7 +1324,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452938+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810171+00:00"
     },
     {
       "id": "1219245",
@@ -1471,7 +1345,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453470+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810672+00:00"
     },
     {
       "id": "1192901",
@@ -1492,7 +1366,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450254+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807686+00:00"
     },
     {
       "id": "1214705",
@@ -1513,7 +1387,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454368+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811510+00:00"
     },
     {
       "id": "1171226",
@@ -1534,7 +1408,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451605+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808953+00:00"
     },
     {
       "id": "1198319",
@@ -1555,7 +1429,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451236+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808609+00:00"
     },
     {
       "id": "1213192",
@@ -1576,7 +1450,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451078+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808461+00:00"
     },
     {
       "id": "1213726",
@@ -1597,7 +1471,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450067+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807507+00:00"
     },
     {
       "id": "1195411",
@@ -1618,7 +1492,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452743+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810002+00:00"
     },
     {
       "id": "1191222",
@@ -1639,7 +1513,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451400+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808762+00:00"
     },
     {
       "id": "1192224",
@@ -1660,7 +1534,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450457+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807894+00:00"
     },
     {
       "id": "1192219",
@@ -1681,7 +1555,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450500+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807934+00:00"
     },
     {
       "id": "1202130",
@@ -1702,7 +1576,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452262+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809545+00:00"
     },
     {
       "id": "1175693",
@@ -1723,7 +1597,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451524+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808878+00:00"
     },
     {
       "id": "1214169",
@@ -1744,7 +1618,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452410+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809681+00:00"
     },
     {
       "id": "1198315",
@@ -1765,7 +1639,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451279+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808649+00:00"
     },
     {
       "id": "1205841",
@@ -1786,7 +1660,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448845+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806410+00:00"
     },
     {
       "id": "1211738",
@@ -1807,7 +1681,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449604+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807066+00:00"
     },
     {
       "id": "1171224",
@@ -1828,7 +1702,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451648+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808993+00:00"
     },
     {
       "id": "1219243",
@@ -1849,7 +1723,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453437+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810641+00:00"
     },
     {
       "id": "1219791",
@@ -1870,7 +1744,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453957+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811125+00:00"
     },
     {
       "id": "1205839",
@@ -1891,7 +1765,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448943+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806457+00:00"
     },
     {
       "id": "1192220",
@@ -1912,7 +1786,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450542+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807974+00:00"
     },
     {
       "id": "1192222",
@@ -1933,7 +1807,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450586+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808015+00:00"
     },
     {
       "id": "1211737",
@@ -1954,7 +1828,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449634+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807100+00:00"
     },
     {
       "id": "1193835",
@@ -1975,7 +1849,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451445+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808804+00:00"
     },
     {
       "id": "1209010",
@@ -1996,7 +1870,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449837+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807295+00:00"
     },
     {
       "id": "1220021",
@@ -2017,7 +1891,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448036+00:00"
+      "scraped_at": "2026-09-11T09:25:31.805989+00:00"
     },
     {
       "id": "1198527",
@@ -2038,7 +1912,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450954+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808349+00:00"
     },
     {
       "id": "1213534",
@@ -2059,7 +1933,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453643+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810842+00:00"
     },
     {
       "id": "1192225",
@@ -2080,7 +1954,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450629+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808056+00:00"
     },
     {
       "id": "1196705",
@@ -2101,7 +1975,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450874+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808274+00:00"
     },
     {
       "id": "1175694",
@@ -2122,7 +1996,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451561+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808910+00:00"
     },
     {
       "id": "1171406",
@@ -2143,7 +2017,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451870+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809185+00:00"
     },
     {
       "id": "1209356",
@@ -2164,7 +2038,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448306+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806143+00:00"
     },
     {
       "id": "1203961",
@@ -2185,7 +2059,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452861+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810097+00:00"
     },
     {
       "id": "1199447",
@@ -2206,7 +2080,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452332+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809611+00:00"
     },
     {
       "id": "1194292",
@@ -2227,7 +2101,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453511+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810711+00:00"
     },
     {
       "id": "1217421",
@@ -2248,7 +2122,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453398+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810605+00:00"
     },
     {
       "id": "1214498",
@@ -2269,7 +2143,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451149+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808529+00:00"
     },
     {
       "id": "1181099",
@@ -2290,7 +2164,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454106+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811266+00:00"
     },
     {
       "id": "1219550",
@@ -2311,7 +2185,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454247+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811395+00:00"
     },
     {
       "id": "1192221",
@@ -2332,7 +2206,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450671+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808096+00:00"
     },
     {
       "id": "1208299",
@@ -2353,7 +2227,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453252+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810468+00:00"
     },
     {
       "id": "1201544",
@@ -2374,7 +2248,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453044+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810271+00:00"
     },
     {
       "id": "1192896",
@@ -2395,7 +2269,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450298+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807742+00:00"
     },
     {
       "id": "1195832",
@@ -2416,7 +2290,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448378+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806182+00:00"
     },
     {
       "id": "1192218",
@@ -2437,7 +2311,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450713+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808136+00:00"
     },
     {
       "id": "1192899",
@@ -2458,7 +2332,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450340+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807784+00:00"
     },
     {
       "id": "1215212",
@@ -2479,7 +2353,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452904+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810139+00:00"
     },
     {
       "id": "1205198",
@@ -2500,7 +2374,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449305+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806744+00:00"
     },
     {
       "id": "1210217",
@@ -2521,7 +2395,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453185+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810404+00:00"
     },
     {
       "id": "1211436",
@@ -2542,7 +2416,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449565+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807024+00:00"
     },
     {
       "id": "1182363",
@@ -2563,7 +2437,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451993+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809297+00:00"
     },
     {
       "id": "1207428",
@@ -2584,7 +2458,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449388+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806828+00:00"
     },
     {
       "id": "1213191",
@@ -2605,7 +2479,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451113+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808495+00:00"
     },
     {
       "id": "1219877",
@@ -2626,7 +2500,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454213+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811364+00:00"
     },
     {
       "id": "1213729",
@@ -2647,7 +2521,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450138+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807578+00:00"
     },
     {
       "id": "1197975",
@@ -2668,7 +2542,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452518+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809790+00:00"
     },
     {
       "id": "1208534",
@@ -2689,7 +2563,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453143+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810365+00:00"
     },
     {
       "id": "1207732",
@@ -2710,7 +2584,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449534+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806989+00:00"
     },
     {
       "id": "1193411",
@@ -2731,7 +2605,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452108+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809402+00:00"
     },
     {
       "id": "1195410",
@@ -2752,7 +2626,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452628+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809894+00:00"
     },
     {
       "id": "1212648",
@@ -2773,7 +2647,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453876+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811049+00:00"
     },
     {
       "id": "1192576",
@@ -2794,7 +2668,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450174+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807611+00:00"
     },
     {
       "id": "1182361",
@@ -2815,7 +2689,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452028+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809329+00:00"
     },
     {
       "id": "1192903",
@@ -2836,7 +2710,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450374+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807817+00:00"
     },
     {
       "id": "1201718",
@@ -2857,7 +2731,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450834+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808237+00:00"
     },
     {
       "id": "1215534",
@@ -2878,7 +2752,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449918+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807369+00:00"
     },
     {
       "id": "1218840",
@@ -2899,7 +2773,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452974+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810208+00:00"
     },
     {
       "id": "1208626",
@@ -2920,7 +2794,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452827+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810065+00:00"
     },
     {
       "id": "1202585",
@@ -2941,7 +2815,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449156+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806572+00:00"
     },
     {
       "id": "1171225",
@@ -2962,7 +2836,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451691+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809032+00:00"
     },
     {
       "id": "1211999",
@@ -2983,7 +2857,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450784+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808203+00:00"
     },
     {
       "id": "1183545",
@@ -3004,7 +2878,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453011+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810240+00:00"
     },
     {
       "id": "1213432",
@@ -3025,7 +2899,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453082+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810307+00:00"
     },
     {
       "id": "1171223",
@@ -3046,7 +2920,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451768+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809103+00:00"
     },
     {
       "id": "1195409",
@@ -3067,7 +2941,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452670+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809932+00:00"
     },
     {
       "id": "1195408",
@@ -3088,7 +2962,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452710+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809970+00:00"
     },
     {
       "id": "1214935",
@@ -3109,7 +2983,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.454311+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811458+00:00"
     },
     {
       "id": "1195053",
@@ -3130,7 +3004,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452443+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809712+00:00"
     },
     {
       "id": "1221804",
@@ -3151,7 +3025,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453681+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810876+00:00"
     },
     {
       "id": "1197978",
@@ -3172,7 +3046,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452550+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809821+00:00"
     },
     {
       "id": "1198320",
@@ -3193,7 +3067,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451321+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808688+00:00"
     },
     {
       "id": "1215589",
@@ -3214,7 +3088,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449958+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807407+00:00"
     },
     {
       "id": "1212647",
@@ -3235,7 +3109,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453842+00:00"
+      "scraped_at": "2026-09-11T09:25:31.811014+00:00"
     },
     {
       "id": "1204599",
@@ -3256,7 +3130,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452185+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809474+00:00"
     },
     {
       "id": "1205845",
@@ -3277,7 +3151,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449016+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806495+00:00"
     },
     {
       "id": "1206312",
@@ -3298,7 +3172,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451193+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808570+00:00"
     },
     {
       "id": "1171403",
@@ -3319,7 +3193,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451912+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809224+00:00"
     },
     {
       "id": "1212912",
@@ -3340,7 +3214,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452065+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809363+00:00"
     },
     {
       "id": "1204875",
@@ -3361,7 +3235,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449229+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806652+00:00"
     },
     {
       "id": "1198317",
@@ -3382,7 +3256,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451356+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808720+00:00"
     },
     {
       "id": "1192223",
@@ -3403,7 +3277,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450748+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808169+00:00"
     },
     {
       "id": "1219800",
@@ -3424,7 +3298,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453287+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810500+00:00"
     },
     {
       "id": "1193833",
@@ -3445,7 +3319,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451480+00:00"
+      "scraped_at": "2026-09-11T09:25:31.808836+00:00"
     },
     {
       "id": "1191356",
@@ -3466,7 +3340,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.450027+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807469+00:00"
     },
     {
       "id": "1207030",
@@ -3487,7 +3361,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449339+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806783+00:00"
     },
     {
       "id": "1215584",
@@ -3508,7 +3382,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449993+00:00"
+      "scraped_at": "2026-09-11T09:25:31.807437+00:00"
     },
     {
       "id": "1209859",
@@ -3529,7 +3403,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.453544+00:00"
+      "scraped_at": "2026-09-11T09:25:31.810748+00:00"
     },
     {
       "id": "1171227",
@@ -3550,7 +3424,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451733+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809071+00:00"
     },
     {
       "id": "1207429",
@@ -3571,7 +3445,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.449427+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806872+00:00"
     },
     {
       "id": "1199921",
@@ -3592,7 +3466,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.448228+00:00"
+      "scraped_at": "2026-09-11T09:25:31.806102+00:00"
     },
     {
       "id": "1171404",
@@ -3613,7 +3487,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.451947+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809256+00:00"
     },
     {
       "id": "1193406",
@@ -3634,7 +3508,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452142+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809435+00:00"
     },
     {
       "id": "1194875",
@@ -3655,7 +3529,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-10T23:54:21.452367+00:00"
+      "scraped_at": "2026-09-11T09:25:31.809643+00:00"
     }
   ]
 }
