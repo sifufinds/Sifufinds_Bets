@@ -439,31 +439,35 @@
     "FG Pays $100,000 Each D’Tigress Players Following 2025 betting tips Nigeria": {
       "slug": "fg-pays-100k-dtigress-2025-betting-tips-nigeria",
       "posted_at": "2026-09-11T10:42:26.207228+00:00"
+    },
+    "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria": {
+      "slug": "iheanacho-bursaspor-betting-tips-nigeria",
+      "posted_at": "2026-09-11T11:34:03.517751+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-11T10:43:11.042860+00:00",
-    "candidates_available": 422,
+    "checked_at": "2026-09-11T11:34:07.142190+00:00",
+    "candidates_available": 421,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "FG Pays $100,000 Each D’Tigress Players Following 2025 betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "fg-pays-100k-dtigress-2025-betting-tips-nigeria"
-      },
-      {
         "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, Supabets accepts Blue Voucher as a payment method, giving players an additional option if they prefer prepaid cards over traditional banking.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '[article]', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Coupe CAF Le programme complet des matchs de betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 477)"
+        "reason": "quality_gate: only 825 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "iheanacho-bursaspor-betting-tips-nigeria"
       }
     ]
   }
