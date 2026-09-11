@@ -435,31 +435,35 @@
     "Tickets to Army vs. Navy game 2026 betting tips Kenya": {
       "slug": "army-vs-navy-2026-betting-tips-kenya",
       "posted_at": "2026-09-11T08:42:58.905870+00:00"
+    },
+    "FG Pays $100,000 Each D’Tigress Players Following 2025 betting tips Nigeria": {
+      "slug": "fg-pays-100k-dtigress-2025-betting-tips-nigeria",
+      "posted_at": "2026-09-11T10:42:26.207228+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-11T08:55:28.036544+00:00",
-    "candidates_available": 423,
+    "checked_at": "2026-09-11T10:43:11.042860+00:00",
+    "candidates_available": 422,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "FG Pays $100,000 Each D’Tigress Players Following 2025 betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
-      },
-      {
-        "keyword": "Tickets to Army vs. Navy game 2026 betting tips Kenya",
-        "country": "Kenya",
         "result": "written",
-        "slug": "army-vs-navy-2026-betting-tips-kenya"
+        "slug": "fg-pays-100k-dtigress-2025-betting-tips-nigeria"
       },
       {
         "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Yes, Supabets accepts Blue Voucher as a payment method, giving players an additional option if they prefer prepaid cards over traditional banking.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Coupe CAF Le programme complet des matchs de betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 477)"
       }
     ]
   }
