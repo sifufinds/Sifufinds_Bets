@@ -1,36 +1,18 @@
 {
   "date": "2026-09-11",
-  "total": 22,
+  "total": 19,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 4,
-    "MEDIUM": 17,
+    "HIGH": 0,
+    "MEDIUM": 18,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "james-chelsea-arsenal-betting-tips-nigeria",
-      "detail": "Title 63 chars (max 60): 'James Chelsea Will Learn From Loss Arsenal Betting Tips Nigeria'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
       "page": "wafu-b-womens-champions-league-final-ampem-darkoa-betting-tips-ghana",
-      "detail": "Title 70 chars (max 60): 'WAFU B Women\u2019s Champions League Final: Ampem Darkoa Betting Tips Ghana'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "army-vs-navy-2026-betting-tips-kenya",
-      "detail": "Excerpt 163 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "james-chelsea-arsenal-betting-tips-nigeria",
-      "detail": "Excerpt 181 chars (max 155)"
+      "detail": "High title overlap (6 meaningful tokens) with 'wafu-b-womens-champions-league-final-ampem-darkoa-edo-queens-betting-tips-ghana' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
