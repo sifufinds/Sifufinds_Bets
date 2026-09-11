@@ -443,19 +443,39 @@
     "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria": {
       "slug": "iheanacho-bursaspor-betting-tips-nigeria",
       "posted_at": "2026-09-11T11:34:03.517751+00:00"
+    },
+    "Coupe CAF Le programme complet des matchs de betting tips Tanzania": {
+      "slug": "coupe-caf-betting-guide-tanzania",
+      "posted_at": "2026-09-11T23:07:30.753334+00:00"
+    },
+    "Ligue des champions UEFA où suivre Lille – betting tips Tanzania": {
+      "slug": "lille-osc-uefa-champions-league-betting-tanzania",
+      "posted_at": "2026-09-11T23:25:52.086803+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-11T18:35:25.309624+00:00",
+    "checked_at": "2026-09-11T23:25:55.366207+00:00",
     "candidates_available": 420,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Coupe CAF Le programme complet des matchs de betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "coupe-caf-betting-guide-tanzania"
+      },
+      {
+        "keyword": "Ligue des champions UEFA où suivre Lille – betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "lille-osc-uefa-champions-league-betting-tanzania"
       }
     ]
   }
