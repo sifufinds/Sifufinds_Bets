@@ -1,6 +1,94 @@
 {
   "posts": [
     {
+      "id": "post-20260911160521-456",
+      "category": "boxing",
+      "title": "Specific title Referencing the ACTUAL news story (max 80 chars)",
+      "slug": "url-slug-Format",
+      "excerpt": "150-200 char excerpt Naming the real story and promising Betting insight",
+      "body": "[Full article in plain markdown — 700-900 words]",
+      "author": "Boxing Desk",
+      "published_at": "2026-09-11T16:05:21.371728+00:00",
+      "image_color": "#Hex color",
+      "image_icon": "🥊",
+      "tags": [
+        "Tag1",
+        "Tag2",
+        "Tag3",
+        "Tag4"
+      ],
+      "featured": false,
+      "bookmaker_featured": "",
+      "read_time": 4,
+      "_sources": [
+        "Guardian Boxing",
+        "Yahoo Sports",
+        "BBC Boxing",
+        "BBC Boxing",
+        "HEAVY · via Yahoo Sports"
+      ],
+      "_source_items": [
+        {
+          "title": "Benn and Garcia turn past scandals into a $30m Las Vegas world title payday",
+          "url": "https://www.theguardian.com/sport/2026/sep/11/benn-and-garcia-turn-past-scandals-into-a-30m-las-vegas-world-title-payday",
+          "image": "https://i.guim.co.uk/img/media/b6da94b20d5b743548de484738f9653954c37ffb/466_105_2674_2139/master/2674.jpg?width=140&quality=85&auto=format&fit=max&s=42a1c3ed604f3624ca53117eae77957e",
+          "source": "Guardian Boxing",
+          "description": "Fight offers revealing snapshot of boxers once facing uncertain futures after positive drug tests now vying for a welterweight world championshipFour years ago Conor Benn’s career was thrown into limbo after two positive drug tests scuppered his blockbuster fight with Chris Eubank Jr. Two years ago "
+        },
+        {
+          "title": "Ryan Garcia vs. Conor Benn: How to watch tonight's boxing match, start time, full fight card and more - Yahoo Sports",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOdEo0MkQ4dFhLb2JhekpLcnZXd1I3RUViNS1TU2NYZzZzQ0RVLTVYZGROT3JMakdIWktpVDBBMHhpZ3JIZ2dMR2pUTHZ4N0Q0NUZWeDhhS2w2ckFHV2lfZGx0ak9vdm80Tm5QaThGbVdFdUJZNWdnZTQwSEprcVFHZUU2MkFqWmJVcXE4ZUtVRGt6bWx5bENiVzQ4RHowQkNTblBHeWIweGpPQXlUc05lWlVNLXNOcm80bmZUMThWOFFJMTdQUm9zb0lqT0FEZWRQaWU0ckF6eUlaYzMwNl9NZ3dB?oc=5",
+          "image": "",
+          "source": "Yahoo Sports",
+          "description": "Ryan Garcia vs. Conor Benn: How to watch tonight's boxing match, start time, full fight card and more  Yahoo Sports"
+        },
+        {
+          "title": "Eggs, insults & a champion with a fake beard - Garcia and Benn face off",
+          "url": "https://www.bbc.co.uk/sport/boxing/articles/cy5z0qgrlx7o?at_medium=RSS&at_campaign=rss",
+          "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/8ac2/live/7ee51100-ad7b-11f1-9d9e-0f9c1878d6dd.jpg",
+          "source": "BBC Boxing",
+          "description": "A performative Ryan Garcia shouted, repeatedly swore and taunted a composed  Conor Benn with a boiled egg before Saturday's WBC welterweight title fight."
+        },
+        {
+          "title": "Why Nigel Benn can't walk away from Conor",
+          "url": "https://www.bbc.co.uk/sport/boxing/articles/ced7vw99lweo?at_medium=RSS&at_campaign=rss",
+          "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/96e1/live/83f3f090-ad7f-11f1-9a34-6d0b8d2e9219.jpg",
+          "source": "BBC Boxing",
+          "description": "Nigel Benn vowed to leave son Conor to plough his own path after he beat Chris Eubank Jr, but the retired world champion is back by his side this week as he prepares to face WBC welterweight champion Ryan Garcia."
+        },
+        {
+          "title": "Francis Ngannou Trashed by Dana White: ‘He’s a Bad Guy’",
+          "url": "https://sports.yahoo.com/articles/francis-ngannou-trashed-dana-white-060439622.html",
+          "image": "https://media.zenfs.com/en/heavy_214/3a3722fee94a8812ffd14c7244e87986.jpg",
+          "source": "HEAVY · via Yahoo Sports",
+          "description": "UFC president Dana White trashed former UFC heavyweight champion Francis Ngannou, whom he referred t..."
+        },
+        {
+          "title": "Shock Gal v Nelson twist after ‘can’t fight’ spray; new Volk doubter emerges - Fighting Words - Fox Sports",
+          "url": "https://news.google.com/rss/articles/CBMivwJBVV95cUxNR2g1LXRLMmFSZnhPM2xMalF3RDFKRWdxWnF1RDhBb2ZjUGQ4RWtDbGNNcC1ab3VmbUkwVkIwSTJJNy1kak4xYWJ5cEZSQXBsVHNWX0FSVVpUVVBNWDlDdkhLcmVRU3FpdTRxUXB0bnVqdHdwaUNqNTBQNjJKZTZlellHVWlwcTUwaFJTT1BlMGw4bk05RnhIX0E2dHBEclROcGNvMXBUWjdYMFl5SHB0YUlmaDF5T2NuM1RVZ0hwb1NfMjY0bXJWT3U2S2dWSlc1YmF3Y203RmFPN2hKUkFfMERraExmQk53R1FwemluMHQweTNYTVZ1d2w1NVVOSUFqR1pNaW1VVDB1YVJfVk1NbHAyTG9yTm5ockE0WW5HbmdsMEhTb1VGTU45QTVMV09nUWVOWVY1S3FpOGxVLWNF0gG_AkFVX3lxTE1HaDUtdEsyYVJmeE8zbExqUXdEMUpFZ3FacXVEOEFvZmNQZDhFa0NsY01wLVpvdWZtSTBWQjBJMkk3LWRqTjFhYnlwRlJBcGxUc1ZfQVJVWlRVUE1YOUN2SEtyZVFTcWl1NHFRcHRudWp0d3BpQ2o1MFA2MkplNmV6WUdVaXBxNTBoUlNPUGUwbDhuTTlGeEhfQTZ0cERyVE5wY28xcFRaN1gwWXlIcHRhSWZoMXlPY24zVFVnSHBvU18yNjRtclZPdTZLZ1ZKVzViYXdjbTdGYU83aEpSQV8wRGtoTGZCTndHUXB6aW4wdDB5M1hNVnV3bDU1VU5JQWpHWk1pbVVUMHVhUl9WTU1scDJMb3JObmhyQTRZbkduZ2wwSFNvVUZNTjlBNUxXT2dRZU5ZVjVLcWk4bFUtY0U?oc=5",
+          "image": "",
+          "source": "Fox Sports",
+          "description": "Shock Gal v Nelson twist after ‘can’t fight’ spray; new Volk doubter emerges - Fighting Words  Fox Sports"
+        },
+        {
+          "title": "TNA Impact 9/10/2026: 3 Things We Hated & 3 Things We Loved",
+          "url": "https://sports.yahoo.com/articles/tna-impact-9-10-2026-035118508.html",
+          "image": "https://media.zenfs.com/en/wrestling_inc_articles_983/82265fb0404f20005979661721ea9ae6.jpg",
+          "source": "Wrestling Inc · via Yahoo Sports",
+          "description": "As usual, the latest \"TNA Impact\" had its ups and downs, and we've got it all covered here,..."
+        },
+        {
+          "title": "Video: NBA star Jaylen Brown competes in last-minute boxing match in Nigeria - MMA Fighting",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNcnVrY0ZRQVc3NjViOE5hUkVzNjFHcVBMTFN6UnFyb3pHbDJUc2dPZ0kwU0tSNzRzbTR2RFRFU0hLeW5rQjB2dnJwLXBzQnhZcnpJVWZ5Qk1TdXVqck1ndUdTVXJ4YmJaR1ZrUHkzTVFmT1lDdEgzZVB4dXpOczdKMWtEck01OGVMclhKLU5GY09pMFQ2X2JKWk9fX1ZCcU9GTnFsU0V5NHIzRnlBZkdhZ2pSOENHZEZF?oc=5",
+          "image": "",
+          "source": "MMA Fighting",
+          "description": "Video: NBA star Jaylen Brown competes in last-minute boxing match in Nigeria  MMA Fighting"
+        }
+      ],
+      "feature_image": "/assets/og/url-slug-Format.png",
+      "_facebook_image_path": "/home/runner/work/Sifufinds_Bets/Sifufinds_Bets/assets/og/url-slug-Format.png"
+    },
+    {
       "id": "post-20260911144133-738",
       "category": "rugby",
       "title": "Rugby Betting Spotlight: Springboks vs All Blacks & Lions History",
