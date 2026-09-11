@@ -427,11 +427,15 @@
     "WAFU B Women’s Champions League final Ampem Darkoa, betting tips Ghana": {
       "slug": "wafu-b-womens-champions-league-final-ampem-darkoa-betting-tips-ghana",
       "posted_at": "2026-09-11T04:21:33.578079+00:00"
+    },
+    "James Chelsea Will Learn From Loss Arsenal betting tips Nigeria": {
+      "slug": "james-chelsea-arsenal-betting-tips-nigeria",
+      "posted_at": "2026-09-11T06:23:33.371120+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-11T04:21:37.520106+00:00",
-    "candidates_available": 425,
+    "checked_at": "2026-09-11T06:23:37.762709+00:00",
+    "candidates_available": 424,
     "attempted": 3,
     "written": 1,
     "attempts": [
@@ -439,19 +443,19 @@
         "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'OPay and USSD are the quickest options for most Nigerian bettors. They process withdrawals within minutes, whereas bank transfers may take a few business days.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 2 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '`, `', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ligue des champions UEFA où suivre Lille – betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Choose the M‑Pesa option during the deposit process, enter the amount, and follow the prompts on your phone. You will receive a confirmation code to complete the transaction. Once processed, the funds will appear in your bookmaker account instantly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 471)"
       },
       {
-        "keyword": "WAFU B Women’s Champions League final Ampem Darkoa, betting tips Ghana",
-        "country": "Ghana",
+        "keyword": "James Chelsea Will Learn From Loss Arsenal betting tips Nigeria",
+        "country": "Nigeria",
         "result": "written",
-        "slug": "wafu-b-womens-champions-league-final-ampem-darkoa-betting-tips-ghana"
+        "slug": "james-chelsea-arsenal-betting-tips-nigeria"
       }
     ]
   }
