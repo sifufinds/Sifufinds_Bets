@@ -426,28 +426,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-10T23:45:24.341395+00:00",
-    "candidates_available": 426,
+    "checked_at": "2026-09-11T01:45:42.638881+00:00",
+    "candidates_available": 425,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Kenya boxers get reality check Eurasian Dauria Cup betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "kenya-boxers-reality-check-dauria-cup-betting-tips"
-      },
       {
         "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Withdrawals via Bank Transfer or Mastercard usually process within 2–3 business days, while USSD withdrawals may take up to 5 days, depending on your bank’s processing times.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'All three operators are NLRC licensed, meaning they are monitored by Nigeria’s gambling regulator. This licence guarantees that the platforms meet standards for fairness, data security and responsible gambling, making them safe for betting on international leagues such as Turkey’s 1. Lig.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ligue des champions UEFA où suivre Lille – betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, the 200 % bonus on 1xBet requires a 5× wagering at minimum odds of 1.40 within 30 days. All other terms and conditions apply as stated in the bookmaker’s terms.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'M‑Pay (Vodacom) is the quickest option, as deposits are processed instantly and are accepted by all three bookmakers in the comparison table.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "WAFU B Women’s Champions League final Ampem Darkoa, betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Check the bookmaker’s website for a licence number or contact the GCA directly. Betting on unlicensed operators can expose you to fraud and loss of funds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
