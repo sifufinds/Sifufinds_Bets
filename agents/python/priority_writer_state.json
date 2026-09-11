@@ -419,31 +419,35 @@
     "Ligue des champions UEFA Première historique, Como au betting tips Tanzania": {
       "slug": "ligue-des-champions-uefa-premiere-historique-conseils-paris-tanzanie",
       "posted_at": "2026-09-10T21:41:39.580238+00:00"
+    },
+    "Kenya boxers get reality check Eurasian Dauria Cup betting tips Kenya": {
+      "slug": "kenya-boxers-reality-check-dauria-cup-betting-tips",
+      "posted_at": "2026-09-10T23:44:47.858022+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-10T21:41:42.722573+00:00",
-    "candidates_available": 428,
+    "checked_at": "2026-09-10T23:45:24.341395+00:00",
+    "candidates_available": 426,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Kenya boxers get reality check Eurasian Dauria Cup betting tips Kenya",
         "country": "Kenya",
+        "result": "written",
+        "slug": "kenya-boxers-reality-check-dauria-cup-betting-tips"
+      },
+      {
+        "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Betika offers free bet drops on Aviator, but no promo code is required.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Withdrawals via Bank Transfer or Mastercard usually process within 2–3 business days, while USSD withdrawals may take up to 5 days, depending on your bank’s processing times.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Liverpool secure comeback win UCL opener betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "liverpool-ucl-comeback-win-betting-tips-south-africa"
-      },
-      {
-        "keyword": "Ligue des champions UEFA Première historique, Como au betting tips Tanzania",
+        "keyword": "Ligue des champions UEFA où suivre Lille – betting tips Tanzania",
         "country": "Tanzania",
-        "result": "written",
-        "slug": "ligue-des-champions-uefa-premiere-historique-conseils-paris-tanzanie"
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, the 200 % bonus on 1xBet requires a 5× wagering at minimum odds of 1.40 within 30 days. All other terms and conditions apply as stated in the bookmaker’s terms.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
