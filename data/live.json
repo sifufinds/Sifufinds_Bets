@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T23:38:32.870649+00:00",
+  "updated": "2026-09-11T01:07:01.449200+00:00",
   "count": 29,
   "events": [
     {
@@ -9,7 +9,24 @@
       "complete": false,
       "home": "New York Yankees",
       "away": "Colorado Rockies",
-      "hScore": "2",
+      "hScore": "4",
+      "aScore": "1",
+      "time": "LIVE",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
+    {
+      "league": "MLB",
+      "key": "baseball",
+      "live": true,
+      "complete": false,
+      "home": "Chicago White Sox",
+      "away": "Pittsburgh Pirates",
+      "hScore": "0",
       "aScore": "1",
       "time": "LIVE",
       "h": 0.0,
@@ -304,23 +321,6 @@
       "h": 3.75,
       "d": 0.0,
       "a": 1.29,
-      "hBk": "DraftKings",
-      "dBk": "",
-      "aBk": "DraftKings"
-    },
-    {
-      "league": "MLB",
-      "key": "baseball",
-      "live": false,
-      "complete": false,
-      "home": "Chicago White Sox",
-      "away": "Pittsburgh Pirates",
-      "hScore": null,
-      "aScore": null,
-      "time": "10 Sep 2026 \u00b7 23:40 UTC",
-      "h": 1.87,
-      "d": 0.0,
-      "a": 1.96,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
