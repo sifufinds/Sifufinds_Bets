@@ -423,31 +423,35 @@
     "Kenya boxers get reality check Eurasian Dauria Cup betting tips Kenya": {
       "slug": "kenya-boxers-reality-check-dauria-cup-betting-tips",
       "posted_at": "2026-09-10T23:44:47.858022+00:00"
+    },
+    "WAFU B Women’s Champions League final Ampem Darkoa, betting tips Ghana": {
+      "slug": "wafu-b-womens-champions-league-final-ampem-darkoa-betting-tips-ghana",
+      "posted_at": "2026-09-11T04:21:33.578079+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-11T01:45:42.638881+00:00",
+    "checked_at": "2026-09-11T04:21:37.520106+00:00",
     "candidates_available": 425,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Iheanacho extends scoring streak brace as Bursaspor beat betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All three operators are NLRC licensed, meaning they are monitored by Nigeria’s gambling regulator. This licence guarantees that the platforms meet standards for fairness, data security and responsible gambling, making them safe for betting on international leagues such as Turkey’s 1. Lig.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'OPay and USSD are the quickest options for most Nigerian bettors. They process withdrawals within minutes, whereas bank transfers may take a few business days.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ligue des champions UEFA où suivre Lille – betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'M‑Pay (Vodacom) is the quickest option, as deposits are processed instantly and are accepted by all three bookmakers in the comparison table.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Choose the M‑Pesa option during the deposit process, enter the amount, and follow the prompts on your phone. You will receive a confirmation code to complete the transaction. Once processed, the funds will appear in your bookmaker account instantly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "WAFU B Women’s Champions League final Ampem Darkoa, betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Check the bookmaker’s website for a licence number or contact the GCA directly. Betting on unlicensed operators can expose you to fraud and loss of funds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "wafu-b-womens-champions-league-final-ampem-darkoa-betting-tips-ghana"
       }
     ]
   }
