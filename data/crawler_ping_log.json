@@ -1,56 +1,5 @@
 [
   {
-    "ts": "2026-08-17T09:47:58.520545+00:00",
-    "success": 6,
-    "total": 6,
-    "results": [
-      {
-        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
-        "status": 200,
-        "ok": true,
-        "sitemap": "https://sifufinds.com/sitemap.xml",
-        "engine": "yandex",
-        "ts": "2026-08-17T09:47:58.520545+00:00"
-      },
-      {
-        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
-        "status": 200,
-        "ok": true,
-        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
-        "engine": "yandex",
-        "ts": "2026-08-17T09:47:58.520545+00:00"
-      },
-      {
-        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
-        "status": 200,
-        "ok": true,
-        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
-        "engine": "yandex",
-        "ts": "2026-08-17T09:47:58.520545+00:00"
-      },
-      {
-        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
-        "status": 200,
-        "ok": true,
-        "sitemap": "https://sifufinds.com/sitemap-other.xml",
-        "engine": "yandex",
-        "ts": "2026-08-17T09:47:58.520545+00:00"
-      },
-      {
-        "ok": true,
-        "output": "mit: ['https://sifufinds.com/', 'https://sifufinds.com/blog/', 'https://sifufinds.com/tips/', 'https://sifufinds.com/odds/', 'https://sifufinds.com/countries/']\n  \u2705 https://api.indexnow.org/indexnow: HTTP 200\n  \u2705 https://www.bing.com/indexnow: HTTP 200\n\nIndexNow submission complete: 2/2 endpoints OK",
-        "engine": "indexnow (bing/chatgpt/perplexity)",
-        "ts": "2026-08-17T09:47:58.520545+00:00"
-      },
-      {
-        "engine": "google",
-        "ok": true,
-        "method": "robots.txt Sitemap: directives",
-        "ts": "2026-08-17T09:47:58.520545+00:00"
-      }
-    ]
-  },
-  {
     "ts": "2026-08-17T12:49:57.060952+00:00",
     "success": 6,
     "total": 6,
@@ -2546,6 +2495,57 @@
         "ok": true,
         "method": "robots.txt Sitemap: directives",
         "ts": "2026-09-11T10:37:34.990809+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-09-12T10:06:16.224780+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-09-12T10:06:16.224780+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-09-12T10:06:16.224780+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-09-12T10:06:16.224780+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-09-12T10:06:16.224780+00:00"
+      },
+      {
+        "ok": true,
+        "output": "s-league-betting-tanzania/', 'https:/sifufinds.com/blog/president-mahama-poor-refereeing-match-manipulation-betting-tips-ghana/']...\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-09-12T10:06:16.224780+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-09-12T10:06:16.224780+00:00"
       }
     ]
   }
