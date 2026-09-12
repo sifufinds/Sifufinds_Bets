@@ -1,13 +1,133 @@
 {
-  "date": "2026-09-11",
-  "total": 19,
+  "date": "2026-09-12",
+  "total": 39,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 18,
+    "HIGH": 19,
+    "MEDIUM": 19,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "caf-champions-league-djoliba-ac-vs-club-africain-betting-tips-tanzania",
+      "detail": "Title 75 chars (max 60): 'CAF Champions League: Djoliba AC vs Club Africain Betting Tips for Tan'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-solheim-cup-premier-league-nfl",
+      "detail": "Title 67 chars (max 60): 'Global Sports Roundup: Solheim Cup, Premier League, and NFL Kickoff'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "saturday-sports-betting-buzz-accumulators-boxing-football",
+      "detail": "Title 64 chars (max 60): 'Saturday Sports Betting Buzz: Accumulators, Boxing, and Football'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "arsenal-pirates-real-madrid-betting-south-africa",
+      "detail": "Title 61 chars (max 60): 'Arsenal, Pirates & Real Madrid: Betting Tips for South Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "lille-osc-uefa-champions-league-betting-tanzania",
+      "detail": "Title 63 chars (max 60): 'Lille OSC in UEFA Champions League: Betting Tips for Tanzanians'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "coupe-caf-betting-guide-tanzania",
+      "detail": "Title 69 chars (max 60): 'Coupe CAF Betting Guide \u2013 Complete Match Schedule & Tips for Tanzania'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "caf-champions-league-enugu-rangers-advance-on-penalties",
+      "detail": "Title 62 chars (max 60): 'CAF Champions League Drama: Enugu Rangers Advance on Penalties'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "url-slug-Format",
+      "detail": "Title 63 chars (max 60): 'Specific title Referencing the ACTUAL news story (max 80 chars)'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "rugby-betting-springboks-all-blacks-lions",
+      "detail": "Title 65 chars (max 60): 'Rugby Betting Spotlight: Springboks vs All Blacks & Lions History'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "african-football-update-pirates-boost-sundowns-signing-etoo-scandal",
+      "detail": "Title 71 chars (max 60): \"African Football Update: Pirates Boost, Sundowns Signing, Eto'o Scanda\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "iheanacho-bursaspor-betting-tips-nigeria",
+      "detail": "Title 71 chars (max 60): 'Iheanacho\u2019s Scoring Streak: Bursaspor Betting Tips for Nigerian Punter'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "fg-pays-100k-dtigress-2025-betting-tips-nigeria",
+      "detail": "Title 88 chars (max 60): 'FG Pays $100,000 Each D\u2019Tigress Players \u2013 2025 Betting Tips & Best Boo'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "lille-osc-uefa-champions-league-betting-tanzania",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "coupe-caf-betting-guide-tanzania",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-player-prop-betting-explained",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "psl-betting-news-ouaddou-zidane-khoza-warning",
+      "detail": "Excerpt 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rugby-betting-springboks-all-blacks-lions",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "african-football-update-pirates-boost-sundowns-signing-etoo-scandal",
+      "detail": "Excerpt 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "fg-pays-100k-dtigress-2025-betting-tips-nigeria",
+      "detail": "Excerpt 189 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "arsenal-pirates-real-madrid-betting-south-africa",
+      "detail": "High title overlap (5 meaningful tokens) with 'arsenal-pirates-real-madrid-betting-tips-south-africa' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
@@ -119,8 +239,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "63 posts",
-      "detail": "63 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "62 posts",
+      "detail": "62 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
