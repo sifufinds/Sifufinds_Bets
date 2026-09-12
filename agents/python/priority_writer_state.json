@@ -458,28 +458,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-12T03:35:47.547490+00:00",
-    "candidates_available": 418,
+    "checked_at": "2026-09-12T18:59:46.949533+00:00",
+    "candidates_available": 417,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "Trump jets Ireland golf tournament, PM talks betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Set daily or weekly deposit limits, use the self‑exclusion feature if you need a break, and only bet money you can afford to lose. All licensed operators in South Africa are required to provide these tools, and you can also seek help from responsible gambling charities.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'No. Bet9ja’s free bet has standard T&Cs, BetKing’s no‑deposit free bets must be used within seven days, and 1xBet’s deposit match requires a five‑times rollover on odds of at least 1.40 within 30 days. Always read the specific terms before you play.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Arsenal, Pirates & Real Madrid matches you cannot betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "arsenal-pirates-real-madrid-betting-south-africa"
+        "keyword": "Football Accumulator Our 22/1 Saturday 5-Fold - Betway betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
       },
       {
-        "keyword": "Algeria Algerian Football Chiefs Name Hemdani Replace Petkovic betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "Premier League star Sorba Thomas crashes car outside betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 411)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 415)"
       }
     ]
   }
