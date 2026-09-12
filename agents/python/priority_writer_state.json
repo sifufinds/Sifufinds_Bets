@@ -455,31 +455,35 @@
     "Arsenal, Pirates & Real Madrid matches you cannot betting tips South Africa": {
       "slug": "arsenal-pirates-real-madrid-betting-south-africa",
       "posted_at": "2026-09-12T03:35:19.988816+00:00"
+    },
+    "High Pirates’ CAF Champions League match betting tips South Africa": {
+      "slug": "high-pirates-caf-champions-league-betting-tips-south-africa",
+      "posted_at": "2026-09-12T21:22:15.731291+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-12T18:59:46.949533+00:00",
-    "candidates_available": 417,
+    "checked_at": "2026-09-12T21:22:20.683391+00:00",
+    "candidates_available": 416,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Trump jets Ireland golf tournament, PM talks betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'No. Bet9ja’s free bet has standard T&Cs, BetKing’s no‑deposit free bets must be used within seven days, and 1xBet’s deposit match requires a five‑times rollover on odds of at least 1.40 within 30 days. Always read the specific terms before you play.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
       {
         "keyword": "Football Accumulator Our 22/1 Saturday 5-Fold - Betway betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "quality_gate: only 2 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '`, `', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Premier League star Sorba Thomas crashes car outside betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 415)"
+        "reason": "quality_gate: only 801 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "High Pirates’ CAF Champions League match betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "high-pirates-caf-champions-league-betting-tips-south-africa"
       }
     ]
   }
