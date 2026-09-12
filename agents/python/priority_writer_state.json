@@ -451,31 +451,35 @@
     "Ligue des champions UEFA où suivre Lille – betting tips Tanzania": {
       "slug": "lille-osc-uefa-champions-league-betting-tanzania",
       "posted_at": "2026-09-11T23:25:52.086803+00:00"
+    },
+    "Arsenal, Pirates & Real Madrid matches you cannot betting tips South Africa": {
+      "slug": "arsenal-pirates-real-madrid-betting-south-africa",
+      "posted_at": "2026-09-12T03:35:19.988816+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-11T23:25:55.366207+00:00",
-    "candidates_available": 420,
+    "checked_at": "2026-09-12T03:35:47.547490+00:00",
+    "candidates_available": 418,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: only 1 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '...', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Set daily or weekly deposit limits, use the self‑exclusion feature if you need a break, and only bet money you can afford to lose. All licensed operators in South Africa are required to provide these tools, and you can also seek help from responsible gambling charities.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Coupe CAF Le programme complet des matchs de betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "Arsenal, Pirates & Real Madrid matches you cannot betting tips South Africa",
+        "country": "South Africa",
         "result": "written",
-        "slug": "coupe-caf-betting-guide-tanzania"
+        "slug": "arsenal-pirates-real-madrid-betting-south-africa"
       },
       {
-        "keyword": "Ligue des champions UEFA où suivre Lille – betting tips Tanzania",
+        "keyword": "Algeria Algerian Football Chiefs Name Hemdani Replace Petkovic betting tips Tanzania",
         "country": "Tanzania",
-        "result": "written",
-        "slug": "lille-osc-uefa-champions-league-betting-tanzania"
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 411)"
       }
     ]
   }
