@@ -259,13 +259,21 @@
     "Ligue des champions CAF Où suivre Djoliba AC betting tips Tanzania": {
       "slug": "caf-champions-league-djoliba-ac-vs-club-africain-betting-tips-tanzania",
       "posted_at": "2026-09-12T09:42:08.124684+00:00"
+    },
+    "Premier League star Sorba Thomas crashes car outside betting tips Ghana": {
+      "slug": "sorba-thomas-car-crash-hull-ghana",
+      "posted_at": "2026-09-12T11:32:18.984608+00:00"
+    },
+    "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana": {
+      "slug": "president-mahama-refereeing-ghana-betting",
+      "posted_at": "2026-09-12T11:45:35.311395+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-12T09:42:12.130591+00:00",
-    "candidates_available": 353,
+    "checked_at": "2026-09-12T11:45:39.109095+00:00",
+    "candidates_available": 334,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Trump jets Ireland golf tournament, PM talks betting tips Nigeria",
@@ -276,14 +284,14 @@
       {
         "keyword": "Premier League star Sorba Thomas crashes car outside betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 424)"
+        "result": "written",
+        "slug": "sorba-thomas-car-crash-hull-ghana"
       },
       {
-        "keyword": "Ligue des champions CAF Où suivre Djoliba AC betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "President Mahama warns Poor refereeing, match manipulation are betting tips Ghana",
+        "country": "Ghana",
         "result": "written",
-        "slug": "caf-champions-league-djoliba-ac-vs-club-africain-betting-tips-tanzania"
+        "slug": "president-mahama-refereeing-ghana-betting"
       }
     ]
   }
