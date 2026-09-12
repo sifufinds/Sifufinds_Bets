@@ -255,13 +255,17 @@
     "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria": {
       "slug": "joao-pedro-brazil-squad-ancelotti-nigeria-betting-tips",
       "posted_at": "2026-09-10T19:41:37.990152+00:00"
+    },
+    "Ligue des champions CAF Où suivre Djoliba AC betting tips Tanzania": {
+      "slug": "caf-champions-league-djoliba-ac-vs-club-africain-betting-tips-tanzania",
+      "posted_at": "2026-09-12T09:42:08.124684+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-12T07:53:15.211641+00:00",
-    "candidates_available": 354,
+    "checked_at": "2026-09-12T09:42:12.130591+00:00",
+    "candidates_available": 353,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Trump jets Ireland golf tournament, PM talks betting tips Nigeria",
@@ -270,16 +274,16 @@
         "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
-        "keyword": "Football Accumulator Our 22/1 Saturday 5-Fold - Betway betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: \"a KSh 100 stake on a 5-fold accumulator with odds of 22/1 could yield KSh 2,200 in winnings\"; | Bookmaker       | Accumulator Odds | Minimum Stake | Payment Methods                  |\n|-----------------|------------------|---------------|----------------------------------|\n| Betika Kenya    | Competitive      | KSh 10        | M-Pesa, Airtel Money, Equitel    |\n| SportPesa Kenya | Competitive      | KSh 10        | M-Pesa, Airtel Money, Bank Transfer |\n| 22Bet Kenya     | Competitive      | KSh 100       | M-Pesa, Airtel Money, Visa       |\n| 1xBet Kenya     | Competitive      | KSh 50        | M-Pesa, Airtel Money, Visa       |"
-      },
-      {
         "keyword": "Premier League star Sorba Thomas crashes car outside betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: | Bookmaker       | Welcome Bonus                  | Minimum Deposit | Payment Methods                  |\n|-----------------|--------------------------------|-----------------|----------------------------------|\n| Sportybet Ghana | 150% up to GH₵500             | GH₵1            | MTN MoMo, Vodafone Cash, Visa    |\n| Betway Ghana    | 50% up to GH₵200               | GH₵2            | MTN MoMo, Vodafone Cash, Mastercard |\n| 22Bet Ghana     | 100% up to GH₵1,491            | GH₵5            | MTN MoMo, Vodafone Cash, Visa    |\n| 1xBet Ghana     | 200% up to GH₵2,846            | GH₵5            | MTN MoMo, Vodafone Cash, Mastercard |"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 424)"
+      },
+      {
+        "keyword": "Ligue des champions CAF Où suivre Djoliba AC betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "caf-champions-league-djoliba-ac-vs-club-africain-betting-tips-tanzania"
       }
     ]
   }
