@@ -1,13 +1,193 @@
 {
-  "date": "2026-09-12",
-  "total": 20,
+  "date": "2026-09-13",
+  "total": 50,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 19,
+    "HIGH": 29,
+    "MEDIUM": 20,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "us-open-2026-rybakina-zverev-shelton-final",
+      "detail": "Title 63 chars (max 60): 'US Open 2026: Rybakina Reigns, Zverev vs Shelton Final Showdown'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "sunderland-vs-arsenal-live-betting-tips-ghana",
+      "detail": "Title 65 chars (max 60): 'How to Watch Sunderland vs Arsenal Live Today: Betting Tips Ghana'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "arsenal-sunderland-betting-tips-nigeria",
+      "detail": "Title 65 chars (max 60): 'EPL Arteta Slams Penalty: Arsenal Sunderland Betting Tips Nigeria'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-expansion-premier-league-derbies-t20i-cricket-global-sports-roundup",
+      "detail": "Title 75 chars (max 60): 'NBA Expansion, Premier League Derbies & T20I Cricket: Global Sports Ro'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "22-1-saturday-5-fold-accumulator-kenya",
+      "detail": "Title 64 chars (max 60): '22/1 Saturday 5-Fold Accumulator Tips \u2013 Betway Insider for Kenya'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "sorba-thomas-car-crash-betting-tips-ghana",
+      "detail": "Title 79 chars (max 60): 'Premier League star Sorba Thomas car crash: betting tips & top Ghana b'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "orlando-pirates-caf-champions-league-betting-tips-south-africa",
+      "detail": "Title 74 chars (max 60): 'Orlando Pirates\u2019 CAF Champions League Match: Betting Tips for South Af'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "football-accumulator-22-1-saturday-5-fold-betway-betting-tips-kenya",
+      "detail": "Title 73 chars (max 60): 'Football Accumulator Our 22/1 Saturday 5-Fold - Betway betting tips Ke'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-chiefs-arsenal-caf-champions-league",
+      "detail": "Title 66 chars (max 60): 'Global Sports Headlines: Chiefs, Arsenal, and CAF Champions League'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "player-prop-betting-explained-basketball-news",
+      "detail": "Title 72 chars (max 60): 'Player Prop Betting Explained: Real Examples from Recent Basketball Ne'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "high-pirates-caf-champions-league-betting-tips-south-africa",
+      "detail": "Title 79 chars (max 60): 'High Pirates\u2019 CAF Champions League Match Betting Tips for South Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-clash-us-open-final-betting-insights-african-punters",
+      "detail": "Title 82 chars (max 60): 'Premier League Clash, US Open Final and More: Betting Insights for Afr'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "siwelele-close-to-landing-ex-gallants-coach-betting-tips-south-africa",
+      "detail": "Title 74 chars (max 60): 'Siwelele Close to Landing Ex-Gallants Coach: Betting Tips for South Af'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "liverpool-team-news-garcia-benn-ufc-england-cricket",
+      "detail": "Title 69 chars (max 60): 'Liverpool Team News, Garcia vs Benn, UFC Noche & England Cricket Wrap'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "president-mahama-refereeing-ghana-betting",
+      "detail": "Title 67 chars (max 60): \"President Mahama's Refereeing Warning: How to Bet on Ghana Football\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "sorba-thomas-car-crash-hull-ghana",
+      "detail": "Title 89 chars (max 60): 'Sorba Thomas Car Crash Near Hull City Training Ground: What Ghanaian B'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "sunderland-vs-arsenal-live-betting-tips-ghana",
+      "detail": "Excerpt 167 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "arsenal-sunderland-betting-tips-nigeria",
+      "detail": "Excerpt 158 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-expansion-premier-league-derbies-t20i-cricket-global-sports-roundup",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "22-1-saturday-5-fold-accumulator-kenya",
+      "detail": "Excerpt 167 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "football-accumulator-22-1-saturday-5-fold-betway-betting-tips-kenya",
+      "detail": "Excerpt 163 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-chiefs-arsenal-caf-champions-league",
+      "detail": "Excerpt 205 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "player-prop-betting-explained-basketball-news",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "high-pirates-caf-champions-league-betting-tips-south-africa",
+      "detail": "Excerpt 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "siwelele-close-to-landing-ex-gallants-coach-betting-tips-south-africa",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "army-navy-2026-betting-tips-kenya",
+      "detail": "Excerpt 159 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "liverpool-team-news-garcia-benn-ufc-england-cricket",
+      "detail": "Excerpt 198 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "president-mahama-refereeing-ghana-betting",
+      "detail": "Excerpt 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "sorba-thomas-car-crash-hull-ghana",
+      "detail": "Excerpt 193 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "22-1-saturday-5-fold-accumulator-kenya",
+      "detail": "High title overlap (5 meaningful tokens) with 'football-accumulator-22-1-saturday-5-fold-betway-betting-tips-kenya' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
