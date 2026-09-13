@@ -290,7 +290,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-13T21:07:37.870270+00:00",
+    "checked_at": "2026-09-13T23:45:29.470897+00:00",
     "candidates_available": 349,
     "attempted": 3,
     "written": 0,
@@ -304,14 +304,14 @@
       {
         "keyword": "How to Watch Sunderland vs Arsenal Live Today at Stadium o betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 472)"
+        "result": "skipped",
+        "reason": "similar_title_exists"
       },
       {
         "keyword": "Springboks Player Ratings | Who starred Boks' win betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: Hollywoodbets offers a R25 free bet with no deposit required; Supabets, for instance, offers a 100% match up to R5,000 on your first deposit; Hollywoodbets   | 1.80           | 20.00| 1.95; Supabets        | 1.75           | 22.00| 2.00; BetXchange      | 1.85           | 18.00| 1.90; BetXchange offers a R200 free bet on your first deposit; TicTacBets provides a 100% match up to R5,000 plus 50 free spins"
+        "reason": "fact_check: Handré Pollard was forced off through injury and replaced by Manie Libbok; 1.85; 1.90; 1.80; 2.20; 2.10; 2.25; 4.50; 4.00; 4.75"
       }
     ]
   }
