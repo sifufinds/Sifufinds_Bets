@@ -459,31 +459,35 @@
     "High Pirates’ CAF Champions League match betting tips South Africa": {
       "slug": "high-pirates-caf-champions-league-betting-tips-south-africa",
       "posted_at": "2026-09-12T21:22:15.731291+00:00"
+    },
+    "Football Accumulator Our 22/1 Saturday 5-Fold - Betway betting tips Kenya": {
+      "slug": "football-accumulator-22-1-saturday-5-fold-betway-betting-tips-kenya",
+      "posted_at": "2026-09-13T01:39:51.281757+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-12T21:22:20.683391+00:00",
-    "candidates_available": 416,
+    "checked_at": "2026-09-13T02:01:05.204757+00:00",
+    "candidates_available": 415,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "Football Accumulator Our 22/1 Saturday 5-Fold - Betway betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: only 2 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '`, `', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "football-accumulator-22-1-saturday-5-fold-betway-betting-tips-kenya"
       },
       {
         "keyword": "Premier League star Sorba Thomas crashes car outside betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: only 801 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found; final line was 'If you’re ready to place smart bets on Premier League fixtures, visit https://sifufinds.com for the latest odds and bookmaker comparisons. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "High Pirates’ CAF Champions League match betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "high-pirates-caf-champions-league-betting-tips-south-africa"
+        "keyword": "Ligue des champions CAF Où suivre Djoliba AC betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: only 911 words (minimum 1000)"
       }
     ]
   }
