@@ -290,28 +290,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-13T14:23:50.240647+00:00",
-    "candidates_available": 350,
+    "checked_at": "2026-09-13T21:07:37.870270+00:00",
+    "candidates_available": 349,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "EPL Arteta slams penalty decision against Arsenal Sunderland betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: “It was a clear error, and it cost us the match,” he said; a 2‑1 win; a 2‑1 scoreline; a correct score of 2‑1; Arteta slammed the penalty that was awarded to Sunderland during their 2‑1 Premier League win over Arsenal"
-      },
-      {
-        "keyword": "Over 250 players grace Karen Golf tournament betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "karen-golf-tournament-betting-tips-kenya"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "How to Watch Sunderland vs Arsenal Live Today at Stadium o betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: 1.50; 4.00; 6.50; 1.45; 4.20; 7.00; 1.55; 3.90; 6.30; 1.60; 3.80; 6.20; 1.52; 4.10; 6.80; 1.53; 4.05; 6.60"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 472)"
+      },
+      {
+        "keyword": "Springboks Player Ratings | Who starred Boks' win betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: Hollywoodbets offers a R25 free bet with no deposit required; Supabets, for instance, offers a 100% match up to R5,000 on your first deposit; Hollywoodbets   | 1.80           | 20.00| 1.95; Supabets        | 1.75           | 22.00| 2.00; BetXchange      | 1.85           | 18.00| 1.90; BetXchange offers a R200 free bet on your first deposit; TicTacBets provides a 100% match up to R5,000 plus 50 free spins"
       }
     ]
   }
