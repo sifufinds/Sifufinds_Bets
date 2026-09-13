@@ -282,7 +282,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-13T04:38:10.975128+00:00",
+    "checked_at": "2026-09-13T06:48:03.890676+00:00",
     "candidates_available": 348,
     "attempted": 3,
     "written": 0,
@@ -291,19 +291,19 @@
         "keyword": "Football Accumulator Our 22/1 Saturday 5-Fold - Betway betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: this Saturday’s 5-fold from Betway Insider offers an enticing 22/1 payout; This particular 5-fold from Betway Insider stands out due to its carefully selected matches and the attractive 22/1 odds; this Saturday’s 22/1 accumulator from Betway Insider"
+        "reason": "fact_check: Betway Insider’s 22/1 Saturday 5-fold accumulator; Betika Kenya    | Free Bet Gifts + Aviator Free Bets; SportPesa Kenya | 300% Welcome Karibu Gift; 22Bet Kenya     | 100% First Deposit Bonus (Up to KSh 19,000); 1xBet Kenya     | 200% First Deposit Bonus (Up to KSh 20,000); Melbet Kenya    | 300% First Deposit Bonus (Up to KSh 1,500); HelaBet Kenya   | 100% Welcome Bonus (Up to KSh 5,000); Betika Kenya and SportPesa Kenya have a minimum stake of KSh 10, while 22Bet Kenya requires KSh 100"
       },
       {
         "keyword": "FG Pays $100,000 Each D’Tigress Players Following 2025 betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 530 words (minimum 600); no '## FAQ' section heading found"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
       },
       {
         "keyword": "Coupe CAF Le programme complet des matchs de betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "quality_gate: only 535 words (minimum 600)"
       }
     ]
   }
