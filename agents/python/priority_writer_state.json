@@ -467,31 +467,39 @@
     "Premier League star Sorba Thomas crashes car outside betting tips Ghana": {
       "slug": "sorba-thomas-car-crash-betting-tips-ghana",
       "posted_at": "2026-09-13T06:13:41.549316+00:00"
+    },
+    "EPL Arteta slams penalty decision against Arsenal Sunderland betting tips Nigeria": {
+      "slug": "arsenal-sunderland-betting-tips-nigeria",
+      "posted_at": "2026-09-13T08:50:03.153935+00:00"
+    },
+    "How to Watch Sunderland vs Arsenal Live Today at Stadium o betting tips Ghana": {
+      "slug": "sunderland-vs-arsenal-live-betting-tips-ghana",
+      "posted_at": "2026-09-13T09:13:00.588917+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-13T06:31:19.511208+00:00",
-    "candidates_available": 414,
+    "checked_at": "2026-09-13T09:13:04.435150+00:00",
+    "candidates_available": 413,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Premier League star Sorba Thomas crashes car outside betting tips Ghana",
+        "keyword": "EPL Arteta slams penalty decision against Arsenal Sunderland betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "arsenal-sunderland-betting-tips-nigeria"
+      },
+      {
+        "keyword": "Over 250 players grace Karen Golf tournament betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "How to Watch Sunderland vs Arsenal Live Today at Stadium o betting tips Ghana",
         "country": "Ghana",
         "result": "written",
-        "slug": "sorba-thomas-car-crash-betting-tips-ghana"
-      },
-      {
-        "keyword": "Ligue des champions CAF Où suivre Djoliba AC betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: only 762 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
-      },
-      {
-        "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: only 965 words (minimum 1000)"
+        "slug": "sunderland-vs-arsenal-live-betting-tips-ghana"
       }
     ]
   }
