@@ -294,7 +294,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-14T12:17:45.893340+00:00",
+    "checked_at": "2026-09-14T15:33:48.226768+00:00",
     "candidates_available": 348,
     "attempted": 3,
     "written": 0,
@@ -309,13 +309,13 @@
         "keyword": "How VAR 'robbed' Manchester United derby defeat Old betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'For the latest betting tips on how VAR affected Manchester United’s derby defeat and to find the best odds, visit SifuFinds. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 457)"
       },
       {
         "keyword": "Dr Nyaho-Tamakloe chairs Hearts Oak IMC following Julius betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "fact_check: **Sportybet Ghana** offers a 150% welcome bonus up to GH₵500, while **Betway Ghana** provides a 50% match up to GH₵200.; **22Bet Ghana** offers a 100% up to GH₵1,491; **Melbet Ghana** provides a 300% first deposit bonus up to GH₵1,500, while **1xBet Ghana** offers a 200% match up to GH₵2,846; The appointment of Dr Nyaho-Tamakloe as IMC Chairman could lead to fluctuations in Hearts of Oak’s odds, depending on how bettors perceive the leadership change."
+        "result": "skipped",
+        "reason": "similar_title_exists"
       }
     ]
   }
