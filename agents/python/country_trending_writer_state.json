@@ -294,7 +294,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-14T15:33:48.226768+00:00",
+    "checked_at": "2026-09-14T17:33:05.694901+00:00",
     "candidates_available": 348,
     "attempted": 3,
     "written": 0,
@@ -309,13 +309,13 @@
         "keyword": "How VAR 'robbed' Manchester United derby defeat Old betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 457)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 486)"
       },
       {
         "keyword": "Dr Nyaho-Tamakloe chairs Hearts Oak IMC following Julius betting tips Ghana",
         "country": "Ghana",
-        "result": "skipped",
-        "reason": "similar_title_exists"
+        "result": "failed",
+        "reason": "fact_check: Sportybet Ghana might offer more favorable odds on a Hearts of Oak win compared to Betway Ghana; Sportybet Ghana's 150% welcome bonus up to GH₵500 is particularly appealing, with a minimum deposit of just GH₵1"
       }
     ]
   }
