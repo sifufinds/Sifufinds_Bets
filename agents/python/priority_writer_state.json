@@ -486,28 +486,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-13T18:53:36.050529+00:00",
-    "candidates_available": 410,
+    "checked_at": "2026-09-14T03:38:33.792438+00:00",
+    "candidates_available": 408,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Springboks Player Ratings | Who starred Boks' win betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "springboks-player-ratings-betting-tips-south-africa"
-      },
       {
         "keyword": "Ligue des champions CAF où suivre Rivers United betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 507)"
+        "reason": "quality_gate: final line was 'The 200 % first‑deposit bonus up to TSh 500,000 must be rolled over five times at minimum odds of 1.40. You have 30 days to meet the requirement before the bonus expires.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Ligue des champions CAF Où suivre Djoliba AC betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "caf-champions-league-djoliba-ac-betting-tanzania"
+        "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 512)"
+      },
+      {
+        "keyword": "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Instant withdrawals depend on the bookmaker’s processing times and the chosen payment method. Mobile wallet withdrawals (OPay, PalmPay, MTN MoMo) are usually instant, while bank transfers may take up to 48 hours. Always check the withdrawal policies before betting.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
