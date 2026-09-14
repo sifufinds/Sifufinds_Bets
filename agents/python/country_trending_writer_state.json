@@ -294,7 +294,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-14T10:27:41.944824+00:00",
+    "checked_at": "2026-09-14T12:17:45.893340+00:00",
     "candidates_available": 348,
     "attempted": 3,
     "written": 0,
@@ -303,19 +303,19 @@
         "keyword": "South Korea interim coach denies using ChatGPT prepare betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was '### 18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "How VAR 'robbed' Manchester United derby defeat Old betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: **Betika Kenya**     | 2.50                               | 1.80                   |; **SportPesa Kenya**  | 2.45                               | 1.75                   |; **22Bet Kenya**      | 2.60                               | 1.85                   |; **SportPesa Kenya** (300% Karibu Gift); **1xBet Kenya** (200% First Deposit Bonus up to KSh 20,000)"
+        "reason": "quality_gate: final line was 'For the latest betting tips on how VAR affected Manchester United’s derby defeat and to find the best odds, visit SifuFinds. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Dr Nyaho-Tamakloe chairs Hearts Oak IMC following Julius betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: **Sportybet Ghana**, which offers a 150% welcome bonus up to GH₵500; | **Sportybet Ghana**  | 2.10                               | 1.90                              |; | **Betway Ghana**     | 2.05                               | 1.85                              |; | **22Bet Ghana**      | 2.20                               | 1.95                              |"
+        "reason": "fact_check: **Sportybet Ghana** offers a 150% welcome bonus up to GH₵500, while **Betway Ghana** provides a 50% match up to GH₵200.; **22Bet Ghana** offers a 100% up to GH₵1,491; **Melbet Ghana** provides a 300% first deposit bonus up to GH₵1,500, while **1xBet Ghana** offers a 200% match up to GH₵2,846; The appointment of Dr Nyaho-Tamakloe as IMC Chairman could lead to fluctuations in Hearts of Oak’s odds, depending on how bettors perceive the leadership change."
       }
     ]
   }
