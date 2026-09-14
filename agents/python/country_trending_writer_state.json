@@ -294,8 +294,8 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-14T08:30:02.638016+00:00",
-    "candidates_available": 349,
+    "checked_at": "2026-09-14T10:27:41.944824+00:00",
+    "candidates_available": 348,
     "attempted": 3,
     "written": 0,
     "attempts": [
@@ -303,13 +303,19 @@
         "keyword": "South Korea interim coach denies using ChatGPT prepare betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Bet9ja’s 170% ACCA Boost on multi-bets; 1xBet Nigeria’s 300% first deposit bonus up to ₦1,200,000; Bet9ja          | ₦2,500 Free Bet + 170% ACCA Boost; BetKing         | ₦100 Free Bets + 10 Aviator Flights; 22Bet Nigeria   | 100% First Deposit Bonus – Up to ₦207,500"
+        "reason": "quality_gate: final line was '### 18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "How VAR 'robbed' Manchester United derby defeat Old betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: **Betika Kenya**     | 2.50                               | 1.80                   |; **SportPesa Kenya**  | 2.45                               | 1.75                   |; **22Bet Kenya**      | 2.60                               | 1.85                   |; **SportPesa Kenya** (300% Karibu Gift); **1xBet Kenya** (200% First Deposit Bonus up to KSh 20,000)"
+      },
+      {
+        "keyword": "Dr Nyaho-Tamakloe chairs Hearts Oak IMC following Julius betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "fact_check: **Sportybet Ghana**, which offers a 150% welcome bonus up to GH₵500; | **Sportybet Ghana**  | 2.10                               | 1.90                              |; | **Betway Ghana**     | 2.05                               | 1.85                              |; | **22Bet Ghana**      | 2.20                               | 1.95                              |"
       }
     ]
   }
