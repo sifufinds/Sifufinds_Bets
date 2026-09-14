@@ -1,13 +1,37 @@
 {
   "date": "2026-09-14",
-  "total": 20,
+  "total": 24,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 4,
     "MEDIUM": 19,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "how-var-robbed-manchester-united-derby-defeat-old-betting-tips-kenya",
+      "detail": "Title 68 chars (max 60): \"How VAR 'robbed' Man Utd Derby: Kenya Betting Tips & Bookmaker Guide\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "south-korea-interim-coach-denies-chatgpt-betting-tips-nigeria",
+      "detail": "Title 73 chars (max 60): 'South Korea Interim Coach Denies Using ChatGPT \u2013 Betting Tips for Nige'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "how-var-robbed-manchester-united-derby-defeat-old-betting-tips-kenya",
+      "detail": "Excerpt 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "south-korea-interim-coach-denies-chatgpt-betting-tips-nigeria",
+      "detail": "Excerpt 180 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
