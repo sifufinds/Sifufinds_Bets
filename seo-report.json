@@ -1,96 +1,24 @@
 {
   "date": "2026-09-15",
-  "total": 34,
+  "total": 22,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 13,
-    "MEDIUM": 20,
+    "HIGH": 0,
+    "MEDIUM": 21,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "us-open-2026-betting-lessons-2027-grand-slam-preview",
-      "detail": "Title 63 chars (max 60): 'US Open 2026 Wrap-Up: Betting Lessons & 2027 Grand Slam Preview'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "tech-transfers-touchdowns-betting-insights-2026",
-      "detail": "Title 82 chars (max 60): 'Tech, Transfers, and Touchdowns: Betting Insights from the Latest Spor'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
       "page": "nba-player-prop-betting-explained-real-examples-from-recent-news",
-      "detail": "Title 65 chars (max 60): 'NBA Player Prop Betting Explained: Real Examples from Recent News'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "gor-mahia-caf-exit-tuskers-survival-europa-league-fixtures-2026",
-      "detail": "Title 79 chars (max 60): \"Gor Mahia's CAF Humiliation & 2026/27 Europa League Fixtures: Betting \""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "dr-nyaho-tamakloe-chairs-hearts-of-oak-imc",
-      "detail": "Title 76 chars (max 60): 'Dr Nyaho\u2011Tamakloe chairs Hearts of Oak IMC \u2013 what Ghana bettors need t'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "south-korea-coach-chatgpt-betting-tips-nigeria",
-      "detail": "Title 72 chars (max 60): 'South Korea Interim Coach Denies ChatGPT Betting Tips Rumours in Niger'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "var-manchester-united-derby-defeat-kenya-betting-tips",
-      "detail": "Title 70 chars (max 60): \"How VAR 'Robbed' Manchester United in Derby Defeat: Kenya Betting Tips\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nba-player-prop-betting-explained-real-examples-from-recent-news",
-      "detail": "Excerpt 184 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "gor-mahia-caf-exit-tuskers-survival-europa-league-fixtures-2026",
-      "detail": "Excerpt 199 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "dr-nyaho-tamakloe-chairs-hearts-of-oak-imc",
-      "detail": "Excerpt 210 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "wnba-playoff-race-fever-lynx-decisive-clash",
-      "detail": "Excerpt 162 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "south-korea-coach-chatgpt-betting-tips-nigeria",
-      "detail": "Excerpt 162 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-roundup-richarlison-usmnt-nfl-week-1",
-      "detail": "Excerpt 158 chars (max 155)"
+      "detail": "High title overlap (5 meaningful tokens) with 'player-prop-betting-explained-basketball-news' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
-      "page": "nba-player-prop-betting-explained-real-examples-from-recent-news",
-      "detail": "High title overlap (7 meaningful tokens) with 'player-prop-betting-explained-basketball-news' \u2014 consider noindex"
+      "page": "south-korea-coach-chatgpt-betting-tips-nigeria",
+      "detail": "High title overlap (6 meaningful tokens) with 'south-korea-interim-coach-denies-chatgpt-betting-tips-nigeria' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
