@@ -291,31 +291,35 @@
     "How to Watch Sunderland vs Arsenal Live Today at Stadium o betting tips Ghana": {
       "slug": "sunderland-arsenal-live-ghana-betting-tips",
       "posted_at": "2026-09-14T02:02:39.647054+00:00"
+    },
+    "How VAR 'robbed' Manchester United derby defeat Old betting tips Kenya": {
+      "slug": "var-manchester-united-derby-defeat-kenya-betting-tips",
+      "posted_at": "2026-09-15T00:52:08.150256+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-14T22:59:52.971752+00:00",
+    "checked_at": "2026-09-15T00:59:19.005143+00:00",
     "candidates_available": 348,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "South Korea interim coach denies using ChatGPT prepare betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: \"Bet9ja, for example, is one of the most recognised names in the country and runs a ₦2,500 free bet on signup (code 9BONUS) plus a 170 per cent ACCA boost on multi-bets of three legs or more.\"; \"1xBet Nigeria advertises a 300 per cent first deposit match up to ₦1,200,000 (code 1BONUSNG).\"; \"Bet9ja accepts OPay, PalmPay, Bank Transfer, Visa, Mastercard, and USSD.\"; \"1xBet Nigeria adds MTN MoMo to that list.\""
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 507)"
       },
       {
         "keyword": "How VAR 'robbed' Manchester United derby defeat Old betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: | Bookmaker       | Manchester United vs Liverpool | Manchester City vs Arsenal |\n|-----------------|--------------------------------|----------------------------|\n| Betika Kenya    | 2.50                           | 1.80                       |\n| SportPesa Kenya | 2.45                           | 1.75                       |\n| 22Bet Kenya     | 2.60                           | 1.85                       |; **Betika Kenya** offers Free Bet Gifts and Aviator Free Bets on signup; **SportPesa Kenya** provides a 300% Welcome Karibu Gift on your first deposit"
+        "result": "written",
+        "slug": "var-manchester-united-derby-defeat-kenya-betting-tips"
       },
       {
         "keyword": "Dr Nyaho-Tamakloe chairs Hearts Oak IMC following Julius betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: | Bookmaker       | Hearts of Oak vs Asante Kotoko |\n|-----------------|--------------------------------|\n| Sportybet Ghana | 2.10                           |\n| Betway Ghana    | 2.05                           |\n| 22Bet Ghana     | 2.20                           |; **Sportybet Ghana** offers a 150% Welcome Bonus up to GH₵500; **Melbet Ghana** provides a 300% First Deposit Bonus up to GH₵1,500"
+        "reason": "fact_check: 150% Welcome Bonus (Up to GH₵500); 50% Welcome Bonus (Up to GH₵200); 100% First Deposit Bonus (Up to GH₵1,491); 200% First Deposit Bonus (Up to GH₵2,846); 300% First Deposit Bonus (Up to GH₵1,500); 100% First Deposit Bonus (Up to €100)"
       }
     ]
   }
