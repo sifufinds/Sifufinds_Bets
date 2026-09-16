@@ -322,28 +322,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-16T11:48:50.708192+00:00",
-    "candidates_available": 344,
+    "checked_at": "2026-09-16T13:26:06.288165+00:00",
+    "candidates_available": 346,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Man Utd, Villa target last 16 as Carabao betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "man-utd-villa-carabao-cup-betting-tips-nigeria"
-      },
       {
         "keyword": "CAF history beckons PSL clubs moneybag fill betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: R25 Free Bet + 50 Free Spins; R50 Free Bet + 100% Match Up to R5,000; R200 Free Bet on First Deposit; 25 Free Spins + 100% Match Up to R5,000; Orlando Pirates vs. TP Mazembe; Mamelodi Sundowns vs. Wydad Casablanca; Stellenbosch FC vs. Simba SC"
-      },
-      {
-        "keyword": "Nigeria Decision Looms After FIFA Completes Two-Day Fact-Finding betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "fact_check: 250% Karibu Gift on First Deposit; 200% Bonus – Up to TSh 500,000; 100% Bonus – Up to TSh 460,000; Tanzania vs. Nigeria (AFCON Qualifier)"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
