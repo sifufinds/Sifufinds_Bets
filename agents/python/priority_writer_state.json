@@ -518,28 +518,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-16T04:34:28.558574+00:00",
-    "candidates_available": 396,
+    "checked_at": "2026-09-16T13:24:38.248716+00:00",
+    "candidates_available": 401,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Ligue des champions CAF où suivre Rivers United betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "Rono wins Malindi Open tournament betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was 'Ready to place a smart bet on Rivers United? Compare the offers above on sifufinds.com, pick the bookmaker that fits your style, and claim your welcome bonus today.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 885 words (minimum 1000); final line was 'Set a budget, avoid chasing losses, and use the responsible gambling tools provided by bookmakers. If betting becomes a problem, seek help from local support organisations.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "SIC, NSIA bosses win CEO penalty shootout 2026 betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 458)"
-      },
-      {
-        "keyword": "Algeria Algerian Football Chiefs Name Hemdani Replace Petkovic betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
