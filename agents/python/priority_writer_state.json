@@ -518,28 +518,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-16T03:01:04.778624+00:00",
-    "candidates_available": 397,
+    "checked_at": "2026-09-16T04:34:28.558574+00:00",
+    "candidates_available": 396,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Ligue des champions CAF où suivre Rivers United betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '**Ready to place your first Rivers United bet?** Compare the offers above, claim your welcome bonus, and enjoy the thrill of CAF Champions League action on your favourite device. Remember to gamble responsibly and keep the fun alive.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was 'Ready to place a smart bet on Rivers United? Compare the offers above on sifufinds.com, pick the bookmaker that fits your style, and claim your welcome bonus today.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: final line was 'You cannot withdraw the bonus money itself until the wagering requirements are fulfilled. However, you can withdraw any profit that remains after the conditions have been met.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 458)"
       },
       {
-        "keyword": "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "joao-pedro-brazil-squad-ancelotti-nigeria-betting-tips"
+        "keyword": "Algeria Algerian Football Chiefs Name Hemdani Replace Petkovic betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       }
     ]
   }
