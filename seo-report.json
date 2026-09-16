@@ -1,13 +1,157 @@
 {
-  "date": "2026-09-15",
-  "total": 22,
+  "date": "2026-09-16",
+  "total": 46,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 24,
     "MEDIUM": 21,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-chiefs-royals-european-football",
+      "detail": "Title 67 chars (max 60): 'Global Sports Roundup: Chiefs, Royals, and European Football Action'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "jo\u00e3o-pedro-returns-to-brazil-squad-ancelottis-impact-on-nigeria-betting-tips",
+      "detail": "Title 78 chars (max 60): \"Jo\u00e3o Pedro Returns to Brazil Squad: Ancelotti's Impact on Nigeria Bett\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-from-dwts-to-nfl-injuries-heres-whats-moving-markets",
+      "detail": "Title 78 chars (max 60): 'Global Sports Roundup: From DWTS to NFL Injuries, Here\u2019s What\u2019s Moving'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "hibs-messi-betting-insights",
+      "detail": "Title 69 chars (max 60): 'From Hibs to Messi: Betting Take\u2011aways on the Latest Global Headlines'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-insights-african-bettors-latest-news-betting-tips",
+      "detail": "Title 62 chars (max 60): 'NBA Insights for African Bettors: Latest News and Betting Tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "polokwane-city-vs-kaizer-chiefs-betting-tips-south-africa",
+      "detail": "Title 84 chars (max 60): 'Polokwane City vs Kaizer Chiefs: Betting Tips After Goal Controversy i'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "tanzania-betting-tips-nigeria-fifa-enquiry",
+      "detail": "Title 70 chars (max 60): 'Tanzania Betting Tips & Bookmaker Comparison Amid Nigeria FIFA Enquiry'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "liberia-boakai-lone-star-afcon-betting-tips-tanzania",
+      "detail": "Title 75 chars (max 60): 'Liberia Boakai Rallies Support: Lone Star\u2019s AFCON Betting Tips for Tan'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "plk-city-vs-chiefs-betting-tips-south-africa",
+      "detail": "Title 69 chars (max 60): 'PLK City vs Chiefs Betting Tips: South Africa\u2019s Best Bookmaker Offers'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "sic-nsia-ceo-penalty-shootout-betting-ghana",
+      "detail": "Title 73 chars (max 60): 'SIC, NSIA Bosses Win CEO Penalty Shootout: Betting Tips for Ghana Punt'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-headlines-nfl-cricket-betting-africa",
+      "detail": "Title 67 chars (max 60): 'Global Sports Headlines: NFL Shakes Up, Cricket Kicks Off, and More'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "shalulile-closing-in-on-cafcl-scoring-record-billiat-cash-prize-betting-insight",
+      "detail": "Title 101 chars (max 60): 'Shalulile Closes In on CAFCL Scoring Record as Billiat Bags R800k \u2013 Wh'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "jo\u00e3o-pedro-returns-to-brazil-squad-ancelottis-impact-on-nigeria-betting-tips",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-from-dwts-to-nfl-injuries-heres-whats-moving-markets",
+      "detail": "Excerpt 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "hibs-messi-betting-insights",
+      "detail": "Excerpt 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "arch-manning-apologizes-ai-video-controversy",
+      "detail": "Excerpt 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "polokwane-city-vs-kaizer-chiefs-betting-tips-south-africa",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tanzania-betting-tips-nigeria-fifa-enquiry",
+      "detail": "Excerpt 193 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "full-list-2026-emmy-awards-winners-betting-tips-nigeria",
+      "detail": "Excerpt 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "liberia-boakai-lone-star-afcon-betting-tips-tanzania",
+      "detail": "Excerpt 190 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "plk-city-vs-chiefs-betting-tips-south-africa",
+      "detail": "Excerpt 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rono-malindi-open-golf-betting-kenya",
+      "detail": "Excerpt 163 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-headlines-nfl-cricket-betting-africa",
+      "detail": "Excerpt 172 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "shalulile-closing-in-on-cafcl-scoring-record-billiat-cash-prize-betting-insight",
+      "detail": "Excerpt 205 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
@@ -137,8 +281,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "62 posts",
-      "detail": "62 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "61 posts",
+      "detail": "61 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
