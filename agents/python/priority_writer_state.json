@@ -511,31 +511,35 @@
     "Nigeria Editorial - FIFA's Enquiry Fixing Nigeria's Football betting tips Tanzania": {
       "slug": "tanzania-betting-tips-nigeria-fifa-enquiry",
       "posted_at": "2026-09-15T17:27:13.869498+00:00"
+    },
+    "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria": {
+      "slug": "joao-pedro-brazil-squad-ancelotti-nigeria-betting-tips",
+      "posted_at": "2026-09-16T03:01:00.259187+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-15T17:27:37.826514+00:00",
-    "candidates_available": 399,
+    "checked_at": "2026-09-16T03:01:04.778624+00:00",
+    "candidates_available": 397,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "FULL LIST 2026 Emmy Awards winners betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "full-list-2026-emmy-awards-winners-betting-tips-nigeria"
-      },
-      {
-        "keyword": "Nigeria Editorial - FIFA's Enquiry Fixing Nigeria's Football betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "tanzania-betting-tips-nigeria-fifa-enquiry"
-      },
       {
         "keyword": "Ligue des champions CAF où suivre Rivers United betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Contact the bookmaker’s customer support via live chat, email, or phone. Most GBT‑licensed operators offer 24‑hour support and can resolve account or transaction issues promptly. If you need further assistance, refer to the Gaming Board of Tanzania’s consumer protection resources.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '**Ready to place your first Rivers United bet?** Compare the offers above, claim your welcome bonus, and enjoy the thrill of CAF Champions League action on your favourite device. Remember to gamble responsibly and keep the fun alive.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'You cannot withdraw the bonus money itself until the wagering requirements are fulfilled. However, you can withdraw any profit that remains after the conditions have been met.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "João Pedro returns Brazil squad as Ancelotti begins betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "joao-pedro-brazil-squad-ancelotti-nigeria-betting-tips"
       }
     ]
   }
