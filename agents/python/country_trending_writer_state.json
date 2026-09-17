@@ -334,28 +334,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-17T17:55:45.113893+00:00",
-    "candidates_available": 349,
+    "checked_at": "2026-09-17T18:31:30.028903+00:00",
+    "candidates_available": 348,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Kenya seek impress World Boxing Championships betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "kenya-world-boxing-championships-2023-betting-tips"
-      },
       {
         "keyword": "Anderlecht vs. Olympique Lyon Lineups betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: **Anderlecht (Expected Lineup):** 4-3-3 – Van Crombrugge; Murillo, Hoedt, Delcroix, Gomez; Verschaeren, Arnstad, Amuzu; Esposito, Silva, Refaelov.; **Olympique Lyon (Expected Lineup):** 4-2-3-1 – Lopes; Dubois, Boateng, Diomande, Tagliafico; Caqueret, Tolisso; Cherki, Aouar, Toko Ekambi; Lacazette."
-      },
-      {
-        "keyword": "Mosimane’s triple match squad betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "fact_check: Key players like Percy Tau and Themba Zwane are expected to lead the attack, while new faces like Sphelele Mkhulise could bring added creativity to the midfield."
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
