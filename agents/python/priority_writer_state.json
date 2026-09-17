@@ -522,14 +522,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-16T18:57:24.025562+00:00",
-    "candidates_available": 400,
+    "checked_at": "2026-09-16T23:48:11.455905+00:00",
+    "candidates_available": 399,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
         "keyword": "SIC, NSIA bosses win CEO penalty shootout 2026 betting tips Ghana",
         "country": "Ghana",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 809)"
+      },
+      {
+        "keyword": "Man Utd, Villa target last 16 as Carabao betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
