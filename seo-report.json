@@ -1,13 +1,151 @@
 {
-  "date": "2026-09-16",
-  "total": 23,
+  "date": "2026-09-17",
+  "total": 46,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 23,
     "MEDIUM": 22,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "richards-bay-coach-resignation-psl-var-eden",
+      "detail": "Title 90 chars (max 60): 'Richards Bay FC Coach Resignation, Egypt vs Bafana Bafana and VAR Deba'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "joshua-fury-uk-fight-klopp-germany-squad",
+      "detail": "Title 66 chars (max 60): \"Joshua-Fury Fight Confirmed for UK, Klopp's Germany Squad Revealed\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "carrick-takes-blame-man-utd-cup-exit-betting-tips-nigeria",
+      "detail": "Title 67 chars (max 60): 'Carrick Takes Blame for Man Utd Cup Exit \u2013 Betting Tips for Nigeria'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "knicks-training-camp-player-props",
+      "detail": "Title 65 chars (max 60): 'Knicks Training Camp Clash Lights Up Player Prop Betting Insights'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-chelsea-ownership-mlb-action",
+      "detail": "Title 62 chars (max 60): 'Global Sports Roundup: Chelsea Ownership, MLB Action, and More'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "sundowns-al-ahli-intercontinental-preview-williams-mendy",
+      "detail": "Title 72 chars (max 60): 'Sundowns vs Al Ahli Intercontinental Preview: Williams vs Mendy Showdo'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "john-hedges-pat-brown-british-title-betting-guide",
+      "detail": "Title 64 chars (max 60): 'John Hedges vs Pat Brown: British Title Showdown & Betting Guide'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "canelo-alvarez-undercard-world-title-boost-espinoza",
+      "detail": "Title 75 chars (max 60): 'Canelo Alvarez undercard gets world\u2011title boost as Rafael Espinoza ste'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "rono-wins-malindi-open-betting-tips-kenya",
+      "detail": "Title 74 chars (max 60): 'Rono wins Malindi Open tournament betting tips Kenya \u2013 Best offers & g'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "cricket-betting-insights-t20i-rankings-wpl-2027-ipl-auction",
+      "detail": "Title 66 chars (max 60): 'Cricket Betting Insights: T20I Rankings, WPL 2027, and IPL Auction'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "man-utd-villa-carabao-cup-betting-tips-nigeria",
+      "detail": "Title 67 chars (max 60): 'Man Utd, Villa Target Last 16: Carabao Cup Betting Tips for Nigeria'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "tennis-betting-insights-guadalajara-laver-cup",
+      "detail": "Excerpt 167 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "richards-bay-coach-resignation-psl-var-eden",
+      "detail": "Excerpt 188 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "joshua-fury-uk-fight-klopp-germany-squad",
+      "detail": "Excerpt 158 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "chelsea-real-madrid-ufc-betting-insights",
+      "detail": "Excerpt 160 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "carrick-takes-blame-man-utd-cup-exit-betting-tips-nigeria",
+      "detail": "Excerpt 187 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-chelsea-ownership-mlb-action",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "breaking-sports-news-transfers-contracts-cup-draws",
+      "detail": "Excerpt 272 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "sundowns-al-ahli-intercontinental-preview-williams-mendy",
+      "detail": "Excerpt 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "canelo-alvarez-undercard-world-title-boost-espinoza",
+      "detail": "Excerpt 195 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rono-wins-malindi-open-betting-tips-kenya",
+      "detail": "Excerpt 163 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "man-utd-villa-carabao-cup-betting-tips-nigeria",
+      "detail": "Excerpt 192 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "dangling_title",
+      "page": "canelo-alvarez-undercard-world-title-boost-espinoza",
+      "detail": "Title ends mid-thought: 'gets world\u2011title boost as Rafael Espinoza steps in'"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
@@ -143,8 +281,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "61 posts",
-      "detail": "61 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "60 posts",
+      "detail": "60 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
