@@ -527,19 +527,35 @@
     "Carrick takes blame Man Utd cup exit, demands betting tips Nigeria": {
       "slug": "carrick-takes-blame-man-utd-cup-exit-betting-tips-nigeria",
       "posted_at": "2026-09-17T18:08:02.548825+00:00"
+    },
+    "SIC, NSIA bosses win CEO penalty shootout 2026 betting tips Ghana": {
+      "slug": "sic-nsia-ceo-penalty-shootout-2026-ghana-betting-tips",
+      "posted_at": "2026-09-18T01:00:00.246091+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-17T20:19:29.178503+00:00",
-    "candidates_available": 401,
+    "checked_at": "2026-09-18T01:11:16.429225+00:00",
+    "candidates_available": 399,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "Anderlecht vs. Olympique Lyon Lineups betting tips Ghana",
-        "country": "Ghana",
+        "keyword": "UFOA U17 Senegal – Guinée, Libéria – Gambie, betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Betting on “Senegal to win” combined with “under 2.5 total goals” is generally low risk, as Senegal often scores early and keeps a clean sheet, reducing the likelihood of a high‑scoring game.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "SIC, NSIA bosses win CEO penalty shootout 2026 betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "sic-nsia-ceo-penalty-shootout-2026-ghana-betting-tips"
+      },
+      {
+        "keyword": "Man Utd, Villa target last 16 as Carabao betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: only 679 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
       }
     ]
   }
