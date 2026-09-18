@@ -539,31 +539,39 @@
     "Man Utd, Villa target last 16 as Carabao betting tips Nigeria": {
       "slug": "man-utd-villa-target-last-16-carabao-betting-tips-nigeria",
       "posted_at": "2026-09-18T03:00:11.002673+00:00"
+    },
+    "CAF history beckons PSL clubs moneybag fill betting tips South Africa": {
+      "slug": "caf-history-psl-betting-tips-south-africa",
+      "posted_at": "2026-09-18T06:25:24.029955+00:00"
+    },
+    "Boks' series win 'powerful showcase' South African resilience betting tips South Africa": {
+      "slug": "boks-series-win-south-african-resilience-betting-tips",
+      "posted_at": "2026-09-18T06:45:20.580336+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-18T03:00:31.158970+00:00",
-    "candidates_available": 398,
+    "checked_at": "2026-09-18T06:45:24.774387+00:00",
+    "candidates_available": 383,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "UFOA U17 Senegal – Guinée, Libéria – Gambie, betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "ufoa-u17-senegal-guinea-liberia-gambia-betting-tips-tanzania"
-      },
-      {
-        "keyword": "Man Utd, Villa target last 16 as Carabao betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "man-utd-villa-target-last-16-carabao-betting-tips-nigeria"
-      },
-      {
         "keyword": "CAF history beckons PSL clubs moneybag fill betting tips South Africa",
         "country": "South Africa",
+        "result": "written",
+        "slug": "caf-history-psl-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Nigeria Decision Looms After FIFA Completes Two-Day Fact-Finding betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 420)"
+        "reason": "quality_gate: only 926 words (minimum 1000); no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Boks' series win 'powerful showcase' South African resilience betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "boks-series-win-south-african-resilience-betting-tips"
       }
     ]
   }

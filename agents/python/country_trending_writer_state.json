@@ -334,7 +334,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-18T05:08:04.062762+00:00",
+    "checked_at": "2026-09-18T06:55:37.263838+00:00",
     "candidates_available": 332,
     "attempted": 3,
     "written": 0,
@@ -343,11 +343,17 @@
         "keyword": "CAF history beckons PSL clubs moneybag fill betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: **Hollywoodbets**    | R25 Free Bet + 50 Free Spins – No Deposit  | WCGRB Licensed, FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard, Instant EFT |; **Supabets**         | R50 Free Bet + 100% Match Up to R5,000     | NGB Licensed, FNB, Standard Bank, Nedbank, Visa, Mastercard, Instant EFT, Blue Voucher |; **BetXchange**       | R200 Free Bet on First Deposit             | WCGRB Licensed, FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard, Instant EFT |; **TicTacBets**       | 25 Free Spins + 100% Match Up to R5,000    | NCGLB Licensed, Visa, Mastercard, Instant EFT, 1Voucher, Ozow, Zapper, Apple Pay |; **FairPari**         | 100% First Deposit Bonus – Up to €100      | NGB Licensed, FNB, Standard Bank, Nedbank, Capitec, Instant EFT |; **Linebet**          | 100% First Deposit Bonus                   | Curaçao Licensed, Visa, Mastercard, Instant EFT |; Hollywoodbets provides a **R25 Free Bet** with no deposit required, while Supabets offers a **100% match up to R5,000** on your first deposit."
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "FULL LIST 2026 Emmy Awards winners betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 392)"
+      },
+      {
+        "keyword": "Liberia Boakai Rallies Massive Support Lone Star's Afcon betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
