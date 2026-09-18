@@ -338,22 +338,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-18T11:22:32.431893+00:00",
-    "candidates_available": 337,
+    "checked_at": "2026-09-18T13:45:25.609743+00:00",
+    "candidates_available": 336,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "2026 U-20 WWC ‘We Came Determination’ — Uzoma betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "falconets-2026-u-20-wwc-win-uzoma-nigeria-betting-tips"
-      },
       {
         "keyword": "Kenyan youngsters set 12-Goal tournament betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: fact-checker response was not valid JSON"
+      },
+      {
+        "keyword": "US Embassy concludes three-city girls’ football coaching initiative betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "fact_check: Bookmakers like **Sportybet Ghana** and **Betway Ghana** are already offering competitive odds on women’s football; Here’s a comparison of welcome bonuses from top bookmakers in Ghana:; **Sportybet Ghana** offers a generous 150% welcome bonus up to GH₵500; **Betway Ghana** provides a 50% match up to GH₵200; Bookmakers like **Sportybet Ghana** and **Betway Ghana** are known for offering competitive odds on women’s football"
+      },
+      {
+        "keyword": "Boks set face Fiji World Cup warm-up clash betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: Bookmakers like **Hollywoodbets**, **Supabets**, and **BetXchange** are known for competitive rugby odds.; Here’s a comparison of welcome offers from top South African bookmakers:; **Hollywoodbets** offers a no-deposit R25 free bet; **Supabets** provides a generous R5,000 match bonus"
       }
     ]
   }
