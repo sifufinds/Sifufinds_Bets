@@ -531,31 +531,39 @@
     "SIC, NSIA bosses win CEO penalty shootout 2026 betting tips Ghana": {
       "slug": "sic-nsia-ceo-penalty-shootout-2026-ghana-betting-tips",
       "posted_at": "2026-09-18T01:00:00.246091+00:00"
+    },
+    "UFOA U17 Senegal – Guinée, Libéria – Gambie, betting tips Tanzania": {
+      "slug": "ufoa-u17-senegal-guinea-liberia-gambia-betting-tips-tanzania",
+      "posted_at": "2026-09-18T02:59:45.838277+00:00"
+    },
+    "Man Utd, Villa target last 16 as Carabao betting tips Nigeria": {
+      "slug": "man-utd-villa-target-last-16-carabao-betting-tips-nigeria",
+      "posted_at": "2026-09-18T03:00:11.002673+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-18T01:11:16.429225+00:00",
-    "candidates_available": 399,
+    "checked_at": "2026-09-18T03:00:31.158970+00:00",
+    "candidates_available": 398,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "UFOA U17 Senegal – Guinée, Libéria – Gambie, betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Betting on “Senegal to win” combined with “under 2.5 total goals” is generally low risk, as Senegal often scores early and keeps a clean sheet, reducing the likelihood of a high‑scoring game.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "SIC, NSIA bosses win CEO penalty shootout 2026 betting tips Ghana",
-        "country": "Ghana",
         "result": "written",
-        "slug": "sic-nsia-ceo-penalty-shootout-2026-ghana-betting-tips"
+        "slug": "ufoa-u17-senegal-guinea-liberia-gambia-betting-tips-tanzania"
       },
       {
         "keyword": "Man Utd, Villa target last 16 as Carabao betting tips Nigeria",
         "country": "Nigeria",
+        "result": "written",
+        "slug": "man-utd-villa-target-last-16-carabao-betting-tips-nigeria"
+      },
+      {
+        "keyword": "CAF history beckons PSL clubs moneybag fill betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: only 679 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 420)"
       }
     ]
   }
