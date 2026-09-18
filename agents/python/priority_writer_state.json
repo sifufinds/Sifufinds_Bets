@@ -562,28 +562,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-18T16:29:17.114711+00:00",
-    "candidates_available": 383,
+    "checked_at": "2026-09-18T20:37:53.026479+00:00",
+    "candidates_available": 382,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Boks set face Fiji World Cup warm-up clash betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "boks-set-face-fiji-world-cup-warm-up-clash-betting-tips-south-africa"
-      },
       {
         "keyword": "Namibia Nande Triumphs Windhoek Golf Club Championship betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, most top Tanzanian bookmakers offer live betting on golf tournaments, allowing you to place bets as the action unfolds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was '### Are the betting odds for golf events in Tanzania', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Nigeria Decision Looms After FIFA Completes Two-Day Fact-Finding betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "missing_output_markers"
+        "reason": "quality_gate: only 940 words (minimum 1000)"
+      },
+      {
+        "keyword": "Over 250 players grace Karen Golf tournament betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: only 907 words (minimum 1000); no '## FAQ' section heading found"
       }
     ]
   }
