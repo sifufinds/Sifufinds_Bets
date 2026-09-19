@@ -1,13 +1,109 @@
 {
-  "date": "2026-09-18",
-  "total": 23,
+  "date": "2026-09-19",
+  "total": 39,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 16,
     "MEDIUM": 22,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "spl-conundrum-kenya-premier-league-kickoff-jeopardy-betting-tips",
+      "detail": "Title 70 chars (max 60): 'SPL Conundrum: Kenya Premier League Kickoff in Jeopardy \u2013 Betting Tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "namibia-nande-windhoek-golf-club-championship-betting-tips-tanzania",
+      "detail": "Title 88 chars (max 60): 'Namibia Nande Triumphs Windhoek Golf Club Championship Betting Tips fo'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "springboks-vs-fiji-2027-rwc-warm-up-betting-south-africa",
+      "detail": "Title 72 chars (max 60): 'Springboks vs Fiji 2027: RWC Warm-Up Clash Betting Tips for South Afri'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "harry-kane-record-breaking-form-betting-markets",
+      "detail": "Title 64 chars (max 60): \"Harry Kane's Record-Breaking Form: How It Shifts Betting Markets\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "igaming-news-roundup-ballys-takeover-gambling-taxes-gamification-concerns",
+      "detail": "Title 81 chars (max 60): 'iGaming News Roundup: Bally\u2019s Takeover, Gambling Taxes, and Gamificati'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "boks-set-face-fiji-world-cup-warm-up-clash-betting-tips-south-africa",
+      "detail": "Title 73 chars (max 60): 'Boks Set to Face Fiji in World Cup Warm\u2011Up: Betting Tips for South Afr'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "prem-title-defence-wxv-debut-all-blacks-adventure",
+      "detail": "Title 75 chars (max 60): 'Prem title defence, WXV debut & All Blacks adventure \u2013 Rugby betting a'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "falconets-2026-u-20-wwc-win-uzoma-nigeria-betting-tips",
+      "detail": "Title 72 chars (max 60): 'Falconets\u2019 2026 U-20 WWC Win: Uzoma\u2019s Determination Pays Off for Niger'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "us-embassy-three-city-girls-football-coaching-initiative-betting-tips-ghana",
+      "detail": "Title 90 chars (max 60): 'US Embassy concludes three\u2011city girls\u2019 football coaching initiative be'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "kenyan-youngsters-12-goal-tournament-betting-tips",
+      "detail": "Title 76 chars (max 60): 'Kenyan Youngsters 12\u2011Goal Tournament Betting Tips \u2013 Your Ultimate Guid'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "namibia-nande-windhoek-golf-club-championship-betting-tips-tanzania",
+      "detail": "Excerpt 205 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "harry-kane-record-breaking-form-betting-markets",
+      "detail": "Excerpt 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "igaming-news-roundup-ballys-takeover-gambling-taxes-gamification-concerns",
+      "detail": "Excerpt 194 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "prem-title-defence-wxv-debut-all-blacks-adventure",
+      "detail": "Excerpt 188 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "falconets-2026-u-20-wwc-win-uzoma-nigeria-betting-tips",
+      "detail": "Excerpt 202 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "us-embassy-three-city-girls-football-coaching-initiative-betting-tips-ghana",
+      "detail": "Excerpt 225 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
