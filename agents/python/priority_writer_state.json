@@ -563,31 +563,39 @@
     "Namibia Nande Triumphs Windhoek Golf Club Championship betting tips Tanzania": {
       "slug": "namibia-nande-windhoek-golf-club-championship-betting-tips-tanzania",
       "posted_at": "2026-09-19T03:26:52.521323+00:00"
+    },
+    "Done Deal Super Falcons Defender Joins Napoli Two-Year betting tips Nigeria": {
+      "slug": "done-deal-super-falcons-defender-joins-napoli-betting-tips-nigeria",
+      "posted_at": "2026-09-19T11:17:03.665445+00:00"
+    },
+    "Allende talks 'big game' v Al Ahli betting tips South Africa": {
+      "slug": "allende-big-game-vs-al-ahli-betting-tips-south-africa",
+      "posted_at": "2026-09-19T11:17:17.295899+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-19T03:27:17.478257+00:00",
-    "candidates_available": 382,
+    "checked_at": "2026-09-19T11:32:59.615937+00:00",
+    "candidates_available": 385,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Namibia Nande Triumphs Windhoek Golf Club Championship betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "Done Deal Super Falcons Defender Joins Napoli Two-Year betting tips Nigeria",
+        "country": "Nigeria",
         "result": "written",
-        "slug": "namibia-nande-windhoek-golf-club-championship-betting-tips-tanzania"
+        "slug": "done-deal-super-falcons-defender-joins-napoli-betting-tips-nigeria"
       },
       {
-        "keyword": "Nigeria Decision Looms After FIFA Completes Two-Day Fact-Finding betting tips Tanzania",
+        "keyword": "Allende talks 'big game' v Al Ahli betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "allende-big-game-vs-al-ahli-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Inspired Wales seal stunning win over South Africa betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 429)"
-      },
-      {
-        "keyword": "Over 250 players grace Karen Golf tournament betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 435)"
+        "reason": "quality_gate: only 934 words (minimum 1000); final line was 'Yes, all the mentioned bookmakers are licensed by the **Gaming Board of Tanzania**, ensuring a safe and regulated betting environment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
