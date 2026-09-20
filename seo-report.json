@@ -1,13 +1,187 @@
 {
-  "date": "2026-09-19",
-  "total": 23,
+  "date": "2026-09-20",
+  "total": 52,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 22,
+    "HIGH": 28,
+    "MEDIUM": 23,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nottingham-forest-vs-coventry-city-betting-tips-kenya",
+      "detail": "Title 66 chars (max 60): 'Nottingham Forest vs Coventry City Betting Tips for Kenyan Punters'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-managers-nfl-week-4",
+      "detail": "Title 68 chars (max 60): 'Global Sports Roundup: Managers Under Pressure, NFL Week 4, and More'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "mosimane-bafana-bafana-squad-betting-tips-south-africa",
+      "detail": "Title 72 chars (max 60): 'Mosimane\u2019s Bafana Bafana Squad Selections: Betting Tips for South Afri'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "anderlecht-vs-lyon-lineups-ghana-betting-tips",
+      "detail": "Title 63 chars (max 60): 'Anderlecht vs. Lyon Lineups: Ghana Betting Tips and Predictions'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "namibia-nande-windhoek-golf-championship-tanzania-betting",
+      "detail": "Title 70 chars (max 60): \"Namibia's Nande Wins Windhoek Golf Championship: Tanzania Betting Tips\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "college-football-shakeups-alabama-comeback-coaching-hot-seat",
+      "detail": "Title 65 chars (max 60): \"College Football Shakeups: Alabama's Comeback & Coaching Hot Seat\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "kenyan-youngsters-12-goal-polo-tournament-betting-tips-kenya",
+      "detail": "Title 64 chars (max 60): 'Kenyan Youngsters in 12-Goal Polo Tournament: Kenya Betting Tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "allende-mamelodi-sundowns-al-ahli-betting-tips-south-africa",
+      "detail": "Title 72 chars (max 60): \"Allende's Mamelodi Sundowns Ready for Al Ahli: South Africa Betting Ti\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "spl-conundrum-premier-league-kickoff-jeopardy-betting-tips-kenya",
+      "detail": "Title 71 chars (max 60): 'SPL Conundrum: Premier League Kickoff Jeopardy \u2013 Betting Tips for Keny'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-betting-angles-africa",
+      "detail": "Title 71 chars (max 60): 'Global Sports Roundup: Key Stories & Betting Angles for African Punter'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "wales-south-africa-rugby-betting-tips-tanzania",
+      "detail": "Title 68 chars (max 60): 'Inspired Wales Stun South Africa: Tanzania Betting Tips and Analysis'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "igaming-news-roundup-prediction-markets-licensing-slot-launches",
+      "detail": "Title 70 chars (max 60): 'iGaming News Roundup: Prediction Markets, Licensing, and Slot Launches'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "coventry-landmark-win-betting",
+      "detail": "Title 79 chars (max 60): 'Coventry City\u2019s Landmark Premier League Win: Betting Angles for Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "f1-betting-hamilton-mercedes-2027-calendar",
+      "detail": "Title 63 chars (max 60): \"F1 Betting Insights: Hamilton's Mercedes Return & 2027 Calendar\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "boxing-buzz-beterbiev-cruz-bravo-ruiz-jr-come-back",
+      "detail": "Title 99 chars (max 60): 'Boxing Buzz: Beterbiev, Cruz vs. Bravo, Ruiz Jr. Comeback & More \u2013 Bet'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "us-embassy-girls-football-coaching-ghana-betting-tips",
+      "detail": "Title 87 chars (max 60): 'US Embassy ends three\u2011city girls\u2019 football coaching initiative \u2013 Betti'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "allende-big-game-vs-al-ahli-betting-tips-south-africa",
+      "detail": "Title 67 chars (max 60): 'Allende Talks \u2018Big Game\u2019 vs Al Ahli \u2013 Betting Tips for South Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "done-deal-super-falcons-defender-joins-napoli-betting-tips-nigeria",
+      "detail": "Title 73 chars (max 60): 'Done Deal: Super Falcons Defender Joins Napoli \u2013 Betting Tips for Nige'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-managers-nfl-week-4",
+      "detail": "Excerpt 160 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "mosimane-bafana-bafana-squad-betting-tips-south-africa",
+      "detail": "Excerpt 195 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "anderlecht-vs-lyon-lineups-ghana-betting-tips",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "namibia-nande-windhoek-golf-championship-tanzania-betting",
+      "detail": "Excerpt 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "college-football-shakeups-alabama-comeback-coaching-hot-seat",
+      "detail": "Excerpt 190 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "coventry-landmark-win-betting",
+      "detail": "Excerpt 174 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "cricket-betting-insights-ipl-asian-games",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "us-embassy-girls-football-coaching-ghana-betting-tips",
+      "detail": "Excerpt 160 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "allende-big-game-vs-al-ahli-betting-tips-south-africa",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "done-deal-super-falcons-defender-joins-napoli-betting-tips-nigeria",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "spl-conundrum-premier-league-kickoff-jeopardy-betting-tips-kenya",
+      "detail": "High title overlap (5 meaningful tokens) with 'spl-conundrum-kenya-premier-league-kickoff-jeopardy-betting-tips' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
