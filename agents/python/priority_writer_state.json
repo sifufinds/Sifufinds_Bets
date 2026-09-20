@@ -578,22 +578,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-19T21:39:32.481708+00:00",
-    "candidates_available": 400,
+    "checked_at": "2026-09-20T04:43:08.760928+00:00",
+    "candidates_available": 390,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "SPL conundrum Premier league kickoff jeopardy betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "spl-conundrum-premier-league-kickoff-jeopardy-betting-tips-kenya"
-      },
       {
         "keyword": "Inspired Wales seal stunning win over South Africa betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'The only restrictions are the standard GBT rules: you must be 18 or older, verify your identity and comply with the wagering requirements attached to any bonus you claim. No additional country‑specific bans apply to this fixture.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "2026 U-20 WWC ‘We Came Determination’ — Uzoma betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'For Bet9ja and 1xBet, you must wager the bonus amount five times on qualifying markets with minimum odds of 1.40 before you can withdraw any winnings.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Nigeria Decision Looms After FIFA Completes Two-Day Fact-Finding betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 454)"
       }
     ]
   }
