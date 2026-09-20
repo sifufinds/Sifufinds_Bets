@@ -575,31 +575,43 @@
     "SPL conundrum Premier league kickoff jeopardy betting tips Kenya": {
       "slug": "spl-conundrum-premier-league-kickoff-jeopardy-betting-tips-kenya",
       "posted_at": "2026-09-19T21:19:11.665938+00:00"
+    },
+    "Toyin Abraham reveals another pregnancy loss betting tips Nigeria": {
+      "slug": "toyin-abraham-reveals-another-pregnancy-loss-betting-tips-nigeria",
+      "posted_at": "2026-09-20T11:41:35.206439+00:00"
+    },
+    "'Al Ahli coach must be sacked after Sundowns betting tips South Africa": {
+      "slug": "al-ahli-coach-must-be-sacked-after-sundowns-betting-tips-south-africa",
+      "posted_at": "2026-09-20T11:41:55.563441+00:00"
+    },
+    "Grèce la métamorphose spectaculaire de Samuel Moutoussamy, le betting tips Tanzania": {
+      "slug": "samuel-moutoussamy-betting-tips-tanzania",
+      "posted_at": "2026-09-20T11:56:55.752298+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-20T04:43:08.760928+00:00",
-    "candidates_available": 390,
+    "checked_at": "2026-09-20T11:57:00.219074+00:00",
+    "candidates_available": 393,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
-        "keyword": "Inspired Wales seal stunning win over South Africa betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'The only restrictions are the standard GBT rules: you must be 18 or older, verify your identity and comply with the wagering requirements attached to any bonus you claim. No additional country‑specific bans apply to this fixture.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "2026 U-20 WWC ‘We Came Determination’ — Uzoma betting tips Nigeria",
+        "keyword": "Toyin Abraham reveals another pregnancy loss betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'For Bet9ja and 1xBet, you must wager the bonus amount five times on qualifying markets with minimum odds of 1.40 before you can withdraw any winnings.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "toyin-abraham-reveals-another-pregnancy-loss-betting-tips-nigeria"
       },
       {
-        "keyword": "Nigeria Decision Looms After FIFA Completes Two-Day Fact-Finding betting tips Tanzania",
+        "keyword": "'Al Ahli coach must be sacked after Sundowns betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "al-ahli-coach-must-be-sacked-after-sundowns-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Grèce la métamorphose spectaculaire de Samuel Moutoussamy, le betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 454)"
+        "result": "written",
+        "slug": "samuel-moutoussamy-betting-tips-tanzania"
       }
     ]
   }
