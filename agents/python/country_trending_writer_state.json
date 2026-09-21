@@ -394,7 +394,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-21T12:32:30.371182+00:00",
+    "checked_at": "2026-09-21T15:09:45.851288+00:00",
     "candidates_available": 325,
     "attempted": 3,
     "written": 0,
@@ -403,19 +403,19 @@
         "keyword": "EPL Neville slams Man United’s performance after Fulham betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 486)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 453)"
       },
       {
         "keyword": "'For my family' India boxer beats hardship, injury betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: Free Bet Gifts + Aviator Free Bets; 300% Welcome Karibu Gift; 100% First Deposit Bonus – Up to KSh 19,000; 200% First Deposit Bonus – Up to KSh 20,000; 300% First Deposit Bonus – Up to KSh 1,500; 100% Welcome Bonus – Up to KSh 5,000; M-Pesa, Airtel Money, Equitel, USSD *644#; M-Pesa, Airtel Money, Bank Transfer; M-Pesa, Airtel Money, Visa, Mastercard; KSh 10; KSh 100; KSh 50; KSh 1,500; KSh 5,000"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 444)"
       },
       {
         "keyword": "Cricket matches | List best fixtures, & betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: 150% Welcome Bonus – Up to GH₵500; 50% Welcome Bonus – Up to GH₵200; 100% First Deposit Bonus – Up to GH₵1,491; 200% First Deposit Bonus – Up to GH₵2,846; 300% First Deposit Bonus – Up to GH₵1,500; 100% First Deposit Bonus – Up to €100; GH₵1; GH₵2; GH₵5; MTN MoMo, Vodafone Cash, AirtelTigo Money; MTN MoMo, Vodafone Cash, Visa, Mastercard"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 430)"
       }
     ]
   }

@@ -595,31 +595,35 @@
     "'For my family' India boxer beats hardship, injury betting tips Kenya": {
       "slug": "boxing-betting-tips-kenya-indian-boxer-family",
       "posted_at": "2026-09-21T12:12:38.353524+00:00"
+    },
+    "Bournemouth vs. Liverpool betting tips South Africa": {
+      "slug": "bournemouth-vs-liverpool-betting-tips-south-africa",
+      "posted_at": "2026-09-21T15:07:51.984513+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-21T12:12:54.676264+00:00",
-    "candidates_available": 382,
+    "checked_at": "2026-09-21T15:08:51.362394+00:00",
+    "candidates_available": 380,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "EPL Neville slams Man United’s performance after Fulham betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "epl-neville-slams-man-united-fulham-betting-tips-nigeria"
-      },
-      {
-        "keyword": "'For my family' India boxer beats hardship, injury betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "boxing-betting-tips-kenya-indian-boxer-family"
-      },
       {
         "keyword": "Cricket matches | List best fixtures, & betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 465)"
+        "reason": "quality_gate: final line was 'Set a budget, avoid chasing losses, and use tools like deposit limits and self-exclusion provided by bookmakers. The Gaming Commission of Ghana also offers resources for responsible gambling.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Bournemouth vs. Liverpool betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "bournemouth-vs-liverpool-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Postponement not option as Kenya races be ready betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
