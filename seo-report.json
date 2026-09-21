@@ -1,13 +1,37 @@
 {
   "date": "2026-09-21",
-  "total": 24,
+  "total": 28,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 4,
     "MEDIUM": 23,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "epl-neville-slams-man-united-fulham-betting-tips-nigeria",
+      "detail": "Title 77 chars (max 60): 'EPL Neville Slams Man United After Fulham Draw \u2013 Top Betting Tips for '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "boxing-betting-tips-kenya-indian-boxer-family",
+      "detail": "Title 85 chars (max 60): 'Boxing Betting Tips for Kenya: How to Back the Indian Boxer Who Fights'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "epl-neville-slams-man-united-fulham-betting-tips-nigeria",
+      "detail": "Excerpt 178 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "boxing-betting-tips-kenya-indian-boxer-family",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
