@@ -599,31 +599,39 @@
     "Bournemouth vs. Liverpool betting tips South Africa": {
       "slug": "bournemouth-vs-liverpool-betting-tips-south-africa",
       "posted_at": "2026-09-21T15:07:51.984513+00:00"
+    },
+    "Postponement not option as Kenya races be ready betting tips Tanzania": {
+      "slug": "kenya-tanzania-betting-tips-afcon-2027",
+      "posted_at": "2026-09-21T17:16:59.629704+00:00"
+    },
+    "Inspired Wales seal stunning win over South Africa betting tips Tanzania": {
+      "slug": "wales-south-africa-betting-tips-tanzania",
+      "posted_at": "2026-09-21T17:25:05.247532+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-21T15:08:51.362394+00:00",
-    "candidates_available": 380,
+    "checked_at": "2026-09-21T17:25:09.409585+00:00",
+    "candidates_available": 379,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Cricket matches | List best fixtures, & betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Set a budget, avoid chasing losses, and use tools like deposit limits and self-exclusion provided by bookmakers. The Gaming Commission of Ghana also offers resources for responsible gambling.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Bournemouth vs. Liverpool betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "bournemouth-vs-liverpool-betting-tips-south-africa"
+        "reason": "quality_gate: final line was 'The Gaming Commission of Ghana mandates that each licensed operator provides self‑exclusion, deposit‑limit settings and reality‑check reminders. These tools are accessible through the account settings page on the bookmaker’s website or mobile app.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Postponement not option as Kenya races be ready betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "kenya-tanzania-betting-tips-afcon-2027"
+      },
+      {
+        "keyword": "Inspired Wales seal stunning win over South Africa betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "wales-south-africa-betting-tips-tanzania"
       }
     ]
   }
