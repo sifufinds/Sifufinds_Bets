@@ -1,365 +1,50 @@
 {
-  "updated": "2026-09-22T14:18:45.591575+00:00",
-  "source": "predictz.com, forebet.com",
-  "count": 50,
+  "updated": "2026-09-22T19:34:36.614204+00:00",
+  "source": "forebet.com, predictz.com",
+  "count": 49,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-09-22T14:18:45.591575+00:00"
+      "ts": "2026-09-22T19:34:36.614204+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-09-22T14:18:45.591575+00:00"
+      "ts": "2026-09-22T19:34:36.614204+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-09-22T14:18:45.591575+00:00"
+      "ts": "2026-09-22T19:34:36.614204+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-09-22T14:18:45.591575+00:00"
+      "ts": "2026-09-22T19:34:36.614204+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-09-22T14:18:45.591575+00:00"
+      "ts": "2026-09-22T19:34:36.614204+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-09-22T14:18:45.591575+00:00"
+      "ts": "2026-09-22T19:34:36.614204+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-09-22T14:18:45.591575+00:00"
+      "ts": "2026-09-22T19:34:36.614204+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-09-22T14:18:45.591575+00:00"
+      "ts": "2026-09-22T19:34:36.614204+00:00"
     }
   ],
   "predictions": [
-    {
-      "id": "fb_2550770",
-      "home": "Mes Kerman",
-      "away": "Saipa Karaj",
-      "competition": "Ir2 League",
-      "comp_slug": "ir",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T08:30:00+00:00",
-      "match_winner": "X",
-      "match_winner_label": "X 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2550533",
-      "home": "UD Songo",
-      "away": "CD Maxaquene",
-      "competition": "Mozambique Moçambola",
-      "comp_slug": "mz",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T08:45:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-0",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2466244",
-      "home": "SKChF Sevastopol",
-      "away": "Rubin Yalta",
-      "competition": "Russia Premier League Div 4",
-      "comp_slug": "ru",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T09:00:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-0",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531533",
-      "home": "Axi Adunații-Copăceni",
-      "away": "Oxigen Bucureşti",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-0",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531270",
-      "home": "CS Păulești",
-      "away": "CS Tunari",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 0-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-3",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531930",
-      "home": "CSC Sanmartin",
-      "away": "Crişul Sântandrei",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 3-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "3-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2530795",
-      "home": "CSM Adjud",
-      "away": "USV Iaşi",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "X",
-      "match_winner_label": "X 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531141",
-      "home": "Carpaţi Covasna",
-      "away": "ACS Mediaş 2022",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-2",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531800",
-      "home": "Cetate Deva",
-      "away": "Unirea Sântana",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-0",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531274",
-      "home": "FC Pucioasa",
-      "away": "Flacara Moreni",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 1-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-2",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2520449",
-      "home": "Leotar Trebinje",
-      "away": "Famos Vojkovici",
-      "competition": "Bosnia Premier League Div 3",
-      "comp_slug": "ba",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 2-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531271",
-      "home": "Metalul Plopeni",
-      "away": "Blejoi Vispeşti",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-0",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531137",
-      "home": "Muscelul Campulung",
-      "away": "Băicoi",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "X",
-      "match_winner_label": "X 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531272",
-      "home": "Petrolul Berca",
-      "away": "Progresul Drăgăneşti",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "X",
-      "match_winner_label": "X 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531797",
-      "home": "Progresul Pecica",
-      "away": "Universitatea Alba Iulia",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "X",
-      "match_winner_label": "X 3-3",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "3-3",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
     {
       "id": "fb_2531668",
       "home": "Păușești",
@@ -374,75 +59,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "BTTS No",
+      "btts": "",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531929",
-      "home": "Sanatatea Cluj",
-      "away": "FC Baia Mare",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-2",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531139",
-      "home": "Tricolorul Breaza",
-      "away": "Corona Braşov",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-2",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2531801",
-      "home": "Unirea Alba Iulia",
-      "away": "Timişul Şag",
-      "competition": "Romania Liga 1 Div 3",
-      "comp_slug": "ro",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:00:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 2-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2485649",
@@ -458,33 +80,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "BTTS Yes",
+      "btts": "",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
-    },
-    {
-      "id": "fb_2528665",
-      "home": "Septemvri Dragoevo",
-      "away": "Botev Novi Pazar",
-      "competition": "Bulgaria First League Div 3",
-      "comp_slug": "bg",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-22T10:30:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 2-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2554042",
@@ -505,7 +106,7 @@
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2554043",
@@ -526,7 +127,7 @@
       "over25": "",
       "correct_score": "4-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2550771",
@@ -547,7 +148,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2550772",
@@ -568,7 +169,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2504920",
@@ -589,7 +190,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2550774",
@@ -610,7 +211,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2550773",
@@ -631,7 +232,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2525381",
@@ -652,7 +253,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "fb_2553990",
@@ -673,7 +274,385 @@
       "over25": "",
       "correct_score": "4-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-22T14:18:51.508552+00:00"
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2485876",
+      "home": "FCM Traiskirchen",
+      "away": "Kremser SC",
+      "competition": "Austria Bundesliga",
+      "comp_slug": "at",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T13:30:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 3-2",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "3-2",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2468862",
+      "home": "Austria Klagenfurt",
+      "away": "Donau Klagenfurt",
+      "competition": "Austria Bundesliga",
+      "comp_slug": "at",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T13:45:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 1-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-0",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2534714",
+      "home": "Barnsley",
+      "away": "Leeds United U21",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 2-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "2-1",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2554006",
+      "home": "EVV Echt",
+      "away": "RKSV Halsteren",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "X",
+      "match_winner_label": "X 1-1",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-1",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2554001",
+      "home": "Excelsior '31",
+      "away": "AFC '34 Alkmaar",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 4-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "4-0",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2554005",
+      "home": "FC Rijnvogels",
+      "away": "VVSB",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 3-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "3-1",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2518880",
+      "home": "Gillingham",
+      "away": "Cambridge Utd",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "X",
+      "match_winner_label": "X 2-2",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "2-2",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2553994",
+      "home": "Groene Ster",
+      "away": "AFC Amsterdam",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "2",
+      "match_winner_label": "2 1-3",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-3",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2553993",
+      "home": "HHC Hardenberg",
+      "away": "BVV Barendrecht",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 3-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "3-1",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2554000",
+      "home": "Kloetinge",
+      "away": "Achilles Veen",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 3-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "3-0",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2518879",
+      "home": "Milton Keynes Dons",
+      "away": "Crawley Town",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "X",
+      "match_winner_label": "X 2-2",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "2-2",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2553999",
+      "home": "Noordwijk",
+      "away": "LAC",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 4-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "4-1",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2554002",
+      "home": "RKAV Volendam",
+      "away": "Spakenburg",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "2",
+      "match_winner_label": "2 1-3",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-3",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2534715",
+      "home": "Rochdale",
+      "away": "Liverpool U23s",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "X",
+      "match_winner_label": "X 1-1",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-1",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2554004",
+      "home": "Sportlust",
+      "away": "Excelsior Maassluis",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "2",
+      "match_winner_label": "2 1-2",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-2",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2553997",
+      "home": "Staphorst",
+      "away": "SC Genemuiden",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "2",
+      "match_winner_label": "2 1-2",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-2",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2553996",
+      "home": "VV Eemdijk",
+      "away": "RBC Roosendal",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 2-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "2-1",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
+    },
+    {
+      "id": "fb_2534716",
+      "home": "Wigan Athletic",
+      "away": "Blackpool",
+      "competition": "Netherlands Eredivisie",
+      "comp_slug": "nl",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-22T14:00:00+00:00",
+      "match_winner": "2",
+      "match_winner_label": "2 0-3",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "0-3",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-22T19:34:42.536924+00:00"
     },
     {
       "id": "1212579",
@@ -694,7 +673,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505285+00:00"
+      "scraped_at": "2026-09-22T19:34:42.533476+00:00"
     },
     {
       "id": "1212568",
@@ -715,7 +694,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505349+00:00"
+      "scraped_at": "2026-09-22T19:34:42.533551+00:00"
     },
     {
       "id": "1212578",
@@ -736,7 +715,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505399+00:00"
+      "scraped_at": "2026-09-22T19:34:42.533615+00:00"
     },
     {
       "id": "1218975",
@@ -757,7 +736,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.506211+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534656+00:00"
     },
     {
       "id": "1212567",
@@ -778,7 +757,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505448+00:00"
+      "scraped_at": "2026-09-22T19:34:42.533677+00:00"
     },
     {
       "id": "1212571",
@@ -799,7 +778,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505494+00:00"
+      "scraped_at": "2026-09-22T19:34:42.533812+00:00"
     },
     {
       "id": "1212581",
@@ -820,7 +799,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505541+00:00"
+      "scraped_at": "2026-09-22T19:34:42.533875+00:00"
     },
     {
       "id": "1212564",
@@ -841,7 +820,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505584+00:00"
+      "scraped_at": "2026-09-22T19:34:42.533927+00:00"
     },
     {
       "id": "1183568",
@@ -862,7 +841,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.506152+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534595+00:00"
     },
     {
       "id": "1212576",
@@ -883,7 +862,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505635+00:00"
+      "scraped_at": "2026-09-22T19:34:42.533997+00:00"
     },
     {
       "id": "1212565",
@@ -904,7 +883,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505685+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534055+00:00"
     },
     {
       "id": "1212570",
@@ -925,7 +904,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505734+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534113+00:00"
     },
     {
       "id": "1212575",
@@ -946,7 +925,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505782+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534171+00:00"
     },
     {
       "id": "1212577",
@@ -967,7 +946,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505828+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534225+00:00"
     },
     {
       "id": "1212566",
@@ -988,7 +967,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505870+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534275+00:00"
     },
     {
       "id": "1212569",
@@ -1009,7 +988,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505914+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534328+00:00"
     },
     {
       "id": "1212572",
@@ -1030,7 +1009,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.505958+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534380+00:00"
     },
     {
       "id": "1212563",
@@ -1051,7 +1030,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.506007+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534438+00:00"
     },
     {
       "id": "1212580",
@@ -1072,7 +1051,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.506058+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534498+00:00"
     },
     {
       "id": "1212573",
@@ -1093,7 +1072,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-22T14:18:51.506097+00:00"
+      "scraped_at": "2026-09-22T19:34:42.534543+00:00"
     }
   ]
 }
