@@ -435,31 +435,43 @@
     "EPL Neville slams Man United’s performance after Fulham betting tips Nigeria": {
       "slug": "epl-neville-slams-man-united-fulham-draw-nigeria-betting",
       "posted_at": "2026-09-23T19:20:19.668767+00:00"
+    },
+    "Ranpura savours victory Nyali leg ahead Masters grand betting tips Kenya": {
+      "slug": "ranpura-nyali-leg-victory-kenya-masters-grand-betting-tips",
+      "posted_at": "2026-09-23T21:58:34.498911+00:00"
+    },
+    "Bournemouth vs. Liverpool betting tips South Africa": {
+      "slug": "bournemouth-vs-liverpool-betting-tips-south-africa",
+      "posted_at": "2026-09-23T22:09:15.319666+00:00"
+    },
+    "Postponement not option as Kenya races be ready betting tips Tanzania": {
+      "slug": "afcon-2027-tanzania-betting-tips",
+      "posted_at": "2026-09-23T22:20:30.848544+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-23T21:31:07.956192+00:00",
+    "checked_at": "2026-09-23T22:20:34.837027+00:00",
     "candidates_available": 341,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
         "keyword": "Ranpura savours victory Nyali leg ahead Masters grand betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 438)"
+        "result": "written",
+        "slug": "ranpura-nyali-leg-victory-kenya-masters-grand-betting-tips"
       },
       {
         "keyword": "Bournemouth vs. Liverpool betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "fact_check: Liverpool’s odds are shorter; Bournemouth’s odds for a win or draw could offer higher returns; Hollywoodbets**: Claim a **R25 Free Bet + 50 Free Spins** with no deposit required; Supabets**: Get a **R50 Free Bet** on registration and a **100% match up to R5,000** on your first deposit; BetXchange**: Enjoy a **R200 Free Bet** on your first deposit; Hollywoodbets stands out with its **R25 Free Bet + 50 Free Spins** offer, requiring no deposit"
+        "result": "written",
+        "slug": "bournemouth-vs-liverpool-betting-tips-south-africa"
       },
       {
         "keyword": "Postponement not option as Kenya races be ready betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "fact_check: SportPesa Tanzania**: Claim a **250% Karibu Gift** on your first deposit; Betika Tanzania**: Get a **Free Bet on Signup** plus a **TSh 5,000 Welcome Bonus**; 22Bet Tanzania**: Enjoy a **100% First Deposit Bonus** of up to **TSh 460,000**; Betway Tanzania also provides a **50% Welcome Bonus** up to **TSh 120,000**"
+        "result": "written",
+        "slug": "afcon-2027-tanzania-betting-tips"
       }
     ]
   }
