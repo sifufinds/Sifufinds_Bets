@@ -423,11 +423,19 @@
     "Nigeria Okpebholo/Marwa Marathon Winners Receive Scholarships betting tips Tanzania": {
       "slug": "nigeria-marathon-winners-scholarships-betting-tips-tanzania",
       "posted_at": "2026-09-23T15:59:22.461390+00:00"
+    },
+    "Sundowns snap up highly-rated defender Deadline Day betting tips South Africa": {
+      "slug": "mamelodi-sundowns-wandile-dube-deadline-day-betting-tips-south-africa",
+      "posted_at": "2026-09-23T17:20:56.151177+00:00"
+    },
+    "Namibia Fine Turnout DTS Liqui Fruit Spring Tournament betting tips Tanzania": {
+      "slug": "namibia-dts-liqui-fruit-spring-tournament-betting-tips-tanzania",
+      "posted_at": "2026-09-23T17:28:01.490750+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-23T15:59:25.910255+00:00",
-    "candidates_available": 346,
+    "checked_at": "2026-09-23T17:28:05.198928+00:00",
+    "candidates_available": 335,
     "attempted": 3,
     "written": 2,
     "attempts": [
@@ -435,19 +443,19 @@
         "keyword": "Ranpura savours victory Nyali leg ahead Masters grand betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 417)"
       },
       {
-        "keyword": "Barcelona face fresh wage bill warning despite staying betting tips South Africa",
+        "keyword": "Sundowns snap up highly-rated defender Deadline Day betting tips South Africa",
         "country": "South Africa",
         "result": "written",
-        "slug": "barcelona-wage-bill-betting-tips-south-africa"
+        "slug": "mamelodi-sundowns-wandile-dube-deadline-day-betting-tips-south-africa"
       },
       {
-        "keyword": "Nigeria Okpebholo/Marwa Marathon Winners Receive Scholarships betting tips Tanzania",
+        "keyword": "Namibia Fine Turnout DTS Liqui Fruit Spring Tournament betting tips Tanzania",
         "country": "Tanzania",
         "result": "written",
-        "slug": "nigeria-marathon-winners-scholarships-betting-tips-tanzania"
+        "slug": "namibia-dts-liqui-fruit-spring-tournament-betting-tips-tanzania"
       }
     ]
   }
