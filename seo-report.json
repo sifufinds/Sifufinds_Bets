@@ -1,97 +1,13 @@
 {
   "date": "2026-09-23",
-  "total": 38,
+  "total": 24,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 14,
+    "HIGH": 0,
     "MEDIUM": 23,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nba-contract-updates-betting-insights-kawhi-leonard-115m-deal",
-      "detail": "Title 69 chars (max 60): \"NBA Contract Updates and Betting Insights: Kawhi Leonard's $115M Deal\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "cricket-matches-today-ghana-fixtures-betting-tips",
-      "detail": "Title 61 chars (max 60): 'Cricket Matches Today: Best Fixtures & Betting Tips for Ghana'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "igaming-news-roundup-compliance-leadership-shifts-responsible-gambling",
-      "detail": "Title 77 chars (max 60): 'iGaming News Roundup: Compliance, Leadership Shifts, and Responsible G'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "breaking-sports-news-rodgers-boxing-nfl-injuries",
-      "detail": "Title 68 chars (max 60): 'Breaking Sports News: Rodgers Drama, Boxing Delays, and NFL Injuries'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "rugby-betting-insights-pollock-edwards-red-roses",
-      "detail": "Title 72 chars (max 60): 'Rugby Betting Insights: Pollock Stays at Saints, Edwards Joins Red Ros'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "karen-golf-tournament-betting-tips-over-250-players-kenya",
-      "detail": "Title 61 chars (max 60): 'Karen Golf Tournament Betting Tips \u2013 Over 250 Players \u2013 Kenya'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "namibia-fine-turnout-dts-liqui-fruit-spring-tournament-betting-tips-tanzania",
-      "detail": "Title 101 chars (max 60): 'Namibia Fine Turnout DTS Liqui Fruit Spring Tournament Betting Tips Ta'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sundowns-deadline-day-defender-betting-tips-south-africa",
-      "detail": "Title 73 chars (max 60): 'Sundowns Deadline Day Defender Transfer Betting Tips \u2013 South Africa Gu'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "cricket-matches-today-ghana-fixtures-betting-tips",
-      "detail": "Excerpt 167 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "f1-betting-preview-azerbaijan-grand-prix-2026",
-      "detail": "Excerpt 208 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "rugby-betting-insights-pollock-edwards-red-roses",
-      "detail": "Excerpt 182 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "karen-golf-tournament-betting-tips-over-250-players-kenya",
-      "detail": "Excerpt 196 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "namibia-fine-turnout-dts-liqui-fruit-spring-tournament-betting-tips-tanzania",
-      "detail": "Excerpt 163 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sundowns-deadline-day-defender-betting-tips-south-africa",
-      "detail": "Excerpt 164 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
