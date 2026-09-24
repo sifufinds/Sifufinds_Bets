@@ -1,132 +1,54 @@
 {
   "date": "2026-09-24",
-  "total": 45,
+  "total": 32,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 19,
-    "MEDIUM": 25,
+    "HIGH": 5,
+    "MEDIUM": 26,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "bournemouth-vs-liverpool-betting-tips-premier-league-clash-analysis-for-south-african-punters",
-      "detail": "Title 95 chars (max 60): 'Bournemouth vs. Liverpool Betting Tips: Premier League Clash Analysis '"
+      "page": "victor-osimhen-out-nigeria-ghana-2027-afcon-qualifiers-betting-tips",
+      "detail": "Title 71 chars (max 60): 'Victor Osimhen Out: Nigeria vs Ghana 2027 AFCON Qualifiers Betting Tip'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "global-sports-headlines-injuries-surprises-betting-insights",
-      "detail": "Title 66 chars (max 60): 'Global Sports Headlines: Injuries, Surprises, and Betting Insights'"
+      "page": "afcon-2027q-ilenikhena-super-eagles-debut-betting-tips-nigeria",
+      "detail": "Title 76 chars (max 60): 'AFCON 2027 Qualifier: Ilenikhena Super Eagles Debut Betting Tips for N'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "ranpura-nyali-leg-victory-kenya-masters-grand-betting-tips",
-      "detail": "Title 68 chars (max 60): 'Ranpura savours Nyali leg victory \u2013 Kenya Masters Grand betting tips'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "wnba-rookie-flaujae-johnson-storm-performance",
-      "detail": "Title 61 chars (max 60): \"WNBA Rookie Flau'jae Johnson Shines Despite Storm's Struggles\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "epl-neville-slams-man-united-fulham-draw-nigeria-betting",
-      "detail": "Title 75 chars (max 60): 'EPL: Gary Neville Slams Man United After Fulham Draw \u2013 Nigeria Betting'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "namibia-dts-liqui-fruit-spring-tournament-betting-tips-tanzania",
-      "detail": "Title 79 chars (max 60): 'Namibia\u2019s DTS Liqui Fruit Spring Tournament: Betting Tips for Tanzania'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "mamelodi-sundowns-wandile-dube-deadline-day-betting-tips-south-africa",
-      "detail": "Title 79 chars (max 60): 'Mamelodi Sundowns Sign Wandile Dube: Deadline Day Betting Tips for Sou'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nigeria-marathon-winners-scholarships-betting-tips-tanzania",
-      "detail": "Title 74 chars (max 60): \"Nigeria Marathon Winners' Scholarships: Betting Tips for Tanzanian Pun\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "barcelona-wage-bill-betting-tips-south-africa",
-      "detail": "Title 70 chars (max 60): \"Barcelona's Wage Bill Concerns: Betting Tips for South African Punters\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "latest-sports-headlines-ampadu-gyokeres-transfers",
-      "detail": "Title 66 chars (max 60): 'Latest Sports Headlines: Ampadu Shines, Gyokeres Bonuses, and More'"
+      "page": "ufoa-u17-semi-finals-senegal-vs-guinea-liberia-vs-gambia-betting-tips-for-tanzania",
+      "detail": "Title 84 chars (max 60): 'UFOA U17 Semi-Finals: Senegal vs Guinea, Liberia vs Gambia Betting Tip'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "global-sports-updates-injuries-trades-records",
-      "detail": "Excerpt 160 chars (max 155)"
+      "page": "victor-osimhen-out-nigeria-ghana-2027-afcon-qualifiers-betting-tips",
+      "detail": "Excerpt 210 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "afcon-2027-tanzania-betting-tips",
-      "detail": "Excerpt 157 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bournemouth-vs-liverpool-betting-tips-premier-league-clash-analysis-for-south-african-punters",
-      "detail": "Excerpt 191 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "ranpura-nyali-leg-victory-kenya-masters-grand-betting-tips",
-      "detail": "Excerpt 161 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "igaming-news-roundup-regulatory-shifts-industry-moves",
-      "detail": "Excerpt 159 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "namibia-dts-liqui-fruit-spring-tournament-betting-tips-tanzania",
-      "detail": "Excerpt 157 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "mamelodi-sundowns-wandile-dube-deadline-day-betting-tips-south-africa",
-      "detail": "Excerpt 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nigeria-marathon-winners-scholarships-betting-tips-tanzania",
-      "detail": "Excerpt 166 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "latest-sports-headlines-ampadu-gyokeres-transfers",
-      "detail": "Excerpt 189 chars (max 155)"
+      "page": "betting-buzz-old-trafford-rugby-predictions",
+      "detail": "Excerpt 164 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
       "page": "igaming-news-roundup-regulatory-shifts-industry-moves",
       "detail": "High title overlap (5 meaningful tokens) with 'igaming-updates-regulatory-shifts-industry-moves' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "epl-neville-slams-man-united-fulham-draw-nigeria-betting",
+      "detail": "High title overlap (6 meaningful tokens) with 'epl-neville-slams-man-united-fulham-betting-tips-nigeria' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
