@@ -631,19 +631,39 @@
     "Over 250 players grace Karen Golf tournament betting tips Kenya": {
       "slug": "karen-golf-tournament-betting-tips-kenya",
       "posted_at": "2026-09-22T11:39:33.414456+00:00"
+    },
+    "AFCON 2027Q Ilenikhena Eager Super Eagles Debut Against betting tips Nigeria": {
+      "slug": "afcon-2027q-ilenikhena-super-eagles-debut-betting-tips-nigeria",
+      "posted_at": "2026-09-24T09:32:32.115821+00:00"
+    },
+    "Victor Osimhen out Nigeria squad 2027 AFCON qualifiers betting tips Ghana": {
+      "slug": "victor-osimhen-out-nigeria-ghana-2027-afcon-qualifiers-betting-tips",
+      "posted_at": "2026-09-24T09:50:41.218902+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-24T07:49:28.913621+00:00",
+    "checked_at": "2026-09-24T09:50:45.273468+00:00",
     "candidates_available": 396,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "AFCON 2027Q Ilenikhena Eager Super Eagles Debut Against betting tips Nigeria",
         "country": "Nigeria",
+        "result": "written",
+        "slug": "afcon-2027q-ilenikhena-super-eagles-debut-betting-tips-nigeria"
+      },
+      {
+        "keyword": "How key players contributed Nairobi winning bid world betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Betika’s free bet offers are limited to the initial signup and subsequent Aviator drops. There is no cumulative limit beyond', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Victor Osimhen out Nigeria squad 2027 AFCON qualifiers betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "victor-osimhen-out-nigeria-ghana-2027-afcon-qualifiers-betting-tips"
       }
     ]
   }
