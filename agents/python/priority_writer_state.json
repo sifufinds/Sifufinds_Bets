@@ -634,7 +634,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-23T11:42:03.785073+00:00",
+    "checked_at": "2026-09-24T04:39:47.691558+00:00",
     "candidates_available": 410,
     "attempted": 3,
     "written": 0,
@@ -643,7 +643,19 @@
         "keyword": "England stars ruled out vs Spain betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'All featured bookmakers accept OPay, PalmPay, Bank Transfer, Visa, Mastercard, and USSD, with MTN MoMo available on 1xBet, 22Bet, and Melbet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ranpura savours victory Nyali leg ahead Masters grand betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: only 860 words (minimum 1000); final line was 'You can contact the BCLB in Kenya by visiting their website or contacting them directly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Barcelona face fresh wage bill warning despite staying betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "missing_output_markers"
       }
     ]
   }
