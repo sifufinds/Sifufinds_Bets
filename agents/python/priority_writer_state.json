@@ -651,19 +651,35 @@
     "Elim CAN 2027 Cameroun – Comores, où suivre betting tips Tanzania": {
       "slug": "elim-can-2027-cameroun-comores-tz-betting-tips",
       "posted_at": "2026-09-24T11:33:47.155248+00:00"
+    },
+    "Ranpura savours victory Nyali leg ahead Masters grand betting tips Kenya": {
+      "slug": "ranpura-nyali-victory-masters-grand-betting-tips-kenya",
+      "posted_at": "2026-09-24T23:24:23.339616+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-24T22:35:29.790788+00:00",
+    "checked_at": "2026-09-24T23:31:59.246459+00:00",
     "candidates_available": 391,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "England stars ruled out vs Spain betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 951 words (minimum 1000); final line was 'You can contact the National Lottery Regulatory Commission (NLRC) in Nigeria for help with a betting issue by visiting their website or contacting their customer support team directly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ranpura savours victory Nyali leg ahead Masters grand betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "ranpura-nyali-victory-masters-grand-betting-tips-kenya"
+      },
+      {
+        "keyword": "Barcelona face fresh wage bill warning despite staying betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: only 968 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '* [South African Responsible Gambling Council](https://www.responsiblegambling.org.za/)', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
