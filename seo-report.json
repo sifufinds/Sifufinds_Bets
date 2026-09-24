@@ -1,13 +1,37 @@
 {
   "date": "2026-09-24",
-  "total": 28,
+  "total": 32,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 4,
     "MEDIUM": 27,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nairobis-2029-world-athletics-win-key-players-betting-tips-kenya",
+      "detail": "Title 74 chars (max 60): 'Nairobi\u2019s 2029 World Athletics Win: Key Players and Betting Tips for K'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "stormers-young-gun-betting-tips-south-africa",
+      "detail": "Title 66 chars (max 60): 'Stormers Young Gun Betting Tips \u2013 South Africa Boks Wildcard Guide'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nairobi-winning-bid-key-players-betting-tips-kenya",
+      "detail": "Title 73 chars (max 60): \"How Key Players Drove Nairobi's Winning Bid and Top Betting Tips in Ke\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nairobi-winning-bid-key-players-betting-tips-kenya",
+      "detail": "Excerpt 169 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
