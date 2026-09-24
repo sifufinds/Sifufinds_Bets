@@ -1,42 +1,18 @@
 {
   "date": "2026-09-24",
-  "total": 32,
+  "total": 28,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
-    "MEDIUM": 26,
+    "HIGH": 0,
+    "MEDIUM": 27,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "victor-osimhen-out-nigeria-ghana-2027-afcon-qualifiers-betting-tips",
-      "detail": "Title 71 chars (max 60): 'Victor Osimhen Out: Nigeria vs Ghana 2027 AFCON Qualifiers Betting Tip'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "afcon-2027q-ilenikhena-super-eagles-debut-betting-tips-nigeria",
-      "detail": "Title 76 chars (max 60): 'AFCON 2027 Qualifier: Ilenikhena Super Eagles Debut Betting Tips for N'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
       "page": "ufoa-u17-semi-finals-senegal-vs-guinea-liberia-vs-gambia-betting-tips-for-tanzania",
-      "detail": "Title 84 chars (max 60): 'UFOA U17 Semi-Finals: Senegal vs Guinea, Liberia vs Gambia Betting Tip'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "victor-osimhen-out-nigeria-ghana-2027-afcon-qualifiers-betting-tips",
-      "detail": "Excerpt 210 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "betting-buzz-old-trafford-rugby-predictions",
-      "detail": "Excerpt 164 chars (max 155)"
+      "detail": "High title overlap (5 meaningful tokens) with 'ufoa-u17-senegal-guinea-liberia-gambia-betting-tips-tanzania' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
