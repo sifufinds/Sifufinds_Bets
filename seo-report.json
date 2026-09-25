@@ -1,210 +1,24 @@
 {
   "date": "2026-09-25",
-  "total": 62,
+  "total": 31,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 30,
-    "MEDIUM": 31,
+    "HIGH": 0,
+    "MEDIUM": 30,
     "INFO": 1
   },
   "issues": [
     {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "international-break-drama-havertz-injury-haaland-heroics-fifa-reform",
-      "detail": "Title 81 chars (max 60): 'International Break Drama: Havertz Injury, Haaland Heroics, and FIFA R'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "mamelodi-sundowns-global-rise-african-football-news",
-      "detail": "Title 61 chars (max 60): \"Mamelodi Sundowns' Global Rise: African Football News Roundup\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "bankroll-management-tips-african-bettors",
-      "detail": "Title 67 chars (max 60): 'Bankroll Management Tips for African Bettors: Real News, Smart Bets'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-headlines-usmnt-presidents-cup-friendly-matches",
-      "detail": "Title 68 chars (max 60): 'Global Sports Headlines: USMNT, Presidents Cup, and Friendly Matches'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "caf-history-psl-clubs-betting-tips-south-africa",
-      "detail": "Title 69 chars (max 60): 'CAF History Beckons PSL Clubs: Betting Tips for South African Punters'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
       "page": "afcon-2027q-ilenikhenas-super-eagles-debut-odds-tips-for-nigeria",
-      "detail": "Title 68 chars (max 60): \"AFCON 2027Q: Ilenikhena's Super Eagles Debut Odds & Tips for Nigeria\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "afghan-cyclist-betting-tips-kenya",
-      "detail": "Title 62 chars (max 60): \"Afghan Cyclist's Triumph: Best Betting Tips for Kenyan Punters\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "stormers-yaqeen-ahmed-springbok-wildcard-south-africa-betting-tips",
-      "detail": "Title 78 chars (max 60): \"Stormers' Yaqeen Ahmed Tipped as Springbok Wildcard: South Africa Bett\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "barcelona-wage-bill-betting-tips-south-africa-best-offers-guide",
-      "detail": "Title 67 chars (max 60): 'Barcelona wage bill betting tips South Africa \u2013 Best offers & guide'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "england-stars-ruled-out-vs-spain-betting-tips-nigeria",
-      "detail": "Title 76 chars (max 60): 'England stars ruled out vs Spain betting tips Nigeria \u2013 Best offers & '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "elim-can-2027-cameroun-comores-betting-tips-tanzania",
-      "detail": "Title 68 chars (max 60): 'Elim CAN 2027: Cameroun vs Comores Betting Tips for Tanzania Punters'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "super-eagles-madagascar-afcon-qualifiers-preview",
-      "detail": "Title 67 chars (max 60): 'Super Eagles Gear Up for Madagascar Clash: AFCON Qualifiers Preview'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "packers-falcons-thursday-night-football-reed-injury-presidents-cup",
-      "detail": "Title 62 chars (max 60): 'Packers vs. Falcons TNF: Reed Injury, Presidents Cup, and More'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "victor-osimhen-out-nigeria-squad-2027-afcon-qualifiers-betting-tips-ghana",
-      "detail": "Title 79 chars (max 60): \"Victor Osimhen Out: Nigeria's AFCON 2027 Qualifiers Betting Tips for G\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "england-chase-322-beat-sri-lanka-live-odds",
-      "detail": "Title 64 chars (max 60): 'England chase 322 to beat Sri Lanka \u2013 live odds and betting tips'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "scotland-wxv-return-mclachlan-wills",
-      "detail": "Title 62 chars (max 60): 'Scotland\u2019s WXV Home Return: McLachlan & Wills Back, Graham Out'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "international-break-drama-havertz-injury-haaland-heroics-fifa-reform",
-      "detail": "Excerpt 189 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "mamelodi-sundowns-global-rise-african-football-news",
-      "detail": "Excerpt 158 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bankroll-management-tips-african-bettors",
-      "detail": "Excerpt 172 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-headlines-usmnt-presidents-cup-friendly-matches",
-      "detail": "Excerpt 183 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "afghan-cyclist-betting-tips-kenya",
-      "detail": "Excerpt 209 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "seahawks-vs-chargers-2026-betting-tips-ghana",
-      "detail": "Excerpt 184 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "england-stars-ruled-out-vs-spain-betting-tips-nigeria",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "super-eagles-madagascar-afcon-qualifiers-preview",
-      "detail": "Excerpt 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "braves-vikings-presidents-cup-latest-sports-updates",
-      "detail": "Excerpt 190 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "packers-falcons-thursday-night-football-reed-injury-presidents-cup",
-      "detail": "Excerpt 164 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "ranpura-nyali-victory-masters-grand-betting-tips-kenya",
-      "detail": "Excerpt 179 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nfl-week-3-preview-falcons-vs-packers",
-      "detail": "Excerpt 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "england-chase-322-beat-sri-lanka-live-odds",
-      "detail": "Excerpt 170 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "joshua-vs-fury-cardiff-december-2026",
-      "detail": "Excerpt 158 chars (max 155)"
+      "detail": "High title overlap (5 meaningful tokens) with 'afcon-2027q-ilenikhena-super-eagles-debut-betting-tips-nigeria' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
       "page": "england-stars-ruled-out-vs-spain-betting-tips-nigeria",
       "detail": "High title overlap (5 meaningful tokens) with 'england-stars-ruled-out-spain-betting-tips-nigeria' \u2014 consider noindex"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
-      "page": "elim-can-2027-cameroun-comores-betting-tips-tanzania",
-      "detail": "High title overlap (5 meaningful tokens) with 'elim-can-2027-cameroun-comores-tz-betting-tips' \u2014 consider noindex"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
-      "page": "victor-osimhen-out-nigeria-squad-2027-afcon-qualifiers-betting-tips-ghana",
-      "detail": "High title overlap (7 meaningful tokens) with 'victor-osimhen-out-nigeria-ghana-2027-afcon-qualifiers-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
