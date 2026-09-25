@@ -663,31 +663,35 @@
     "Barcelona face fresh wage bill warning despite staying betting tips South Africa": {
       "slug": "barcelona-wage-bill-betting-tips-south-africa",
       "posted_at": "2026-09-25T04:39:27.359050+00:00"
+    },
+    "Afghan cyclist who disguised herself as man wins betting tips Kenya": {
+      "slug": "afghan-cyclist-betting-tips-kenya",
+      "posted_at": "2026-09-25T06:51:06.208065+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-25T04:53:10.555923+00:00",
-    "candidates_available": 402,
+    "checked_at": "2026-09-25T06:51:10.634165+00:00",
+    "candidates_available": 400,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Barcelona face fresh wage bill warning despite staying betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "barcelona-wage-bill-betting-tips-south-africa"
-      },
-      {
         "keyword": "Nigeria Okpebholo/Marwa Marathon Winners Receive Scholarships betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, betting on athletics is legal in Tanzania as long as the bookmaker holds a Gaming Board of Tanzania licence. Always verify the licence badge before placing a bet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was '**Ready to turn the Okpebholo/Marwa marathon hype into real profit?** Choose a licensed Tanzanian bookmaker, claim your welcome bonus and start analysing the emotional bias in the markets today.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Afghan cyclist who disguised as man wins Asian betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 803 words (minimum 1000); no '## FAQ' section heading found"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 446)"
+      },
+      {
+        "keyword": "Afghan cyclist who disguised herself as man wins betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "afghan-cyclist-betting-tips-kenya"
       }
     ]
   }
