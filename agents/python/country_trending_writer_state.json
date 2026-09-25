@@ -494,28 +494,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-25T17:39:21.965159+00:00",
-    "candidates_available": 335,
+    "checked_at": "2026-09-25T19:43:08.531645+00:00",
+    "candidates_available": 332,
     "attempted": 3,
-    "written": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "AFCON 2027 qualifiers Day 1 fixtures as Nigeria betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "afcon-2027-qualifiers-nigeria-vs-madagascar-betting-tips"
+        "keyword": "Portugal vs Wales Live Match Today betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: *Note: Odds for specific markets (e.g., Match Winner, Over/Under) vary by bookmaker. Check SifuFinds' live odds page for the latest prices.*; Hollywoodbets is offering 4.50; Supabets is offering 3.25; BetXchange is offering 2.75; TicTacBets is offering 5.50; FairPari SA is offering 4.00; Linebet SA is offering 3.00"
       },
       {
-        "keyword": "Reprieve SPL as Sharks Mombasa Utd set playoffs betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "sharks-vs-mombasa-united-playoffs-betting-tips-kenya"
-      },
-      {
-        "keyword": "Gyetuah bags brace as 9 players named NASCO betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "gyetuah-brace-nasco-gpl-betting-tips-ghana"
+        "keyword": "Maroc vs Gabon betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
