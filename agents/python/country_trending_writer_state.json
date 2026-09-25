@@ -466,16 +466,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-25T01:58:42.256129+00:00",
-    "candidates_available": 337,
+    "checked_at": "2026-09-25T03:23:05.328711+00:00",
+    "candidates_available": 336,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "AFCON 2027Q Ilenikhena Eager Super Eagles Debut Against betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 598 words (minimum 600); final line was 'Note: This article is for informational purposes only and should not be considered as investment advice.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "fact_check: Bet9ja’s odds for Nigeria to win are slightly higher than those offered by 22Bet; Bet9ja provides a ₦2 500 free bet plus a 170 % ACCA Boost, while 22Bet offers a 100 % match up to ₦207 500"
       },
       {
         "keyword": "Stormers young gun tipped as Rassie's wildcard Boks' betting tips South Africa",
@@ -484,10 +484,10 @@
         "reason": "quality_gate: no '## FAQ' section heading found"
       },
       {
-        "keyword": "Elim CAN 2027 Cameroun – Comores, où suivre betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "elim-can-2027-cameroun-comores-betting-tips-tanzania"
+        "keyword": "Seahawks vs. Chargers tickets 2026 betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
       }
     ]
   }

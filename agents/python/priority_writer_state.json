@@ -655,31 +655,35 @@
     "Ranpura savours victory Nyali leg ahead Masters grand betting tips Kenya": {
       "slug": "ranpura-nyali-victory-masters-grand-betting-tips-kenya",
       "posted_at": "2026-09-24T23:24:23.339616+00:00"
+    },
+    "England stars ruled out vs Spain betting tips Nigeria": {
+      "slug": "england-stars-ruled-out-vs-spain-betting-tips-nigeria",
+      "posted_at": "2026-09-25T03:09:51.045349+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-24T23:31:59.246459+00:00",
-    "candidates_available": 391,
+    "checked_at": "2026-09-25T03:10:37.395382+00:00",
+    "candidates_available": 403,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "England stars ruled out vs Spain betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: only 951 words (minimum 1000); final line was 'You can contact the National Lottery Regulatory Commission (NLRC) in Nigeria for help with a betting issue by visiting their website or contacting their customer support team directly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Ranpura savours victory Nyali leg ahead Masters grand betting tips Kenya",
-        "country": "Kenya",
         "result": "written",
-        "slug": "ranpura-nyali-victory-masters-grand-betting-tips-kenya"
+        "slug": "england-stars-ruled-out-vs-spain-betting-tips-nigeria"
       },
       {
         "keyword": "Barcelona face fresh wage bill warning despite staying betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: only 968 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '* [South African Responsible Gambling Council](https://www.responsiblegambling.org.za/)', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Absolutely. Supabets accepts Blue Voucher alongside major banks, Visa, Mastercard and Instant EFT. This prepaid option is popular for players who prefer not to share their bank details online.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Nigeria Okpebholo/Marwa Marathon Winners Receive Scholarships betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'All listed bookmakers accept M‑Pesa (Vodacom), Airtel Money, Tigo Pesa, Halotel Pesa, and bank transfers for deposits. Visa and Mastercard are also accepted for some operators, such as 22Bet and Betway, for both deposits and withdrawals.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
