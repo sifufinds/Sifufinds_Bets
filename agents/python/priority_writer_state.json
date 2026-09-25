@@ -667,31 +667,39 @@
     "Afghan cyclist who disguised herself as man wins betting tips Kenya": {
       "slug": "afghan-cyclist-betting-tips-kenya",
       "posted_at": "2026-09-25T06:51:06.208065+00:00"
+    },
+    "AFCON 2027 qualifiers Day 1 fixtures as Nigeria betting tips Nigeria": {
+      "slug": "afcon-2027-qualifiers-day-1-nigeria-betting-tips",
+      "posted_at": "2026-09-25T11:40:59.406505+00:00"
+    },
+    "Gyetuah bags brace as 9 players named NASCO betting tips Ghana": {
+      "slug": "gyetuah-brace-nasco-betting-tips-ghana",
+      "posted_at": "2026-09-25T11:42:14.609271+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-25T06:51:10.634165+00:00",
-    "candidates_available": 400,
+    "checked_at": "2026-09-25T11:42:19.735179+00:00",
+    "candidates_available": 403,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Nigeria Okpebholo/Marwa Marathon Winners Receive Scholarships betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; final line was '**Ready to turn the Okpebholo/Marwa marathon hype into real profit?** Choose a licensed Tanzanian bookmaker, claim your welcome bonus and start analysing the emotional bias in the markets today.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Afghan cyclist who disguised as man wins Asian betting tips Nigeria",
+        "keyword": "AFCON 2027 qualifiers Day 1 fixtures as Nigeria betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 446)"
+        "result": "written",
+        "slug": "afcon-2027-qualifiers-day-1-nigeria-betting-tips"
       },
       {
-        "keyword": "Afghan cyclist who disguised herself as man wins betting tips Kenya",
+        "keyword": "Reprieve SPL as Sharks Mombasa Utd set playoffs betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'All listed bonuses carry a 5‑times wagering requirement on minimum odds of 1.40 and must be cleared within 30 days. Free bets from Betika have no wagering condition, making them the easiest to convert into cash.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Gyetuah bags brace as 9 players named NASCO betting tips Ghana",
+        "country": "Ghana",
         "result": "written",
-        "slug": "afghan-cyclist-betting-tips-kenya"
+        "slug": "gyetuah-brace-nasco-betting-tips-ghana"
       }
     ]
   }
