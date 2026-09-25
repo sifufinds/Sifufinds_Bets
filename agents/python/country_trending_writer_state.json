@@ -463,31 +463,39 @@
     "Elim CAN 2027 Cameroun – Comores, où suivre betting tips Tanzania": {
       "slug": "elim-can-2027-cameroun-comores-betting-tips-tanzania",
       "posted_at": "2026-09-25T01:58:37.939736+00:00"
+    },
+    "Stormers young gun tipped as Rassie's wildcard Boks' betting tips South Africa": {
+      "slug": "stormers-yaqeen-ahmed-springbok-wildcard-south-africa-betting-tips",
+      "posted_at": "2026-09-25T05:02:43.479939+00:00"
+    },
+    "Seahawks vs. Chargers tickets 2026 betting tips Ghana": {
+      "slug": "seahawks-vs-chargers-2026-betting-tips-ghana",
+      "posted_at": "2026-09-25T05:10:43.662057+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-25T03:23:05.328711+00:00",
+    "checked_at": "2026-09-25T05:10:50.839525+00:00",
     "candidates_available": 336,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "AFCON 2027Q Ilenikhena Eager Super Eagles Debut Against betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Bet9ja’s odds for Nigeria to win are slightly higher than those offered by 22Bet; Bet9ja provides a ₦2 500 free bet plus a 170 % ACCA Boost, while 22Bet offers a 100 % match up to ₦207 500"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 546)"
       },
       {
         "keyword": "Stormers young gun tipped as Rassie's wildcard Boks' betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "result": "written",
+        "slug": "stormers-yaqeen-ahmed-springbok-wildcard-south-africa-betting-tips"
       },
       {
         "keyword": "Seahawks vs. Chargers tickets 2026 betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "result": "written",
+        "slug": "seahawks-vs-chargers-2026-betting-tips-ghana"
       }
     ]
   }
