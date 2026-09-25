@@ -1,176 +1,50 @@
 {
-  "updated": "2026-09-25T10:04:21.291429+00:00",
+  "updated": "2026-09-25T14:56:59.146295+00:00",
   "source": "forebet.com, predictz.com",
-  "count": 91,
+  "count": 88,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-09-25T10:04:21.291429+00:00"
+      "ts": "2026-09-25T14:56:59.146295+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-09-25T10:04:21.291429+00:00"
+      "ts": "2026-09-25T14:56:59.146295+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-09-25T10:04:21.291429+00:00"
+      "ts": "2026-09-25T14:56:59.146295+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-09-25T10:04:21.291429+00:00"
+      "ts": "2026-09-25T14:56:59.146295+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-09-25T10:04:21.291429+00:00"
+      "ts": "2026-09-25T14:56:59.146295+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-09-25T10:04:21.291429+00:00"
+      "ts": "2026-09-25T14:56:59.146295+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-09-25T10:04:21.291429+00:00"
+      "ts": "2026-09-25T14:56:59.146295+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-09-25T10:04:21.291429+00:00"
+      "ts": "2026-09-25T14:56:59.146295+00:00"
     }
   ],
   "predictions": [
-    {
-      "id": "fb_2498324",
-      "home": "Sparta Praha U19",
-      "away": "Mlada Boleslav U19",
-      "competition": "Czech Republic HET Liga",
-      "comp_slug": "cz",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-25T05:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 1-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-3",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
-    },
-    {
-      "id": "fb_2534454",
-      "home": "Dynamo Barnaul",
-      "away": "Pobeda Nizhny Novgorod",
-      "competition": "Russia Premier League Div 4",
-      "comp_slug": "ru",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-25T05:30:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 1-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-2",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
-    },
-    {
-      "id": "fb_2548141",
-      "home": "Bà Ria Vũng Tàu",
-      "away": "Dai Hoc Van Hien",
-      "competition": "Vn2 League",
-      "comp_slug": "vn",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-25T06:00:00+00:00",
-      "match_winner": "X",
-      "match_winner_label": "X 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-0",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
-    },
-    {
-      "id": "fb_2484679",
-      "home": "Karbon",
-      "away": "SK Poltava II",
-      "competition": "Ukraine Premier League Div 3",
-      "comp_slug": "ua",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-25T06:00:00+00:00",
-      "match_winner": "X",
-      "match_winner_label": "X 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
-    },
-    {
-      "id": "fb_2489162",
-      "home": "Wisła II Kraków",
-      "away": "Czarni Połaniec",
-      "competition": "Poland Ekstraklasa Div 4",
-      "comp_slug": "pl",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-25T07:00:00+00:00",
-      "match_winner": "2",
-      "match_winner_label": "2 0-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-3",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
-    },
-    {
-      "id": "fb_2439829",
-      "home": "Wuxi Wugou",
-      "away": "Guangxi Hengchen",
-      "competition": "Cn2 League",
-      "comp_slug": "cn",
-      "ko_display": "Today",
-      "ko_utc": "2026-09-25T07:00:00+00:00",
-      "match_winner": "1",
-      "match_winner_label": "1 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-0",
-      "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
-    },
     {
       "id": "fb_2549357",
       "home": "Persiba Balikpapan",
@@ -185,12 +59,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2504928",
@@ -206,12 +80,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2554586",
@@ -227,12 +101,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2554587",
@@ -248,12 +122,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "0-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2552085",
@@ -269,12 +143,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2519526",
@@ -290,12 +164,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2554721",
@@ -311,12 +185,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2449279",
@@ -332,12 +206,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2449277",
@@ -353,12 +227,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2552086",
@@ -374,12 +248,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2552088",
@@ -395,12 +269,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2552087",
@@ -416,12 +290,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2444677",
@@ -437,12 +311,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-3",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531144",
@@ -458,12 +332,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531276",
@@ -479,12 +353,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "0-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531804",
@@ -500,12 +374,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531539",
@@ -521,12 +395,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531275",
@@ -542,12 +416,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531143",
@@ -563,12 +437,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2504460",
@@ -584,12 +458,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531542",
@@ -605,12 +479,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531935",
@@ -626,12 +500,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531803",
@@ -647,12 +521,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "3-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2531280",
@@ -668,12 +542,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "1-0",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2488313",
@@ -689,12 +563,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "3-2",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2506212",
@@ -710,12 +584,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "3-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2474565",
@@ -731,12 +605,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-1",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "fb_2505976",
@@ -752,12 +626,117 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
       "correct_score": "2-3",
       "source": "forebet.com",
-      "scraped_at": "2026-09-25T10:04:26.993651+00:00"
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
+    },
+    {
+      "id": "fb_2444685",
+      "home": "Iceland U21",
+      "away": "France U21",
+      "competition": "Czech Republic HET Liga Div 4",
+      "comp_slug": "494",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-25T11:00:00+00:00",
+      "match_winner": "2",
+      "match_winner_label": "2 1-3",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-3",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
+    },
+    {
+      "id": "fb_2477213",
+      "home": "Klagenfurter AC 1909",
+      "away": "Spittal/Drau",
+      "competition": "Austria Bundesliga",
+      "comp_slug": "at",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-25T11:00:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 3-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "3-1",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
+    },
+    {
+      "id": "fb_2554588",
+      "home": "Niger",
+      "away": "Lesotho",
+      "competition": "Czech Republic HET Liga Div 4",
+      "comp_slug": "285",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-25T11:00:00+00:00",
+      "match_winner": "1",
+      "match_winner_label": "1 1-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-0",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
+    },
+    {
+      "id": "fb_2444678",
+      "home": "Bulgaria U21",
+      "away": "Portugal U21",
+      "competition": "Finland Veikkausliiga Div 2",
+      "comp_slug": "494",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-25T11:30:00+00:00",
+      "match_winner": "2",
+      "match_winner_label": "2 0-4",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "0-4",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
+    },
+    {
+      "id": "fb_2444680",
+      "home": "Finland U21",
+      "away": "Spain U21",
+      "competition": "Finland Veikkausliiga Div 2",
+      "comp_slug": "494",
+      "ko_display": "Today",
+      "ko_utc": "2026-09-25T11:30:00+00:00",
+      "match_winner": "2",
+      "match_winner_label": "2 1-3",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-3",
+      "source": "forebet.com",
+      "scraped_at": "2026-09-25T14:57:04.840727+00:00"
     },
     {
       "id": "1222869",
@@ -778,7 +757,7 @@
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985322+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832480+00:00"
     },
     {
       "id": "1195842",
@@ -799,7 +778,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986280+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833374+00:00"
     },
     {
       "id": "1189251",
@@ -820,7 +799,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985681+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832779+00:00"
     },
     {
       "id": "1211756",
@@ -841,28 +820,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986905+00:00"
-    },
-    {
-      "id": "1219688",
-      "home": "Australia",
-      "away": "Brazil",
-      "competition": "International Friendly",
-      "comp_slug": "international/international-friendly",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 1-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "1-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985562+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833977+00:00"
     },
     {
       "id": "1195841",
@@ -883,7 +841,7 @@
       "over25": "Over 2.5",
       "correct_score": "0-3",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986339+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833431+00:00"
     },
     {
       "id": "1207760",
@@ -904,7 +862,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986741+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833830+00:00"
     },
     {
       "id": "1209034",
@@ -925,7 +883,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986948+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834022+00:00"
     },
     {
       "id": "1215447",
@@ -946,7 +904,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986165+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833260+00:00"
     },
     {
       "id": "1222867",
@@ -967,7 +925,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985369+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832527+00:00"
     },
     {
       "id": "1171414",
@@ -988,7 +946,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987341+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834420+00:00"
     },
     {
       "id": "1199696",
@@ -1009,7 +967,7 @@
       "over25": "Over 2.5",
       "correct_score": "3-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986505+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833595+00:00"
     },
     {
       "id": "1213207",
@@ -1030,7 +988,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987150+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834235+00:00"
     },
     {
       "id": "1222866",
@@ -1051,7 +1009,7 @@
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985415+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832573+00:00"
     },
     {
       "id": "1192240",
@@ -1072,7 +1030,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987102+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834187+00:00"
     },
     {
       "id": "1211457",
@@ -1093,7 +1051,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986864+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833938+00:00"
     },
     {
       "id": "1175703",
@@ -1114,7 +1072,7 @@
       "over25": "Over 2.5",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987198+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834281+00:00"
     },
     {
       "id": "1209035",
@@ -1135,7 +1093,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986986+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834059+00:00"
     },
     {
       "id": "1207459",
@@ -1156,7 +1114,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986668+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833757+00:00"
     },
     {
       "id": "1171125",
@@ -1177,7 +1135,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987285+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834367+00:00"
     },
     {
       "id": "1222874",
@@ -1198,7 +1156,7 @@
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985077+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832242+00:00"
     },
     {
       "id": "1185086",
@@ -1219,7 +1177,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985737+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832835+00:00"
     },
     {
       "id": "1203455",
@@ -1240,7 +1198,7 @@
       "over25": "Over 2.5",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986555+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833645+00:00"
     },
     {
       "id": "1183584",
@@ -1261,7 +1219,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987568+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834646+00:00"
     },
     {
       "id": "1215442",
@@ -1282,7 +1240,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986220+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833315+00:00"
     },
     {
       "id": "1209036",
@@ -1303,7 +1261,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987023+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834108+00:00"
     },
     {
       "id": "1207049",
@@ -1324,7 +1282,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986611+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833701+00:00"
     },
     {
       "id": "1185081",
@@ -1345,7 +1303,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985815+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832895+00:00"
     },
     {
       "id": "1223018",
@@ -1366,7 +1324,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985619+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832718+00:00"
     },
     {
       "id": "1195840",
@@ -1387,7 +1345,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986399+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833489+00:00"
     },
     {
       "id": "1185082",
@@ -1408,7 +1366,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985875+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832955+00:00"
     },
     {
       "id": "1197996",
@@ -1429,7 +1387,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987517+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834596+00:00"
     },
     {
       "id": "1175704",
@@ -1450,7 +1408,7 @@
       "over25": "Over 2.5",
       "correct_score": "0-3",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987236+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834318+00:00"
     },
     {
       "id": "1171416",
@@ -1471,7 +1429,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987387+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834468+00:00"
     },
     {
       "id": "1207762",
@@ -1492,7 +1450,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986797+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833873+00:00"
     },
     {
       "id": "1222868",
@@ -1513,7 +1471,7 @@
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985129+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832290+00:00"
     },
     {
       "id": "1222864",
@@ -1534,7 +1492,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985462+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832620+00:00"
     },
     {
       "id": "1185080",
@@ -1555,7 +1513,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985934+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833014+00:00"
     },
     {
       "id": "1222863",
@@ -1576,7 +1534,7 @@
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985506+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832663+00:00"
     },
     {
       "id": "1213441",
@@ -1597,7 +1555,7 @@
       "over25": "Over 2.5",
       "correct_score": "3-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987689+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834781+00:00"
     },
     {
       "id": "1222872",
@@ -1618,7 +1576,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985022+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832189+00:00"
     },
     {
       "id": "1222871",
@@ -1639,7 +1597,7 @@
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985179+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832338+00:00"
     },
     {
       "id": "1185083",
@@ -1660,7 +1618,7 @@
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985992+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833085+00:00"
     },
     {
       "id": "1195839",
@@ -1681,7 +1639,7 @@
       "over25": "Over 2.5",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986456+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833543+00:00"
     },
     {
       "id": "1220440",
@@ -1702,7 +1660,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985226+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832385+00:00"
     },
     {
       "id": "1209038",
@@ -1723,7 +1681,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987055+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834141+00:00"
     },
     {
       "id": "1207455",
@@ -1744,7 +1702,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986701+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833791+00:00"
     },
     {
       "id": "1213440",
@@ -1765,7 +1723,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987636+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834714+00:00"
     },
     {
       "id": "1222873",
@@ -1786,7 +1744,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.984902+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832056+00:00"
     },
     {
       "id": "1185085",
@@ -1807,7 +1765,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986050+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833146+00:00"
     },
     {
       "id": "1222875",
@@ -1828,7 +1786,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.984970+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832140+00:00"
     },
     {
       "id": "1207764",
@@ -1849,7 +1807,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986832+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833906+00:00"
     },
     {
       "id": "1222870",
@@ -1870,7 +1828,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.985274+00:00"
+      "scraped_at": "2026-09-25T14:57:04.832432+00:00"
     },
     {
       "id": "1171415",
@@ -1891,7 +1849,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987436+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834515+00:00"
     },
     {
       "id": "1185084",
@@ -1912,7 +1870,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.986105+00:00"
+      "scraped_at": "2026-09-25T14:57:04.833201+00:00"
     },
     {
       "id": "1171413",
@@ -1933,28 +1891,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987477+00:00"
-    },
-    {
-      "id": "1185443",
-      "home": "Wuxi Wugou",
-      "away": "Guangxi Hengchen",
-      "competition": "China League One",
-      "comp_slug": "china/league-one",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "0-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-25T10:04:26.987749+00:00"
+      "scraped_at": "2026-09-25T14:57:04.834556+00:00"
     }
   ]
 }
