@@ -1755,4 +1755,12 @@ User asked to hide 17 bookmakers "completely" from the live site (see CLAUDE.md 
 - Leak checks must scan the *rendered* page too: the first live check (2026-09-26) still found a ticker file with a leading `/* */` comment that the `window.X=` matcher skipped, brand names in JS comments and prose strings, and a Playabets card using abbr `PLB` (Playbet's code), so it showed Playbet's logo. The check now fails on any mention in any deployed text file, not just "visible" ones.
 - Never use regex lookbehind in `shared.js`: older Safari throws on it at parse time, which blanks every page.
 
+### RapidWombat webhook → blog posts (2026-09-26)
+- Flow: RapidWombat POSTs `{id, title, content (markdown), cover_image}` with `Authorization: Bearer <token>` to `https://sifufinds.com/webhooks/rapidwombat.php`. The PHP endpoint only checks the token and forwards the article (content gzip+base64) as a GitHub `repository_dispatch` (`rapidwombat_article`). `rapidwombat_import.yml` runs `agents/python/agent_rapidwombat_import.py`, then `gen_blog_post_pages.py`, then all 6 deploy gates, and only then commits. A bad article can never block deploys.
+- The server never stores content: `hosting_deployStaticWebsite` re-uploads the whole site, so anything written on Hostinger would be wiped. The repo is public, so `webhooks/rapidwombat-secrets.php` is gitignored (`*secrets*`) and written only into the CI deploy copy from `RAPIDWOMBAT_WEBHOOK_TOKEN` / `RAPIDWOMBAT_DISPATCH_TOKEN` (fine-grained PAT, Contents read/write). If either secret is missing, the endpoint returns 503 and the deploy only warns.
+- `.htaccess` copies `Authorization` into `HTTP_AUTHORIZATION` for `^webhooks/`; LiteSpeed/Apache otherwise strip it before PHP.
+- `webhooks/index.html` is a noindex stub (validate_site requires index.html per directory) and is listed in `check_indexability.py`'s `INTENTIONAL_NOINDEX_FILES`.
+- Retries: `workflow_watchdog.yml` re-runs via `workflow_dispatch`, which drops the payload, so this workflow is deliberately NOT on its list. It re-dispatches its own payload after 10 min (max 3 attempts). Importer exit 2 (thin/malformed/Africa-framing mismatch) is final.
+- Importer escapes `<`/`>` and strips non-http(s) or quote-bearing link targets, because `markdown_to_html()` passes raw HTML and link URLs straight through. Posts are keyed `rapidwombat-<id>`; re-delivery updates in place and keeps slug + published_at.
+
 *Last updated: 2026-09-26 by Claude Code*
