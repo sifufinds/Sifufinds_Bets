@@ -12,7 +12,7 @@
   gtag('config', 'G-0B51MX2ZKE');
 </script>
 <meta charset="UTF-8">
-<link rel="preload" href="../assets/shared.js?v=28" as="script">
+<link rel="preload" href="../assets/shared.js?v=29" as="script">
 <link rel="preload" href="../assets/shared.css?v=12" as="style">
 <link rel="preconnect" href="https://ipapi.co">
 <link rel="preconnect" href="https://www.google-analytics.com">
@@ -1308,7 +1308,7 @@
 <script>
 const SITE={home:'../',tips:'../tips/',casino:'../casino/',odds:'./',countries:'../countries/'};
 </script>
-<script src="../assets/shared.js?v=28"></script>
+<script src="../assets/shared.js?v=29"></script>
 <script>
 const SDB_KEY='3JOIGRycRY0jNCrxgLnuNzzA5AIoyQmnN7RHew9t';
 const SDB_BASE='https://api.sportdb.dev';
@@ -1449,7 +1449,7 @@ function _sbRowToEvent(row){
     hScore:row.h_score??null,aScore:row.a_score??null,
     time:row.time_disp||row.time,
     h:Number(row.h_odds||row.h)||0,d:Number(row.d_odds||row.d)||0,a:Number(row.a_odds||row.a)||0,
-    hBk:row.h_bk||row.hBk||'',dBk:row.d_bk||row.dBk||'',aBk:row.a_bk||row.aBk||''
+    hBk:_visibleBk(row.h_bk||row.hBk||''),dBk:_visibleBk(row.d_bk||row.dBk||''),aBk:_visibleBk(row.a_bk||row.aBk||'')
   };
 }
 

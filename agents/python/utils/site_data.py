@@ -29,11 +29,12 @@ _UNQUOTED_KEY_RE = re.compile(r"([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)(\s*:)")
 _TRAILING_COMMA_RE = re.compile(r",(\s*[}\]])")
 
 
-def _extract_balanced_block(varname: str, text: str) -> str | None:
-    """Find `const <varname>={...}` and return the full `{...}` block,
-    respecting brace nesting and string contents (so a `}` inside a bonus
-    description doesn't end the match early)."""
-    m = re.search(re.escape(varname) + r"\s*=\s*\{", text)
+def _extract_balanced_block(varname: str, text: str, opener: str = "{") -> str | None:
+    """Find `const <varname>={...}` (or `=[...]` with opener="[") and return
+    the full block, respecting nesting and string contents (so a `}` inside
+    a bonus description doesn't end the match early)."""
+    closer = "}" if opener == "{" else "]"
+    m = re.search(re.escape(varname) + r"\s*=\s*" + re.escape(opener), text)
     if not m:
         return None
     start = m.end() - 1
@@ -53,9 +54,9 @@ def _extract_balanced_block(varname: str, text: str) -> str | None:
             if c in ("'", '"'):
                 in_str = True
                 quote = c
-            elif c == "{":
+            elif c == opener:
                 depth += 1
-            elif c == "}":
+            elif c == closer:
                 depth -= 1
                 if depth == 0:
                     return text[start : i + 1]
@@ -85,17 +86,18 @@ def _js_object_to_json(js: str) -> str:
     return re.sub(r"\x00(\d+)\x00", lambda m: placeholders[int(m.group(1))], skeleton)
 
 
-def _load_block(varname: str) -> dict[str, Any]:
+def _load_block(varname: str, opener: str = "{") -> Any:
+    empty: Any = {} if opener == "{" else []
     if not SHARED_JS_PATH.exists():
-        return {}
+        return empty
     text = SHARED_JS_PATH.read_text(encoding="utf-8")
-    block = _extract_balanced_block(varname, text)
+    block = _extract_balanced_block(varname, text, opener)
     if not block:
-        return {}
+        return empty
     try:
         return json.loads(_js_object_to_json(block))
     except (json.JSONDecodeError, ValueError):
-        return {}
+        return empty
 
 
 def load_country_data() -> dict[str, dict]:
@@ -110,3 +112,23 @@ def load_bookmakers() -> dict[str, list[dict]]:
     shared.js's BOOKS exactly. Each entry carries name/url/off/top/stars/
     min/lic/terms/pms among other display fields."""
     return _load_block("const BOOKS")
+
+
+def load_casinos() -> list[dict]:
+    """[casino entries] — mirrors shared.js's flat CASINOS list (powers
+    /casino/). Not grouped by country: each entry's `min` is priced in one
+    currency (₦, R, ...), which is the only per-market signal it carries."""
+    return _load_block("const CASINOS", opener="[")
+
+
+def casinos_for_country(code: str) -> list[dict]:
+    """CASINOS entries priced in `code`'s own currency — the honest proxy
+    for "this casino offer is aimed at this market". Symbol must be followed
+    by a digit so e.g. South Africa's "R" can't match a "RWF..." price.
+    Empty for most countries today (CASINOS only carries ₦ and R prices),
+    which callers must treat as "no real casino data, don't write"."""
+    symbol = load_country_data().get(code, {}).get("symbol", "")
+    if not symbol:
+        return []
+    pattern = re.compile(re.escape(symbol) + r"\s?\d")
+    return [c for c in load_casinos() if pattern.match(str(c.get("min", "")).strip())]

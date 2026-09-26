@@ -73,6 +73,27 @@ const AFFILIATE_DOMAINS=['reffpa.com','refpa3665.com','bwredir.com','combodef.co
 function isAffiliate(b){return AFFILIATE_DOMAINS.some(d=>b.url&&b.url.includes(d));}
 function affiliateBooks(books){return(books||[]).filter(isAffiliate);}
 
+// ── HIDDEN BRANDS ─────────────────────────────────────────────────────────────
+// Bookmakers the site owner has asked to hide from the live site completely.
+// Source of truth: data/hidden_brands.json. The deploy step
+// (scripts/hide_brands.py) strips them from every static page and data file;
+// this runtime filter covers what only arrives in the browser (Supabase tips,
+// news and live odds) and local previews. hide_brands.py fails the deploy if
+// these two arrays drift from the JSON. No regex lookbehind: older Safari
+// throws on it, which would blank every page.
+const HIDDEN_BRAND_PATTERNS=['hollywood ?bets?','bet9ja','betking','super ?sport ?bets?','bet ?xchange','tic ?tac ?bets?','playbets?','betta ?bets?','sunbets?','supabets?','easybets?','betfred','jsb ?sport','soccershop','firstbets?','thababets?','interbets?'];
+const HIDDEN_BRAND_DOMAINS=['hollywoodbets.net','trkbxa.click','bettapartners.co.za'];
+const _HIDDEN_BRAND_RE=new RegExp('(?:^|[^A-Za-z0-9])(?:'+HIDDEN_BRAND_PATTERNS.join('|')+')(?![A-Za-z])','i');
+function isHiddenBrand(s){
+  if(typeof s!=='string'||!s)return false;
+  const low=s.toLowerCase();
+  return _HIDDEN_BRAND_RE.test(s)||HIDDEN_BRAND_DOMAINS.some(d=>low.includes(d));
+}
+function _isHiddenEntry(b){return !!b&&(isHiddenBrand(b.name)||isHiddenBrand(b.url)||isHiddenBrand(b.bookmaker));}
+// In-place because BOOKS/CASINOS/HEADER_BRANDS are const bindings other pages read directly.
+function _dropHidden(arr){for(let i=arr.length-1;i>=0;i--)if(_isHiddenEntry(arr[i]))arr.splice(i,1);return arr;}
+const _visibleBk=bk=>isHiddenBrand(bk)?'':bk;
+
 // ── BOOKS DATA ─────────────────────────────────────────────────────────────────
 const BOOKS={
 NG:[
@@ -548,6 +569,7 @@ SO:[
 TN:[
 ]
 };
+Object.keys(BOOKS).forEach(k=>_dropHidden(BOOKS[k]));
 
 // ── CASINOS ─────────────────────────────────────────────────────────────────────
 // Affiliate-tracked brands first (STANDING RULE — Brands With a Real Affiliate
@@ -564,6 +586,7 @@ const CASINOS=[
 {abbr:'10B',bg:'#1A1A1A',tc:'#FFD700',name:'10bet Casino',url:'https://www.10bet.co.za',tag:'WCGRB Licensed Casino – Premium Experience',off:'100% Casino Deposit Match – Up to R2,000',top:'R2,000',stars:4,min:'R20',live:true,jackpot:true,slots:true,nodep:false,badge:'',terms:'100% match up to R2,000. Wager 30x. FICA required. T&Cs. 18+.'}
 
 ];
+_dropHidden(CASINOS);
 
 // ── SUPABASE ──────────────────────────────────────────────────────────────────
 const SB_URL='https://kedfcmgqjxwzebhoeosi.supabase.co';
@@ -587,9 +610,9 @@ async function fetchSBTips(){
     // were set weeks ago and re-anchor to today, surfacing played matches.
     const hasSpecificDate=rows.some(r=>/\d{1,2}\s+[A-Za-z]{3}\s+\d{4}/.test(r.date_label||''));
     if(!hasSpecificDate)return null;
-    return rows.map(r=>({
+    return rows.filter(r=>!isHiddenBrand(r.analysis)&&!isHiddenBrand(r.match)).map(r=>({
       league:r.league,key:r.sport_key,match:r.match,pred:r.pred,
-      analysis:r.analysis,odds:r.odds,via:r.via,conf:r.conf,
+      analysis:r.analysis,odds:r.odds,via:_visibleBk(r.via),conf:r.conf,
       time:r.time_disp,date:r.date_label,isAI:r.is_ai||false
     }));
   }catch(_){return null;}
@@ -601,7 +624,7 @@ async function fetchSBNews(){
     if(!r.ok)return null;
     const rows=await r.json();
     if(!Array.isArray(rows)||!rows.length)return null;
-    return rows.map(r=>({cat:r.cat,color:r.color,title:r.title,date:r.date_label}));
+    return rows.filter(r=>!isHiddenBrand(r.title)).map(r=>({cat:r.cat,color:r.color,title:r.title,date:r.date_label}));
   }catch(_){return null;}
 }
 
@@ -631,6 +654,7 @@ const TIPS=[
 // ── Boxing ──
 {league:'WBC Heavyweight Championship',key:'boxing',match:'Oleksandr Usyk vs Daniel Dubois 2',pred:'Usyk Win',analysis:'Usyk is the most complete heavyweight of his generation — elite footwork, ring IQ and a chin tested at the highest level. In their first meeting Usyk\'s movement and jab neutralised Dubois\'s power entirely. Expect another masterclass.',odds:'1.45',via:'Bet9ja',conf:80,time:'21:00 UTC',date:'13 Jun 2026',isAI:false}
 ];
+for(let i=TIPS.length-1;i>=0;i--){if(isHiddenBrand(TIPS[i].analysis)||isHiddenBrand(TIPS[i].match))TIPS.splice(i,1);else TIPS[i].via=_visibleBk(TIPS[i].via);}
 
 // ── NEWS ──────────────────────────────────────────────────────────────────────
 const NEWS=[
@@ -641,6 +665,7 @@ const NEWS=[
 {cat:'Kenya',color:'#007A4D',title:'Betika Reaches 10 Million Users – New World Cup Features Added',date:'5 Jun 2026'},
 {cat:'Africa',color:'#FF6B00',title:'Mobile Money Betting Surges 45% as World Cup 2026 Approaches',date:'4 Jun 2026'}
 ];
+for(let i=NEWS.length-1;i>=0;i--)if(isHiddenBrand(NEWS[i].title))NEWS.splice(i,1);
 
 // ── ODDS DATA (fallback when live APIs are unavailable) ───────────────────────
 const ODDS_DATA=[
@@ -729,6 +754,7 @@ const ODDS_DATA=[
 {league:'WBC Heavyweight Championship',key:'boxing',live:false,home:'Oleksandr Usyk',away:'Daniel Dubois',hScore:null,aScore:null,time:'13 Jun · 21:00 UTC',h:1.45,d:0,a:2.75,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false},
 {league:'WBO Super Middleweight',key:'boxing',live:false,home:'Canelo Alvarez',away:'David Benavidez',hScore:null,aScore:null,time:'21 Jun · 02:00 UTC',h:1.75,d:0,a:2.10,hBk:'Bet9ja',dBk:'',aBk:'1xBet',complete:false}
 ];
+ODDS_DATA.forEach(m=>{m.hBk=_visibleBk(m.hBk);m.dBk=_visibleBk(m.dBk);m.aBk=_visibleBk(m.aBk);});
 
 // ── PAGE CONTENT (modals) ─────────────────────────────────────────────────────
 const PAGE_CONTENT={
@@ -1152,6 +1178,7 @@ const HEADER_BRANDS=[
 {name:'Betika',abbr:'BT',bg:'#FCED0E',tc:'#1B3A7A',url:'https://record.bigcatpartners.com/_-uNzaN20ZcLqaEn2LeVpkWNd7ZgqdRLk/1/',domain:'betika.com',tag:'Operator of the Year 2025'}
 
 ];
+_dropHidden(HEADER_BRANDS);
 // FairPari is withdrawn from Nigeria and Kenya (per 2026-08-14 direction) — the
 // header bar has no other per-country logic, so filter it out here specifically
 // for those two countries while it stays visible in the bar everywhere else.

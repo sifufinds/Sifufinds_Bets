@@ -46,6 +46,11 @@ KEYWORD_TEMPLATES = [
     "how to bet online {country} beginners guide",
     "best live odds {country} 2026",
     "safest betting apps {country}",
+    # Casino-player keywords (added 2026-09-26). agent_content_priority.py
+    # only marks these writable for countries with real casino data in
+    # shared.js's CASINOS (see utils/site_data.casinos_for_country).
+    "best online casino {country} 2026",
+    "online casino bonus {country} 2026",
 ]
 
 
