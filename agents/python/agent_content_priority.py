@@ -39,6 +39,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 
 from utils.countries import AFRICAN_COUNTRIES
+from utils.site_data import casinos_for_country, load_country_data
 from utils.logger import log
 from utils.story_dedup import headline_key, load_covered_keys
 
@@ -67,6 +68,7 @@ EVERGREEN_CONTENT_TYPES = [
     ("best betting bonus", "guide", "best_bonus", True),
     ("how to bet online", "guide", "how_to_bet", True),
     ("safest betting apps", "guide", "safest_apps", True),
+    ("online casino", "guide", "casino", True),
     ("football betting tips today", "blog", "", False),
     ("best live odds", "tool", "", False),
 ]
@@ -79,6 +81,14 @@ def _country_in_keyword(keyword: str) -> str | None:
         if re.search(r"\b" + re.escape(name) + r"\b", keyword):
             return name
     return None
+
+
+MIN_CASINOS_FOR_GUIDE = 3  # agent_priority_writer.py compares at least 3
+
+
+def _has_casino_data(country_name: str) -> bool:
+    code = next((k for k, v in load_country_data().items() if v.get("name") == country_name), None)
+    return bool(code) and len(casinos_for_country(code)) >= MIN_CASINOS_FOR_GUIDE
 
 
 def _classify_evergreen(keyword: str) -> tuple[str, str, bool]:
@@ -121,6 +131,10 @@ def build_queue() -> dict:
         if not country:
             continue
         content_type, guide_angle, actionable = _classify_evergreen(keyword)
+        if guide_angle == "casino":
+            # Only write where real casino offers exist for this market —
+            # never a casino guide padded out with invented brands.
+            actionable = actionable and _has_casino_data(country)
         items.append({
             "keyword": keyword,
             "country": country,

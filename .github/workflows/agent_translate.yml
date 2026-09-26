@@ -129,6 +129,7 @@ jobs:
             sleep 5
             git fetch origin main
             git merge --no-edit origin/main || true
+            python3 scripts/resolve_json_conflicts.py  # union-merge agent state JSON conflicts
             python3 gen_blog_post_pages.py --force
             python3 gen_sitemap.py
             git add -A

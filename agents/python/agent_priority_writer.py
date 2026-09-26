@@ -37,7 +37,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from llm import ask_long, AIProvidersExhausted
 from config import SITE_URL
 from utils.serp_research import research
-from utils.site_data import load_country_data, load_bookmakers
+from utils.site_data import load_country_data, load_bookmakers, casinos_for_country
 from agent_fact_checker import check_post as fact_check_post
 from agent_content_priority import EVERGREEN_CONTENT_TYPES
 from utils.title_content_match import check_africa_framing
@@ -84,6 +84,19 @@ GUIDE_ANGLE_BRIEFS = {
         "and safety: licensing/regulation (use the REAL regulator provided), the "
         "REAL bookmaker names provided, secure payment methods, and red flags to "
         "avoid with unlicensed operators."
+    ),
+    "casino": (
+        "Write an online casino guide for players in {country}, matching the "
+        "exact keyword's intent (best casinos, or casino bonuses). Compare the "
+        "REAL casino offers provided below: welcome bonus, wagering "
+        "requirement, minimum deposit, and game range (slots, live dealer, "
+        "jackpots, Aviator-style crash games only where the data mentions "
+        "them). Explain wagering in plain language with a worked example "
+        "using the real terms. Name the REAL regulator provided, tell readers "
+        "to confirm an operator is licensed there before depositing, and "
+        "never claim a casino holds a licence the data doesn't state. "
+        "Include a responsible-gambling section: casino games have a built-in "
+        "house edge, so set a budget and never chase losses."
     ),
 }
 
@@ -169,6 +182,21 @@ def _bookmaker_block(code: str, limit: int = 6) -> str:
     return "\n".join(lines)
 
 
+def _casino_block(code: str, limit: int = 6) -> str:
+    """Real CASINOS entries priced in this country's currency — the casino
+    angle's equivalent of _bookmaker_block. Empty means no real casino data
+    for this market, and the caller skips rather than inventing brands."""
+    top = sorted(casinos_for_country(code), key=lambda c: c.get("stars", 0), reverse=True)[:limit]
+    lines = []
+    for c in top:
+        games = [label for flag, label in (("slots", "slots"), ("live", "live dealer"), ("jackpot", "jackpots")) if c.get(flag)]
+        lines.append(
+            f"- {c.get('name')}: {c.get('off')} (top: {c.get('top')}, min deposit: {c.get('min')}, "
+            f"games: {', '.join(games) or 'not stated'}, highlights: {c.get('tag')}) — {c.get('terms')}"
+        )
+    return "\n".join(lines)
+
+
 MIN_WORD_COUNT = 1000
 MIN_FAQ_ENTRIES = 3
 REQUIRED_FINAL_LINE = "*18+ | Bet Responsibly | T&Cs Apply*"
@@ -240,7 +268,8 @@ def generate_priority_post(item: dict) -> tuple[Optional[dict], str]:
         return None, "unknown_country_code"
 
     country_block, country_data = _country_block(code)
-    bookmaker_block = _bookmaker_block(code)
+    is_casino = item["guide_angle"] == "casino"
+    bookmaker_block = _casino_block(code) if is_casino else _bookmaker_block(code)
     if not country_block or not bookmaker_block:
         print(f"  ✗ No real site data found for {country_name} — skipping (never inventing bookmaker facts)")
         return None, "no_site_data"
@@ -307,11 +336,12 @@ Write the guide now, following every rule in the system prompt exactly."""
 
         if meta is None:
             return None, "quality_gate: " + "; ".join(last_failures) if last_failures else "unknown"
-        cat_meta = CATEGORIES["betting"]
+        category = "igaming" if is_casino else "betting"
+        cat_meta = CATEGORIES[category]
 
         post = {
             "id": f"post-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}-{item['guide_angle']}",
-            "category": "betting",
+            "category": category,
             "title": meta.get("title", ""),
             "slug": meta.get("slug", ""),
             "excerpt": meta.get("excerpt", ""),
@@ -320,7 +350,7 @@ Write the guide now, following every rule in the system prompt exactly."""
             "published_at": datetime.now(timezone.utc).isoformat(),
             "image_color": cat_meta["color"],
             "image_icon": cat_meta["icon"],
-            "tags": meta.get("tags", []) or [country_name, "Betting Guide"],
+            "tags": meta.get("tags", []) or [country_name, "Casino Guide" if is_casino else "Betting Guide"],
             "featured": False,
             "bookmaker_featured": meta.get("bookmaker_featured", ""),
             "read_time": meta.get("read_time", 6),

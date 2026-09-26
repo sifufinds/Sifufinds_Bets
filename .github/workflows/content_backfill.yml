@@ -136,6 +136,7 @@ jobs:
             # (blog/*/index.html, sitemap*.xml) are moot because the
             # regeneration step below overwrites them from scratch anyway.
             git merge --no-edit origin/main || true
+            python3 scripts/resolve_json_conflicts.py  # union-merge agent state JSON conflicts
             python3 agents/python/merge_posts.py
             python3 gen_blog_post_pages.py --force
             python3 gen_sitemap.py
