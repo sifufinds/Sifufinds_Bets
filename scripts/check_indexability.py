@@ -62,7 +62,7 @@ _RENAMED_COUNTRY_SLUGS = [
     "zimbabwe", "malawi", "mozambique", "angola", "dr-congo", "botswana",
     "namibia", "egypt", "morocco", "sierra-leone", "liberia",
 ]
-INTENTIONAL_NOINDEX_FILES = {"404.html", "analytics.html"} | {
+INTENTIONAL_NOINDEX_FILES = {"404.html", "analytics.html", "webhooks/index.html"} | {
     f"countries/{slug}/index.html" for slug in _RENAMED_COUNTRY_SLUGS
 }
 

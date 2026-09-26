@@ -58,7 +58,7 @@ RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 # config file holds secrets written at deploy time and must never be served.
 RewriteCond %{HTTP:Authorization} .
 RewriteRule ^webhooks/ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-RedirectMatch 404 ^/webhooks/rapidwombat-config\.php$
+RedirectMatch 404 ^/webhooks/rapidwombat-secrets\.php$
 
 # ── AFFILIATE LINK MASKING ────────────────────────────────────────────────────
 # Every bookmaker gets a clean sifufinds.com/<brand> URL for social sharing
