@@ -319,6 +319,23 @@ Every post must also be structured to get cited by AI answer engines (Google AI 
 - **Adding a new bookmaker brand**: add its slug to `BRAND_SLUGS` in `utils/affiliate_links.py` AND add the matching `RewriteRule ^<slug>/?$ "<real-url>" [R=301,L,NC]` to the `AFFILIATE LINK MASKING` block in `.htaccess` in the same change — the two must stay in sync or the masked link 404s. If an existing brand's affiliate URL changes (e.g. `affiliate` flips from `False` to `True` in `agent_telegram_offers.py`'s `BRANDS`), update its `.htaccess` rule at the same time.
 - Do not hand-patch one social agent and call it done — if you touch how affiliate links or CTAs are rendered, check `agent_telegram_offers.py`, `agent_match_post.py` (`build_bookmaker_block`, shared by match/casino/accumulator posts), `agent_casino_post.py`, `agent_accumulator_post.py`, `agent_twitter_posts.py`, and both `agent3_social*.py` files for the same pattern.
 
+## STANDING RULE — Hidden Brands (added 2026-09-26)
+
+**Any brand in `data/hidden_brands.json` must not be visible anywhere on the live site.** The user asked for these to be "completely hidden" and called the list "hidden brands" so they can request additions/removals later ("add X to hidden brands", "unhide Y"). Currently hidden (17): Hollywoodbets, Bet9ja, BetKing, SuperSportBet, BetXchange, TicTacBets, Playbet, Bettabets, Sunbet, Supabets, Easybet, Betfred SA, JSB Sport, Soccershop, FirstBet, Thababet, Interbet.
+
+**This overrides the "Brands With a Real Affiliate Link Are Always Top-of-List" rule below** — TicTacBets, BetXchange, Bettabets and Playbet carry real affiliate links but are hidden anyway.
+
+### How it works (deploy-time, reversible — repo source is never edited)
+- `scripts/hide_brands.py --apply` runs in `deploy_hostinger.yml` (step "Hide hidden brands from the deploy copy", after the validators, before the archive) on the CI checkout only. It: turns every page *about* a hidden brand (path under `bookmakers/<brand>/`, or `<title>`/`<h1>` naming one) into a noindex redirect stub + adds a `RedirectMatch 301` to the deploy copy's `.htaccess` + drops it from sitemaps; strips brand cards/ads, table columns/rows, FAQ items, heading sections, tag chips, links, list items and sentences from every other page (`scripts/hidden_brands_html.py`); scrubs JSON data files, `window.X={...}` data scripts, one-line JS object literals (e.g. `BOOKS` entries in `shared.js`), JSON-LD, `llms.txt`; then re-scans everything and **fails the deploy if any mention is still visible**. It also deletes `data/hidden_brands.json` from the deploy copy so the list itself isn't published.
+- `assets/shared.js` also carries `HIDDEN_BRAND_PATTERNS`/`HIDDEN_BRAND_DOMAINS` + `isHiddenBrand()` and filters `BOOKS`/`CASINOS`/`HEADER_BRANDS`/`TIPS`/`NEWS`/`ODDS_DATA` and the Supabase tips/news/live-odds feeds at runtime — data that never passes through the deploy step. `hide_brands.py` fails if these arrays drift from the JSON.
+- Because nothing in git is changed, **generators and agents can keep mentioning these brands**; every new post/page is scrubbed on its next deploy automatically.
+
+### To hide / unhide a brand
+1. Edit `data/hidden_brands.json` (`name`, whole-word regex `patterns`, and any tracking `domains` that don't contain the brand name).
+2. Mirror the patterns/domains into `HIDDEN_BRAND_PATTERNS`/`HIDDEN_BRAND_DOMAINS` in `assets/shared.js` (bump `?v=` per the cache-busting rule).
+3. Preview on a copy: `rsync` the tracked site files to a scratch dir, then `python3 scripts/hide_brands.py --apply --root <dir>` (it refuses to rewrite the working copy outside CI). Run `python3 scripts/test_hidden_brands.py`.
+- Out of scope: social posting agents (Telegram/X/Facebook) and the masked `sifufinds.com/<brand>` affiliate redirects in `.htaccess` are not the website and still work — change them only if the user asks.
+
 ## STANDING RULE — Brands With a Real Affiliate Link Are Always Top-of-List + Featured (added 2026-08-07)
 
 **Every bookmaker in `assets/shared.js`'s `BOOKS` object whose `url` points at a real affiliate-tracking domain (not the brand's own homepage) must sit at the top of its country's array, and be included in `HEADER_BRANDS` (the site-wide "🔥 Featured" bar).** This is a permanent rule, not a one-off cleanup — apply it every time a brand's `url` is changed from a placeholder homepage link to a real tracking link, and every time a new affiliate deal is onboarded.
