@@ -248,14 +248,19 @@ jobs:
           RW_WEBHOOK_TOKEN: ${{ secrets.RAPIDWOMBAT_WEBHOOK_TOKEN }}
           RW_DISPATCH_TOKEN: ${{ secrets.RAPIDWOMBAT_DISPATCH_TOKEN }}
         run: |
+          # Pasted secrets often carry a trailing newline/space — strip it.
+          RW_WEBHOOK_TOKEN="$(printf '%s' "$RW_WEBHOOK_TOKEN" | tr -d '[:space:]')"
+          RW_DISPATCH_TOKEN="$(printf '%s' "$RW_DISPATCH_TOKEN" | tr -d '[:space:]')"
           if [ -z "$RW_WEBHOOK_TOKEN" ] || [ -z "$RW_DISPATCH_TOKEN" ]; then
             echo "::warning::RAPIDWOMBAT_WEBHOOK_TOKEN / RAPIDWOMBAT_DISPATCH_TOKEN not set — RapidWombat webhook stays disabled"
             exit 0
           fi
-          for t in "$RW_WEBHOOK_TOKEN" "$RW_DISPATCH_TOKEN"; do
-            if ! printf '%s' "$t" | grep -Eq '^[A-Za-z0-9_-]{16,255}$'; then
-              echo "::error::RapidWombat secrets must be 16-255 chars of letters, digits, _ or -"
-              exit 1
+          # A bad secret disables the webhook but never blocks the site deploy.
+          for name in RW_WEBHOOK_TOKEN RW_DISPATCH_TOKEN; do
+            value="${!name}"
+            if ! printf '%s' "$value" | grep -Eq '^[A-Za-z0-9_-]{16,255}$'; then
+              echo "::warning::$name is not 16-255 chars of letters, digits, _ or - (length ${#value}) — RapidWombat webhook stays disabled"
+              exit 0
             fi
           done
           printf "<?php\nreturn ['webhook_token' => '%s', 'dispatch_token' => '%s'];\n" \
