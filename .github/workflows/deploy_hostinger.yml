@@ -288,8 +288,16 @@ jobs:
           MAX_ATTEMPTS=3
           SUCCESS=false
 
+          # removeArchive:true deletes the zip after every attempt, even one
+          # whose deploy call failed, so attempts 2-3 used to die instantly
+          # with "Archive file not found" (seen 2026-09-26 after a Hostinger
+          # 500). Keep a pristine copy and restore it before each attempt.
+          ARCHIVE_BACKUP="$RUNNER_TEMP/$(basename "$ARCHIVE_PATH")"
+          cp "$ARCHIVE_PATH" "$ARCHIVE_BACKUP"
+
           for attempt in 1 2 3; do
             echo "━━ Deploy attempt $attempt/$MAX_ATTEMPTS ━━"
+            [ -f "$ARCHIVE_PATH" ] || cp "$ARCHIVE_BACKUP" "$ARCHIVE_PATH"
 
             MCP_STDERR_LOG="$(mktemp)"
             RESULT=$(printf '%s\n%s\n' "$INIT" "$DEPLOY" \
