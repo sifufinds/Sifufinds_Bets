@@ -95,6 +95,7 @@ jobs:
             git fetch origin main
             git merge --no-edit origin/main || true
             git add -A
+            scripts/assert_no_conflict_markers.sh || exit 1
             git commit -m "plan: weekly growth plan $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
           done
 
