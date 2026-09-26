@@ -1449,7 +1449,7 @@ function _sbRowToEvent(row){
     hScore:row.h_score??null,aScore:row.a_score??null,
     time:row.time_disp||row.time,
     h:Number(row.h_odds||row.h)||0,d:Number(row.d_odds||row.d)||0,a:Number(row.a_odds||row.a)||0,
-    hBk:row.h_bk||row.hBk||'',dBk:row.d_bk||row.dBk||'',aBk:row.a_bk||row.aBk||''
+    hBk:_visibleBk(row.h_bk||row.hBk||''),dBk:_visibleBk(row.d_bk||row.dBk||''),aBk:_visibleBk(row.a_bk||row.aBk||'')
   };
 }
 
