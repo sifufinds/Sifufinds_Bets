@@ -197,6 +197,7 @@ jobs:
                 sleep 5
                 git fetch origin main
                 git merge --no-edit origin/main || true
+                python3 scripts/resolve_json_conflicts.py  # union-merge agent state JSON conflicts
                 # merge_posts.py is the JSON-aware merge for blog/posts.json — it
                 # reads HEAD/FETCH_HEAD via `git show` (bypassing any conflict
                 # markers the raw `git merge` above may have left in the working

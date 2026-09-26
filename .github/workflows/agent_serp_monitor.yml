@@ -85,6 +85,7 @@ jobs:
             sleep 5
             git fetch origin main
             git merge --no-edit origin/main || true
+            python3 scripts/resolve_json_conflicts.py  # union-merge agent state JSON conflicts
             git add -A
             scripts/assert_no_conflict_markers.sh || exit 1
             git commit -m "monitor: SERP rank check $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty

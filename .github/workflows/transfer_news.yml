@@ -281,6 +281,7 @@ jobs:
                 sleep 5
                 git fetch origin main
                 git merge --no-edit origin/main || true
+                python3 scripts/resolve_json_conflicts.py  # union-merge agent state JSON conflicts
                 # This whole step runs under `set +e` (see top of the loop),
                 # so a merge_posts.py failure would otherwise fall straight
                 # through to `git add -A`/`git commit` below and ship
