@@ -1,0 +1,23 @@
+{
+  "_about": "HIDDEN BRANDS — bookmakers the site owner has asked to hide from the live website completely. Single source of truth. scripts/hide_brands.py strips every brand below from the deploy copy of the site (pages, data files, sitemaps) in deploy_hostinger.yml, right before the upload archive is built; repo source files are never edited, so un-hiding a brand = delete its entry here (and from HIDDEN_BRAND_PATTERNS in assets/shared.js, which --check keeps in sync). 'patterns' are case-insensitive regex fragments matched as whole words; 'domains' lists tracking/redirect hosts that don't contain the brand name itself.",
+  "added": "2026-09-26",
+  "brands": [
+    {"name": "Hollywoodbets", "patterns": ["hollywood ?bets?"], "domains": ["hollywoodbets.net"]},
+    {"name": "Bet9ja", "patterns": ["bet9ja"], "domains": []},
+    {"name": "BetKing", "patterns": ["betking"], "domains": []},
+    {"name": "SuperSportBet", "patterns": ["super ?sport ?bets?"], "domains": []},
+    {"name": "BetXchange", "patterns": ["bet ?xchange"], "domains": ["trkbxa.click"]},
+    {"name": "TicTacBets", "patterns": ["tic ?tac ?bets?"], "domains": []},
+    {"name": "Playbet", "patterns": ["playbets?"], "domains": []},
+    {"name": "Bettabets", "patterns": ["betta ?bets?"], "domains": ["bettapartners.co.za"]},
+    {"name": "Sunbet", "patterns": ["sunbets?"], "domains": []},
+    {"name": "Supabets", "patterns": ["supabets?"], "domains": []},
+    {"name": "Easybet", "patterns": ["easybets?"], "domains": []},
+    {"name": "Betfred SA", "patterns": ["betfred"], "domains": []},
+    {"name": "JSB Sport", "patterns": ["jsb ?sport"], "domains": []},
+    {"name": "Soccershop", "patterns": ["soccershop"], "domains": []},
+    {"name": "FirstBet", "patterns": ["firstbets?"], "domains": []},
+    {"name": "Thababet", "patterns": ["thababets?"], "domains": []},
+    {"name": "Interbet", "patterns": ["interbets?"], "domains": []}
+  ]
+}

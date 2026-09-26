@@ -205,7 +205,8 @@ jobs:
         # this, every deploy fails at CHECK 4 with ModuleNotFoundError before
         # a single file reaches Hostinger (found 2026-07-27 after ~6 hours of
         # silently failed deploys).
-        run: pip install Pillow
+        # beautifulsoup4: scripts/hide_brands.py (hidden brands step below).
+        run: pip install Pillow beautifulsoup4
 
       - name: Validate site — check for 403/404 issues
         run: |
@@ -227,6 +228,16 @@ jobs:
       - name: Validate site — country-count guard (catches stale "N African countries" copy)
         run: |
           python3 scripts/check_country_count.py
+
+      - name: Hide hidden brands from the deploy copy
+        # HIDDEN BRANDS (CLAUDE.md standing rule, 2026-09-26): strips every
+        # brand in data/hidden_brands.json from this checkout's pages, data
+        # files and sitemaps, redirects pages about those brands, then fails
+        # if any mention is still visible. Runs after the validators (which
+        # check the untouched source) and only rewrites this CI checkout —
+        # nothing is committed back, so un-hiding a brand is a JSON edit.
+        run: |
+          python3 scripts/hide_brands.py --apply
 
       - name: Validate deploy token
         env:

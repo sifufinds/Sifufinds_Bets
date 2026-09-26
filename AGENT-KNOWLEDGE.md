@@ -1736,4 +1736,22 @@ User asked for another free, no-signup, no-API-key tool alongside Groq (to reduc
 
 **Errors to Never Repeat**: don't re-run a shallow g4f provider search after finding one working candidate — the previous 2026-08-08 pin (3 providers, tested once) rotted to 0/3 within about two weeks, and this pass's broader search still only turned up one viable option out of ~45 tried, meaning the pool of genuinely free/no-key/no-browser g4f providers that follow strict system-prompt instructions is small and shrinking, not an area where "look harder" reliably produces more redundancy. If this search is repeated in future, don't waste time re-testing the "needs browser_cookie3/zendriver/HAR file" family — those are structurally excluded by this environment (no real browser), not candidates that might start working with more digging.
 
-*Last updated: 2026-08-23 by Claude Code*
+---
+
+## 2026-09-26 — Hidden Brands (deploy-time brand removal)
+
+User asked to hide 17 bookmakers "completely" from the live site (see CLAUDE.md "STANDING RULE — Hidden Brands"). They appeared in 1,418 of 1,741 HTML pages and in the prose of 876 of 943 blog posts, so hand-editing was never an option.
+
+**Code Patterns**
+- Chose a deploy-time filter (`scripts/hide_brands.py`) over editing source: it's reversible (un-hide = JSON edit), and new AI-written posts that name these brands get scrubbed automatically on their next deploy. The repo keeps full content.
+- Text removal goes least-destructive first: remove the brand from a list of bookmakers only when a neighbouring item is itself a bookmaker (so "Bet9ja, for example, offers…" is never mangled), otherwise drop the sentence. In HTML, inline children are swapped for atomic placeholders, so sentence splitting never cuts through a tag.
+- Full site run: ~20 s on 8 cores. 25 pages became redirects, 1,639 files changed, and visible text dropped about 6% on average (max ~24% on South Africa pages).
+
+**Errors to Never Repeat**
+- `bs4 .get_text()` with no separator glues table cells together ("Bet9jaDecimal"), which silently defeats whole-word regexes. Always use `get_text(" ")` for matching.
+- A tool that scrubs "every deployed JSON file" must exclude its own config. The first run scrubbed `data/hidden_brands.json` down to an empty list mid-run, so pool workers kept failing on start and being respawned forever, which looked like a hang.
+- A `<table>` with only a header row is usually filled by JS at runtime, so never treat "no body rows" as "remove the table".
+- A plain `<span>📌 Bet9ja</span>` beside date/author spans made the whole post header count as one "sentence", and it got deleted. Short inline elements outside prose must be removed on their own.
+- Never use regex lookbehind in `shared.js`: older Safari throws on it at parse time, which blanks every page.
+
+*Last updated: 2026-09-26 by Claude Code*
