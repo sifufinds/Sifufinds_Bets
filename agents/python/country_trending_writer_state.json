@@ -495,31 +495,35 @@
     "US Embassy builds coaching pipeline girls’ football betting tips Ghana": {
       "slug": "us-embassy-ghana-girls-football-betting-tips",
       "posted_at": "2026-09-26T18:17:49.990212+00:00"
+    },
+    "Dobbo Stormers' Galway victory 'It's going sound arrogant, betting tips South Africa": {
+      "slug": "stormers-urc-win-dobson-betting-tips-south-africa",
+      "posted_at": "2026-09-26T22:13:02.398252+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-26T20:26:00.190035+00:00",
+    "checked_at": "2026-09-26T22:19:03.948079+00:00",
     "candidates_available": 335,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "CAF Pays Tribute Ohale International Retirement betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Ohale’s 16‑year spell with the Super Falcons saw five WAFCON titles and countless clean‑sheet performances.; ₦2,500 free bet on signup + up to 170 % ACCA boost; ₦100 free bets + 10 Aviator flights, no deposit needed; 100 % first deposit bonus up to ₦207,500; 300 % first deposit bonus up to ₦1,200,000; Bet9ja and BetKing consistently post competitive odds on Nigeria’s international fixtures. While Bet9ja often offers slightly tighter odds on the win market, BetKing compensates with its no‑deposit free bets that can be used on the total‑goals market."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 451)"
       },
       {
         "keyword": "Dobbo Stormers' Galway victory 'It's going sound arrogant, betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "fact_check: Supabets provides a 100% match bonus up to R5,000; 1.75; 1.90; 1.85; 1.80; 1.85; 1.90; 1.70; 1.95; 1.80; R25 free bet from Hollywoodbets"
+        "result": "written",
+        "slug": "stormers-urc-win-dobson-betting-tips-south-africa"
       },
       {
         "keyword": "Malawi Taekwondo Association Malawi Hold Awareness Games Blantyre betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: 22Bet Tanzania provides a 100% first deposit bonus up to TSh 460,000; TSh 5,000; 250% Karibu Gift; 100% up to TSh 460,000; 200% up to TSh 500,000; 100% up to €100; 50% up to TSh 120,000"
+        "reason": "fact_check: SportPesa Tanzania offers a 250% Karibu Gift on your first deposit; 22Bet Tanzania provides a 100% first deposit bonus up to TSh 460,000; Betika Tanzania provides a free bet and TSh 5,000 welcome bonus; SportPesa Tanzania offers a 250% Karibu Gift on your first deposit"
       }
     ]
   }
