@@ -157,6 +157,7 @@ jobs:
             python3 gen_blog_post_pages.py --force
             python3 gen_sitemap.py
             git add -A
+            scripts/assert_no_conflict_markers.sh || exit 1
             git commit -m "fix: fabricated-odds cleanup batch $(date -u '+%Y-%m-%d') UTC (merged)" --allow-empty
           done
 

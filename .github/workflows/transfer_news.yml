@@ -295,8 +295,13 @@ jobs:
                   echo "::warning::merge_posts.py failed — resetting blog/posts.json to origin/main instead of committing a possibly-corrupted merge"
                   git checkout origin/main -- blog/posts.json blog/posts-data.js
                 fi
+                # gen_blog_post_pages.py skips pages that already exist (no --force),
+                # so a page the merge left conflicted would be committed as-is.
+                # Delete conflicted generated pages so they are rebuilt clean.
+                git diff --name-only --diff-filter=U | grep -E '^blog/.+/index\.html$' | xargs -r rm -f
                 python3 gen_blog_post_pages.py
                 git add -A
+                scripts/assert_no_conflict_markers.sh || exit 1
                 git commit -m "🔄 Transfer news: $(date -u '+%Y-%m-%d %H:%M') UTC (merged)" --allow-empty
               done
               if [ "$PUSHED" -ne 1 ]; then
