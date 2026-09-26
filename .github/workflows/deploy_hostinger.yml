@@ -239,6 +239,29 @@ jobs:
         run: |
           python3 scripts/hide_brands.py --apply
 
+      - name: Write RapidWombat webhook secrets into the deploy copy
+        # webhooks/rapidwombat.php reads its bearer token and GitHub dispatch
+        # token from webhooks/rapidwombat-secrets.php. The repo is public, so
+        # that file is gitignored and only ever written here, into the CI
+        # checkout that gets zipped. Missing secrets = endpoint answers 503.
+        env:
+          RW_WEBHOOK_TOKEN: ${{ secrets.RAPIDWOMBAT_WEBHOOK_TOKEN }}
+          RW_DISPATCH_TOKEN: ${{ secrets.RAPIDWOMBAT_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$RW_WEBHOOK_TOKEN" ] || [ -z "$RW_DISPATCH_TOKEN" ]; then
+            echo "::warning::RAPIDWOMBAT_WEBHOOK_TOKEN / RAPIDWOMBAT_DISPATCH_TOKEN not set — RapidWombat webhook stays disabled"
+            exit 0
+          fi
+          for t in "$RW_WEBHOOK_TOKEN" "$RW_DISPATCH_TOKEN"; do
+            if ! printf '%s' "$t" | grep -Eq '^[A-Za-z0-9_-]{16,255}$'; then
+              echo "::error::RapidWombat secrets must be 16-255 chars of letters, digits, _ or -"
+              exit 1
+            fi
+          done
+          printf "<?php\nreturn ['webhook_token' => '%s', 'dispatch_token' => '%s'];\n" \
+            "$RW_WEBHOOK_TOKEN" "$RW_DISPATCH_TOKEN" > webhooks/rapidwombat-secrets.php
+          echo "✅ RapidWombat webhook secrets written to the deploy copy"
+
       - name: Validate deploy token
         env:
           HOSTINGER_API_TOKEN: ${{ secrets.HOSTINGER_API_TOKEN }}

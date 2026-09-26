@@ -1,0 +1,180 @@
+name: RapidWombat Import — publish webhook articles
+
+# Triggered by webhooks/rapidwombat.php (https://sifufinds.com/webhooks/rapidwombat.php)
+# the moment RapidWombat publishes an article. The PHP endpoint verifies
+# RapidWombat's bearer token and forwards the article here as a
+# repository_dispatch event; this job imports it into blog/posts.json,
+# regenerates the page, runs every pre-deploy gate, and pushes. The normal
+# deploy_hostinger.yml push/schedule trigger then ships it.
+#
+# Gates run BEFORE committing, so an article that would fail compliance or
+# SEO checks is never committed and can't block every other deploy (the
+# 2026-09-26 lesson in AGENT-KNOWLEDGE.md).
+#
+# Retries: workflow_watchdog.yml re-triggers via workflow_dispatch, which
+# would drop the article payload, so this workflow is deliberately not on
+# its list. Instead a transient failure (network, push race) re-sends its own
+# payload after 10 minutes, up to 3 attempts. A failed gate is retried too,
+# since it can be caused by another bot's bad commit already on main. Only an
+# article the importer rejects (exit 2) is final — it would fail the same way.
+
+on:
+  repository_dispatch:
+    types: [rapidwombat_article]
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: 'Article JSON: {"id":"...","title":"...","content":"markdown","cover_image":"https://..."}'
+        required: true
+
+concurrency:
+  group: rapidwombat-import
+  cancel-in-progress: false  # queue every article, never drop one
+
+permissions:
+  contents: write
+
+env:
+  MAX_ATTEMPTS: 3
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      retryable: ${{ steps.classify.outputs.retryable }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest content (avoid stale reads)
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Install fonts for feature-image generation
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core fonts-noto-color-emoji
+
+      - name: Write article payload
+        env:
+          DISPATCH_PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+          MANUAL_PAYLOAD: ${{ github.event.inputs.payload }}
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            printf '%s' "$DISPATCH_PAYLOAD" > "$RUNNER_TEMP/article.json"
+          else
+            printf '%s' "$MANUAL_PAYLOAD" > "$RUNNER_TEMP/article.json"
+          fi
+          jq -r '"Article id=\(.id) attempt=\(.attempt // 1): \(.title)"' "$RUNNER_TEMP/article.json"
+
+      - name: Import article into blog/posts.json
+        id: import
+        working-directory: agents/python
+        run: |
+          set +e
+          python agent_rapidwombat_import.py --payload-file "$RUNNER_TEMP/article.json"
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit $code
+
+      - name: Generate static blog post pages
+        run: python3 gen_blog_post_pages.py
+
+      - name: Run every pre-deploy gate before committing
+        id: gates
+        run: |
+          python3 scripts/validate_site.py
+          python3 scripts/audit_titles.py
+          python3 scripts/check_indexability.py
+          python3 scripts/seo_check.py
+          python3 scripts/compliance_check.py
+          python3 scripts/check_country_count.py
+
+      - name: Commit and push
+        id: push
+        run: |
+          git config --local user.email "rapidwombat-bot@sifufinds.com"
+          git config --local user.name "SifuFinds RapidWombat Import"
+          SLUG="${{ steps.import.outputs.slug }}"
+          git add blog/posts.json blog/posts-data.js blog/ assets/og/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          scripts/assert_no_conflict_markers.sh || exit 1
+          git commit -m "feat: publish RapidWombat article /blog/$SLUG/"
+
+          for _attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "✅ Pushed on attempt $_attempt — live at https://sifufinds.com/blog/$SLUG/ after the next deploy"
+              break
+            fi
+            if [ "$_attempt" -eq 5 ]; then
+              echo "❌ Push failed after 5 attempts"
+              exit 1
+            fi
+            echo "Push rejected (attempt $_attempt/5) — merging and retrying in 5s..."
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            python3 scripts/resolve_json_conflicts.py
+            python3 agents/python/merge_posts.py
+            git diff --name-only --diff-filter=U | grep -E '^blog/.+/index\.html$' | xargs -r rm -f
+            python3 gen_blog_post_pages.py
+            git add -A
+            scripts/assert_no_conflict_markers.sh || exit 1
+            git commit -m "feat: publish RapidWombat article /blog/$SLUG/ (merged)" --allow-empty
+          done
+
+      - name: Classify failure
+        id: classify
+        if: failure()
+        run: |
+          # Exit 2 = the importer rejected the article itself (thin, malformed,
+          # title/content mismatch). Retrying the same payload can't help.
+          if [ "${{ steps.import.outputs.exit_code }}" = "2" ]; then
+            echo "::error::RapidWombat article rejected — see the import step log, fix it in RapidWombat and republish."
+            echo "retryable=false" >> "$GITHUB_OUTPUT"
+          else
+            if [ "${{ steps.gates.outcome }}" = "failure" ]; then
+              echo "::warning::A pre-deploy gate failed — the gate log shows whether it was this article or an existing issue on main."
+            fi
+            echo "retryable=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  retry:
+    needs: import
+    if: failure() && needs.import.outputs.retryable == 'true' && github.event_name == 'repository_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Re-send the same article after 10 minutes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISPATCH_PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+        run: |
+          ATTEMPT=$(printf '%s' "$DISPATCH_PAYLOAD" | jq '.attempt // 1')
+          if [ "$ATTEMPT" -ge "$MAX_ATTEMPTS" ]; then
+            echo "::error::Giving up after $ATTEMPT attempts"
+            exit 1
+          fi
+          sleep 600
+          printf '%s' "$DISPATCH_PAYLOAD" \
+            | jq '{event_type: "rapidwombat_article", client_payload: (. + {attempt: ((.attempt // 1) + 1)})}' \
+            | gh api "repos/${{ github.repository }}/dispatches" --input -
+          echo "🔁 Re-dispatched as attempt $((ATTEMPT + 1))"
