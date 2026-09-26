@@ -1752,6 +1752,7 @@ User asked to hide 17 bookmakers "completely" from the live site (see CLAUDE.md 
 - A tool that scrubs "every deployed JSON file" must exclude its own config. The first run scrubbed `data/hidden_brands.json` down to an empty list mid-run, so pool workers kept failing on start and being respawned forever, which looked like a hang.
 - A `<table>` with only a header row is usually filled by JS at runtime, so never treat "no body rows" as "remove the table".
 - A plain `<span>📌 Bet9ja</span>` beside date/author spans made the whole post header count as one "sentence", and it got deleted. Short inline elements outside prose must be removed on their own.
+- Leak checks must scan the *rendered* page too: the first live check (2026-09-26) still found a ticker file with a leading `/* */` comment that the `window.X=` matcher skipped, brand names in JS comments and prose strings, and a Playabets card using abbr `PLB` (Playbet's code), so it showed Playbet's logo. The check now fails on any mention in any deployed text file, not just "visible" ones.
 - Never use regex lookbehind in `shared.js`: older Safari throws on it at parse time, which blanks every page.
 
 *Last updated: 2026-09-26 by Claude Code*

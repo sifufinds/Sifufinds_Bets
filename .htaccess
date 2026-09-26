@@ -52,6 +52,14 @@ RewriteRule ^(.*)$ https://sifufinds.com/$1 [R=301,L]
 RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
 RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 
+# ── RAPIDWOMBAT WEBHOOK ───────────────────────────────────────────────────────
+# webhooks/rapidwombat.php authenticates with "Authorization: Bearer <token>",
+# which LiteSpeed/Apache strip before PHP unless copied into an env var. The
+# config file holds secrets written at deploy time and must never be served.
+RewriteCond %{HTTP:Authorization} .
+RewriteRule ^webhooks/ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RedirectMatch 404 ^/webhooks/rapidwombat-config\.php$
+
 # ── AFFILIATE LINK MASKING ────────────────────────────────────────────────────
 # Every bookmaker gets a clean sifufinds.com/<brand> URL for social sharing
 # instead of the raw affiliate tracking link (see agents/python/utils/

@@ -22,6 +22,7 @@ What --apply does:
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import os
 import posixpath
@@ -43,7 +44,7 @@ EXCLUDE_DIRS = {"agents", "scripts", "supabase", "firecrawl", "geo-content-write
 TEXT_EXTS = {".html", ".json", ".js", ".xml", ".txt"}
 CONFIG_REL = "data/hidden_brands.json"
 HTACCESS_MARK = "# ── HIDDEN BRANDS (added at deploy by scripts/hide_brands.py) ──"
-_WINDOW_JSON = re.compile(r"^(\s*window\.[\w$]+\s*=\s*)(.*?)(;?\s*)$", re.S)
+_WINDOW_JSON = re.compile(r"^((?:\s*/\*.*?\*/|\s*//[^\n]*)*\s*window\.[\w$]+\s*=\s*)(.*?)(;?\s*)$", re.S)
 _SAFE_PATH = re.compile(r"^[a-z0-9][a-z0-9/_-]*/$")
 
 
@@ -121,9 +122,8 @@ def _check_file(rel: str) -> tuple[str, list[str]]:
     if rel.endswith(".html"):
         return rel, visible_leaks(src, Page(rel, hb, _CTX["stubbed"]))
     if rel.endswith(".js"):
-        if _WINDOW_JSON.match(src) and hb.mentions(src):
-            return rel, ["data script"]
-        return rel, ["js data line"] if scrub_js(src, hb) != src else []
+        m = hb.regex.search(src)
+        return rel, [m.group(0)] if m else (["tracking domain"] if hb.mentions(src) else [])
     return rel, [m.group(0) for m in hb.regex.finditer(src)][:5] if hb.mentions(src) else []
 
 
@@ -205,10 +205,14 @@ def config_drift(root: Path, hb: HiddenBrands) -> list[str]:
     for const, expected in (("HIDDEN_BRAND_PATTERNS", list(hb.patterns)),
                             ("HIDDEN_BRAND_DOMAINS", list(hb.domains))):
         m = re.search(rf"const {const}=(\[[^\]]*\]);", js)
-        if not m:
+        enc = re.search(rf"const {const}=JSON\.parse\(atob\('([A-Za-z0-9+/=]*)'\)\);", js)
+        if m:
+            found = json.loads(m.group(1).replace("'", '"'))
+        elif enc:  # deploy copy: list shipped base64-encoded
+            found = json.loads(base64.b64decode(enc.group(1)))
+        else:
             problems.append(f"assets/shared.js has no {const}")
             continue
-        found = json.loads(m.group(1).replace("'", '"'))
         if found != expected:
             problems.append(f"assets/shared.js {const} {found} != data/hidden_brands.json {expected}")
     return problems

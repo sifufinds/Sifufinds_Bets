@@ -465,7 +465,7 @@ def generate_page(code, c):
   </div>
 </div>
 
-<script src="../assets/shared.js?v=29"></script>
+<script src="../assets/shared.js?v=30"></script>
 <script>
 const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'
 }};
@@ -844,7 +844,7 @@ def generate_emerging_page(code, c):
   </div>
 </div>
 
-<script src="../assets/shared.js?v=29"></script>
+<script src="../assets/shared.js?v=30"></script>
 <script>
 const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'
 }};
@@ -1141,7 +1141,7 @@ def generate_restricted_page(code, c):
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only. Gambling can be addictive. Play responsibly.
 </div>
 
-<script src="../assets/shared.js?v=29"></script>
+<script src="../assets/shared.js?v=30"></script>
 <script>
 const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'
 }};

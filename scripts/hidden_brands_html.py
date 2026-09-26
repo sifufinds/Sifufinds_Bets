@@ -12,6 +12,7 @@ Anything still visible after that (a safety net) loses its nearest block.
 """
 from __future__ import annotations
 
+import base64
 import html as html_lib
 import json
 import posixpath
@@ -327,9 +328,67 @@ def _safety_net(soup, page: Page) -> None:
 
 def scrub_js(src: str, hb: HiddenBrands) -> str:
     """Drop one-line object literals / comments naming a hidden brand."""
-    lines = src.split("\n")
-    kept = [ln for ln in lines if not (hb.mentions(ln) and _JS_DROP_LINE.match(ln))]
-    return "\n".join(kept) if len(kept) != len(lines) else src
+    if not hb.mentions(src):
+        return src
+    kept, in_block = [], False
+    for ln in src.split("\n"):
+        starts_in_block = in_block
+        in_block = _block_state(ln, in_block)
+        if not hb.mentions(ln):
+            kept.append(ln)
+        elif starts_in_block or (ln.lstrip().startswith("/*")):
+            kept.append(_strip_brand_words(ln, hb))  # inside a /* */ comment
+        elif _JS_DROP_LINE.match(ln):
+            continue
+        elif _JS_HIDDEN_CONST.match(ln):
+            kept.append(_encode_hidden_const(ln))
+        else:
+            ln = _scrub_js_literals(ln, hb)
+            comment = re.search(r"(?<![:'\"\\])//.*$", ln)
+            if comment and hb.mentions(comment.group(0)):
+                ln = ln[:comment.start()].rstrip()
+            kept.append(ln)
+    return "\n".join(kept)
+
+
+def _block_state(line: str, in_block: bool) -> bool:
+    """Track whether a /* */ comment is still open after this line (string-naive, fine for comments)."""
+    for tok in re.findall(r"/\*|\*/", line):
+        in_block = tok == "/*"
+    return in_block
+
+
+def _strip_brand_words(text: str, hb: HiddenBrands) -> str:
+    out = hb.regex.sub("", text)
+    for d in hb.domains:
+        out = re.sub(re.escape(d), "", out, flags=re.I)
+    return re.sub(r"(?<=\S) {2,}", " ", out)
+
+
+_JS_HIDDEN_CONST = re.compile(r"^(\s*const HIDDEN_BRAND_(?:PATTERNS|DOMAINS)=)(\[.*\]);\s*$")
+_JS_STR = r"'(?:[^'\\\n]|\\.)*'|\"(?:[^\"\\\n]|\\.)*\""
+_JS_PAIR = re.compile(rf"\s*(?:{_JS_STR})\s*:\s*(?:{_JS_STR})\s*,?")
+_JS_TOKEN = re.compile(rf"\s*(?:'[^'\s\\]*'|\"[^\"\s\\]*\")\s*,?")
+_JS_LITERAL = re.compile(_JS_STR)
+
+
+def _encode_hidden_const(line: str) -> str:
+    """Ship shared.js's own hidden-brand list base64-encoded so no name appears in plain text."""
+    m = _JS_HIDDEN_CONST.match(line)
+    items = json.loads(m.group(2).replace("'", '"'))
+    blob = base64.b64encode(json.dumps(items).encode()).decode()
+    return f"{m.group(1)}JSON.parse(atob('{blob}'));"
+
+
+def _scrub_js_literals(line: str, hb: HiddenBrands) -> str:
+    """Remove brand map pairs ('HW':'x.net',) and array tokens ('x.co.za',); scrub prose strings."""
+    line = _JS_PAIR.sub(lambda m: "" if hb.mentions(m.group(0)) else m.group(0), line)
+    line = _JS_TOKEN.sub(lambda m: "" if hb.mentions(m.group(0)) else m.group(0), line)
+
+    def prose(m: re.Match) -> str:
+        lit = m.group(0)
+        return lit[0] + scrub_text(lit[1:-1], hb) + lit[-1] if hb.mentions(lit) else lit
+    return _JS_LITERAL.sub(prose, line)
 
 
 def _scrub_scripts(soup, page: Page) -> None:
@@ -408,8 +467,9 @@ def visible_leaks(source: str, page: Page) -> list[str]:
         src = s.string or ""
         if (s.get("type") or "").lower() == "application/ld+json" and hb.mentions(src):
             leaks.append("json-ld: " + hb.regex.search(src).group(0) if hb.regex.search(src) else "json-ld")
-        elif any(hb.mentions(ln) and _JS_DROP_LINE.match(ln) for ln in src.split("\n")):
-            leaks.append("inline script data line")
+        elif hb.mentions(src):
+            m = hb.regex.search(src)
+            leaks.append("inline script: " + (m.group(0) if m else "tracking domain"))
     return leaks
 
 
