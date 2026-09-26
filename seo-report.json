@@ -1,55 +1,13 @@
 {
   "date": "2026-09-26",
-  "total": 38,
+  "total": 31,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 0,
     "MEDIUM": 30,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "bankroll-management-tips-using-todays-sports-stories",
-      "detail": "Title 61 chars (max 60): \"Bankroll Management Tips Using Today's Hottest Sports Stories\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "portugal-vs-wales-live-match-today-betting-tips-south-africa",
-      "detail": "Title 68 chars (max 60): 'Portugal vs Wales Live Match Today Betting Tips \u2013 South Africa Guide'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sharks-mombasa-united-playoff-betting-tips-kenya",
-      "detail": "Title 72 chars (max 60): 'Sharks vs Mombasa United Playoff Betting Tips Kenya \u2013 Reprieve SPL Gui'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-roundup-man-city-man-utd-real-madrid",
-      "detail": "Excerpt 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bankroll-management-tips-using-todays-sports-stories",
-      "detail": "Excerpt 227 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "portugal-vs-wales-live-match-today-betting-tips-south-africa",
-      "detail": "Excerpt 163 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sharks-mombasa-united-playoff-betting-tips-kenya",
-      "detail": "Excerpt 163 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
