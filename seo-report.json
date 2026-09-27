@@ -1,13 +1,229 @@
 {
-  "date": "2026-09-26",
-  "total": 31,
+  "date": "2026-09-27",
+  "total": 67,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 30,
+    "HIGH": 35,
+    "MEDIUM": 31,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "wallabies-vs-springboks-betting-tips-south-africa",
+      "detail": "Title 66 chars (max 60): 'Wallabies v Springboks Betting Tips: South Africa\u2019s Rugby Showdown'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "man-united-arsenal-legends-urge-pl-punish-man-city-nigeria",
+      "detail": "Title 91 chars (max 60): 'Man United, Arsenal Legends Urge PL to Punish Man City \u2013 What Nigerian'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "man-united-arsenal-legends-urge-premier-league-punish-betting-tips-nigeria",
+      "detail": "Title 77 chars (max 60): 'Man United vs Arsenal Legends Urge Premier League Punish Betting Tips '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ravens-vs-cowboys-betting-tips-kenya",
+      "detail": "Title 83 chars (max 60): 'Ravens vs. Cowboys Betting Tips Kenya: Anthem Singers Announced for NF'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "caf-pays-tribute-ohale-international-retirement-betting-tips-nigeria",
+      "detail": "Title 74 chars (max 60): 'CAF Pays Tribute Ohale International Retirement \u2013 Betting Tips for Nig'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "black-challenge-call-20-mexico-2026-amputee-football-betting-tips-ghana",
+      "detail": "Title 85 chars (max 60): 'Black Challenge Call 20 Mexico 2026 Amputee Football Betting Tips Ghan'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "malawi-taekwondo-awareness-games-betting-tips-tanzania",
+      "detail": "Title 68 chars (max 60): 'Malawi Taekwondo Awareness Games: Betting Tips for Tanzanian Punters'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "best-online-casino-nigeria-2026",
+      "detail": "Title 61 chars (max 60): 'Best Online Casino Nigeria 2026: Top Bonuses & Games Compared'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "afghan-cyclist-disguised-man-asian-betting-tips-nigeria",
+      "detail": "Title 64 chars (max 60): 'Afghan Cyclist Disguised as Man \u2013 Asian Betting Tips for Nigeria'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nigeria-okpebholo-marwa-marathon-scholarships-betting-tips-tanzania",
+      "detail": "Title 83 chars (max 60): 'Nigeria Okpebholo/Marwa Marathon Winners Scholarships Betting Tips \u2013 T'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "maroc-vs-gabon-betting-tips-tanzania",
+      "detail": "Title 65 chars (max 60): 'Maroc vs Gabon betting tips Tanzania \u2013 Best offers and how to win'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "stormers-urc-win-dobson-betting-tips-south-africa",
+      "detail": "Title 69 chars (max 60): \"Stormers' URC Win: Dobson's Bold Claim and South African Betting Tips\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "malawi-taekwondo-association-awareness-games-blantyre-betting-tips-tanzania",
+      "detail": "Title 80 chars (max 60): 'Malawi Taekwondo Association Awareness Games Blantyre: Betting Tips fo'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "caf-pays-tribute-ohale-retirement-betting-tips-nigeria",
+      "detail": "Title 88 chars (max 60): 'CAF Pays Tribute to Ohale Retirement: Top Betting Tips & Bookmaker Com'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-from-college-football-to-rugby-and-cycling",
+      "detail": "Title 65 chars (max 60): 'Global Sports Roundup: From College Football to Rugby and Cycling'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "us-embassy-ghana-girls-football-betting-tips",
+      "detail": "Title 69 chars (max 60): 'US Embassy Boosts Girls\u2019 Football in Ghana: Betting Tips and Insights'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "laver-cup-drama-world-darts-grand-Prix-college-football-updates",
+      "detail": "Title 97 chars (max 60): 'Laver Cup Drama, World Darts Grand Prix, and College Football: This We'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "man-united-arsenal-legends-urge-pl-punish-man-city-nigeria",
+      "detail": "Excerpt 209 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "man-united-arsenal-legends-urge-premier-league-punish-betting-tips-nigeria",
+      "detail": "Excerpt 177 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ravens-vs-cowboys-betting-tips-kenya",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "caf-pays-tribute-ohale-international-retirement-betting-tips-nigeria",
+      "detail": "Excerpt 206 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "black-challenge-call-20-mexico-2026-amputee-football-betting-tips-ghana",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "best-online-casino-nigeria-2026",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "afghan-cyclist-disguised-man-asian-betting-tips-nigeria",
+      "detail": "Excerpt 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nigeria-okpebholo-marwa-marathon-scholarships-betting-tips-tanzania",
+      "detail": "Excerpt 187 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "maroc-vs-gabon-betting-tips-tanzania",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "stormers-urc-win-dobson-betting-tips-south-africa",
+      "detail": "Excerpt 179 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "malawi-taekwondo-association-awareness-games-blantyre-betting-tips-tanzania",
+      "detail": "Excerpt 183 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "caf-pays-tribute-ohale-retirement-betting-tips-nigeria",
+      "detail": "Excerpt 165 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-from-college-football-to-rugby-and-cycling",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "us-embassy-ghana-girls-football-betting-tips",
+      "detail": "Excerpt 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "azerbaijan-gp-colapinto-penalty-russell-performance",
+      "detail": "Excerpt 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "laver-cup-drama-world-darts-grand-Prix-college-football-updates",
+      "detail": "Excerpt 160 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "fury-vs-joshua-zuffa-boxing-11-underdog-betting",
+      "detail": "Excerpt 218 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rugby-roundup-springboks-northampton-saints",
+      "detail": "Excerpt 176 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "caf-pays-tribute-ohale-international-retirement-betting-tips-nigeria",
+      "detail": "High title overlap (5 meaningful tokens) with 'caf-pays-tribute-ohale-retirement-betting-tips-nigeria' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
