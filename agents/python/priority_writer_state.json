@@ -724,31 +724,39 @@
     "Man United, Arsenal Legends Urge Premier League Punish betting tips Nigeria": {
       "slug": "man-united-arsenal-legends-urge-premier-league-punish-betting-tips-nigeria",
       "posted_at": "2026-09-27T09:59:46.782798+00:00"
+    },
+    "Amical / Maroc-Ghana jusqu’à 1 831 euros pour betting tips Tanzania": {
+      "slug": "amical-maroc-ghana-tips-tanzania",
+      "posted_at": "2026-09-27T12:00:05.522761+00:00"
+    },
+    "Nottingham Forest vs Coventry City on TV betting tips Kenya": {
+      "slug": "nottingham-forest-vs-coventry-city-betting-tips-kenya",
+      "posted_at": "2026-09-27T12:19:17.537580+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-27T10:20:44.849576+00:00",
-    "candidates_available": 395,
+    "checked_at": "2026-09-27T12:19:23.269304+00:00",
+    "candidates_available": 393,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Man United, Arsenal Legends Urge Premier League Punish betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "man-united-arsenal-legends-urge-premier-league-punish-betting-tips-nigeria"
-      },
       {
         "keyword": "Ghana amputee football team draw Angola, Colombia Iraq betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 450)"
+        "reason": "quality_gate: final line was 'All bonuses listed come with wagering requirements. For example, 1xBet’s 200 % bonus requires you to wager the bonus amount five times at odds of at least 1.40 before you can cash out. Check each bookmaker’s T&Cs for the exact conditions.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Wallabies v Springboks betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Focus on team form, player injuries, and weather conditions, as these factors significantly impact rugby outcomes. Handicap betting can also provide value when one team is heavily favoured, like the Springboks in recent fixtures.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "keyword": "Amical / Maroc-Ghana jusqu’à 1 831 euros pour betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "amical-maroc-ghana-tips-tanzania"
+      },
+      {
+        "keyword": "Nottingham Forest vs Coventry City on TV betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "nottingham-forest-vs-coventry-city-betting-tips-kenya"
       }
     ]
   }
