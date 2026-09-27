@@ -502,7 +502,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-27T00:56:53.202109+00:00",
+    "checked_at": "2026-09-27T02:40:34.427278+00:00",
     "candidates_available": 334,
     "attempted": 3,
     "written": 0,
@@ -511,13 +511,19 @@
         "keyword": "CAF Pays Tribute Ohale International Retirement betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 376)"
       },
       {
         "keyword": "Malawi Taekwondo Association Malawi Hold Awareness Games Blantyre betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: **Betika Tanzania** provides a free bet on signup and a TSh 5,000 welcome bonus; **22Bet Tanzania** offers a 100% first deposit bonus up to TSh 460,000; **SportPesa Tanzania** provides a 250% Karibu Gift on the first deposit; **1xBet Tanzania** stands out with its support for M-Pesa, Airtel Money, Tigo Pesa, Halotel Pesa, and Visa"
+      },
+      {
+        "keyword": "Portugal vs Wales Live Match Today betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: **Hollywoodbets** offers a R25 free bet with no deposit required; **Supabets** goes a step further with a R50 free bet on registration and a 100% match up to R5,000; **TicTacBets** offers 25 free spins on registration and a 100% match up to R5,000, plus an additional 50 spins on your first deposit; **FairPari South Africa** provides a 100% first deposit bonus up to €100"
       }
     ]
   }
