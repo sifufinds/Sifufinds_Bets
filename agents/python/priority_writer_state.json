@@ -720,31 +720,35 @@
     "Black Challenge call 20 Mexico 2026 Amputee Football betting tips Ghana": {
       "slug": "black-challenge-call-20-mexico-2026-amputee-football-betting-tips-ghana",
       "posted_at": "2026-09-27T06:42:35.473963+00:00"
+    },
+    "Man United, Arsenal Legends Urge Premier League Punish betting tips Nigeria": {
+      "slug": "man-united-arsenal-legends-urge-premier-league-punish-betting-tips-nigeria",
+      "posted_at": "2026-09-27T09:59:46.782798+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-27T07:01:55.765995+00:00",
-    "candidates_available": 392,
+    "checked_at": "2026-09-27T10:20:44.849576+00:00",
+    "candidates_available": 395,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Black Challenge call 20 Mexico 2026 Amputee Football betting tips Ghana",
-        "country": "Ghana",
+        "keyword": "Man United, Arsenal Legends Urge Premier League Punish betting tips Nigeria",
+        "country": "Nigeria",
         "result": "written",
-        "slug": "black-challenge-call-20-mexico-2026-amputee-football-betting-tips-ghana"
+        "slug": "man-united-arsenal-legends-urge-premier-league-punish-betting-tips-nigeria"
       },
       {
-        "keyword": "Nottingham Forest vs Coventry City on TV betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, all the bookmakers mentioned are licensed by the **Betting Control and Licensing Board (BCLB)**, ensuring they operate legally in Kenya.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Seahawks vs. Chargers tickets 2026 betting tips Ghana",
+        "keyword": "Ghana amputee football team draw Angola, Colombia Iraq betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 450)"
+      },
+      {
+        "keyword": "Wallabies v Springboks betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Focus on team form, player injuries, and weather conditions, as these factors significantly impact rugby outcomes. Handicap betting can also provide value when one team is heavily favoured, like the Springboks in recent fixtures.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
