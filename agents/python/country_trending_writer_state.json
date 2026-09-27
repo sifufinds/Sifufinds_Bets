@@ -502,28 +502,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-26T22:19:03.948079+00:00",
-    "candidates_available": 335,
+    "checked_at": "2026-09-27T00:56:53.202109+00:00",
+    "candidates_available": 334,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "CAF Pays Tribute Ohale International Retirement betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 451)"
-      },
-      {
-        "keyword": "Dobbo Stormers' Galway victory 'It's going sound arrogant, betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "stormers-urc-win-dobson-betting-tips-south-africa"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Malawi Taekwondo Association Malawi Hold Awareness Games Blantyre betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: SportPesa Tanzania offers a 250% Karibu Gift on your first deposit; 22Bet Tanzania provides a 100% first deposit bonus up to TSh 460,000; Betika Tanzania provides a free bet and TSh 5,000 welcome bonus; SportPesa Tanzania offers a 250% Karibu Gift on your first deposit"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
