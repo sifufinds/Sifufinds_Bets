@@ -747,28 +747,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-28T03:37:15.612908+00:00",
-    "candidates_available": 371,
+    "checked_at": "2026-09-28T07:27:53.156679+00:00",
+    "candidates_available": 344,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Anderlecht vs. Olympique Lyon Lineups betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "anderlecht-olympique-lyon-lineups-betting-tips-ghana"
-      },
       {
         "keyword": "Mosimane’s triple match squad betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Some bookmakers run in‑play promotions during the matches, such as increased odds on the first goal or special over/under markets. Check the live betting section of your chosen bookmaker for any time‑specific offers.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: no '## FAQ' section heading found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
-        "keyword": "Ligue des champions CAF où suivre Rivers United betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "ligue-des-champions-caf-rivers-united-betting-tips-tanzania"
+        "keyword": "Trump jets Ireland golf tournament, PM talks betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
