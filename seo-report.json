@@ -1,13 +1,49 @@
 {
   "date": "2026-09-28",
-  "total": 32,
+  "total": 38,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 6,
     "MEDIUM": 31,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "boxing-news-roundup-unbeaten-prospects-shine-zuffa-move-pays-off-for-cutler",
+      "detail": "Title 77 chars (max 60): 'Boxing News Roundup: Unbeaten Prospects Shine, Zuffa Move Pays Off for'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-roundup-nfl-mlb-playoffs-ufc",
+      "detail": "Title 68 chars (max 60): 'Global Sports Roundup: NFL Drama, MLB Playoffs, and UFC Rising Stars'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nfl-week-3-recap-injuries-fantasy-surprises-betting-shifts",
+      "detail": "Title 65 chars (max 60): 'NFL Week 3 Recap: Injuries, Fantasy Surprises, and Betting Shifts'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "cricket-betting-insights-county-championship-wpl-asian-games",
+      "detail": "Title 67 chars (max 60): 'Cricket Betting Insights: County Championship, WPL, and Asian Games'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nfl-week-3-recap-injuries-fantasy-surprises-betting-shifts",
+      "detail": "Excerpt 159 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "cricket-betting-insights-county-championship-wpl-asian-games",
+      "detail": "Excerpt 203 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
