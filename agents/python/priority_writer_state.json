@@ -744,23 +744,37 @@
     "Ligue des champions CAF où suivre Rivers United betting tips Tanzania": {
       "slug": "ligue-des-champions-caf-rivers-united-betting-tips-tanzania",
       "posted_at": "2026-09-28T03:37:12.340222+00:00"
+    },
+    "UEFA Nations League Klopp yet get Germany win, betting tips Nigeria": {
+      "slug": "uefa-nations-league-germany-greece-betting-tips-nigeria",
+      "posted_at": "2026-09-28T17:41:04.151587+00:00"
+    },
+    "Stephen Kungu wins Swing Wine third edition title betting tips Kenya": {
+      "slug": "stephen-kungu-wins-swing-wine-third-edition-title-betting-tips-kenya",
+      "posted_at": "2026-09-28T17:41:20.622994+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-28T07:27:53.156679+00:00",
-    "candidates_available": 344,
+    "checked_at": "2026-09-28T17:53:53.647413+00:00",
+    "candidates_available": 348,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Mosimane’s triple match squad betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "keyword": "UEFA Nations League Klopp yet get Germany win, betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "uefa-nations-league-germany-greece-betting-tips-nigeria"
       },
       {
-        "keyword": "Trump jets Ireland golf tournament, PM talks betting tips Nigeria",
-        "country": "Nigeria",
+        "keyword": "Stephen Kungu wins Swing Wine third edition title betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "stephen-kungu-wins-swing-wine-third-edition-title-betting-tips-kenya"
+      },
+      {
+        "keyword": "Inside Line | Rassie learns plenty from Bok betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
