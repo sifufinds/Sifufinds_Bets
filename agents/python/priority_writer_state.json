@@ -755,26 +755,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-28T17:53:53.647413+00:00",
-    "candidates_available": 348,
+    "checked_at": "2026-09-28T22:39:50.337002+00:00",
+    "candidates_available": 346,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "UEFA Nations League Klopp yet get Germany win, betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "uefa-nations-league-germany-greece-betting-tips-nigeria"
-      },
-      {
-        "keyword": "Stephen Kungu wins Swing Wine third edition title betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "stephen-kungu-wins-swing-wine-third-edition-title-betting-tips-kenya"
-      },
       {
         "keyword": "Inside Line | Rassie learns plenty from Bok betting tips South Africa",
         "country": "South Africa",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 467)"
+      },
+      {
+        "keyword": "Avec Zimbabwe vs RDC betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
