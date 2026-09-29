@@ -1,133 +1,13 @@
 {
   "date": "2026-09-29",
-  "total": 52,
+  "total": 32,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 20,
+    "HIGH": 0,
     "MEDIUM": 31,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "zambie-vs-togo-en-direct-pronostics-cotes-tanzanie",
-      "detail": "Title 75 chars (max 60): 'Zambie vs Togo en direct : Pronostics et cotes pour les parieurs tanza'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "klopp-germany-nations-league-betting-tips-nigeria",
-      "detail": "Title 71 chars (max 60): \"Klopp's Germany Struggles: UEFA Nations League Betting Tips for Nigeri\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "morning-why-nigerians-should-stop-boiling-eggs-rice-betting-tips-nigeria",
-      "detail": "Title 88 chars (max 60): 'Morning Why Nigerians Should Stop Boiling Eggs Rice and Get Betting Ti'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nairobi-city-thunder-vs-kpa-2-0-series-lead-betting-tips-kenya",
-      "detail": "Title 67 chars (max 60): 'Nairobi City Thunder vs KPA: 2-0 Series Lead Betting Tips for Kenya'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "fifa-uefa-misinformation-campaign-betting-tips-south-africa",
-      "detail": "Title 67 chars (max 60): 'FIFA vs UEFA: Betting Tips for South African Punters Amid the Drama'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "siwelele-close-landing-ex-gallants-coach-betting-tips-south-africa",
-      "detail": "Title 79 chars (max 60): 'Siwelele close landing ex\u2011Gallants coach betting tips South Africa \u2013 F'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "trump-jets-ireland-golf-tournament-pm-talks-betting-tips-nigeria",
-      "detail": "Title 68 chars (max 60): 'Trump Jets Ireland Golf Tournament & PM Talks Betting Tips \u2013 Nigeria'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "mosimane-triple-match-squad-betting-tips-south-africa",
-      "detail": "Title 67 chars (max 60): 'Mosimane\u2019s Triple Match Squad Betting Tips South Africa: Top Offers'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "avec-zimbabwe-vs-rdc-betting-tips-tanzania",
-      "detail": "Title 64 chars (max 60): 'Avec Zimbabwe vs RDC Betting Tips Tanzania: Top Bookmaker Offers'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "inside-line-rassie-learns-plenty-bok-betting-tips-south-africa",
-      "detail": "Title 68 chars (max 60): 'Inside Line: Rassie learns plenty from Bok betting tips South Africa'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "igaming-news-brazil-betting-ban-new-releases-responsible-gambling",
-      "detail": "Title 74 chars (max 60): 'iGaming News: Brazil\u2019s Betting Ban, New Releases, and Responsible Gamb'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "world-sports-round-up-man-city-nfl-mlb-nba-ufc-betting",
-      "detail": "Title 89 chars (max 60): 'World Sports Round\u2011Up: Man City, NFL, MLB, NBA & UFC \u2013 Betting Angles '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "stephen-kungu-wins-swing-wine-third-edition-title-betting-tips-kenya",
-      "detail": "Title 65 chars (max 60): 'Stephen Kungu Wins Swing Wine Title: Betting Tips for Kenyan Fans'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "uefa-nations-league-germany-greece-betting-tips-nigeria",
-      "detail": "Title 76 chars (max 60): 'UEFA Nations League Germany vs Greece Betting Tips & Best Bookmakers N'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nairobi-city-thunder-vs-kpa-2-0-series-lead-betting-tips-kenya",
-      "detail": "Excerpt 160 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "siwelele-close-landing-ex-gallants-coach-betting-tips-south-africa",
-      "detail": "Excerpt 176 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "trump-jets-ireland-golf-tournament-pm-talks-betting-tips-nigeria",
-      "detail": "Excerpt 176 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "mosimane-triple-match-squad-betting-tips-south-africa",
-      "detail": "Excerpt 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "igaming-news-brazil-betting-ban-new-releases-responsible-gambling",
-      "detail": "Excerpt 171 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "stephen-kungu-wins-swing-wine-third-edition-title-betting-tips-kenya",
-      "detail": "Excerpt 169 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
