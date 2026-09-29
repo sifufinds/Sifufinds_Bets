@@ -775,28 +775,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-29T03:45:40.091716+00:00",
-    "candidates_available": 343,
+    "checked_at": "2026-09-29T05:56:38.858479+00:00",
+    "candidates_available": 341,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Trump jets Ireland golf tournament, PM talks betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "trump-jets-ireland-golf-tournament-pm-talks-betting-tips-nigeria"
-      },
-      {
-        "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "siwelele-close-landing-ex-gallants-coach-betting-tips-south-africa"
-      },
       {
         "keyword": "Avec Zimbabwe vs RDC betting tips Uganda",
         "country": "Uganda",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 448)"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'All UNCS‑licensed bookmakers provide live odds that update as the match approaches and during the game. Check the match page for the latest odds before placing your bet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Avec Zimbabwe vs RDC betting tips Zambia",
+        "country": "Zambia",
+        "result": "failed",
+        "reason": "quality_gate: only 976 words (minimum 1000); final line was 'While Linebet Zambia operates under a Curaçao license, it’s still a reputable platform. However, GLB-licensed bookmakers like Betway Zambia offer additional regulatory assurance for Zambian bettors.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Avec Zimbabwe vs RDC betting tips Ethiopia",
+        "country": "Ethiopia",
+        "result": "failed",
+        "reason": "quality_gate: only 892 words (minimum 1000); no '## FAQ' section heading found; final line was 'Yes, you can place bets on a variety of sports with the 1xBet bonus, including basketball, tennis, and hockey.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
