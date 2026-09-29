@@ -780,31 +780,39 @@
     "Avec Zimbabwe vs RDC betting tips Ethiopia": {
       "slug": "avec-zimbabwe-vs-rdc-betting-tips-ethiopia",
       "posted_at": "2026-09-29T12:19:16.018425+00:00"
+    },
+    "Avec Zimbabwe vs RDC betting tips Uganda": {
+      "slug": "avec-zimbabwe-vs-rdc-betting-tips-uganda",
+      "posted_at": "2026-09-29T20:28:44.880329+00:00"
+    },
+    "Avec Zimbabwe vs RDC betting tips Ivory Coast": {
+      "slug": "avec-zimbabwe-vs-rdc-betting-tips-ivory-coast",
+      "posted_at": "2026-09-29T20:51:31.417742+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-29T12:19:20.908894+00:00",
-    "candidates_available": 323,
+    "checked_at": "2026-09-29T20:51:37.082420+00:00",
+    "candidates_available": 322,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Avec Zimbabwe vs RDC betting tips Uganda",
         "country": "Uganda",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Withdrawals can be made via MTN MoMo, Airtel Money or Bank Transfer. Log into your account, go to the “Cashier” section, select “Withdraw”, choose your preferred method and enter the amount.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "avec-zimbabwe-vs-rdc-betting-tips-uganda"
       },
       {
         "keyword": "Avec Zimbabwe vs RDC betting tips Zambia",
         "country": "Zambia",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 460)"
+        "reason": "quality_gate: no '## FAQ' section heading found"
       },
       {
-        "keyword": "Avec Zimbabwe vs RDC betting tips Ethiopia",
-        "country": "Ethiopia",
+        "keyword": "Avec Zimbabwe vs RDC betting tips Ivory Coast",
+        "country": "Ivory Coast",
         "result": "written",
-        "slug": "avec-zimbabwe-vs-rdc-betting-tips-ethiopia"
+        "slug": "avec-zimbabwe-vs-rdc-betting-tips-ivory-coast"
       }
     ]
   }
