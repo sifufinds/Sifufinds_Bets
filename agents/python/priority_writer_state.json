@@ -752,25 +752,43 @@
     "Stephen Kungu wins Swing Wine third edition title betting tips Kenya": {
       "slug": "stephen-kungu-wins-swing-wine-third-edition-title-betting-tips-kenya",
       "posted_at": "2026-09-28T17:41:20.622994+00:00"
+    },
+    "Inside Line | Rassie learns plenty from Bok betting tips South Africa": {
+      "slug": "inside-line-rassie-learns-plenty-bok-betting-tips-south-africa",
+      "posted_at": "2026-09-29T00:30:36.447283+00:00"
+    },
+    "Avec Zimbabwe vs RDC betting tips Tanzania": {
+      "slug": "avec-zimbabwe-vs-rdc-betting-tips-tanzania",
+      "posted_at": "2026-09-29T00:42:08.005001+00:00"
+    },
+    "Mosimane’s triple match squad betting tips South Africa": {
+      "slug": "mosimane-triple-match-squad-betting-tips-south-africa",
+      "posted_at": "2026-09-29T00:54:08.566540+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-28T22:39:50.337002+00:00",
+    "checked_at": "2026-09-29T00:54:11.610328+00:00",
     "candidates_available": 346,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
         "keyword": "Inside Line | Rassie learns plenty from Bok betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 467)"
+        "result": "written",
+        "slug": "inside-line-rassie-learns-plenty-bok-betting-tips-south-africa"
       },
       {
         "keyword": "Avec Zimbabwe vs RDC betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "avec-zimbabwe-vs-rdc-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Mosimane’s triple match squad betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "mosimane-triple-match-squad-betting-tips-south-africa"
       }
     ]
   }
