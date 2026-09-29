@@ -764,31 +764,39 @@
     "Mosimane’s triple match squad betting tips South Africa": {
       "slug": "mosimane-triple-match-squad-betting-tips-south-africa",
       "posted_at": "2026-09-29T00:54:08.566540+00:00"
+    },
+    "Trump jets Ireland golf tournament, PM talks betting tips Nigeria": {
+      "slug": "trump-jets-ireland-golf-tournament-pm-talks-betting-tips-nigeria",
+      "posted_at": "2026-09-29T03:45:10.051473+00:00"
+    },
+    "Siwelele close landing ex-Gallants coach betting tips South Africa": {
+      "slug": "siwelele-close-landing-ex-gallants-coach-betting-tips-south-africa",
+      "posted_at": "2026-09-29T03:45:27.831950+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-29T00:54:11.610328+00:00",
-    "candidates_available": 346,
+    "checked_at": "2026-09-29T03:45:40.091716+00:00",
+    "candidates_available": 343,
     "attempted": 3,
-    "written": 3,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Inside Line | Rassie learns plenty from Bok betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "Trump jets Ireland golf tournament, PM talks betting tips Nigeria",
+        "country": "Nigeria",
         "result": "written",
-        "slug": "inside-line-rassie-learns-plenty-bok-betting-tips-south-africa"
+        "slug": "trump-jets-ireland-golf-tournament-pm-talks-betting-tips-nigeria"
       },
       {
-        "keyword": "Avec Zimbabwe vs RDC betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "avec-zimbabwe-vs-rdc-betting-tips-tanzania"
-      },
-      {
-        "keyword": "Mosimane’s triple match squad betting tips South Africa",
+        "keyword": "Siwelele close landing ex-Gallants coach betting tips South Africa",
         "country": "South Africa",
         "result": "written",
-        "slug": "mosimane-triple-match-squad-betting-tips-south-africa"
+        "slug": "siwelele-close-landing-ex-gallants-coach-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Avec Zimbabwe vs RDC betting tips Uganda",
+        "country": "Uganda",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 448)"
       }
     ]
   }

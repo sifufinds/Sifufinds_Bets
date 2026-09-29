@@ -538,7 +538,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-29T02:15:05.710830+00:00",
+    "checked_at": "2026-09-29T03:57:08.963234+00:00",
     "candidates_available": 280,
     "attempted": 3,
     "written": 0,
@@ -547,13 +547,19 @@
         "keyword": "UEFA Nations League Klopp yet get Germany win, betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: \"Cody Gakpo’s 92nd‑minute strike for the Netherlands‑aligned Greece\"; \"Cody Gakpo, who plays for Liverpool\"; \"Haaland missed a penalty in the first half\"; \"Portugal’s defence held Norway to a single goal\"; \"Bet9ja currently leads the Nigerian market with a ₦2,500 free‑bet on signup and a 170 % ACCA boost\"; \"BetKing offers a ₦100 no‑deposit free bet plus ten Aviator flights\"; \"1xBet Nigeria offers a massive 300 % first‑deposit bonus up to ₦1,200,000\""
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 444)"
       },
       {
         "keyword": "Stephen Kungu wins Swing Wine third edition title betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
+      },
+      {
+        "keyword": "Inside Line | Rassie learns plenty from Bok betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: The Springboks suffered a 22-17 loss to Australia; Hollywoodbets is offering odds of 2.50 for the Springboks to win their next match; Supabets is offering 2.75; He stated that the team needs to work on their set pieces and defence"
       }
     ]
   }
