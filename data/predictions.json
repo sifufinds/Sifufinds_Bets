@@ -1,47 +1,47 @@
 {
-  "updated": "2026-09-29T11:12:32.520041+00:00",
+  "updated": "2026-09-29T16:21:32.753456+00:00",
   "source": "predictz.com",
-  "count": 46,
+  "count": 42,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-09-29T11:12:32.520041+00:00"
+      "ts": "2026-09-29T16:21:32.753456+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-09-29T11:12:32.520041+00:00"
+      "ts": "2026-09-29T16:21:32.753456+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-09-29T11:12:32.520041+00:00"
+      "ts": "2026-09-29T16:21:32.753456+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-09-29T11:12:32.520041+00:00"
+      "ts": "2026-09-29T16:21:32.753456+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-09-29T11:12:32.520041+00:00"
+      "ts": "2026-09-29T16:21:32.753456+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-09-29T11:12:32.520041+00:00"
+      "ts": "2026-09-29T16:21:32.753456+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-09-29T11:12:32.520041+00:00"
+      "ts": "2026-09-29T16:21:32.753456+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-09-29T11:12:32.520041+00:00"
+      "ts": "2026-09-29T16:21:32.753456+00:00"
     }
   ],
   "predictions": [
@@ -59,12 +59,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195880+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789591+00:00"
     },
     {
       "id": "1209411",
@@ -80,12 +80,33 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
+      "correct_score": "1-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-09-29T16:21:40.789634+00:00"
+    },
+    {
+      "id": "1215420",
+      "home": "Anguilla",
+      "away": "Aruba",
+      "competition": "CONCACAF Nations League",
+      "comp_slug": "international/concacaf-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Away",
+      "match_winner_label": "Away 0-1",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195941+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789394+00:00"
     },
     {
       "id": "1209406",
@@ -101,12 +122,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196002+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789677+00:00"
     },
     {
       "id": "1222847",
@@ -122,12 +143,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194972+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788754+00:00"
     },
     {
       "id": "1209413",
@@ -143,12 +164,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195792+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789548+00:00"
     },
     {
       "id": "1183577",
@@ -164,12 +185,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196655+00:00"
+      "scraped_at": "2026-09-29T16:21:40.790182+00:00"
     },
     {
       "id": "1221764",
@@ -185,12 +206,33 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196395+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789991+00:00"
+    },
+    {
+      "id": "1215419",
+      "home": "British Virgin Islands",
+      "away": "Turks and Caicos Islands",
+      "competition": "CONCACAF Nations League",
+      "comp_slug": "international/concacaf-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Draw",
+      "match_winner_label": "Draw 1-1",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-09-29T16:21:40.789431+00:00"
     },
     {
       "id": "1185053",
@@ -206,33 +248,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195329+00:00"
-    },
-    {
-      "id": "1222854",
-      "home": "Burundi",
-      "away": "Algeria",
-      "competition": "Africa Cup Of Nations",
-      "comp_slug": "international/africa-cup-of-nations",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194411+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789047+00:00"
     },
     {
       "id": "1220439",
@@ -253,7 +274,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194699+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788560+00:00"
     },
     {
       "id": "1205869",
@@ -269,12 +290,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196523+00:00"
+      "scraped_at": "2026-09-29T16:21:40.790083+00:00"
     },
     {
       "id": "1222940",
@@ -290,33 +311,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196700+00:00"
-    },
-    {
-      "id": "1222859",
-      "home": "Comoros",
-      "away": "Namibia",
-      "competition": "Africa Cup Of Nations",
-      "comp_slug": "international/africa-cup-of-nations",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194347+00:00"
+      "scraped_at": "2026-09-29T16:21:40.790235+00:00"
     },
     {
       "id": "1222845",
@@ -332,12 +332,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195018+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788788+00:00"
     },
     {
       "id": "1185054",
@@ -353,33 +353,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195387+00:00"
-    },
-    {
-      "id": "1222852",
-      "home": "Ethiopia",
-      "away": "Senegal",
-      "competition": "Africa Cup Of Nations",
-      "comp_slug": "international/africa-cup-of-nations",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194460+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789091+00:00"
     },
     {
       "id": "1185055",
@@ -400,7 +379,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195212+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788960+00:00"
     },
     {
       "id": "1209405",
@@ -416,12 +395,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196060+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789723+00:00"
     },
     {
       "id": "1220759",
@@ -437,12 +416,33 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196478+00:00"
+      "scraped_at": "2026-09-29T16:21:40.790051+00:00"
+    },
+    {
+      "id": "1215422",
+      "home": "French Guiana",
+      "away": "Sint Maarten",
+      "competition": "CONCACAF Nations League",
+      "comp_slug": "international/concacaf-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 2-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "2-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-09-29T16:21:40.789503+00:00"
     },
     {
       "id": "1222848",
@@ -458,12 +458,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195065+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788823+00:00"
     },
     {
       "id": "1209410",
@@ -479,12 +479,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196117+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789766+00:00"
     },
     {
       "id": "1222849",
@@ -505,7 +505,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194750+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788614+00:00"
     },
     {
       "id": "1222846",
@@ -526,7 +526,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194797+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788650+00:00"
     },
     {
       "id": "1209404",
@@ -542,12 +542,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196175+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789810+00:00"
     },
     {
       "id": "1209407",
@@ -563,33 +563,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196233+00:00"
-    },
-    {
-      "id": "1222855",
-      "home": "Lesotho",
-      "away": "Morocco",
-      "competition": "Africa Cup Of Nations",
-      "comp_slug": "international/africa-cup-of-nations",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194509+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789868+00:00"
     },
     {
       "id": "1222843",
@@ -605,12 +584,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195111+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788885+00:00"
     },
     {
       "id": "1189247",
@@ -626,33 +605,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195445+00:00"
-    },
-    {
-      "id": "1222853",
-      "home": "Madagascar",
-      "away": "Tanzania",
-      "competition": "Africa Cup Of Nations",
-      "comp_slug": "international/africa-cup-of-nations",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194652+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789134+00:00"
     },
     {
       "id": "1185052",
@@ -673,28 +631,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195271+00:00"
-    },
-    {
-      "id": "1222856",
-      "home": "Mozambique",
-      "away": "Sudan",
-      "competition": "Africa Cup Of Nations",
-      "comp_slug": "international/africa-cup-of-nations",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194557+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789004+00:00"
     },
     {
       "id": "1185051",
@@ -710,12 +647,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195503+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789177+00:00"
     },
     {
       "id": "1185058",
@@ -731,12 +668,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195561+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789223+00:00"
     },
     {
       "id": "1210798",
@@ -752,12 +689,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196438+00:00"
+      "scraped_at": "2026-09-29T16:21:40.790021+00:00"
     },
     {
       "id": "1185057",
@@ -773,12 +710,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195619+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789269+00:00"
     },
     {
       "id": "1185059",
@@ -794,12 +731,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195677+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789313+00:00"
     },
     {
       "id": "1222844",
@@ -815,33 +752,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195157+00:00"
-    },
-    {
-      "id": "1222851",
-      "home": "South Sudan",
-      "away": "Egypt",
-      "competition": "Africa Cup Of Nations",
-      "comp_slug": "international/africa-cup-of-nations",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194605+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788920+00:00"
     },
     {
       "id": "1185056",
@@ -857,12 +773,33 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
+      "correct_score": "3-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-09-29T16:21:40.789355+00:00"
+    },
+    {
+      "id": "1215421",
+      "home": "US Virgin Islands",
+      "away": "Bahamas",
+      "competition": "CONCACAF Nations League",
+      "comp_slug": "international/concacaf-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Draw",
+      "match_winner_label": "Draw 1-1",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.195732+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789470+00:00"
     },
     {
       "id": "1222850",
@@ -883,7 +820,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194871+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788685+00:00"
     },
     {
       "id": "1209015",
@@ -899,12 +836,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196564+00:00"
+      "scraped_at": "2026-09-29T16:21:40.790115+00:00"
     },
     {
       "id": "1195076",
@@ -925,7 +862,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196605+00:00"
+      "scraped_at": "2026-09-29T16:21:40.790144+00:00"
     },
     {
       "id": "1209408",
@@ -941,33 +878,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196291+00:00"
-    },
-    {
-      "id": "1185480",
-      "home": "Wuxi Wugou",
-      "away": "Ningbo Professional",
-      "competition": "China League One",
-      "comp_slug": "china/league-one",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196749+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789913+00:00"
     },
     {
       "id": "1209409",
@@ -983,12 +899,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.196346+00:00"
+      "scraped_at": "2026-09-29T16:21:40.789954+00:00"
     },
     {
       "id": "1221427",
@@ -1009,7 +925,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-09-29T11:12:43.194921+00:00"
+      "scraped_at": "2026-09-29T16:21:40.788720+00:00"
     }
   ]
 }
