@@ -776,31 +776,35 @@
     "Morning Why Nigerians should stop boiling eggs rice betting tips Nigeria": {
       "slug": "morning-why-nigerians-should-stop-boiling-eggs-rice-betting-tips-nigeria",
       "posted_at": "2026-09-29T10:19:00.553183+00:00"
+    },
+    "Avec Zimbabwe vs RDC betting tips Ethiopia": {
+      "slug": "avec-zimbabwe-vs-rdc-betting-tips-ethiopia",
+      "posted_at": "2026-09-29T12:19:16.018425+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-29T10:39:03.900883+00:00",
-    "candidates_available": 343,
+    "checked_at": "2026-09-29T12:19:20.908894+00:00",
+    "candidates_available": 323,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Morning Why Nigerians should stop boiling eggs rice betting tips Nigeria",
-        "country": "Nigeria",
+        "keyword": "Avec Zimbabwe vs RDC betting tips Uganda",
+        "country": "Uganda",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Withdrawals can be made via MTN MoMo, Airtel Money or Bank Transfer. Log into your account, go to the “Cashier” section, select “Withdraw”, choose your preferred method and enter the amount.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Avec Zimbabwe vs RDC betting tips Zambia",
+        "country": "Zambia",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 460)"
+      },
+      {
+        "keyword": "Avec Zimbabwe vs RDC betting tips Ethiopia",
+        "country": "Ethiopia",
         "result": "written",
-        "slug": "morning-why-nigerians-should-stop-boiling-eggs-rice-betting-tips-nigeria"
-      },
-      {
-        "keyword": "Où suivre Zambie vs Togo en direct betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'You can deposit via M‑Pesa (Vodacom), Airtel Money, Tigo Pesa, Halotel Pesa, or bank transfer, depending on the bookmaker’s accepted methods.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Où suivre Zambie vs Togo en direct betting tips Egypt",
-        "country": "Egypt",
-        "result": "failed",
-        "reason": "quality_gate: only 897 words (minimum 1000)"
+        "slug": "avec-zimbabwe-vs-rdc-betting-tips-ethiopia"
       }
     ]
   }
