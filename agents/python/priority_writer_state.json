@@ -796,31 +796,35 @@
     "Avec Zimbabwe vs RDC betting tips Senegal": {
       "slug": "zimbabwe-vs-rdc-betting-tips-senegal",
       "posted_at": "2026-09-30T02:29:38.689322+00:00"
+    },
+    "Avec Zimbabwe vs RDC betting tips Zimbabwe": {
+      "slug": "avec-zimbabwe-vs-rdc-betting-tips-zimbabwe",
+      "posted_at": "2026-09-30T05:19:27.486680+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-30T02:29:43.175679+00:00",
-    "candidates_available": 320,
+    "checked_at": "2026-09-30T05:19:46.886557+00:00",
+    "candidates_available": 318,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Avec Zimbabwe vs RDC betting tips Zambia",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "avec-zimbabwe-vs-rdc-betting-tips-zambia"
-      },
       {
         "keyword": "Avec Zimbabwe vs RDC betting tips Cameroon",
         "country": "Cameroon",
         "result": "failed",
-        "reason": "quality_gate: only 782 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Log into your account, go to the responsible‑gaming or account settings section and look for “Deposit Limits”. You can set daily, weekly or monthly caps. Once the limit is reached, further deposits are blocked until the period resets.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Avec Zimbabwe vs RDC betting tips Senegal",
-        "country": "Senegal",
+        "keyword": "Avec Zimbabwe vs RDC betting tips Zimbabwe",
+        "country": "Zimbabwe",
         "result": "written",
-        "slug": "zimbabwe-vs-rdc-betting-tips-senegal"
+        "slug": "avec-zimbabwe-vs-rdc-betting-tips-zimbabwe"
+      },
+      {
+        "keyword": "Avec Zimbabwe vs RDC betting tips Mozambique",
+        "country": "Mozambique",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'The 30‑day period applies to the matched bonus money only. The wagering requirement of x5 at 1.40 odds must be met before any winnings can be withdrawn, regardless of the market you bet on.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
