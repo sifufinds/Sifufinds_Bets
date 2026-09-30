@@ -831,28 +831,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-30T16:33:58.677046+00:00",
-    "candidates_available": 316,
+    "checked_at": "2026-09-30T19:23:07.932645+00:00",
+    "candidates_available": 315,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Matfield denies Bok arrogance Perth loss but admits betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "matfield-denies-bok-arrogance-perth-loss-betting-tips-south-africa"
-      },
       {
         "keyword": "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, most GBT‑licensed bookmakers provide live betting on the match. Markets such as in‑play over/under, correct score, and next goal scorer are available once the game starts.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Uganda",
-        "country": "Uganda",
-        "result": "failed",
-        "reason": "quality_gate: only 798 words (minimum 1000)"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
