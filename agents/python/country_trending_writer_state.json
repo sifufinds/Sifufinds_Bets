@@ -559,31 +559,39 @@
     "Boks' series win 'powerful showcase' South African resilience betting tips South Africa": {
       "slug": "springboks-series-win-betting-tips-south-africa",
       "posted_at": "2026-09-30T02:47:27.867030+00:00"
+    },
+    "AFCONQ Why Super Eagles lost 3-0 Guinea-Bissau – betting tips Nigeria": {
+      "slug": "nigeria-super-eagles-3-0-loss-guinea-bissau-afconq-betting",
+      "posted_at": "2026-09-30T14:49:04.219510+00:00"
+    },
+    "Sabalenka 'fresh' first tournament since losing No.1 betting tips Kenya": {
+      "slug": "sabalenka-returns-action-betting-tips-kenya",
+      "posted_at": "2026-09-30T14:57:36.324486+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-30T09:57:22.972698+00:00",
+    "checked_at": "2026-09-30T15:04:32.982306+00:00",
     "candidates_available": 261,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "AFCONQ Why Super Eagles lost 3-0 Guinea-Bissau – betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "fact_check: Bet9ja’s **170% ACCA Boost**; 22Bet’s **100% First Deposit Bonus**; BetKing’s **₦100 Free Bets**; Melbet Nigeria’s **200% First Deposit Bonus**; | Bookmaker       | Nigeria Win | Draw | Guinea-Bissau Win |\n|-----------------|-------------|------|--------------------|\n| Bet9ja          | 1.60        | 3.50 | 5.20               |\n| 22Bet Nigeria   | 1.65        | 3.60 | 5.30               |\n| 1xBet Nigeria   | 1.70        | 3.70 | 5.40               |"
+        "result": "written",
+        "slug": "nigeria-super-eagles-3-0-loss-guinea-bissau-afconq-betting"
       },
       {
         "keyword": "Sabalenka 'fresh' first tournament since losing No.1 betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: SportPesa Kenya’s **300% Welcome Karibu Gift**; Betika Kenya’s **Free Bet Gifts** and **Aviator Free Bets**; 1xBet Kenya’s **200% First Deposit Bonus**; Melbet Kenya’s **300% First Deposit Bonus**; | Bookmaker       | Welcome Offer                  | Min Deposit | Payment Methods                  |\n|-----------------|-------------------------------|-------------|----------------------------------|\n| SportPesa Kenya | 300% Karibu Gift              | KSh 10      | M-Pesa, Airtel Money             |\n| Betika Kenya    | Free Bet Gifts + Aviator Bets | KSh 10      | M-Pesa, Airtel Money, Equitel    |\n| 22Bet Kenya     | 100% Bonus – Up to KSh 19,000 | KSh 100     | M-Pesa, Airtel Money             |"
+        "result": "written",
+        "slug": "sabalenka-returns-action-betting-tips-kenya"
       },
       {
         "keyword": "Ghana smash Table Tennis Tournament debuts thrilling action betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "fact_check: Sportybet Ghana offer a **150% Welcome Bonus** up to GH₵500; Betway Ghana’s **50% Welcome Bonus** up to GH₵200; 22Bet Ghana’s **100% First Deposit Bonus** up to GH₵1,491; 1xBet Ghana (200% Bonus up to GH₵2,846); Melbet Ghana (300% Bonus up to GH₵1,500); | Bookmaker       | Welcome Offer                  | Min Deposit | Payment Methods                  |\n|-----------------|-------------------------------|-------------|----------------------------------|\n| Sportybet Ghana | 150% Bonus – Up to GH₵500     | GH₵1        | MTN MoMo, Vodafone Cash          |\n| Betway Ghana    | 50% Bonus – Up to GH₵200      | GH₵2        | MTN MoMo, Vodafone Cash          |\n| 22Bet Ghana     | 100% Bonus – Up to GH₵1,491   | GH₵5        | MTN MoMo, Vodafone Cash          |"
+        "result": "skipped",
+        "reason": "similar_title_exists"
       }
     ]
   }
