@@ -831,7 +831,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-09-30T19:23:07.932645+00:00",
+    "checked_at": "2026-09-30T21:10:16.519100+00:00",
     "candidates_available": 315,
     "attempted": 3,
     "written": 0,
@@ -840,7 +840,19 @@
         "keyword": "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'The match‑winner market is the simplest and usually carries the lowest variance. For beginners it offers clear odds and requires only a single outcome to be correct.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Uganda",
+        "country": "Uganda",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'The UNCS licence ensures that all bookmakers provide fair and transparent odds. While the regulator does not set the odds, it does enforce that the bookmakers operate legally and that the odds are not manipulated.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Zambia",
+        "country": "Zambia",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'All GLB‑licensed operators provide self‑exclusion and deposit‑limit tools. Activate these features in your account settings, and consider contacting the Gaming and Lotteries Board for further assistance or counselling services.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
