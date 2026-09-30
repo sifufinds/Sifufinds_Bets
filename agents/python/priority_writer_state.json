@@ -812,31 +812,39 @@
     "talkSPORT – Saturday best racing expert advice Newmarket betting tips Zambia": {
       "slug": "talksport-saturday-racing-tips-newmarket-zambia",
       "posted_at": "2026-09-30T07:36:02.631353+00:00"
+    },
+    "AFCONQ Why Super Eagles lost 3-0 Guinea-Bissau – betting tips Nigeria": {
+      "slug": "afconq-why-super-eagles-lost-3-0-guinea-bissau-betting-tips-nigeria",
+      "posted_at": "2026-09-30T09:18:24.618569+00:00"
+    },
+    "Ghana smash Table Tennis Tournament debuts thrilling action betting tips Ghana": {
+      "slug": "ghana-smash-table-tennis-betting-tips",
+      "posted_at": "2026-09-30T09:37:07.871576+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-30T07:36:09.755601+00:00",
-    "candidates_available": 317,
+    "checked_at": "2026-09-30T09:37:12.257182+00:00",
+    "candidates_available": 319,
     "attempted": 3,
-    "written": 3,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Avec Zimbabwe vs RDC betting tips Cameroon",
-        "country": "Cameroon",
+        "keyword": "AFCONQ Why Super Eagles lost 3-0 Guinea-Bissau – betting tips Nigeria",
+        "country": "Nigeria",
         "result": "written",
-        "slug": "zimbabwe-vs-rdc-betting-tips-cameroon"
+        "slug": "afconq-why-super-eagles-lost-3-0-guinea-bissau-betting-tips-nigeria"
       },
       {
-        "keyword": "Avec Zimbabwe vs RDC betting tips Mozambique",
-        "country": "Mozambique",
-        "result": "written",
-        "slug": "mozambique-vs-zimbabwe-betting-tips-avec-rdc-2026"
+        "keyword": "Sabalenka 'fresh' first tournament since losing No.1 betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: only 772 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
       },
       {
-        "keyword": "talkSPORT – Saturday best racing expert advice Newmarket betting tips Zambia",
-        "country": "Zambia",
+        "keyword": "Ghana smash Table Tennis Tournament debuts thrilling action betting tips Ghana",
+        "country": "Ghana",
         "result": "written",
-        "slug": "talksport-saturday-racing-tips-newmarket-zambia"
+        "slug": "ghana-smash-table-tennis-betting-tips"
       }
     ]
   }
