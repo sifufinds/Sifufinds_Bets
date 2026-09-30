@@ -1,13 +1,193 @@
 {
-  "date": "2026-09-29",
-  "total": 32,
+  "date": "2026-09-30",
+  "total": 62,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 31,
+    "HIGH": 29,
+    "MEDIUM": 32,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "afconq-why-super-eagles-lost-3-0-guinea-bissau-betting-tips-nigeria",
+      "detail": "Title 77 chars (max 60): 'AFCONQ: Why Super Eagles Lost 3-0 to Guinea-Bissau \u2013 Betting Tips for '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ghana-smash-table-tennis-betting-tips",
+      "detail": "Title 70 chars (max 60): 'Ghana Smash Table Tennis Tournament: Betting Tips and Bookmaker Offers'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "talksport-saturday-racing-tips-newmarket-zambia",
+      "detail": "Title 75 chars (max 60): 'talkSPORT Saturday Racing Tips: Expert Newmarket Advice for Zambian Be'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "mozambique-vs-zimbabwe-betting-tips-avec-rdc-2026",
+      "detail": "Title 72 chars (max 60): 'Mozambique vs Zimbabwe Betting Tips: Avec Zimbabwe vs RDC Guide for 20'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "zimbabwe-vs-rdc-betting-tips-cameroon",
+      "detail": "Title 80 chars (max 60): 'Avec Zimbabwe vs RDC betting tips Cameroon \u2013 Expert guide & top bookma'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "avec-zimbabwe-vs-rdc-betting-tips-zimbabwe",
+      "detail": "Title 74 chars (max 60): 'Avec Zimbabwe vs RDC betting tips Zimbabwe \u2013 expert analysis & best of'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "springboks-series-win-betting-tips-south-africa",
+      "detail": "Title 62 chars (max 60): \"Springboks' Series Win: Betting Tips for South African Punters\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "zimbabwe-vs-rdc-betting-tips-senegal",
+      "detail": "Title 75 chars (max 60): 'Zimbabwe vs RDC Betting Tips Senegal: Expert Predictions & Bookmaker O'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "avec-zimbabwe-vs-rdc-betting-tips-zambia",
+      "detail": "Title 67 chars (max 60): 'Avec Zimbabwe vs RDC Betting Tips \u2013 Zambia\u2019s Best Bookmakers & Odds'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-expansion-rugby-world-cup-nfl-records-sports-news-roundup",
+      "detail": "Title 76 chars (max 60): 'NBA Expansion, Rugby World Cup Lessons, and NFL Records: Sports News R'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "stephen-kungu-swing-wine-betting-tips-kenya",
+      "detail": "Title 74 chars (max 60): 'Stephen Kungu Wins Swing and Wine Title: Betting Tips for Kenyan Golf '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "avec-zimbabwe-vs-rdc-betting-tips-ivory-coast",
+      "detail": "Title 62 chars (max 60): 'Avec Zimbabwe vs RDC Betting Tips Ivory Coast: Expert Analysis'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-sports-update-nations-league-mlb-playoffs-fantasy-football",
+      "detail": "Title 72 chars (max 60): 'Global Sports Update: Nations League, MLB Playoffs, and Fantasy Footba'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "avec-zimbabwe-vs-rdc-betting-tips-uganda",
+      "detail": "Title 68 chars (max 60): 'Avec Zimbabwe vs RDC betting tips Uganda \u2013 Best offers & predictions'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "avec-zimbabwe-vs-rdc-betting-tips-ethiopia",
+      "detail": "Title 63 chars (max 60): 'Avec Zimbabwe vs RDC Betting Tips Ethiopia: Your Ultimate Guide'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "afconq-why-super-eagles-lost-3-0-guinea-bissau-betting-tips-nigeria",
+      "detail": "Excerpt 170 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ghana-smash-table-tennis-betting-tips",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "talksport-saturday-racing-tips-newmarket-zambia",
+      "detail": "Excerpt 183 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "zimbabwe-vs-rdc-betting-tips-cameroon",
+      "detail": "Excerpt 194 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "avec-zimbabwe-vs-rdc-betting-tips-zimbabwe",
+      "detail": "Excerpt 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "springboks-series-win-betting-tips-south-africa",
+      "detail": "Excerpt 212 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "zimbabwe-vs-rdc-betting-tips-senegal",
+      "detail": "Excerpt 183 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-expansion-rugby-world-cup-nfl-records-sports-news-roundup",
+      "detail": "Excerpt 182 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "stephen-kungu-swing-wine-betting-tips-kenya",
+      "detail": "Excerpt 207 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "avec-zimbabwe-vs-rdc-betting-tips-ivory-coast",
+      "detail": "Excerpt 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-update-nations-league-mlb-playoffs-fantasy-football",
+      "detail": "Excerpt 183 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "avec-zimbabwe-vs-rdc-betting-tips-uganda",
+      "detail": "Excerpt 181 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "f1-betting-guide-race-weekend-preview-tips",
+      "detail": "Excerpt 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "avec-zimbabwe-vs-rdc-betting-tips-ethiopia",
+      "detail": "Excerpt 183 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "stephen-kungu-swing-wine-betting-tips-kenya",
+      "detail": "High title overlap (6 meaningful tokens) with 'stephen-kungu-wins-swing-wine-third-edition-title-betting-tips-kenya' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
