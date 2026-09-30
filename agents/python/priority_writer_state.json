@@ -800,31 +800,43 @@
     "Avec Zimbabwe vs RDC betting tips Zimbabwe": {
       "slug": "avec-zimbabwe-vs-rdc-betting-tips-zimbabwe",
       "posted_at": "2026-09-30T05:19:27.486680+00:00"
+    },
+    "Avec Zimbabwe vs RDC betting tips Cameroon": {
+      "slug": "zimbabwe-vs-rdc-betting-tips-cameroon",
+      "posted_at": "2026-09-30T07:18:25.152221+00:00"
+    },
+    "Avec Zimbabwe vs RDC betting tips Mozambique": {
+      "slug": "mozambique-vs-zimbabwe-betting-tips-avec-rdc-2026",
+      "posted_at": "2026-09-30T07:18:52.958666+00:00"
+    },
+    "talkSPORT – Saturday best racing expert advice Newmarket betting tips Zambia": {
+      "slug": "talksport-saturday-racing-tips-newmarket-zambia",
+      "posted_at": "2026-09-30T07:36:02.631353+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-30T05:19:46.886557+00:00",
-    "candidates_available": 318,
+    "checked_at": "2026-09-30T07:36:09.755601+00:00",
+    "candidates_available": 317,
     "attempted": 3,
-    "written": 1,
+    "written": 3,
     "attempts": [
       {
         "keyword": "Avec Zimbabwe vs RDC betting tips Cameroon",
         "country": "Cameroon",
-        "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Log into your account, go to the responsible‑gaming or account settings section and look for “Deposit Limits”. You can set daily, weekly or monthly caps. Once the limit is reached, further deposits are blocked until the period resets.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Avec Zimbabwe vs RDC betting tips Zimbabwe",
-        "country": "Zimbabwe",
         "result": "written",
-        "slug": "avec-zimbabwe-vs-rdc-betting-tips-zimbabwe"
+        "slug": "zimbabwe-vs-rdc-betting-tips-cameroon"
       },
       {
         "keyword": "Avec Zimbabwe vs RDC betting tips Mozambique",
         "country": "Mozambique",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'The 30‑day period applies to the matched bonus money only. The wagering requirement of x5 at 1.40 odds must be met before any winnings can be withdrawn, regardless of the market you bet on.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "mozambique-vs-zimbabwe-betting-tips-avec-rdc-2026"
+      },
+      {
+        "keyword": "talkSPORT – Saturday best racing expert advice Newmarket betting tips Zambia",
+        "country": "Zambia",
+        "result": "written",
+        "slug": "talksport-saturday-racing-tips-newmarket-zambia"
       }
     ]
   }
