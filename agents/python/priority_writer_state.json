@@ -788,31 +788,39 @@
     "Avec Zimbabwe vs RDC betting tips Ivory Coast": {
       "slug": "avec-zimbabwe-vs-rdc-betting-tips-ivory-coast",
       "posted_at": "2026-09-29T20:51:31.417742+00:00"
+    },
+    "Avec Zimbabwe vs RDC betting tips Zambia": {
+      "slug": "avec-zimbabwe-vs-rdc-betting-tips-zambia",
+      "posted_at": "2026-09-30T02:09:59.434141+00:00"
+    },
+    "Avec Zimbabwe vs RDC betting tips Senegal": {
+      "slug": "zimbabwe-vs-rdc-betting-tips-senegal",
+      "posted_at": "2026-09-30T02:29:38.689322+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-29T20:51:37.082420+00:00",
-    "candidates_available": 322,
+    "checked_at": "2026-09-30T02:29:43.175679+00:00",
+    "candidates_available": 320,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "Avec Zimbabwe vs RDC betting tips Uganda",
-        "country": "Uganda",
-        "result": "written",
-        "slug": "avec-zimbabwe-vs-rdc-betting-tips-uganda"
-      },
-      {
         "keyword": "Avec Zimbabwe vs RDC betting tips Zambia",
         "country": "Zambia",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "result": "written",
+        "slug": "avec-zimbabwe-vs-rdc-betting-tips-zambia"
       },
       {
-        "keyword": "Avec Zimbabwe vs RDC betting tips Ivory Coast",
-        "country": "Ivory Coast",
+        "keyword": "Avec Zimbabwe vs RDC betting tips Cameroon",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "quality_gate: only 782 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Avec Zimbabwe vs RDC betting tips Senegal",
+        "country": "Senegal",
         "result": "written",
-        "slug": "avec-zimbabwe-vs-rdc-betting-tips-ivory-coast"
+        "slug": "zimbabwe-vs-rdc-betting-tips-senegal"
       }
     ]
   }
