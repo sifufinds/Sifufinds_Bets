@@ -824,31 +824,35 @@
     "Sabalenka 'fresh' first tournament since losing No.1 betting tips Kenya": {
       "slug": "sabalenka-fresh-first-tournament-betting-tips-kenya",
       "posted_at": "2026-09-30T12:24:08.714783+00:00"
+    },
+    "Matfield denies Bok arrogance Perth loss but admits betting tips South Africa": {
+      "slug": "matfield-denies-bok-arrogance-perth-loss-betting-tips-south-africa",
+      "posted_at": "2026-09-30T16:24:01.635315+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-30T12:25:53.506311+00:00",
-    "candidates_available": 317,
+    "checked_at": "2026-09-30T16:33:58.677046+00:00",
+    "candidates_available": 316,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Sabalenka 'fresh' first tournament since losing No.1 betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "sabalenka-fresh-first-tournament-betting-tips-kenya"
-      },
-      {
         "keyword": "Matfield denies Bok arrogance Perth loss but admits betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'The welcome offers apply to the entire sportsbook, which includes popular South African leagues like the DStv Premiership, Springboks Rugby, Proteas Cricket and the CAF Champions League, as well as international competitions such as the Premier League. Each bookmaker’s terms specify that the bonus can be used on any eligible market unless otherwise stated.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "matfield-denies-bok-arrogance-perth-loss-betting-tips-south-africa"
       },
       {
         "keyword": "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+        "reason": "quality_gate: final line was 'Yes, most GBT‑licensed bookmakers provide live betting on the match. Markets such as in‑play over/under, correct score, and next goal scorer are available once the game starts.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Uganda",
+        "country": "Uganda",
+        "result": "failed",
+        "reason": "quality_gate: only 798 words (minimum 1000)"
       }
     ]
   }
