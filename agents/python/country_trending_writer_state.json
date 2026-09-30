@@ -567,31 +567,35 @@
     "Sabalenka 'fresh' first tournament since losing No.1 betting tips Kenya": {
       "slug": "sabalenka-returns-action-betting-tips-kenya",
       "posted_at": "2026-09-30T14:57:36.324486+00:00"
+    },
+    "Matfield denies Bok arrogance Perth loss but admits betting tips South Africa": {
+      "slug": "matfield-springboks-perth-loss-betting-tips-south-africa",
+      "posted_at": "2026-09-30T19:32:04.679840+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-09-30T15:04:32.982306+00:00",
-    "candidates_available": 261,
+    "checked_at": "2026-09-30T19:41:20.467254+00:00",
+    "candidates_available": 259,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "AFCONQ Why Super Eagles lost 3-0 Guinea-Bissau – betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "nigeria-super-eagles-3-0-loss-guinea-bissau-afconq-betting"
-      },
-      {
-        "keyword": "Sabalenka 'fresh' first tournament since losing No.1 betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "sabalenka-returns-action-betting-tips-kenya"
-      },
       {
         "keyword": "Ghana smash Table Tennis Tournament debuts thrilling action betting tips Ghana",
         "country": "Ghana",
-        "result": "skipped",
-        "reason": "similar_title_exists"
+        "result": "failed",
+        "reason": "fact_check: Sportybet Ghana offers a minimum odds requirement of 3.15 for free‑bet gifts; Sportybet Ghana offers a 150 % welcome bonus up to GH₵500; Betway Ghana provides a 50 % match up to GH₵200 with a minimum deposit of GH₵2; If the market shows him at, for example, 1.90, but the average across bookmakers is 2.00; allowing you to deposit as little as GH₵1 at Sportybet or GH₵2 at Betway"
+      },
+      {
+        "keyword": "Matfield denies Bok arrogance Perth loss but admits betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "matfield-springboks-perth-loss-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "fact_check: Tanzanian bettors; SportPesa Tanzania; Betika Tanzania; 22Bet Tanzania; 1xBet Tanzania; TSh 460,000; TSh 500,000; M-Pesa (Vodacom); Airtel Money; Tigo Pesa; Halotel Pesa; 250% Karibu Gift; TSh 5,000 welcome bonus; Betway Tanzania; FairPari Tanzania; Gaming Board of Tanzania"
       }
     ]
   }
