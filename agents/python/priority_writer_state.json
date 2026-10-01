@@ -836,31 +836,35 @@
     "What channel is Ohio State vs. Illinois on today betting tips Ivory Coast": {
       "slug": "ohio-state-vs-illinois-where-to-watch-and-betting-tips-ivory-coast",
       "posted_at": "2026-10-01T01:53:21.991516+00:00"
+    },
+    "Eel-powered Kurihara, 11, wins gold Asian Games betting tips Senegal": {
+      "slug": "eel-powered-kurihara-11-wins-gold-asian-games-betting-tips-senegal",
+      "posted_at": "2026-10-01T03:53:36.527883+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-01T01:53:46.915446+00:00",
-    "candidates_available": 297,
+    "checked_at": "2026-10-01T03:54:25.676434+00:00",
+    "candidates_available": 295,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "What channel is Georgia vs. Oklahoma on today betting tips Ethiopia",
-        "country": "Ethiopia",
-        "result": "written",
-        "slug": "georgia-vs-oklahoma-channel-betting-tips-ethiopia"
-      },
-      {
-        "keyword": "What channel is Ohio State vs. Illinois on today betting tips Ivory Coast",
-        "country": "Ivory Coast",
-        "result": "written",
-        "slug": "ohio-state-vs-illinois-where-to-watch-and-betting-tips-ivory-coast"
-      },
       {
         "keyword": "What channel is Tennessee vs. Texas on today betting tips Cameroon",
         "country": "Cameroon",
         "result": "failed",
-        "reason": "quality_gate: final line was '1xBet Cameroun offers the largest welcome bonus – a 200 % match up to CFA 200,000 on a minimum deposit of CFA 200. The bonus is subject to a 5‑times wagering requirement on odds of at least 1.40 within 30 days.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Both 1xBet Cameroun and Melbet Cameroun provide a 200 % first‑deposit match up to CFA 200 000, making them the highest‑value offers on the market.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Eel-powered Kurihara, 11, wins gold Asian Games betting tips Senegal",
+        "country": "Senegal",
+        "result": "written",
+        "slug": "eel-powered-kurihara-11-wins-gold-asian-games-betting-tips-senegal"
+      },
+      {
+        "keyword": "What channel is Purdue vs. Notre Dame on today betting tips Zimbabwe",
+        "country": "Zimbabwe",
+        "result": "failed",
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       }
     ]
   }
