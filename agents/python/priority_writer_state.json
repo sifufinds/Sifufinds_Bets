@@ -840,31 +840,35 @@
     "Eel-powered Kurihara, 11, wins gold Asian Games betting tips Senegal": {
       "slug": "eel-powered-kurihara-11-wins-gold-asian-games-betting-tips-senegal",
       "posted_at": "2026-10-01T03:53:36.527883+00:00"
+    },
+    "What channel is Tennessee vs. Texas on today betting tips Cameroon": {
+      "slug": "tennessee-vs-texas-channel-betting-tips-cameroon",
+      "posted_at": "2026-10-01T05:33:15.481791+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-01T03:54:25.676434+00:00",
-    "candidates_available": 295,
+    "checked_at": "2026-10-01T05:33:55.155241+00:00",
+    "candidates_available": 294,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "What channel is Tennessee vs. Texas on today betting tips Cameroon",
         "country": "Cameroon",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Both 1xBet Cameroun and Melbet Cameroun provide a 200 % first‑deposit match up to CFA 200 000, making them the highest‑value offers on the market.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Eel-powered Kurihara, 11, wins gold Asian Games betting tips Senegal",
-        "country": "Senegal",
         "result": "written",
-        "slug": "eel-powered-kurihara-11-wins-gold-asian-games-betting-tips-senegal"
+        "slug": "tennessee-vs-texas-channel-betting-tips-cameroon"
       },
       {
         "keyword": "What channel is Purdue vs. Notre Dame on today betting tips Zimbabwe",
         "country": "Zimbabwe",
         "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 459)"
+      },
+      {
+        "keyword": "Real Madrid seriously considering bringing back former defender betting tips Mozambique",
+        "country": "Mozambique",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'If a transfer falls through, the odds may change and the payout will reflect the final outcome. The bookmaker will honour the bet as per the market odds at the time of placement.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
