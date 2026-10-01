@@ -1,13 +1,43 @@
 {
   "date": "2026-10-01",
-  "total": 33,
+  "total": 38,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 5,
     "MEDIUM": 32,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "draftkings-promo-ai-sgp-picks-steelers-browns-thursday-night-fever",
+      "detail": "Title 76 chars (max 60): 'DraftKings Promo + AI SGP Picks Fuel Steelers vs Browns Thursday Night'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "katsina-appropriation-law-betting-tips-south-africa",
+      "detail": "Title 61 chars (max 60): 'Katsina Appropriation Law Sparks Betting Tips in South Africa'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ghana-benny-bonsu-2026-sports-emmy-betting-tips",
+      "detail": "Title 72 chars (max 60): \"Ghana's Benny Bonsu Wins 2026 Sports Emmy \u2013 Betting Tips and Top Bonus\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "draftkings-promo-ai-sgp-picks-steelers-browns-thursday-night-fever",
+      "detail": "Excerpt 210 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "katsina-appropriation-law-betting-tips-south-africa",
+      "detail": "Excerpt 184 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
