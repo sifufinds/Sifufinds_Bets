@@ -852,31 +852,39 @@
     "safest betting apps Zambia": {
       "slug": "safest-betting-apps-zambia",
       "posted_at": "2026-10-01T07:33:30.948181+00:00"
+    },
+    "Ghana's Benny Bonsu wins 2026 Sports Emmy 'Champions betting tips Ghana": {
+      "slug": "ghana-benny-bonsu-2026-sports-emmy-betting-tips",
+      "posted_at": "2026-10-01T13:00:01.750437+00:00"
+    },
+    "Katsina gov signs N828.58bn 2027 appropriation law betting tips South Africa": {
+      "slug": "katsina-appropriation-law-betting-tips-south-africa",
+      "posted_at": "2026-10-01T13:00:15.667721+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-01T07:33:40.986509+00:00",
-    "candidates_available": 294,
+    "checked_at": "2026-10-01T13:00:20.528523+00:00",
+    "candidates_available": 296,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "best betting sites Zambia 2026",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "best-betting-sites-zambia-2026"
-      },
-      {
-        "keyword": "safest betting apps Zambia",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "safest-betting-apps-zambia"
-      },
-      {
-        "keyword": "best betting sites Ethiopia 2026",
-        "country": "Ethiopia",
+        "keyword": "Katsina gov signs N828.58bn 2027 appropriation law betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 492)"
+        "reason": "quality_gate: final line was 'OPay and PalmPay are the quickest for instant deposits because they work through mobile apps. USSD also processes top‑ups rapidly without needing an internet connection, while Visa and Mastercard are reliable for both deposits and withdrawals.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ghana's Benny Bonsu wins 2026 Sports Emmy 'Champions betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "ghana-benny-bonsu-2026-sports-emmy-betting-tips"
+      },
+      {
+        "keyword": "Katsina gov signs N828.58bn 2027 appropriation law betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "katsina-appropriation-law-betting-tips-south-africa"
       }
     ]
   }
