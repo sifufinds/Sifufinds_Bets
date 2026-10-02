@@ -896,31 +896,35 @@
     "Portugal Instagram Loses Over One Million Followers After betting tips Nigeria": {
       "slug": "portugal-instagram-loses-over-one-million-followers-after-betting-tips-nigeria",
       "posted_at": "2026-10-02T09:20:13.772603+00:00"
+    },
+    "Pro-Palestine protests interrupt game as Ireland pass up betting tips South Africa": {
+      "slug": "pro-palestine-protests-live-betting-south-africa",
+      "posted_at": "2026-10-02T16:21:47.359530+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-02T09:37:49.987350+00:00",
-    "candidates_available": 271,
+    "checked_at": "2026-10-02T16:21:51.760535+00:00",
+    "candidates_available": 270,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Portugal Instagram Loses Over One Million Followers After betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "portugal-instagram-loses-over-one-million-followers-after-betting-tips-nigeria"
-      },
-      {
         "keyword": "Mombasa United strike first against Sharks playoffs betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 748 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "reason": "quality_gate: final line was 'M‑Pay via USSD *644#* is the fastest option. It works with every bookmaker in the comparison table and funds appear in your betting account instantly, allowing you to place a bet moments before the match starts.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "What went wrong Nigeria 3-0 AFCON qualifying defeat betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "missing_output_markers"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 485)"
+      },
+      {
+        "keyword": "Pro-Palestine protests interrupt game as Ireland pass up betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "pro-palestine-protests-live-betting-south-africa"
       }
     ]
   }
