@@ -1,13 +1,61 @@
 {
   "date": "2026-10-02",
-  "total": 33,
+  "total": 41,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 8,
     "MEDIUM": 32,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "igaming-news-roundup-betsson-foundation-sbc-awards",
+      "detail": "Title 62 chars (max 60): 'iGaming News Roundup: Betsson Foundation, SBC Awards, and More'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "freddie-freeman-josh-allen-top-sports-news-betting",
+      "detail": "Title 88 chars (max 60): 'Freddie Freeman, Josh Allen & More: Top Global Sports Stories & Bettin'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "pro-palestine-protests-live-betting-south-africa",
+      "detail": "Title 75 chars (max 60): 'Pro-Palestine Protests and Live Betting in South Africa \u2013 A Practical '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "igaming-news-roundup-betsson-foundation-sbc-awards",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "freddie-freeman-josh-allen-top-sports-news-betting",
+      "detail": "Excerpt 193 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "pro-palestine-protests-live-betting-south-africa",
+      "detail": "Excerpt 169 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-sports-roundup-nba-drama-tennis-insights",
+      "detail": "Excerpt 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nfl-week-4-preview-ravens-dolphins-49ers",
+      "detail": "Excerpt 174 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
