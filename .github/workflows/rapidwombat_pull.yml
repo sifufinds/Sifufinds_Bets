@@ -1,0 +1,96 @@
+name: RapidWombat Pull — daily content-automation articles
+
+# Daily safety-net/primary pull from the RapidWombat project API
+# (https://rapidwombat.com/dashboard/content-automation). Imports every article
+# that has a title and body and isn't already in blog/posts.json, through the
+# same importer as the webhook (agent_rapidwombat_import.import_article), then
+# regenerates pages, runs every pre-deploy gate BEFORE committing, and pushes.
+# Idempotent with the webhook flow: both key posts on `rapidwombat-<id>`.
+# Needs the RAPIDWOMBAT_API_KEY repo secret.
+
+on:
+  schedule:
+    - cron: "30 6 * * *"   # daily 06:30 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: rapidwombat-import   # share the webhook importer's queue, never race it
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest content (avoid stale reads)
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('agents/python/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r agents/python/requirements.txt
+
+      - name: Install fonts for feature-image generation
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-dejavu-core fonts-noto-color-emoji
+
+      - name: Import new RapidWombat articles
+        working-directory: agents/python
+        env:
+          RAPIDWOMBAT_API_KEY: ${{ secrets.RAPIDWOMBAT_API_KEY }}
+        run: python agent_rapidwombat_pull.py
+
+      - name: Generate static blog post pages
+        run: python3 gen_blog_post_pages.py
+
+      - name: Run every pre-deploy gate before committing
+        run: |
+          python3 scripts/validate_site.py
+          python3 scripts/audit_titles.py
+          python3 scripts/check_indexability.py
+          python3 scripts/seo_check.py
+          python3 scripts/compliance_check.py
+          python3 scripts/check_country_count.py
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "rapidwombat-bot@sifufinds.com"
+          git config --local user.name "SifuFinds RapidWombat Import"
+          git add blog/posts.json blog/posts-data.js blog/ assets/og/
+          if git diff --cached --quiet; then
+            echo "No new RapidWombat articles"
+            exit 0
+          fi
+          scripts/assert_no_conflict_markers.sh || exit 1
+          git commit -m "feat: publish new RapidWombat articles (daily pull)"
+          for _attempt in 1 2 3 4 5; do
+            if git push; then echo "✅ Pushed on attempt $_attempt"; break; fi
+            [ "$_attempt" -eq 5 ] && { echo "❌ Push failed after 5 attempts"; exit 1; }
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            python3 scripts/resolve_json_conflicts.py
+            python3 agents/python/merge_posts.py
+            git diff --name-only --diff-filter=U | grep -E '^blog/.+/index\.html$' | xargs -r rm -f
+            python3 gen_blog_post_pages.py
+            git add -A
+            scripts/assert_no_conflict_markers.sh || exit 1
+            git commit -m "feat: publish new RapidWombat articles (daily pull, merged)" --allow-empty
+          done
