@@ -892,31 +892,35 @@
     "how to bet online Ivory Coast beginners guide": {
       "slug": "how-to-bet-online-ivory-coast-beginners-guide",
       "posted_at": "2026-10-02T04:11:12.655085+00:00"
+    },
+    "Portugal Instagram Loses Over One Million Followers After betting tips Nigeria": {
+      "slug": "portugal-instagram-loses-over-one-million-followers-after-betting-tips-nigeria",
+      "posted_at": "2026-10-02T09:20:13.772603+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-02T07:30:37.961958+00:00",
-    "candidates_available": 266,
+    "checked_at": "2026-10-02T09:37:49.987350+00:00",
+    "candidates_available": 271,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "safest betting apps Ivory Coast",
-        "country": "Ivory Coast",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Withdrawal times vary by method. Mobile‑money withdrawals such as Orange Money or MTN MoMo are usually processed within 24 hours. Visa card withdrawals can take up to three business days, while bank transfers may need several days to clear.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "keyword": "Portugal Instagram Loses Over One Million Followers After betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "portugal-instagram-loses-over-one-million-followers-after-betting-tips-nigeria"
       },
       {
-        "keyword": "best betting sites Cameroon 2026",
-        "country": "Cameroon",
+        "keyword": "Mombasa United strike first against Sharks playoffs betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 474)"
+        "reason": "quality_gate: only 748 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
       },
       {
-        "keyword": "best betting bonus Cameroon 2026",
-        "country": "Cameroon",
+        "keyword": "What went wrong Nigeria 3-0 AFCON qualifying defeat betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "reason": "missing_output_markers"
       }
     ]
   }
