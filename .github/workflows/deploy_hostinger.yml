@@ -309,6 +309,14 @@ jobs:
             [ "$skip" == false ] && [ -d "$d" ] && FILES+=("$d")
           done
 
+          # Deploy stamp: lets the deploy step confirm this exact archive went
+          # live when Hostinger's deploy API reports an error anyway (see the
+          # stamp check in the next step).
+          DEPLOY_STAMP="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          echo "$DEPLOY_STAMP" > deploy-stamp.txt
+          FILES+=("deploy-stamp.txt")
+          echo "DEPLOY_STAMP=$DEPLOY_STAMP" >> "$GITHUB_ENV"
+
           zip -r "$ARCHIVE_PATH" "${FILES[@]}" \
             -x "*/.git/*" "*/node_modules/*" "*/agents/*"
           echo "ARCHIVE_PATH=$ARCHIVE_PATH" >> "$GITHUB_ENV"
@@ -385,6 +393,28 @@ jobs:
               sys.exit(1)
           " 2>&1) && SUCCESS=true && echo "✅ $STATUS" && break \
             || echo "⚠ Attempt $attempt failed: $STATUS"
+
+            # False-failure check (2026-10-02): with a ~600 MB archive
+            # Hostinger's deploy call returns HTTP 500 while extraction is
+            # still running, then finishes anyway (run 37061833223 went live
+            # despite deploy=error x3). Retrying re-uploads 600 MB and the
+            # watchdog repeats it. If the upload succeeded, poll the live
+            # deploy stamp before retrying.
+            if echo "$STATUS" | grep -q "upload=success"; then
+              echo "Upload succeeded — checking whether this archive went live anyway..."
+              for poll in $(seq 1 24); do
+                LIVE_STAMP=$(curl -fsS -H 'Cache-Control: no-cache' \
+                  "https://sifufinds.com/deploy-stamp.txt?nc=$(date +%s%N)" 2>/dev/null | tr -d '[:space:]')
+                if [ "$LIVE_STAMP" = "$DEPLOY_STAMP" ]; then
+                  echo "✅ Live site serves deploy stamp $DEPLOY_STAMP — deploy succeeded despite the API error"
+                  SUCCESS=true
+                  break
+                fi
+                sleep 10
+              done
+              [ "$SUCCESS" = "true" ] && break
+              echo "Deploy stamp not live after 4 min (live: '${LIVE_STAMP:-none}')"
+            fi
 
             if [ "$attempt" -lt 3 ]; then
               if [ "$IS_RATE_LIMITED" = "true" ]; then
