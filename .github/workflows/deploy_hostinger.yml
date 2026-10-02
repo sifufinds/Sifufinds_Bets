@@ -319,7 +319,7 @@ jobs:
           HOSTINGER_API_TOKEN: ${{ secrets.HOSTINGER_API_TOKEN }}
         run: |
           INIT='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"gh-actions","version":"1.0"}}}'
-          DEPLOY=$(printf '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"hosting_deployStaticWebsite","arguments":{"domain":"sifufinds.com","archivePath":"%s","removeArchive":true}}}' "$ARCHIVE_PATH")
+          DEPLOY=$(printf '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"hosting_deploy-static-website","arguments":{"domain":"sifufinds.com","archivePath":"%s","removeArchive":true}}}' "$ARCHIVE_PATH")
 
           echo "Archive path: $ARCHIVE_PATH"
           ls -lh "$ARCHIVE_PATH"
@@ -340,7 +340,7 @@ jobs:
 
             MCP_STDERR_LOG="$(mktemp)"
             RESULT=$(printf '%s\n%s\n' "$INIT" "$DEPLOY" \
-              | npx --yes hostinger-api-mcp@latest --stdio 2>"$MCP_STDERR_LOG" \
+              | npx --yes hostinger-api-mcp@2.7.0 --stdio 2>"$MCP_STDERR_LOG" \
               | python3 -c "
           import sys, json
           for line in sys.stdin:
