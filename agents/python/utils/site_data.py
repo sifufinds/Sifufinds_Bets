@@ -22,7 +22,8 @@ import re
 from pathlib import Path
 from typing import Any
 
-SHARED_JS_PATH = Path(__file__).resolve().parent.parent.parent.parent / "assets" / "shared.js"
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+SHARED_JS_PATH = REPO_ROOT / "assets" / "shared.js"
 
 _STRING_RE = re.compile(r"'(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\"")
 _UNQUOTED_KEY_RE = re.compile(r"([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)(\s*:)")
@@ -107,18 +108,39 @@ def load_country_data() -> dict[str, dict]:
     return _load_block("const COUNTRY_DATA")
 
 
+def _hidden_brand_filter():
+    """Predicate that is True for entries naming a brand in
+    data/hidden_brands.json (2026-09-26 standing rule). Content agents must
+    not build posts around hidden brands: the deploy step would strip those
+    sentences afterwards and leave a mangled article. Reuses
+    scripts/hidden_brands_lib.py so the list has one source of truth."""
+    try:
+        import sys
+        sys.path.insert(0, str(REPO_ROOT / "scripts"))
+        from hidden_brands_lib import load_config
+        hb = load_config(REPO_ROOT / "data" / "hidden_brands.json")
+    except (ImportError, SystemExit, OSError) as e:
+        print(f"site_data: hidden-brand list unavailable ({e}), not filtering")
+        return lambda entry: False
+    return lambda entry: hb.mentions(entry.get("name")) or hb.mentions(entry.get("url"))
+
+
 def load_bookmakers() -> dict[str, list[dict]]:
     """{code: [bookmaker entries]} for all 33 countries — mirrors
-    shared.js's BOOKS exactly. Each entry carries name/url/off/top/stars/
-    min/lic/terms/pms among other display fields."""
-    return _load_block("const BOOKS")
+    shared.js's BOOKS, minus hidden brands (see _hidden_brand_filter). Each
+    entry carries name/url/off/top/stars/min/lic/terms/pms among other
+    display fields."""
+    is_hidden = _hidden_brand_filter()
+    return {code: [b for b in books if not is_hidden(b)]
+            for code, books in _load_block("const BOOKS").items()}
 
 
 def load_casinos() -> list[dict]:
     """[casino entries] — mirrors shared.js's flat CASINOS list (powers
     /casino/). Not grouped by country: each entry's `min` is priced in one
     currency (₦, R, ...), which is the only per-market signal it carries."""
-    return _load_block("const CASINOS", opener="[")
+    is_hidden = _hidden_brand_filter()
+    return [c for c in _load_block("const CASINOS", opener="[") if not is_hidden(c)]
 
 
 def casinos_for_country(code: str) -> list[dict]:
