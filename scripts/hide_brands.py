@@ -43,6 +43,19 @@ EXCLUDE_DIRS = {"agents", "scripts", "supabase", "firecrawl", "geo-content-write
                 "node_modules", "__pycache__"}
 TEXT_EXTS = {".html", ".json", ".js", ".xml", ".txt"}
 CONFIG_REL = "data/hidden_brands.json"
+# Pages the owner has explicitly cleared to name hidden brands (2026-10-02: the
+# 8 RapidWombat articles). Everything under these dirs is left untouched by the
+# scrub and ignored by the leak check. Add a dir here only on the owner's say-so.
+EXEMPT_DIRS = (
+    "blog/4-sports-betting-apps-in-nigeria-for-2026-speed-ui-and-live-markets-compared/",
+    "blog/choosing-a-sports-betting-platform-in-nigeria-for-2026/",
+    "blog/1xbet-bet9ja-and-betano-reviewing-licensed-betting-brands-in-2026/",
+    "blog/1xbet-login-and-security-3-nigerian-betting-platforms-compared-for-2026/",
+    "blog/comparing-top-betting-prediction-sites-for-2026/",
+    "blog/4-top-football-betting-sites-in-nigeria-for-2026-bonuses-and-mobile-payments/",
+    "blog/5-best-football-betting-sites-in-nigeria-2026-platform-analysis/",
+    "blog/5-best-free-bets-at-licensed-nigerian-bookmakers-2026/",
+)
 HTACCESS_MARK = "# ── HIDDEN BRANDS (added at deploy by scripts/hide_brands.py) ──"
 _WINDOW_JSON = re.compile(r"^((?:\s*/\*.*?\*/|\s*//[^\n]*)*\s*window\.[\w$]+\s*=\s*)(.*?)(;?\s*)$", re.S)
 _SAFE_PATH = re.compile(r"^[a-z0-9][a-z0-9/_-]*/$")
@@ -65,6 +78,10 @@ def deploy_files(root: Path) -> list[str]:
     return sorted(f for f in out if f != CONFIG_REL)
 
 
+def is_exempt(rel: str) -> bool:
+    return rel.startswith(EXEMPT_DIRS)
+
+
 def _read(root: Path, rel: str) -> str:
     return (root / rel).read_text(encoding="utf-8", errors="replace")
 
@@ -78,6 +95,8 @@ def find_stubs(root: Path, html_files: list[str], hb: HiddenBrands) -> set[str]:
         if not rel.endswith("index.html") or rel == "index.html":
             continue
         d = rel[: -len("index.html")]
+        if is_exempt(rel):
+            continue
         if hb.mentions(d) or page_heading_mentions(_read(root, rel), hb):
             stubbed.add(d)
     return stubbed
@@ -173,6 +192,8 @@ def filter_sitemaps(root: Path, files: list[str], stubbed: set[str], hb: HiddenB
             nonlocal removed
             loc = re.search(r"<loc>\s*(.*?)\s*</loc>", m.group(0), re.S)
             path = resolve_href(loc.group(1), "") if loc else None
+            if loc and path and is_exempt(path):
+                return m.group(0)
             if (loc and hb.mentions(loc.group(1))) or path in stubbed:
                 removed += 1
                 return ""
@@ -227,7 +248,8 @@ def run_apply(root: Path, hb: HiddenBrands) -> None:
     redirects = {d: stub_target(d, stubbed, root) for d in stubbed}
     for d, target in redirects.items():
         (root / d / "index.html").write_text(stub_html(target), encoding="utf-8")
-    todo = [f for f in files if f[: -len("index.html")] not in stubbed or not f.endswith("index.html")]
+    todo = [f for f in files if not is_exempt(f)
+            and (f[: -len("index.html")] not in stubbed or not f.endswith("index.html"))]
     with Pool(initializer=_init_worker, initargs=(str(root), frozenset(stubbed), hb)) as pool:
         changed = sum(ok for _, ok in pool.imap_unordered(_scrub_file, todo, chunksize=16))
     dropped = filter_sitemaps(root, files, stubbed, hb)
@@ -238,7 +260,7 @@ def run_apply(root: Path, hb: HiddenBrands) -> None:
 
 def run_check(root: Path, hb: HiddenBrands) -> int:
     problems = config_drift(root, hb)
-    files = deploy_files(root)
+    files = [f for f in deploy_files(root) if not is_exempt(f)]
     with Pool(initializer=_init_worker, initargs=(str(root), frozenset(), hb)) as pool:
         results = [r for r in pool.imap_unordered(_check_file, files, chunksize=16) if r[1]]
     for rel, leaks in sorted(results):
