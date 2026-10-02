@@ -895,28 +895,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-02T04:11:16.374083+00:00",
-    "candidates_available": 273,
+    "checked_at": "2026-10-02T07:30:37.961958+00:00",
+    "candidates_available": 266,
     "attempted": 3,
-    "written": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "best betting sites Ivory Coast 2026",
+        "keyword": "safest betting apps Ivory Coast",
         "country": "Ivory Coast",
-        "result": "written",
-        "slug": "best-betting-sites-ivory-coast-2026"
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Withdrawal times vary by method. Mobile‑money withdrawals such as Orange Money or MTN MoMo are usually processed within 24 hours. Visa card withdrawals can take up to three business days, while bank transfers may need several days to clear.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "best betting bonus Ivory Coast 2026",
-        "country": "Ivory Coast",
-        "result": "written",
-        "slug": "best-betting-bonus-ivory-coast-2026"
+        "keyword": "best betting sites Cameroon 2026",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 474)"
       },
       {
-        "keyword": "how to bet online Ivory Coast beginners guide",
-        "country": "Ivory Coast",
-        "result": "written",
-        "slug": "how-to-bet-online-ivory-coast-beginners-guide"
+        "keyword": "best betting bonus Cameroon 2026",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
       }
     ]
   }
