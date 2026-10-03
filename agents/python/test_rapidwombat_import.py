@@ -46,9 +46,21 @@ def test_non_http_cover_image_dropped():
 
 
 def test_sanitize_strips_leading_h1_and_raw_html():
-    out = rw.sanitize_markdown("# Title\n\nHi <script>alert(1)</script> there")
+    out = rw.sanitize_markdown("# Title\n\nHi <script>alert(1)</script> there <5 min")
     assert not out.startswith("#")
-    assert "<script>" not in out and "&lt;script&gt;" in out
+    assert "script" not in out and "alert" not in out
+    assert out.endswith("there &lt;5 min")
+
+
+def test_inline_html_becomes_markdown_not_escaped_text():
+    # Exact shape from the 2026-10-03 failed import: escaped <a href> left a
+    # bare URL that the country auto-linker linked inside of.
+    html = ('<ul><li><a href="https://sifufinds.com/betting/football-betting/cameroon/">'
+            'Football Betting Cameroon</a></li></ul><p>Read <strong>this</strong> first.</p>')
+    out = rw.sanitize_markdown(html)
+    assert "- [Football Betting Cameroon](https://sifufinds.com/betting/football-betting/cameroon/)" in out
+    assert "**this**" in out
+    assert "&lt;" not in out and "<" not in out
 
 
 def test_sanitize_neutralises_unsafe_links_keeps_safe_ones():
@@ -75,6 +87,17 @@ def test_build_post_detects_category_tags_bookmaker():
     assert post["tags"] == ["Nigeria"]
     assert post["bookmaker_featured"] == "SportyBet"
     assert 50 <= len(post["excerpt"]) <= 155
+
+
+def test_category_uses_whole_words_and_title_intent():
+    # 2026-10-03 regressions: "multiple" matched "ipl" (cricket), and betting-site
+    # guides that mention slots in passing landed in igaming.
+    body = "Multiple Nigerian bookmakers offer slots and jackpot games alongside football markets. " * 20
+    assert rw.detect_category("Comparing Top Betting Prediction Sites for 2026", body) == "betting"
+    assert rw.detect_category("5 Best Football Betting Sites in Nigeria (2026)", body) == "betting"
+    assert rw.detect_category("Best Online Casino Slots in Nigeria", body) == "igaming"
+    assert rw.detect_category("AFCON 2027: Who Will Win?", "Nigeria and Senegal lead the football field.") == "football"
+    assert rw.detect_category("A Guide to Multiple Platforms", "Nothing sporty here at all.") == "betting"
 
 
 def test_update_keeps_slug_and_publish_date():
