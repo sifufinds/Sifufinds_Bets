@@ -1,60 +1,84 @@
 {
-  "date": "2026-10-02",
-  "total": 41,
+  "date": "2026-10-03",
+  "total": 45,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 8,
-    "MEDIUM": 32,
+    "HIGH": 11,
+    "MEDIUM": 33,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "igaming-news-roundup-betsson-foundation-sbc-awards",
-      "detail": "Title 62 chars (max 60): 'iGaming News Roundup: Betsson Foundation, SBC Awards, and More'"
+      "page": "nations-league-fever-croatia-turkiye-liverpool-psl-buzz",
+      "detail": "Title 62 chars (max 60): 'Nations League Fever: Croatia, Turkiye, Liverpool and PSL Buzz'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "freddie-freeman-josh-allen-top-sports-news-betting",
-      "detail": "Title 88 chars (max 60): 'Freddie Freeman, Josh Allen & More: Top Global Sports Stories & Bettin'"
+      "page": "portugal-loses-over-one-million-instagram-followers-after-ronaldo-exit",
+      "detail": "Title 70 chars (max 60): 'Portugal Loses Over One Million Instagram Followers After Ronaldo Exit'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "pro-palestine-protests-live-betting-south-africa",
-      "detail": "Title 75 chars (max 60): 'Pro-Palestine Protests and Live Betting in South Africa \u2013 A Practical '"
+      "page": "mombasa-united-sharks-playoffs-betting-tips-kenya",
+      "detail": "Title 66 chars (max 60): 'Mombasa United vs Sharks playoffs betting tips Kenya \u2013 Best offers'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "evaluating-sports-betting-ghana-platforms-4-verified-operators-for-2026",
+      "detail": "Title 72 chars (max 60): 'Evaluating sports betting ghana platforms: 4 verified operators for 20'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "what-went-wrong-nigeria-3-0-afcon-qualifier-loss-betting-tips-ghana",
+      "detail": "Title 76 chars (max 60): \"What Went Wrong: Nigeria's 3\u20110 AFCON Qualifier Loss & Betting Tips for\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "5-best-football-betting-sites-in-nigeria-2026-platform-analysis",
+      "detail": "Title 64 chars (max 60): '5 Best Football Betting Sites in Nigeria: 2026 Platform Analysis'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "4-top-football-betting-sites-in-nigeria-for-2026-bonuses-and-mobile-payments",
+      "detail": "Title 87 chars (max 60): '4 Top Football Betting Sites in Nigeria for 2026: Bonuses and Mobile P'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "1xbet-login-and-security-3-nigerian-betting-platforms-compared-for-2026",
+      "detail": "Title 72 chars (max 60): '1xbet login and Security: 3 Nigerian Betting Platforms Compared for 20'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "1xbet-bet9ja-and-betano-reviewing-licensed-betting-brands-in-2026",
+      "detail": "Title 68 chars (max 60): '1xbet, Bet9ja, and Betano: Reviewing Licensed Betting Brands in 2026'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "4-sports-betting-apps-in-nigeria-for-2026-speed-ui-and-live-markets-compared",
+      "detail": "Title 79 chars (max 60): '4 Sports Betting Apps in Nigeria for 2026: Speed, UI, and Live Markets'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "igaming-news-roundup-betsson-foundation-sbc-awards",
-      "detail": "Excerpt 168 chars (max 155)"
+      "page": "mombasa-united-sharks-playoffs-betting-tips-kenya",
+      "detail": "Excerpt 160 chars (max 155)"
     },
     {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "freddie-freeman-josh-allen-top-sports-news-betting",
-      "detail": "Excerpt 193 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "pro-palestine-protests-live-betting-south-africa",
-      "detail": "Excerpt 169 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-roundup-nba-drama-tennis-insights",
-      "detail": "Excerpt 176 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nfl-week-4-preview-ravens-dolphins-49ers",
-      "detail": "Excerpt 174 chars (max 155)"
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "portugal-loses-over-one-million-instagram-followers-after-ronaldo-exit",
+      "detail": "High title overlap (7 meaningful tokens) with 'portugal-instagram-loses-over-one-million-followers-after-betting-tips-nigeria' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
