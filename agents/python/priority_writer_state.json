@@ -911,7 +911,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-03T11:42:43.749198+00:00",
+    "checked_at": "2026-10-03T13:56:00.185844+00:00",
     "candidates_available": 276,
     "attempted": 3,
     "written": 0,
@@ -920,19 +920,19 @@
         "keyword": "AFCON 2027 Q ‘Imported’ solution can’t solve Super betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Single bets do not count toward the x5 accumulator rollover. The bonus can only be cleared by placing accumulator tickets that meet the minimum odds condition. You can still place single bets for fun, but they will not contribute to the bonus clearance.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'The minimum bet on Sportybet is ₦100, while the maximum bet is ₦100,000. However, these limits may vary depending on the specific bet and sport. Always check the bookmaker's terms and conditions before placing a bet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Man City confirm appeal after Premier League charges betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 920 words (minimum 1000); no '## FAQ' section heading found"
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was 'Yes, many bookmakers offer promotions and bonuses to new customers. Check the website of your chosen bookmaker for more information.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ghana secure three semi-final slots All Africa U-19 betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "missing_output_markers"
+        "reason": "quality_gate: only 941 words (minimum 1000); final line was 'Check the bookmaker's website or contact their customer support to verify their licensing and regulation. The Gaming Commission of Ghana (GCA) regulates the betting industry in Ghana, ensuring that bookmakers operate fairly and transparently.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
