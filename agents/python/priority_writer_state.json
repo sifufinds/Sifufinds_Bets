@@ -936,31 +936,39 @@
     "Liberia From Weah Nagbe, Liberia Loses Another Talent betting tips Zambia": {
       "slug": "liberia-weah-nagbe-betting-tips-zambia",
       "posted_at": "2026-10-03T20:09:27.534167+00:00"
+    },
+    "Liberia From Weah Nagbe, Liberia Loses Another Talent betting tips Morocco": {
+      "slug": "morocco-betting-tips-liberia-talent-loss",
+      "posted_at": "2026-10-03T22:57:58.892642+00:00"
+    },
+    "'I reduced my running because urine leaks' – betting tips Ivory Coast": {
+      "slug": "betting-tips-ivory-coast-bookmakers-offers",
+      "posted_at": "2026-10-03T23:22:21.927552+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-03T20:09:31.360826+00:00",
-    "candidates_available": 270,
+    "checked_at": "2026-10-03T23:22:24.962949+00:00",
+    "candidates_available": 268,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
         "keyword": "Liberia From Weah Nagbe, Liberia Loses Another Talent betting tips Morocco",
         "country": "Morocco",
+        "result": "written",
+        "slug": "morocco-betting-tips-liberia-talent-loss"
+      },
+      {
+        "keyword": "'I reduced my running because urine leaks' – betting tips Ethiopia",
+        "country": "Ethiopia",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Liberia’s football narrative – from Weah to Nagbe – continues to ripple across the African continent, and Morocco’s betting scene is keenly tuned to these shifts. By understanding the regulatory environment, selecting the right bookmaker, and using the correct payment method, you can turn these stories into profitable betting opportunities. Remember to gamble responsibly and stay within your limits. For a comprehensive comparison of Moroccan bookmakers and the latest odds, visit sifufinds.com. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 863 words (minimum 1000)"
       },
       {
-        "keyword": "Liberia From Weah Nagbe, Liberia Loses Another Talent betting tips Uganda",
-        "country": "Uganda",
+        "keyword": "'I reduced my running because urine leaks' – betting tips Ivory Coast",
+        "country": "Ivory Coast",
         "result": "written",
-        "slug": "liberia-weah-nagbe-betting-tips-uganda"
-      },
-      {
-        "keyword": "Liberia From Weah Nagbe, Liberia Loses Another Talent betting tips Zambia",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "liberia-weah-nagbe-betting-tips-zambia"
+        "slug": "betting-tips-ivory-coast-bookmakers-offers"
       }
     ]
   }
