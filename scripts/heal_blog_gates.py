@@ -13,9 +13,12 @@ Heals, in order, only things that are safe to fix without a human:
      markers or unparseable JSON-LD -> deleted, so gen_blog_post_pages.py
      rebuilds them from blog/posts.json (it only creates missing pages).
   2. Overstated gambling-outcome phrases (compliance_check.BANNED_RE) in a
-     post's title/excerpt/body in blog/posts.json -> the offending sentence is
-     dropped (negated uses like "no guaranteed win" are kept, same rule as
-     the gate). The post's page is then regenerated.
+     post's title/excerpt/body in blog/posts.json, for posts whose page the
+     gate flags -> the phrase is reworded in place ("risk-free bet" -> "free
+     bet"), so headings/FAQ answers/opening answers keep their SEO/GEO
+     structure; reported speech is never reworded, that sentence is dropped.
+     Negated uses like "no guaranteed win" are kept (gate's own rule). The
+     slug/URL is never changed. The post's page is then regenerated.
   3. Every gate's own --fix mode (seo_check, check_indexability,
      check_country_count, compliance_check).
 
@@ -68,22 +71,56 @@ def heal_broken_pages() -> list[str]:
     return removed
 
 
-def strip_banned_sentences(text: str) -> str:
-    """Drop each sentence holding a banned phrase the gate would flag.
+# Honest, non-overstated equivalents. Rewriting the phrase (instead of
+# deleting its sentence) keeps headings, FAQ answers (FAQPage schema) and the
+# opening answer AI engines quote intact, so SEO/GEO structure is unchanged.
+REWRITES = [
+    (re.compile(r"risk[\s-]?free\s+bet|(?:zero|no)[\s-]?risk\s+bet", re.I), "free bet"),
+    (re.compile(r"guaranteed\s+win|100%\s*win", re.I), "likely win"),
+    (re.compile(r"can'?t\s+lose|cannot\s+lose", re.I), "shouldn't lose"),
+    (re.compile(r"never\s+lose", re.I), "rarely lose"),
+]
+# Reported speech must not be reworded (that would misquote someone), so a
+# flagged phrase inside a quote/attributed sentence drops the sentence.
+REPORTED_SPEECH_RE = re.compile(
+    r"[\"“”]|\b(said|says|claimed|claims|boasted|boasts|insisted|told|admitted|vowed|declared)\b", re.I)
 
-    Uses the gate's exact rule (_is_negated over the full text, not one
-    sentence) so accurate disclaimers like "no guaranteed win" survive."""
+
+def _rewrite_phrase(phrase: str) -> str:
+    for pattern, replacement in REWRITES:
+        if pattern.fullmatch(phrase):
+            return replacement[0].upper() + replacement[1:] if phrase[0].isupper() else replacement
+    return phrase
+
+
+def heal_text(text: str) -> str:
+    """Fix each banned phrase the gate would flag (gate's exact rule:
+    _is_negated over the full text, so "no guaranteed win" disclaimers are
+    left alone). Rewrites the phrase in place; drops the sentence only for
+    reported speech. Paragraphs, headings, tables and FAQs keep their shape."""
     if not text:
         return text
-    bad_spans = [m.span() for m in BANNED_RE.finditer(text) if not _is_negated(text, m.start())]
-    if not bad_spans:
+    bad = [m for m in BANNED_RE.finditer(text) if not _is_negated(text, m.start())]
+    if not bad:
         return text
-    kept = []
+    out, cursor = [], 0
     for m in SENTENCE_RE.finditer(text):
         start, end = m.span()
-        if not any(s < end and e > start for s, e in bad_spans):
-            kept.append(m.group(0))
-    return "".join(kept)
+        hits = [b for b in bad if start <= b.start() < end]
+        if not hits:
+            continue
+        sentence = text[start:end]
+        out.append(text[cursor:start])
+        if not REPORTED_SPEECH_RE.search(sentence):
+            pieces, pos = [], start
+            for b in hits:
+                pieces += [text[pos:b.start()], _rewrite_phrase(b.group(0))]
+                pos = b.end()
+            pieces.append(text[pos:end])
+            out.append("".join(pieces))
+        cursor = end
+    out.append(text[cursor:])
+    return "".join(out)
 
 
 def _gate_flagged_slugs() -> set[str]:
@@ -114,7 +151,7 @@ def heal_banned_language() -> list[str]:
         changed = False
         for field in ("title", "excerpt", "body"):
             old = post.get(field) or ""
-            new = strip_banned_sentences(old)
+            new = heal_text(old)
             if new != old and new.strip():
                 post[field] = new
                 changed = True
@@ -123,7 +160,7 @@ def heal_banned_language() -> list[str]:
             page_dir = ROOT / "blog" / post.get("slug", "")
             if post.get("slug") and page_dir.is_dir():
                 shutil.rmtree(page_dir)
-            print(f"  ✓ {post.get('slug')}: overstated-language sentence removed")
+            print(f"  ✓ {post.get('slug')}: overstated phrase reworded")
     if healed:
         payload = json.dumps(data, indent=2, ensure_ascii=False)
         POSTS_PATH.write_text(payload + "\n", encoding="utf-8")
