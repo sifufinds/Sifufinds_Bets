@@ -26,7 +26,7 @@ from collections import defaultdict
 
 BASE = Path(__file__).parent.parent
 sys.path.insert(0, str(BASE))
-from seo_meta import strip_dangling_words, ends_with_dangling_word  # noqa: E402
+from seo_meta import strip_dangling_words, ends_with_dangling_word, seo_meta_description  # noqa: E402
 
 POSTS_JSON = BASE / 'blog' / 'posts.json'
 BLOG_DIR = BASE / 'blog'
@@ -389,7 +389,7 @@ if args.fix:
             p = slug_map.get(slug)
             if p and len(p.get('excerpt', '')) > 155:
                 original = p['excerpt']
-                truncated = strip_dangling_words(original[:155].rsplit(' ', 1)[0])
+                truncated = seo_meta_description(original, 155, prefer_sentence=True)
                 p['excerpt'] = truncated
                 print(f"  FIX excerpt [{slug[:40]}]: {len(original)} → {len(truncated)} chars")
                 fixed += 1

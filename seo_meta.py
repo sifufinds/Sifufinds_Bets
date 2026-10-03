@@ -25,6 +25,7 @@ Usage:
 
 from __future__ import annotations
 
+import re
 from datetime import datetime, timezone
 
 
@@ -188,7 +189,13 @@ def seo_title(title: str, max_len: int = 60, suffix: str = "| SifuFinds") -> str
     return f"{truncated} {suffix}"
 
 
-def seo_meta_description(text: str, max_len: int = 155) -> str:
+# A complete sentence this long beats a mid-phrase cut (2026-10-03: a
+# word-boundary cut left "...value bets across top African bookmakers"
+# as "...and potential" when a full 107-char first sentence was available).
+MIN_SENTENCE_DESCRIPTION = 100
+
+
+def seo_meta_description(text: str, max_len: int = 155, prefer_sentence: bool = False) -> str:
     """Clean word-boundary truncation to <= max_len chars, no ellipsis.
 
     Meant for meta descriptions (default 155, Google's display limit) and
@@ -200,5 +207,10 @@ def seo_meta_description(text: str, max_len: int = 155) -> str:
     """
     if len(text) <= max_len:
         return text
+    if prefer_sentence:
+        window = text[:max_len + 1]
+        ends = [m.end() for m in re.finditer(r"[.!?](?=\s|$)", window)]
+        if ends and ends[-1] >= MIN_SENTENCE_DESCRIPTION:
+            return window[:ends[-1]].strip()
     truncated = text[:max_len].rsplit(" ", 1)[0].rstrip(".,;:—- ")
     return strip_dangling_words(truncated)
