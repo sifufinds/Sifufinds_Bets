@@ -3,13 +3,21 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-0B51MX2ZKE');
+  // Load gtag.js after the page has painted so it never competes with LCP
+  window.addEventListener('load', function () {
+    var go = function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE';
+      document.head.appendChild(s);
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 3000 }); else setTimeout(go, 1500);
+  });
 </script>
 <meta charset="UTF-8">
 <link rel="preload" href="../../assets/shared.js?v=30" as="script">
@@ -259,10 +267,10 @@
 
   <div class="adv">📢 <strong>Advertiser Disclosure:</strong> We may earn commission from bookmaker links. All tips are for informational purposes only. Always bet responsibly. 18+ only.</div>
 
-  <!-- Live Tournament Banner -->
+  <!-- Tournament Banner -->
   <div style="background:linear-gradient(135deg,#0a3d1e,#1a6b35);border-radius:10px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-    <span style="background:#e74c3c;color:#fff;font-size:11px;font-weight:900;padding:3px 8px;border-radius:4px;letter-spacing:.5px;flex-shrink:0">● LIVE</span>
-    <span style="color:#fff;font-size:13px;font-weight:700">World Cup 2026 is underway — June 11 to July 19. Group stage in progress.</span>
+    <span style="background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:900;padding:3px 8px;border-radius:4px;letter-spacing:.5px;flex-shrink:0">FINISHED</span>
+    <span style="color:#fff;font-size:13px;font-weight:700">World Cup 2026 ran from June 11 to July 19. These picks are kept as a reference; check current odds before betting on upcoming matches.</span>
     <a href="../../odds/" style="margin-left:auto;background:rgba(255,255,255,.15);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap">Live Odds →</a>
   </div>
 
