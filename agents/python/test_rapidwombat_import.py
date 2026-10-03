@@ -77,6 +77,17 @@ def test_build_post_detects_category_tags_bookmaker():
     assert 50 <= len(post["excerpt"]) <= 155
 
 
+def test_category_uses_whole_words_and_title_intent():
+    # 2026-10-03 regressions: "multiple" matched "ipl" (cricket), and betting-site
+    # guides that mention slots in passing landed in igaming.
+    body = "Multiple Nigerian bookmakers offer slots and jackpot games alongside football markets. " * 20
+    assert rw.detect_category("Comparing Top Betting Prediction Sites for 2026", body) == "betting"
+    assert rw.detect_category("5 Best Football Betting Sites in Nigeria (2026)", body) == "betting"
+    assert rw.detect_category("Best Online Casino Slots in Nigeria", body) == "igaming"
+    assert rw.detect_category("AFCON 2027: Who Will Win?", "Nigeria and Senegal lead the football field.") == "football"
+    assert rw.detect_category("A Guide to Multiple Platforms", "Nothing sporty here at all.") == "betting"
+
+
 def test_update_keeps_slug_and_publish_date():
     existing = {"slug": "original-slug", "published_at": "2026-01-01T00:00:00+00:00"}
     post = rw.build_post(rw.decode_payload(_payload(title="Renamed Title")), existing, set())

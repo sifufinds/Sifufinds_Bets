@@ -51,18 +51,26 @@ COVER_SIZE = (1200, 630)
 DEFAULT_AUTHOR = "SifuFinds Editorial Team"
 DEFAULT_CATEGORY = "betting"
 
-# First match wins, checked against the lowercased title + opening of the body.
-CATEGORY_KEYWORDS = [
-    ("igaming", ("casino", "slot", "roulette", "blackjack", "aviator", "crash game", "jackpot")),
-    ("transfers", ("transfer window", "transfer news", "signs for", "joins on loan")),
+# Matched as whole words/phrases (a bare substring test put "multiple" under
+# cricket via "ipl"). Title-only checks run first, then betting intent, then
+# sport keywords scored over the title + opening of the body.
+TITLE_FIRST_CATEGORIES = [
+    ("igaming", ("casino", "casinos", "slot", "slots", "roulette", "blackjack", "aviator",
+                 "crash game", "crash games", "jackpot", "jackpots")),
+    ("transfers", ("transfer window", "transfer news", "transfers", "signs for", "joins on loan")),
+]
+BETTING_INTENT = ("bet", "bets", "betting", "bookmaker", "bookmakers", "odds", "prediction",
+                  "predictions", "tips", "bonus", "bonuses", "free bet", "free bets", "punters",
+                  "sportsbook", "sportsbooks", "wagering")
+SPORT_CATEGORIES = [
+    ("football", ("football", "soccer", "premier league", "champions league", "afcon", "la liga",
+                  "serie a", "bundesliga", "world cup", "npfl", "fkf")),
     ("basketball", ("basketball", "nba", "euroleague")),
     ("tennis", ("tennis", "wimbledon", "atp", "wta", "roland garros")),
     ("cricket", ("cricket", "ipl", "test match", "t20")),
     ("rugby", ("rugby", "springboks", "six nations")),
     ("boxing", ("boxing", "ufc", "heavyweight")),
-    ("f1", ("formula 1", "formula one", "grand prix", "f1 ")),
-    ("football", ("football", "premier league", "champions league", "afcon", "la liga",
-                  "serie a", "bundesliga", "world cup", "npfl", "fkf")),
+    ("f1", ("formula 1", "formula one", "grand prix", "f1")),
 ]
 
 COUNTRY_TAGS = [
@@ -173,12 +181,23 @@ def make_excerpt(body: str) -> str:
     return seo_meta_description(plain_text(body), 155)
 
 
+def _phrase_count(text: str, phrases: tuple[str, ...]) -> int:
+    return sum(len(re.findall(rf"\b{re.escape(p)}\b", text)) for p in phrases)
+
+
 def detect_category(title: str, body: str) -> str:
-    haystack = f" {title} {body[:1500]} ".lower()
-    for category, keywords in CATEGORY_KEYWORDS:
-        if any(k in haystack for k in keywords):
+    """Pick the blog category. A sport category only wins when the title has
+    no betting intent ("4 Top Football Betting Sites" is a betting guide)."""
+    title_l = title.lower()
+    for category, phrases in TITLE_FIRST_CATEGORIES:
+        if _phrase_count(title_l, phrases):
             return category
-    return DEFAULT_CATEGORY
+    if _phrase_count(title_l, BETTING_INTENT):
+        return DEFAULT_CATEGORY
+    haystack = f"{title_l} {body[:1500].lower()}"
+    scores = [(_phrase_count(haystack, phrases), category) for category, phrases in SPORT_CATEGORIES]
+    best_score, best_category = max(scores)
+    return best_category if best_score else DEFAULT_CATEGORY
 
 
 def detect_tags(title: str, body: str) -> list[str]:

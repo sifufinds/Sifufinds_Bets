@@ -27,9 +27,15 @@ on:
         description: 'Article JSON: {"id":"...","title":"...","content":"markdown","cover_image":"https://..."}'
         required: true
 
+# One group PER ARTICLE. GitHub keeps only one pending run per group and
+# cancels the older pending one, so a single shared group silently dropped
+# articles when RapidWombat delivered several at once (found 2026-10-03: 5 of
+# 9 runs cancelled). Different articles now run in parallel (the push-retry
+# merge below handles that, same as the other content bots); only repeat
+# deliveries of the same article queue, and dropping a stale one is harmless.
 concurrency:
-  group: rapidwombat-import
-  cancel-in-progress: false  # queue every article, never drop one
+  group: rapidwombat-import-${{ github.event.client_payload.id || github.run_id }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
