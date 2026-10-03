@@ -135,6 +135,17 @@ def _scrub_file(rel: str) -> tuple[str, bool]:
     return rel, False
 
 
+def _drop_exempt_sitemap_urls(src: str) -> str:
+    """Exempt pages stay in the sitemaps (filter_sitemaps keeps them), so the
+    leak check must not count their URLs as brand mentions."""
+    def keep(m: re.Match) -> str:
+        loc = re.search(r"<loc>\s*(.*?)\s*</loc>", m.group(0), re.S)
+        path = resolve_href(loc.group(1), "") if loc else None
+        return "" if path and is_exempt(path) else m.group(0)
+
+    return re.sub(r"[ \t]*<url>.*?</url>\s*?\n?", keep, src, flags=re.S)
+
+
 def _check_file(rel: str) -> tuple[str, list[str]]:
     root, hb = _CTX["root"], _CTX["hb"]
     src = _read(root, rel)
@@ -143,6 +154,8 @@ def _check_file(rel: str) -> tuple[str, list[str]]:
     if rel.endswith(".js"):
         m = hb.regex.search(src)
         return rel, [m.group(0)] if m else (["tracking domain"] if hb.mentions(src) else [])
+    if rel.endswith(".xml"):
+        src = _drop_exempt_sitemap_urls(src)
     return rel, [m.group(0) for m in hb.regex.finditer(src)][:5] if hb.mentions(src) else []
 
 
