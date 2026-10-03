@@ -904,31 +904,35 @@
     "What went wrong Nigeria 3-0 AFCON qualifying defeat betting tips Ghana": {
       "slug": "what-went-wrong-nigeria-3-0-afcon-qualifier-loss-betting-tips-ghana",
       "posted_at": "2026-10-02T21:10:02.450251+00:00"
+    },
+    "Mombasa United strike first against Sharks playoffs betting tips Kenya": {
+      "slug": "mombasa-united-sharks-playoffs-betting-tips-kenya",
+      "posted_at": "2026-10-03T03:52:54.711950+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-02T21:19:19.339766+00:00",
-    "candidates_available": 269,
+    "checked_at": "2026-10-03T04:08:05.445170+00:00",
+    "candidates_available": 268,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "Mombasa United strike first against Sharks playoffs betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Once you have met the five‑times rollover at minimum odds of 1.40, you can request a withdrawal of any remaining bonus balance. Check the bookmaker’s cash‑out section and follow the standard withdrawal process.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "What went wrong Nigeria 3-0 AFCON qualifying defeat betting tips Ghana",
-        "country": "Ghana",
         "result": "written",
-        "slug": "what-went-wrong-nigeria-3-0-afcon-qualifier-loss-betting-tips-ghana"
+        "slug": "mombasa-united-sharks-playoffs-betting-tips-kenya"
       },
       {
         "keyword": "South Africa Countdown Begins Biggest-Ever Rugby World Cup betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, all the bookmakers mentioned—Betika, SportPesa, 22Bet, 1xBet, FairPari, and Betway—are licensed by the Gaming Board of Tanzania, ensuring a regulated and safe betting environment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 481)"
+      },
+      {
+        "keyword": "Guinea vs. Kenya Lineups betting tips Uganda",
+        "country": "Uganda",
+        "result": "failed",
+        "reason": "quality_gate: only 790 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
       }
     ]
   }
