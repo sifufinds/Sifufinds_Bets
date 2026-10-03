@@ -911,28 +911,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-03T07:13:39.957841+00:00",
-    "candidates_available": 267,
+    "checked_at": "2026-10-03T11:42:43.749198+00:00",
+    "candidates_available": 276,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "South Africa Countdown Begins Biggest-Ever Rugby World Cup betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "AFCON 2027 Q ‘Imported’ solution can’t solve Super betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes. All the bookmakers mentioned are licensed by the Gaming Board of Tanzania, the official regulator that ensures betting activities comply with Tanzanian law.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Single bets do not count toward the x5 accumulator rollover. The bonus can only be cleared by placing accumulator tickets that meet the minimum odds condition. You can still place single bets for fun, but they will not contribute to the bonus clearance.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Guinea vs. Kenya Lineups betting tips Uganda",
-        "country": "Uganda",
+        "keyword": "Man City confirm appeal after Premier League charges betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Yes, MTN MoMo is listed as a payment method for deposits and withdrawals on Betway, 1xBet, SportPesa and FairPari, making it a convenient choice for instant access to your funds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 920 words (minimum 1000); no '## FAQ' section heading found"
       },
       {
-        "keyword": "Sawe loses 'rock, paper, scissors' London Marathon dates betting tips Zambia",
-        "country": "Zambia",
+        "keyword": "Ghana secure three semi-final slots All Africa U-19 betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: only 946 words (minimum 1000); no '## FAQ' section heading found"
+        "reason": "missing_output_markers"
       }
     ]
   }
