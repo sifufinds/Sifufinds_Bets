@@ -908,31 +908,39 @@
     "Mombasa United strike first against Sharks playoffs betting tips Kenya": {
       "slug": "mombasa-united-sharks-playoffs-betting-tips-kenya",
       "posted_at": "2026-10-03T03:52:54.711950+00:00"
+    },
+    "AFCON 2027 Q ‘Imported’ solution can’t solve Super betting tips Nigeria": {
+      "slug": "afcon-2027-super-betting-tips-nigeria",
+      "posted_at": "2026-10-03T15:31:28.011031+00:00"
+    },
+    "Ghana secure three semi-final slots All Africa U-19 betting tips Ghana": {
+      "slug": "ghana-secure-three-semi-final-slots-all-africa-u19-betting-tips",
+      "posted_at": "2026-10-03T15:32:16.924898+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-03T13:56:00.185844+00:00",
+    "checked_at": "2026-10-03T15:32:20.989948+00:00",
     "candidates_available": 276,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "AFCON 2027 Q ‘Imported’ solution can’t solve Super betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'The minimum bet on Sportybet is ₦100, while the maximum bet is ₦100,000. However, these limits may vary depending on the specific bet and sport. Always check the bookmaker's terms and conditions before placing a bet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "afcon-2027-super-betting-tips-nigeria"
       },
       {
         "keyword": "Man City confirm appeal after Premier League charges betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; final line was 'Yes, many bookmakers offer promotions and bonuses to new customers. Check the website of your chosen bookmaker for more information.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "Ghana secure three semi-final slots All Africa U-19 betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: only 941 words (minimum 1000); final line was 'Check the bookmaker's website or contact their customer support to verify their licensing and regulation. The Gaming Commission of Ghana (GCA) regulates the betting industry in Ghana, ensuring that bookmakers operate fairly and transparently.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "ghana-secure-three-semi-final-slots-all-africa-u19-betting-tips"
       }
     ]
   }
