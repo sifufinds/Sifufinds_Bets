@@ -1787,3 +1787,16 @@ While following up on the blog-pipeline work above (checking whether the 3-5 pos
 - `hostinger-api-mcp` 2.x removed per-tool calls (`Tool not found: hosting_deployStaticWebsite`); the workflow is pinned to `1.63.4`. Don't unpin without porting to the 2.x `execute` call.
 
 *Last updated: 2026-10-03 by Claude Code*
+
+## 2026-10-03 — Deploys blocked for days: three stacked failures (Errors to Never Repeat)
+
+Symptom: blog posts stopped reaching the live site; every `deploy_hostinger.yml` run failed (30+ in a row) and RapidWombat's webhook returned 502. Three independent causes, each only visible once the previous one was fixed:
+
+1. **Compliance gate** (`scripts/compliance_check.py`) blocked two posts on "guaranteed win" / "risk free bet". Both were false positives from innocent wording ("aren't guaranteed wins", "low-risk free bet"). Fix: reword the sentence in `blog/posts.json` AND the generated `blog/<slug>/index.html`.
+2. **`hostinger-api-mcp@latest` broke the upload step.** v2.1.0 (2026-09-28) removed per-tool calls such as `hosting_deployStaticWebsite` (2.x exposes a generic `execute` interface instead), so the deploy died with `Tool not found`. Fix: pinned to `hostinger-api-mcp@1.63.4` in `deploy_hostinger.yml`. Never use `@latest` for a CI dependency. Moving to 2.x later means rewriting the deploy call; `hosting_deploy-static-website` (the changelog's "replacement") is NOT callable as a plain tool.
+3. **Hidden-brands leak check vs exempt pages.** `scripts/hide_brands.py` keeps owner-exempted pages (`EXEMPT_DIRS`) in the sitemaps, but its final leak check then flagged the sitemap for a brand name inside an exempt URL (`blog/1xbet-bet9ja-and-betano-...`). Fix: `_drop_exempt_sitemap_urls()` makes the check ignore exempt URLs. If a new dir is added to `EXEMPT_DIRS`, the sitemap and the check now stay consistent automatically.
+
+Related traps:
+- **The deploy cooldown hides fixed pipelines.** After consecutive real failures it backs off up to 180 min, so a "success" run can be a cooldown skip (the Deploy job shows `skipped`). Always check the Deploy job's conclusion, not the run's. Manual `workflow_dispatch` does not bypass it.
+- **RapidWombat 502 "could not queue article for publishing"** means `webhooks/rapidwombat.php`'s GitHub `repository_dispatch` call failed, i.e. a bad/expired/under-scoped `RAPIDWOMBAT_DISPATCH_TOKEN` (fine-grained PAT needs Contents: Read and write on this repo). The endpoint can report `"configured": true` and still 502. Secrets only reach the server on a deploy, so a failing deploy also freezes any token fix.
+- **Local `git pull`/`fetch` hangs on this repo** (Desktop/iCloud + large history); changes were pushed via the GitHub contents API instead. Pull when convenient.
