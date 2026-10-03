@@ -38,6 +38,7 @@
 - GitHub Actions: covered by `workflow_watchdog.yml` (event-driven, 10-min delay) and `retry_failed.yml` (30-min safety net). Both watch all 17 workflows.
 - Local tasks / scripts: re-run the failed command after a short wait. If a git push fails, retry up to 3 times before stopping.
 - Never leave a failed job unaddressed. If a retry also fails, flag it and keep retrying on schedule.
+- **Retries can't fix a bad blog post** (one bad post fails a deploy gate and blocks the whole site). `.github/workflows/blog_self_heal.yml` (added 2026-10-03) runs after every failed deploy and hourly: `scripts/heal_blog_gates.py` deletes generated blog pages with conflict markers/invalid JSON-LD so they're rebuilt, drops sentences the compliance gate flags as overstated language from `blog/posts.json` (gate's own negation rule, so disclaimers like "no guaranteed win" survive), and runs every gate's `--fix`. It then re-runs the gates, commits/pushes, and triggers a deploy. If a gate still fails it fails loudly; the watchdog, `retry_failed.yml` and the hourly schedule keep retrying. When a new kind of gate failure blocks deploys, teach `heal_blog_gates.py` to fix it rather than hand-patching. It never runs `hide_brands.py` (that rewrites the CI checkout, and this job commits).
 
 ## STANDING RULE — No Paid, Billing-Gated, or Signup/API-Key LLM Fallbacks (added 2026-08-10)
 

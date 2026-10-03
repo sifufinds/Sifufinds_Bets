@@ -11,6 +11,7 @@ on:
       - "Accumulator Post — Weekend/Weekday 5-Fold, 2x per day"
       - "Brand Bonus Scraper — Daily Update"
       - "Brand Discovery — weekly new-brand research & defunct-brand check"
+      - "Blog Self-Heal — auto-fix posts that block deploys"
       - "Breaking News Bot — Auto-publish 3x daily"
       - "Country Localisation — translate blog posts"
       - "Deploy to Hostinger — sifufinds.com"
@@ -70,6 +71,7 @@ jobs:
           case "$WORKFLOW_NAME" in
             "Accumulator Post"*)                                                          WF=accumulator_post.yml ;;
             "Brand Bonus Scraper — Daily Update")                                         WF=brand_scraper.yml ;;
+            "Blog Self-Heal — auto-fix posts that block deploys")                         WF=blog_self_heal.yml ;;
             "Breaking News Bot — Auto-publish 3x daily")                                  WF=breaking_news.yml ;;
             "Country Localisation — translate blog posts")                               WF=agent_translate.yml ;;
             "Deploy to Hostinger — sifufinds.com")                                        WF=deploy_hostinger.yml ;;

@@ -1,0 +1,106 @@
+name: Blog Self-Heal — auto-fix posts that block deploys
+
+# One bad blog post fails a deploy gate and blocks the whole site, and a plain
+# retry can't fix that (2026-09-09 -> 09-26 and most of 09-27 -> 10-02 were
+# lost this way). After every failed deploy, and hourly as a safety net, this
+# runs scripts/heal_blog_gates.py, re-runs the deploy gates, commits/pushes
+# any fix and triggers a deploy. If a gate still fails, the job fails loudly:
+# workflow_watchdog.yml retries it and the hourly schedule keeps trying.
+#
+# Never runs scripts/hide_brands.py: in CI it rewrites the checkout, and this
+# job commits, so scrubbed copies would land in the repo.
+
+on:
+  workflow_run:
+    workflows: ["Deploy to Hostinger — sifufinds.com"]
+    types: [completed]
+  schedule:
+    - cron: "45 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: blog-self-heal
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  heal:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r agents/python/requirements.txt
+          pip install Pillow beautifulsoup4
+
+      - name: Heal blog posts that fail deploy gates
+        run: python3 scripts/heal_blog_gates.py
+
+      - name: Re-run deploy gates
+        id: gates
+        run: |
+          FAILED=""
+          python3 scripts/validate_site.py   || FAILED="$FAILED validate_site"
+          python3 scripts/audit_titles.py    || FAILED="$FAILED audit_titles"
+          python3 scripts/check_indexability.py || FAILED="$FAILED check_indexability"
+          python3 scripts/seo_check.py       || FAILED="$FAILED seo_check"
+          python3 scripts/compliance_check.py || FAILED="$FAILED compliance_check"
+          python3 scripts/check_country_count.py || FAILED="$FAILED check_country_count"
+          echo "failed=$(echo $FAILED | xargs)" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push fixes
+        id: push
+        run: |
+          git config --local user.email "self-heal@sifufinds.com"
+          git config --local user.name "SifuFinds Blog Self-Heal"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to fix — gates were already clean or failed for a reason this job can't heal"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          scripts/assert_no_conflict_markers.sh
+          git commit -m "fix: auto-heal blog posts blocking deploy $(date -u '+%Y-%m-%d %H:%M') UTC"
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "pushed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt/5) — merging and retrying..."
+            sleep 5
+            git fetch origin main
+            git merge --no-edit origin/main || true
+            python3 scripts/resolve_json_conflicts.py
+            python3 agents/python/merge_posts.py || git checkout origin/main -- blog/posts.json blog/posts-data.js
+            git diff --name-only --diff-filter=U | grep -E '^blog/.+/index\.html$' | xargs -r rm -f
+            python3 gen_blog_post_pages.py
+            git add -A
+            scripts/assert_no_conflict_markers.sh || exit 1
+            git commit -m "fix: auto-heal blog posts blocking deploy (merged)" --allow-empty
+          done
+          echo "❌ Push failed after 5 attempts"
+          exit 1
+
+      - name: Trigger deploy
+        if: steps.push.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy_hostinger.yml --ref main
+
+      - name: Fail if a gate still fails (watchdog + hourly schedule retry)
+        if: steps.gates.outputs.failed != ''
+        run: |
+          echo "::error::Still failing after self-heal: ${{ steps.gates.outputs.failed }} — needs a fix this job doesn't know yet"
+          exit 1
