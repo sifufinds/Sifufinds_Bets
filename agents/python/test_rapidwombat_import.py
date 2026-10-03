@@ -46,9 +46,21 @@ def test_non_http_cover_image_dropped():
 
 
 def test_sanitize_strips_leading_h1_and_raw_html():
-    out = rw.sanitize_markdown("# Title\n\nHi <script>alert(1)</script> there")
+    out = rw.sanitize_markdown("# Title\n\nHi <script>alert(1)</script> there <5 min")
     assert not out.startswith("#")
-    assert "<script>" not in out and "&lt;script&gt;" in out
+    assert "script" not in out and "alert" not in out
+    assert out.endswith("there &lt;5 min")
+
+
+def test_inline_html_becomes_markdown_not_escaped_text():
+    # Exact shape from the 2026-10-03 failed import: escaped <a href> left a
+    # bare URL that the country auto-linker linked inside of.
+    html = ('<ul><li><a href="https://sifufinds.com/betting/football-betting/cameroon/">'
+            'Football Betting Cameroon</a></li></ul><p>Read <strong>this</strong> first.</p>')
+    out = rw.sanitize_markdown(html)
+    assert "- [Football Betting Cameroon](https://sifufinds.com/betting/football-betting/cameroon/)" in out
+    assert "**this**" in out
+    assert "&lt;" not in out and "<" not in out
 
 
 def test_sanitize_neutralises_unsafe_links_keeps_safe_ones():

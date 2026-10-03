@@ -138,6 +138,33 @@ def _safe_link(match: re.Match) -> str:
     return f"{bang}[{text}]({url})"
 
 
+# Simple HTML RapidWombat sometimes mixes into its markdown, mapped to the
+# markdown equivalent. Anything else that looks like a tag is dropped.
+_HTML_TO_MD = [
+    (re.compile(r'<a\s[^>]*?href\s*=\s*["\']([^"\']*)["\'][^>]*>(.*?)</a\s*>', re.I | re.S), r"[\2](\1)"),
+    (re.compile(r"<h2[^>]*>(.*?)</h2\s*>", re.I | re.S), r"\n\n## \1\n\n"),
+    (re.compile(r"<h3[^>]*>(.*?)</h3\s*>", re.I | re.S), r"\n\n### \1\n\n"),
+    (re.compile(r"<(?:strong|b)>(.*?)</(?:strong|b)\s*>", re.I | re.S), r"**\1**"),
+    (re.compile(r"<(?:em|i)>(.*?)</(?:em|i)\s*>", re.I | re.S), r"*\1*"),
+    (re.compile(r"<li[^>]*>", re.I), "\n- "),
+    (re.compile(r"<br\s*/?>", re.I), "\n"),
+    (re.compile(r"</?(?:p|ul|ol|div)[^>]*>", re.I), "\n\n"),
+]
+# Requires a letter after "<", so "<5 min withdrawals" survives as text.
+_ANY_TAG_RE = re.compile(r"</?[A-Za-z][^>]*>")
+
+
+def html_to_markdown(body: str) -> str:
+    """Convert inline HTML to markdown before escaping. Escaping it instead
+    left `<a href=...>` URLs as bare text that the country auto-linker then
+    linked inside of, failing validate_site.py (2026-10-03)."""
+    body = re.sub(r"<(script|style|iframe)[^>]*>.*?</\1\s*>", "", body, flags=re.I | re.S)
+    for pattern, replacement in _HTML_TO_MD:
+        body = pattern.sub(replacement, body)
+    body = _ANY_TAG_RE.sub("", body)
+    return re.sub(r"\n{3,}", "\n\n", body)
+
+
 def sanitize_markdown(body: str) -> str:
     """Make external markdown safe for gen_blog_post_pages.markdown_to_html(),
     which passes raw HTML and link targets straight through."""
@@ -145,7 +172,7 @@ def sanitize_markdown(body: str) -> str:
     # Drop a leading "# Title" line: the page template already renders the <h1>.
     if lines and lines[0].startswith("# "):
         lines = lines[1:]
-    body = "\n".join(lines).strip()
+    body = html_to_markdown("\n".join(lines)).strip()
     body = body.replace("<", "&lt;").replace(">", "&gt;")
     return _MD_LINK_RE.sub(_safe_link, body)
 
