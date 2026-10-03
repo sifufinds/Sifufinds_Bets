@@ -1,43 +1,13 @@
 {
   "date": "2026-10-03",
-  "total": 39,
+  "total": 34,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
+    "HIGH": 0,
     "MEDIUM": 33,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ghana-secure-three-semi-final-slots-all-africa-u19-betting-tips",
-      "detail": "Title 65 chars (max 60): 'Ghana Secure Three Semi\u2011Final Slots: All Africa U\u201119 Betting Tips'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "afcon-2027-super-betting-tips-nigeria",
-      "detail": "Title 65 chars (max 60): 'AFCON 2027 Super Betting Tips Nigeria \u2013 Real Bookmaker Comparison'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "1xbet-login-and-security-3-nigerian-betting-platforms-compared-for-2026",
-      "detail": "Title 72 chars (max 60): '1xbet login and Security: 3 Nigerian Betting Platforms Compared for 20'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "ghana-secure-three-semi-final-slots-all-africa-u19-betting-tips",
-      "detail": "Excerpt 186 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "afcon-2027-super-betting-tips-nigeria",
-      "detail": "Excerpt 183 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
