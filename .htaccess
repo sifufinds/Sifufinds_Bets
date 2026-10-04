@@ -26,8 +26,12 @@ AddDefaultCharset UTF-8
   # Force HTTPS for 1 year, include subdomains
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
-  # Content Security Policy — allows SifuFinds assets + known CDNs only
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ipapi.co https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://ipapi.co https://www.google-analytics.com https://stats.g.doubleclick.net https://*.supabase.co https://api.emailjs.com https://formsubmit.co; frame-src 'none'; object-src 'none'; base-uri 'self'"
+  # Content Security Policy — allows SifuFinds assets + known CDNs only.
+  # frame-src must list every origin that a raw banner ad (blog/banners.json
+  # raw_html) embeds as an <iframe>; 'none' makes the browser render "This content
+  # is blocked. Contact the site owner to fix the issue." in place of the ad.
+  # scripts/validate_site.py CHECK 5 fails the deploy if a banner iframe origin is missing here.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ipapi.co https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://ipapi.co https://www.google-analytics.com https://stats.g.doubleclick.net https://*.supabase.co https://api.emailjs.com https://formsubmit.co; frame-src https://combodef.com; object-src 'none'; base-uri 'self'"
 
   # Remove server version info
   Header unset Server
