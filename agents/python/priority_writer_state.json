@@ -952,31 +952,35 @@
     "Chelsea made me better player, leader — Azpilicueta betting tips Nigeria": {
       "slug": "chelsea-azpilicueta-betting-tips-nigeria",
       "posted_at": "2026-10-04T12:19:13.256699+00:00"
+    },
+    "Stormers looking add lock power URC squad, they betting tips South Africa": {
+      "slug": "stormers-betting-tips-urc-south-africa",
+      "posted_at": "2026-10-04T15:18:44.995050+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-04T12:20:32.283710+00:00",
-    "candidates_available": 265,
+    "checked_at": "2026-10-04T15:18:48.996776+00:00",
+    "candidates_available": 264,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Chelsea made me better player, leader — Azpilicueta betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "chelsea-azpilicueta-betting-tips-nigeria"
-      },
-      {
         "keyword": "Nganga beats field 187 golfers Ruiru Club as betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'While the official Ruiru Club website may list the event schedule, betting markets are set by the bookmakers. They usually offer match winner, top 3 finish, and exact score markets, which are standard across Kenyan operators.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Yes. All five bookmakers listed accept Equitel as a payment method, allowing you to request a withdrawal directly to your Equitel account once the wagering requirements are satisfied.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ghana Premier League Medeama guard top spot as betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'The 100% First Deposit Bonus at 22Bet Ghana must be wagered within 30 days from the date of deposit, with a wagering requirement of x5 at a minimum odds of 1.40.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Report the bookmaker to the Gaming Commission of Ghana. They have a dedicated channel for complaints and will investigate any breaches of regulation or consumer protection rules.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Stormers looking add lock power URC squad, they betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "stormers-betting-tips-urc-south-africa"
       }
     ]
   }

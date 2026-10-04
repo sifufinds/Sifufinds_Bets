@@ -607,31 +607,35 @@
     "Liberia From Weah Nagbe, Liberia Loses Another Talent betting tips Tanzania": {
       "slug": "liberia-loses-talent-betting-tips-tanzania",
       "posted_at": "2026-10-04T02:24:34.930909+00:00"
+    },
+    "Nganga beats field 187 golfers Ruiru Club as betting tips Kenya": {
+      "slug": "anthony-nganga-wins-ruiru-golf-day-betting-tips-kenya",
+      "posted_at": "2026-10-04T15:28:33.309416+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-04T10:55:03.685064+00:00",
+    "checked_at": "2026-10-04T15:35:36.344024+00:00",
     "candidates_available": 230,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Chelsea made me better player, leader — Azpilicueta betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Below is a table showcasing odds from top Nigerian bookmakers for the next Premier League captain to lift the trophy:; | Bookmaker          | Manchester City Captain Odds | Arsenal Captain Odds | Liverpool Captain Odds |; | 22Bet Nigeria      | Check live odds              | Check live odds      | Check live odds        |; | 1xBet Nigeria      | Check live odds              | Check live odds      | Check live odds        |; | Melbet Nigeria     | Check live odds              | Check live odds      | Check live odds        |; | Paripesa Nigeria   | Check live odds              | Check live odds      | Check live odds        |; | Linebet Nigeria    | Check live odds              | Check live odds      | Check live odds        |"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 472)"
       },
       {
         "keyword": "Nganga beats field 187 golfers Ruiru Club as betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: To help Kenyan bettors find the best value, here’s a comparison of golf betting odds from top bookmakers:; | Bookmaker          | Golf Tournament Odds | Minimum Deposit | Payment Methods          |; | SportPesa Kenya    | Check live odds      | KSh 10          | M-Pesa, Airtel Money     |; | Betika Kenya       | Check live odds      | KSh 10          | M-Pesa, USSD *644#       |; | 22Bet Kenya        | Check live odds      | KSh 100         | M-Pesa, Airtel Money     |; | 1xBet Kenya        | Check live odds      | KSh 50          | M-Pesa, Airtel Money     |; | Melbet Kenya       | Check live odds      | KSh 50          | M-Pesa, Airtel Money     |"
+        "result": "written",
+        "slug": "anthony-nganga-wins-ruiru-golf-day-betting-tips-kenya"
       },
       {
         "keyword": "Ghana Premier League Medeama guard top spot as betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: To help Ghanaian bettors find the best value, here’s a comparison of odds for an upcoming Medeama SC vs. Hearts of Oak match:; | Bookmaker          | Medeama SC Win | Draw          | Hearts of Oak Win |; | Sportybet Ghana    | Check live odds| Check live odds| Check live odds   |; | Betway Ghana       | Check live odds| Check live odds| Check live odds   |; | 22Bet Ghana        | Check live odds| Check live odds| Check live odds   |; | 1xBet Ghana        | Check live odds| Check live odds| Check live odds   |; | Melbet Ghana       | Check live odds| Check live odds| Check live odds   |; | FairPari Ghana     | Check live odds| Check live odds| Check live odds   |; **Sportybet Ghana**: 150% Welcome Bonus up to GH₵500 Free Bet.; **Betway Ghana**: 50% Welcome Bonus up to GH₵200.; **22Bet Ghana**: 100% First Deposit Bonus up to GH₵1,491.; **1xBet Ghana**: 200% First Deposit Bonus up to GH₵2,846.; **Melbet Ghana**: 300% First Deposit Bonus up to GH₵1,500."
+        "reason": "fact_check: Sportybet Ghana stands out with its 150% welcome bonus up to GH₵500, requiring just a GH₵1 minimum deposit.; 1xBet Ghana’s 200% offer up to GH₵2,846 is hard to ignore—though it comes with a GH₵5 minimum deposit and wagering requirements.; Melbet Ghana’s 300% bonus up to GH₵1,500 is also highly competitive, though it requires a GH₵1 deposit."
       }
     ]
   }
