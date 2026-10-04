@@ -14,7 +14,10 @@ name: RapidWombat Import — publish webhook articles
 # Retries: workflow_watchdog.yml re-triggers via workflow_dispatch, which
 # would drop the article payload, so this workflow is deliberately not on
 # its list. Instead a transient failure (network, push race) re-sends its own
-# payload after 10 minutes, up to 3 attempts. A failed gate is retried too,
+# payload with a growing delay (10, 20, then 30 min), up to 6 attempts, about
+# 2 hours, so a broken main fixed by the daily auto-heal still gets it
+# through (3 attempts 10 min apart dropped an article on 2026-10-04).
+# A failed gate is retried too,
 # since it can be caused by another bot's bad commit already on main. Only an
 # article the importer rejects (exit 2) is final — it would fail the same way.
 
@@ -41,7 +44,7 @@ permissions:
   contents: write
 
 env:
-  MAX_ATTEMPTS: 3
+  MAX_ATTEMPTS: 6
 
 jobs:
   import:
@@ -167,19 +170,21 @@ jobs:
     needs: import
     if: failure() && needs.import.outputs.retryable == 'true' && github.event_name == 'repository_dispatch'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 40
     steps:
-      - name: Re-send the same article after 10 minutes
+      - name: Re-send the same article after a growing delay
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISPATCH_PAYLOAD: ${{ toJSON(github.event.client_payload) }}
         run: |
           ATTEMPT=$(printf '%s' "$DISPATCH_PAYLOAD" | jq '.attempt // 1')
           if [ "$ATTEMPT" -ge "$MAX_ATTEMPTS" ]; then
-            echo "::error::Giving up after $ATTEMPT attempts"
+            echo "::error::Giving up after $ATTEMPT attempts. Fix the cause, then use 'Re-run failed jobs' on this run: a re-run keeps the original article payload."
             exit 1
           fi
-          sleep 600
+          DELAY_MIN=$(( ATTEMPT * 10 > 30 ? 30 : ATTEMPT * 10 ))
+          echo "Waiting $DELAY_MIN minutes before attempt $((ATTEMPT + 1))..."
+          sleep $(( DELAY_MIN * 60 ))
           printf '%s' "$DISPATCH_PAYLOAD" \
             | jq '{event_type: "rapidwombat_article", client_payload: (. + {attempt: ((.attempt // 1) + 1)})}' \
             | gh api "repos/${{ github.repository }}/dispatches" --input -
