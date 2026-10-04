@@ -951,28 +951,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-04T05:42:27.660298+00:00",
-    "candidates_available": 264,
+    "checked_at": "2026-10-04T10:30:33.686944+00:00",
+    "candidates_available": 265,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "'I reduced my running because urine leaks' – betting tips Ethiopia",
-        "country": "Ethiopia",
-        "result": "written",
-        "slug": "i-reduced-running-urine-leaks-betting-tips-ethiopia"
+        "keyword": "Chelsea made me better player, leader — Azpilicueta betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'The Sportybet free‑bet of up to ₦30,000 must be used on a bet with minimum odds of 3.15. It expires after 7 days, so place a high‑odds wager on a market such as a long‑shot first‑goal scorer in a Chelsea game before the deadline. Once the bet settles, any remaining balance becomes withdrawable.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "'I reduced my running because urine leaks' – betting tips Cameroon",
-        "country": "Cameroon",
+        "keyword": "Nganga beats field 187 golfers Ruiru Club as betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 419)"
+        "reason": "quality_gate: final line was 'Withdrawals through M‑Pesa are typically processed instantly, but the exact time depends on the bookmaker’s withdrawal policy. Some operators may have a minimum withdrawal amount or a short processing window.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "'I reduced my running because urine leaks' – betting tips Senegal",
-        "country": "Senegal",
+        "keyword": "Ghana Premier League Medeama guard top spot as betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "quality_gate: final line was 'Analyze team form, player injuries, historical matchups, and current league standings. Understanding these factors can help you make informed betting decisions and increase your chances of winning.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
