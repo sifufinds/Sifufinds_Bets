@@ -1,19 +1,13 @@
 {
   "date": "2026-10-04",
-  "total": 36,
+  "total": 35,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 1,
     "MEDIUM": 33,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "5-verified-platforms-for-a-virtual-sports-bet-in-africa-2026",
-      "detail": "Title 62 chars (max 60): '5 Verified Platforms for a Virtual Sports Bet in Africa (2026)'"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
