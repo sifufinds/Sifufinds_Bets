@@ -960,11 +960,15 @@
     "Amical le Cameroun ouvre le score face à betting tips Tanzania": {
       "slug": "amical-cameroun-ouvre-le-score-betting-tips-tanzania",
       "posted_at": "2026-10-04T17:18:11.040219+00:00"
+    },
+    "Amical le Cameroun ouvre le score face à betting tips Zambia": {
+      "slug": "cameroon-vs-zambia-betting-tips",
+      "posted_at": "2026-10-04T22:18:43.774442+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-04T17:18:34.706308+00:00",
-    "candidates_available": 262,
+    "checked_at": "2026-10-04T22:18:48.165632+00:00",
+    "candidates_available": 261,
     "attempted": 3,
     "written": 1,
     "attempts": [
@@ -972,19 +976,19 @@
         "keyword": "Ghana Premier League Medeama guard top spot as betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'No. All the offers listed are for new customers only. Existing players must look for reload promotions or loyalty schemes on each bookmaker’s site.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Amical le Cameroun ouvre le score face à betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "amical-cameroun-ouvre-le-score-betting-tips-tanzania"
+        "reason": "quality_gate: final line was 'All GCA‑licensed bookmakers in our comparison accept MTN MoMo, Vodafone Cash, AirtelTigo Money, Visa, and Mastercard. Choose the method that best suits your convenience and speed.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Amical le Cameroun ouvre le score face à betting tips Uganda",
         "country": "Uganda",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 478)"
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Amical le Cameroun ouvre le score face à betting tips Zambia",
+        "country": "Zambia",
+        "result": "written",
+        "slug": "cameroon-vs-zambia-betting-tips"
       }
     ]
   }
