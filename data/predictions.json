@@ -1,47 +1,47 @@
 {
-  "updated": "2026-10-04T11:01:05.268501+00:00",
+  "updated": "2026-10-04T15:06:38.172226+00:00",
   "source": "predictz.com",
-  "count": 96,
+  "count": 65,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-10-04T11:01:05.268501+00:00"
+      "ts": "2026-10-04T15:06:38.172226+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-10-04T11:01:05.268501+00:00"
+      "ts": "2026-10-04T15:06:38.172226+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-10-04T11:01:05.268501+00:00"
+      "ts": "2026-10-04T15:06:38.172226+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-10-04T11:01:05.268501+00:00"
+      "ts": "2026-10-04T15:06:38.172226+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-10-04T11:01:05.268501+00:00"
+      "ts": "2026-10-04T15:06:38.172226+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-10-04T11:01:05.268501+00:00"
+      "ts": "2026-10-04T15:06:38.172226+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-10-04T11:01:05.268501+00:00"
+      "ts": "2026-10-04T15:06:38.172226+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-10-04T11:01:05.268501+00:00"
+      "ts": "2026-10-04T15:06:38.172226+00:00"
     }
   ],
   "predictions": [
@@ -64,28 +64,28 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241649+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295207+00:00"
     },
     {
-      "id": "1206095",
-      "home": "Agrobiznes Volochisk",
-      "away": "UCSA Tarasivka",
-      "competition": "Ukraine Persha Liga",
-      "comp_slug": "ukraine/persha-liga",
+      "id": "1223701",
+      "home": "Agropecuario Argentino",
+      "away": "CA Ferrocarril Midland",
+      "competition": "Argentina Primera B Nacional",
+      "comp_slug": "argentina/primera-b",
       "ko_display": "Today",
       "ko_utc": null,
       "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
+      "match_winner_label": "Draw 2-2",
       "wdw": "X",
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240860+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294464+00:00"
     },
     {
       "id": "1215694",
@@ -106,7 +106,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240089+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293957+00:00"
     },
     {
       "id": "1180202",
@@ -127,7 +127,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240927+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294225+00:00"
     },
     {
       "id": "1215244",
@@ -148,49 +148,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241128+00:00"
-    },
-    {
-      "id": "1221563",
-      "home": "Asteras Tripolis B",
-      "away": "Anagennisi Karditsas",
-      "competition": "Greece Super League 2",
-      "comp_slug": "greece/super-league-2",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240340+00:00"
-    },
-    {
-      "id": "1218452",
-      "home": "Aston Villa Women",
-      "away": "Crystal Palace Women",
-      "competition": "England Women's Super League",
-      "comp_slug": "england/womens-super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239290+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294416+00:00"
     },
     {
       "id": "1221086",
@@ -211,7 +169,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241271+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294786+00:00"
     },
     {
       "id": "1215691",
@@ -232,28 +190,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240124+00:00"
-    },
-    {
-      "id": "1185026",
-      "home": "Azerbaijan",
-      "away": "Lithuania",
-      "competition": "UEFA Nations League",
-      "comp_slug": "international/uefa-nations-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.238670+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293994+00:00"
     },
     {
       "id": "1215398",
@@ -274,28 +211,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239110+00:00"
-    },
-    {
-      "id": "1199702",
-      "home": "Bangor FC",
-      "away": "Coleraine",
-      "competition": "Northern Ireland Premier League",
-      "comp_slug": "northern-ireland/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-3",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239460+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293485+00:00"
     },
     {
       "id": "1221956",
@@ -316,7 +232,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241681+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295240+00:00"
     },
     {
       "id": "1223284",
@@ -337,49 +253,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241846+00:00"
-    },
-    {
-      "id": "1198849",
-      "home": "Berane",
-      "away": "Jedinstvo",
-      "competition": "Montenegro Second League",
-      "comp_slug": "montenegro/second-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240374+00:00"
-    },
-    {
-      "id": "1198004",
-      "home": "Bistrica",
-      "away": "Rudar Velenje",
-      "competition": "Slovenia 2. SNL",
-      "comp_slug": "slovenia/2-snl",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240714+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295377+00:00"
     },
     {
       "id": "1223708",
@@ -400,91 +274,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241503+00:00"
-    },
-    {
-      "id": "1218453",
-      "home": "Brighton Women",
-      "away": "Charlton Athletic Women",
-      "competition": "England Women's Super League",
-      "comp_slug": "england/womens-super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239319+00:00"
-    },
-    {
-      "id": "1173468",
-      "home": "Bryne",
-      "away": "Lyn Oslo",
-      "competition": "Norway 1. Division",
-      "comp_slug": "norway/1-division",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240459+00:00"
-    },
-    {
-      "id": "1198853",
-      "home": "Budva",
-      "away": "Kom",
-      "competition": "Montenegro Second League",
-      "comp_slug": "montenegro/second-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240403+00:00"
-    },
-    {
-      "id": "1215682",
-      "home": "Calcio Lecco",
-      "away": "Union Brescia",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239810+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295069+00:00"
     },
     {
       "id": "1203463",
@@ -505,7 +295,49 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239584+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293698+00:00"
+    },
+    {
+      "id": "1202452",
+      "home": "Central Norte Salta",
+      "away": "Racing de Cordoba",
+      "competition": "Argentina Primera B Nacional",
+      "comp_slug": "argentina/primera-b",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 1-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-0",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-04T15:06:43.294600+00:00"
+    },
+    {
+      "id": "1202390",
+      "home": "Chacarita Juniors",
+      "away": "Patronato Parana",
+      "competition": "Argentina Primera B Nacional",
+      "comp_slug": "argentina/primera-b",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Draw",
+      "match_winner_label": "Draw 1-1",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "1-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-04T15:06:43.294510+00:00"
     },
     {
       "id": "1202451",
@@ -526,49 +358,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241225+00:00"
-    },
-    {
-      "id": "1215687",
-      "home": "Citta di Campobasso",
-      "away": "Torres",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239879+00:00"
-    },
-    {
-      "id": "1215672",
-      "home": "Cosenza",
-      "away": "Foggia",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239916+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294647+00:00"
     },
     {
       "id": "1201621",
@@ -589,28 +379,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241364+00:00"
-    },
-    {
-      "id": "1223707",
-      "home": "Danubio",
-      "away": "Cerro Largo",
-      "competition": "Uruguay Primera Division",
-      "comp_slug": "uruguay/primera-division",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241458+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294981+00:00"
     },
     {
       "id": "1221957",
@@ -631,7 +400,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241709+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295267+00:00"
     },
     {
       "id": "1215693",
@@ -652,7 +421,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240019+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293874+00:00"
     },
     {
       "id": "1223283",
@@ -673,7 +442,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241874+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295404+00:00"
     },
     {
       "id": "1223285",
@@ -694,7 +463,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241902+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295432+00:00"
     },
     {
       "id": "1223291",
@@ -715,49 +484,7 @@
       "over25": "",
       "correct_score": "0-3",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241937+00:00"
-    },
-    {
-      "id": "1218451",
-      "home": "Everton Women",
-      "away": "Birmingham Women",
-      "competition": "England Women's Super League",
-      "comp_slug": "england/womens-super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239349+00:00"
-    },
-    {
-      "id": "1204586",
-      "home": "Farense",
-      "away": "Chaves",
-      "competition": "Portugal Liga Portugal 2",
-      "comp_slug": "portugal/liga-portugal-2",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240499+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295463+00:00"
     },
     {
       "id": "1203465",
@@ -778,7 +505,28 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239671+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293789+00:00"
+    },
+    {
+      "id": "1206455",
+      "home": "Godoy Cruz",
+      "away": "Los Andes",
+      "competition": "Argentina Primera B Nacional",
+      "comp_slug": "argentina/primera-b",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 3-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "3-0",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-04T15:06:43.294832+00:00"
     },
     {
       "id": "1185021",
@@ -799,28 +547,28 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.238838+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293208+00:00"
     },
     {
-      "id": "1220336",
-      "home": "Green Buffaloes",
-      "away": "Chirundu United",
-      "competition": "Zambia Super League",
-      "comp_slug": "zambia/super-league",
+      "id": "1202393",
+      "home": "Guemes",
+      "away": "Colegiales",
+      "competition": "Argentina Primera B Nacional",
+      "comp_slug": "argentina/primera-b",
       "ko_display": "Today",
       "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
+      "match_winner": "Away",
+      "match_winner_label": "Away 0-1",
+      "wdw": "2",
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.242154+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294693+00:00"
     },
     {
       "id": "1215394",
@@ -841,28 +589,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239065+00:00"
-    },
-    {
-      "id": "1207467",
-      "home": "Hannoverscher",
-      "away": "FSV Schoningen 2011",
-      "competition": "Germany Regionalliga North",
-      "comp_slug": "germany/regionalliga-north",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239708+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293439+00:00"
     },
     {
       "id": "1221951",
@@ -883,7 +610,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241741+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295298+00:00"
     },
     {
       "id": "1215246",
@@ -904,28 +631,7 @@
       "over25": "",
       "correct_score": "3-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241038+00:00"
-    },
-    {
-      "id": "1198002",
-      "home": "Ilirija",
-      "away": "Beltinci",
-      "competition": "Slovenia 2. SNL",
-      "comp_slug": "slovenia/2-snl",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240749+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294328+00:00"
     },
     {
       "id": "1223290",
@@ -946,7 +652,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241972+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295497+00:00"
     },
     {
       "id": "1222337",
@@ -967,28 +673,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241411+00:00"
-    },
-    {
-      "id": "1195083",
-      "home": "Javor Ivanjica",
-      "away": "Borac Cacak",
-      "competition": "Serbia Prva Liga",
-      "comp_slug": "serbia/prva-liga",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240611+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295025+00:00"
     },
     {
       "id": "1214165",
@@ -1009,7 +694,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240648+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294127+00:00"
     },
     {
       "id": "1222893",
@@ -1030,28 +715,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.242005+00:00"
-    },
-    {
-      "id": "1206100",
-      "home": "Kolos Kovalivka 2",
-      "away": "Oleksandriya",
-      "competition": "Ukraine Persha Liga",
-      "comp_slug": "ukraine/persha-liga",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240824+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295532+00:00"
     },
     {
       "id": "1185027",
@@ -1072,28 +736,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.238734+00:00"
-    },
-    {
-      "id": "1206099",
-      "home": "Kulykiv Bilka",
-      "away": "Probiy Gorodenka",
-      "competition": "Ukraine Persha Liga",
-      "comp_slug": "ukraine/persha-liga",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 4-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240890+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293097+00:00"
     },
     {
       "id": "1223287",
@@ -1114,7 +757,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.242033+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295559+00:00"
     },
     {
       "id": "1203464",
@@ -1135,7 +778,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239628+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293744+00:00"
     },
     {
       "id": "1218168",
@@ -1156,7 +799,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240159+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294028+00:00"
     },
     {
       "id": "1210242",
@@ -1177,28 +820,7 @@
       "over25": "",
       "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241575+00:00"
-    },
-    {
-      "id": "1220338",
-      "home": "Makeni All Stars",
-      "away": "Kansanshi Dynamos",
-      "competition": "Zambia Super League",
-      "comp_slug": "zambia/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.242176+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295139+00:00"
     },
     {
       "id": "1189243",
@@ -1219,7 +841,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.238791+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293161+00:00"
     },
     {
       "id": "1218455",
@@ -1240,49 +862,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239429+00:00"
-    },
-    {
-      "id": "1215690",
-      "home": "Monterosi",
-      "away": "Pineto",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239950+00:00"
-    },
-    {
-      "id": "1220337",
-      "home": "Mutondo Stars",
-      "away": "Red Arrows",
-      "competition": "Zambia Super League",
-      "comp_slug": "zambia/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.242220+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293661+00:00"
     },
     {
       "id": "1185022",
@@ -1303,70 +883,7 @@
       "over25": "",
       "correct_score": "3-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.238885+00:00"
-    },
-    {
-      "id": "1223288",
-      "home": "Niger Tornadoes",
-      "away": "Kun Khalifat",
-      "competition": "Nigeria NPFL",
-      "comp_slug": "nigeria/npfl",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.242064+00:00"
-    },
-    {
-      "id": "1195090",
-      "home": "OFK Vrsac",
-      "away": "FK Metalac",
-      "competition": "Serbia Prva Liga",
-      "comp_slug": "serbia/prva-liga",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240573+00:00"
-    },
-    {
-      "id": "1223082",
-      "home": "PAS Pyrgos",
-      "away": "Panionios",
-      "competition": "Greece Super League 2",
-      "comp_slug": "greece/super-league-2",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240308+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293255+00:00"
     },
     {
       "id": "1201620",
@@ -1387,28 +904,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241319+00:00"
-    },
-    {
-      "id": "1215688",
-      "home": "Pianese",
-      "away": "Ravenna",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239985+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294937+00:00"
     },
     {
       "id": "1221955",
@@ -1429,7 +925,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241774+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295327+00:00"
     },
     {
       "id": "1185023",
@@ -1450,7 +946,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.238930+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293300+00:00"
     },
     {
       "id": "1215683",
@@ -1471,7 +967,7 @@
       "over25": "",
       "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240192+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294063+00:00"
     },
     {
       "id": "1215396",
@@ -1492,28 +988,7 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239206+00:00"
-    },
-    {
-      "id": "1203467",
-      "home": "Real Sociedad II",
-      "away": "Granada",
-      "competition": "Spain Segunda Division",
-      "comp_slug": "spain/segunda-division",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239503+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293581+00:00"
     },
     {
       "id": "1215685",
@@ -1534,7 +1009,7 @@
       "over25": "",
       "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240054+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293908+00:00"
     },
     {
       "id": "1185025",
@@ -1555,7 +1030,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.238976+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293345+00:00"
     },
     {
       "id": "1223286",
@@ -1576,28 +1051,28 @@
       "over25": "",
       "correct_score": "3-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.242100+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295590+00:00"
     },
     {
-      "id": "1211468",
-      "home": "SC Paderborn 07 II",
-      "away": "Oberhausen",
-      "competition": "Germany Regionalliga West",
-      "comp_slug": "germany/regionalliga-west",
+      "id": "1203466",
+      "home": "Sabadell",
+      "away": "FC Andorra",
+      "competition": "Spain Segunda Division",
+      "comp_slug": "spain/segunda-division",
       "ko_display": "Today",
       "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
+      "match_winner": "Home",
+      "match_winner_label": "Home 3-0",
+      "wdw": "1",
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239742+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293831+00:00"
     },
     {
       "id": "1176807",
@@ -1618,7 +1093,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241607+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295169+00:00"
     },
     {
       "id": "1215671",
@@ -1639,7 +1114,7 @@
       "over25": "",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240224+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294091+00:00"
     },
     {
       "id": "1221952",
@@ -1660,7 +1135,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241816+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295348+00:00"
     },
     {
       "id": "1180203",
@@ -1681,7 +1156,49 @@
       "over25": "",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240995+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294288+00:00"
+    },
+    {
+      "id": "1206456",
+      "home": "San Martin San Juan",
+      "away": "Almagro",
+      "competition": "Argentina Primera B Nacional",
+      "comp_slug": "argentina/primera-b",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 2-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "2-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-04T15:06:43.294738+00:00"
+    },
+    {
+      "id": "1202391",
+      "home": "San Martin de Tucuman",
+      "away": "Gimnasia y Tiro",
+      "competition": "Argentina Primera B Nacional",
+      "comp_slug": "argentina/primera-b",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Draw",
+      "match_winner_label": "Draw 2-2",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "",
+      "correct_score": "2-2",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-04T15:06:43.294876+00:00"
     },
     {
       "id": "1206457",
@@ -1702,7 +1219,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241177+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294555+00:00"
     },
     {
       "id": "1223289",
@@ -1723,70 +1240,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.242129+00:00"
-    },
-    {
-      "id": "1211461",
-      "home": "Sportfreunde Siegen",
-      "away": "Borussia Dortmund II",
-      "competition": "Germany Regionalliga West",
-      "comp_slug": "germany/regionalliga-west",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239767+00:00"
-    },
-    {
-      "id": "1203460",
-      "home": "Sporting Gijon",
-      "away": "Celta de Vigo II",
-      "competition": "Spain Segunda Division",
-      "comp_slug": "spain/segunda-division",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239544+00:00"
-    },
-    {
-      "id": "1218449",
-      "home": "Spurs Women",
-      "away": "London City Lionesses",
-      "competition": "England Women's Super League",
-      "comp_slug": "england/womens-super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239377+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295631+00:00"
     },
     {
       "id": "1195086",
@@ -1807,7 +1261,7 @@
       "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240678+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294156+00:00"
     },
     {
       "id": "1182911",
@@ -1828,7 +1282,7 @@
       "over25": "",
       "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241541+00:00"
+      "scraped_at": "2026-10-04T15:06:43.295106+00:00"
     },
     {
       "id": "1215242",
@@ -1849,28 +1303,7 @@
       "over25": "",
       "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.241084+00:00"
-    },
-    {
-      "id": "1215679",
-      "home": "Treviso",
-      "away": "Giana Erminio",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239845+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294374+00:00"
     },
     {
       "id": "1197998",
@@ -1891,7 +1324,7 @@
       "over25": "",
       "correct_score": "3-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240786+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294188+00:00"
     },
     {
       "id": "1215400",
@@ -1912,7 +1345,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239250+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293627+00:00"
     },
     {
       "id": "1215395",
@@ -1933,7 +1366,7 @@
       "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239157+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293533+00:00"
     },
     {
       "id": "1180201",
@@ -1954,49 +1387,7 @@
       "over25": "",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240965+00:00"
-    },
-    {
-      "id": "1192255",
-      "home": "VVV Venlo",
-      "away": "Roda JC",
-      "competition": "Netherlands Eerste Divisie",
-      "comp_slug": "netherlands/eerste-divisie",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "3-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240265+00:00"
-    },
-    {
-      "id": "1206679",
-      "home": "Veles",
-      "away": "Volga Ulyanovsk",
-      "competition": "Russia FNL",
-      "comp_slug": "russia/fnl",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240536+00:00"
+      "scraped_at": "2026-10-04T15:06:43.294260+00:00"
     },
     {
       "id": "1185024",
@@ -2017,49 +1408,7 @@
       "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239019+00:00"
-    },
-    {
-      "id": "1218454",
-      "home": "West Ham Women",
-      "away": "Chelsea Women",
-      "competition": "England Women's Super League",
-      "comp_slug": "england/womens-super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.239406+00:00"
-    },
-    {
-      "id": "1198850",
-      "home": "Zeta",
-      "away": "Grbalj",
-      "competition": "Montenegro Second League",
-      "comp_slug": "montenegro/second-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T11:01:23.240426+00:00"
+      "scraped_at": "2026-10-04T15:06:43.293393+00:00"
     }
   ]
 }
