@@ -224,6 +224,57 @@ def check_feature_image_tag_safety() -> list[str]:
     return problems
 
 
+def _csp_frame_src_origins() -> set[str] | None:
+    """Origins allowed by .htaccess's CSP frame-src, or None if it is unrestricted/absent."""
+    try:
+        text = open(os.path.join(SITE_ROOT, ".htaccess"), encoding="utf-8").read()
+    except OSError:
+        return None
+    m = re.search(r'Content-Security-Policy\s+"([^"]+)"', text)
+    if not m:
+        return None
+    for directive in m.group(1).split(";"):
+        parts = directive.split()
+        if parts and parts[0] == "frame-src":
+            return {p for p in parts[1:] if p != "'none'"}
+    return None
+
+
+def check_iframe_csp_coverage() -> list[str]:
+    """Every <iframe src> a banner ad or blog post embeds must be allowed by CSP frame-src.
+
+    Otherwise the browser replaces the frame with "This content is blocked. Contact the
+    site owner to fix the issue." (found 2026-10-04: frame-src 'none' blocked ban-012).
+    Banners for hidden brands are skipped: the deploy strips them (scripts/hide_brands.py).
+    """
+    allowed = _csp_frame_src_origins()
+    if allowed is None:
+        return []
+    hidden: list[re.Pattern] = []
+    try:
+        for b in json.load(open(os.path.join(SITE_ROOT, "data", "hidden_brands.json")))["brands"]:
+            hidden += [re.compile(p, re.I) for p in b.get("patterns", [])]
+    except (OSError, ValueError, KeyError, TypeError, re.error):
+        pass
+    sources: list[tuple[str, str]] = []
+    try:
+        for b in json.load(open(os.path.join(SITE_ROOT, "blog", "banners.json")))["banners"]:
+            html = b.get("raw_html") or ""
+            if html and not any(h.search(html) for h in hidden):
+                sources.append((f"banners.json:{b.get('id')}", html))
+        for post in json.load(open(os.path.join(SITE_ROOT, "blog", "posts.json")))["posts"]:
+            sources.append((f"posts.json:{post.get('slug')}", post.get("body") or ""))
+    except (OSError, ValueError, KeyError, TypeError):
+        return []
+    problems = []
+    for label, html in sources:
+        for src in re.findall(r'<iframe[^>]+src=["\']?(https?://[^"\'\s>]+)', html, re.I):
+            origin = "/".join(src.split("/")[:3])
+            if origin not in allowed:
+                problems.append(f"{label} embeds iframe {origin} — not in CSP frame-src")
+    return problems
+
+
 def main() -> None:
     strict = "--strict" in sys.argv
     errors = 0
@@ -332,6 +383,19 @@ def main() -> None:
         errors += len(tag_safety_problems)
     else:
         print("\n✅ CHECK 4 PASSED — feature-image tag-safety guard holds")
+
+    # Check 5 — iframe origins vs CSP frame-src
+    iframe_problems = check_iframe_csp_coverage()
+    if iframe_problems:
+        print(f"\n🚨 CHECK 5 FAILED — {len(iframe_problems)} iframe(s) blocked by CSP frame-src\n")
+        for p in iframe_problems:
+            print(f"   ✗  {p}")
+        print()
+        print("   Visitors see \"This content is blocked. Contact the site owner to fix the issue.\"")
+        print("   Fix: add the origin to frame-src in the CSP line of .htaccess.\n")
+        errors += len(iframe_problems)
+    else:
+        print("\n✅ CHECK 5 PASSED — every embedded iframe origin is allowed by CSP frame-src")
 
     # Summary
     print("=" * 70)
