@@ -964,31 +964,35 @@
     "Amical le Cameroun ouvre le score face à betting tips Zambia": {
       "slug": "cameroon-vs-zambia-betting-tips",
       "posted_at": "2026-10-04T22:18:43.774442+00:00"
+    },
+    "Ghana Premier League Medeama guard top spot as betting tips Ghana": {
+      "slug": "medeama-betting-tips-ghana",
+      "posted_at": "2026-10-05T04:44:30.577065+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-05T03:00:48.648988+00:00",
-    "candidates_available": 260,
+    "checked_at": "2026-10-05T04:56:00.060787+00:00",
+    "candidates_available": 244,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Ghana Premier League Medeama guard top spot as betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'All the operators listed are licensed by the Gaming Commission of Ghana, which means they must comply with strict regulatory standards for fairness, data protection and responsible gambling. As long as you gamble responsibly and stay within your budget, betting on Medeama through these sites is safe.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "medeama-betting-tips-ghana"
       },
       {
-        "keyword": "Amical le Cameroun ouvre le score face à betting tips Uganda",
-        "country": "Uganda",
+        "keyword": "'I reduced my running because urine leaks' – betting tips Cameroon",
+        "country": "Cameroon",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 532)"
+        "reason": "quality_gate: final line was 'Each bookmaker offers a self‑exclusion feature and deposit limits. You can usually set daily, weekly, or monthly limits in the account settings. If you feel you are losing control, you can temporarily pause betting or seek help through the AMJ’s consumer support portal.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Amical le Cameroun ouvre le score face à betting tips Ethiopia",
-        "country": "Ethiopia",
+        "keyword": "'I reduced my running because urine leaks' – betting tips Senegal",
+        "country": "Senegal",
         "result": "failed",
-        "reason": "quality_gate: final line was 'The NLA regulates gambling activities in Ethiopia, ensuring bookmakers operate legally and fairly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 935 words (minimum 1000)"
       }
     ]
   }
