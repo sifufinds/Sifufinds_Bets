@@ -1,47 +1,47 @@
 {
-  "updated": "2026-10-05T12:08:08.273112+00:00",
+  "updated": "2026-10-05T19:02:44.731788+00:00",
   "source": "predictz.com",
-  "count": 15,
+  "count": 20,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-10-05T12:08:08.273112+00:00"
+      "ts": "2026-10-05T19:02:44.731788+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-10-05T12:08:08.273112+00:00"
+      "ts": "2026-10-05T19:02:44.731788+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-10-05T12:08:08.273112+00:00"
+      "ts": "2026-10-05T19:02:44.731788+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-10-05T12:08:08.273112+00:00"
+      "ts": "2026-10-05T19:02:44.731788+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-10-05T12:08:08.273112+00:00"
+      "ts": "2026-10-05T19:02:44.731788+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-10-05T12:08:08.273112+00:00"
+      "ts": "2026-10-05T19:02:44.731788+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-10-05T12:08:08.273112+00:00"
+      "ts": "2026-10-05T19:02:44.731788+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-10-05T12:08:08.273112+00:00"
+      "ts": "2026-10-05T19:02:44.731788+00:00"
     }
   ],
   "predictions": [
@@ -61,10 +61,31 @@
       "away_odds": "",
       "btts": "BTTS No",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913714+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952462+00:00"
+    },
+    {
+      "id": "1185019",
+      "home": "Bosnia-Herzegovina",
+      "away": "Poland",
+      "competition": "UEFA Nations League",
+      "comp_slug": "international/uefa-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Draw",
+      "match_winner_label": "Draw 1-1",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "Under 2.5",
+      "correct_score": "1-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-05T19:02:48.952044+00:00"
     },
     {
       "id": "1213445",
@@ -82,10 +103,10 @@
       "away_odds": "",
       "btts": "BTTS No",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.914197+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952663+00:00"
     },
     {
       "id": "1203459",
@@ -103,10 +124,52 @@
       "away_odds": "",
       "btts": "BTTS No",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913280+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952407+00:00"
+    },
+    {
+      "id": "1215392",
+      "home": "Cuba",
+      "away": "Saint Kitts and Nevis",
+      "competition": "CONCACAF Nations League",
+      "comp_slug": "international/concacaf-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 2-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "Over 2.5",
+      "correct_score": "2-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-05T19:02:48.952342+00:00"
+    },
+    {
+      "id": "1189241",
+      "home": "Cyprus",
+      "away": "Latvia",
+      "competition": "UEFA Nations League",
+      "comp_slug": "international/uefa-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 2-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "Over 2.5",
+      "correct_score": "2-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-05T19:02:48.951987+00:00"
     },
     {
       "id": "1215251",
@@ -124,10 +187,10 @@
       "away_odds": "",
       "btts": "BTTS No",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913826+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952493+00:00"
     },
     {
       "id": "1215239",
@@ -145,17 +208,17 @@
       "away_odds": "",
       "btts": "BTTS Yes",
       "btts_win": "",
-      "over25": "",
+      "over25": "Over 2.5",
       "correct_score": "3-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913906+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952527+00:00"
     },
     {
-      "id": "1206097",
-      "home": "FSK Mariupol",
-      "away": "Nyva Ternopil",
-      "competition": "Ukraine Persha Liga",
-      "comp_slug": "ukraine/persha-liga",
+      "id": "1185654",
+      "home": "France",
+      "away": "Belgium",
+      "competition": "UEFA Nations League",
+      "comp_slug": "international/uefa-nations-league",
       "ko_display": "Today",
       "ko_utc": null,
       "match_winner": "Home",
@@ -166,10 +229,94 @@
       "away_odds": "",
       "btts": "BTTS Yes",
       "btts_win": "",
-      "over25": "",
-      "correct_score": "",
+      "over25": "Over 2.5",
+      "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913762+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952107+00:00"
+    },
+    {
+      "id": "1222481",
+      "home": "Guadeloupe",
+      "away": "Saint Lucia",
+      "competition": "CONCACAF Nations League",
+      "comp_slug": "international/concacaf-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Away",
+      "match_winner_label": "Away 1-2",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "Over 2.5",
+      "correct_score": "1-2",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-05T19:02:48.952308+00:00"
+    },
+    {
+      "id": "1185017",
+      "home": "Italy",
+      "away": "Turkey",
+      "competition": "UEFA Nations League",
+      "comp_slug": "international/uefa-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 3-1",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "Over 2.5",
+      "correct_score": "3-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-05T19:02:48.952141+00:00"
+    },
+    {
+      "id": "1215386",
+      "home": "Martinique",
+      "away": "El Salvador",
+      "competition": "CONCACAF Nations League",
+      "comp_slug": "international/concacaf-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Draw",
+      "match_winner_label": "Draw 1-1",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "Under 2.5",
+      "correct_score": "1-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-05T19:02:48.952375+00:00"
+    },
+    {
+      "id": "1185015",
+      "home": "Montenegro",
+      "away": "Armenia",
+      "competition": "UEFA Nations League",
+      "comp_slug": "international/uefa-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Home",
+      "match_winner_label": "Home 2-0",
+      "wdw": "1",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS No",
+      "btts_win": "",
+      "over25": "Under 2.5",
+      "correct_score": "2-0",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-05T19:02:48.952174+00:00"
     },
     {
       "id": "1173467",
@@ -187,17 +334,17 @@
       "away_odds": "",
       "btts": "BTTS No",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913527+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952437+00:00"
     },
     {
-      "id": "1195085",
-      "home": "Napredak",
-      "away": "Loznica",
-      "competition": "Serbia Prva Liga",
-      "comp_slug": "serbia/prva-liga",
+      "id": "1185016",
+      "home": "Northern Ireland",
+      "away": "Georgia",
+      "competition": "UEFA Nations League",
+      "comp_slug": "international/uefa-nations-league",
       "ko_display": "Today",
       "ko_utc": null,
       "match_winner": "Draw",
@@ -208,31 +355,10 @@
       "away_odds": "",
       "btts": "BTTS Yes",
       "btts_win": "",
-      "over25": "",
-      "correct_score": "",
+      "over25": "Under 2.5",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913667+00:00"
-    },
-    {
-      "id": "1221560",
-      "home": "Nestos Chrysoupoli",
-      "away": "GS Marko",
-      "competition": "Greece Super League 2",
-      "comp_slug": "greece/super-league-2",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913472+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952209+00:00"
     },
     {
       "id": "1206454",
@@ -250,52 +376,31 @@
       "away_odds": "",
       "btts": "BTTS Yes",
       "btts_win": "",
-      "over25": "",
+      "over25": "Over 2.5",
       "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.914043+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952591+00:00"
     },
     {
-      "id": "1221561",
-      "home": "PAOK Thessaloniki B",
-      "away": "Hellas Syrou",
-      "competition": "Greece Super League 2",
-      "comp_slug": "greece/super-league-2",
+      "id": "1185020",
+      "home": "Romania",
+      "away": "Sweden",
+      "competition": "UEFA Nations League",
+      "comp_slug": "international/uefa-nations-league",
       "ko_display": "Today",
       "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-2",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913425+00:00"
-    },
-    {
-      "id": "1195084",
-      "home": "Smederevo",
-      "away": "Vozdovac",
-      "competition": "Serbia Prva Liga",
-      "comp_slug": "serbia/prva-liga",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-1",
-      "wdw": "1",
+      "match_winner": "Away",
+      "match_winner_label": "Away 1-2",
+      "wdw": "2",
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
       "btts": "BTTS Yes",
       "btts_win": "",
-      "over25": "",
-      "correct_score": "",
+      "over25": "Over 2.5",
+      "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913589+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952242+00:00"
     },
     {
       "id": "1213448",
@@ -313,10 +418,31 @@
       "away_odds": "",
       "btts": "BTTS No",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.914119+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952626+00:00"
+    },
+    {
+      "id": "1185018",
+      "home": "Ukraine",
+      "away": "Hungary",
+      "competition": "UEFA Nations League",
+      "comp_slug": "international/uefa-nations-league",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Draw",
+      "match_winner_label": "Draw 1-1",
+      "wdw": "X",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "BTTS Yes",
+      "btts_win": "",
+      "over25": "Under 2.5",
+      "correct_score": "1-1",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-05T19:02:48.952273+00:00"
     },
     {
       "id": "1215240",
@@ -334,31 +460,10 @@
       "away_odds": "",
       "btts": "BTTS Yes",
       "btts_win": "",
-      "over25": "",
+      "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913975+00:00"
-    },
-    {
-      "id": "1223081",
-      "home": "Zakynthos",
-      "away": "Apollon Kalamarias",
-      "competition": "Greece Super League 2",
-      "comp_slug": "greece/super-league-2",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-05T12:08:23.913370+00:00"
+      "scraped_at": "2026-10-05T19:02:48.952558+00:00"
     }
   ]
 }
