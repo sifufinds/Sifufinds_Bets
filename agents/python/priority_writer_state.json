@@ -967,28 +967,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-04T22:18:48.165632+00:00",
-    "candidates_available": 261,
+    "checked_at": "2026-10-05T03:00:48.648988+00:00",
+    "candidates_available": 260,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Ghana Premier League Medeama guard top spot as betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All GCA‑licensed bookmakers in our comparison accept MTN MoMo, Vodafone Cash, AirtelTigo Money, Visa, and Mastercard. Choose the method that best suits your convenience and speed.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'All the operators listed are licensed by the Gaming Commission of Ghana, which means they must comply with strict regulatory standards for fairness, data protection and responsible gambling. As long as you gamble responsibly and stay within your budget, betting on Medeama through these sites is safe.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Amical le Cameroun ouvre le score face à betting tips Uganda",
         "country": "Uganda",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 532)"
       },
       {
-        "keyword": "Amical le Cameroun ouvre le score face à betting tips Zambia",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "cameroon-vs-zambia-betting-tips"
+        "keyword": "Amical le Cameroun ouvre le score face à betting tips Ethiopia",
+        "country": "Ethiopia",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'The NLA regulates gambling activities in Ethiopia, ensuring bookmakers operate legally and fairly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
