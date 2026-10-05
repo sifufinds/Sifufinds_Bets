@@ -1,92 +1,50 @@
 {
-  "updated": "2026-10-04T19:12:16.683065+00:00",
+  "updated": "2026-10-05T00:37:53.077080+00:00",
   "source": "predictz.com",
-  "count": 36,
+  "count": 15,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-10-04T19:12:16.683065+00:00"
+      "ts": "2026-10-05T00:37:53.077080+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-10-04T19:12:16.683065+00:00"
+      "ts": "2026-10-05T00:37:53.077080+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-10-04T19:12:16.683065+00:00"
+      "ts": "2026-10-05T00:37:53.077080+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-10-04T19:12:16.683065+00:00"
+      "ts": "2026-10-05T00:37:53.077080+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-10-04T19:12:16.683065+00:00"
+      "ts": "2026-10-05T00:37:53.077080+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-10-04T19:12:16.683065+00:00"
+      "ts": "2026-10-05T00:37:53.077080+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-10-04T19:12:16.683065+00:00"
+      "ts": "2026-10-05T00:37:53.077080+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-10-04T19:12:16.683065+00:00"
+      "ts": "2026-10-05T00:37:53.077080+00:00"
     }
   ],
   "predictions": [
-    {
-      "id": "1223701",
-      "home": "Agropecuario Argentino",
-      "away": "CA Ferrocarril Midland",
-      "competition": "Argentina Primera B Nacional",
-      "comp_slug": "argentina/primera-b",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786452+00:00"
-    },
-    {
-      "id": "1215694",
-      "home": "Alcione Milano",
-      "away": "Trento",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785954+00:00"
-    },
     {
       "id": "1215244",
       "home": "Argentinos Juniors",
@@ -106,7 +64,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786386+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720158+00:00"
     },
     {
       "id": "1221086",
@@ -127,28 +85,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786888+00:00"
-    },
-    {
-      "id": "1215691",
-      "home": "Audace Cerignola",
-      "away": "Team Altamura",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "3-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786001+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720284+00:00"
     },
     {
       "id": "1215398",
@@ -169,49 +106,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785639+00:00"
-    },
-    {
-      "id": "1202452",
-      "home": "Central Norte Salta",
-      "away": "Racing de Cordoba",
-      "competition": "Argentina Primera B Nacional",
-      "comp_slug": "argentina/primera-b",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "1-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786634+00:00"
-    },
-    {
-      "id": "1202390",
-      "home": "Chacarita Juniors",
-      "away": "Patronato Parana",
-      "competition": "Argentina Primera B Nacional",
-      "comp_slug": "argentina/primera-b",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786514+00:00"
+      "scraped_at": "2026-10-05T00:37:58.719960+00:00"
     },
     {
       "id": "1202451",
@@ -232,7 +127,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786710+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720191+00:00"
     },
     {
       "id": "1201621",
@@ -253,28 +148,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.787128+00:00"
-    },
-    {
-      "id": "1203465",
-      "home": "Girona",
-      "away": "Mallorca",
-      "competition": "Spain Segunda Division",
-      "comp_slug": "spain/segunda-division",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "3-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785895+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720376+00:00"
     },
     {
       "id": "1206455",
@@ -295,28 +169,7 @@
       "over25": "Over 2.5",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786947+00:00"
-    },
-    {
-      "id": "1185021",
-      "home": "Greece",
-      "away": "Germany",
-      "competition": "UEFA Nations League",
-      "comp_slug": "international/uefa-nations-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785243+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720316+00:00"
     },
     {
       "id": "1202393",
@@ -337,196 +190,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786770+00:00"
-    },
-    {
-      "id": "1215394",
-      "home": "Guyana",
-      "away": "Dominica",
-      "competition": "CONCACAF Nations League",
-      "comp_slug": "international/concacaf-nations-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "3-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785578+00:00"
-    },
-    {
-      "id": "1215246",
-      "home": "Huracan",
-      "away": "Aldosivi",
-      "competition": "Argentina Liga Profesional",
-      "comp_slug": "argentina/liga-profesional",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-2",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "3-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786268+00:00"
-    },
-    {
-      "id": "1222337",
-      "home": "Internacional de Bogota",
-      "away": "Once Caldas",
-      "competition": "Colombia Categoria Primera A",
-      "comp_slug": "colombia/categoria-primera-a",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.787185+00:00"
-    },
-    {
-      "id": "1218168",
-      "home": "Latina",
-      "away": "Ostiamare",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786046+00:00"
-    },
-    {
-      "id": "1210242",
-      "home": "Leones Negros UdeG",
-      "away": "Dorados",
-      "competition": "Mexico Liga de Expansion MX",
-      "comp_slug": "mexico/liga-de-expansion-mx",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.787287+00:00"
-    },
-    {
-      "id": "1185022",
-      "home": "Netherlands",
-      "away": "Serbia",
-      "competition": "UEFA Nations League",
-      "comp_slug": "international/uefa-nations-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "3-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785332+00:00"
-    },
-    {
-      "id": "1201620",
-      "home": "Pasto",
-      "away": "Fortaleza",
-      "competition": "Colombia Categoria Primera A",
-      "comp_slug": "colombia/categoria-primera-a",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.787071+00:00"
-    },
-    {
-      "id": "1185023",
-      "home": "Portugal",
-      "away": "Norway",
-      "competition": "UEFA Nations League",
-      "comp_slug": "international/uefa-nations-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785394+00:00"
-    },
-    {
-      "id": "1215683",
-      "home": "Potenza",
-      "away": "AZ Picerno",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786091+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720221+00:00"
     },
     {
       "id": "1215396",
@@ -547,49 +211,7 @@
       "over25": "Over 2.5",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785782+00:00"
-    },
-    {
-      "id": "1185025",
-      "home": "Rep of Ireland",
-      "away": "Israel",
-      "competition": "UEFA Nations League",
-      "comp_slug": "international/uefa-nations-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785454+00:00"
-    },
-    {
-      "id": "1215671",
-      "home": "Salernitana",
-      "away": "Bari",
-      "competition": "Italy Serie C",
-      "comp_slug": "italy/serie-c",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "2-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786128+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720042+00:00"
     },
     {
       "id": "1180203",
@@ -610,7 +232,7 @@
       "over25": "Over 2.5",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786215+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720099+00:00"
     },
     {
       "id": "1206456",
@@ -631,7 +253,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786829+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720252+00:00"
     },
     {
       "id": "1202391",
@@ -652,28 +274,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.787005+00:00"
-    },
-    {
-      "id": "1206457",
-      "home": "San Telmo",
-      "away": "Almirante Brown",
-      "competition": "Argentina Primera B Nacional",
-      "comp_slug": "argentina/primera-b",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786574+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720346+00:00"
     },
     {
       "id": "1182911",
@@ -694,7 +295,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.787234+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720408+00:00"
     },
     {
       "id": "1215242",
@@ -715,7 +316,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786326+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720128+00:00"
     },
     {
       "id": "1215400",
@@ -736,7 +337,7 @@
       "over25": "Under 2.5",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785838+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720073+00:00"
     },
     {
       "id": "1215395",
@@ -757,49 +358,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785720+00:00"
-    },
-    {
-      "id": "1180201",
-      "home": "Union San Felipe",
-      "away": "Deportes Iquique",
-      "competition": "Chile Primera B",
-      "comp_slug": "chile/primera-b",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "0-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.786176+00:00"
-    },
-    {
-      "id": "1185024",
-      "home": "Wales",
-      "away": "Denmark",
-      "competition": "UEFA Nations League",
-      "comp_slug": "international/uefa-nations-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-04T19:12:22.785513+00:00"
+      "scraped_at": "2026-10-05T00:37:58.720009+00:00"
     }
   ]
 }
