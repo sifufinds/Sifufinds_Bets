@@ -1,9 +1,9 @@
 {
   "date": "2026-10-05",
-  "total": 37,
+  "total": 40,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 6,
     "MEDIUM": 33,
     "INFO": 1
   },
@@ -11,14 +11,32 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "bafana-bafana-egypt-win-betting-soweto-derby",
-      "detail": "Title 67 chars (max 60): \"Bafana Bafana's Egypt win sparks betting buzz ahead of Soweto Derby\""
+      "page": "tiwa-savage-tene-fury-joshua-haney-stevenson-boxing-guide",
+      "detail": "Title 85 chars (max 60): 'Tiwa Savage vs Teni, Fury vs Joshua, Haney vs Stevenson \u2013 Boxing Buzz '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "hes-best-striker-premier-league-sheringham-hails-isak-betting-tips-nigeria",
+      "detail": "Title 81 chars (max 60): 'He\u2019s Best Striker Premier League \u2013 Sheringham Hails Isak Betting Tips '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nigeria-lagos-host-annual-caf-awards-december-7-betting-tips-egypt",
+      "detail": "Title 71 chars (max 60): 'Nigeria Lagos Host Annual CAF Awards Dec 7: Betting Tips for Egypt Fan'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bafana-bafana-egypt-win-betting-soweto-derby",
-      "detail": "Excerpt 180 chars (max 155)"
+      "page": "hes-best-striker-premier-league-sheringham-hails-isak-betting-tips-nigeria",
+      "detail": "Excerpt 158 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nigeria-lagos-host-annual-caf-awards-december-7-betting-tips-egypt",
+      "detail": "Excerpt 184 chars (max 155)"
     },
     {
       "severity": "HIGH",
