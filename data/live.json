@@ -1,7 +1,24 @@
 {
-  "updated": "2026-10-05T18:09:46.630487+00:00",
+  "updated": "2026-10-05T21:17:18.451387+00:00",
   "count": 28,
   "events": [
+    {
+      "league": "MLB",
+      "key": "baseball",
+      "live": true,
+      "complete": false,
+      "home": "Cleveland Guardians",
+      "away": "Chicago White Sox",
+      "hScore": "0",
+      "aScore": "0",
+      "time": "LIVE",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
     {
       "league": "Premier League",
       "key": "epl",
@@ -219,9 +236,9 @@
       "h": 1.6,
       "d": 0.0,
       "a": 2.4,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -233,12 +250,12 @@
       "hScore": null,
       "aScore": null,
       "time": "5 Oct 2026 \u00b7 23:00 UTC",
-      "h": 1.65,
+      "h": 1.7,
       "d": 0.0,
-      "a": 2.3,
-      "hBk": "DraftKings",
+      "a": 2.2,
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -250,12 +267,12 @@
       "hScore": null,
       "aScore": null,
       "time": "5 Oct 2026 \u00b7 23:00 UTC",
-      "h": 2.4,
+      "h": 2.36,
       "d": 0.0,
-      "a": 1.6,
-      "hBk": "DraftKings",
+      "a": 1.62,
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -267,12 +284,12 @@
       "hScore": null,
       "aScore": null,
       "time": "6 Oct 2026 \u00b7 00:00 UTC",
-      "h": 2.64,
+      "h": 2.45,
       "d": 0.0,
-      "a": 1.51,
-      "hBk": "DraftKings",
+      "a": 1.57,
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -287,9 +304,9 @@
       "h": 2.8,
       "d": 0.0,
       "a": 1.46,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "WNBA",
@@ -330,31 +347,14 @@
       "key": "baseball",
       "live": false,
       "complete": false,
-      "home": "Cleveland Guardians",
-      "away": "Chicago White Sox",
-      "hScore": null,
-      "aScore": null,
-      "time": "5 Oct 2026 \u00b7 21:00 UTC",
-      "h": 1.64,
-      "d": 0.0,
-      "a": 2.3,
-      "hBk": "DraftKings",
-      "dBk": "",
-      "aBk": "DraftKings"
-    },
-    {
-      "league": "MLB",
-      "key": "baseball",
-      "live": false,
-      "complete": false,
       "home": "Tampa Bay Rays",
       "away": "New York Yankees",
       "hScore": null,
       "aScore": null,
       "time": "6 Oct 2026 \u00b7 00:00 UTC",
-      "h": 2.02,
+      "h": 2.04,
       "d": 0.0,
-      "a": 1.81,
+      "a": 1.8,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
