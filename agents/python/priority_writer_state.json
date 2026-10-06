@@ -1003,28 +1003,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-06T06:03:56.079135+00:00",
+    "checked_at": "2026-10-06T08:27:26.489314+00:00",
     "candidates_available": 257,
     "attempted": 3,
-    "written": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Nigeria Lagos Host Annual CAF Awards December 7 betting tips Morocco",
-        "country": "Morocco",
-        "result": "written",
-        "slug": "nigeria-lagos-caf-awards-dec-7-betting-tips-morocco"
+        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Cameroon",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
-        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Ethiopia",
-        "country": "Ethiopia",
-        "result": "written",
-        "slug": "sharks-two-defeats-leinster-betting-tips-ethiopia"
+        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Senegal",
+        "country": "Senegal",
+        "result": "failed",
+        "reason": "quality_gate: only 991 words (minimum 1000); final line was 'The odds of the Sharks winning the match are available on various bookmakers, including PMU Sénégal and 1xBet Sénégal.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Ivory Coast",
-        "country": "Ivory Coast",
-        "result": "written",
-        "slug": "sharks-two-defeats-leinster-betting-tips-ivory-coast"
+        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Zimbabwe",
+        "country": "Zimbabwe",
+        "result": "failed",
+        "reason": "quality_gate: only 872 words (minimum 1000); final line was 'Top bookmakers in Zimbabwe have responsible gambling policies in place to help you bet responsibly and within your means.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
