@@ -631,31 +631,39 @@
     "‘They really made us proud’ Coach praises Bok betting tips South Africa": {
       "slug": "springbok-women-coach-praises-bok-victory-spain-betting-tips-south-africa",
       "posted_at": "2026-10-05T10:03:00.435233+00:00"
+    },
+    "Russia vs Nigeria betting tips Nigeria": {
+      "slug": "russia-vs-nigeria-betting-tips-nigeria",
+      "posted_at": "2026-10-06T15:23:24.268367+00:00"
+    },
+    "Ghana Premier League Medeama, FC Samartex battle top, betting tips Ghana": {
+      "slug": "ghana-premier-league-medeama-samartex-betting-tips-ghana",
+      "posted_at": "2026-10-06T15:37:37.927208+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-06T10:31:23.954054+00:00",
+    "checked_at": "2026-10-06T15:37:42.688968+00:00",
     "candidates_available": 229,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Russia vs Nigeria betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "fact_check: 22Bet offers a 100 % first deposit bonus up to ₦207,500, while 1xBet delivers a massive 300 % match up to ₦1,200,000; **22Bet Nigeria** – Register, enter code BNSNG, deposit at least ₦100 and you’ll receive a 100 % match up to ₦207,500; **1xBet Nigeria** – Sign up, use code 1BONUSNG, fund your account with a minimum of ₦100 and you’ll see a 300 % match up to ₦1,200,000; 1xBet Nigeria currently leads with a 300 % match up to ₦1,200,000 when you use the code 1BONUSNG"
+        "result": "written",
+        "slug": "russia-vs-nigeria-betting-tips-nigeria"
       },
       {
         "keyword": "Packers’ Matt LaFleur unhappy Green Bay after Buccaneers betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: only 521 words (minimum 600); no '## FAQ' section heading found"
+        "result": "skipped",
+        "reason": "similar_title_exists"
       },
       {
         "keyword": "Ghana Premier League Medeama, FC Samartex battle top, betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "result": "written",
+        "slug": "ghana-premier-league-medeama-samartex-betting-tips-ghana"
       }
     ]
   }

@@ -1000,25 +1000,43 @@
     "Sharks make it two defeats spin champions Leinster betting tips Ivory Coast": {
       "slug": "sharks-two-defeats-leinster-betting-tips-ivory-coast",
       "posted_at": "2026-10-06T06:03:52.990320+00:00"
+    },
+    "Russia vs Nigeria betting tips Nigeria": {
+      "slug": "russia-vs-nigeria-betting-tips-nigeria",
+      "posted_at": "2026-10-06T15:12:15.095111+00:00"
+    },
+    "Packers’ Matt LaFleur unhappy Green Bay after Buccaneers betting tips Kenya": {
+      "slug": "packers-matlafleur-unhappy-kenya-betting-tips",
+      "posted_at": "2026-10-06T15:12:32.810444+00:00"
+    },
+    "Ghana Premier League Medeama, FC Samartex battle top, betting tips Ghana": {
+      "slug": "medeama-samartex-betting-tips-ghana",
+      "posted_at": "2026-10-06T15:12:57.005708+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-06T10:19:13.380082+00:00",
+    "checked_at": "2026-10-06T15:13:00.758595+00:00",
     "candidates_available": 260,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
         "keyword": "Russia vs Nigeria betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: only 755 words (minimum 1000); final line was 'Analyse team form, head-to-head records, and key player availability. Compare bookmaker odds and offers to find the best value for your bet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "russia-vs-nigeria-betting-tips-nigeria"
       },
       {
         "keyword": "Packers’ Matt LaFleur unhappy Green Bay after Buccaneers betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "packers-matlafleur-unhappy-kenya-betting-tips"
+      },
+      {
+        "keyword": "Ghana Premier League Medeama, FC Samartex battle top, betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "medeama-samartex-betting-tips-ghana"
       }
     ]
   }
