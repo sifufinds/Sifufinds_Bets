@@ -634,7 +634,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-06T00:41:49.737012+00:00",
+    "checked_at": "2026-10-06T02:52:11.871805+00:00",
     "candidates_available": 226,
     "attempted": 3,
     "written": 0,
@@ -643,19 +643,19 @@
         "keyword": "He’s Best Striker Premier League –Sheringham Hails Isak betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'If you’re ready to test your predictions about Alexander Isak and Liverpool’s performance, head over to sifufinds for live odds, in‑play action and up‑to‑date betting tips tailored for Nigerian punters. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: no '## FAQ' section heading found"
       },
       {
         "keyword": "Nigeria Lagos Host Annual CAF Awards December 7 betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: only 504 words (minimum 600); no '## FAQ' section heading found"
+        "reason": "quality_gate: only 519 words (minimum 600)"
       },
       {
         "keyword": "Ghana Premier League Medeama guard top spot as betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: only 535 words (minimum 600); no '## FAQ' section heading found"
+        "reason": "fact_check: The odds of Medeama SC retaining their top spot are currently highly competitive, with Sportybet Ghana offering 2.25 and Betway Ghana offering 2.30.; To get the best odds on the Ghana Premier League, we recommend checking out Sportybet Ghana and Betway Ghana. Both of these bookmakers offer competitive odds and a wide range of markets, so you can find the perfect bet for you."
       }
     ]
   }

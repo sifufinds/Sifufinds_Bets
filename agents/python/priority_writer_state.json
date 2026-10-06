@@ -980,31 +980,39 @@
     "Nigeria Lagos Host Annual CAF Awards December 7 betting tips Uganda": {
       "slug": "nigeria-lagos-caf-awards-betting-tips-uganda",
       "posted_at": "2026-10-06T00:31:07.488595+00:00"
+    },
+    "Nigeria Lagos Host Annual CAF Awards December 7 betting tips Tanzania": {
+      "slug": "nigeria-lagos-host-annual-caf-awards-december-7-betting-tips-tanzania",
+      "posted_at": "2026-10-06T02:30:38.743626+00:00"
+    },
+    "Sharks make it two defeats spin champions Leinster betting tips Zambia": {
+      "slug": "sharks-leinster-betting-tips-zambia",
+      "posted_at": "2026-10-06T02:37:45.062406+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-06T00:31:10.969228+00:00",
-    "candidates_available": 260,
+    "checked_at": "2026-10-06T02:37:49.452001+00:00",
+    "candidates_available": 259,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Nigeria Lagos Host Annual CAF Awards December 7 betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Most bookmakers include a “Best Tanzanian Player” market alongside the overall Player of the Year. Check the “Special Events” section on your chosen site for the exact odds and place your stake accordingly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "nigeria-lagos-host-annual-caf-awards-december-7-betting-tips-tanzania"
       },
       {
         "keyword": "Nigeria Lagos Host Annual CAF Awards December 7 betting tips Morocco",
         "country": "Morocco",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 471)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 431)"
       },
       {
-        "keyword": "Nigeria Lagos Host Annual CAF Awards December 7 betting tips Uganda",
-        "country": "Uganda",
+        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Zambia",
+        "country": "Zambia",
         "result": "written",
-        "slug": "nigeria-lagos-caf-awards-betting-tips-uganda"
+        "slug": "sharks-leinster-betting-tips-zambia"
       }
     ]
   }
