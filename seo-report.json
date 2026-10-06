@@ -1,48 +1,30 @@
 {
-  "date": "2026-10-05",
-  "total": 40,
+  "date": "2026-10-06",
+  "total": 37,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 6,
-    "MEDIUM": 33,
+    "HIGH": 1,
+    "MEDIUM": 35,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
-      "check": "title_length",
-      "page": "tiwa-savage-tene-fury-joshua-haney-stevenson-boxing-guide",
-      "detail": "Title 85 chars (max 60): 'Tiwa Savage vs Teni, Fury vs Joshua, Haney vs Stevenson \u2013 Boxing Buzz '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "hes-best-striker-premier-league-sheringham-hails-isak-betting-tips-nigeria",
-      "detail": "Title 81 chars (max 60): 'He\u2019s Best Striker Premier League \u2013 Sheringham Hails Isak Betting Tips '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nigeria-lagos-host-annual-caf-awards-december-7-betting-tips-egypt",
-      "detail": "Title 71 chars (max 60): 'Nigeria Lagos Host Annual CAF Awards Dec 7: Betting Tips for Egypt Fan'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "hes-best-striker-premier-league-sheringham-hails-isak-betting-tips-nigeria",
-      "detail": "Excerpt 158 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nigeria-lagos-host-annual-caf-awards-december-7-betting-tips-egypt",
-      "detail": "Excerpt 184 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "nigeria-lagos-host-annual-caf-awards-december-7-betting-tips-tanzania",
+      "detail": "High title overlap (5 meaningful tokens) with 'nigeria-lagos-host-annual-caf-awards-december-7-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "igaming-industry-updates-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-shake-up-african-bettors' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
