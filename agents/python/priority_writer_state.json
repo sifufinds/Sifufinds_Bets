@@ -1003,28 +1003,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-06T08:27:26.489314+00:00",
-    "candidates_available": 257,
+    "checked_at": "2026-10-06T10:19:13.380082+00:00",
+    "candidates_available": 260,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Cameroon",
-        "country": "Cameroon",
+        "keyword": "Russia vs Nigeria betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 755 words (minimum 1000); final line was 'Analyse team form, head-to-head records, and key player availability. Compare bookmaker odds and offers to find the best value for your bet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Senegal",
-        "country": "Senegal",
+        "keyword": "Packers’ Matt LaFleur unhappy Green Bay after Buccaneers betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 991 words (minimum 1000); final line was 'The odds of the Sharks winning the match are available on various bookmakers, including PMU Sénégal and 1xBet Sénégal.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Zimbabwe",
-        "country": "Zimbabwe",
-        "result": "failed",
-        "reason": "quality_gate: only 872 words (minimum 1000); final line was 'Top bookmakers in Zimbabwe have responsible gambling policies in place to help you bet responsibly and within your means.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
