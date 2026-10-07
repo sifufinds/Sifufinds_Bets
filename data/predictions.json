@@ -1,47 +1,47 @@
 {
-  "updated": "2026-10-07T11:37:17.887512+00:00",
+  "updated": "2026-10-07T17:20:56.035820+00:00",
   "source": "predictz.com",
-  "count": 20,
+  "count": 12,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-10-07T11:37:17.887512+00:00"
+      "ts": "2026-10-07T17:20:56.035820+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-10-07T11:37:17.887512+00:00"
+      "ts": "2026-10-07T17:20:56.035820+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-10-07T11:37:17.887512+00:00"
+      "ts": "2026-10-07T17:20:56.035820+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-10-07T11:37:17.887512+00:00"
+      "ts": "2026-10-07T17:20:56.035820+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-10-07T11:37:17.887512+00:00"
+      "ts": "2026-10-07T17:20:56.035820+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-10-07T11:37:17.887512+00:00"
+      "ts": "2026-10-07T17:20:56.035820+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-10-07T11:37:17.887512+00:00"
+      "ts": "2026-10-07T17:20:56.035820+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-10-07T11:37:17.887512+00:00"
+      "ts": "2026-10-07T17:20:56.035820+00:00"
     }
   ],
   "predictions": [
@@ -64,7 +64,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032708+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927610+00:00"
     },
     {
       "id": "1223747",
@@ -85,7 +85,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033174+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927952+00:00"
     },
     {
       "id": "1223745",
@@ -106,7 +106,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033090+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927844+00:00"
     },
     {
       "id": "1170874",
@@ -127,7 +127,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032469+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927395+00:00"
     },
     {
       "id": "1223746",
@@ -148,28 +148,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033135+00:00"
-    },
-    {
-      "id": "1185537",
-      "home": "Foshan Nanshi",
-      "away": "Guangxi Hengchen",
-      "competition": "China League One",
-      "comp_slug": "china/league-one",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032962+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927903+00:00"
     },
     {
       "id": "1221728",
@@ -190,7 +169,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032375+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927302+00:00"
     },
     {
       "id": "1182912",
@@ -211,7 +190,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032825+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927738+00:00"
     },
     {
       "id": "1170871",
@@ -232,91 +211,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032545+00:00"
-    },
-    {
-      "id": "1221237",
-      "home": "Kataka",
-      "away": "SC Villa",
-      "competition": "Uganda Premier League",
-      "comp_slug": "uganda/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033259+00:00"
-    },
-    {
-      "id": "1221239",
-      "home": "Kitara",
-      "away": "Kigezi Homeboyz",
-      "competition": "Uganda Premier League",
-      "comp_slug": "uganda/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033303+00:00"
-    },
-    {
-      "id": "1221235",
-      "home": "Maroons",
-      "away": "Lugazi Municipal",
-      "competition": "Uganda Premier League",
-      "comp_slug": "uganda/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033350+00:00"
-    },
-    {
-      "id": "1185536",
-      "home": "Nanjing City",
-      "away": "Shaanxi Union",
-      "competition": "China League One",
-      "comp_slug": "china/league-one",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033003+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927468+00:00"
     },
     {
       "id": "1181101",
@@ -337,28 +232,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033044+00:00"
-    },
-    {
-      "id": "1221238",
-      "home": "Ntugasaze",
-      "away": "Mbarara",
-      "competition": "Uganda Premier League",
-      "comp_slug": "uganda/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033404+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927789+00:00"
     },
     {
       "id": "1183604",
@@ -379,7 +253,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032774+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927678+00:00"
     },
     {
       "id": "1170875",
@@ -400,28 +274,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032611+00:00"
-    },
-    {
-      "id": "1185535",
-      "home": "Shenzhen Juniors",
-      "away": "Guandong GZ-Power",
-      "competition": "China League One",
-      "comp_slug": "china/league-one",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032915+00:00"
+      "scraped_at": "2026-10-07T17:21:04.927537+00:00"
     },
     {
       "id": "1222223",
@@ -442,28 +295,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.033213+00:00"
-    },
-    {
-      "id": "1221769",
-      "home": "UNAN Managua",
-      "away": "Real Esteli",
-      "competition": "Nicaragua Liga Primera",
-      "comp_slug": "nicaragua/liga-primera",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T11:37:23.032866+00:00"
+      "scraped_at": "2026-10-07T17:21:04.928018+00:00"
     }
   ]
 }
