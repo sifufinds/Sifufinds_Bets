@@ -1,10 +1,10 @@
 {
-  "date": "2026-10-06",
-  "total": 37,
+  "date": "2026-10-07",
+  "total": 75,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 1,
-    "MEDIUM": 35,
+    "MEDIUM": 73,
     "INFO": 1
   },
   "issues": [
@@ -13,6 +13,234 @@
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-mozambique",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ%C3%A9e-fifa-marcel-dandjinou-lionel-messi-betting-tips-zimbabwe' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-mozambique",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-betting-tips-senegal' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-mozambique",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-cameroon' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-mozambique",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-mozambique",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ethiopia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-mozambique",
+      "detail": "High title overlap (5 meaningful tokens) with 'fifa-marcel-dandjinou-lionel-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-mozambique",
+      "detail": "High title overlap (6 meaningful tokens) with 'fifa-journ\u00e9e-marcel-dandjinou-lionel-messi-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-mozambique",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ-fifa-marcel-dandjinou-lionel-messi-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ%C3%A9e-fifa-marcel-dandjinou-lionel-messi-betting-tips-zimbabwe",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-betting-tips-senegal' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ%C3%A9e-fifa-marcel-dandjinou-lionel-messi-betting-tips-zimbabwe",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-cameroon' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ%C3%A9e-fifa-marcel-dandjinou-lionel-messi-betting-tips-zimbabwe",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ%C3%A9e-fifa-marcel-dandjinou-lionel-messi-betting-tips-zimbabwe",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ethiopia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ%C3%A9e-fifa-marcel-dandjinou-lionel-messi-betting-tips-zimbabwe",
+      "detail": "High title overlap (5 meaningful tokens) with 'fifa-marcel-dandjinou-lionel-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ%C3%A9e-fifa-marcel-dandjinou-lionel-messi-betting-tips-zimbabwe",
+      "detail": "High title overlap (6 meaningful tokens) with 'fifa-journ\u00e9e-marcel-dandjinou-lionel-messi-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ%C3%A9e-fifa-marcel-dandjinou-lionel-messi-betting-tips-zimbabwe",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ-fifa-marcel-dandjinou-lionel-messi-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-betting-tips-senegal",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-cameroon' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-betting-tips-senegal",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-betting-tips-senegal",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ethiopia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-betting-tips-senegal",
+      "detail": "High title overlap (5 meaningful tokens) with 'fifa-marcel-dandjinou-lionel-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-betting-tips-senegal",
+      "detail": "High title overlap (6 meaningful tokens) with 'fifa-journ\u00e9e-marcel-dandjinou-lionel-messi-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-betting-tips-senegal",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ-fifa-marcel-dandjinou-lionel-messi-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ethiopia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-cameroon",
+      "detail": "High title overlap (5 meaningful tokens) with 'fifa-marcel-dandjinou-lionel-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'fifa-journ\u00e9e-marcel-dandjinou-lionel-messi-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journ\u00e9e-fifa-marcel-dandjinou-messi-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ-fifa-marcel-dandjinou-lionel-messi-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast",
+      "detail": "High title overlap (6 meaningful tokens) with 'journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ethiopia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast",
+      "detail": "High title overlap (5 meaningful tokens) with 'fifa-marcel-dandjinou-lionel-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast",
+      "detail": "High title overlap (6 meaningful tokens) with 'fifa-journ\u00e9e-marcel-dandjinou-lionel-messi-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ-fifa-marcel-dandjinou-lionel-messi-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ethiopia",
+      "detail": "High title overlap (5 meaningful tokens) with 'fifa-marcel-dandjinou-lionel-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ethiopia",
+      "detail": "High title overlap (6 meaningful tokens) with 'fifa-journ\u00e9e-marcel-dandjinou-lionel-messi-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ethiopia",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ-fifa-marcel-dandjinou-lionel-messi-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "fifa-marcel-dandjinou-lionel-betting-tips-zambia",
+      "detail": "High title overlap (5 meaningful tokens) with 'fifa-journ\u00e9e-marcel-dandjinou-lionel-messi-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "fifa-marcel-dandjinou-lionel-betting-tips-zambia",
+      "detail": "High title overlap (5 meaningful tokens) with 'journ-fifa-marcel-dandjinou-lionel-messi-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "igaming-regulatory-shifts-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-industry-updates-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "igaming-regulatory-shifts-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-shake-up-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "fifa-journ\u00e9e-marcel-dandjinou-lionel-messi-betting-tips-uganda",
+      "detail": "High title overlap (6 meaningful tokens) with 'journ-fifa-marcel-dandjinou-lionel-messi-betting-tips-tanzania' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
