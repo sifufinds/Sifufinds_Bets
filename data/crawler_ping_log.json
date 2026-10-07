@@ -1,56 +1,5 @@
 [
   {
-    "ts": "2026-08-30T21:00:55.749846+00:00",
-    "success": 6,
-    "total": 6,
-    "results": [
-      {
-        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
-        "status": 200,
-        "ok": true,
-        "sitemap": "https://sifufinds.com/sitemap.xml",
-        "engine": "yandex",
-        "ts": "2026-08-30T21:00:55.749846+00:00"
-      },
-      {
-        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
-        "status": 200,
-        "ok": true,
-        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
-        "engine": "yandex",
-        "ts": "2026-08-30T21:00:55.749846+00:00"
-      },
-      {
-        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
-        "status": 200,
-        "ok": true,
-        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
-        "engine": "yandex",
-        "ts": "2026-08-30T21:00:55.749846+00:00"
-      },
-      {
-        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
-        "status": 200,
-        "ok": true,
-        "sitemap": "https://sifufinds.com/sitemap-other.xml",
-        "engine": "yandex",
-        "ts": "2026-08-30T21:00:55.749846+00:00"
-      },
-      {
-        "ok": true,
-        "output": "tal submission: 1 changed/key URLs\nURLs to submit: ['https:/sifufinds.com/blog/premier-league-transfer-frenzy-betting-odds-impact/']\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
-        "engine": "indexnow (bing/chatgpt/perplexity)",
-        "ts": "2026-08-30T21:00:55.749846+00:00"
-      },
-      {
-        "engine": "google",
-        "ok": true,
-        "method": "robots.txt Sitemap: directives",
-        "ts": "2026-08-30T21:00:55.749846+00:00"
-      }
-    ]
-  },
-  {
     "ts": "2026-08-30T23:21:37.694769+00:00",
     "success": 6,
     "total": 6,
@@ -2546,6 +2495,57 @@
         "ok": true,
         "method": "robots.txt Sitemap: directives",
         "ts": "2026-10-06T12:49:22.852851+00:00"
+      }
+    ]
+  },
+  {
+    "ts": "2026-10-07T12:40:22.750985+00:00",
+    "success": 6,
+    "total": 6,
+    "results": [
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap.xml",
+        "engine": "yandex",
+        "ts": "2026-10-07T12:40:22.750985+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-blog.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-blog.xml",
+        "engine": "yandex",
+        "ts": "2026-10-07T12:40:22.750985+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-countries.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-countries.xml",
+        "engine": "yandex",
+        "ts": "2026-10-07T12:40:22.750985+00:00"
+      },
+      {
+        "url": "https://www.yandex.com/ping?sitemap=https%3A%2F%2Fsifufinds.com%2Fsitemap-other.xml",
+        "status": 200,
+        "ok": true,
+        "sitemap": "https://sifufinds.com/sitemap-other.xml",
+        "engine": "yandex",
+        "ts": "2026-10-07T12:40:22.750985+00:00"
+      },
+      {
+        "ok": true,
+        "output": "com/blog/nba-preseason-african-football-news/', 'https:/sifufinds.com/blog/global-sports-roundup-steelers-lpga-boxing-unification/']\n  \u26a0\ufe0f https://api.indexnow.org/indexnow: HTTP 400: Bad Request\n  \u26a0\ufe0f https://www.bing.com/indexnow: HTTP 400: Bad Request\n\nIndexNow submission complete: 0/2 endpoints OK",
+        "engine": "indexnow (bing/chatgpt/perplexity)",
+        "ts": "2026-10-07T12:40:22.750985+00:00"
+      },
+      {
+        "engine": "google",
+        "ok": true,
+        "method": "robots.txt Sitemap: directives",
+        "ts": "2026-10-07T12:40:22.750985+00:00"
       }
     ]
   }
