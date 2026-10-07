@@ -646,28 +646,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-07T12:56:46.281744+00:00",
-    "candidates_available": 212,
+    "checked_at": "2026-10-07T17:38:53.850682+00:00",
+    "candidates_available": 211,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "I haven’t read Ronaldo’s statement yet, says Portugal betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
-      },
-      {
-        "keyword": "Hotto’s remarkable MTN8 final offering betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "hotto-mtn8-final-orlando-pirates-betting-tips-south-africa"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Champions League 2026/27 Power Rankings Teams Watch betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: 1xBet’s 200% deposit bonus up to TSh 500,000; 250% Karibu Gift; 100% up to TSh 460,000; 200% up to TSh 500,000; 100% up to €100; 50% up to TSh 120,000; Free Bet + TSh 5,000 Bonus"
+        "reason": "fact_check: 1xBet Tanzania stands out with a 200% first deposit bonus up to TSh 500,000; Betika Tanzania; SportPesa Tanzania; 22Bet Tanzania; FairPari Tanzania; 1xBet Tanzania; Betway Tanzania"
+      },
+      {
+        "keyword": "He’s Best Striker Premier League –Sheringham Hails Isak betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
       }
     ]
   }

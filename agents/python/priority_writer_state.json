@@ -1059,28 +1059,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-07T12:32:50.335487+00:00",
-    "candidates_available": 242,
+    "checked_at": "2026-10-07T17:25:22.186456+00:00",
+    "candidates_available": 240,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "I haven’t read Ronaldo’s statement yet, says Portugal betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Sportybet Nigeria’s free‑bet offer expires after seven days. You must place the free bet on odds of 3.15 or higher within that period; otherwise the free bet will be voided.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'All three operators are licensed by the NLRC, which enforces strict security and fairness standards, so you can bet with confidence.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Hotto’s remarkable MTN8 final offering betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "Champions League 2026/27 Power Rankings Teams Watch betting tips Egypt",
+        "country": "Egypt",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 422)"
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
       },
       {
-        "keyword": "Champions League 2026/27 Power Rankings Teams Watch betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "champions-league-2026-27-power-rankings-tanzania"
+        "keyword": "Champions League 2026/27 Power Rankings Teams Watch betting tips Morocco",
+        "country": "Morocco",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'If you want to start betting on the Champions League today, head over to sifufinds.com for a quick comparison and find the best offer that fits your needs. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
