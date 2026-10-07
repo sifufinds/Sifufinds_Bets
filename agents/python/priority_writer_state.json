@@ -1036,31 +1036,39 @@
     "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Ivory Coast": {
       "slug": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast",
       "posted_at": "2026-10-06T23:20:57.282958+00:00"
+    },
+    "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Cameroon": {
+      "slug": "journée-fifa-marcel-dandjinou-messi-betting-tips-cameroon",
+      "posted_at": "2026-10-07T01:19:28.405710+00:00"
+    },
+    "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Senegal": {
+      "slug": "journee-fifa-marcel-dandjinou-betting-tips-senegal",
+      "posted_at": "2026-10-07T01:19:41.041240+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-06T23:21:02.907836+00:00",
-    "candidates_available": 255,
+    "checked_at": "2026-10-07T01:20:10.611212+00:00",
+    "candidates_available": 252,
     "attempted": 3,
-    "written": 3,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Zambia",
-        "country": "Zambia",
+        "keyword": "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Cameroon",
+        "country": "Cameroon",
         "result": "written",
-        "slug": "fifa-marcel-dandjinou-lionel-betting-tips-zambia"
+        "slug": "journée-fifa-marcel-dandjinou-messi-betting-tips-cameroon"
       },
       {
-        "keyword": "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Ethiopia",
-        "country": "Ethiopia",
+        "keyword": "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Senegal",
+        "country": "Senegal",
         "result": "written",
-        "slug": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ethiopia"
+        "slug": "journee-fifa-marcel-dandjinou-betting-tips-senegal"
       },
       {
-        "keyword": "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Ivory Coast",
-        "country": "Ivory Coast",
-        "result": "written",
-        "slug": "journee-fifa-marcel-dandjinou-lionel-messi-betting-tips-ivory-coast"
+        "keyword": "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Zimbabwe",
+        "country": "Zimbabwe",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Absolutely. Once the wagering requirement is satisfied, you may request a withdrawal via EcoCash, OneMoney, Visa, Mastercard or a direct bank transfer. Bank transfers are best for larger sums, though they may take a few business days to process.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
