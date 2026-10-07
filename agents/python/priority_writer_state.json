@@ -1052,31 +1052,35 @@
     "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Mozambique": {
       "slug": "journée-fifa-marcel-dandjinou-messi-betting-tips-mozambique",
       "posted_at": "2026-10-07T05:25:15.695596+00:00"
+    },
+    "Champions League 2026/27 Power Rankings Teams Watch betting tips Tanzania": {
+      "slug": "champions-league-2026-27-power-rankings-tanzania",
+      "posted_at": "2026-10-07T12:32:45.701915+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-07T10:55:14.575458+00:00",
-    "candidates_available": 243,
+    "checked_at": "2026-10-07T12:32:50.335487+00:00",
+    "candidates_available": 242,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "I haven’t read Ronaldo’s statement yet, says Portugal betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'You must place accumulator bets that total at least five times the bonus amount, with each leg priced at odds of 1.40 or higher. The requirement must be satisfied within 30 days of receiving the bonus. Once completed, any winnings become withdrawable.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Emerging Stars survive Tanzania attack book Ivory Coast betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'All bookmakers listed are licensed by the Betting Control and Licensing Board. Verify the licence number on the bookmaker’s website and ensure that the BCLB logo appears on the registration and payment pages.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Sportybet Nigeria’s free‑bet offer expires after seven days. You must place the free bet on odds of 3.15 or higher within that period; otherwise the free bet will be voided.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Hotto’s remarkable MTN8 final offering betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Instant EFT is highly recommended for its speed and convenience. Other popular methods include FNB, Standard Bank, and Visa/Mastercard.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 422)"
+      },
+      {
+        "keyword": "Champions League 2026/27 Power Rankings Teams Watch betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "champions-league-2026-27-power-rankings-tanzania"
       }
     ]
   }
