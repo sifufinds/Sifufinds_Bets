@@ -1,47 +1,47 @@
 {
-  "updated": "2026-10-07T17:20:56.035820+00:00",
+  "updated": "2026-10-07T21:00:56.457758+00:00",
   "source": "predictz.com",
-  "count": 12,
+  "count": 5,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-10-07T17:20:56.035820+00:00"
+      "ts": "2026-10-07T21:00:56.457758+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-10-07T17:20:56.035820+00:00"
+      "ts": "2026-10-07T21:00:56.457758+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-10-07T17:20:56.035820+00:00"
+      "ts": "2026-10-07T21:00:56.457758+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-10-07T17:20:56.035820+00:00"
+      "ts": "2026-10-07T21:00:56.457758+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-10-07T17:20:56.035820+00:00"
+      "ts": "2026-10-07T21:00:56.457758+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-10-07T17:20:56.035820+00:00"
+      "ts": "2026-10-07T21:00:56.457758+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-10-07T17:20:56.035820+00:00"
+      "ts": "2026-10-07T21:00:56.457758+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-10-07T17:20:56.035820+00:00"
+      "ts": "2026-10-07T21:00:56.457758+00:00"
     }
   ],
   "predictions": [
@@ -59,54 +59,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927610+00:00"
-    },
-    {
-      "id": "1223747",
-      "home": "Belouizdad",
-      "away": "Khenchela",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927952+00:00"
-    },
-    {
-      "id": "1223745",
-      "home": "Ben Aknoun",
-      "away": "JS El Biar",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927844+00:00"
+      "scraped_at": "2026-10-07T21:01:05.573758+00:00"
     },
     {
       "id": "1170874",
@@ -122,75 +80,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927395+00:00"
-    },
-    {
-      "id": "1223746",
-      "home": "CS Constantine",
-      "away": "Biskra",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927903+00:00"
-    },
-    {
-      "id": "1221728",
-      "home": "IF Gnistan",
-      "away": "FC Inter",
-      "competition": "Finland Veikkausliiga Playoffs",
-      "comp_slug": "finland/veikkausliiga-playoffs",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-2",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927302+00:00"
-    },
-    {
-      "id": "1182912",
-      "home": "Inter Toronto",
-      "away": "Supra du Quebec",
-      "competition": "Canada Premier League",
-      "comp_slug": "canada/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 3-3",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927738+00:00"
+      "scraped_at": "2026-10-07T21:01:05.573635+00:00"
     },
     {
       "id": "1170871",
@@ -206,33 +101,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927468+00:00"
-    },
-    {
-      "id": "1181101",
-      "home": "Neftchi",
-      "away": "Xorazm",
-      "competition": "Uzbekistan Super League",
-      "comp_slug": "uzbekistan/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927789+00:00"
+      "scraped_at": "2026-10-07T21:01:05.573689+00:00"
     },
     {
       "id": "1183604",
@@ -248,12 +122,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927678+00:00"
+      "scraped_at": "2026-10-07T21:01:05.573796+00:00"
     },
     {
       "id": "1170875",
@@ -269,33 +143,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.927537+00:00"
-    },
-    {
-      "id": "1222223",
-      "home": "Shooting Stars",
-      "away": "Kano Pillars",
-      "competition": "Nigeria NPFL",
-      "comp_slug": "nigeria/npfl",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T17:21:04.928018+00:00"
+      "scraped_at": "2026-10-07T21:01:05.573723+00:00"
     }
   ]
 }
