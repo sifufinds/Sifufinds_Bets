@@ -1055,28 +1055,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-07T05:25:46.204678+00:00",
-    "candidates_available": 250,
+    "checked_at": "2026-10-07T10:55:14.575458+00:00",
+    "candidates_available": 243,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Zimbabwe",
-        "country": "Zimbabwe",
-        "result": "written",
-        "slug": "journ%C3%A9e-fifa-marcel-dandjinou-lionel-messi-betting-tips-zimbabwe"
-      },
-      {
-        "keyword": "Journée FIFA Marcel Dandjinou met au défi Lionel betting tips Mozambique",
-        "country": "Mozambique",
-        "result": "written",
-        "slug": "journée-fifa-marcel-dandjinou-messi-betting-tips-mozambique"
-      },
-      {
-        "keyword": "Sharks make it two defeats spin champions Leinster betting tips Cameroon",
-        "country": "Cameroon",
+        "keyword": "I haven’t read Ronaldo’s statement yet, says Portugal betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Set a strict budget, use the self‑exclusion feature if needed, and only bet with money you can afford to lose. Stick to the odds you understand and avoid chasing losses.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'You must place accumulator bets that total at least five times the bonus amount, with each leg priced at odds of 1.40 or higher. The requirement must be satisfied within 30 days of receiving the bonus. Once completed, any winnings become withdrawable.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Emerging Stars survive Tanzania attack book Ivory Coast betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'All bookmakers listed are licensed by the Betting Control and Licensing Board. Verify the licence number on the bookmaker’s website and ensure that the BCLB logo appears on the registration and payment pages.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Hotto’s remarkable MTN8 final offering betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Instant EFT is highly recommended for its speed and convenience. Other popular methods include FNB, Standard Bank, and Visa/Mastercard.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
