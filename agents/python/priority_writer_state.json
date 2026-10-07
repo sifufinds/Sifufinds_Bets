@@ -1056,31 +1056,39 @@
     "Champions League 2026/27 Power Rankings Teams Watch betting tips Tanzania": {
       "slug": "champions-league-2026-27-power-rankings-tanzania",
       "posted_at": "2026-10-07T12:32:45.701915+00:00"
+    },
+    "I haven’t read Ronaldo’s statement yet, says Portugal betting tips Nigeria": {
+      "slug": "i-havent-read-ronaldos-statement-yet-portugal-betting-tips-nigeria",
+      "posted_at": "2026-10-07T19:24:03.634877+00:00"
+    },
+    "Champions League 2026/27 Power Rankings Teams Watch betting tips Morocco": {
+      "slug": "champions-league-2026-27-power-rankings-teams-watch-betting-tips-morocco",
+      "posted_at": "2026-10-07T19:24:39.200479+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-07T17:25:22.186456+00:00",
+    "checked_at": "2026-10-07T19:24:42.741341+00:00",
     "candidates_available": 240,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "I haven’t read Ronaldo’s statement yet, says Portugal betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'All three operators are licensed by the NLRC, which enforces strict security and fairness standards, so you can bet with confidence.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "i-havent-read-ronaldos-statement-yet-portugal-betting-tips-nigeria"
       },
       {
         "keyword": "Champions League 2026/27 Power Rankings Teams Watch betting tips Egypt",
         "country": "Egypt",
         "result": "failed",
-        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+        "reason": "quality_gate: final line was 'Contact the bookmaker’s customer support team through live chat or phone. Most operators provide 24/7 Arabic‑speaking support. Keep a record of your transaction and any error messages, which can help resolve the issue faster.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Champions League 2026/27 Power Rankings Teams Watch betting tips Morocco",
         "country": "Morocco",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'If you want to start betting on the Champions League today, head over to sifufinds.com for a quick comparison and find the best offer that fits your needs. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "champions-league-2026-27-power-rankings-teams-watch-betting-tips-morocco"
       }
     ]
   }
