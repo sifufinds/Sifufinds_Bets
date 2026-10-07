@@ -1,47 +1,47 @@
 {
-  "updated": "2026-10-07T01:20:44.268104+00:00",
+  "updated": "2026-10-07T11:37:17.887512+00:00",
   "source": "predictz.com",
-  "count": 23,
+  "count": 20,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-10-07T01:20:44.268104+00:00"
+      "ts": "2026-10-07T11:37:17.887512+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-10-07T01:20:44.268104+00:00"
+      "ts": "2026-10-07T11:37:17.887512+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-10-07T01:20:44.268104+00:00"
+      "ts": "2026-10-07T11:37:17.887512+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-10-07T01:20:44.268104+00:00"
+      "ts": "2026-10-07T11:37:17.887512+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-10-07T01:20:44.268104+00:00"
+      "ts": "2026-10-07T11:37:17.887512+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-10-07T01:20:44.268104+00:00"
+      "ts": "2026-10-07T11:37:17.887512+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-10-07T01:20:44.268104+00:00"
+      "ts": "2026-10-07T11:37:17.887512+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-10-07T01:20:44.268104+00:00"
+      "ts": "2026-10-07T11:37:17.887512+00:00"
     }
   ],
   "predictions": [
@@ -61,10 +61,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176065+00:00"
+      "scraped_at": "2026-10-07T11:37:23.032708+00:00"
     },
     {
       "id": "1223747",
@@ -82,10 +82,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176575+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033174+00:00"
     },
     {
       "id": "1223745",
@@ -103,10 +103,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176492+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033090+00:00"
     },
     {
       "id": "1170874",
@@ -124,10 +124,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.175780+00:00"
+      "scraped_at": "2026-10-07T11:37:23.032469+00:00"
     },
     {
       "id": "1223746",
@@ -145,31 +145,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176537+00:00"
-    },
-    {
-      "id": "1171693",
-      "home": "Chicago Fire",
-      "away": "Vancouver Whitecaps",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176219+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033135+00:00"
     },
     {
       "id": "1185537",
@@ -187,31 +166,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176365+00:00"
-    },
-    {
-      "id": "1215385",
-      "home": "French Guiana",
-      "away": "Belize",
-      "competition": "CONCACAF Nations League",
-      "comp_slug": "international/concacaf-nations-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.175632+00:00"
+      "scraped_at": "2026-10-07T11:37:23.032962+00:00"
     },
     {
       "id": "1221728",
@@ -229,10 +187,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.175712+00:00"
+      "scraped_at": "2026-10-07T11:37:23.032375+00:00"
     },
     {
       "id": "1182912",
@@ -250,10 +208,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176168+00:00"
+      "scraped_at": "2026-10-07T11:37:23.032825+00:00"
     },
     {
       "id": "1170871",
@@ -271,10 +229,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.175845+00:00"
+      "scraped_at": "2026-10-07T11:37:23.032545+00:00"
     },
     {
       "id": "1221237",
@@ -292,10 +250,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176660+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033259+00:00"
     },
     {
       "id": "1221239",
@@ -313,10 +271,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176705+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033303+00:00"
     },
     {
       "id": "1221235",
@@ -334,10 +292,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176748+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033350+00:00"
     },
     {
       "id": "1185536",
@@ -355,10 +313,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176404+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033003+00:00"
     },
     {
       "id": "1181101",
@@ -376,10 +334,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176444+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033044+00:00"
     },
     {
       "id": "1221238",
@@ -397,10 +355,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176800+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033404+00:00"
     },
     {
       "id": "1183604",
@@ -418,31 +376,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176120+00:00"
-    },
-    {
-      "id": "1183597",
-      "home": "Ponte Preta",
-      "away": "Juventude RS",
-      "competition": "Brazil Serie B",
-      "comp_slug": "brazil/serie-b",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176007+00:00"
+      "scraped_at": "2026-10-07T11:37:23.032774+00:00"
     },
     {
       "id": "1170875",
@@ -460,31 +397,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.175943+00:00"
-    },
-    {
-      "id": "1221768",
-      "home": "San Marcos",
-      "away": "Diriangen",
-      "competition": "Nicaragua Liga Primera",
-      "comp_slug": "nicaragua/liga-primera",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176267+00:00"
+      "scraped_at": "2026-10-07T11:37:23.032611+00:00"
     },
     {
       "id": "1185535",
@@ -502,10 +418,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176319+00:00"
+      "scraped_at": "2026-10-07T11:37:23.032915+00:00"
     },
     {
       "id": "1222223",
@@ -523,10 +439,31 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "",
+      "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-07T01:20:49.176615+00:00"
+      "scraped_at": "2026-10-07T11:37:23.033213+00:00"
+    },
+    {
+      "id": "1221769",
+      "home": "UNAN Managua",
+      "away": "Real Esteli",
+      "competition": "Nicaragua Liga Primera",
+      "comp_slug": "nicaragua/liga-primera",
+      "ko_display": "Today",
+      "ko_utc": null,
+      "match_winner": "Away",
+      "match_winner_label": "Away 0-2",
+      "wdw": "2",
+      "home_odds": "",
+      "draw_odds": "",
+      "away_odds": "",
+      "btts": "",
+      "btts_win": "",
+      "over25": "Under 2.5",
+      "correct_score": "",
+      "source": "predictz.com",
+      "scraped_at": "2026-10-07T11:37:23.032866+00:00"
     }
   ]
 }
