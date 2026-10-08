@@ -1,18 +1,114 @@
 {
-  "date": "2026-10-07",
-  "total": 75,
+  "date": "2026-10-08",
+  "total": 91,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
-    "MEDIUM": 73,
+    "HIGH": 7,
+    "MEDIUM": 83,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
+      "check": "title_length",
+      "page": "arteta-arsenal-contract-betting-tips-ghana",
+      "detail": "Title 67 chars (max 60): \"Arteta's Arsenal Contract Extension: Betting Tips for Ghana Punters\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "new-stars-owino-ambale-shujaa-safari-betting-tips-kenya",
+      "detail": "Title 62 chars (max 60): 'New Stars Owino & Ambale: Shujaa Safari Betting Tips for Kenya'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "u-23-afconq-dr-congo-mauritania-nigeria-betting-tips",
+      "detail": "Title 79 chars (max 60): 'U-23 AFCONQ: DR Congo Beats Mauritania \u2013 Nigeria Betting Tips & Best B'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "arteta-arsenal-contract-betting-tips-ghana",
+      "detail": "Excerpt 161 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "new-stars-owino-ambale-shujaa-safari-betting-tips-kenya",
+      "detail": "Excerpt 191 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "u-23-afconq-dr-congo-mauritania-nigeria-betting-tips",
+      "detail": "Excerpt 190 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champion-league-2026-27-power-rankings-teams-watch-betting-tips-zimbabwe",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champion-league-2026-27-power-rankings-teams-watch-betting-tips-zimbabwe",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champion-league-2026-27-power-rankings-teams-watch-betting-tips-zimbabwe",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-teams-watch-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champion-league-2026-27-power-rankings-teams-watch-betting-tips-zimbabwe",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-teams-watch-betting-tips-morocco' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champions-league-2026-27-power-rankings-betting-tips-zambia",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champions-league-2026-27-power-rankings-betting-tips-zambia",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-teams-watch-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champions-league-2026-27-power-rankings-betting-tips-zambia",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-teams-watch-betting-tips-morocco' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champions-league-2026-27-power-rankings-betting-tips-uganda",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-teams-watch-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champions-league-2026-27-power-rankings-betting-tips-uganda",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-teams-watch-betting-tips-morocco' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "champions-league-2026-27-power-rankings-teams-watch-betting-tips-egypt",
+      "detail": "High title overlap (5 meaningful tokens) with 'champions-league-2026-27-power-rankings-teams-watch-betting-tips-morocco' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
