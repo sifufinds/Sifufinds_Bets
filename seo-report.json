@@ -1,18 +1,66 @@
 {
   "date": "2026-10-08",
-  "total": 85,
+  "total": 93,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
-    "MEDIUM": 83,
+    "HIGH": 8,
+    "MEDIUM": 84,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
+      "check": "title_length",
+      "page": "live-betting-tips-how-to-analyse-match-data-and-wagering-predictions",
+      "detail": "Title 69 chars (max 60): 'Live Betting Tips: How to Analyse Match Data and Wagering Predictions'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "rwanda-climb-nine-places-fifa-rankings-betting-tips-uganda",
+      "detail": "Title 76 chars (max 60): 'Rwanda Climb Nine Places in FIFA Rankings \u2013 Betting Tips for Ugandan P'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "rwanda-climb-nine-fifa-places-betting-tips-tanzania",
+      "detail": "Title 66 chars (max 60): 'Rwanda Climb Nine FIFA Places \u2013 Betting Tips for Tanzanian Punters'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "bok-boan-bulls-fire-fire-betting-tips-south-africa",
+      "detail": "Title 61 chars (max 60): 'Bok Boan vs Bulls Fire Fire betting tips & best SA bookmakers'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rwanda-climb-nine-places-fifa-rankings-betting-tips-uganda",
+      "detail": "Excerpt 197 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rwanda-climb-nine-fifa-places-betting-tips-tanzania",
+      "detail": "Excerpt 215 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bok-boan-bulls-fire-fire-betting-tips-south-africa",
+      "detail": "Excerpt 192 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "rwanda-climb-nine-places-fifa-rankings-betting-tips-uganda",
+      "detail": "High title overlap (6 meaningful tokens) with 'rwanda-climb-nine-fifa-places-betting-tips-tanzania' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
