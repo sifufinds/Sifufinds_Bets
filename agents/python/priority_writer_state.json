@@ -1124,25 +1124,39 @@
     "Rwanda Rwanda Climb Nine Places FIFA Rankings betting tips Zambia": {
       "slug": "rwanda-climb-nine-places-fifa-rankings-betting-tips-zambia",
       "posted_at": "2026-10-08T15:17:34.527668+00:00"
+    },
+    "Ravens vs. Cowboys betting tips Kenya": {
+      "slug": "ravens-vs-cowboys-betting-tips-kenya",
+      "posted_at": "2026-10-08T21:59:37.131289+00:00"
+    },
+    "Wallabies v Springboks betting tips South Africa": {
+      "slug": "wallabies-vs-springboks-betting-tips-south-africa",
+      "posted_at": "2026-10-08T22:08:34.996575+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-08T15:28:43.607017+00:00",
-    "candidates_available": 229,
+    "checked_at": "2026-10-08T22:08:39.276828+00:00",
+    "candidates_available": 274,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Rwanda Rwanda Climb Nine Places FIFA Rankings betting tips Zambia",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "rwanda-climb-nine-places-fifa-rankings-betting-tips-zambia"
+        "keyword": "Ghana amputee football team draw Angola, Colombia Iraq betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, betting on amputee football is legal in Ghana as long as you use a GCA‑licensed bookmaker. The GCA actively promotes responsible gambling and ensures that all betting markets are fair and transparent.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Rwanda Rwanda Climb Nine Places FIFA Rankings betting tips Ethiopia",
-        "country": "Ethiopia",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "keyword": "Ravens vs. Cowboys betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "ravens-vs-cowboys-betting-tips-kenya"
+      },
+      {
+        "keyword": "Wallabies v Springboks betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "wallabies-vs-springboks-betting-tips-south-africa"
       }
     ]
   }
