@@ -1140,31 +1140,35 @@
     "Ghana amputee football team draw Angola, Colombia Iraq betting tips Ghana": {
       "slug": "ghana-amputee-football-betting-tips",
       "posted_at": "2026-10-09T04:32:37.809371+00:00"
+    },
+    "LeBron James begins final NBA season defeat Nets betting tips Nigeria": {
+      "slug": "lebron-james-final-nba-season-nets-betting-tips-nigeria",
+      "posted_at": "2026-10-09T12:51:37.735555+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-09T04:35:15.537383+00:00",
-    "candidates_available": 271,
+    "checked_at": "2026-10-09T13:02:29.587711+00:00",
+    "candidates_available": 274,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Ghana amputee football team draw Angola, Colombia Iraq betting tips Ghana",
-        "country": "Ghana",
+        "keyword": "LeBron James begins final NBA season defeat Nets betting tips Nigeria",
+        "country": "Nigeria",
         "result": "written",
-        "slug": "ghana-amputee-football-betting-tips"
+        "slug": "lebron-james-final-nba-season-nets-betting-tips-nigeria"
       },
       {
-        "keyword": "US Embassy builds coaching pipeline girls’ football betting tips Ghana",
+        "keyword": "Starlets unleash 11-goal Olympic qualifier betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+      },
+      {
+        "keyword": "Golden Shuttlers find their rhythm three wins Badminton betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'No, the Melbet bonus is automatically credited when you register and deposit the minimum amount. The “MBMAX” code is not required for the welcome offer.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Rwanda Rwanda Climb Nine Places FIFA Rankings betting tips Ethiopia",
-        "country": "Ethiopia",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 488)"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }

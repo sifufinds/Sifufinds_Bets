@@ -654,7 +654,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-09T09:25:29.279469+00:00",
+    "checked_at": "2026-10-09T13:19:16.027750+00:00",
     "candidates_available": 260,
     "attempted": 3,
     "written": 0,
@@ -663,11 +663,17 @@
         "keyword": "LeBron James begins final NBA season defeat Nets betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: LeBron posted a double‑double with 23 points and 10 rebounds; Nets guard Mikal Bridges finished with 28 points; The first half ended 58‑55 to Brooklyn.; Over/Under 220.5 points – Both teams combined for 222 points; LeBron James – Points (over/under 22.5) – James posted 23 points; Mikal Bridges – Points (over/under 25.5) – Bridges’ 28 points; 22Bet Nigeria – 100 % First Deposit Bonus up to ₦207,500 (code BNSNG); 1xBet Nigeria – 300 % First Deposit Bonus up to ₦1,200,000 (code 1BONUSNG); The bonus carries a five‑fold wagering requirement on accumulator bets with minimum odds of 1.40"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 419)"
       },
       {
         "keyword": "Starlets unleash 11-goal Olympic qualifier betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "fact_check: bookmakers like SportPesa Kenya offering competitive odds and bonuses; bookmakers like 22Bet Kenya and 1xBet Kenya are likely to offer attractive odds for Over 2.5 Goals; SportPesa Kenya’s 300% Karibu Gift on your first deposit; 22Bet Kenya’s 100% First Deposit Bonus up to KSh 19,000; Melbet Kenya’s 300% First Deposit Bonus up to KSh 1,500; HelaBet Kenya’s 100% Welcome Bonus up to KSh 5,000; bookmakers like 22Bet Kenya and 1xBet Kenya offer Over 2.5 Goals; SportPesa Kenya’s 300% Welcome Karibu Gift on first deposits; Betika Kenya’s Free Bet Gifts"
+      },
+      {
+        "keyword": "Golden Shuttlers find their rhythm three wins Badminton betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
