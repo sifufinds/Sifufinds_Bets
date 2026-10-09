@@ -658,28 +658,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-09T19:32:02.259846+00:00",
-    "candidates_available": 260,
+    "checked_at": "2026-10-09T21:41:26.422817+00:00",
+    "candidates_available": 259,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "LeBron James begins final NBA season defeat Nets betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 464)"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "Starlets unleash 11-goal Olympic qualifier betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: The Standard reports the match on 8 October 2026; The Standard reports that the Starlets defeated Seychelles 11‑0 in the first leg of the 2028 Olympic qualifiers held on 8 October 2026"
+        "reason": "fact_check: **22Bet Kenya** is likely to price another high-scoring Starlets win favourably, given the first leg’s result.; **SportPesa Kenya** often offers competitive odds on these markets, especially for one-sided fixtures.; **Betika Kenya** provides free bet gifts that can be used to experiment with these markets without risking your own funds.; **22Bet Kenya** and **1xBet Kenya** offer attractive odds on outright markets.; | SportPesa Kenya | Betika Kenya | 22Bet Kenya | 1xBet Kenya |; **SportPesa Kenya** and **22Bet Kenya** often provide competitive prices for international fixtures."
       },
       {
-        "keyword": "Golden Shuttlers find their rhythm three wins Badminton betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "ghana-golden-shuttlers-three-wins-badminton-betting-tips"
+        "keyword": "Pirates fans plan emotional Senzo Meyiwa tribute before betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: **Betway South Africa** offers attractive odds on both teams.; **FairPari South Africa** provides competitive odds here.; **Melbet South Africa** often has great prices on goal scorers.; | Betway South Africa | FairPari South Africa | Melbet South Africa |; Mamelodi Sundowns are slight favourites, but Orlando Pirates’ emotional boost could make the match more competitive. Check SifuFinds for the latest odds."
       }
     ]
   }
