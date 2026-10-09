@@ -1156,31 +1156,35 @@
     "Pirates fans plan emotional Senzo Meyiwa tribute before betting tips South Africa": {
       "slug": "pirates-fans-senzo-meyiwa-tribute-betting-tips-south-africa",
       "posted_at": "2026-10-09T16:58:54.042022+00:00"
+    },
+    "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Tanzania": {
+      "slug": "zimbabwe-zifa-caf-sanctions-tanzania-betting",
+      "posted_at": "2026-10-09T22:33:41.149463+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-09T16:58:58.734132+00:00",
-    "candidates_available": 273,
+    "checked_at": "2026-10-09T22:47:29.855733+00:00",
+    "candidates_available": 270,
     "attempted": 3,
-    "written": 3,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "Starlets unleash 11-goal Olympic qualifier betting tips Kenya",
-        "country": "Kenya",
+        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Tanzania",
+        "country": "Tanzania",
         "result": "written",
-        "slug": "starlets-unleash-11-goal-olympic-qualifier-betting-tips-kenya"
+        "slug": "zimbabwe-zifa-caf-sanctions-tanzania-betting"
       },
       {
-        "keyword": "Golden Shuttlers find their rhythm three wins Badminton betting tips Ghana",
+        "keyword": "US Embassy builds coaching pipeline girls’ football betting tips Ghana",
         "country": "Ghana",
-        "result": "written",
-        "slug": "golden-shuttlers-badminton-betting-tips-ghana"
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 508)"
       },
       {
-        "keyword": "Pirates fans plan emotional Senzo Meyiwa tribute before betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "pirates-fans-senzo-meyiwa-tribute-betting-tips-south-africa"
+        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Egypt",
+        "country": "Egypt",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
