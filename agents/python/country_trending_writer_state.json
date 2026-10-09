@@ -651,31 +651,35 @@
     "New stars Owino, Ambale ready shine Shujaa Safari betting tips Kenya": {
       "slug": "shujaa-owino-ambale-safari-sevens-betting-kenya",
       "posted_at": "2026-10-09T02:36:27.156862+00:00"
+    },
+    "Golden Shuttlers find their rhythm three wins Badminton betting tips Ghana": {
+      "slug": "ghana-golden-shuttlers-three-wins-badminton-betting-tips",
+      "posted_at": "2026-10-09T19:31:56.379030+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-09T17:10:33.725482+00:00",
+    "checked_at": "2026-10-09T19:32:02.259846+00:00",
     "candidates_available": 260,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "LeBron James begins final NBA season defeat Nets betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 500)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 464)"
       },
       {
         "keyword": "Starlets unleash 11-goal Olympic qualifier betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: The odds for Kenya to win are comfortably low; The odds for this bet are low, reflecting the expectation that Seychelles will struggle to find the net again.; Betika Kenya typically offers a marginally lower price for a Kenya win; SportPesa Kenya tends to value the over/under markets slightly higher; 22Bet Kenya provides a balanced offering for both result and over/under bets; Betika Kenya gives a free bet gift on signup, and you can also pick up free Aviator drops between KSh 30 and KSh 500; SportPesa Kenya’s 300 % Karibu Gift on first deposit provides a substantial boost to your bankroll, with free bets that can be used across a wide array of markets; 22Bet Kenya offers up to KSh 19,000 on your first deposit, while 1xBet Kenya gives a 200 % bonus up to KSh 20,000; All of these promotions require a minimum deposit of KSh 10–KSh 100, depending on the bookmaker; Betika Kenya often providing the lowest price for a Kenyan win"
+        "reason": "fact_check: The Standard reports the match on 8 October 2026; The Standard reports that the Starlets defeated Seychelles 11‑0 in the first leg of the 2028 Olympic qualifiers held on 8 October 2026"
       },
       {
         "keyword": "Golden Shuttlers find their rhythm three wins Badminton betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "fact_check: Bookmakers like **1xBet Ghana** and **Melbet Ghana** are likely to offer dynamic odds as the tournament progresses.; | Bookmaker          | Win Odds | Draw Odds | Lose Odds |\n|--------------------|----------|----------|----------|\n| Sportybet Ghana    | 2.50     | 3.00     | 2.80     |\n| Betway Ghana       | 2.40     | 3.10     | 2.70     |\n| 22Bet Ghana        | 2.60     | 2.90     | 2.90     |; **Sportybet Ghana** provides a 150% welcome bonus up to GH₵500, while **Melbet Ghana** offers a 300% first deposit bonus up to GH₵1,500."
+        "result": "written",
+        "slug": "ghana-golden-shuttlers-three-wins-badminton-betting-tips"
       }
     ]
   }
