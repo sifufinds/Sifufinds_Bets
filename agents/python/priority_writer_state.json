@@ -1132,31 +1132,35 @@
     "Wallabies v Springboks betting tips South Africa": {
       "slug": "wallabies-vs-springboks-betting-tips-south-africa",
       "posted_at": "2026-10-08T22:08:34.996575+00:00"
+    },
+    "Dobbo Stormers' Galway victory 'It's going sound arrogant, betting tips South Africa": {
+      "slug": "dobbo-stormers-galway-victory-betting-tips-south-africa",
+      "posted_at": "2026-10-09T02:35:58.248592+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-08T22:08:39.276828+00:00",
-    "candidates_available": 274,
+    "checked_at": "2026-10-09T02:36:01.696689+00:00",
+    "candidates_available": 272,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Ghana amputee football team draw Angola, Colombia Iraq betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, betting on amputee football is legal in Ghana as long as you use a GCA‑licensed bookmaker. The GCA actively promotes responsible gambling and ensures that all betting markets are fair and transparent.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Use the responsible gambling tools available on your chosen bookmaker’s site, such as setting deposit limits or self‑exclusion. The GCA also provides a helpline and links to support services for anyone needing assistance.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Ravens vs. Cowboys betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "ravens-vs-cowboys-betting-tips-kenya"
+        "keyword": "US Embassy builds coaching pipeline girls’ football betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Always verify that the bookmaker is licensed by the Gaming Commission of Ghana (GCA). This ensures the platform operates legally and adheres to fair betting practices.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Wallabies v Springboks betting tips South Africa",
+        "keyword": "Dobbo Stormers' Galway victory 'It's going sound arrogant, betting tips South Africa",
         "country": "South Africa",
         "result": "written",
-        "slug": "wallabies-vs-springboks-betting-tips-south-africa"
+        "slug": "dobbo-stormers-galway-victory-betting-tips-south-africa"
       }
     ]
   }
