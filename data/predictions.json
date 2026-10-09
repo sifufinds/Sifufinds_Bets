@@ -1,71 +1,50 @@
 {
-  "updated": "2026-10-08T21:02:37.755105+00:00",
+  "updated": "2026-10-09T01:54:22.657832+00:00",
   "source": "predictz.com",
-  "count": 10,
+  "count": 3,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-10-08T21:02:37.755105+00:00"
+      "ts": "2026-10-09T01:54:22.657832+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-10-08T21:02:37.755105+00:00"
+      "ts": "2026-10-09T01:54:22.657832+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-10-08T21:02:37.755105+00:00"
+      "ts": "2026-10-09T01:54:22.657832+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-10-08T21:02:37.755105+00:00"
+      "ts": "2026-10-09T01:54:22.657832+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-10-08T21:02:37.755105+00:00"
+      "ts": "2026-10-09T01:54:22.657832+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-10-08T21:02:37.755105+00:00"
+      "ts": "2026-10-09T01:54:22.657832+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-10-08T21:02:37.755105+00:00"
+      "ts": "2026-10-09T01:54:22.657832+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-10-08T21:02:37.755105+00:00"
+      "ts": "2026-10-09T01:54:22.657832+00:00"
     }
   ],
   "predictions": [
-    {
-      "id": "1221920",
-      "home": "Atletico Grau",
-      "away": "Chankas",
-      "competition": "Peru Primera Division",
-      "comp_slug": "peru/primera",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "2-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090498+00:00"
-    },
     {
       "id": "1183599",
       "home": "Ceara",
@@ -85,91 +64,7 @@
       "over25": "Under 2.5",
       "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090241+00:00"
-    },
-    {
-      "id": "1224348",
-      "home": "FAR Rabat",
-      "away": "Wydad Temara",
-      "competition": "Morocco Botola Pro",
-      "comp_slug": "morocco/botola-pro",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "3-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090559+00:00"
-    },
-    {
-      "id": "1224347",
-      "home": "Khemis Zemamra",
-      "away": "Hassania Agadir",
-      "competition": "Morocco Botola Pro",
-      "comp_slug": "morocco/botola-pro",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "1-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090619+00:00"
-    },
-    {
-      "id": "1224349",
-      "home": "Maghreb Fes",
-      "away": "Raja Casablanca",
-      "competition": "Morocco Botola Pro",
-      "comp_slug": "morocco/botola-pro",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-2",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "3-2",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090700+00:00"
-    },
-    {
-      "id": "1221919",
-      "home": "Moquegua",
-      "away": "Cienciano",
-      "competition": "Peru Primera Division",
-      "comp_slug": "peru/primera",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "1-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090387+00:00"
+      "scraped_at": "2026-10-09T01:54:26.701358+00:00"
     },
     {
       "id": "1183600",
@@ -190,7 +85,7 @@
       "over25": "Over 2.5",
       "correct_score": "2-3",
       "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090313+00:00"
+      "scraped_at": "2026-10-09T01:54:26.701429+00:00"
     },
     {
       "id": "1170873",
@@ -211,49 +106,7 @@
       "over25": "Over 2.5",
       "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090167+00:00"
-    },
-    {
-      "id": "1171237",
-      "home": "Shamrock",
-      "away": "Drogheda Utd",
-      "competition": "Ireland Premier Division",
-      "comp_slug": "ireland/premier-division",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "3-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090047+00:00"
-    },
-    {
-      "id": "1222277",
-      "home": "Sport Boys",
-      "away": "Alianza Atletico",
-      "competition": "Peru Primera Division",
-      "comp_slug": "peru/primera",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-2",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-08T21:02:45.090446+00:00"
+      "scraped_at": "2026-10-09T01:54:26.701273+00:00"
     }
   ]
 }
