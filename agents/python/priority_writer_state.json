@@ -1136,31 +1136,35 @@
     "Dobbo Stormers' Galway victory 'It's going sound arrogant, betting tips South Africa": {
       "slug": "dobbo-stormers-galway-victory-betting-tips-south-africa",
       "posted_at": "2026-10-09T02:35:58.248592+00:00"
+    },
+    "Ghana amputee football team draw Angola, Colombia Iraq betting tips Ghana": {
+      "slug": "ghana-amputee-football-betting-tips",
+      "posted_at": "2026-10-09T04:32:37.809371+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-09T02:36:01.696689+00:00",
-    "candidates_available": 272,
+    "checked_at": "2026-10-09T04:35:15.537383+00:00",
+    "candidates_available": 271,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "Ghana amputee football team draw Angola, Colombia Iraq betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Use the responsible gambling tools available on your chosen bookmaker’s site, such as setting deposit limits or self‑exclusion. The GCA also provides a helpline and links to support services for anyone needing assistance.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "ghana-amputee-football-betting-tips"
       },
       {
         "keyword": "US Embassy builds coaching pipeline girls’ football betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Always verify that the bookmaker is licensed by the Gaming Commission of Ghana (GCA). This ensures the platform operates legally and adheres to fair betting practices.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'No, the Melbet bonus is automatically credited when you register and deposit the minimum amount. The “MBMAX” code is not required for the welcome offer.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Dobbo Stormers' Galway victory 'It's going sound arrogant, betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "dobbo-stormers-galway-victory-betting-tips-south-africa"
+        "keyword": "Rwanda Rwanda Climb Nine Places FIFA Rankings betting tips Ethiopia",
+        "country": "Ethiopia",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 488)"
       }
     ]
   }
