@@ -1144,31 +1144,43 @@
     "LeBron James begins final NBA season defeat Nets betting tips Nigeria": {
       "slug": "lebron-james-final-nba-season-nets-betting-tips-nigeria",
       "posted_at": "2026-10-09T12:51:37.735555+00:00"
+    },
+    "Starlets unleash 11-goal Olympic qualifier betting tips Kenya": {
+      "slug": "starlets-unleash-11-goal-olympic-qualifier-betting-tips-kenya",
+      "posted_at": "2026-10-09T16:58:13.039098+00:00"
+    },
+    "Golden Shuttlers find their rhythm three wins Badminton betting tips Ghana": {
+      "slug": "golden-shuttlers-badminton-betting-tips-ghana",
+      "posted_at": "2026-10-09T16:58:34.843272+00:00"
+    },
+    "Pirates fans plan emotional Senzo Meyiwa tribute before betting tips South Africa": {
+      "slug": "pirates-fans-senzo-meyiwa-tribute-betting-tips-south-africa",
+      "posted_at": "2026-10-09T16:58:54.042022+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-09T13:02:29.587711+00:00",
-    "candidates_available": 274,
+    "checked_at": "2026-10-09T16:58:58.734132+00:00",
+    "candidates_available": 273,
     "attempted": 3,
-    "written": 1,
+    "written": 3,
     "attempts": [
-      {
-        "keyword": "LeBron James begins final NBA season defeat Nets betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "lebron-james-final-nba-season-nets-betting-tips-nigeria"
-      },
       {
         "keyword": "Starlets unleash 11-goal Olympic qualifier betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "result": "written",
+        "slug": "starlets-unleash-11-goal-olympic-qualifier-betting-tips-kenya"
       },
       {
         "keyword": "Golden Shuttlers find their rhythm three wins Badminton betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "golden-shuttlers-badminton-betting-tips-ghana"
+      },
+      {
+        "keyword": "Pirates fans plan emotional Senzo Meyiwa tribute before betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "pirates-fans-senzo-meyiwa-tribute-betting-tips-south-africa"
       }
     ]
   }
