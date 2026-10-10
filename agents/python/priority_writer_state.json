@@ -1163,7 +1163,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-10T05:45:31.186049+00:00",
+    "checked_at": "2026-10-10T07:58:15.741808+00:00",
     "candidates_available": 269,
     "attempted": 3,
     "written": 0,
@@ -1172,19 +1172,19 @@
         "keyword": "US Embassy builds coaching pipeline girls’ football betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'The 100% first‑deposit bonus must be wagered five times at minimum odds of 1.40 within 30 days before any withdrawal can be made.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Gaming is only permitted for individuals who are 18 years and above. Underage gaming can result in serious consequences, including fines and imprisonment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Egypt",
         "country": "Egypt",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Immediately set a deposit limit or activate self‑exclusion through the bookmaker’s responsible gambling tools. You can also contact EGRA‑approved support services for guidance on managing problem gambling.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 715 words (minimum 1000); no '## FAQ' section heading found"
       },
       {
         "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Morocco",
         "country": "Morocco",
         "result": "failed",
-        "reason": "quality_gate: final line was 'If you suspect match-fixing, report it to the relevant authorities or the bookmaker’s customer support. Betting on fixed matches is unethical and can lead to account suspension.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was '* FairPari Morocco: €100', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
