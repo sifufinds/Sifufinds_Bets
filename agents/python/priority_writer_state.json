@@ -1172,31 +1172,35 @@
     "Kenya NCBA Golf Series Heads Diamond Leisure As betting tips Tanzania": {
       "slug": "kenya-ncba-golf-series-betting-tips-tanzania",
       "posted_at": "2026-10-10T16:20:33.097107+00:00"
+    },
+    "Fifa accuses Uefa 'misinformation campaign' betting tips South Africa": {
+      "slug": "fifa-uefa-misinformation-campaign-betting-tips-south-africa",
+      "posted_at": "2026-10-10T22:26:16.930733+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-10T16:32:34.819798+00:00",
-    "candidates_available": 291,
+    "checked_at": "2026-10-10T22:47:00.270547+00:00",
+    "candidates_available": 290,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Kenya NCBA Golf Series Heads Diamond Leisure As betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "kenya-ncba-golf-series-betting-tips-tanzania"
-      },
-      {
         "keyword": "Fifa accuses Uefa 'misinformation campaign' betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, FNB, Standard Bank, Nedbank and Capitec all support instant EFT deposits on many of the top bookmakers, providing fast and secure funding options for South African punters.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "fifa-uefa-misinformation-campaign-betting-tips-south-africa"
       },
       {
         "keyword": "Où suivre Zambie vs Togo en direct betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: only 963 words (minimum 1000)"
+        "reason": "quality_gate: only 601 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "US Embassy builds coaching pipeline girls’ football betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: only 780 words (minimum 1000)"
       }
     ]
   }
