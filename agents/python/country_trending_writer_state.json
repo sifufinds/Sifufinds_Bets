@@ -658,7 +658,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-10T14:38:15.087648+00:00",
+    "checked_at": "2026-10-10T16:47:35.311870+00:00",
     "candidates_available": 281,
     "attempted": 3,
     "written": 0,
@@ -667,19 +667,19 @@
         "keyword": "Junior Starlets step up World Cup preparations Morocco betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: Kenya has won its last three friendlies; an over 2.5 bet can be a safe play; The table shows that while Betika and SportPesa both offer competitive odds for a Kenya win, Betika’s odds are marginally more favourable; At the moment, Betika Kenya offers a free bet on signup and regular Aviator drops, while SportPesa provides a 300 % welcome Karibu gift on the first deposit"
+        "reason": "quality_gate: only 545 words (minimum 600)"
       },
       {
         "keyword": "Kenya NCBA Golf Series Heads Diamond Leisure As betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: only 546 words (minimum 600); no '## FAQ' section heading found"
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was 'Note: The article is written to meet the exact word count and format requirements. The FAQ section is included with three questions specific to the story and country. The article also includes a responsible gambling section and a call-to-action to visit SifuFinds.com for the latest odds and updates.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "LeBron James begins final NBA season defeat Nets betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: LeBron James' final NBA season has begun with a defeat to the Brooklyn Nets; The 38-year-old basketball legend's new team, the Philadelphia 76ers; According to SifuFinds' live odds page, the current odds for the Philadelphia 76ers to win the NBA championship are around ₦2,500,000; Meanwhile, the Brooklyn Nets are favored to win at ₦1,800,000; 22Bet Nigeria offers a 100% First Deposit Bonus – Up to ₦207,500 for new customers; 1xBet Nigeria offers a 300% First Deposit Bonus – Up to ₦1,200,000"
+        "reason": "quality_gate: only 599 words (minimum 600); no '## FAQ' section heading found"
       }
     ]
   }
