@@ -1,25 +1,13 @@
 {
   "date": "2026-10-10",
-  "total": 92,
+  "total": 90,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 4,
+    "HIGH": 2,
     "MEDIUM": 87,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "thunder-kpa-final-series-betting-tips-kenya",
-      "detail": "Title 68 chars (max 60): 'Thunder vs KPA Final Series Betting Tips Kenya: Top Bookmaker Offers'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "thunder-kpa-final-series-betting-tips-kenya",
-      "detail": "Excerpt 161 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
