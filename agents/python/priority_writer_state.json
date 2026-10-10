@@ -1160,31 +1160,35 @@
     "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Tanzania": {
       "slug": "zimbabwe-zifa-caf-sanctions-tanzania-betting",
       "posted_at": "2026-10-09T22:33:41.149463+00:00"
+    },
+    "Thunder overcome resilient KPA bag 2-0 final series betting tips Kenya": {
+      "slug": "thunder-kpa-final-series-betting-tips-kenya",
+      "posted_at": "2026-10-10T09:42:55.183901+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-10T07:58:15.741808+00:00",
-    "candidates_available": 269,
+    "checked_at": "2026-10-10T09:42:58.506364+00:00",
+    "candidates_available": 293,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "US Embassy builds coaching pipeline girls’ football betting tips Ghana",
-        "country": "Ghana",
+        "keyword": "Junior Starlets step up World Cup preparations Morocco betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Gaming is only permitted for individuals who are 18 years and above. Underage gaming can result in serious consequences, including fines and imprisonment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'M‑Pesa is the most widely supported and fastest withdrawal method among Kenyan bookmakers. Most sites, including Betika, SportPesa, 22Bet, 1xBet, Melbet and HelaBet, process M‑Pesa withdrawals within 24 hours.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Egypt",
-        "country": "Egypt",
+        "keyword": "Kenya NCBA Golf Series Heads Diamond Leisure As betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: only 715 words (minimum 1000); no '## FAQ' section heading found"
+        "reason": "quality_gate: final line was 'Yes, you can use the same M‑Pesa, Airtel Money, or Tigo Pesa account across all GBT‑licensed bookmakers, but each platform processes withdrawals independently.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Morocco",
-        "country": "Morocco",
-        "result": "failed",
-        "reason": "quality_gate: final line was '* FairPari Morocco: €100', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "keyword": "Thunder overcome resilient KPA bag 2-0 final series betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "thunder-kpa-final-series-betting-tips-kenya"
       }
     ]
   }
