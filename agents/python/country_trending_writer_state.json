@@ -658,7 +658,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-10T03:00:31.962277+00:00",
+    "checked_at": "2026-10-10T05:47:03.162096+00:00",
     "candidates_available": 259,
     "attempted": 3,
     "written": 0,
@@ -667,19 +667,19 @@
         "keyword": "LeBron James begins final NBA season defeat Nets betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 415)"
       },
       {
         "keyword": "Starlets unleash 11-goal Olympic qualifier betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 439)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 440)"
       },
       {
         "keyword": "Pirates fans plan emotional Senzo Meyiwa tribute before betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: Betway South Africa offers an R10 extra bet, 10 spins, and a chance to win R1 million after a R50 deposit; Melbet’s 200% first deposit bonus up to R4,500; Melbet currently offers a 200% first deposit bonus up to R4,500"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 476)"
       }
     ]
   }
