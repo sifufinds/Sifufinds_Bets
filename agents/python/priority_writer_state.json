@@ -1163,28 +1163,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-09T22:47:29.855733+00:00",
-    "candidates_available": 270,
+    "checked_at": "2026-10-10T02:52:59.089296+00:00",
+    "candidates_available": 269,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "zimbabwe-zifa-caf-sanctions-tanzania-betting"
-      },
       {
         "keyword": "US Embassy builds coaching pipeline girls’ football betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 508)"
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was 'The US Embassy’s investment in girls’ football is more than a goodwill gesture; it creates a new data set for the savvy bettor. By following the coaching pipeline, picking a licensed bookmaker with a suitable welcome bonus, and managing your bankroll responsibly, you can turn the excitement of emerging talent into tangible returns. Keep an eye on the Ghana Women’s Premier League, regional school cups and CAF youth qualifiers – those are the arenas where the Embassy’s influence will be most visible.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Egypt",
         "country": "Egypt",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 421)"
+      },
+      {
+        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Morocco",
+        "country": "Morocco",
+        "result": "failed",
+        "reason": "quality_gate: final line was '**BetWinner Maroc** and **PMU Maroc** are ideal for mobile payments, as they support **Orange Money Morocco**, a popular choice among Moroccan bettors.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
