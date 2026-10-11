@@ -1192,31 +1192,39 @@
     "Kenya NCBA Golf Series Heads Diamond Leisure As betting tips Ethiopia": {
       "slug": "kenya-ncba-golf-series-kenya-diamond-leisure-ethiopia-betting-tips",
       "posted_at": "2026-10-11T05:29:51.991566+00:00"
+    },
+    "AFCON move every four years under review by betting tips Ghana": {
+      "slug": "afcon-schedule-review-betting-tips-ghana",
+      "posted_at": "2026-10-11T20:46:31.271482+00:00"
+    },
+    "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Egypt": {
+      "slug": "zifa-caf-sanctions-egypt-betting",
+      "posted_at": "2026-10-11T21:03:03.207137+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-11T12:38:25.107829+00:00",
-    "candidates_available": 278,
+    "checked_at": "2026-10-11T21:03:08.340023+00:00",
+    "candidates_available": 256,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Nigerian Players Watch Arokodare, Moffi, Nwaiwu score as betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Place accumulator bets that include the “Anytime Scorer” market for Arokodare, Moffi or Nwaiwu, ensuring each leg has odds of at least 1.40.  Each successful accumulator counts toward the 5‑times turnover until the bonus amount is fully rolled over.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Ten-man Spurs rescue draw Man Utd, Arsenal survive betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
-      },
       {
         "keyword": "AFCON move every four years under review by betting tips Ghana",
         "country": "Ghana",
+        "result": "written",
+        "slug": "afcon-schedule-review-betting-tips-ghana"
+      },
+      {
+        "keyword": "Braga vs. Sporting Lineups betting tips Mozambique",
+        "country": "Mozambique",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 413)"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+      },
+      {
+        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Egypt",
+        "country": "Egypt",
+        "result": "written",
+        "slug": "zifa-caf-sanctions-egypt-betting"
       }
     ]
   }
