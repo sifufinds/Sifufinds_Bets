@@ -1,10 +1,10 @@
 {
-  "date": "2026-10-10",
-  "total": 90,
+  "date": "2026-10-11",
+  "total": 91,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 2,
-    "MEDIUM": 87,
+    "MEDIUM": 88,
     "INFO": 1
   },
   "issues": [
@@ -19,6 +19,12 @@
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "kenya-ncba-golf-series-diamond-leisure-betting-tips-tanzania",
+      "detail": "High title overlap (6 meaningful tokens) with 'kenya-ncba-golf-series-kenya-diamond-leisure-ethiopia-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
@@ -545,8 +551,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "59 posts",
-      "detail": "59 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "58 posts",
+      "detail": "58 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
