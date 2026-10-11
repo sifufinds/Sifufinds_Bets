@@ -1195,28 +1195,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-11T05:43:57.974465+00:00",
-    "candidates_available": 286,
+    "checked_at": "2026-10-11T12:38:25.107829+00:00",
+    "candidates_available": 278,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Kenya NCBA Golf Series Heads Diamond Leisure As betting tips Zambia",
-        "country": "Zambia",
+        "keyword": "Nigerian Players Watch Arokodare, Moffi, Nwaiwu score as betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Each bonus carries wagering requirements – Betway needs a 3‑times rollover, 1xBet requires 5‑times, and SportPesa follows a similar 5‑times condition. Minimum odds of 1.40 apply, and the offers are only available to players aged 18 or older.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Place accumulator bets that include the “Anytime Scorer” market for Arokodare, Moffi or Nwaiwu, ensuring each leg has odds of at least 1.40.  Each successful accumulator counts toward the 5‑times turnover until the bonus amount is fully rolled over.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Kenya NCBA Golf Series Heads Diamond Leisure As betting tips Ethiopia",
-        "country": "Ethiopia",
-        "result": "written",
-        "slug": "kenya-ncba-golf-series-kenya-diamond-leisure-ethiopia-betting-tips"
+        "keyword": "Ten-man Spurs rescue draw Man Utd, Arsenal survive betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
       },
       {
-        "keyword": "Kenya NCBA Golf Series Heads Diamond Leisure As betting tips Ivory Coast",
-        "country": "Ivory Coast",
+        "keyword": "AFCON move every four years under review by betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Always bet with ARJEL CI-licensed bookmakers and use secure payment methods like Orange Money or MTN MoMo.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 413)"
       }
     ]
   }
