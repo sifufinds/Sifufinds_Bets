@@ -1176,31 +1176,39 @@
     "Fifa accuses Uefa 'misinformation campaign' betting tips South Africa": {
       "slug": "fifa-uefa-misinformation-campaign-betting-tips-south-africa",
       "posted_at": "2026-10-10T22:26:16.930733+00:00"
+    },
+    "Où suivre Zambie vs Togo en direct betting tips Tanzania": {
+      "slug": "ou-suivre-zambie-vs-togo-direct-betting-tips-tanzania",
+      "posted_at": "2026-10-11T01:25:23.605749+00:00"
+    },
+    "Braga vs. Sporting Lineups betting tips Uganda": {
+      "slug": "braga-vs-sporting-lineups-uganda-betting-tips",
+      "posted_at": "2026-10-11T01:26:12.149399+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-10T22:47:00.270547+00:00",
-    "candidates_available": 290,
+    "checked_at": "2026-10-11T01:26:16.088275+00:00",
+    "candidates_available": 289,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Fifa accuses Uefa 'misinformation campaign' betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "fifa-uefa-misinformation-campaign-betting-tips-south-africa"
-      },
       {
         "keyword": "Où suivre Zambie vs Togo en direct betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: only 601 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "result": "written",
+        "slug": "ou-suivre-zambie-vs-togo-direct-betting-tips-tanzania"
       },
       {
         "keyword": "US Embassy builds coaching pipeline girls’ football betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: only 780 words (minimum 1000)"
+        "reason": "quality_gate: final line was 'Yes, as long as the bookmaker is licensed by the GCA and the match is listed on the betting site. The GCA regulates all sports betting activities in Ghana, ensuring a fair and safe environment for players.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Braga vs. Sporting Lineups betting tips Uganda",
+        "country": "Uganda",
+        "result": "written",
+        "slug": "braga-vs-sporting-lineups-uganda-betting-tips"
       }
     ]
   }
