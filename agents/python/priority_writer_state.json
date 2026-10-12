@@ -1216,31 +1216,39 @@
     "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Ivory Coast": {
       "slug": "zimbabwe-zifa-engages-caf-sanctions-ivory-coast-betting-tips",
       "posted_at": "2026-10-12T03:36:00.405610+00:00"
+    },
+    "Braga vs. Sporting Lineups betting tips Mozambique": {
+      "slug": "braga-vs-sporting-lineups-betting-tips-mozambique",
+      "posted_at": "2026-10-12T05:40:44.415225+00:00"
+    },
+    "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Zambia": {
+      "slug": "zambia-betting-guide-2026",
+      "posted_at": "2026-10-12T05:41:07.465180+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-12T03:36:04.747079+00:00",
-    "candidates_available": 251,
+    "checked_at": "2026-10-12T05:41:27.750088+00:00",
+    "candidates_available": 250,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Braga vs. Sporting Lineups betting tips Mozambique",
         "country": "Mozambique",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, betting is legal when you use an IGA‑licensed operator such as Melbet, 1xBet, BetWinner, Paripesa, FairPari or Linebet. These licences ensure compliance with Mozambican gambling regulations.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "braga-vs-sporting-lineups-betting-tips-mozambique"
       },
       {
         "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Zambia",
         "country": "Zambia",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 422)"
+        "result": "written",
+        "slug": "zambia-betting-guide-2026"
       },
       {
-        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Ivory Coast",
-        "country": "Ivory Coast",
-        "result": "written",
-        "slug": "zimbabwe-zifa-engages-caf-sanctions-ivory-coast-betting-tips"
+        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Cameroon",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found; final line was 'For more detailed comparisons, betting guides and up‑to‑date odds, visit sifufinds.com. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
