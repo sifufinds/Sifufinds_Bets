@@ -1208,31 +1208,35 @@
     "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Uganda": {
       "slug": "zifa-sanctions-uganda-betting-tips",
       "posted_at": "2026-10-11T23:00:38.662060+00:00"
+    },
+    "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Ethiopia": {
+      "slug": "zifa-caf-sanctions-ethiopian-bettors-guide",
+      "posted_at": "2026-10-12T01:52:25.298226+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-11T23:00:42.856836+00:00",
-    "candidates_available": 254,
+    "checked_at": "2026-10-12T01:52:29.804653+00:00",
+    "candidates_available": 252,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Braga vs. Sporting Lineups betting tips Mozambique",
         "country": "Mozambique",
         "result": "failed",
-        "reason": "quality_gate: final line was 'The odds change once the official squads are announced, and most bookmakers require a minimum stake of MZN 50 for line‑up markets. Wager the bonus five times at odds of at least 1.40 to meet the rollover requirement.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: no '## FAQ' section heading found"
       },
       {
-        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Morocco",
-        "country": "Morocco",
-        "result": "written",
-        "slug": "zifa-sanctions-morocco-betting-tips"
+        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Zambia",
+        "country": "Zambia",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 414)"
       },
       {
-        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Uganda",
-        "country": "Uganda",
+        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Ethiopia",
+        "country": "Ethiopia",
         "result": "written",
-        "slug": "zifa-sanctions-uganda-betting-tips"
+        "slug": "zifa-caf-sanctions-ethiopian-bettors-guide"
       }
     ]
   }
