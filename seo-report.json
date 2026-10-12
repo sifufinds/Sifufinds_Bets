@@ -1,13 +1,31 @@
 {
   "date": "2026-10-12",
-  "total": 91,
+  "total": 94,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 5,
     "MEDIUM": 88,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "boxing-buzz-tyson-legacy-uk-title-fight",
+      "detail": "Title 88 chars (max 60): 'Boxing Buzz: From Tyson\u2019s Legacy to the WBO Title Fight \u2013 Betting Guid'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "boxing-buzz-tyson-legacy-uk-title-fight",
+      "detail": "Excerpt 213 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "kipchoge-joins-list-tireless-legends-kenya-betting-tips",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
