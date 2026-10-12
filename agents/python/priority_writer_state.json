@@ -1212,11 +1212,15 @@
     "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Ethiopia": {
       "slug": "zifa-caf-sanctions-ethiopian-bettors-guide",
       "posted_at": "2026-10-12T01:52:25.298226+00:00"
+    },
+    "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Ivory Coast": {
+      "slug": "zimbabwe-zifa-engages-caf-sanctions-ivory-coast-betting-tips",
+      "posted_at": "2026-10-12T03:36:00.405610+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-12T01:52:29.804653+00:00",
-    "candidates_available": 252,
+    "checked_at": "2026-10-12T03:36:04.747079+00:00",
+    "candidates_available": 251,
     "attempted": 3,
     "written": 1,
     "attempts": [
@@ -1224,19 +1228,19 @@
         "keyword": "Braga vs. Sporting Lineups betting tips Mozambique",
         "country": "Mozambique",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "quality_gate: final line was 'Yes, betting is legal when you use an IGA‑licensed operator such as Melbet, 1xBet, BetWinner, Paripesa, FairPari or Linebet. These licences ensure compliance with Mozambican gambling regulations.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Zambia",
         "country": "Zambia",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 414)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 422)"
       },
       {
-        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Ethiopia",
-        "country": "Ethiopia",
+        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Ivory Coast",
+        "country": "Ivory Coast",
         "result": "written",
-        "slug": "zifa-caf-sanctions-ethiopian-bettors-guide"
+        "slug": "zimbabwe-zifa-engages-caf-sanctions-ivory-coast-betting-tips"
       }
     ]
   }
