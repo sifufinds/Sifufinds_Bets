@@ -687,31 +687,35 @@
     "EUROMATCH–NPFL Abia Warriors Coach Amapakabo Laments Home Draws betting tips Nigeria": {
       "slug": "abia-warriors-home-draws-betting-tips-nigeria",
       "posted_at": "2026-10-12T19:41:57.685439+00:00"
+    },
+    "Nigeria Plateau United End Pillars' Unbeaten Run 4-0 betting tips Tanzania": {
+      "slug": "plateau-united-4-0-win-tanzania-betting-tips",
+      "posted_at": "2026-10-12T23:23:34.808410+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-12T19:53:24.967904+00:00",
-    "candidates_available": 269,
+    "checked_at": "2026-10-12T23:23:39.336596+00:00",
+    "candidates_available": 268,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "EUROMATCH–NPFL Abia Warriors Coach Amapakabo Laments Home Draws betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "abia-warriors-home-draws-betting-tips-nigeria"
-      },
-      {
         "keyword": "Black Stars coach search extended October 15 betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Odds (Sportybet Ghana) | Odds (Betway Ghana) | Odds (22Bet Ghana); Charles Akonnor    | 5.00                   | 4.50                | 4.80; Maxwell Konadu     | 6.00                   | 5.50                | 5.20; Otto Addo          | 7.00                   | 6.00                | 6.50; Avram Grant        | 8.00                   | 7.00                | 7.50; José Peseiro       | 9.00                   | 8.00                | 8.50; **1xBet Ghana** offers a 200% first deposit bonus up to GH₵2,846"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 480)"
       },
       {
         "keyword": "Former Bok winger hangs up his boots 'I betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "fact_check: Springboks to Win     | 1.60             | 1.55             | 1.65; Opponent to Win       | 2.20             | 2.15             | 2.30; Draw                  | 20.00            | 22.00            | 21.00; **BetWinner South Africa** offers a 200% first deposit bonus up to R2,340"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 464)"
+      },
+      {
+        "keyword": "Nigeria Plateau United End Pillars' Unbeaten Run 4-0 betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "plateau-united-4-0-win-tanzania-betting-tips"
       }
     ]
   }
