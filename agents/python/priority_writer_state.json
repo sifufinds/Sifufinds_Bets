@@ -1248,31 +1248,35 @@
     "Olympic Qualifier Eguavoen targets victory as Super Falcons betting tips Nigeria": {
       "slug": "olympic-qualifier-super-falcons-betting-tips-nigeria",
       "posted_at": "2026-10-13T15:51:40.417897+00:00"
+    },
+    "Recognition perfectly fitted rising Pirates defender betting tips South Africa": {
+      "slug": "rising-pirates-defender-betting-tips-south-africa",
+      "posted_at": "2026-10-13T18:02:26.967163+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-13T15:52:12.121796+00:00",
-    "candidates_available": 252,
+    "checked_at": "2026-10-13T18:09:46.423215+00:00",
+    "candidates_available": 251,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Olympic Qualifier Eguavoen targets victory as Super Falcons betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "olympic-qualifier-super-falcons-betting-tips-nigeria"
-      },
-      {
         "keyword": "Sports Editorial World Cup visa scandal demands full, betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 454)"
+        "reason": "missing_output_markers"
       },
       {
         "keyword": "Recognition perfectly fitted rising Pirates defender betting tips South Africa",
         "country": "South Africa",
+        "result": "written",
+        "slug": "rising-pirates-defender-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 492)"
+        "reason": "quality_gate: only 972 words (minimum 1000); no '## FAQ' section heading found; final line was 'Yes, some bookmakers in Tanzania offer both a welcome offer and a bonus. For example, 1xBet Tanzania offers a 200% first deposit bonus and a welcome offer.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
