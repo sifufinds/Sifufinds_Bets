@@ -1252,25 +1252,35 @@
     "Recognition perfectly fitted rising Pirates defender betting tips South Africa": {
       "slug": "rising-pirates-defender-betting-tips-south-africa",
       "posted_at": "2026-10-13T18:02:26.967163+00:00"
+    },
+    "Sports Editorial World Cup visa scandal demands full, betting tips Ghana": {
+      "slug": "world-cup-visa-scandal-betting-tips-ghana",
+      "posted_at": "2026-10-13T21:09:58.996374+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-13T20:14:54.097969+00:00",
+    "checked_at": "2026-10-13T21:27:20.860141+00:00",
     "candidates_available": 250,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Sports Editorial World Cup visa scandal demands full, betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: only 941 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "result": "written",
+        "slug": "world-cup-visa-scandal-betting-tips-ghana"
       },
       {
         "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Betika accepts only mobile money and bank transfers; credit cards are not supported for deposits at this bookmaker.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Guinea-Bissau clip Super Eagles' wings as Ghana Black betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: only 914 words (minimum 1000); final line was 'Yes, **USSD *644#** is supported by bookmakers like **Betika Kenya** for quick and convenient deposits.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
