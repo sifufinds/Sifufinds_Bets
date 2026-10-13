@@ -1240,31 +1240,35 @@
     "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Tanzania": {
       "slug": "zimbabwe-mauritius-afcon-qualifier-betting-tips-tanzania",
       "posted_at": "2026-10-12T17:34:27.690083+00:00"
+    },
+    "Former Bok winger hangs up his boots 'I betting tips South Africa": {
+      "slug": "former-bok-winger-betting-tips-south-africa",
+      "posted_at": "2026-10-13T06:37:04.492940+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-12T17:34:32.929281+00:00",
-    "candidates_available": 268,
+    "checked_at": "2026-10-13T06:38:31.679448+00:00",
+    "candidates_available": 249,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "Former Bok winger hangs up his boots 'I betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, for the listed offers the wagering requirement is 5× the bonus amount at minimum odds of 1.40. Always check the specific terms on the bookmaker’s website before betting.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Nigeria Plateau United End Pillars' Unbeaten Run 4-0 betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, all the bookmakers mentioned—Betika, SportPesa, 22Bet, 1xBet, FairPari, and Betway—are licensed by the Gaming Board of Tanzania, ensuring a safe and regulated betting environment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Zimbabwe/Mauritius Young Warriors Face Mauritius Afcon Qualifier betting tips Tanzania",
-        "country": "Tanzania",
         "result": "written",
-        "slug": "zimbabwe-mauritius-afcon-qualifier-betting-tips-tanzania"
+        "slug": "former-bok-winger-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Guinea-Bissau clip Super Eagles' wings as Ghana Black betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Set a weekly deposit limit in the bookmaker’s responsible‑gaming section, use the self‑exclusion tool if you feel you are chasing losses, and keep track of how much time you spend on the site. If you need professional help, contact local support groups such as the Kenyan Association for Responsible Gaming.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Cameroon",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 409)"
       }
     ]
   }
