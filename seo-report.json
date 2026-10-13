@@ -1,25 +1,13 @@
 {
-  "date": "2026-10-12",
-  "total": 94,
+  "date": "2026-10-13",
+  "total": 95,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
-    "MEDIUM": 88,
+    "HIGH": 3,
+    "MEDIUM": 91,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "boxing-buzz-tyson-legacy-uk-title-fight",
-      "detail": "Title 88 chars (max 60): 'Boxing Buzz: From Tyson\u2019s Legacy to the WBO Title Fight \u2013 Betting Guid'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "boxing-buzz-tyson-legacy-uk-title-fight",
-      "detail": "Excerpt 213 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
@@ -37,6 +25,24 @@
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "global-igaming-updates-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-regulatory-shifts-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "global-igaming-updates-african-bettors",
+      "detail": "High title overlap (6 meaningful tokens) with 'igaming-industry-updates-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "global-igaming-updates-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-shake-up-african-bettors' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
