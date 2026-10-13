@@ -1244,31 +1244,35 @@
     "Former Bok winger hangs up his boots 'I betting tips South Africa": {
       "slug": "former-bok-winger-betting-tips-south-africa",
       "posted_at": "2026-10-13T06:37:04.492940+00:00"
+    },
+    "Olympic Qualifier Eguavoen targets victory as Super Falcons betting tips Nigeria": {
+      "slug": "olympic-qualifier-super-falcons-betting-tips-nigeria",
+      "posted_at": "2026-10-13T15:51:40.417897+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-13T06:38:31.679448+00:00",
-    "candidates_available": 249,
+    "checked_at": "2026-10-13T15:52:12.121796+00:00",
+    "candidates_available": 252,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Former Bok winger hangs up his boots 'I betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "Olympic Qualifier Eguavoen targets victory as Super Falcons betting tips Nigeria",
+        "country": "Nigeria",
         "result": "written",
-        "slug": "former-bok-winger-betting-tips-south-africa"
+        "slug": "olympic-qualifier-super-falcons-betting-tips-nigeria"
       },
       {
-        "keyword": "Guinea-Bissau clip Super Eagles' wings as Ghana Black betting tips Kenya",
-        "country": "Kenya",
+        "keyword": "Sports Editorial World Cup visa scandal demands full, betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Set a weekly deposit limit in the bookmaker’s responsible‑gaming section, use the self‑exclusion tool if you feel you are chasing losses, and keep track of how much time you spend on the site. If you need professional help, contact local support groups such as the Kenyan Association for Responsible Gaming.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 454)"
       },
       {
-        "keyword": "Zimbabwe ZIFA Engages CAF Over Sanctions Imposed After betting tips Cameroon",
-        "country": "Cameroon",
+        "keyword": "Recognition perfectly fitted rising Pirates defender betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 409)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 492)"
       }
     ]
   }
