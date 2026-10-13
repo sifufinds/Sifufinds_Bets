@@ -1256,31 +1256,35 @@
     "Sports Editorial World Cup visa scandal demands full, betting tips Ghana": {
       "slug": "world-cup-visa-scandal-betting-tips-ghana",
       "posted_at": "2026-10-13T21:09:58.996374+00:00"
+    },
+    "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Egypt": {
+      "slug": "galatasaray-uefa-champions-league-betting-egypt",
+      "posted_at": "2026-10-13T23:30:38.483251+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-13T21:27:20.860141+00:00",
-    "candidates_available": 250,
+    "checked_at": "2026-10-13T23:30:42.764967+00:00",
+    "candidates_available": 249,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Sports Editorial World Cup visa scandal demands full, betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "world-cup-visa-scandal-betting-tips-ghana"
-      },
-      {
         "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Betika accepts only mobile money and bank transfers; credit cards are not supported for deposits at this bookmaker.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Absolument. Une fois votre bonus crédité, vous pouvez sélectionner le marché “Premier buteur – Galatasaray” et placer votre mise. Assurez‑vous que la cote respecte les exigences de mise (généralement 1.40 ou plus) pour que le pari compte dans le calcul du bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Guinea-Bissau clip Super Eagles' wings as Ghana Black betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 914 words (minimum 1000); final line was 'Yes, **USSD *644#** is supported by bookmakers like **Betika Kenya** for quick and convenient deposits.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 935 words (minimum 1000); final line was 'When betting on underdogs, consider factors like team form, player injuries, and historical performance. Bookmakers like 22Bet Kenya offer competitive odds on such matches, so shop around for the best value.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Egypt",
+        "country": "Egypt",
+        "result": "written",
+        "slug": "galatasaray-uefa-champions-league-betting-egypt"
       }
     ]
   }
