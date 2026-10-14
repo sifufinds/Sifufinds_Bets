@@ -1,13 +1,19 @@
 {
-  "date": "2026-10-13",
-  "total": 95,
+  "date": "2026-10-14",
+  "total": 97,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
-    "MEDIUM": 91,
+    "HIGH": 4,
+    "MEDIUM": 92,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "kartal-upsets-bencic-wuhan-betting-tips",
+      "detail": "Title 62 chars (max 60): 'Kartal Upsets Bencic at Wuhan: Betting Tips for African Punter'"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
@@ -25,6 +31,12 @@
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "guinea-bissau-stuns-super-eagles-kenya-betting-tips-offers",
+      "detail": "High title overlap (5 meaningful tokens) with 'guinea-bissau-super-eagles-kenya-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
