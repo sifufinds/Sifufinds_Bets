@@ -1,19 +1,13 @@
 {
   "date": "2026-10-14",
-  "total": 97,
+  "total": 96,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 4,
+    "HIGH": 3,
     "MEDIUM": 92,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kartal-upsets-bencic-wuhan-betting-tips",
-      "detail": "Title 62 chars (max 60): 'Kartal Upsets Bencic at Wuhan: Betting Tips for African Punter'"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
