@@ -1264,19 +1264,39 @@
     "Guinea-Bissau clip Super Eagles' wings as Ghana Black betting tips Kenya": {
       "slug": "guinea-bissau-super-eagles-kenya-betting-tips",
       "posted_at": "2026-10-14T04:10:24.508463+00:00"
+    },
+    "Atletico sink Man Utd as Viking deny Bayern betting tips Kenya": {
+      "slug": "atletico-man-utd-viking-bayern-betting-tips-kenya",
+      "posted_at": "2026-10-14T15:36:19.343970+00:00"
+    },
+    "Blitzboks show why unity means more than winning betting tips South Africa": {
+      "slug": "blitzboks-unity-betting-tips-south-africa",
+      "posted_at": "2026-10-14T15:49:22.522951+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-14T07:49:42.506432+00:00",
-    "candidates_available": 257,
+    "checked_at": "2026-10-14T15:49:26.011297+00:00",
+    "candidates_available": 256,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Man United defender Martínez blames club hierarchy after betting tips Nigeria",
-        "country": "Nigeria",
+        "keyword": "Atletico sink Man Utd as Viking deny Bayern betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "atletico-man-utd-viking-bayern-betting-tips-kenya"
+      },
+      {
+        "keyword": "Viking vs. Bayern Munich Lineups betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Blitzboks show why unity means more than winning betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "blitzboks-unity-betting-tips-south-africa"
       }
     ]
   }
