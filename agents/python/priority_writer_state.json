@@ -1267,28 +1267,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-14T04:10:30.580017+00:00",
-    "candidates_available": 249,
+    "checked_at": "2026-10-14T07:49:42.506432+00:00",
+    "candidates_available": 257,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Activez les limites de dépôt et les options d’auto‑exclusion disponibles dans le tableau de bord de votre compte. Vous pouvez également choisir des paris à double chance ou des marchés Over/Under pour réduire le risque.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Katsina gov signs N828.58bn 2027 appropriation law betting tips Nigeria",
+        "keyword": "Man United defender Martínez blames club hierarchy after betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'No, you cannot place multiple bets on the same match using the same bonus amount. Each bet must be a separate', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Guinea-Bissau clip Super Eagles' wings as Ghana Black betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "guinea-bissau-super-eagles-kenya-betting-tips"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
