@@ -730,28 +730,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-15T08:59:45.457392+00:00",
-    "candidates_available": 236,
+    "checked_at": "2026-10-15T11:21:06.165153+00:00",
+    "candidates_available": 235,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "FULL LIST Barcola joins 12 other Liverpool’s European betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 427)"
-      },
-      {
-        "keyword": "Kenya hosting 2029 World Championships will help doping betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "kenya-2029-world-championships-doping-betting-tips"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 481)"
       },
       {
         "keyword": "Ghana Sports Fund engages federations funding opportunities, development betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: **Sportybet Ghana**’s 150% bonus up to GH₵500; **1xBet Ghana**’s 200% match up to GH₵2,846"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 461)"
+      },
+      {
+        "keyword": "Wallabies back Meredith as playmaker second Bledisloe Cup betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 548)"
       }
     ]
   }
