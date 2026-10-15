@@ -707,31 +707,43 @@
     "Blitzboks show why unity means more than winning betting tips South Africa": {
       "slug": "blitzboks-unity-betting-tips-south-africa",
       "posted_at": "2026-10-14T19:06:46.162467+00:00"
+    },
+    "Atletico sink Man Utd as Viking deny Bayern betting tips Kenya": {
+      "slug": "atletico-madrid-man-united-bayern-viking-kenya",
+      "posted_at": "2026-10-14T23:42:08.752918+00:00"
+    },
+    "Ligue des champions UEFA où suivre Bodø/Glimt – betting tips Tanzania": {
+      "slug": "bodo-glimt-vs-borussia-dortmund-uefa-champions-league-betting-tips-tanzania",
+      "posted_at": "2026-10-14T23:53:46.542184+00:00"
+    },
+    "Olympic Qualifier Eguavoen targets victory as Super Falcons betting tips Nigeria": {
+      "slug": "super-falcons-vs-comoros-olympic-qualifier-betting-tips-nigeria",
+      "posted_at": "2026-10-15T00:00:49.803636+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-14T23:14:40.951798+00:00",
+    "checked_at": "2026-10-15T00:00:52.480452+00:00",
     "candidates_available": 255,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
       {
         "keyword": "Atletico sink Man Utd as Viking deny Bayern betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: Betika Kenya is currently offering slightly higher returns on the Atletico win market compared with SportPesa Kenya; SportPesa Kenya tends to give a marginal edge on the Viking + Bayern Over 2.5 goals line; Betika Kenya typically posts slightly higher odds on the Atletico win market compared with other local operators"
+        "result": "written",
+        "slug": "atletico-madrid-man-united-bayern-viking-kenya"
       },
       {
         "keyword": "Ligue des champions UEFA où suivre Bodø/Glimt – betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "fact_check: Borussia Dortmund, being the more established side, are likely to be favourites; a comparison of odds from top Tanzanian bookmakers for the match result market"
+        "result": "written",
+        "slug": "bodo-glimt-vs-borussia-dortmund-uefa-champions-league-betting-tips-tanzania"
       },
       {
         "keyword": "Olympic Qualifier Eguavoen targets victory as Super Falcons betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "fact_check: a comparison of odds from top Nigerian bookmakers for the **Match Result** market; a 3-0 or 4-0 win for the Super Falcons could be a lucrative bet"
+        "result": "written",
+        "slug": "super-falcons-vs-comoros-olympic-qualifier-betting-tips-nigeria"
       }
     ]
   }
