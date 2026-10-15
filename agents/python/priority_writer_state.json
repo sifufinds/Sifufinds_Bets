@@ -1284,31 +1284,39 @@
     "Wallabies back Meredith as playmaker second Bledisloe Cup betting tips South Africa": {
       "slug": "wallabies-meredith-playmaker-bledisloe-cup-betting-south-africa",
       "posted_at": "2026-10-15T11:19:42.665523+00:00"
+    },
+    "FULL LIST Barcola joins 12 other Liverpool’s European betting tips Nigeria": {
+      "slug": "barcola-joins-12-other-liverpools-betting-tips-nigeria",
+      "posted_at": "2026-10-15T16:48:54.799648+00:00"
+    },
+    "Ghana Sports Fund engages federations funding opportunities, development betting tips Ghana": {
+      "slug": "ghana-sports-fund-betting-guide",
+      "posted_at": "2026-10-15T16:49:27.738147+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-15T11:19:48.418704+00:00",
+    "checked_at": "2026-10-15T16:49:31.646515+00:00",
     "candidates_available": 240,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "FULL LIST Barcola joins 12 other Liverpool’s European betting tips Nigeria",
         "country": "Nigeria",
+        "result": "written",
+        "slug": "barcola-joins-12-other-liverpools-betting-tips-nigeria"
+      },
+      {
+        "keyword": "Kenya hosting 2029 World Championships will help doping betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Each bookmaker requires that every leg of an accumulator used to satisfy the bonus has minimum odds of 1.40. If you place a single bet, the overall odds must also meet that threshold.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 473)"
       },
       {
         "keyword": "Ghana Sports Fund engages federations funding opportunities, development betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Immediately activate the self‑exclusion or deposit‑limit tool available in your account settings. You can also contact the GCA or a local support line for assistance. Taking action early prevents further financial strain.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Wallabies back Meredith as playmaker second Bledisloe Cup betting tips South Africa",
-        "country": "South Africa",
         "result": "written",
-        "slug": "wallabies-meredith-playmaker-bledisloe-cup-betting-south-africa"
+        "slug": "ghana-sports-fund-betting-guide"
       }
     ]
   }
