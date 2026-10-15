@@ -1,43 +1,13 @@
 {
   "date": "2026-10-15",
-  "total": 102,
+  "total": 97,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 8,
+    "HIGH": 3,
     "MEDIUM": 93,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "psl-spotlight-stellenbosch-ts-galaxy-sundowns",
-      "detail": "Title 61 chars (max 60): 'PSL Spotlight: Stellenbosch, TS Galaxy, and Sundowns in Focus'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kenya-2029-world-championships-doping-betting-tips",
-      "detail": "Title 75 chars (max 60): 'Kenya\u2019s 2029 World Championships Hosting: Impact on Doping and Betting'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-headlines-rugby-world-cup-lpga-premier-league",
-      "detail": "Title 73 chars (max 60): 'Global Sports Headlines: Rugby World Cup, LPGA, and Premier League Act'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "psl-spotlight-stellenbosch-ts-galaxy-sundowns",
-      "detail": "Excerpt 194 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-headlines-rugby-world-cup-lpga-premier-league",
-      "detail": "Excerpt 168 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
