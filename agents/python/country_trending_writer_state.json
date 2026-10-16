@@ -731,31 +731,35 @@
     "FULL LIST Barcola joins 12 other Liverpool’s European betting tips Nigeria": {
       "slug": "barcola-liverpool-european-cup-hat-trick-betting-tips-nigeria",
       "posted_at": "2026-10-15T16:54:45.941888+00:00"
+    },
+    "PSG 'got lucky' win Man City thriller, says betting tips Kenya": {
+      "slug": "psg-lucky-win-man-city-betting-insights-kenya",
+      "posted_at": "2026-10-16T09:35:25.148775+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-16T07:22:57.710989+00:00",
+    "checked_at": "2026-10-16T09:44:19.681584+00:00",
     "candidates_available": 238,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Former Premier League Star Turns Uber Driver betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 444)"
+        "reason": "fact_check: \"shift from the Boleyn Ground to the streets of Lisbon\"; \"West Ham United are fighting for a mid‑table finish this season\"; \"1xBet Nigeria currently runs a 300 % First Deposit Bonus – Up to ₦1,200,000\"; \"22Bet Nigeria matches your first deposit 100 % up to ₦207,500 with code BNSNG\"; \"Both bonuses require a five‑fold wager on odds of at least 1.40 and are subject to a 30‑day expiry\"; \"The odds often sit around 1.80‑2.10\""
       },
       {
         "keyword": "PSG 'got lucky' win Man City thriller, says betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: Betika Kenya often lists slightly lower decimal odds for Manchester City; SportPesa Kenya, on the other hand, tends to offer marginally higher returns on Paris Saint‑Germain; The odds may sit just below the market average; Switch over to SportPesa Kenya and you’ll notice a small uplift on the same market; If Manchester City are listed at odds of 1.75 on Betika; a 2.20 price on SportPesa; look for odds that sit below 2.00 on any platform"
+        "result": "written",
+        "slug": "psg-lucky-win-man-city-betting-insights-kenya"
       },
       {
         "keyword": "Black Starlets coach eyes AFCON ticket, WAFU B betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: 150% welcome bonus up to GH₵500; 50% up to GH₵200; 100% up to GH₵1,491; 200% up to GH₵2,846; 300% up to GH₵1,500; 100% up to €100; Min Odds: 3.15; Min Odds: 1.40; 7-day expiry; x5"
       }
     ]
   }
