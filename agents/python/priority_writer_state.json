@@ -1299,28 +1299,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-16T06:25:26.286133+00:00",
-    "candidates_available": 239,
+    "checked_at": "2026-10-16T07:14:32.208300+00:00",
+    "candidates_available": 248,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "Former Premier League Star Turns Uber Driver betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was '22Bet accepts Visa and Mastercard alongside mobile‑money options. Card deposits may take a few minutes to appear, but they are a reliable alternative if you prefer not to use mobile money.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 440)"
-      },
-      {
-        "keyword": "Man City confirm appeal after Premier League charges betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: only 783 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
