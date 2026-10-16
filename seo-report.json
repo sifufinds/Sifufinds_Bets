@@ -1,13 +1,31 @@
 {
-  "date": "2026-10-15",
-  "total": 97,
+  "date": "2026-10-16",
+  "total": 100,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 6,
     "MEDIUM": 93,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "psg-lucky-win-man-city-betting-insights-kenya",
+      "detail": "Title 66 chars (max 60): \"PSG's Lucky Win Over Man City: Betting Insights for Kenyan Punters\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "latest-sports-headlines-october-2026",
+      "detail": "Title 61 chars (max 60): 'From High School Football to the NFL: Latest Sports Headlines'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "latest-sports-headlines-october-2026",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
