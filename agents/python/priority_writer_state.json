@@ -1292,31 +1292,35 @@
     "Ghana Sports Fund engages federations funding opportunities, development betting tips Ghana": {
       "slug": "ghana-sports-fund-betting-guide",
       "posted_at": "2026-10-15T16:49:27.738147+00:00"
+    },
+    "Kenya hosting 2029 World Championships will help doping betting tips Kenya": {
+      "slug": "kenya-2029-world-championships-betting-tips",
+      "posted_at": "2026-10-16T04:15:11.928864+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-15T16:49:31.646515+00:00",
+    "checked_at": "2026-10-16T04:29:48.746196+00:00",
     "candidates_available": 240,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "FULL LIST Barcola joins 12 other Liverpool’s European betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "barcola-joins-12-other-liverpools-betting-tips-nigeria"
-      },
       {
         "keyword": "Kenya hosting 2029 World Championships will help doping betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 473)"
+        "result": "written",
+        "slug": "kenya-2029-world-championships-betting-tips"
       },
       {
-        "keyword": "Ghana Sports Fund engages federations funding opportunities, development betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "ghana-sports-fund-betting-guide"
+        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Choose a bookmaker that is GBT Licensed, use secure mobile‑money wallets, set deposit limits, and never chase losses. If you need help, contact the Gaming Board of Tanzania’s responsible‑gaming helpline for advice and support.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Le pari comporte des risques financiers et peut devenir addictif. Il est important de parier de manière responsable, de fixer des limites de dépôt et de ne jamais miser plus que ce que vous pouvez vous permettre de perdre.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
