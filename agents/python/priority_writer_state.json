@@ -1328,31 +1328,35 @@
     "Fred Pappoe, Tony Baffoe, Stephen Appiah, Chibsah Dzakpasu betting tips Ghana": {
       "slug": "fred-pappoe-tony-baffoe-stephen-appiah-chibsah-dzakpasu-betting-tips-ghana",
       "posted_at": "2026-10-17T02:43:20.530721+00:00"
+    },
+    "NFF Normalisation Committee FIFA keeps Nigeria waiting betting tips Nigeria": {
+      "slug": "nff-normalisation-committee-fifa-keeps-nigeria-waiting-betting-tips",
+      "posted_at": "2026-10-17T06:46:43.740982+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-17T02:43:23.887488+00:00",
-    "candidates_available": 264,
+    "checked_at": "2026-10-17T07:06:04.985880+00:00",
+    "candidates_available": 267,
     "attempted": 3,
-    "written": 3,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "NFF Normalisation Committee FIFA keeps Nigeria waiting betting tips Nigeria",
+        "country": "Nigeria",
         "result": "written",
-        "slug": "ligue-europa-uefa-programme-betting-tips-tanzania"
+        "slug": "nff-normalisation-committee-fifa-keeps-nigeria-waiting-betting-tips"
       },
       {
-        "keyword": "Best Football Tips For Croatia vs England - Bookies.com betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "best-football-tips-croatia-vs-england-kenya"
-      },
-      {
-        "keyword": "Fred Pappoe, Tony Baffoe, Stephen Appiah, Chibsah Dzakpasu betting tips Ghana",
+        "keyword": "‘God is our side, we’ll win Amputee World betting tips Ghana",
         "country": "Ghana",
-        "result": "written",
-        "slug": "fred-pappoe-tony-baffoe-stephen-appiah-chibsah-dzakpasu-betting-tips-ghana"
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 444)"
+      },
+      {
+        "keyword": "Bledisloe Cup Wallabies 14-43 All Blacks betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Check the bonus amount, minimum deposit, wagering requirements, and validity period. For example, **BetWinner** offers a 200% bonus up to R2,340 with a 5x wagering requirement, while **Betway** provides a unique package with extra bets and spins. Always read the T&Cs before claiming an offer.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
