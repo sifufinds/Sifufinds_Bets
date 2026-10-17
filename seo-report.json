@@ -1,13 +1,31 @@
 {
-  "date": "2026-10-16",
-  "total": 97,
+  "date": "2026-10-17",
+  "total": 100,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 6,
     "MEDIUM": 93,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ghana-amputee-world-cup-betting-tips",
+      "detail": "Title 64 chars (max 60): 'Ghana\u2019s Amputee World Cup Odds: Can the Black Challenge Deliver?'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nff-normalisation-committee-fifa-keeps-nigeria-waiting-betting-tips",
+      "detail": "Title 73 chars (max 60): 'NFF Normalisation Committee Delay: Betting Tips & Top Nigerian Bookmak'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nff-normalisation-committee-fifa-keeps-nigeria-waiting-betting-tips",
+      "detail": "Excerpt 185 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
