@@ -1332,31 +1332,39 @@
     "NFF Normalisation Committee FIFA keeps Nigeria waiting betting tips Nigeria": {
       "slug": "nff-normalisation-committee-fifa-keeps-nigeria-waiting-betting-tips",
       "posted_at": "2026-10-17T06:46:43.740982+00:00"
+    },
+    "UFOA-B U17 les Étalons décrochent leur ticket pour betting tips Tanzania": {
+      "slug": "ufoa-b-u17-les-etalons-ticket-betting-tips-tanzania",
+      "posted_at": "2026-10-17T11:20:22.047041+00:00"
+    },
+    "Nganga beats field 187 golfers Ruiru Club as betting tips Kenya": {
+      "slug": "nganga-wins-ruiru-golf-day-betting-tips-kenya",
+      "posted_at": "2026-10-17T11:21:12.342219+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-17T07:06:04.985880+00:00",
-    "candidates_available": 267,
+    "checked_at": "2026-10-17T11:21:15.706748+00:00",
+    "candidates_available": 264,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "NFF Normalisation Committee FIFA keeps Nigeria waiting betting tips Nigeria",
-        "country": "Nigeria",
+        "keyword": "UFOA-B U17 les Étalons décrochent leur ticket pour betting tips Tanzania",
+        "country": "Tanzania",
         "result": "written",
-        "slug": "nff-normalisation-committee-fifa-keeps-nigeria-waiting-betting-tips"
+        "slug": "ufoa-b-u17-les-etalons-ticket-betting-tips-tanzania"
       },
       {
-        "keyword": "‘God is our side, we’ll win Amputee World betting tips Ghana",
-        "country": "Ghana",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 444)"
-      },
-      {
-        "keyword": "Bledisloe Cup Wallabies 14-43 All Blacks betting tips South Africa",
+        "keyword": "‘They really made us proud’ Coach praises Bok betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Check the bonus amount, minimum deposit, wagering requirements, and validity period. For example, **BetWinner** offers a 200% bonus up to R2,340 with a 5x wagering requirement, while **Betway** provides a unique package with extra bets and spins. Always read the T&Cs before claiming an offer.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'A licence from the WCGRB, NGB or ECGBB is the most reliable indicator of a safe operator. These provincial gambling boards enforce strict player‑protection standards and are recognised by the South African government.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Nganga beats field 187 golfers Ruiru Club as betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "nganga-wins-ruiru-golf-day-betting-tips-kenya"
       }
     ]
   }

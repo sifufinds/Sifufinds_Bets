@@ -755,11 +755,15 @@
     "Bledisloe Cup Wallabies 14-43 All Blacks betting tips South Africa": {
       "slug": "bledisloe-cup-wallabies-all-blacks-betting-tips-south-africa",
       "posted_at": "2026-10-17T09:52:29.803450+00:00"
+    },
+    "UFOA-B U17 les Étalons décrochent leur ticket pour betting tips Tanzania": {
+      "slug": "tanzania-betting-tips-burkina-faso-u17-semi-finals",
+      "posted_at": "2026-10-17T11:28:51.217511+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-17T09:58:42.028603+00:00",
-    "candidates_available": 260,
+    "checked_at": "2026-10-17T11:38:06.162522+00:00",
+    "candidates_available": 259,
     "attempted": 3,
     "written": 1,
     "attempts": [
@@ -767,19 +771,19 @@
         "keyword": "NFF Normalisation Committee FIFA keeps Nigeria waiting betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
-      },
-      {
-        "keyword": "Bledisloe Cup Wallabies 14-43 All Blacks betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "bledisloe-cup-wallabies-all-blacks-betting-tips-south-africa"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 442)"
       },
       {
         "keyword": "UFOA-B U17 les Étalons décrochent leur ticket pour betting tips Tanzania",
         "country": "Tanzania",
+        "result": "written",
+        "slug": "tanzania-betting-tips-burkina-faso-u17-semi-finals"
+      },
+      {
+        "keyword": "Europa League Bournemouth domine Sturm Graz et enchaîne betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: SportPesa Tanzania offers a 250% Karibu Gift on first deposits; 1xBet Tanzania: 200% first deposit bonus up to TSh 500,000; Betika Tanzania: Free bet on signup plus a TSh 5,000 welcome bonus; 22Bet Tanzania provides a 100% first deposit bonus up to TSh 460,000"
+        "reason": "fact_check: Bournemouth’s impressive 3-0 victory over Sturm Graz in the Europa League, as reported by Africa Top Sports, has sent waves of excitement through the betting community in Tanzania. With goals from Evanilson and Rayan, the Cherries secured their second consecutive win in the competition, cementing their position as a team to watch.; | Bookmaker            | Match Winner (Bournemouth) | Both Teams to Score (Yes) | Over 2.5 Goals (Yes) |\n|----------------------|--------------------------------|---------------------------|-----------------------|\n| SportPesa Tanzania   | 1.85                         | 2.00                      | 1.90                  |\n| 1xBet Tanzania       | 1.80                         | 1.95                      | 1.85                  |\n| Betway Tanzania      | 1.90                         | 2.05                      | 1.95                  |\n| Betika Tanzania      | 1.88                         | 2.00                      | 1.92                  |"
       }
     ]
   }
