@@ -1,13 +1,19 @@
 {
   "date": "2026-10-17",
-  "total": 100,
+  "total": 101,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 6,
+    "HIGH": 7,
     "MEDIUM": 93,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "bledisloe-cup-wallabies-all-blacks-betting-tips-south-africa",
+      "detail": "Title 77 chars (max 60): 'Bledisloe Cup: Wallabies vs All Blacks Betting Tips for South African '"
+    },
     {
       "severity": "HIGH",
       "check": "title_length",
