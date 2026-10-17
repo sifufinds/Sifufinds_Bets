@@ -1340,31 +1340,39 @@
     "Nganga beats field 187 golfers Ruiru Club as betting tips Kenya": {
       "slug": "nganga-wins-ruiru-golf-day-betting-tips-kenya",
       "posted_at": "2026-10-17T11:21:12.342219+00:00"
+    },
+    "Man City confirm appeal after Premier League charges betting tips Kenya": {
+      "slug": "man-city-appeal-premier-league-betting-tips-kenya",
+      "posted_at": "2026-10-17T19:00:01.604199+00:00"
+    },
+    "Benni slams 'arrogant' referee after loss Guinea betting tips South Africa": {
+      "slug": "benni-slams-arrogant-referee-after-loss-guinea-betting-tips-south-africa",
+      "posted_at": "2026-10-17T19:00:33.123232+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-17T11:21:15.706748+00:00",
-    "candidates_available": 264,
+    "checked_at": "2026-10-17T19:00:37.556507+00:00",
+    "candidates_available": 244,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "UFOA-B U17 les Étalons décrochent leur ticket pour betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "ufoa-b-u17-les-etalons-ticket-betting-tips-tanzania"
-      },
-      {
         "keyword": "‘They really made us proud’ Coach praises Bok betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: final line was 'A licence from the WCGRB, NGB or ECGBB is the most reliable indicator of a safe operator. These provincial gambling boards enforce strict player‑protection standards and are recognised by the South African government.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 510)"
       },
       {
-        "keyword": "Nganga beats field 187 golfers Ruiru Club as betting tips Kenya",
+        "keyword": "Man City confirm appeal after Premier League charges betting tips Kenya",
         "country": "Kenya",
         "result": "written",
-        "slug": "nganga-wins-ruiru-golf-day-betting-tips-kenya"
+        "slug": "man-city-appeal-premier-league-betting-tips-kenya"
+      },
+      {
+        "keyword": "Benni slams 'arrogant' referee after loss Guinea betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "benni-slams-arrogant-referee-after-loss-guinea-betting-tips-south-africa"
       }
     ]
   }
