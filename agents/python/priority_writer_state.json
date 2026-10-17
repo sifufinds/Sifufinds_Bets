@@ -1308,19 +1308,39 @@
     "What new bonus-point rule means SA teams Champions betting tips South Africa": {
       "slug": "new-bonus-point-rule-sa-teams-champions-betting-tips",
       "posted_at": "2026-10-16T11:02:26.478013+00:00"
+    },
+    "Europa League Bournemouth domine Sturm Graz et enchaîne betting tips Tanzania": {
+      "slug": "europa-league-bournemouth-sturm-graz-betting-tips-tanzania",
+      "posted_at": "2026-10-17T00:42:45.403240+00:00"
+    },
+    "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Tanzania": {
+      "slug": "galatasaray-champions-league-betting-tips-tanzania",
+      "posted_at": "2026-10-17T00:43:12.947254+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-16T13:26:30.533573+00:00",
-    "candidates_available": 246,
+    "checked_at": "2026-10-17T00:43:17.181774+00:00",
+    "candidates_available": 266,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Europa League Bournemouth domine Sturm Graz et enchaîne betting tips Tanzania",
         "country": "Tanzania",
+        "result": "written",
+        "slug": "europa-league-bournemouth-sturm-graz-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'None of the listed bookmakers allow crypto deposits for the bonuses mentioned. The FairPari offer explicitly states that it is not valid for crypto deposits.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "galatasaray-champions-league-betting-tips-tanzania"
       }
     ]
   }
