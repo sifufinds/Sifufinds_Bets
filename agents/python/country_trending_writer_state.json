@@ -759,31 +759,39 @@
     "UFOA-B U17 les Étalons décrochent leur ticket pour betting tips Tanzania": {
       "slug": "tanzania-betting-tips-burkina-faso-u17-semi-finals",
       "posted_at": "2026-10-17T11:28:51.217511+00:00"
+    },
+    "NFF Normalisation Committee FIFA keeps Nigeria waiting betting tips Nigeria": {
+      "slug": "nff-normalisation-committee-fifa-nigeria-betting-tips",
+      "posted_at": "2026-10-17T12:40:12.802830+00:00"
+    },
+    "Ghana Sports Fund engages federations funding opportunities, development betting tips Ghana": {
+      "slug": "ghana-sports-fund-federations-funding-betting-tips",
+      "posted_at": "2026-10-17T12:52:26.869569+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-17T11:38:06.162522+00:00",
-    "candidates_available": 259,
+    "checked_at": "2026-10-17T12:52:30.717549+00:00",
+    "candidates_available": 240,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "NFF Normalisation Committee FIFA keeps Nigeria waiting betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 442)"
-      },
-      {
-        "keyword": "UFOA-B U17 les Étalons décrochent leur ticket pour betting tips Tanzania",
-        "country": "Tanzania",
         "result": "written",
-        "slug": "tanzania-betting-tips-burkina-faso-u17-semi-finals"
+        "slug": "nff-normalisation-committee-fifa-nigeria-betting-tips"
       },
       {
         "keyword": "Europa League Bournemouth domine Sturm Graz et enchaîne betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: Bournemouth’s impressive 3-0 victory over Sturm Graz in the Europa League, as reported by Africa Top Sports, has sent waves of excitement through the betting community in Tanzania. With goals from Evanilson and Rayan, the Cherries secured their second consecutive win in the competition, cementing their position as a team to watch.; | Bookmaker            | Match Winner (Bournemouth) | Both Teams to Score (Yes) | Over 2.5 Goals (Yes) |\n|----------------------|--------------------------------|---------------------------|-----------------------|\n| SportPesa Tanzania   | 1.85                         | 2.00                      | 1.90                  |\n| 1xBet Tanzania       | 1.80                         | 1.95                      | 1.85                  |\n| Betway Tanzania      | 1.90                         | 2.05                      | 1.95                  |\n| Betika Tanzania      | 1.88                         | 2.00                      | 1.92                  |"
+        "reason": "fact_check: Bournemouth’s stunning 3-0 victory over Sturm Graz in the Europa League has sent waves across the football world, and Tanzanian bettors are taking note. According to *Africa Top Sports*, the Cherries secured their second consecutive win in the competition, thanks to goals from Evanilson and Rayan.; For instance, bettors can now explore odds on Bournemouth’s chances of topping their group or even winning the Europa League outright. While specific odds vary, platforms like **1xBet Tanzania** offer up to TSh 500,000 in bonuses for new users, allowing you to maximise your bets on these markets."
+      },
+      {
+        "keyword": "Ghana Sports Fund engages federations funding opportunities, development betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "ghana-sports-fund-federations-funding-betting-tips"
       }
     ]
   }
