@@ -1356,31 +1356,35 @@
     "Ligue Europa UEFA voici le programme du jour betting tips Egypt": {
       "slug": "ligue-europa-uefa-programme-du-jour-betting-tips-egypt",
       "posted_at": "2026-10-17T23:52:36.125134+00:00"
+    },
+    "Katsina gov signs N828.58bn 2027 appropriation law betting tips Nigeria": {
+      "slug": "katsina-gov-signs-n82858bn-2027-appropriation-law-betting-tips-nigeria",
+      "posted_at": "2026-10-18T06:34:02.914723+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-18T02:11:49.366272+00:00",
-    "candidates_available": 222,
+    "checked_at": "2026-10-18T06:54:24.789631+00:00",
+    "candidates_available": 205,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Katsina gov signs N828.58bn 2027 appropriation law betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Every NLRC‑licensed bookmaker provides responsible‑gaming tools such as deposit limits, self‑exclusion and reality checks. Access these features from the account settings page and set limits that suit your budget.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "katsina-gov-signs-n82858bn-2027-appropriation-law-betting-tips-nigeria"
       },
       {
-        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Morocco",
+        "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Morocco",
         "country": "Morocco",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Les retraits par carte de crédit (Visa, Mastercard) et par transfert bancaire sont généralement les plus rapides. Orange Money et CIH Bank peuvent prendre un ou deux jours ouvrables. Vérifiez les frais éventuels avant de choisir votre méthode.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'All bookmakers require a minimum age of 18 and enforce self‑exclusion limits. Some operators may limit certain markets during live events, but the standard pre‑match markets for Galatasaray remain available. Always verify the terms on the bookmaker’s site before placing a bet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Uganda",
+        "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Uganda",
         "country": "Uganda",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "reason": "quality_gate: only 974 words (minimum 1000)"
       }
     ]
   }
