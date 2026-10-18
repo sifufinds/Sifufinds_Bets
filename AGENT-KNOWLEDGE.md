@@ -1811,3 +1811,16 @@ Related traps:
 - **Fix**: `frame-src https://combodef.com` in the `.htaccess` CSP. Verified `combodef.com` sends no X-Frame-Options/CSP of its own, so the CSP was the only blocker.
 - **Permanent guard**: `scripts/validate_site.py` CHECK 5 (`check_iframe_csp_coverage()`, blocking pre-deploy gate) parses `frame-src` from `.htaccess` and fails if any `banners.json` raw_html or `posts.json` body embeds an `<iframe>` from an origin not listed. Banners for hidden brands (`data/hidden_brands.json`) are skipped because the deploy removes them. Do NOT add a hidden brand's tracking domain (e.g. `trackrt.tictacbets.co.za`) to the CSP: `hide_brands.py` fails the deploy if the brand name appears in a deployed text file. Un-hiding a brand with a raw iframe banner means adding its origin to `frame-src` in the same change.
 - **Related, not yet an issue**: `ban-013`/`ban-014` raw banners also create a hidden tracking-pixel iframe from inline JS (`e.src=n`), which the literal-`src` regex can't see; they are hidden brands so they never ship today.
+
+---
+
+## Daily Reporting Agent (added 2026-10-18)
+
+### Pattern that works for automated GitHub Actions daily reports
+- Use `mcp__github__actions_list` (method `list_workflow_runs`, perPage 100) to fetch runs — result can be very large (100k+ chars); always save to a local temp file and process with Python/jq rather than reading inline.
+- Filter by `updated_at >= now - 24h` using `datetime.fromisoformat(ts.replace('Z','+00:00'))`.
+- Categorise: `status in ('in_progress','queued')` → Still Running; else branch on `conclusion`: `success` / `failure` / (`cancelled`|`skipped`|`timed_out`).
+- Create issue with `mcp__github__issue_write` (method `create`), then immediately close with `method: update`, `state: closed`, `state_reason: completed` — keeps repo owner's email notification but prevents clutter.
+- The `report` label (color `0075ca`) already exists on this repo — no need to recreate it.
+- Always send a `PushNotification` when failures are found. Key recurring issue as of 2026-10-18: `twitter_posts.yml` failing repeatedly (9 of 10 failures today); `fabricated_content_fix.yml` also failing. These are covered by auto-retry but worth watching.
+- `Priority Content` (agent_priority_content.yml) regularly runs for 3–6+ hours — long runtimes for this workflow are expected behaviour, not a hang.
