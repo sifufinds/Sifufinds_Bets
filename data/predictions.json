@@ -1,47 +1,47 @@
 {
-  "updated": "2026-10-17T23:54:00.139766+00:00",
+  "updated": "2026-10-18T09:23:41.843314+00:00",
   "source": "predictz.com",
-  "count": 46,
+  "count": 33,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-10-17T23:54:00.139766+00:00"
+      "ts": "2026-10-18T09:23:41.843314+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-10-17T23:54:00.139766+00:00"
+      "ts": "2026-10-18T09:23:41.843314+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-10-17T23:54:00.139766+00:00"
+      "ts": "2026-10-18T09:23:41.843314+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-10-17T23:54:00.139766+00:00"
+      "ts": "2026-10-18T09:23:41.843314+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-10-17T23:54:00.139766+00:00"
+      "ts": "2026-10-18T09:23:41.843314+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-10-17T23:54:00.139766+00:00"
+      "ts": "2026-10-18T09:23:41.843314+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-10-17T23:54:00.139766+00:00"
+      "ts": "2026-10-18T09:23:41.843314+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-10-17T23:54:00.139766+00:00"
+      "ts": "2026-10-18T09:23:41.843314+00:00"
     }
   ],
   "predictions": [
@@ -64,7 +64,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971472+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233068+00:00"
     },
     {
       "id": "1192607",
@@ -85,49 +85,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971552+00:00"
-    },
-    {
-      "id": "1171914",
-      "home": "Atlanta United",
-      "away": "Inter Miami",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972328+00:00"
-    },
-    {
-      "id": "1171917",
-      "home": "Austin FC",
-      "away": "Vancouver Whitecaps",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972551+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233198+00:00"
     },
     {
       "id": "1170886",
@@ -148,7 +106,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972245+00:00"
+      "scraped_at": "2026-10-18T09:23:48.234235+00:00"
     },
     {
       "id": "1204909",
@@ -169,7 +127,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971302+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232776+00:00"
     },
     {
       "id": "1204901",
@@ -190,7 +148,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971343+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232846+00:00"
     },
     {
       "id": "1196820",
@@ -211,7 +169,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.970831+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232134+00:00"
     },
     {
       "id": "1196813",
@@ -232,7 +190,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.970893+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232226+00:00"
     },
     {
       "id": "1191939",
@@ -253,7 +211,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971805+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233604+00:00"
     },
     {
       "id": "1202623",
@@ -274,7 +232,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971169+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232571+00:00"
     },
     {
       "id": "1195549",
@@ -295,7 +253,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971021+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232429+00:00"
     },
     {
       "id": "1215270",
@@ -316,7 +274,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972019+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233953+00:00"
     },
     {
       "id": "1215282",
@@ -337,7 +295,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972071+00:00"
+      "scraped_at": "2026-10-18T09:23:48.234017+00:00"
     },
     {
       "id": "1171922",
@@ -358,7 +316,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972871+00:00"
+      "scraped_at": "2026-10-18T09:23:48.234371+00:00"
     },
     {
       "id": "1191940",
@@ -379,7 +337,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971848+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233675+00:00"
     },
     {
       "id": "1191938",
@@ -400,7 +358,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971890+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233745+00:00"
     },
     {
       "id": "1191937",
@@ -421,7 +379,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971758+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233534+00:00"
     },
     {
       "id": "1191390",
@@ -442,7 +400,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971429+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232986+00:00"
     },
     {
       "id": "1170889",
@@ -463,7 +421,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972160+00:00"
+      "scraped_at": "2026-10-18T09:23:48.234098+00:00"
     },
     {
       "id": "1170894",
@@ -484,28 +442,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972203+00:00"
-    },
-    {
-      "id": "1171915",
-      "home": "Houston Dynamo",
-      "away": "FC Dallas",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972595+00:00"
+      "scraped_at": "2026-10-18T09:23:48.234166+00:00"
     },
     {
       "id": "1191386",
@@ -526,28 +463,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971509+00:00"
-    },
-    {
-      "id": "1171918",
-      "home": "LA Galaxy",
-      "away": "San Diego FC",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972689+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233128+00:00"
     },
     {
       "id": "1192605",
@@ -568,7 +484,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971593+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233266+00:00"
     },
     {
       "id": "1196815",
@@ -589,7 +505,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.970938+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232298+00:00"
     },
     {
       "id": "1192603",
@@ -610,7 +526,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971635+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233334+00:00"
     },
     {
       "id": "1192601",
@@ -631,7 +547,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971713+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233463+00:00"
     },
     {
       "id": "1202626",
@@ -652,7 +568,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971216+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232641+00:00"
     },
     {
       "id": "1191934",
@@ -673,70 +589,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971930+00:00"
-    },
-    {
-      "id": "1171911",
-      "home": "New England Revolution",
-      "away": "Chicago Fire",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972373+00:00"
-    },
-    {
-      "id": "1171913",
-      "home": "New York City FC",
-      "away": "Los Angeles FC",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972418+00:00"
-    },
-    {
-      "id": "1171910",
-      "home": "New York Red Bulls",
-      "away": "Toronto FC",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972463+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233809+00:00"
     },
     {
       "id": "1196811",
@@ -757,28 +610,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.970979+00:00"
-    },
-    {
-      "id": "1171912",
-      "home": "Orlando City",
-      "away": "DC United",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972506+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232363+00:00"
     },
     {
       "id": "1202622",
@@ -799,7 +631,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971101+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232501+00:00"
     },
     {
       "id": "1192608",
@@ -820,28 +652,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971676+00:00"
-    },
-    {
-      "id": "1171920",
-      "home": "Portland Timbers",
-      "away": "Colorado Rapids",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972733+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233401+00:00"
     },
     {
       "id": "1215273",
@@ -862,7 +673,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971976+00:00"
+      "scraped_at": "2026-10-18T09:23:48.233882+00:00"
     },
     {
       "id": "1202625",
@@ -883,7 +694,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971256+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232704+00:00"
     },
     {
       "id": "1170893",
@@ -904,91 +715,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972282+00:00"
-    },
-    {
-      "id": "1171919",
-      "home": "San Jose Earthquakes",
-      "away": "Nashville SC",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972778+00:00"
-    },
-    {
-      "id": "1170892",
-      "home": "Sao Paulo",
-      "away": "Vasco da Gama",
-      "competition": "Brazil Serie A",
-      "comp_slug": "brazil/serie-a",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972117+00:00"
-    },
-    {
-      "id": "1171921",
-      "home": "Seattle Sounders",
-      "away": "CF Montreal",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972823+00:00"
-    },
-    {
-      "id": "1171916",
-      "home": "Sporting Kansas City",
-      "away": "Real Salt Lake",
-      "competition": "USA Major League Soccer",
-      "comp_slug": "usa/major-league-soccer",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.972644+00:00"
+      "scraped_at": "2026-10-18T09:23:48.234294+00:00"
     },
     {
       "id": "1191391",
@@ -1009,7 +736,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-17T23:54:04.971387+00:00"
+      "scraped_at": "2026-10-18T09:23:48.232918+00:00"
     }
   ]
 }
