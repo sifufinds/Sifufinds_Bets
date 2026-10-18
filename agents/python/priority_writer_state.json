@@ -1359,28 +1359,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-17T23:52:39.376564+00:00",
-    "candidates_available": 224,
+    "checked_at": "2026-10-18T02:11:49.366272+00:00",
+    "candidates_available": 222,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "‘They really made us proud’ Coach praises Bok betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "they-really-made-us-proud-coach-praises-bok-betting-tips-south-africa"
-      },
       {
         "keyword": "Katsina gov signs N828.58bn 2027 appropriation law betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'File a complaint with the NLRC’s consumer protection unit. All NLRC‑licensed bookmakers are required to resolve disputes fairly and transparently. If you are dealing with a Curaçao‑licensed operator, you may need to seek alternative dispute resolution channels.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Every NLRC‑licensed bookmaker provides responsible‑gaming tools such as deposit limits, self‑exclusion and reality checks. Access these features from the account settings page and set limits that suit your budget.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Egypt",
-        "country": "Egypt",
-        "result": "written",
-        "slug": "ligue-europa-uefa-programme-du-jour-betting-tips-egypt"
+        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Morocco",
+        "country": "Morocco",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Les retraits par carte de crédit (Visa, Mastercard) et par transfert bancaire sont généralement les plus rapides. Orange Money et CIH Bank peuvent prendre un ou deux jours ouvrables. Vérifiez les frais éventuels avant de choisir votre méthode.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Uganda",
+        "country": "Uganda",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
       }
     ]
   }
