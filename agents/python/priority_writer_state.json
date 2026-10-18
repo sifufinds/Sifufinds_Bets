@@ -1380,31 +1380,35 @@
     "Ligue des champions CAF où suivre Maghreb de betting tips Zambia": {
       "slug": "caf-champions-league-betting-zambia",
       "posted_at": "2026-10-18T11:33:30.055203+00:00"
+    },
+    "Ligue des champions CAF où suivre Maghreb de betting tips Ivory Coast": {
+      "slug": "caf-champions-league-betting-tips-ivory-coast",
+      "posted_at": "2026-10-18T16:10:08.158347+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-18T11:33:34.974385+00:00",
-    "candidates_available": 205,
+    "checked_at": "2026-10-18T16:10:12.771132+00:00",
+    "candidates_available": 203,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Ligue des champions CAF où suivre Maghreb de betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'M‑Pesa (Vodacom) and Airtel Money are the fastest and most widely used mobile money services for instant deposits and withdrawals.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Oui, les sites détenus d’une licence GBT sont soumis à des contrôles stricts en matière de sécurité des fonds, de protection des données et de jeu responsable. Vous bénéficiez ainsi d’une protection juridique en cas de litige.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Ligue des champions CAF où suivre Maghreb de betting tips Uganda",
-        "country": "Uganda",
-        "result": "written",
-        "slug": "follow-caf-champions-league-maghreb-uganda-betting-tips"
+        "keyword": "Ligue des champions CAF où suivre Maghreb de betting tips Ethiopia",
+        "country": "Ethiopia",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Bank Transfer, Visa, and Mastercard are the most popular payment methods in Ethiopia, and all four bookmakers accept them.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Ligue des champions CAF où suivre Maghreb de betting tips Zambia",
-        "country": "Zambia",
+        "keyword": "Ligue des champions CAF où suivre Maghreb de betting tips Ivory Coast",
+        "country": "Ivory Coast",
         "result": "written",
-        "slug": "caf-champions-league-betting-zambia"
+        "slug": "caf-champions-league-betting-tips-ivory-coast"
       }
     ]
   }
