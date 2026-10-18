@@ -1,9 +1,9 @@
 {
-  "date": "2026-10-17",
-  "total": 101,
+  "date": "2026-10-18",
+  "total": 108,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 14,
     "MEDIUM": 93,
     "INFO": 1
   },
@@ -11,26 +11,68 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "bledisloe-cup-wallabies-all-blacks-betting-tips-south-africa",
-      "detail": "Title 77 chars (max 60): 'Bledisloe Cup: Wallabies vs All Blacks Betting Tips for South African '"
+      "page": "basketball-coaches-pe-teachers-betting-tips-kenya",
+      "detail": "Title 67 chars (max 60): 'Basketball Coaches & PE Teachers: New Skills Betting Tips for Kenya'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "ghana-amputee-world-cup-betting-tips",
-      "detail": "Title 64 chars (max 60): 'Ghana\u2019s Amputee World Cup Odds: Can the Black Challenge Deliver?'"
+      "page": "garfa-division-two-league-betting-tips-ghana",
+      "detail": "Title 64 chars (max 60): 'GARFA Division Two League: Betting Tips & Bookmaker Offers Ghana'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "nff-normalisation-committee-fifa-keeps-nigeria-waiting-betting-tips",
-      "detail": "Title 73 chars (max 60): 'NFF Normalisation Committee Delay: Betting Tips & Top Nigerian Bookmak'"
+      "page": "rugby-tributes-goalkeeping-woes-afcon-implications-weekend-roundup",
+      "detail": "Title 75 chars (max 60): 'Rugby Tributes, Goalkeeping Woes, and AFCON Implications: A Weekend Ro'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "chelsea-betting-tips-nigeria-epl-ill-be-back-few-weeks",
+      "detail": "Title 85 chars (max 60): 'Chelsea Betting Tips Nigeria \u2013 EPL I\u2019ll Be Back Few Weeks, Says Chelse'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "katsina-gov-signs-n82858bn-2027-appropriation-law-betting-tips-nigeria",
+      "detail": "Title 91 chars (max 60): 'Katsina Gov Signs N828.58bn 2027 Appropriation Law \u2013 Betting Tips & Be'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ligue-europa-uefa-fixtures-betting-tips-tanzania",
+      "detail": "Title 65 chars (max 60): \"Ligue Europa UEFA: Today's Fixtures and Betting Tips for Tanzania\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "why-licensed-sports-betting-in-nigeria-protects-your-payouts-and-data",
+      "detail": "Title 69 chars (max 60): 'Why Licensed Sports Betting in Nigeria Protects Your Payouts and Data'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "nff-normalisation-committee-fifa-keeps-nigeria-waiting-betting-tips",
-      "detail": "Excerpt 185 chars (max 155)"
+      "page": "basketball-coaches-pe-teachers-betting-tips-kenya",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "garfa-division-two-league-betting-tips-ghana",
+      "detail": "Excerpt 162 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "rugby-tributes-goalkeeping-woes-afcon-implications-weekend-roundup",
+      "detail": "Excerpt 176 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ligue-europa-uefa-fixtures-betting-tips-tanzania",
+      "detail": "Excerpt 175 chars (max 155)"
     },
     {
       "severity": "HIGH",
@@ -611,8 +653,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "57 posts",
-      "detail": "57 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "56 posts",
+      "detail": "56 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
