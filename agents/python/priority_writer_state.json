@@ -1372,31 +1372,39 @@
     "Basketball coaches PE teachers imparted new skills betting tips Kenya": {
       "slug": "basketball-coaches-pe-teachers-betting-tips-kenya",
       "posted_at": "2026-10-18T09:20:50.275865+00:00"
+    },
+    "Ligue des champions CAF où suivre Maghreb de betting tips Uganda": {
+      "slug": "follow-caf-champions-league-maghreb-uganda-betting-tips",
+      "posted_at": "2026-10-18T11:21:09.335485+00:00"
+    },
+    "Ligue des champions CAF où suivre Maghreb de betting tips Zambia": {
+      "slug": "caf-champions-league-betting-zambia",
+      "posted_at": "2026-10-18T11:33:30.055203+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-18T09:21:49.061783+00:00",
-    "candidates_available": 206,
+    "checked_at": "2026-10-18T11:33:34.974385+00:00",
+    "candidates_available": 205,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Basketball coaches PE teachers imparted new skills betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "basketball-coaches-pe-teachers-betting-tips-kenya"
-      },
       {
         "keyword": "Ligue des champions CAF où suivre Maghreb de betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Les exigences varient d’un opérateur à l’autre, mais les offres les plus courantes demandent de miser le montant du bonus x5 à des cotes d’au moins 1.40. Certaines promotions, comme celle de SportPesa, peuvent imposer un facteur plus élevé, souvent x30, sur l’ensemble du bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'M‑Pesa (Vodacom) and Airtel Money are the fastest and most widely used mobile money services for instant deposits and withdrawals.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ligue des champions CAF où suivre Maghreb de betting tips Uganda",
         "country": "Uganda",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'If you experience issues with a deposit or withdrawal, contact the customer support team of the bookmaker. All UNCS‑licensed operators are required to provide assistance and resolve disputes in a timely manner.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "follow-caf-champions-league-maghreb-uganda-betting-tips"
+      },
+      {
+        "keyword": "Ligue des champions CAF où suivre Maghreb de betting tips Zambia",
+        "country": "Zambia",
+        "result": "written",
+        "slug": "caf-champions-league-betting-zambia"
       }
     ]
   }
