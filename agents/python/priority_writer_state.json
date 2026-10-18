@@ -1348,31 +1348,39 @@
     "Benni slams 'arrogant' referee after loss Guinea betting tips South Africa": {
       "slug": "benni-slams-arrogant-referee-after-loss-guinea-betting-tips-south-africa",
       "posted_at": "2026-10-17T19:00:33.123232+00:00"
+    },
+    "‘They really made us proud’ Coach praises Bok betting tips South Africa": {
+      "slug": "they-really-made-us-proud-coach-praises-bok-betting-tips-south-africa",
+      "posted_at": "2026-10-17T23:51:55.161793+00:00"
+    },
+    "Ligue Europa UEFA voici le programme du jour betting tips Egypt": {
+      "slug": "ligue-europa-uefa-programme-du-jour-betting-tips-egypt",
+      "posted_at": "2026-10-17T23:52:36.125134+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-17T19:00:37.556507+00:00",
-    "candidates_available": 244,
+    "checked_at": "2026-10-17T23:52:39.376564+00:00",
+    "candidates_available": 224,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
         "keyword": "‘They really made us proud’ Coach praises Bok betting tips South Africa",
         "country": "South Africa",
+        "result": "written",
+        "slug": "they-really-made-us-proud-coach-praises-bok-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Katsina gov signs N828.58bn 2027 appropriation law betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 510)"
+        "reason": "quality_gate: final line was 'File a complaint with the NLRC’s consumer protection unit. All NLRC‑licensed bookmakers are required to resolve disputes fairly and transparently. If you are dealing with a Curaçao‑licensed operator, you may need to seek alternative dispute resolution channels.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Man City confirm appeal after Premier League charges betting tips Kenya",
-        "country": "Kenya",
+        "keyword": "Ligue Europa UEFA voici le programme du jour betting tips Egypt",
+        "country": "Egypt",
         "result": "written",
-        "slug": "man-city-appeal-premier-league-betting-tips-kenya"
-      },
-      {
-        "keyword": "Benni slams 'arrogant' referee after loss Guinea betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "benni-slams-arrogant-referee-after-loss-guinea-betting-tips-south-africa"
+        "slug": "ligue-europa-uefa-programme-du-jour-betting-tips-egypt"
       }
     ]
   }
