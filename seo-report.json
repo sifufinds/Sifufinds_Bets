@@ -1,79 +1,13 @@
 {
   "date": "2026-10-18",
-  "total": 108,
+  "total": 98,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 14,
-    "MEDIUM": 93,
+    "HIGH": 3,
+    "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "basketball-coaches-pe-teachers-betting-tips-kenya",
-      "detail": "Title 67 chars (max 60): 'Basketball Coaches & PE Teachers: New Skills Betting Tips for Kenya'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "garfa-division-two-league-betting-tips-ghana",
-      "detail": "Title 64 chars (max 60): 'GARFA Division Two League: Betting Tips & Bookmaker Offers Ghana'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "rugby-tributes-goalkeeping-woes-afcon-implications-weekend-roundup",
-      "detail": "Title 75 chars (max 60): 'Rugby Tributes, Goalkeeping Woes, and AFCON Implications: A Weekend Ro'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "chelsea-betting-tips-nigeria-epl-ill-be-back-few-weeks",
-      "detail": "Title 85 chars (max 60): 'Chelsea Betting Tips Nigeria \u2013 EPL I\u2019ll Be Back Few Weeks, Says Chelse'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "katsina-gov-signs-n82858bn-2027-appropriation-law-betting-tips-nigeria",
-      "detail": "Title 91 chars (max 60): 'Katsina Gov Signs N828.58bn 2027 Appropriation Law \u2013 Betting Tips & Be'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ligue-europa-uefa-fixtures-betting-tips-tanzania",
-      "detail": "Title 65 chars (max 60): \"Ligue Europa UEFA: Today's Fixtures and Betting Tips for Tanzania\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "why-licensed-sports-betting-in-nigeria-protects-your-payouts-and-data",
-      "detail": "Title 69 chars (max 60): 'Why Licensed Sports Betting in Nigeria Protects Your Payouts and Data'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "basketball-coaches-pe-teachers-betting-tips-kenya",
-      "detail": "Excerpt 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "garfa-division-two-league-betting-tips-ghana",
-      "detail": "Excerpt 162 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "rugby-tributes-goalkeeping-woes-afcon-implications-weekend-roundup",
-      "detail": "Excerpt 176 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "ligue-europa-uefa-fixtures-betting-tips-tanzania",
-      "detail": "Excerpt 175 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
@@ -91,6 +25,12 @@
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "katsina-gov-signs-n82858bn-2027-appropriation-law-betting-tips-nigeria",
+      "detail": "High title overlap (6 meaningful tokens) with 'katsina-2027-appropriation-betting-tips-nigeria' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
