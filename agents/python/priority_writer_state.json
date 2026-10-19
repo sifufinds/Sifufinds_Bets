@@ -1407,28 +1407,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-18T20:30:41.915447+00:00",
-    "candidates_available": 185,
+    "checked_at": "2026-10-19T03:19:08.759503+00:00",
+    "candidates_available": 194,
     "attempted": 3,
-    "written": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Bulls bolster midfield options Griquas Currie Cup winner betting tips South Africa",
+        "keyword": "Emerging Stars survive Tanzania attack book Ivory Coast betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes. 22Bet accepts Airtel Money as a deposit method. Simply select Airtel Money at the cashier, enter the amount you wish to fund and follow the prompts to complete the transaction.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Hotto’s remarkable MTN8 final offering betting tips South Africa",
         "country": "South Africa",
-        "result": "written",
-        "slug": "bulls-midfield-griquas-currie-cup-betting-tips-south-africa"
+        "result": "failed",
+        "reason": "quality_gate: final line was 'All three bookmakers allow bonus wagering on live markets, but you must still meet the accumulator or multiplier conditions before you can withdraw any winnings from the bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "how to bet online Cameroon beginners guide",
-        "country": "Cameroon",
-        "result": "written",
-        "slug": "how-to-bet-online-cameroon-beginners-guide"
-      },
-      {
-        "keyword": "safest betting apps Cameroon",
-        "country": "Cameroon",
-        "result": "written",
-        "slug": "safest-betting-apps-cameroon"
+        "keyword": "best betting sites Senegal 2026",
+        "country": "Senegal",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 404)"
       }
     ]
   }
