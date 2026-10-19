@@ -1416,31 +1416,39 @@
     "Poor annoying football Tusker coach Mette slams Singida betting tips Kenya": {
       "slug": "poor-annoying-football-tusker-coach-mette-slams-singida-betting-tips-kenya",
       "posted_at": "2026-10-19T07:52:17.723368+00:00"
+    },
+    "Da Cruz wheel Chiefs better or worse betting tips South Africa": {
+      "slug": "da-cruz-wheel-chiefs-betting-tips-south-africa",
+      "posted_at": "2026-10-19T12:53:39.541538+00:00"
+    },
+    "Ligue des champions CAF tous les résultats du betting tips Tanzania": {
+      "slug": "ligue-des-champions-caf-resultats-paris-tanzanie",
+      "posted_at": "2026-10-19T12:54:33.839644+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-19T10:16:43.337629+00:00",
+    "checked_at": "2026-10-19T12:54:57.902464+00:00",
     "candidates_available": 196,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Da Cruz wheel Chiefs better or worse betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: only 801 words (minimum 1000); final line was 'Look for bookmakers with competitive odds, generous bonuses, and a variety of betting markets. Licensing and payment options are also crucial for a safe and convenient betting experience.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "da-cruz-wheel-chiefs-betting-tips-south-africa"
       },
       {
         "keyword": "Ligue des champions CAF tous les résultats du betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: only 999 words (minimum 1000)"
+        "result": "written",
+        "slug": "ligue-des-champions-caf-resultats-paris-tanzanie"
       },
       {
         "keyword": "Hotto’s remarkable MTN8 final offering betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: only 795 words (minimum 1000); final line was 'Popular methods include FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard, Instant EFT, and Blue Voucher.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Yes, betting on the MTN8 final is legal in South Africa when you use a bookmaker licensed by the WCGRB, NGB or ECGBB. Ensure you are over 18 and that the bookmaker is properly licensed.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
