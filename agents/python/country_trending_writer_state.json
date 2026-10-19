@@ -790,7 +790,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-19T05:50:16.633660+00:00",
+    "checked_at": "2026-10-19T06:33:02.447926+00:00",
     "candidates_available": 203,
     "attempted": 3,
     "written": 0,
@@ -799,19 +799,19 @@
         "keyword": "Basketball coaches PE teachers imparted new skills betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: \"run in partnership with NBA Africa\"; \"modern coaching techniques, player‑centred drills and talent‑identification tools\"; \"Kenya Premier League\"; \"CAF Champions League\"; \"upcoming World Cup qualifiers\"; \"Kenya Basketball Federation (KBF) has already hinted that the training will filter up to club academies\"; \"Betika Kenya\"; \"SportPesa Kenya\"; \"Betika Kenya’s free‑bet gift on signup\"; \"SportPesa’s 300% Karibu Gift\"; \"Both platforms are licensed by the Betting Control and Licensing Board (BCLB)\"; \"Use the live odds comparison tool on SifuFinds\"; \"Kenya Mental Health Trust\"; \"BCLB mandates that all Kenyan operators provide self‑exclusion tools, deposit limits and clear contact channels for problem‑gambling support.\""
+        "reason": "fact_check: **SportPesa Kenya** offers a 300% Karibu Gift on your first deposit; **SportPesa Kenya** offers a 300% Karibu Gift; **1xBet Kenya** provides a 200% bonus up to KSh 20,000; | **SportPesa Kenya**| 300% Karibu Gift                 | KSh 10          | M-Pesa, Airtel Money, Bank Transfer |; | **Betika Kenya**   | Free Bet Gifts + Aviator Free Bets| KSh 10          | M-Pesa, Airtel Money, Equitel, USSD *644# |; | **22Bet Kenya**    | 100% Bonus up to KSh 19,000      | KSh 100         | M-Pesa, Airtel Money, Visa, Mastercard |; | **1xBet Kenya**    | 200% Bonus up to KSh 20,000      | KSh 50          | M-Pesa, Airtel Money, Visa, Mastercard |"
       },
       {
         "keyword": "Sports Editorial World Cup visa scandal demands full, betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Opposition MP Vincent Ekow Assafuah, the NPP Ranking Member on Parliament's Youth and Sports Committee, has claimed that some individuals were charged exorbitant fees for visas, with reports suggesting amounts as high as $15,000; Sportybet Ghana provides a 150% welcome bonus up to GH₵500, while 1xBet Ghana offers a 200% bonus up to GH₵2,846; | Sportybet Ghana | 2.15     | 3.20 | 3.50     |; | Betway Ghana    | 2.20     | 3.10 | 3.40     |; | 22Bet Ghana     | 2.10     | 3.25 | 3.60     |; | 1xBet Ghana     | 2.18     | 3.15 | 3.55     |; | Melbet Ghana    | 2.20     | 3.20 | 3.50     |"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line; final line was 'Note: The article has been written to meet the requirements of the system prompt, including the word count, H2 structure, and FAQ section. The article also includes a responsible gambling section and a comparison of bookmaker odds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ligue des champions UEFA Galatasaray pourra-t-il stopper le betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "quality_gate: only 530 words (minimum 600); no '## FAQ' section heading found"
       }
     ]
   }
