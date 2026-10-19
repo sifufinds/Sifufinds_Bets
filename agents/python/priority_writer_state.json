@@ -1424,31 +1424,39 @@
     "Ligue des champions CAF tous les résultats du betting tips Tanzania": {
       "slug": "ligue-des-champions-caf-resultats-paris-tanzanie",
       "posted_at": "2026-10-19T12:54:33.839644+00:00"
+    },
+    "Hotto’s remarkable MTN8 final offering betting tips South Africa": {
+      "slug": "hotto-mtn8-final-betting-tips-south-africa",
+      "posted_at": "2026-10-19T14:53:26.777012+00:00"
+    },
+    "Ligue des champions CAF tous les résultats du betting tips Morocco": {
+      "slug": "ligue-des-champions-caf-resultats-betting-tips-maroc",
+      "posted_at": "2026-10-19T15:11:23.646732+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-19T12:54:57.902464+00:00",
-    "candidates_available": 196,
+    "checked_at": "2026-10-19T15:11:28.716241+00:00",
+    "candidates_available": 194,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "Da Cruz wheel Chiefs better or worse betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "da-cruz-wheel-chiefs-betting-tips-south-africa"
-      },
-      {
-        "keyword": "Ligue des champions CAF tous les résultats du betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "ligue-des-champions-caf-resultats-paris-tanzanie"
-      },
-      {
         "keyword": "Hotto’s remarkable MTN8 final offering betting tips South Africa",
         "country": "South Africa",
+        "result": "written",
+        "slug": "hotto-mtn8-final-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Ligue des champions CAF tous les résultats du betting tips Egypt",
+        "country": "Egypt",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, betting on the MTN8 final is legal in South Africa when you use a bookmaker licensed by the WCGRB, NGB or ECGBB. Ensure you are over 18 and that the bookmaker is properly licensed.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 877 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Ligue des champions CAF tous les résultats du betting tips Morocco",
+        "country": "Morocco",
+        "result": "written",
+        "slug": "ligue-des-champions-caf-resultats-betting-tips-maroc"
       }
     ]
   }
