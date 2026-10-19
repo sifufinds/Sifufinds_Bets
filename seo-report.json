@@ -1,37 +1,13 @@
 {
   "date": "2026-10-19",
-  "total": 102,
+  "total": 98,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 3,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "european-football-nba-betting-insights-africa",
-      "detail": "Title 68 chars (max 60): 'European Football & NBA Insights: Betting Angles for African Punters'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "poor-annoying-football-tusker-coach-mette-slams-singida-betting-tips-kenya",
-      "detail": "Title 79 chars (max 60): 'Poor Annoying Football Tusker Coach Mette Slams Singida: Betting Tips '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "euromatch-npfl-winning-motivation-betting-tips-nigeria",
-      "detail": "Title 98 chars (max 60): 'Euromatch NPFL Winning Has Always Been My Motivation \u2013 Top Betting Tip'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "poor-annoying-football-tusker-coach-mette-slams-singida-betting-tips-kenya",
-      "detail": "Excerpt 166 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
