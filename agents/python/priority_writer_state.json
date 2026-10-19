@@ -1432,31 +1432,35 @@
     "Ligue des champions CAF tous les résultats du betting tips Morocco": {
       "slug": "ligue-des-champions-caf-resultats-betting-tips-maroc",
       "posted_at": "2026-10-19T15:11:23.646732+00:00"
+    },
+    "Ligue des champions CAF tous les résultats du betting tips Zambia": {
+      "slug": "ligue-des-champions-caf-betting-tips-zambia",
+      "posted_at": "2026-10-19T16:54:19.333760+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-19T15:11:28.716241+00:00",
-    "candidates_available": 194,
+    "checked_at": "2026-10-19T16:54:23.728569+00:00",
+    "candidates_available": 192,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Hotto’s remarkable MTN8 final offering betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "hotto-mtn8-final-betting-tips-south-africa"
-      },
       {
         "keyword": "Ligue des champions CAF tous les résultats du betting tips Egypt",
         "country": "Egypt",
         "result": "failed",
-        "reason": "quality_gate: only 877 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "reason": "quality_gate: final line was 'Les paris sont légaux tant qu’ils sont effectués auprès de sites licenciés et que le joueur a plus de 18 ans. L’EGRA supervise les opérateurs pour s’assurer qu’ils respectent les normes de protection des joueurs et les exigences de vérification d’identité.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Ligue des champions CAF tous les résultats du betting tips Morocco",
-        "country": "Morocco",
+        "keyword": "Ligue des champions CAF tous les résultats du betting tips Uganda",
+        "country": "Uganda",
+        "result": "failed",
+        "reason": "quality_gate: final line was '1xBet Uganda offers the highest match bonus, up to USh 3,600,000, but it comes with a 5× wagering requirement. If you prefer a lower requirement, Betway’s 50 % match with a 3× requirement is a solid alternative.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue des champions CAF tous les résultats du betting tips Zambia",
+        "country": "Zambia",
         "result": "written",
-        "slug": "ligue-des-champions-caf-resultats-betting-tips-maroc"
+        "slug": "ligue-des-champions-caf-betting-tips-zambia"
       }
     ]
   }
