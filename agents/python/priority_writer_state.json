@@ -1480,31 +1480,39 @@
     "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Uganda": {
       "slug": "stuttgart-vs-atletico-madrid-betting-tips-uganda",
       "posted_at": "2026-10-20T13:44:50.467721+00:00"
+    },
+    "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Zambia": {
+      "slug": "stuttgart-atletico-uefa-champions-league-betting-tips-zambia",
+      "posted_at": "2026-10-20T18:55:21.796572+00:00"
+    },
+    "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Ethiopia": {
+      "slug": "stuttgart-atletico-uefa-champions-league-betting-tips-ethiopia",
+      "posted_at": "2026-10-20T19:02:47.798542+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-20T13:44:54.351845+00:00",
-    "candidates_available": 187,
+    "checked_at": "2026-10-20T19:02:53.779038+00:00",
+    "candidates_available": 185,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "Ghanaian trio impress Tottenham’s comeback win over Coventry betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "ghanaian-trio-impress-tottenham-comeback-betting-tips"
-      },
-      {
         "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 492)"
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
       },
       {
-        "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Uganda",
-        "country": "Uganda",
+        "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Zambia",
+        "country": "Zambia",
         "result": "written",
-        "slug": "stuttgart-vs-atletico-madrid-betting-tips-uganda"
+        "slug": "stuttgart-atletico-uefa-champions-league-betting-tips-zambia"
+      },
+      {
+        "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Ethiopia",
+        "country": "Ethiopia",
+        "result": "written",
+        "slug": "stuttgart-atletico-uefa-champions-league-betting-tips-ethiopia"
       }
     ]
   }
