@@ -1,41 +1,7 @@
 {
-  "updated": "2026-10-20T01:44:23.344730+00:00",
+  "updated": "2026-10-20T03:47:49.566791+00:00",
   "count": 23,
   "events": [
-    {
-      "league": "WNBA",
-      "key": "basketball",
-      "live": true,
-      "complete": false,
-      "home": "Golden State Valkyries",
-      "away": "Atlanta Dream",
-      "hScore": "46",
-      "aScore": "53",
-      "time": "53.2",
-      "h": 0.0,
-      "d": 0.0,
-      "a": 0.0,
-      "hBk": "",
-      "dBk": "",
-      "aBk": ""
-    },
-    {
-      "league": "MLB",
-      "key": "baseball",
-      "live": true,
-      "complete": false,
-      "home": "Tampa Bay Rays",
-      "away": "Cleveland Guardians",
-      "hScore": "3",
-      "aScore": "0",
-      "time": "LIVE",
-      "h": 0.0,
-      "d": 0.0,
-      "a": 0.0,
-      "hBk": "",
-      "dBk": "",
-      "aBk": ""
-    },
     {
       "league": "NBA",
       "key": "basketball",
@@ -49,9 +15,9 @@
       "h": 2.0,
       "d": 0.0,
       "a": 1.83,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -66,9 +32,9 @@
       "h": 1.56,
       "d": 0.0,
       "a": 2.5,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -83,9 +49,9 @@
       "h": 1.8,
       "d": 0.0,
       "a": 2.05,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "Premier League",
@@ -266,6 +232,40 @@
       "away": "Nice",
       "hScore": "2",
       "aScore": "1",
+      "time": "FT",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
+    {
+      "league": "WNBA",
+      "key": "basketball",
+      "live": false,
+      "complete": true,
+      "home": "Golden State Valkyries",
+      "away": "Atlanta Dream",
+      "hScore": "65",
+      "aScore": "79",
+      "time": "FT",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
+    {
+      "league": "MLB",
+      "key": "baseball",
+      "live": false,
+      "complete": true,
+      "home": "Tampa Bay Rays",
+      "away": "Cleveland Guardians",
+      "hScore": "7",
+      "aScore": "3",
       "time": "FT",
       "h": 0.0,
       "d": 0.0,
