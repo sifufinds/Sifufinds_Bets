@@ -1,30 +1,18 @@
 {
-  "date": "2026-10-19",
-  "total": 101,
+  "date": "2026-10-20",
+  "total": 99,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 6,
+    "HIGH": 4,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
-      "check": "title_length",
-      "page": "da-cruz-wheel-chiefs-betting-tips-south-africa",
-      "detail": "Title 68 chars (max 60): 'Da Cruz Wheel Chiefs: Better or Worse? Betting Tips for South Africa'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ligue-des-champions-caf-resultats-paris-tanzanie",
-      "detail": "Title 84 chars (max 60): 'Ligue des champions CAF: Tous les r\u00e9sultats et conseils de paris pour '"
-    },
-    {
-      "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "da-cruz-wheel-chiefs-betting-tips-south-africa",
-      "detail": "Excerpt 187 chars (max 155)"
+      "page": "why-stormers-not-getting-carried-away-betting-tips-south-africa",
+      "detail": "Excerpt 156 chars (max 155)"
     },
     {
       "severity": "HIGH",
