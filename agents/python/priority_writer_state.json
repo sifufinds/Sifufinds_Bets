@@ -1440,31 +1440,43 @@
     "Ligue des champions CAF tous les résultats du betting tips Uganda": {
       "slug": "ligue-des-champions-caf-tous-les-resultats-du-betting-tips-uganda",
       "posted_at": "2026-10-19T21:50:08.629692+00:00"
+    },
+    "Ligue des champions CAF tous les résultats du betting tips Egypt": {
+      "slug": "ligue-des-champions-caf-betting-tips-egypt",
+      "posted_at": "2026-10-20T00:40:49.835367+00:00"
+    },
+    "Ligue des champions CAF tous les résultats du betting tips Ethiopia": {
+      "slug": "ligue-des-champions-caf-tous-les-resultats-paris-ethiopie",
+      "posted_at": "2026-10-20T00:41:04.898561+00:00"
+    },
+    "Ligue des champions CAF tous les résultats du betting tips Ivory Coast": {
+      "slug": "caf-champions-league-betting-tips-ivory-coast",
+      "posted_at": "2026-10-20T00:54:11.910888+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-19T22:06:54.622743+00:00",
-    "candidates_available": 191,
+    "checked_at": "2026-10-20T00:54:15.344255+00:00",
+    "candidates_available": 190,
     "attempted": 3,
-    "written": 1,
+    "written": 3,
     "attempts": [
       {
         "keyword": "Ligue des champions CAF tous les résultats du betting tips Egypt",
         "country": "Egypt",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'The rollover applies to most single bets at odds of 1.40 or higher. Linebet Egypt limits the requirement to accumulator bets, while other operators accept any qualifying market.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Ligue des champions CAF tous les résultats du betting tips Uganda",
-        "country": "Uganda",
         "result": "written",
-        "slug": "ligue-des-champions-caf-tous-les-resultats-du-betting-tips-uganda"
+        "slug": "ligue-des-champions-caf-betting-tips-egypt"
       },
       {
         "keyword": "Ligue des champions CAF tous les résultats du betting tips Ethiopia",
         "country": "Ethiopia",
-        "result": "failed",
-        "reason": "quality_gate: only 857 words (minimum 1000); final line was 'Yes, most bookmakers offer mobile apps or optimised websites for convenient betting.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "ligue-des-champions-caf-tous-les-resultats-paris-ethiopie"
+      },
+      {
+        "keyword": "Ligue des champions CAF tous les résultats du betting tips Ivory Coast",
+        "country": "Ivory Coast",
+        "result": "written",
+        "slug": "caf-champions-league-betting-tips-ivory-coast"
       }
     ]
   }
