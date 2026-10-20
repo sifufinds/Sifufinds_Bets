@@ -1456,31 +1456,39 @@
     "Ligue des champions CAF tous les résultats du betting tips Zimbabwe": {
       "slug": "ligue-des-champions-caf-resultats-betting-tips-zimbabwe",
       "posted_at": "2026-10-20T02:41:59.618967+00:00"
+    },
+    "Ligue des champions CAF tous les résultats du betting tips Senegal": {
+      "slug": "ligue-des-champions-caf-betting-tips-senegal",
+      "posted_at": "2026-10-20T04:41:31.992634+00:00"
+    },
+    "Ligue des champions CAF tous les résultats du betting tips Mozambique": {
+      "slug": "ligue-des-champions-caf-resultats-betting-tips-mozambique",
+      "posted_at": "2026-10-20T04:41:53.631071+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-20T02:42:04.378956+00:00",
-    "candidates_available": 187,
+    "checked_at": "2026-10-20T04:41:57.629524+00:00",
+    "candidates_available": 186,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Ligue des champions CAF tous les résultats du betting tips Cameroon",
         "country": "Cameroon",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All AMJ‑licensed operators provide responsible‑gaming tools such as deposit limits, loss limits and self‑exclusion. Access these features through the account settings or contact customer support for assistance.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'The Autorité des Marchés des Jeux issues licences, monitors compliance with fair‑play standards, enforces age verification and requires operators to provide responsible‑gambling tools. Any bookmaker displaying the AMJ badge has passed these regulatory checks.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Ligue des champions CAF tous les résultats du betting tips Senegal",
         "country": "Senegal",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 490)"
+        "result": "written",
+        "slug": "ligue-des-champions-caf-betting-tips-senegal"
       },
       {
-        "keyword": "Ligue des champions CAF tous les résultats du betting tips Zimbabwe",
-        "country": "Zimbabwe",
+        "keyword": "Ligue des champions CAF tous les résultats du betting tips Mozambique",
+        "country": "Mozambique",
         "result": "written",
-        "slug": "ligue-des-champions-caf-resultats-betting-tips-zimbabwe"
+        "slug": "ligue-des-champions-caf-resultats-betting-tips-mozambique"
       }
     ]
   }

@@ -790,7 +790,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-20T02:52:30.639050+00:00",
+    "checked_at": "2026-10-20T04:55:34.209479+00:00",
     "candidates_available": 207,
     "attempted": 3,
     "written": 0,
@@ -799,13 +799,13 @@
         "keyword": "Euromatch NPFL Winning Has Always Been My Motivation betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: SifuFinds hosts a real‑time odds comparison for all NPFL fixtures; Both 22Bet Nigeria and 1xBet Nigeria are NLRC licensed, offer a range of payment methods (OPay, PalmPay, Bank Transfer, Visa, Mastercard) and provide first‑deposit bonuses; If 22Bet is offering 1.80 for a Pillars win and 1xBet is at 1.75; With the 300% first deposit bonus from 1xBet Nigeria, you can boost your bankroll up to ₦1,200,000; The bonus is subject to a 5× wagering requirement and a minimum odds of 1.40; 22Bet’s 100% match bonus up to ₦207,500 offers a smaller boost; deposit the minimum ₦100 and claim the 300% match up to ₦1,200,000 with code 1BONUSNG; Euromatch refers to a betting competition where Nigerian bettors can win cash prizes by correctly predicting the outcomes of selected NPFL matches; Are the payment methods listed (OPay, PalmPay, Bank Transfer, Visa, Mastercard) available for withdrawals from 1xBet and 22Bet?"
+        "reason": "quality_gate: no '## FAQ' section heading found"
       },
       {
         "keyword": "Poor annoying football Tusker coach Mette slams Singida betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: According to the odds provided by Betika Kenya, Tusker FC was the favourite to win with a price of KSh 1.60, while Singida Black Stars was priced at KSh 2.60.; SportPesa Kenya, on the other hand, had Tusker FC at KSh 1.62 and Singida Black Stars at KSh 2.58."
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "Da Cruz wheel Chiefs better or worse betting tips South Africa",
