@@ -1472,31 +1472,39 @@
     "Champions League Bayern face Arsenal test without Olise betting tips Nigeria": {
       "slug": "champions-league-bayern-arsenal-olise-betting-tips-nigeria",
       "posted_at": "2026-10-20T11:23:04.393149+00:00"
+    },
+    "Ghanaian trio impress Tottenham’s comeback win over Coventry betting tips Ghana": {
+      "slug": "ghanaian-trio-impress-tottenham-comeback-betting-tips",
+      "posted_at": "2026-10-20T13:22:23.959691+00:00"
+    },
+    "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Uganda": {
+      "slug": "stuttgart-vs-atletico-madrid-betting-tips-uganda",
+      "posted_at": "2026-10-20T13:44:50.467721+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-20T11:23:57.436393+00:00",
-    "candidates_available": 188,
+    "checked_at": "2026-10-20T13:44:54.351845+00:00",
+    "candidates_available": 187,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Champions League Bayern face Arsenal test without Olise betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "champions-league-bayern-arsenal-olise-betting-tips-nigeria"
-      },
       {
         "keyword": "Ghanaian trio impress Tottenham’s comeback win over Coventry betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, Melbet Ghana requires the promo code MBMAX to activate the 300% first deposit match up to GH₵1,500.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "ghanaian-trio-impress-tottenham-comeback-betting-tips"
       },
       {
         "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, Betika accepts Airtel Money for both deposits and withdrawals. Ensure you follow the withdrawal process in the account settings to receive your funds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 492)"
+      },
+      {
+        "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Uganda",
+        "country": "Uganda",
+        "result": "written",
+        "slug": "stuttgart-vs-atletico-madrid-betting-tips-uganda"
       }
     ]
   }
