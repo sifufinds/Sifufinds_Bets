@@ -1452,31 +1452,35 @@
     "Ligue des champions CAF tous les résultats du betting tips Ivory Coast": {
       "slug": "caf-champions-league-betting-tips-ivory-coast",
       "posted_at": "2026-10-20T00:54:11.910888+00:00"
+    },
+    "Ligue des champions CAF tous les résultats du betting tips Zimbabwe": {
+      "slug": "ligue-des-champions-caf-resultats-betting-tips-zimbabwe",
+      "posted_at": "2026-10-20T02:41:59.618967+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-20T00:54:15.344255+00:00",
-    "candidates_available": 190,
+    "checked_at": "2026-10-20T02:42:04.378956+00:00",
+    "candidates_available": 187,
     "attempted": 3,
-    "written": 3,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "Ligue des champions CAF tous les résultats du betting tips Egypt",
-        "country": "Egypt",
-        "result": "written",
-        "slug": "ligue-des-champions-caf-betting-tips-egypt"
+        "keyword": "Ligue des champions CAF tous les résultats du betting tips Cameroon",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'All AMJ‑licensed operators provide responsible‑gaming tools such as deposit limits, loss limits and self‑exclusion. Access these features through the account settings or contact customer support for assistance.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Ligue des champions CAF tous les résultats du betting tips Ethiopia",
-        "country": "Ethiopia",
-        "result": "written",
-        "slug": "ligue-des-champions-caf-tous-les-resultats-paris-ethiopie"
+        "keyword": "Ligue des champions CAF tous les résultats du betting tips Senegal",
+        "country": "Senegal",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 490)"
       },
       {
-        "keyword": "Ligue des champions CAF tous les résultats du betting tips Ivory Coast",
-        "country": "Ivory Coast",
+        "keyword": "Ligue des champions CAF tous les résultats du betting tips Zimbabwe",
+        "country": "Zimbabwe",
         "result": "written",
-        "slug": "caf-champions-league-betting-tips-ivory-coast"
+        "slug": "ligue-des-champions-caf-resultats-betting-tips-zimbabwe"
       }
     ]
   }
