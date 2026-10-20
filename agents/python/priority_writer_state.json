@@ -1467,28 +1467,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-20T04:41:57.629524+00:00",
-    "candidates_available": 186,
+    "checked_at": "2026-10-20T07:04:04.206919+00:00",
+    "candidates_available": 184,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Ligue des champions CAF tous les résultats du betting tips Cameroon",
         "country": "Cameroon",
         "result": "failed",
-        "reason": "quality_gate: final line was 'The Autorité des Marchés des Jeux issues licences, monitors compliance with fair‑play standards, enforces age verification and requires operators to provide responsible‑gambling tools. Any bookmaker displaying the AMJ badge has passed these regulatory checks.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Ligue des champions CAF tous les résultats du betting tips Senegal",
-        "country": "Senegal",
-        "result": "written",
-        "slug": "ligue-des-champions-caf-betting-tips-senegal"
-      },
-      {
-        "keyword": "Ligue des champions CAF tous les résultats du betting tips Mozambique",
-        "country": "Mozambique",
-        "result": "written",
-        "slug": "ligue-des-champions-caf-resultats-betting-tips-mozambique"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
