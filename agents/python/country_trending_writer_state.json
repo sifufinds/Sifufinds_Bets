@@ -790,7 +790,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-20T04:55:34.209479+00:00",
+    "checked_at": "2026-10-20T05:34:27.019705+00:00",
     "candidates_available": 207,
     "attempted": 3,
     "written": 0,
@@ -799,19 +799,19 @@
         "keyword": "Euromatch NPFL Winning Has Always Been My Motivation betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "fact_check: odds around the 1.70‑2.00 range; odds around 1.80‑2.20; priced at higher odds; odds of at least 1.40; Typical odds range*; 1.70‑2.00; 1.80‑2.20; 6.00‑12.00; 5.00‑8.00; 6.00‑10.00"
       },
       {
         "keyword": "Poor annoying football Tusker coach Mette slams Singida betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 590 words (minimum 600); final line was 'Note: This article has exceeded the minimum word count of 600 words and includes a '## FAQ' section heading.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Da Cruz wheel Chiefs better or worse betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "fact_check: 2.75 to win their next match; 3.20; 5.50 to win the league; 6.00; | Bookmaker | Kaizer Chiefs to Win | Kaizer Chiefs to Top the League |\n| --- | --- | --- |\n| FairPari South Africa | 2.75 | 5.50 |\n| BetWinner South Africa | 3.20 | 6.00 |"
       }
     ]
   }
