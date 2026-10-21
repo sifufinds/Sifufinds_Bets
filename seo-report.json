@@ -1,19 +1,13 @@
 {
   "date": "2026-10-21",
-  "total": 101,
+  "total": 100,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
+    "HIGH": 4,
     "MEDIUM": 95,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ucl-we-showed-our-level-against-barcelona-betting-tips-nigeria",
-      "detail": "Title 64 chars (max 60): 'UCL We Showed Our Level Against Barcelona \u2014 Betting Tips Nigeria'"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
