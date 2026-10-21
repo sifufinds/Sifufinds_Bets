@@ -1516,31 +1516,39 @@
     "Ghanaian trio impress Tottenham’s win over Coventry betting tips Ghana": {
       "slug": "tottenham-coventry-betting-tips-ghana",
       "posted_at": "2026-10-21T11:27:02.989698+00:00"
+    },
+    "Cricket matches | List best fixtures, & betting tips South Africa": {
+      "slug": "cricket-matches-best-fixtures-betting-tips-south-africa",
+      "posted_at": "2026-10-21T17:42:22.140442+00:00"
+    },
+    "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Tanzania": {
+      "slug": "nigeria-champions-league-betting-tips-tanzania",
+      "posted_at": "2026-10-21T17:42:35.737053+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-21T11:27:23.056733+00:00",
-    "candidates_available": 189,
+    "checked_at": "2026-10-21T17:42:49.496193+00:00",
+    "candidates_available": 187,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "Young swimmers make waves Nairobi Level 2 championships betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "young-swimmers-make-waves-nairobi-level-2-championships-betting-tips-kenya"
-      },
-      {
-        "keyword": "Ghanaian trio impress Tottenham’s win over Coventry betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "tottenham-coventry-betting-tips-ghana"
-      },
-      {
         "keyword": "Cricket matches | List best fixtures, & betting tips South Africa",
         "country": "South Africa",
+        "result": "written",
+        "slug": "cricket-matches-best-fixtures-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "nigeria-champions-league-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Egypt",
+        "country": "Egypt",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 518)"
+        "reason": "quality_gate: final line was 'Yes, bookmakers such as 1xBet and BetWinner offer live‑betting features that allow in‑play wagers on player performance and match outcomes.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
