@@ -1496,31 +1496,39 @@
     "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Ivory Coast": {
       "slug": "stuttgart-atalteco-betting-tips-ivory-coast",
       "posted_at": "2026-10-21T01:31:58.579117+00:00"
+    },
+    "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Cameroon": {
+      "slug": "ligue-des-champions-uefa-stuttgart-accueil-atletico-betting-tips-cameroon",
+      "posted_at": "2026-10-21T04:04:33.841499+00:00"
+    },
+    "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Zimbabwe": {
+      "slug": "stuttgart-vs-atletico-madrid-uefa-champions-league-betting-tips-zimbabwe",
+      "posted_at": "2026-10-21T04:25:22.689362+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-21T01:52:11.838445+00:00",
-    "candidates_available": 183,
+    "checked_at": "2026-10-21T04:25:27.764009+00:00",
+    "candidates_available": 181,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "stuttgart-atletico-betting-tips-tanzania"
-      },
-      {
-        "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Ivory Coast",
-        "country": "Ivory Coast",
-        "result": "written",
-        "slug": "stuttgart-atalteco-betting-tips-ivory-coast"
-      },
-      {
         "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Cameroon",
         "country": "Cameroon",
+        "result": "written",
+        "slug": "ligue-des-champions-uefa-stuttgart-accueil-atletico-betting-tips-cameroon"
+      },
+      {
+        "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Senegal",
+        "country": "Senegal",
         "result": "failed",
-        "reason": "quality_gate: only 959 words (minimum 1000); final line was 'Contact the bookmaker’s customer support team. Most platforms offer live chat, email, or phone support to resolve issues promptly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Orange Money is accepted as a deposit method but is not typically used for withdrawals. Withdrawals are usually processed via bank transfer or card. Check the withdrawal section of the bookmaker’s FAQ for the exact options available.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue des Champions UEFA Stuttgart accueille l’Atlético de betting tips Zimbabwe",
+        "country": "Zimbabwe",
+        "result": "written",
+        "slug": "stuttgart-vs-atletico-madrid-uefa-champions-league-betting-tips-zimbabwe"
       }
     ]
   }
