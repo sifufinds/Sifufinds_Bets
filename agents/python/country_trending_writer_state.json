@@ -794,7 +794,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-21T07:57:09.965879+00:00",
+    "checked_at": "2026-10-21T09:59:07.351078+00:00",
     "candidates_available": 210,
     "attempted": 3,
     "written": 0,
@@ -803,7 +803,19 @@
         "keyword": "UCL We Showed Our Level Against Barcelona — betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: In a game that saw a total of 40 shots on goal; Here's a comparison of the odds for PSG to win their next match at some of Nigeria's top bookmakers:\n\n| Bookmaker | Odds |\n| --- | --- |\n| 22Bet Nigeria | 1.50 |\n| 1xBet Nigeria | 1.60 |\n| Melbet Nigeria | 1.55 |"
+      },
+      {
+        "keyword": "Young swimmers make waves Nairobi Level 2 championships betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Ghanaian trio impress Tottenham’s win over Coventry betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: only 579 words (minimum 600); no '## FAQ' section heading found"
       }
     ]
   }
