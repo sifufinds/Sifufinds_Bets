@@ -1508,31 +1508,39 @@
     "UCL We Showed Our Level Against Barcelona — betting tips Nigeria": {
       "slug": "ucl-we-showed-our-level-against-barcelona-betting-tips-nigeria",
       "posted_at": "2026-10-21T09:26:55.209647+00:00"
+    },
+    "Young swimmers make waves Nairobi Level 2 championships betting tips Kenya": {
+      "slug": "young-swimmers-make-waves-nairobi-level-2-championships-betting-tips-kenya",
+      "posted_at": "2026-10-21T11:26:46.177400+00:00"
+    },
+    "Ghanaian trio impress Tottenham’s win over Coventry betting tips Ghana": {
+      "slug": "tottenham-coventry-betting-tips-ghana",
+      "posted_at": "2026-10-21T11:27:02.989698+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-21T09:42:18.983865+00:00",
-    "candidates_available": 190,
+    "checked_at": "2026-10-21T11:27:23.056733+00:00",
+    "candidates_available": 189,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "UCL We Showed Our Level Against Barcelona — betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "ucl-we-showed-our-level-against-barcelona-betting-tips-nigeria"
-      },
       {
         "keyword": "Young swimmers make waves Nairobi Level 2 championships betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: only 928 words (minimum 1000); final line was 'This guide compares the top bookmakers offering Nairobi Level 2 championships betting tips. Choose the one that best meets your needs and budget.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "young-swimmers-make-waves-nairobi-level-2-championships-betting-tips-kenya"
       },
       {
         "keyword": "Ghanaian trio impress Tottenham’s win over Coventry betting tips Ghana",
         "country": "Ghana",
+        "result": "written",
+        "slug": "tottenham-coventry-betting-tips-ghana"
+      },
+      {
+        "keyword": "Cricket matches | List best fixtures, & betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: only 798 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Yes, all the bookmakers mentioned are licensed by the GCA, which ensures that they adhere to strict data protection policies. Your personal information is safe with these bookmakers.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 518)"
       }
     ]
   }
