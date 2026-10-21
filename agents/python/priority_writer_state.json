@@ -1527,28 +1527,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-21T17:42:49.496193+00:00",
-    "candidates_available": 187,
+    "checked_at": "2026-10-21T18:50:09.093076+00:00",
+    "candidates_available": 185,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Cricket matches | List best fixtures, & betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "cricket-matches-best-fixtures-betting-tips-south-africa"
-      },
-      {
-        "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "nigeria-champions-league-betting-tips-tanzania"
-      },
       {
         "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Egypt",
         "country": "Egypt",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, bookmakers such as 1xBet and BetWinner offer live‑betting features that allow in‑play wagers on player performance and match outcomes.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 780 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Morocco",
+        "country": "Morocco",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
