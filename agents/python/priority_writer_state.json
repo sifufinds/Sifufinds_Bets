@@ -1531,28 +1531,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-22T03:16:41.130908+00:00",
-    "candidates_available": 185,
+    "checked_at": "2026-10-22T11:39:15.317772+00:00",
+    "candidates_available": 189,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Egypt",
-        "country": "Egypt",
+        "keyword": "UCL Osimhen Picks Up Man Match Award Galatasaray’s betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Betting is legal in Egypt as long as the operator follows the rules of the Egyptian Gambling Regulatory Authority (EGRA). The bookmakers listed operate under Curacao licences but are accepted in the market when they respect EGRA’s consumer‑protection standards.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'The market is offered by all NLRC‑licensed operators and is regulated by the National Lottery Regulatory Commission. As long as you bet within your budget and use a licensed site, the market is safe and the odds are transparent.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Morocco",
-        "country": "Morocco",
+        "keyword": "Junior Starlets seek revival against USA as FKF betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Curacao‑licensed operators such as 1xBet Maroc, Melbet Maroc, BetWinner Maroc and FairPari Morocco are regulated under international standards and must comply with AML and responsible‑gaming rules. While they are not MDJS‑licensed, they are widely used by Moroccan bettors and provide secure payment options.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Absolutely. Betika, SportPesa, 22Bet and several other operators accept USSD *644# as a quick way to top up your betting balance using M‑Pay, which is especially handy if you do not have internet access at the moment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Uganda",
-        "country": "Uganda",
-        "result": "written",
-        "slug": "nigeria-champions-league-lookman-ayaosi-shine-betting-tips-uganda"
+        "keyword": "President grace First National Bank Head State Golf betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'First, review the Terms & Conditions for the specific market. If you still need assistance, contact 22Bet’s customer support via live chat or email. For regulatory concerns, you can file a complaint with the Gaming Commission of Ghana, which oversees all licensed operators.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
