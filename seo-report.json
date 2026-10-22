@@ -3,16 +3,40 @@
   "total": 102,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
-    "MEDIUM": 96,
+    "HIGH": 10,
+    "MEDIUM": 91,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "bulls-sa-stars-coaching-drama-betting-insights",
-      "detail": "Title 73 chars (max 60): 'Bulls, SA Stars, and Coaching Drama: Betting Insights for African Bett'"
+      "page": "5-best-football-betting-sites-in-nigeria-2026-platform-analysis",
+      "detail": "Title 64 chars (max 60): '5 Best Football Betting Sites in Nigeria: 2026 Platform Analysis'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "4-top-football-betting-sites-in-nigeria-for-2026-bonuses-and-mobile-payments",
+      "detail": "Title 87 chars (max 60): '4 Top Football Betting Sites in Nigeria for 2026: Bonuses and Mobile P'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "1xbet-login-and-security-3-nigerian-betting-platforms-compared-for-2026",
+      "detail": "Title 72 chars (max 60): '1xbet login and Security: 3 Nigerian Betting Platforms Compared for 20'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "1xbet-bet9ja-and-betano-reviewing-licensed-betting-brands-in-2026",
+      "detail": "Title 68 chars (max 60): '1xbet, Bet9ja, and Betano: Reviewing Licensed Betting Brands in 2026'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "4-sports-betting-apps-in-nigeria-for-2026-speed-ui-and-live-markets-compared",
+      "detail": "Title 79 chars (max 60): '4 Sports Betting Apps in Nigeria for 2026: Speed, UI, and Live Markets'"
     },
     {
       "severity": "HIGH",
@@ -53,20 +77,8 @@
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
-      "page": "katsina-gov-signs-n82858bn-2027-appropriation-law-betting-tips-nigeria",
-      "detail": "High title overlap (6 meaningful tokens) with 'katsina-2027-appropriation-betting-tips-nigeria' \u2014 consider noindex"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
       "page": "viking-vs-bayern-munich-betting-tips-ghana",
       "detail": "High title overlap (5 meaningful tokens) with 'viking-bayern-munich-lineups-betting-tips-ghana' \u2014 consider noindex"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
-      "page": "guinea-bissau-stuns-super-eagles-kenya-betting-tips-offers",
-      "detail": "High title overlap (5 meaningful tokens) with 'guinea-bissau-super-eagles-kenya-betting-tips' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
@@ -419,24 +431,6 @@
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
-      "page": "portugal-loses-over-one-million-instagram-followers-after-ronaldo-exit",
-      "detail": "High title overlap (7 meaningful tokens) with 'portugal-instagram-loses-over-one-million-followers-after-betting-tips-nigeria' \u2014 consider noindex"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
-      "page": "stephen-kungu-swing-wine-betting-tips-kenya",
-      "detail": "High title overlap (6 meaningful tokens) with 'stephen-kungu-wins-swing-wine-third-edition-title-betting-tips-kenya' \u2014 consider noindex"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
-      "page": "man-united-arsenal-legends-urge-pl-punish-man-city-nigeria",
-      "detail": "High title overlap (5 meaningful tokens) with 'man-united-arsenal-legends-urge-premier-league-punish-betting-tips-nigeria' \u2014 consider noindex"
-    },
-    {
-      "severity": "MEDIUM",
-      "check": "potential_duplicate",
       "page": "afcon-2027q-ilenikhenas-super-eagles-debut-odds-tips-for-nigeria",
       "detail": "High title overlap (5 meaningful tokens) with 'afcon-2027q-ilenikhena-super-eagles-debut-betting-tips-nigeria' \u2014 consider noindex"
     },
@@ -619,6 +613,12 @@
       "check": "formulaic_opener",
       "page": "56 posts",
       "detail": "56 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bookmakers/mostbet/index.html",
+      "detail": "Meta description 266 chars (max 155)"
     }
   ]
 }
