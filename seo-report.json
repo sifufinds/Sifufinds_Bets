@@ -1,13 +1,25 @@
 {
-  "date": "2026-10-19",
-  "total": 98,
+  "date": "2026-10-22",
+  "total": 102,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
-    "MEDIUM": 94,
+    "HIGH": 5,
+    "MEDIUM": 96,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "bulls-sa-stars-coaching-drama-betting-insights",
+      "detail": "Title 73 chars (max 60): 'Bulls, SA Stars, and Coaching Drama: Betting Insights for African Bett'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "why-stormers-not-getting-carried-away-betting-tips-south-africa",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
@@ -25,6 +37,18 @@
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "nairobi-swimming-championships-betting-tips-kenya",
+      "detail": "High title overlap (6 meaningful tokens) with 'young-swimmers-make-waves-nairobi-level-2-championships-betting-tips-kenya' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "stuttgart-vs-atletico-madrid-uefa-champions-league-betting-tips-zimbabwe",
+      "detail": "High title overlap (5 meaningful tokens) with 'stuttgart-atletico-betting-tips-tanzania' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
