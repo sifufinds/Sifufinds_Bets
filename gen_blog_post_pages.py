@@ -1544,6 +1544,12 @@ BANNER_BRANDS: dict[str, dict] = {
         'sub': 'Up to ₦480,000 · widest range of niche markets',
         'promo_code': None,
     },
+    'mostbet': {
+        'name': 'MostBet', 'slug': 'mostbet', 'abbr': 'MOS', 'bg': '#0D1F52', 'tc': '#fff',
+        'headline': 'Sports & Casino · Kenya, Ghana, Tanzania and more', 'offer': 'Up to 150% + 250 Free Spins',
+        'sub': 'Welcome offer · confirm terms for your country before depositing',
+        'promo_code': 'SIFUKAI',
+    },
     'pepeta': {
         'name': 'Pepeta', 'slug': 'pepeta', 'abbr': 'PPT', 'bg': '#6A1B9A', 'tc': '#fff',
         'headline': 'Crash Games & Casino · Kenya', 'offer': '100% Deposit Bonus',
@@ -1553,7 +1559,7 @@ BANNER_BRANDS: dict[str, dict] = {
 }
 
 # For a review post, the offer banner must feature only the brand actually
-# being reviewed, never an unrelated one — a reader on the Betika review
+# being reviewed, never an unrelated one — a reader on a brand's review
 # should never see a 22Bet ad. Maps post['bookmaker_featured'] to a
 # BANNER_BRANDS key using the same key-normalisation convention as
 # agents/python/utils/affiliate_links.py's _brand_key(). Returns None (no
@@ -2176,7 +2182,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=30"></script>
+<script src="../../assets/shared.js?v=31"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 function copyPostLink(btn,url){{

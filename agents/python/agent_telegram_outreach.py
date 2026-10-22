@@ -83,7 +83,6 @@ TARGET_GROUPS: list[dict] = [
     {"username": "kenyabettingtips",      "region": "Kenya"},
     {"username": "sportpesatips",         "region": "Kenya"},
     {"username": "kplsoccer",             "region": "Kenya"},
-    {"username": "betikaofficial",        "region": "Kenya"},
     {"username": "odibets_ke",            "region": "Kenya"},
     {"username": "kenyaodds",             "region": "Kenya"},
     {"username": "nairobisports",         "region": "Kenya"},
@@ -152,7 +151,7 @@ GROUPS_PER_RUN = 12
 
 _COUNTRY_KEYWORDS = {
     "Nigeria":      ["nigeria", "naija", "lagos", "abuja", "₦", "nlrc", "bet9ja", "betking", "sportybet"],
-    "Kenya":        ["kenya", "nairobi", "ksh", "mpesa", "bclb", "sportpesa", "betika", "odibets"],
+    "Kenya":        ["kenya", "nairobi", "ksh", "mpesa", "bclb", "sportpesa", "odibets"],
     "South Africa": ["south africa", "cape town", "johannesburg", "joburg", "r ", "zar", "hollywoodbets", "supabets", "psl"],
     "Ghana":        ["ghana", "accra", "ghs", "gpl", "betway gh"],
     "Uganda":       ["uganda", "kampala", "ugx"],
@@ -170,7 +169,7 @@ def _detect_country(text: str) -> str:
 _BETTING_KEYWORDS = [
     "bet", "odds", "tips", "football", "soccer", "sport", "accumulator",
     "acca", "banker", "jackpot", "free bet", "bonus", "predict", "1xbet",
-    "betway", "melbet", "bet9ja", "sportybet", "betika", "sportpesa",
+    "betway", "melbet", "bet9ja", "sportybet", "sportpesa",
     "correct score", "over 2.5", "btts", "win", "stake",
 ]
 
@@ -230,7 +229,7 @@ def _msg4(first_name: str, region: str, **_) -> str:
     name = first_name or "chief"
     bookmakers = {
         "Nigeria":      "Bet9ja, BetKing, Sportybet, 1xBet",
-        "Kenya":        "Betika, SportPesa, Odibets, 1xBet",
+        "Kenya":        "SportPesa, Odibets, 1xBet",
         "South Africa": "Hollywoodbets, Supabets, Betway, 1xBet",
         "Ghana":        "Betway, 1xBet, Melbet, Sportybet",
     }.get(region, "Bet9ja, 1xBet, Betway, SportPesa, Melbet")

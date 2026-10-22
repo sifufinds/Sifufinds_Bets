@@ -44,7 +44,6 @@ BOOKMAKER_PAGES = [
     ("Melbet Nigeria",    "https://melbet.com/en/promo/"),
     ("BetWinner Nigeria", "https://betwinner.com/en/promo/"),
     # Kenya
-    ("Betika Kenya",      "https://www.betika.com/en-ke/promotions"),
     ("SportPesa Kenya",   "https://www.sportpesa.co.ke/promotions"),
     ("Betway Kenya",      "https://www.betway.com/en-ke/promotions/sports/"),
     ("Odibets Kenya",     "https://odibets.com/promotions"),

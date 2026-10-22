@@ -208,57 +208,13 @@ BOOKMAKERS = [
         'cons': [
             'No live streaming on any market',
             "Welcome bonus capped lower than some rivals (e.g. 1xBet's 200–300% offers)",
-            'Fewer local payment rails than Kenya/Nigeria-first brands like Betika or Bet9ja',
+            'Fewer local payment rails than Kenya/Nigeria-first brands like Bet9ja',
         ],
         'faqs': [
             {'q': 'Is 22Bet licensed in Africa?', 'a': '22Bet holds a local licence in each African market it operates in through SifuFinds: NLRC in Nigeria, BCLB in Kenya, GCA in Ghana, GBT in Tanzania, UNCS in Uganda, GLB in Zambia, and ARJEL in Ivory Coast.'},
             {'q': 'What is the 22Bet welcome bonus?', 'a': '22Bet offers a 100% first deposit bonus, capped per country — up to ₦207,500 in Nigeria, KSh 19,000 in Kenya, and GH₵1,491 in Ghana. Use code BNSNG. The bonus must be wagered 5x on accumulators at minimum odds 1.40 within 30 days.'},
             {'q': 'Which African countries does 22Bet cover?', 'a': '22Bet is available in seven African countries covered by SifuFinds: Nigeria, Kenya, Ghana, Tanzania, Uganda, Zambia, and Ivory Coast.'},
             {'q': 'Does 22Bet offer live streaming?', 'a': 'No. Unlike some rivals, 22Bet does not currently offer live match streaming in its African markets. It does support cash-out on all listed markets.'},
-        ],
-    },
-    {
-        'slug': 'betika',
-        'name': 'Betika',
-        'country_code': 'KE',
-        'country_name': 'Kenya + 5 More African Markets',
-        'country_page': 'kenya',
-        'rating': '4.8',
-        'licence': 'BCLB Licence No. BK0000679 (Kenya)',
-        'licence_body': 'BCLB (Betting Control and Licensing Board, Kenya) + local regulators in each additional market',
-        'tagline': 'Operator of the Year 2025 — 8M+ Users Across East & Central Africa',
-        'hero_color': '#007A4D',
-        'hero_color2': '#00A65E',
-        'bonus': 'Free Bet Gifts + Regular Aviator Free Bets on Signup',
-        'bonus_desc': 'Free bet credited on registration, plus regular Aviator crash-game free bet drops (KSh 30–500). No deposit required to claim the signup free bet.',
-        'bonus_code': 'No code needed — automatic on registration',
-        'acca_boost': 'Regular Aviator free bet drops for active players',
-        'min_deposit': 'KSh 10',
-        'min_withdrawal': 'KSh 50',
-        'payments': ['M-Pesa', 'Airtel Money', 'Equitel', 'USSD *644#'],
-        'sports': '20+',
-        'url': 'https://www.betika.com/en-ke/',
-        'live_stream': False,
-        'cashout': True,
-        'verdict': "Betika is Kenya's home-grown Operator of the Year for 2025, built by Nairobi-based Shop and Deliver Limited since 2016 into an 8-million-user brand across East and Central Africa. Its biggest strength is accessibility: bet from KSh 10, withdraw from KSh 50, and place a bet over USSD *644# with no smartphone or internet connection at all. The Aviator crash game and its regular free-bet drops keep the app relevant to Kenya's fastest-growing betting segment. Betika has expanded beyond Kenya into Ghana, Tanzania, Uganda, Malawi and, most recently, DR Congo, where it operates under a licence from the National Lottery Company of DRC.",
-        'pros': [
-            "Kenya's Operator of the Year 2025 — 8M+ users",
-            'Bet from as little as KSh 10, withdraw from KSh 50',
-            'USSD *644# betting works without a smartphone or internet',
-            'Free bet on signup plus regular Aviator free bet drops',
-            'Fast M-Pesa deposits and withdrawals',
-            'Now live in six African markets including DR Congo',
-        ],
-        'cons': [
-            'No live streaming on any market',
-            'Sports market depth (20+) is narrower than international rivals like 1xBet or Melbet',
-            'Payment options outside mobile money are limited',
-        ],
-        'faqs': [
-            {'q': 'Is Betika licensed in Kenya?', 'a': "Yes. Betika holds BCLB Licence No. BK0000679, issued by Kenya's Betting Control and Licensing Board. It has operated under this licence since 2016."},
-            {'q': 'What is the Betika minimum deposit and withdrawal?', 'a': "Betika's minimum deposit is KSh 10 and the minimum withdrawal is KSh 50, both processed via M-Pesa, Airtel Money, or USSD *644#."},
-            {'q': 'Can I bet on Betika without a smartphone?', 'a': 'Yes. Betika supports USSD betting via *644# in Kenya, letting you register, deposit, place bets, and withdraw without a smartphone or internet connection.'},
-            {'q': 'Does Betika operate outside Kenya?', 'a': 'Yes. Betika has expanded to Ghana, Tanzania, Uganda, Malawi, and DR Congo, where it operates under a licence from the National Lottery Company of DRC.'},
         ],
     },
     {
@@ -284,7 +240,7 @@ BOOKMAKERS = [
         'url': 'https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/',
         'live_stream': False,
         'cashout': True,
-        'verdict': "Pepeta is a Nairobi-based platform, run by Norm Kick Off Kenya Limited and launched in 2023, that leans primarily on crash games and casino products with sports betting as a strong secondary offering across 20+ sports. It's licensed by Kenya's BCLB under two separate licence numbers (BK 0000694 for betting, PG 0000421 for gaming). As a newer, smaller platform than Kenya's established giants like SportPesa or Betika, Pepeta is best suited to bettors specifically drawn to its crash-game and casino lineup rather than those prioritising deep sports betting markets.",
+        'verdict': "Pepeta is a Nairobi-based platform, run by Norm Kick Off Kenya Limited and launched in 2023, that leans primarily on crash games and casino products with sports betting as a strong secondary offering across 20+ sports. It's licensed by Kenya's BCLB under two separate licence numbers (BK 0000694 for betting, PG 0000421 for gaming). As a newer, smaller platform than Kenya's established giants like SportPesa, Pepeta is best suited to bettors specifically drawn to its crash-game and casino lineup rather than those prioritising deep sports betting markets.",
         'pros': [
             'BCLB licensed under two separate numbers for betting and gaming',
             '100% welcome bonus on first deposit',
@@ -582,7 +538,7 @@ def make_html(bk):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=30"></script>
+<script src="../../assets/shared.js?v=31"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 const _BK_CTY='{compare_cty}';

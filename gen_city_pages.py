@@ -66,7 +66,7 @@ CITIES = [
         'symbol': 'KSh',
         'regulator': 'BCLB (Betting Control and Licensing Board)',
         'population': "Kenya's capital city with 5+ million people",
-        'about': "Nairobi is Kenya's capital and the beating heart of East African sports betting. The city is home to Sportpesa's headquarters, Betika's main offices, and millions of M-Pesa-connected bettors. Nairobi bettors can deposit via *644# on any Safaricom line with no internet required.",
+        'about': "Nairobi is Kenya's capital and the beating heart of East African sports betting. The city is home to Sportpesa's headquarters and millions of M-Pesa-connected bettors. Nairobi bettors can deposit via *644# on any Safaricom line with no internet required.",
         'payments': ['M-Pesa', 'Airtel Money', 'Equitel', 'USSD *644#'],
         'popular_leagues': ['Kenya Premier League (Gor Mahia, AFC Leopards)', 'Premier League', 'CAF Champions League', 'AFCON'],
         'assets_prefix': '../../../',
@@ -367,7 +367,7 @@ def make_city_page(c):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{ap}assets/shared.js?v=30"></script>
+<script src="{ap}assets/shared.js?v=31"></script>
 <script>
 const SITE={{home:'{ap}',tips:'{ap}tips/',casino:'{ap}casino/',odds:'{ap}odds/',countries:'{ap}countries/'}};
 const _PAGE_CTY='{c['country_code']}';

@@ -160,7 +160,7 @@ BONUS_TEMPLATES = [
         "🎁 NEW PLAYER BONUSES — DON'T MISS THESE\n\n"
         "Haven't signed up yet? Here's what you're leaving on the table:\n\n"
         "🇳🇬 Nigeria: Bet9ja, BetKing, Sportybet\n"
-        "🇰🇪 Kenya: Betika, SportPesa, Odibets\n"
+        "🇰🇪 Kenya: SportPesa, Odibets, 1xBet\n"
         "🇿🇦 South Africa: Hollywoodbets, Supabets\n"
         "🌍 Pan-Africa: 1xBet, Betway, Melbet\n\n"
         "Full bonus comparison → {site_url}\n"

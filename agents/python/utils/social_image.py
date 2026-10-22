@@ -25,7 +25,7 @@ _DEFAULT_COLOR = "#0a5c36"  # SifuFinds green
 BRAND_COLORS = {
     "Bet9ja": "#008751", "Sportybet": "#E60023", "BetKing": "#C1272D",
     "1xBet": "#1565C0", "Betway": "#000000", "Hollywoodbets": "#FCD116",
-    "Betika": "#00853F", "SportPesa": "#007A4D", "Melbet": "#1a6b35",
+    "SportPesa": "#007A4D", "Melbet": "#1a6b35",
     "MozzartBet": "#B8860B", "NairaBet": "#005CA9", "22Bet": "#F5A623",
     "Betpawa": "#FF6600", "BetWinner": "#2E7D32", "Odibets": "#00AA55",
     "Supabets": "#C1272D", "Bangbet": "#FF4500",

@@ -67,7 +67,7 @@ HEADERS = {
 # affiliate_url_locked=True means the url field in banners.json is NEVER modified.
 
 # Ordered so brands that historically struggle run first and get fresh Groq quota.
-# "Never succeeded" brands (Sportybet, Betika, Betway, Melbet) are at the top.
+# "Never succeeded" brands (Sportybet, Betway, Melbet) are at the top.
 BRAND_REGISTRY: list[dict] = [
     {
         "name": "Sportybet",
@@ -77,16 +77,6 @@ BRAND_REGISTRY: list[dict] = [
         "search_query": "Sportybet welcome bonus Nigeria free bet signup 2025",
         "region": "Nigeria",
         "currency_symbol": "₦",
-        "affiliate_url_locked": False,
-    },
-    {
-        "name": "Betika",
-        "banner_id": "ban-005",
-        "base_url": "https://www.betika.com",
-        "promo_urls": ["https://www.betika.com/en-ke/promo"],
-        "search_query": "Betika Kenya welcome bonus free bet signup 2025",
-        "region": "Kenya",
-        "currency_symbol": "KSh",
         "affiliate_url_locked": False,
     },
     {

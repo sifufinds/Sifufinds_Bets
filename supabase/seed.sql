@@ -31,5 +31,4 @@ insert into news_items (cat, color, title, date_label, sort_order) values
 ('Nigeria','#00875A','Super Eagles Name Final 26-Man Squad for World Cup 2026','Yesterday',2),
 ('CAF','#C62828','CAF Champions League Final Preview – Sundowns vs Al Ahly','2 days ago',3),
 ('Morocco','#009A44','Morocco World Cup 2026 Odds – Atlas Lions Favourites in Their Group','3 days ago',4),
-('Kenya','#007A4D','Betika Reaches 10 Million Users – New World Cup Features Added','4 days ago',5),
 ('Africa','#FF6B00','Mobile Money Betting Surges 45% as World Cup 2026 Approaches','5 days ago',6);

@@ -142,7 +142,7 @@ PAGES = [
         ],
         'faq': [
             ('Is Vodacom M-Pesa different from Safaricom M-Pesa?', "Yes. While they share the M-Pesa brand, they operate independently. Safaricom M-Pesa is used in Kenya (dialling *644#). Vodacom M-Pesa is used in Tanzania (*150*00#) and Mozambique. Both work for betting deposits at licensed bookmakers in their respective countries. SifuFinds has separate pages for each market."),
-            ('Which bookmakers accept Vodacom M-Pesa in Tanzania?', "All major GBT-licensed bookmakers in Tanzania accept Vodacom M-Pesa including Sportybet Tanzania, 1xBet Tanzania, Betway Tanzania, Betika Tanzania, and Parimatch Tanzania. The minimum deposit is typically TSh 1,000 (approximately US$0.40) and funds are credited instantly."),
+            ('Which bookmakers accept Vodacom M-Pesa in Tanzania?', "All major GBT-licensed bookmakers in Tanzania accept Vodacom M-Pesa including Sportybet Tanzania, 1xBet Tanzania, Betway Tanzania, and Parimatch Tanzania. The minimum deposit is typically TSh 1,000 (approximately US$0.40) and funds are credited instantly."),
             ('Can I withdraw to Vodacom M-Pesa in Tanzania?', "Yes. All major Tanzanian bookmakers support Vodacom M-Pesa withdrawals. Processing time is usually instant to 4 hours. Minimum withdrawal is typically TSh 1,000. You must have a verified account (national ID or passport) before making your first withdrawal."),
             ('Does Vodacom charge fees for betting deposits?', "Vodacom M-Pesa applies standard transaction fees for sending money — similar to any M-Pesa transaction. Most bookmakers do not charge additional deposit fees on their end. Always check the current Vodacom Tanzania tariff guide for the exact fee scale. Small transactions under TSh 5,000 may have different fee structures."),
         ],
@@ -457,7 +457,7 @@ def make_payment_page(p):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{ap}assets/shared.js?v=30"></script>
+<script src="{ap}assets/shared.js?v=31"></script>
 <script>
 const SITE={{home:'{ap}',tips:'{ap}tips/',casino:'{ap}casino/',odds:'{ap}odds/',countries:'{ap}countries/'}};
 let _activeFilt='all';

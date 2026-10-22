@@ -109,25 +109,6 @@
       ]
     },
     {
-      "id": "ban-005",
-      "slot": "sidebar-top",
-      "active": false,
-      "affiliate": false,
-      "brand_key": "Betika",
-      "bookmaker": "Betika Kenya",
-      "bg": "#007A4D",
-      "tc": "#fff",
-      "logo_abbr": "BT",
-      "headline": "Kenya's Operator of the Year",
-      "offer": "Get 25 KSh Bonus",
-      "sub": "Deposit 1 KSh to claim",
-      "cta": "Join Betika →",
-      "url": "https://www.betika.com/en-ke/",
-      "countries": [
-        "KE"
-      ]
-    },
-    {
       "id": "ban-006",
       "slot": "sidebar-mid",
       "active": false,
@@ -248,7 +229,7 @@
       "offer": "Get ₦320,000 WELCOME BONUS",
       "sub": "200% deposit match · Promo code: BOOKIE130",
       "cta": "Claim 200% Now →",
-      "url": "https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559",
+      "url": "https://refpa3665.com/L?tag=d_6242359m_2170c_&site=6242359&ad=2170",
       "countries": [
         "NG",
         "KE",
@@ -364,6 +345,71 @@
         "UG",
         "TZ",
         "ZM"
+      ]
+    },
+    {
+      "id": "ban-018",
+      "slot": "inline-article",
+      "active": true,
+      "affiliate": false,
+      "type": "raw",
+      "brand_key": "MostBet",
+      "bookmaker": "MostBet",
+      "url": "https://sifufinds.com/mostbet",
+      "raw_html": "<a href=\"https://sifufinds.com/mostbet\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" style=\"display:block;text-align:center\"><img src=\"/assets/banners/mostbet/mostbet-welcome-728x90.png\" width=\"728\" height=\"90\" loading=\"lazy\" style=\"max-width:100%;height:auto;border-radius:8px\" alt=\"MostBet welcome bonus up to 150% plus 250 free spins, promo code SIFUKAI\"></a>",
+      "countries": [
+        "KE",
+        "GH",
+        "TZ",
+        "EG",
+        "MA",
+        "CI",
+        "BJ"
+      ]
+    },
+    {
+      "id": "ban-019",
+      "slot": "inline-article",
+      "active": true,
+      "affiliate": false,
+      "type": "raw",
+      "brand_key": "MostBet",
+      "bookmaker": "MostBet",
+      "url": "https://sifufinds.com/mostbet",
+      "raw_html": "<a href=\"https://sifufinds.com/mostbet\" target=\"_blank\" rel=\"noopener noreferrer sponsored\" style=\"display:block;text-align:center\"><img src=\"/assets/banners/mostbet/mostbet-aviator-casino-300x300.png\" width=\"300\" height=\"300\" loading=\"lazy\" style=\"max-width:100%;height:auto;border-radius:8px\" alt=\"MostBet Aviator and casino bonus, 250 free spins, promo code SIFUKAI\"></a>",
+      "countries": [
+        "KE",
+        "GH",
+        "TZ",
+        "EG",
+        "MA",
+        "CI",
+        "BJ"
+      ]
+    },
+    {
+      "id": "ban-020",
+      "slot": "sidebar-top",
+      "active": true,
+      "affiliate": false,
+      "brand_key": "MostBet",
+      "bookmaker": "MostBet",
+      "bg": "#0D1F52",
+      "tc": "#fff",
+      "logo_abbr": "MOS",
+      "headline": "Sports & Casino",
+      "offer": "Up to 150% + 250 Free Spins",
+      "sub": "Promo code SIFUKAI · T&Cs apply · 18+",
+      "cta": "CLAIM BONUS NOW →",
+      "url": "https://sifufinds.com/mostbet",
+      "countries": [
+        "KE",
+        "GH",
+        "TZ",
+        "EG",
+        "MA",
+        "CI",
+        "BJ"
       ]
     }
   ]

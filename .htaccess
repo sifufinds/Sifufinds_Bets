@@ -73,7 +73,7 @@ RedirectMatch 404 ^/webhooks/rapidwombat-secrets\.php$
 RewriteRule ^fairpari/?$ "https://fairpaff.top/L?tag=d_5941712m_72465c_&site=5941712&ad=72465&r=registration" [R=301,L,NC]
 RewriteRule ^1xbet/?$ "https://reffpa.com/L?tag=d_5969542m_1599c_&site=5969542&ad=1599" [R=301,L,NC]
 RewriteRule ^linebet/?$ "https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611" [R=301,L,NC]
-RewriteRule ^melbet/?$ "https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559" [R=301,L,NC]
+RewriteRule ^melbet/?$ "https://refpa3665.com/L?tag=d_6242359m_2170c_&site=6242359&ad=2170" [R=301,L,NC]
 RewriteRule ^betwinner/?$ "https://bwredir.com/1Lvf?p=%2Fregistration%2F&s1=sifufinds" [R=301,L,NC]
 RewriteRule ^helabet/?$ "https://1212fghnna.com/L?tag=d_5833683m_52235c_sifufinds&site=5833683&ad=52235" [R=301,L,NC]
 RewriteRule ^paripesa/?$ "https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569" [R=301,L,NC]
@@ -82,7 +82,6 @@ RewriteRule ^sportybet/?$ https://www.sportybet.com/ng/ [R=301,L,NC]
 RewriteRule ^betking/?$ https://www.betking.com [R=301,L,NC]
 RewriteRule ^betway/?$ https://www.betway.com/en-ng/ [R=301,L,NC]
 RewriteRule ^hollywoodbets/?$ https://www.hollywoodbets.net/ [R=301,L,NC]
-RewriteRule ^betika/?$ https://www.betika.com/en-ke/ [R=301,L,NC]
 RewriteRule ^sportpesa/?$ https://www.sportpesa.co.ke [R=301,L,NC]
 RewriteRule ^mozzartbet/?$ https://www.mozzartbet.com/en/ [R=301,L,NC]
 RewriteRule ^nairabet/?$ https://www.nairabet.com [R=301,L,NC]
@@ -98,7 +97,17 @@ RewriteRule ^betxchange/?$ "https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&sit
 RewriteRule ^bettabets/?$ "https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777" [R=301,L,NC]
 RewriteRule ^playbet/?$ "https://trk.playbet.net/o/5tgJzp?site_id=284" [R=301,L,NC]
 RewriteRule ^pepeta/?$ "https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/" [R=301,L,NC]
-RewriteRule ^betika-drc/?$ "https://record.bigcatpartners.com/_-uNzaN20ZcLqaEn2LeVpkWNd7ZgqdRLk/1/" [R=301,L,NC]
+# MostBet (added 2026-10-21). NO affiliate tracking URL has been supplied yet, so this
+# masked link temporarily points at the operator's own site (promo code SIFUKAI is shown on
+# every MostBet listing/banner). Replace the target with the real affiliate URL once issued;
+# every MostBet CTA on the site routes through this one rule.
+RewriteRule ^mostbet/?$ https://mostbet.com/ [R=301,L,NC]
+# Betika is no longer promoted (removed 2026-10-21). Old masked/social links go to the
+# relevant on-site country comparison instead of the operator.
+RewriteRule ^betika/?$ /best-betting-in-kenya/ [R=301,L,NC]
+RewriteRule ^betika-drc/?$ /best-betting-in-dr-congo/ [R=301,L,NC]
+RewriteRule ^bookmakers/betika/?$ /best-betting-in-kenya/ [R=301,L,NC]
+RewriteRule ^blog/betika-review(-sw)?/?$ /best-betting-in-kenya/ [R=301,L,NC]
 
 # ── 301 REDIRECTS — FIX BROKEN INTERNAL LINKS ────────────────────────────────
 # Plain mod_alias "Redirect 301" directives were not firing on the live host

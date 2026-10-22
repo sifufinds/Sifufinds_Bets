@@ -1,1 +1,0 @@
-![](https://www.betika.com/en-ke/static/images/logo-small.png)

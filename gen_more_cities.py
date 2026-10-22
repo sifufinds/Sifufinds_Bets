@@ -37,7 +37,7 @@ CITIES = [
         'symbol': 'KSh',
         'regulator': 'BCLB (Betting Control and Licensing Board)',
         'population': "Kenya's second largest city and major port with 1.2+ million people",
-        'about': "Mombasa is Kenya's second largest city and the gateway to the Kenyan coast. Mombasa bettors use M-Pesa via *644# for instant deposits at BCLB-licensed bookmakers including Sportpesa, Betika, and 1xBet Kenya. The coastal city has a passionate football culture focused on the Kenya Premier League.",
+        'about': "Mombasa is Kenya's second largest city and the gateway to the Kenyan coast. Mombasa bettors use M-Pesa via *644# for instant deposits at BCLB-licensed bookmakers including Sportpesa and 1xBet Kenya. The coastal city has a passionate football culture focused on the Kenya Premier League.",
         'payments': ['M-Pesa', 'Airtel Money', 'Equitel', 'USSD *644#'],
         'popular_leagues': ['Kenya Premier League', 'CAF Champions League', 'Premier League', 'AFCON'],
         'assets_prefix': '../../../',

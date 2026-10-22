@@ -329,7 +329,7 @@ Every post must also be structured to get cited by AI answer engines (Google AI 
 
 ## STANDING RULE — Hidden Brands (added 2026-09-26)
 
-**Any brand in `data/hidden_brands.json` must not be visible anywhere on the live site.** The user asked for these to be "completely hidden" and called the list "hidden brands" so they can request additions/removals later ("add X to hidden brands", "unhide Y"). Currently hidden (17): Hollywoodbets, Bet9ja, BetKing, SuperSportBet, BetXchange, TicTacBets, Playbet, Bettabets, Sunbet, Supabets, Easybet, Betfred SA, JSB Sport, Soccershop, FirstBet, Thababet, Interbet.
+**Any brand in `data/hidden_brands.json` must not be visible anywhere on the live site.** The user asked for these to be "completely hidden" and called the list "hidden brands" so they can request additions/removals later ("add X to hidden brands", "unhide Y"). Currently hidden (18): Hollywoodbets, Bet9ja, BetKing, SuperSportBet, BetXchange, TicTacBets, Playbet, Bettabets, Sunbet, Supabets, Easybet, Betfred SA, JSB Sport, Soccershop, FirstBet, Thababet, Interbet, Betika (added 2026-10-21, also removed from source: BOOKS, banners, masks, review pages).
 
 **This overrides the "Brands With a Real Affiliate Link Are Always Top-of-List" rule below** — TicTacBets, BetXchange, Bettabets and Playbet carry real affiliate links but are hidden anyway.
 
