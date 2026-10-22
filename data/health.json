@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-22T19:46:45.797070+00:00",
+  "checked_at": "2026-10-22T22:59:58.888404+00:00",
   "healthy": true,
   "pages": {
     "Home": true,
@@ -12,10 +12,9 @@
     "live.json": true
   },
   "fixes_applied": [
-    "refreshed stale live.json (133 min old)",
+    "refreshed stale live.json (128 min old)",
     "patched missing football keys: afcon, cafl, local, world",
-    "generated 1 missing blog page(s): trinity-rodman-victorias-secret-fashion-show",
-    "added 2 orphaned masking slug(s) to BRAND_SLUGS: betika, pepeta"
+    "generated 1 missing blog page(s): trinity-rodman-victorias-secret-fashion-show"
   ],
-  "fix_count": 4
+  "fix_count": 3
 }
