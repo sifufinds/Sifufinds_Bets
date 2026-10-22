@@ -1528,31 +1528,47 @@
     "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Uganda": {
       "slug": "nigeria-champions-league-lookman-ayaosi-shine-betting-tips-uganda",
       "posted_at": "2026-10-22T03:16:36.085935+00:00"
+    },
+    "Junior Starlets seek revival against USA as FKF betting tips Kenya": {
+      "slug": "junior-starlets-vs-usa-betting-tips-kenya",
+      "posted_at": "2026-10-22T21:03:17.597708+00:00"
+    },
+    "President grace First National Bank Head State Golf betting tips Ghana": {
+      "slug": "president-grace-fnb-head-state-golf-betting-tips-ghana",
+      "posted_at": "2026-10-22T21:28:21.655624+00:00"
+    },
+    "Ligue des champions UEFA Le but somptueux de betting tips Tanzania": {
+      "slug": "ligue-des-champions-uefa-betting-tips-tanzania",
+      "posted_at": "2026-10-22T21:43:42.595002+00:00"
+    },
+    "Nigerian Players Watch Arokodare, Moffi, Nwaiwu score as betting tips Nigeria": {
+      "slug": "nigerian-players-watch-arokodare-moffi-nwaiwu-betting-tips-nigeria",
+      "posted_at": "2026-10-22T21:51:53.417460+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-22T11:39:15.317772+00:00",
-    "candidates_available": 189,
+    "checked_at": "2026-10-22T21:51:57.831823+00:00",
+    "candidates_available": 204,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
-      {
-        "keyword": "UCL Osimhen Picks Up Man Match Award Galatasaray’s betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'The market is offered by all NLRC‑licensed operators and is regulated by the National Lottery Regulatory Commission. As long as you bet within your budget and use a licensed site, the market is safe and the odds are transparent.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Junior Starlets seek revival against USA as FKF betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Absolutely. Betika, SportPesa, 22Bet and several other operators accept USSD *644# as a quick way to top up your betting balance using M‑Pay, which is especially handy if you do not have internet access at the moment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
       {
         "keyword": "President grace First National Bank Head State Golf betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'First, review the Terms & Conditions for the specific market. If you still need assistance, contact 22Bet’s customer support via live chat or email. For regulatory concerns, you can file a complaint with the Gaming Commission of Ghana, which oversees all licensed operators.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "president-grace-fnb-head-state-golf-betting-tips-ghana"
+      },
+      {
+        "keyword": "Ligue des champions UEFA Le but somptueux de betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "ligue-des-champions-uefa-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Nigerian Players Watch Arokodare, Moffi, Nwaiwu score as betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "nigerian-players-watch-arokodare-moffi-nwaiwu-betting-tips-nigeria"
       }
     ]
   }
