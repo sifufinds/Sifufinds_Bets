@@ -1,9 +1,9 @@
 {
   "date": "2026-10-22",
-  "total": 102,
+  "total": 99,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 10,
+    "HIGH": 7,
     "MEDIUM": 91,
     "INFO": 1
   },
@@ -11,32 +11,14 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "5-best-football-betting-sites-in-nigeria-2026-platform-analysis",
-      "detail": "Title 64 chars (max 60): '5 Best Football Betting Sites in Nigeria: 2026 Platform Analysis'"
+      "page": "europa-league-nfl-sports-news-africa",
+      "detail": "Title 73 chars (max 60): 'Europa League Thrills & NFL Drama: Latest Sports News for African Punt'"
     },
     {
       "severity": "HIGH",
-      "check": "title_length",
-      "page": "4-top-football-betting-sites-in-nigeria-for-2026-bonuses-and-mobile-payments",
-      "detail": "Title 87 chars (max 60): '4 Top Football Betting Sites in Nigeria for 2026: Bonuses and Mobile P'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "1xbet-login-and-security-3-nigerian-betting-platforms-compared-for-2026",
-      "detail": "Title 72 chars (max 60): '1xbet login and Security: 3 Nigerian Betting Platforms Compared for 20'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "1xbet-bet9ja-and-betano-reviewing-licensed-betting-brands-in-2026",
-      "detail": "Title 68 chars (max 60): '1xbet, Bet9ja, and Betano: Reviewing Licensed Betting Brands in 2026'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "4-sports-betting-apps-in-nigeria-for-2026-speed-ui-and-live-markets-compared",
-      "detail": "Title 79 chars (max 60): '4 Sports Betting Apps in Nigeria for 2026: Speed, UI, and Live Markets'"
+      "check": "meta_desc_length",
+      "page": "f1-betting-preview-united-states-grand-Prix-2026",
+      "detail": "Excerpt 165 chars (max 155)"
     },
     {
       "severity": "HIGH",
