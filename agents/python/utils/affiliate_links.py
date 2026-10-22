@@ -35,7 +35,7 @@ BRAND_SLUGS: dict[str, str] = {
     "betking": "betking",
     "betway": "betway",
     "hollywoodbets": "hollywoodbets",
-    "betika": "betika",
+    "mostbet": "mostbet",
     "sportpesa": "sportpesa",
     "mozzartbet": "mozzartbet",
     "nairabet": "nairabet",
@@ -53,7 +53,6 @@ BRAND_SLUGS: dict[str, str] = {
     "bettabet": "bettabets",
     "playbet": "playbet",
     "pepeta": "pepeta",
-    "betikadrc": "betika-drc",
 }
 
 CTA_FREE_BETS = "FREE BETS"
@@ -75,6 +74,7 @@ PROMO_CODE_BRANDS: frozenset[str] = frozenset({
     "playbet",
     "1xbet",
     "22bet",
+    "mostbet",  # confirmed 2026-10-21: owner supplied MostBet banners carrying SIFUKAI
 })
 
 

@@ -82,7 +82,7 @@ FOOTBALL_FALLBACKS = [
      "time": "Tomorrow · 20:00 UTC","h": 2.10, "d": 3.20, "a": 3.40, "hBk": "Betway",  "dBk": "Bet9ja", "aBk": "Hollywoodbets"},
     {"league": "Kenya Premier League · Playoff", "key": "local", "live": False, "complete": False,
      "home": "Gor Mahia",          "away": "AFC Leopards","hScore": None, "aScore": None,
-     "time": "Today · 13:00 UTC", "h": 2.10, "d": 3.00, "a": 3.60, "hBk": "Betika",   "dBk": "SportPesa","aBk": "Betway"},
+     "time": "Today · 13:00 UTC", "h": 2.10, "d": 3.00, "a": 3.60, "hBk": "Odibets",   "dBk": "SportPesa","aBk": "Betway"},
     {"league": "NPFL · Super 8",                 "key": "local", "live": False, "complete": False,
      "home": "Enyimba FC",         "away": "Rivers United","hScore": None, "aScore": None,
      "time": "Today · 15:00 UTC", "h": 1.90, "d": 3.20, "a": 4.20, "hBk": "Bet9ja",   "dBk": "Sportybet","aBk": "BetKing"},

@@ -70,7 +70,7 @@ PAGES = [
         'filter_default': 'nodep',
         'faq': [
             ('What is a free bet at an African bookmaker?', "A free bet lets you place a wager without using your own money. If your free bet wins, you receive the winnings (minus the stake). For example, if you have a KSh 500 free bet and win at 3.00 odds, you receive KSh 1,000 (profit only — the KSh 500 stake is not returned). Free bets are one of the most popular promotions at African bookmakers."),
-            ('How do I get a free bet in Nigeria or Kenya?', "To get a free bet in Nigeria: register at Bet9ja, 1xBet Nigeria, or Betway Nigeria, and claim the welcome offer. In Kenya: register at Sportpesa, Betika, or Betway Kenya. Most require a small first deposit (minimum ₦100 or KSh 100). Some bookmakers offer no-deposit free bets just for registering your mobile number."),
+            ('How do I get a free bet in Nigeria or Kenya?', "To get a free bet in Nigeria: register at Bet9ja, 1xBet Nigeria, or Betway Nigeria, and claim the welcome offer. In Kenya: register at Sportpesa or Betway Kenya. Most require a small first deposit (minimum ₦100 or KSh 100). Some bookmakers offer no-deposit free bets just for registering your mobile number."),
             ('What is the difference between a free bet and a no deposit bonus?', "A free bet is a specific token to place one wager at no risk. A no deposit bonus is free bonus cash credited to your account without depositing — you can use it across multiple bets. Both are available at African bookmakers covered by SifuFinds, though no deposit bonuses are rarer and typically smaller."),
             ('Do free bets expire?', "Yes. Most free bets expire within 7 days of being credited. Always check the T&Cs. In Nigeria: free bets from Bet9ja typically expire within 7 days. In Kenya: Sportpesa free bets typically expire within 72 hours. The comparison above shows current expiry terms for each bookmaker."),
         ],
@@ -309,7 +309,7 @@ def make_bonus_page(p):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=30"></script>
+<script src="../../assets/shared.js?v=31"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 let _activeFilt='{p['filter_default']}';

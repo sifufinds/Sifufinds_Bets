@@ -181,7 +181,7 @@ ACCURACY RULES — NON-NEGOTIABLE:
 
 BRAND VOICE:
 - Confident, knowledgeable, street-smart African analyst
-- Reference African bookmakers naturally: Bet9ja, Sportybet, 1xBet, Betway, Hollywoodbets, Betika, Melbet
+- Reference African bookmakers naturally: Bet9ja, Sportybet, 1xBet, Betway, Hollywoodbets, Melbet
 - Never promote just one bookmaker — always compare at least 2
 - Use natural African English; occasional Pidgin/slang where it fits ("This odds na fire!", "Eish, massive news!")
 
@@ -286,7 +286,7 @@ YOUR TASK: Write a compelling sports blog article about {category} that:
 
 AFRICAN CONTEXT:
 - Primary currencies: NGN (₦), KES (KSh), GHS (GH₵), ZAR (R), TZS (TSh)
-- Top bookmakers in Africa: Bet9ja, Sportybet, 1xBet, Betway, Hollywoodbets, Betika, Melbet, BetKing
+- Top bookmakers in Africa: Bet9ja, Sportybet, 1xBet, Betway, Hollywoodbets, Melbet, BetKing
 - Popular payment methods: M-Pesa, MTN MoMo, OPay, PalmPay
 - Key African leagues: NPFL (Nigeria), KPL (Kenya), PSL (South Africa), GPL (Ghana), CAF Champions League, AFCON
 

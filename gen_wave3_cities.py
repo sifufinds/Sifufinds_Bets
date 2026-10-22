@@ -58,7 +58,7 @@ CITIES = [
         'symbol': 'USh',
         'regulator': 'Uganda National Gaming Board (UNGB)',
         'population': "Uganda's capital city with 3.5+ million people",
-        'about': "Kampala is Uganda's capital and the largest betting market in the country. MTN MoMo and Airtel Money are the dominant payment methods at UNGB-licensed bookmakers. Betway Uganda, 1xBet Uganda, and Betika are most popular. Ugandans are passionate about AFCON, the Premier League, and the Uganda Premier League. Kampala has a dense network of licensed betting shops in Kabalagala, Wandegeya, and the city centre.",
+        'about': "Kampala is Uganda's capital and the largest betting market in the country. MTN MoMo and Airtel Money are the dominant payment methods at UNGB-licensed bookmakers. Betway Uganda and 1xBet Uganda are most popular. Ugandans are passionate about AFCON, the Premier League, and the Uganda Premier League. Kampala has a dense network of licensed betting shops in Kabalagala, Wandegeya, and the city centre.",
         'payments': ['MTN MoMo', 'Airtel Money', 'Bank Transfer', 'Visa', 'Mastercard'],
         'popular_leagues': ['Uganda Premier League', 'AFCON', 'CAF Champions League', 'Premier League', 'La Liga'],
         'assets_prefix': '../../../',

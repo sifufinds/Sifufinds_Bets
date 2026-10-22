@@ -1,7 +1,7 @@
 {
   "_schema_version": 1,
   "_comment": "Canonical brand x country bookmaker facts database — the Sifufinds Testing Database. Single source of truth intended to replace the overlapping brand schemas in agent_brand_reviews.py, agent_telegram_offers.py, brands/data.json and data/bookmaker_links.json. See CLAUDE.md's 'Sifufinds Testing Database' section for the verification-status model this file follows (not_yet_researched -> documented -> claimed -> verified -> tested).",
-  "generated_at": "2026-08-11T20:37:43.686218+00:00",
+  "generated_at": "2026-10-21T14:16:03.970248+00:00",
   "generated_by": "scripts/build_bookmakers_db.py",
   "countries_reference": {
     "NG": {
@@ -920,22 +920,20 @@
         },
         "scraped_daily": {
           "name": "1xBet",
-          "welcome_bonus": "300% bonus up to ₦600,000 on first deposit",
-          "bonus_headline": "Get ₦600,000 Bonus",
-          "bonus_sub": "Use promo code 1GLNG · Min deposit ₦1,700 · Min odds 1.40",
-          "promo_code": "1GLNG",
+          "welcome_bonus": "Get up to ₦1,200,000 welcome bonus with a 300% deposit match using promo code ACEMAX.",
+          "bonus_headline": "Get ₦1,200,000 Welcome Bonus",
+          "bonus_sub": "300% deposit match · Min deposit ₦1,700 · Use code ACEMAX",
+          "promo_code": "ACEMAX",
           "min_deposit": "₦1,700",
           "free_games": [
             "Aviator"
           ],
           "best_markets": [
-            "Football",
-            "Basketball",
-            "Tennis"
+            "Football"
           ],
-          "casino_offer": "Casino welcome offer up to €1950 plus free spins",
-          "last_scraped": "2026-08-11T03:28:41.146916+00:00",
-          "scrape_confidence": 0.85,
+          "casino_offer": "Up to ₦2,550,000 + 150 free spins with promo code NGCODE.",
+          "last_scraped": "2026-09-26T06:48:46.672966+00:00",
+          "scrape_confidence": 0.7,
           "scrape_source": "ddgs"
         },
         "review_page_copy": {
@@ -1021,9 +1019,9 @@
     "22bet": {
       "name": "22Bet",
       "slug": "22bet",
-      "official_url": "https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=224&bid=1484",
-      "review_page": "https://sifufinds.com/bookmakers/22bet-africa/",
-      "review_page_status": "live",
+      "official_url": "https://22bet.com",
+      "review_page": "bookmakers/22bet/",
+      "review_page_status": "active",
       "identity": {
         "founded": "2018",
         "hq": "Limassol, Cyprus"
@@ -1405,8 +1403,80 @@
           "hashtags": "#22Bet #Africa #FastPayout #100Bonus #SportsBetting"
         },
         "scraped_daily": null,
-        "review_page_copy": null,
-        "bookmaker_links_entry": null
+        "review_page_copy": {
+          "slug": "22bet-africa",
+          "name": "22Bet",
+          "country_code": "NG",
+          "country_name": "Africa (7 Countries)",
+          "country_page": null,
+          "rating": "4.4",
+          "licence": "Locally licensed in every market — NLRC (Nigeria), BCLB (Kenya), GCA (Ghana), GBT (Tanzania), UNCS (Uganda), GLB (Zambia), ARJEL (Ivory Coast)",
+          "licence_body": "National regulator in each of 7 African markets",
+          "tagline": "100% Welcome Bonus — Live in 7 African Markets",
+          "hero_color": "#024147",
+          "hero_color2": "#0a6b6e",
+          "bonus": "100% First Deposit Bonus — Up to ₦207,500 (Nigeria) / KSh 19,000 (Kenya) / GH₵1,491 (Ghana)",
+          "bonus_desc": "100% match on your first deposit, capped per country. Wager the bonus amount 5x on accumulators at minimum odds 1.40 within 30 days.",
+          "bonus_code": "Code BNSNG",
+          "acca_boost": "Same 100% offer live in Nigeria, Kenya, Ghana, Tanzania, Uganda, Zambia and Ivory Coast",
+          "min_deposit": "₦100 / KSh 100 / GH₵5",
+          "min_withdrawal": "Same as minimum deposit in each market",
+          "payments": [
+            "OPay",
+            "Bank Transfer",
+            "Visa",
+            "Mastercard",
+            "MTN MoMo",
+            "M-Pesa"
+          ],
+          "sports": "35+",
+          "url": "https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=224&bid=1484",
+          "live_stream": false,
+          "cashout": true,
+          "verdict": "22Bet is a Cyprus-based international operator running fully licensed local operations across seven of the African markets SifuFinds covers — Nigeria, Kenya, Ghana, Tanzania, Uganda, Zambia and Ivory Coast — rather than relying on a single offshore licence for the whole continent. The flat 100% first deposit bonus is easy to understand and repeats identically in every market, with 35+ sports and cash-out available throughout. It lacks the live streaming some rivals offer, but the straightforward 5x wagering requirement and consistently fast payout reputation make it a solid all-round pick, particularly for bettors who move between more than one of its live markets.",
+          "pros": [
+            "Locally licensed in all 7 markets it operates in, not just a single offshore licence",
+            "35+ sports including niche markets alongside football",
+            "Same easy-to-understand 100% welcome bonus in every country",
+            "Straightforward 5x wagering at minimum odds 1.40",
+            "Cash-out available on all markets",
+            "Reputation for fast, reliable payouts"
+          ],
+          "cons": [
+            "No live streaming on any market",
+            "Welcome bonus capped lower than some rivals (e.g. 1xBet's 200–300% offers)",
+            "Fewer local payment rails than Kenya/Nigeria-first brands like Bet9ja"
+          ],
+          "faqs": [
+            {
+              "q": "Is 22Bet licensed in Africa?",
+              "a": "22Bet holds a local licence in each African market it operates in through SifuFinds: NLRC in Nigeria, BCLB in Kenya, GCA in Ghana, GBT in Tanzania, UNCS in Uganda, GLB in Zambia, and ARJEL in Ivory Coast."
+            },
+            {
+              "q": "What is the 22Bet welcome bonus?",
+              "a": "22Bet offers a 100% first deposit bonus, capped per country — up to ₦207,500 in Nigeria, KSh 19,000 in Kenya, and GH₵1,491 in Ghana. Use code BNSNG. The bonus must be wagered 5x on accumulators at minimum odds 1.40 within 30 days."
+            },
+            {
+              "q": "Which African countries does 22Bet cover?",
+              "a": "22Bet is available in seven African countries covered by SifuFinds: Nigeria, Kenya, Ghana, Tanzania, Uganda, Zambia, and Ivory Coast."
+            },
+            {
+              "q": "Does 22Bet offer live streaming?",
+              "a": "No. Unlike some rivals, 22Bet does not currently offer live match streaming in its African markets. It does support cash-out on all listed markets."
+            }
+          ]
+        },
+        "bookmaker_links_entry": {
+          "keyword": "22bet",
+          "brand_name": "22Bet",
+          "href": "../../bookmakers/22bet-africa/",
+          "anchor_title": "22Bet review",
+          "resource_label": "22Bet Review",
+          "status": "active",
+          "official_url": "https://22bet.com",
+          "discovered_by": "manual",
+          "added_at": "2026-08-21T00:00:00+00:00"
+        }
       }
     },
     "bangbet": {
@@ -1830,22 +1900,23 @@
         },
         "scraped_daily": {
           "name": "Bet9ja",
-          "welcome_bonus": "100% match up to ₦100,000 plus 50% casino bonus up to ₦50,000",
-          "bonus_headline": "Get ₦100,000 Welcome Bonus",
-          "bonus_sub": "100% deposit match + 50% casino bonus",
-          "promo_code": "AFMAX",
-          "min_deposit": "₦100",
+          "welcome_bonus": "Get a ₦2,500 free bet with a ₦1,000 deposit",
+          "bonus_headline": "Get ₦2,500 FREE BET",
+          "bonus_sub": "No promo code required · ₦1,000 min deposit",
+          "promo_code": "2500PROMO",
+          "min_deposit": "₦1,000",
           "free_games": [
-            "Rummy",
+            "Aviator",
+            "Virtual Sports",
             "Casino Slots"
           ],
           "best_markets": [
             "Football",
-            "Basketball",
-            "Tennis"
+            "Racing",
+            "Casino"
           ],
           "casino_offer": "50% casino bonus up to ₦50,000",
-          "last_scraped": "2026-08-11T03:27:44.810473+00:00",
+          "last_scraped": "2026-09-24T07:01:00.045411+00:00",
           "scrape_confidence": 0.7,
           "scrape_source": "ddgs"
         },
@@ -1861,466 +1932,6 @@
           "discovered_by": "manual",
           "added_at": "2026-06-01T00:00:00+00:00"
         }
-      }
-    },
-    "betika": {
-      "name": "Betika",
-      "slug": "betika",
-      "official_url": "https://www.betika.com/en-ke/",
-      "review_page": "https://sifufinds.com/bookmakers/betika/",
-      "review_page_status": "live",
-      "identity": {
-        "founded": "2016",
-        "hq": "Nairobi, Kenya"
-      },
-      "countries": {
-        "KE": {
-          "availability": {
-            "status": "claimed",
-            "evidence": "Listed in agent_brand_reviews.py's countries array; not independently re-verified per market.",
-            "last_checked": null
-          },
-          "payment_methods": {
-            "deposit": [],
-            "withdrawal": [],
-            "status": "not_yet_researched",
-            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
-          },
-          "min_deposit": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "min_withdrawal": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "withdrawal_time": {
-            "value": null,
-            "status": "not_tested",
-            "note": "First-hand SifuFinds testing not yet performed for this market."
-          },
-          "sports_markets": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "licence": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "africa_fit": {
-            "score": null,
-            "breakdown": {
-              "country_availability": null,
-              "local_currencies": null,
-              "local_payment_methods": null,
-              "mobile_accessibility": null,
-              "african_sports_coverage": null,
-              "local_customer_support": null,
-              "local_promotions": null,
-              "withdrawal_convenience": null,
-              "local_regulatory_fit": null
-            },
-            "status": "not_yet_scored"
-          }
-        },
-        "TZ": {
-          "availability": {
-            "status": "claimed",
-            "evidence": "Listed in agent_brand_reviews.py's countries array; not independently re-verified per market.",
-            "last_checked": null
-          },
-          "payment_methods": {
-            "deposit": [],
-            "withdrawal": [],
-            "status": "not_yet_researched",
-            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
-          },
-          "min_deposit": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "min_withdrawal": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "withdrawal_time": {
-            "value": null,
-            "status": "not_tested",
-            "note": "First-hand SifuFinds testing not yet performed for this market."
-          },
-          "sports_markets": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "licence": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "africa_fit": {
-            "score": null,
-            "breakdown": {
-              "country_availability": null,
-              "local_currencies": null,
-              "local_payment_methods": null,
-              "mobile_accessibility": null,
-              "african_sports_coverage": null,
-              "local_customer_support": null,
-              "local_promotions": null,
-              "withdrawal_convenience": null,
-              "local_regulatory_fit": null
-            },
-            "status": "not_yet_scored"
-          }
-        },
-        "UG": {
-          "availability": {
-            "status": "claimed",
-            "evidence": "Listed in agent_brand_reviews.py's countries array; not independently re-verified per market.",
-            "last_checked": null
-          },
-          "payment_methods": {
-            "deposit": [],
-            "withdrawal": [],
-            "status": "not_yet_researched",
-            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
-          },
-          "min_deposit": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "min_withdrawal": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "withdrawal_time": {
-            "value": null,
-            "status": "not_tested",
-            "note": "First-hand SifuFinds testing not yet performed for this market."
-          },
-          "sports_markets": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "licence": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "africa_fit": {
-            "score": null,
-            "breakdown": {
-              "country_availability": null,
-              "local_currencies": null,
-              "local_payment_methods": null,
-              "mobile_accessibility": null,
-              "african_sports_coverage": null,
-              "local_customer_support": null,
-              "local_promotions": null,
-              "withdrawal_convenience": null,
-              "local_regulatory_fit": null
-            },
-            "status": "not_yet_scored"
-          }
-        },
-        "MW": {
-          "availability": {
-            "status": "claimed",
-            "evidence": "Listed in agent_brand_reviews.py's countries array; not independently re-verified per market.",
-            "last_checked": null
-          },
-          "payment_methods": {
-            "deposit": [],
-            "withdrawal": [],
-            "status": "not_yet_researched",
-            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
-          },
-          "min_deposit": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "min_withdrawal": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "withdrawal_time": {
-            "value": null,
-            "status": "not_tested",
-            "note": "First-hand SifuFinds testing not yet performed for this market."
-          },
-          "sports_markets": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "licence": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "africa_fit": {
-            "score": null,
-            "breakdown": {
-              "country_availability": null,
-              "local_currencies": null,
-              "local_payment_methods": null,
-              "mobile_accessibility": null,
-              "african_sports_coverage": null,
-              "local_customer_support": null,
-              "local_promotions": null,
-              "withdrawal_convenience": null,
-              "local_regulatory_fit": null
-            },
-            "status": "not_yet_scored"
-          }
-        },
-        "GH": {
-          "availability": {
-            "status": "claimed",
-            "evidence": "Listed in agent_brand_reviews.py's countries array; not independently re-verified per market.",
-            "last_checked": null
-          },
-          "payment_methods": {
-            "deposit": [],
-            "withdrawal": [],
-            "status": "not_yet_researched",
-            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
-          },
-          "min_deposit": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "min_withdrawal": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "withdrawal_time": {
-            "value": null,
-            "status": "not_tested",
-            "note": "First-hand SifuFinds testing not yet performed for this market."
-          },
-          "sports_markets": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "licence": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "africa_fit": {
-            "score": null,
-            "breakdown": {
-              "country_availability": null,
-              "local_currencies": null,
-              "local_payment_methods": null,
-              "mobile_accessibility": null,
-              "african_sports_coverage": null,
-              "local_customer_support": null,
-              "local_promotions": null,
-              "withdrawal_convenience": null,
-              "local_regulatory_fit": null
-            },
-            "status": "not_yet_scored"
-          }
-        },
-        "CD": {
-          "availability": {
-            "status": "documented",
-            "evidence": "DRC market entry confirmed 2026-08-21 via new SifuFinds affiliate deal (BigCat Partners tracking link) and cross-checked against independent web sources reporting Betika DRC is licensed by the National Lottery Company of DRC.",
-            "last_checked": "2026-08-21"
-          },
-          "payment_methods": {
-            "deposit": [],
-            "withdrawal": [],
-            "status": "not_yet_researched",
-            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
-          },
-          "min_deposit": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "min_withdrawal": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "withdrawal_time": {
-            "value": null,
-            "status": "not_tested",
-            "note": "First-hand SifuFinds testing not yet performed for this market."
-          },
-          "sports_markets": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "licence": {
-            "value": "National Lottery Company of DRC",
-            "status": "documented"
-          },
-          "africa_fit": {
-            "score": null,
-            "breakdown": {
-              "country_availability": null,
-              "local_currencies": null,
-              "local_payment_methods": null,
-              "mobile_accessibility": null,
-              "african_sports_coverage": null,
-              "local_customer_support": null,
-              "local_promotions": null,
-              "withdrawal_convenience": null,
-              "local_regulatory_fit": null
-            },
-            "status": "not_yet_scored"
-          }
-        }
-      },
-      "multi_country_claims": {
-        "payment_methods": [
-          "M-Pesa",
-          "Airtel Money",
-          "Equitel",
-          "USSD *644#",
-          "Betika USSD"
-        ],
-        "min_deposit": "KSh 10",
-        "licence": "BCLB Licence No. BK0000679",
-        "status": "unverified_multi_country_claim",
-        "note": "This brand claims multiple countries; the fields above were written once and applied across all of them without per-country confirmation. Do not treat as true for any single market until researched into that market's own row under countries."
-      },
-      "review_scorecard": {
-        "sports_markets": {
-          "score": null,
-          "weight": 0.2
-        },
-        "odds_experience": {
-          "score": null,
-          "weight": 0.15
-        },
-        "payments": {
-          "score": null,
-          "weight": 0.15
-        },
-        "withdrawals": {
-          "score": null,
-          "weight": 0.15
-        },
-        "bonuses": {
-          "score": null,
-          "weight": 0.1
-        },
-        "mobile_experience": {
-          "score": null,
-          "weight": 0.1
-        },
-        "customer_support": {
-          "score": null,
-          "weight": 0.05
-        },
-        "licensing_trust": {
-          "score": null,
-          "weight": 0.05
-        },
-        "africa_market_fit": {
-          "score": null,
-          "weight": 0.05
-        }
-      },
-      "overall_rating": null,
-      "africa_fit_overall": null,
-      "legacy_rating": {
-        "stars_1to5": 5,
-        "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
-      },
-      "legacy": {
-        "brand_reviews_static": {
-          "name": "Betika",
-          "slug": "betika-review",
-          "abbr": "BT",
-          "bg": "#007A4D",
-          "tc": "#fff",
-          "tag": "Operator of the Year 2025 – 8M+ Users Across East Africa",
-          "welcome": "Free Bet Gifts + Aviator Free Bets on Signup",
-          "bonus_top": "Registration free bet + regular Aviator drops (KSh 30–500)",
-          "acca_boost": null,
-          "promo_code": null,
-          "stars": 5,
-          "min_deposit": "KSh 10",
-          "min_stake": "KSh 1",
-          "instant_withdrawal": true,
-          "cashout": true,
-          "live_streaming": false,
-          "sports_count": 20,
-          "licence": "BCLB Licence No. BK0000679",
-          "countries": [
-            "Kenya",
-            "Tanzania",
-            "Uganda",
-            "Malawi",
-            "Ghana"
-          ],
-          "payment_methods": [
-            "M-Pesa",
-            "Airtel Money",
-            "Equitel",
-            "USSD *644#",
-            "Betika USSD"
-          ],
-          "mobile_app": true,
-          "virtual_sports": true,
-          "casino": true,
-          "founded": "2016",
-          "hq": "Nairobi, Kenya",
-          "key_sports": [
-            "Football",
-            "Basketball",
-            "Tennis",
-            "Rugby",
-            "Virtual Sports",
-            "Aviator"
-          ],
-          "standout": "Operator of the Year 2025, 8M+ users, USSD *644# for non-smartphone users, Kenya Premier League data"
-        },
-        "telegram_offers_static": {
-          "name": "Betika",
-          "flag": "🇰🇪",
-          "countries": [
-            "Kenya",
-            "Tanzania",
-            "Uganda",
-            "Malawi",
-            "Ghana"
-          ],
-          "welcome": "Free Bet + Aviator Free Bets on Signup",
-          "bonus_highlight": "Operator of the Year 2025 — 8M+ users",
-          "url": "https://www.betika.com/en-ke/",
-          "affiliate": false,
-          "min_deposit": "KSh 10",
-          "stars": 5,
-          "instant_withdrawal": true,
-          "cashout": true,
-          "licence": "BCLB Licensed (No. BK0000679)",
-          "tag": "Operator of the Year 2025 — 8M Users",
-          "hashtags": "#Betika #Kenya #KPL #Aviator #EastAfrica"
-        },
-        "scraped_daily": {
-          "name": "Betika",
-          "welcome_bonus": "Get ₦1000 free bet on sign-up, top-up, and Jackpot games",
-          "bonus_headline": "₦2,500 FREE BET",
-          "bonus_sub": "No deposit required · New players only",
-          "promo_code": null,
-          "min_deposit": "₦100",
-          "free_games": [
-            "Aviator",
-            "Virtual Sports",
-            "Casino Slots"
-          ],
-          "best_markets": [
-            "Football",
-            "Basketball",
-            "Tennis"
-          ],
-          "casino_offer": null,
-          "last_scraped": "2026-07-26T05:19:47.256823+00:00",
-          "scrape_confidence": 0.7,
-          "scrape_source": "ddgs+direct"
-        },
-        "review_page_copy": null,
-        "bookmaker_links_entry": null
       }
     },
     "betking": {
@@ -2961,7 +2572,7 @@
       }
     },
     "bettabets": {
-      "name": "bettabets",
+      "name": "Bettabets",
       "slug": "bettabets",
       "official_url": null,
       "review_page": null,
@@ -2970,7 +2581,57 @@
         "founded": null,
         "hq": null
       },
-      "countries": {},
+      "countries": {
+        "ZA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
+      },
       "multi_country_claims": null,
       "review_scorecard": {
         "sports_markets": {
@@ -3013,12 +2674,29 @@
       "overall_rating": null,
       "africa_fit_overall": null,
       "legacy_rating": {
-        "stars_1to5": null,
+        "stars_1to5": 3,
         "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
       },
       "legacy": {
         "brand_reviews_static": null,
-        "telegram_offers_static": null,
+        "telegram_offers_static": {
+          "name": "Bettabets",
+          "flag": "🇿🇦",
+          "countries": [
+            "South Africa"
+          ],
+          "welcome": "R200 Free Bet on First Deposit",
+          "bonus_highlight": "Local South African brand focused on PSL and cricket",
+          "url": "https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777",
+          "affiliate": true,
+          "min_deposit": "R10",
+          "stars": 3,
+          "instant_withdrawal": true,
+          "cashout": true,
+          "licence": "NGB Licensed",
+          "tag": "SA Local Brand — PSL & Cricket",
+          "hashtags": "#Bettabets #SouthAfrica #FreeBet #PSL #SportsBetting"
+        },
         "scraped_daily": null,
         "review_page_copy": null,
         "bookmaker_links_entry": null
@@ -3818,23 +3496,23 @@
         },
         "scraped_daily": {
           "name": "Betway",
-          "welcome_bonus": "₦1000 free bet + 10 spins & Aviator",
-          "bonus_headline": "Get ₦1000 FREE BET",
-          "bonus_sub": "No deposit required · ₦1000 extra bet, 10 free spins + 10 free flights",
-          "promo_code": "CODEWAY",
-          "min_deposit": "₦500",
+          "welcome_bonus": "Get up to ₦100,000 in free bets for 7 days or ₦1000 extra bet + 10 free spins + 10 free flights with sign-up code.",
+          "bonus_headline": "Get ₦100,000 Free Bets or ₦1000 Extra",
+          "bonus_sub": "Sign-up offer · 10 free spins + 10 free flights · Use code WAYBON or CODEWAY",
+          "promo_code": "WAYBON or CODEWAY",
+          "min_deposit": "₦100",
           "free_games": [
             "Aviator",
-            "Virtual Sports",
-            "Casino Slots"
+            "Casino",
+            "Free Flights"
           ],
           "best_markets": [
             "Football",
             "Basketball",
             "Tennis"
           ],
-          "casino_offer": "₦1000 free bet, 10 free spins, and 10 Aviator free flights",
-          "last_scraped": "2026-08-11T03:27:00.839442+00:00",
+          "casino_offer": "10 free spins included in the welcome pack.",
+          "last_scraped": "2026-09-26T06:47:40.334654+00:00",
           "scrape_confidence": 0.7,
           "scrape_source": "ddgs+direct"
         },
@@ -4244,22 +3922,23 @@
         },
         "scraped_daily": {
           "name": "BetWinner",
-          "welcome_bonus": "200% up to ₦130,000 with promo code BCVIP",
-          "bonus_headline": "Get 200% up to ₦130,000",
-          "bonus_sub": "Use promo code BCVIP · Min deposit not stated",
-          "promo_code": "BCVIP",
-          "min_deposit": "₦100",
+          "welcome_bonus": "Get up to ₦130,000 welcome bonus with a 200% deposit match using promo code NGVIP.",
+          "bonus_headline": "Get ₦130,000 Welcome Bonus",
+          "bonus_sub": "200% deposit match · Min deposit ₦4,000 · Use code NGVIP",
+          "promo_code": "NGVIP",
+          "min_deposit": "₦4,000",
           "free_games": [
-            "Casino Slots"
+            "Sportsbook",
+            "Casino"
           ],
           "best_markets": [
             "Football",
-            "Basketball",
-            "Tennis"
+            "Rugby",
+            null
           ],
-          "casino_offer": "Casino welcome pack up to ₦655,000 plus 150 free spins",
-          "last_scraped": "2026-08-10T03:44:07.350888+00:00",
-          "scrape_confidence": 0.85,
+          "casino_offer": "Up to ₦655,000 casino bonus with promo code TOFNG.",
+          "last_scraped": "2026-09-26T06:48:10.483870+00:00",
+          "scrape_confidence": 0.7,
           "scrape_source": "ddgs"
         },
         "review_page_copy": null,
@@ -4267,7 +3946,7 @@
       }
     },
     "betxchange": {
-      "name": "betxchange",
+      "name": "BetXchange",
       "slug": "betxchange",
       "official_url": null,
       "review_page": null,
@@ -4276,7 +3955,57 @@
         "founded": null,
         "hq": null
       },
-      "countries": {},
+      "countries": {
+        "ZA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
+      },
       "multi_country_claims": null,
       "review_scorecard": {
         "sports_markets": {
@@ -4319,19 +4048,36 @@
       "overall_rating": null,
       "africa_fit_overall": null,
       "legacy_rating": {
-        "stars_1to5": null,
+        "stars_1to5": 4,
         "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
       },
       "legacy": {
         "brand_reviews_static": null,
-        "telegram_offers_static": null,
+        "telegram_offers_static": {
+          "name": "BetXchange",
+          "flag": "🇿🇦",
+          "countries": [
+            "South Africa"
+          ],
+          "welcome": "R200 Free Bet on First Deposit",
+          "bonus_highlight": "Betting exchange with competitive odds",
+          "url": "https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226",
+          "affiliate": true,
+          "min_deposit": "R10",
+          "stars": 4,
+          "instant_withdrawal": true,
+          "cashout": true,
+          "licence": "WCGRB Licensed",
+          "tag": "SA Betting Exchange — Competitive Odds",
+          "hashtags": "#BetXchange #SouthAfrica #FreeBet #SportsBetting #AfricanBetting"
+        },
         "scraped_daily": null,
         "review_page_copy": null,
         "bookmaker_links_entry": null
       }
     },
     "fairpari": {
-      "name": "fairpari",
+      "name": "FairPari",
       "slug": "fairpari",
       "official_url": null,
       "review_page": null,
@@ -4340,7 +4086,1037 @@
         "founded": null,
         "hq": null
       },
-      "countries": {},
+      "countries": {
+        "GH": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "ZA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "TZ": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "UG": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "ZM": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "ET": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "CI": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "CM": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "SN": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "RW": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "ZW": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "MW": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "MZ": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "AO": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "CD": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "BW": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "EG": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "MA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "NA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "SL": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "LR": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
+      },
       "multi_country_claims": null,
       "review_scorecard": {
         "sports_markets": {
@@ -4383,12 +5159,49 @@
       "overall_rating": null,
       "africa_fit_overall": null,
       "legacy_rating": {
-        "stars_1to5": null,
+        "stars_1to5": 4,
         "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
       },
       "legacy": {
         "brand_reviews_static": null,
-        "telegram_offers_static": null,
+        "telegram_offers_static": {
+          "name": "FairPari",
+          "flag": "🌍",
+          "countries": [
+            "Ghana",
+            "South Africa",
+            "Tanzania",
+            "Uganda",
+            "Zambia",
+            "Ethiopia",
+            "Ivory Coast",
+            "Cameroon",
+            "Senegal",
+            "Rwanda",
+            "Zimbabwe",
+            "Malawi",
+            "Mozambique",
+            "Angola",
+            "DR Congo",
+            "Botswana",
+            "Egypt",
+            "Morocco",
+            "Namibia",
+            "Sierra Leone",
+            "Liberia"
+          ],
+          "welcome": "100% First Deposit Bonus – Up to €100",
+          "bonus_highlight": "63+ sports, 4,000+ casino games, wide payment options",
+          "url": "https://fairpaff.top/L?tag=d_5941712m_72465c_&site=5941712&ad=72465&r=registration",
+          "affiliate": true,
+          "min_deposit": "Varies by country",
+          "stars": 4,
+          "instant_withdrawal": true,
+          "cashout": true,
+          "licence": "Locally licensed per market",
+          "tag": "63+ Sports – 4,000+ Casino Games",
+          "hashtags": "#FairPari #Africa #SportsBetting #AfricanBetting #CasinoGames"
+        },
         "scraped_daily": null,
         "review_page_copy": null,
         "bookmaker_links_entry": null
@@ -4570,21 +5383,22 @@
         },
         "scraped_daily": {
           "name": "HelaBet",
-          "welcome_bonus": "100% match up to KES 16,000 with minimum deposit KES 112",
-          "bonus_headline": "Get 100% Up to KES 16,000",
-          "bonus_sub": "Fair rollover, 30-day validity",
-          "promo_code": "BET30",
-          "min_deposit": "KES 112",
+          "welcome_bonus": "Get up to KES 15,000 welcome bonus with a 100% first deposit match.",
+          "bonus_headline": "Get KES 15,000 Welcome Bonus",
+          "bonus_sub": "100% deposit match · Deposit via M-Pesa or Airtel Money · Up to KES 15,000",
+          "promo_code": "THN",
+          "min_deposit": "KES 100",
           "free_games": [
-            "Free Spins"
+            "Aviator",
+            "Casino Games"
           ],
           "best_markets": [
             "Football",
-            "Basketball",
-            "Tennis"
+            "Live Casino",
+            "Sports Betting"
           ],
-          "casino_offer": "Up to KES 162,000 for first four deposits + 150 free spins",
-          "last_scraped": "2026-08-10T03:45:03.351984+00:00",
+          "casino_offer": "Up to 162,000 KES + 150 free spins for casino games.",
+          "last_scraped": "2026-09-26T06:49:09.616294+00:00",
           "scrape_confidence": 0.7,
           "scrape_source": "ddgs"
         },
@@ -5155,22 +5969,26 @@
         },
         "scraped_daily": {
           "name": "Hollywoodbets",
-          "welcome_bonus": "R25 free bet and 50 free spins for new customers.",
-          "bonus_headline": "R25 + 50 Free Spins",
-          "bonus_sub": "No-deposit welcome offer for South African users.",
-          "promo_code": "HOLLYBET",
+          "welcome_bonus": "Get R25 no deposit bonus + 50 free spins on sign-up with promo code HOLLYBET or STYVIP.",
+          "bonus_headline": "Get R25 + 50 Free Spins",
+          "bonus_sub": "No deposit required · Free spins on slots · Soccer Money Back",
+          "promo_code": "HOLLYBET or STYVIP",
           "min_deposit": "R10",
           "free_games": [
-            "Free Spins"
+            "Hot Hot Fruit",
+            "Rainbow Mania",
+            "Hot Hot Hollywoodbets"
           ],
           "best_markets": [
-            "Football",
-            "Basketball",
-            "Tennis"
+            "Soccer",
+            "Horse Racing",
+            "Tennis",
+            "Golf",
+            "NBA"
           ],
-          "casino_offer": "50 free spins with the welcome offer.",
-          "last_scraped": "2026-08-10T03:44:24.881792+00:00",
-          "scrape_confidence": 0.69,
+          "casino_offer": "50 Free Spins on selected Spina Zonke games.",
+          "last_scraped": "2026-09-26T06:48:30.277005+00:00",
+          "scrape_confidence": 0.8,
           "scrape_source": "ddgs"
         },
         "review_page_copy": {
@@ -5251,9 +6069,9 @@
         }
       }
     },
-    "mebet": {
-      "name": "mebet",
-      "slug": "mebet",
+    "linebet": {
+      "name": "Linebet",
+      "slug": "linebet",
       "official_url": null,
       "review_page": null,
       "review_page_status": "missing",
@@ -5261,7 +6079,1135 @@
         "founded": null,
         "hq": null
       },
-      "countries": {},
+      "countries": {
+        "NG": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "KE": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "GH": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "ZA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "TZ": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "UG": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "ZM": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "ET": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "CI": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "CM": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "SN": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "RW": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "ZW": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "MW": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "MZ": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "AO": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "CD": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "BW": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "EG": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "MA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "NA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "SL": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "LR": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
+      },
       "multi_country_claims": null,
       "review_scorecard": {
         "sports_markets": {
@@ -5304,12 +7250,382 @@
       "overall_rating": null,
       "africa_fit_overall": null,
       "legacy_rating": {
-        "stars_1to5": null,
+        "stars_1to5": 4,
         "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
       },
       "legacy": {
         "brand_reviews_static": null,
-        "telegram_offers_static": null,
+        "telegram_offers_static": {
+          "name": "Linebet",
+          "flag": "🌍",
+          "countries": [
+            "Nigeria",
+            "Kenya",
+            "Ghana",
+            "South Africa",
+            "Tanzania",
+            "Uganda",
+            "Zambia",
+            "Ethiopia",
+            "Ivory Coast",
+            "Cameroon",
+            "Senegal",
+            "Rwanda",
+            "Zimbabwe",
+            "Malawi",
+            "Mozambique",
+            "Angola",
+            "DR Congo",
+            "Botswana",
+            "Egypt",
+            "Morocco",
+            "Namibia",
+            "Sierra Leone",
+            "Liberia"
+          ],
+          "welcome": "100% First Deposit Bonus – Up to ₦180,000",
+          "bonus_highlight": "100% match on first deposit, wager x5 accumulators at min odds 1.40",
+          "url": "https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611",
+          "affiliate": true,
+          "min_deposit": "₦100",
+          "stars": 4,
+          "instant_withdrawal": true,
+          "cashout": true,
+          "licence": "Curaçao Licensed",
+          "tag": "International Brand – 1,000+ Daily Events",
+          "hashtags": "#Linebet #Africa #Curacao #SportsBetting #AfricanBetting"
+        },
+        "scraped_daily": null,
+        "review_page_copy": null,
+        "bookmaker_links_entry": null
+      }
+    },
+    "mebet": {
+      "name": "Mebet",
+      "slug": "mebet",
+      "official_url": null,
+      "review_page": null,
+      "review_page_status": "missing",
+      "identity": {
+        "founded": null,
+        "hq": null
+      },
+      "countries": {
+        "NG": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "KE": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "GH": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "TZ": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        },
+        "ET": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
+      },
+      "multi_country_claims": null,
+      "review_scorecard": {
+        "sports_markets": {
+          "score": null,
+          "weight": 0.2
+        },
+        "odds_experience": {
+          "score": null,
+          "weight": 0.15
+        },
+        "payments": {
+          "score": null,
+          "weight": 0.15
+        },
+        "withdrawals": {
+          "score": null,
+          "weight": 0.15
+        },
+        "bonuses": {
+          "score": null,
+          "weight": 0.1
+        },
+        "mobile_experience": {
+          "score": null,
+          "weight": 0.1
+        },
+        "customer_support": {
+          "score": null,
+          "weight": 0.05
+        },
+        "licensing_trust": {
+          "score": null,
+          "weight": 0.05
+        },
+        "africa_market_fit": {
+          "score": null,
+          "weight": 0.05
+        }
+      },
+      "overall_rating": null,
+      "africa_fit_overall": null,
+      "legacy_rating": {
+        "stars_1to5": 4,
+        "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
+      },
+      "legacy": {
+        "brand_reviews_static": null,
+        "telegram_offers_static": {
+          "name": "Mebet",
+          "flag": "🌍",
+          "countries": [
+            "Nigeria",
+            "Kenya",
+            "Ghana",
+            "Tanzania",
+            "Ethiopia"
+          ],
+          "welcome": "200% First Deposit Bonus – Up to ₦480,000",
+          "bonus_highlight": "150+ sports markets — most in Africa",
+          "url": "https://refpa3665.com/L?tag=d_5833716m_66335c_sifufinds&site=5833716&ad=66335",
+          "affiliate": true,
+          "min_deposit": "₦100",
+          "stars": 4,
+          "instant_withdrawal": false,
+          "cashout": false,
+          "licence": "NLRC + BCLB + Curaçao Licensed",
+          "tag": "150+ Sports — Widest Market Range",
+          "hashtags": "#Mebet #Africa #200Bonus #SportsBetting #Esports"
+        },
         "scraped_daily": null,
         "review_page_copy": null,
         "bookmaker_links_entry": null
@@ -5798,7 +8114,7 @@
           ],
           "welcome": "200% First Deposit Bonus – Up to ₦480,000",
           "bonus_highlight": "150+ sports markets — most in Africa",
-          "url": "https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559",
+          "url": "https://refpa3665.com/L?tag=d_6242359m_2170c_&site=6242359&ad=2170",
           "affiliate": true,
           "min_deposit": "₦100",
           "stars": 4,
@@ -5810,24 +8126,101 @@
         },
         "scraped_daily": {
           "name": "Melbet",
-          "welcome_bonus": "200% first deposit bonus up to ₦320,000 with promo code AFRMEL.",
-          "bonus_headline": "Get 200% Bonus up to ₦320,000",
-          "bonus_sub": "Min deposit ₦2,000 · Valid 7 days",
-          "promo_code": "AFRMEL",
-          "min_deposit": "₦2,000",
-          "free_games": [],
+          "welcome_bonus": "Get up to ₦200,000 welcome bonus with a 150% deposit match using promo code TWMEL.",
+          "bonus_headline": "Get ₦200,000 Welcome Bonus",
+          "bonus_sub": "150% deposit match · Min deposit ₦250 · Use code TWMEL",
+          "promo_code": "TWMEL",
+          "min_deposit": "₦250",
+          "free_games": [
+            "Casino Games",
+            "Sports Betting"
+          ],
           "best_markets": [
             "Football",
             "Basketball",
             "Tennis"
           ],
-          "casino_offer": "No casino offer mentioned",
-          "last_scraped": "2026-08-10T03:43:38.407201+00:00",
-          "scrape_confidence": 0.85,
+          "casino_offer": "Enhanced welcome bonus with promo code",
+          "last_scraped": "2026-09-26T06:47:50.458303+00:00",
+          "scrape_confidence": 0.7,
           "scrape_source": "ddgs+direct"
         },
         "review_page_copy": null,
         "bookmaker_links_entry": null
+      }
+    },
+    "mostbet": {
+      "name": "MostBet",
+      "slug": "mostbet",
+      "official_url": "https://mostbet.com/",
+      "review_page": "bookmakers/mostbet/",
+      "review_page_status": "active",
+      "identity": {
+        "founded": null,
+        "hq": null
+      },
+      "countries": {},
+      "multi_country_claims": null,
+      "review_scorecard": {
+        "sports_markets": {
+          "score": null,
+          "weight": 0.2
+        },
+        "odds_experience": {
+          "score": null,
+          "weight": 0.15
+        },
+        "payments": {
+          "score": null,
+          "weight": 0.15
+        },
+        "withdrawals": {
+          "score": null,
+          "weight": 0.15
+        },
+        "bonuses": {
+          "score": null,
+          "weight": 0.1
+        },
+        "mobile_experience": {
+          "score": null,
+          "weight": 0.1
+        },
+        "customer_support": {
+          "score": null,
+          "weight": 0.05
+        },
+        "licensing_trust": {
+          "score": null,
+          "weight": 0.05
+        },
+        "africa_market_fit": {
+          "score": null,
+          "weight": 0.05
+        }
+      },
+      "overall_rating": null,
+      "africa_fit_overall": null,
+      "legacy_rating": {
+        "stars_1to5": null,
+        "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
+      },
+      "legacy": {
+        "brand_reviews_static": null,
+        "telegram_offers_static": null,
+        "scraped_daily": null,
+        "review_page_copy": null,
+        "bookmaker_links_entry": {
+          "keyword": "mostbet",
+          "brand_name": "MostBet",
+          "href": "../../bookmakers/mostbet/",
+          "anchor_title": "MostBet review",
+          "resource_label": "MostBet Review",
+          "status": "active",
+          "official_url": "https://mostbet.com/",
+          "discovered_by": "manual",
+          "added_at": "2026-10-21T00:00:00+00:00"
+        }
       }
     },
     "mozzartbet": {
@@ -6820,39 +9213,97 @@
         },
         "scraped_daily": {
           "name": "Paripesa",
-          "welcome_bonus": "130% bonus up to ₦230,000 with minimum ₦450 deposit using promo code.",
-          "bonus_headline": "Get 130% up to ₦230,000",
-          "bonus_sub": "Use promo code PROMPESA · Min deposit ₦450",
-          "promo_code": "PROMPESA",
-          "min_deposit": "₦450",
+          "welcome_bonus": "Get up to ₦180,000 welcome bonus with a 100% first deposit match using promo code BCABONUS.",
+          "bonus_headline": "Get ₦180,000 Welcome Bonus",
+          "bonus_sub": "100% deposit match · Min deposit ₦1,500 · Use code BCABONUS",
+          "promo_code": "BCABONUS",
+          "min_deposit": "₦1,500",
           "free_games": [
-            "freespins"
+            "Aviator",
+            "Virtual Sports",
+            "Casino Slots"
           ],
           "best_markets": [
             "Football",
-            "Snooker",
-            "Basketball"
+            "Basketball",
+            "Tennis"
           ],
-          "casino_offer": "Up to 2,703,600 NGN and 150 freespins",
-          "last_scraped": "2026-08-11T03:29:09.592104+00:00",
-          "scrape_confidence": 0.8,
+          "casino_offer": "100% up to ₦500,000 + 150 free spins on first deposit",
+          "last_scraped": "2026-09-26T06:49:22.272811+00:00",
+          "scrape_confidence": 0.7,
           "scrape_source": "ddgs"
         },
         "review_page_copy": null,
         "bookmaker_links_entry": null
       }
     },
-    "rasbet": {
-      "name": "rasbet",
-      "slug": "rasbet",
-      "official_url": null,
-      "review_page": null,
-      "review_page_status": "missing",
+    "pepeta": {
+      "name": "Pepeta",
+      "slug": "pepeta",
+      "official_url": "https://www.pepeta.co.ke",
+      "review_page": "bookmakers/pepeta/",
+      "review_page_status": "active",
       "identity": {
         "founded": null,
         "hq": null
       },
-      "countries": {},
+      "countries": {
+        "KE": {
+          "availability": {
+            "status": "claimed",
+            "evidence": "Single-country brand per gen_bk_reviews.py (existing review page copy).",
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [
+              "M-Pesa",
+              "Airtel Money"
+            ],
+            "withdrawal": [
+              "M-Pesa",
+              "Airtel Money"
+            ],
+            "status": "documented",
+            "note": "Carried from gen_bk_reviews.py (existing review page copy); not yet independently re-verified."
+          },
+          "min_deposit": {
+            "value": "KSh 100",
+            "status": "documented"
+          },
+          "min_withdrawal": {
+            "value": "KSh 100",
+            "status": "documented"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": "20+",
+            "status": "documented"
+          },
+          "licence": {
+            "value": "BCLB Licence Nos. BK 0000694 & PG 0000421",
+            "status": "documented"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
+      },
       "multi_country_claims": null,
       "review_scorecard": {
         "sports_markets": {
@@ -6901,6 +9352,336 @@
       "legacy": {
         "brand_reviews_static": null,
         "telegram_offers_static": null,
+        "scraped_daily": null,
+        "review_page_copy": {
+          "slug": "pepeta",
+          "name": "Pepeta",
+          "country_code": "KE",
+          "country_name": "Kenya",
+          "country_page": "kenya",
+          "rating": "3.8",
+          "licence": "BCLB Licence Nos. BK 0000694 & PG 0000421",
+          "licence_body": "BCLB (Betting Control and Licensing Board, Kenya)",
+          "tagline": "Kenyan Crash Games & Casino Platform With Sports Betting",
+          "hero_color": "#6A1B9A",
+          "hero_color2": "#8E24AA",
+          "bonus": "100% Welcome Bonus on First Deposit",
+          "bonus_desc": "100% match on your first deposit via M-Pesa or Airtel Money. Minimum deposit KSh 100.",
+          "bonus_code": "No code needed — automatic on first deposit",
+          "acca_boost": "Regular crash-game promotions for active players",
+          "min_deposit": "KSh 100",
+          "min_withdrawal": "KSh 100",
+          "payments": [
+            "M-Pesa",
+            "Airtel Money"
+          ],
+          "sports": "20+",
+          "url": "https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/",
+          "live_stream": false,
+          "cashout": true,
+          "verdict": "Pepeta is a Nairobi-based platform, run by Norm Kick Off Kenya Limited and launched in 2023, that leans primarily on crash games and casino products with sports betting as a strong secondary offering across 20+ sports. It's licensed by Kenya's BCLB under two separate licence numbers (BK 0000694 for betting, PG 0000421 for gaming). As a newer, smaller platform than Kenya's established giants like SportPesa, Pepeta is best suited to bettors specifically drawn to its crash-game and casino lineup rather than those prioritising deep sports betting markets.",
+          "pros": [
+            "BCLB licensed under two separate numbers for betting and gaming",
+            "100% welcome bonus on first deposit",
+            "Low KSh 100 minimum deposit via M-Pesa or Airtel Money",
+            "Strong crash-game and casino product lineup",
+            "Cash-out available on sports bets"
+          ],
+          "cons": [
+            "Newer brand (launched 2023) with a smaller track record than Kenya's established operators",
+            "Sports betting is a secondary focus behind crash games and casino",
+            "Limited payment methods — M-Pesa and Airtel Money only",
+            "No live streaming"
+          ],
+          "faqs": [
+            {
+              "q": "Is Pepeta licensed in Kenya?",
+              "a": "Yes. Pepeta is operated by Norm Kick Off Kenya Limited and holds BCLB licence numbers BK 0000694 and PG 0000421, issued under Kenya's Betting, Lotteries and Gaming Board Act (CAP 131)."
+            },
+            {
+              "q": "What is the Pepeta welcome bonus?",
+              "a": "Pepeta offers a 100% match bonus on your first deposit, credited automatically with no promo code needed. Minimum deposit is KSh 100 via M-Pesa or Airtel Money."
+            },
+            {
+              "q": "Is Pepeta mainly a sportsbook or a casino?",
+              "a": "Pepeta positions itself primarily around crash games (including an Aviator-style title) and casino products, with sports betting across 20+ sports as a secondary offering."
+            },
+            {
+              "q": "When was Pepeta launched?",
+              "a": "Pepeta launched in 2023 and is operated by Norm Kick Off Kenya Limited, headquartered in Westlands, Nairobi."
+            }
+          ]
+        },
+        "bookmaker_links_entry": {
+          "keyword": "pepeta",
+          "brand_name": "Pepeta",
+          "href": "../../bookmakers/pepeta/",
+          "anchor_title": "Pepeta review",
+          "resource_label": "Pepeta Review",
+          "status": "active",
+          "official_url": "https://www.pepeta.co.ke",
+          "discovered_by": "manual",
+          "added_at": "2026-08-21T00:00:00+00:00"
+        }
+      }
+    },
+    "playbet": {
+      "name": "Playbet",
+      "slug": "playbet",
+      "official_url": null,
+      "review_page": null,
+      "review_page_status": "missing",
+      "identity": {
+        "founded": null,
+        "hq": null
+      },
+      "countries": {
+        "ZA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
+      },
+      "multi_country_claims": null,
+      "review_scorecard": {
+        "sports_markets": {
+          "score": null,
+          "weight": 0.2
+        },
+        "odds_experience": {
+          "score": null,
+          "weight": 0.15
+        },
+        "payments": {
+          "score": null,
+          "weight": 0.15
+        },
+        "withdrawals": {
+          "score": null,
+          "weight": 0.15
+        },
+        "bonuses": {
+          "score": null,
+          "weight": 0.1
+        },
+        "mobile_experience": {
+          "score": null,
+          "weight": 0.1
+        },
+        "customer_support": {
+          "score": null,
+          "weight": 0.05
+        },
+        "licensing_trust": {
+          "score": null,
+          "weight": 0.05
+        },
+        "africa_market_fit": {
+          "score": null,
+          "weight": 0.05
+        }
+      },
+      "overall_rating": null,
+      "africa_fit_overall": null,
+      "legacy_rating": {
+        "stars_1to5": 3,
+        "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
+      },
+      "legacy": {
+        "brand_reviews_static": null,
+        "telegram_offers_static": {
+          "name": "Playbet",
+          "flag": "🇿🇦",
+          "countries": [
+            "South Africa"
+          ],
+          "welcome": "100% Deposit Bonus – Up to R2,000",
+          "bonus_highlight": "Sports and casino in one platform",
+          "url": "https://trk.playbet.net/o/5tgJzp?site_id=284",
+          "affiliate": true,
+          "min_deposit": "R10",
+          "stars": 3,
+          "instant_withdrawal": true,
+          "cashout": true,
+          "licence": "WCGRB Licensed",
+          "tag": "SA Bookmaker — Sports & Casino",
+          "hashtags": "#Playbet #SouthAfrica #DepositBonus #SportsBetting #AfricanBetting"
+        },
+        "scraped_daily": null,
+        "review_page_copy": null,
+        "bookmaker_links_entry": null
+      }
+    },
+    "rasbet": {
+      "name": "Rasbet",
+      "slug": "rasbet",
+      "official_url": null,
+      "review_page": null,
+      "review_page_status": "missing",
+      "identity": {
+        "founded": null,
+        "hq": null
+      },
+      "countries": {
+        "ET": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
+      },
+      "multi_country_claims": null,
+      "review_scorecard": {
+        "sports_markets": {
+          "score": null,
+          "weight": 0.2
+        },
+        "odds_experience": {
+          "score": null,
+          "weight": 0.15
+        },
+        "payments": {
+          "score": null,
+          "weight": 0.15
+        },
+        "withdrawals": {
+          "score": null,
+          "weight": 0.15
+        },
+        "bonuses": {
+          "score": null,
+          "weight": 0.1
+        },
+        "mobile_experience": {
+          "score": null,
+          "weight": 0.1
+        },
+        "customer_support": {
+          "score": null,
+          "weight": 0.05
+        },
+        "licensing_trust": {
+          "score": null,
+          "weight": 0.05
+        },
+        "africa_market_fit": {
+          "score": null,
+          "weight": 0.05
+        }
+      },
+      "overall_rating": null,
+      "africa_fit_overall": null,
+      "legacy_rating": {
+        "stars_1to5": 3,
+        "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
+      },
+      "legacy": {
+        "brand_reviews_static": null,
+        "telegram_offers_static": {
+          "name": "Rasbet",
+          "flag": "🇪🇹",
+          "countries": [
+            "Ethiopia"
+          ],
+          "welcome": "Welcome Bonus on First Deposit",
+          "bonus_highlight": "Rising sportsbook built for the Ethiopian market",
+          "url": "https://rasbet.goaffnk.com/t/MTRfMQ==/",
+          "affiliate": true,
+          "min_deposit": "Br 50",
+          "stars": 3,
+          "instant_withdrawal": true,
+          "cashout": true,
+          "licence": "Licensed",
+          "tag": "Rising Sportsbook for the Ethiopian Market",
+          "hashtags": "#Rasbet #Ethiopia #SportsBetting #FreeBet #AfricanBetting"
+        },
         "scraped_daily": null,
         "review_page_copy": null,
         "bookmaker_links_entry": null
@@ -7763,14 +10544,13 @@
         },
         "scraped_daily": {
           "name": "Sportybet",
-          "welcome_bonus": "Get 135% Super Bonus on multiple selections",
-          "bonus_headline": "Get ₦10,000 FREE",
-          "bonus_sub": "No deposit required · Casino Rewards",
-          "promo_code": "claim code from website",
+          "welcome_bonus": "100% match on your first deposit up to ₦10,000.",
+          "bonus_headline": "100% up to ₦10,000",
+          "bonus_sub": "First deposit match – min ₦100",
+          "promo_code": "SPORTY",
           "min_deposit": "₦100",
           "free_games": [
             "Aviator",
-            "Virtual Sports",
             "Casino Slots"
           ],
           "best_markets": [
@@ -7779,8 +10559,8 @@
             "Tennis"
           ],
           "casino_offer": "up to ₦10,000 rewards",
-          "last_scraped": "2026-08-11T03:25:15.011294+00:00",
-          "scrape_confidence": 0.7,
+          "last_scraped": "2026-09-24T06:53:00.594535+00:00",
+          "scrape_confidence": 0.85,
           "scrape_source": "ddgs"
         },
         "review_page_copy": null,
@@ -8097,7 +10877,57 @@
         "founded": null,
         "hq": null
       },
-      "countries": {},
+      "countries": {
+        "ZA": {
+          "availability": {
+            "status": "not_yet_researched",
+            "evidence": null,
+            "last_checked": null
+          },
+          "payment_methods": {
+            "deposit": [],
+            "withdrawal": [],
+            "status": "not_yet_researched",
+            "note": "Not independently verified. Check the operator's current terms and registration page before depositing."
+          },
+          "min_deposit": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "min_withdrawal": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "withdrawal_time": {
+            "value": null,
+            "status": "not_tested",
+            "note": "First-hand SifuFinds testing not yet performed for this market."
+          },
+          "sports_markets": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "licence": {
+            "value": null,
+            "status": "not_yet_researched"
+          },
+          "africa_fit": {
+            "score": null,
+            "breakdown": {
+              "country_availability": null,
+              "local_currencies": null,
+              "local_payment_methods": null,
+              "mobile_accessibility": null,
+              "african_sports_coverage": null,
+              "local_customer_support": null,
+              "local_promotions": null,
+              "withdrawal_convenience": null,
+              "local_regulatory_fit": null
+            },
+            "status": "not_yet_scored"
+          }
+        }
+      },
       "multi_country_claims": null,
       "review_scorecard": {
         "sports_markets": {
@@ -8140,103 +10970,51 @@
       "overall_rating": null,
       "africa_fit_overall": null,
       "legacy_rating": {
-        "stars_1to5": null,
+        "stars_1to5": 4,
         "source": "agent_brand_reviews.py / agent_telegram_offers.py static data — subjective, predates the Sifufinds weighted scorecard methodology, kept for reference only."
       },
       "legacy": {
         "brand_reviews_static": null,
-        "telegram_offers_static": null,
+        "telegram_offers_static": {
+          "name": "TicTacBets",
+          "flag": "🇿🇦",
+          "countries": [
+            "South Africa"
+          ],
+          "welcome": "25 Free Spins + 100% Match Up to R5,000 + 50 Spins",
+          "bonus_highlight": "25 free spins on registration, no deposit needed",
+          "url": "https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=1023",
+          "affiliate": true,
+          "min_deposit": "R5",
+          "stars": 4,
+          "instant_withdrawal": true,
+          "cashout": true,
+          "licence": "NCGLB Licensed",
+          "tag": "SA-Owned Since 2015 — 25 Free Spins No Deposit",
+          "hashtags": "#TicTacBets #SouthAfrica #FreeSpins #NoDeposit #SportsBetting"
+        },
         "scraped_daily": {
           "name": "TicTacBets",
-          "welcome_bonus": "100% welcome bonus up to R5,000 plus 50 free spins",
-          "bonus_headline": "100% up to R5,000",
-          "bonus_sub": "Use promo code NEWBONUS or TICMORO",
-          "promo_code": "NEWBONUS",
-          "min_deposit": "R20",
+          "welcome_bonus": "Get a 100% deposit match up to R5,000 + 75 free spins with promo code CORG25.",
+          "bonus_headline": "Get R5,000 + 75 Free Spins",
+          "bonus_sub": "100% deposit match · 25 free spins on sign-up · 50 more after deposit",
+          "promo_code": "CORG25",
+          "min_deposit": "R50",
           "free_games": [
-            "Pragmatic Play slots"
+            "Pragmatic Play Slots"
           ],
           "best_markets": [
-            "Football",
-            "Tennis",
-            "Basketball"
+            "PSL",
+            "Rugby",
+            "Cricket"
           ],
-          "casino_offer": "50 free spins on Pragmatic Play slots",
-          "last_scraped": "2026-08-11T03:28:07.570048+00:00",
-          "scrape_confidence": 0.66,
+          "casino_offer": "25 Free Spins on selected Pragmatic Play slot games for new players.",
+          "last_scraped": "2026-09-26T06:48:20.939406+00:00",
+          "scrape_confidence": 0.8,
           "scrape_source": "ddgs+direct"
         },
         "review_page_copy": null,
         "bookmaker_links_entry": null
-      }
-    },
-    "pepeta": {
-      "name": "Pepeta",
-      "slug": "pepeta",
-      "official_url": "https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/",
-      "review_page": "https://sifufinds.com/bookmakers/pepeta/",
-      "review_page_status": "live",
-      "identity": {
-        "founded": "2023",
-        "hq": "Westlands, Nairobi, Kenya",
-        "operator": "Norm Kick Off Kenya Limited"
-      },
-      "countries": {
-        "KE": {
-          "availability": {
-            "status": "documented",
-            "evidence": "Verified 2026-08-21 via multiple independent Kenyan betting-review sources (Trustpilot, bettingcompanies.africa, telecomasia.net) cross-checked against SifuFinds' existing BOOKS listing for Kenya.",
-            "last_checked": "2026-08-21"
-          },
-          "payment_methods": {
-            "deposit": [
-              "M-Pesa",
-              "Airtel Money"
-            ],
-            "withdrawal": [
-              "M-Pesa",
-              "Airtel Money"
-            ],
-            "status": "documented",
-            "note": "Documented from independent third-party review sources, not independently re-tested first-hand."
-          },
-          "min_deposit": {
-            "value": "KSh 100",
-            "status": "documented"
-          },
-          "min_withdrawal": {
-            "value": null,
-            "status": "not_yet_researched"
-          },
-          "withdrawal_time": {
-            "value": null,
-            "status": "not_tested",
-            "note": "First-hand SifuFinds testing not yet performed for this market."
-          },
-          "sports_markets": {
-            "value": "20+",
-            "status": "documented"
-          },
-          "licence": {
-            "value": "BCLB Licence Nos. BK 0000694 & PG 0000421",
-            "status": "documented"
-          },
-          "africa_fit": {
-            "score": null,
-            "breakdown": {
-              "country_availability": null,
-              "local_currencies": null,
-              "local_payment_methods": null,
-              "mobile_accessibility": null,
-              "african_sports_coverage": null,
-              "local_customer_support": null,
-              "local_promotions": null,
-              "withdrawal_convenience": null,
-              "local_regulatory_fit": null
-            },
-            "status": "not_yet_scored"
-          }
-        }
       }
     }
   }

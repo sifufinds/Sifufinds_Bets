@@ -69,7 +69,7 @@ WALL_CLOCK_BUDGET_SECONDS = 3 * 60 * 60
 
 ODDS_NUM_RE = re.compile(r"\b\d{1,2}\.\d{2}\b")
 BOOKMAKER_RE = re.compile(
-    r"\b(Bet9ja|Sportybet|SportyBet|Betway|1xBet|Hollywoodbets|Melbet|22Bet|Betika|BetKing)\b"
+    r"\b(Bet9ja|Sportybet|SportyBet|Betway|1xBet|Hollywoodbets|Melbet|22Bet|BetKing)\b"
 )
 FILLER_TITLE_WORDS = re.compile(
     r"\b(Transfer News|Transfer Update|Transfer Window|Transfer Talk|Transfer Saga|"

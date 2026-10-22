@@ -68,7 +68,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania", "Ethiopia"],
         "welcome": "200% First Deposit Bonus – Up to ₦480,000",
         "highlight": "150+ sports markets — widest range in Africa",
-        "url": "https://refpa3665.com/L?tag=d_3805306m_61559c_&site=3805306&ad=61559",
+        "url": "https://refpa3665.com/L?tag=d_6242359m_2170c_&site=6242359&ad=2170",
         "min_deposit": "₦100",
         "licence": "NLRC + BCLB",
         "hashtags": "#Melbet #Africa #200Bonus #SportsBetting",

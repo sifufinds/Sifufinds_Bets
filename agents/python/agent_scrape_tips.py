@@ -42,7 +42,7 @@ HTTP_HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; SifuFinds/2.0; +https://
 TODAY_UTC = datetime.now(timezone.utc)
 DATE_LABEL = TODAY_UTC.strftime("%-d %b")  # e.g. "12 Jun"
 
-AFRICAN_BKS = ["1xBet", "Betway", "Bet9ja", "22Bet", "Melbet", "Sportybet", "Betika"]
+AFRICAN_BKS = ["1xBet", "Betway", "Bet9ja", "22Bet", "Melbet", "Sportybet"]
 
 SOURCES = [
     {

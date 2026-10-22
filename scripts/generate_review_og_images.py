@@ -48,7 +48,6 @@ BOOKMAKERS = {
     "22bet-review":        ("22bet_hq.png",         "22Bet"),
     "bangbet-review":      ("bangbet_hq.png",       "BangBet"),
     "bet9ja-review":       ("bet9ja_hq.png",        "Bet9ja"),
-    "betika-review":       ("betika_hq.png",        "Betika"),
     "betking-review":      ("betking_hq.png",       "BetKing"),
     "betpawa-review":      ("betpawa_hq.png",       "betPawa"),
     "betway-review":       ("betway_hq.png",        "Betway"),

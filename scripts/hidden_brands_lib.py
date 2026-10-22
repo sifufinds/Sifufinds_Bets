@@ -30,7 +30,7 @@ _PH_RE = re.compile(f"{PH_OPEN}(\\d+){PH_CLOSE}")
 # Bookmaker names that are NOT hidden. Only used to recognise "a list of
 # bookmakers" during list removal; shared.js names are added at load time.
 _EXTRA_BOOKMAKERS = {
-    "sportybet", "betway", "1xbet", "22bet", "melbet", "betika", "sportpesa",
+    "sportybet", "betway", "1xbet", "22bet", "melbet", "mostbet", "sportpesa",
     "paripesa", "betwinner", "helabet", "linebet", "fairpari", "premier bet",
     "betano", "10bet", "sportingbet", "wsb", "playabet", "mozzartbet",
     "odibets", "betpawa", "msport", "nairabet", "merrybet", "bangbet",
