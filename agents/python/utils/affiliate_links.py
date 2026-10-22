@@ -75,6 +75,7 @@ PROMO_CODE_BRANDS: frozenset[str] = frozenset({
     "playbet",
     "1xbet",
     "22bet",
+    "melbet",   # confirmed 2026-10-22: owner supplied Melbet creatives carrying SIFUKAI and asked for it in posts
     "mostbet",  # confirmed 2026-10-21: owner supplied MostBet banners carrying SIFUKAI
 })
 

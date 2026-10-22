@@ -180,6 +180,24 @@ BRANDS = [
         "tag": "150+ Sports — Widest Market Range",
         "hashtags": "#Melbet #Africa #200Bonus #SportsBetting #Esports",
     },
+    {
+        "name": "MostBet",
+        "flag": "🌍",
+        "countries": ["Kenya", "Ghana", "Tanzania", "Egypt", "Morocco", "Ivory Coast", "Benin"],
+        "welcome": "Welcome Bonus up to 150% + 250 Free Spins",
+        "bonus_highlight": "Sports betting, casino and Aviator-style games",
+        # Owner-confirmed facts only (headline offer + SIFUKAI code). Everything else is
+        # None so the post builders omit that line instead of claiming something unverified.
+        "url": "https://mostbet.com/",   # real tracking link not issued yet; posts use the masked sifufinds.com/mostbet
+        "affiliate": True,
+        "min_deposit": "Varies by country",
+        "stars": None,
+        "instant_withdrawal": None,
+        "cashout": None,
+        "licence": "Licensing varies by country, check the official site",
+        "tag": "New on SifuFinds — Sports & Casino Welcome Offer",
+        "hashtags": "#MostBet #Aviator #CasinoBonus #SportsBetting",
+    },
     # "Mebet" is a second, separately-tracked affiliate ID for this same Melbet
     # platform (its masked link 301s to melbet.org's own registration page —
     # confirmed by resolving the redirect, same brand/logo/bonus as above), not
@@ -560,6 +578,16 @@ def _yes_no(v: bool) -> str:
     return "✅" if v else "❌"
 
 
+def _stars_prefix(brand: dict, sep: str = "  ") -> str:
+    """Star rating prefix, or '' when no verified rating exists (never invent one)."""
+    return f"{_stars(brand['stars'])}{sep}" if brand.get("stars") else ""
+
+
+def _flag_line(label: str, value) -> str:
+    """'<label>: ✅/❌' line, or '' when the fact is unverified (None)."""
+    return "" if value is None else f"{label}: {_yes_no(value)}\n"
+
+
 def _country_flags(countries: list[str]) -> str:
     flag_map = {
         "Nigeria": "🇳🇬", "Kenya": "🇰🇪", "South Africa": "🇿🇦",
@@ -567,7 +595,7 @@ def _country_flags(countries: list[str]) -> str:
         "Zambia": "🇿🇲", "Zimbabwe": "🇿🇼", "Rwanda": "🇷🇼",
         "Malawi": "🇲🇼", "Ethiopia": "🇪🇹", "Namibia": "🇳🇦",
         "Mozambique": "🇲🇿", "Botswana": "🇧🇼", "Ivory Coast": "🇨🇮",
-        "Cameroon": "🇨🇲",
+        "Cameroon": "🇨🇲", "Egypt": "🇪🇬", "Morocco": "🇲🇦", "Benin": "🇧🇯",
     }
     return " ".join(flag_map.get(c, "🌍") for c in countries[:6])
 
@@ -587,10 +615,10 @@ def build_offer_message(brand: dict) -> str:
         f"💰 <b>{brand['welcome']}</b>\n"
         f"✨ {brand['bonus_highlight']}\n"
         f"━━━━━━━━━━━━━━━━━━━━━\n"
-        f"{_stars(brand['stars'])}  {brand['tag']}\n\n"
+        f"{_stars_prefix(brand)}{brand['tag']}\n\n"
         f"💳 Min Deposit: {brand['min_deposit']}\n"
-        f"⚡ Instant Withdrawal: {_yes_no(brand['instant_withdrawal'])}\n"
-        f"💸 Cash-Out: {_yes_no(brand['cashout'])}\n"
+        f"{_flag_line('⚡ Instant Withdrawal', brand['instant_withdrawal'])}"
+        f"{_flag_line('💸 Cash-Out', brand['cashout'])}"
         f"🛡 {brand['licence']}\n\n"
         f"🌍 Available in: {countries_str}\n\n"
         f"{promo_bit}"
@@ -626,7 +654,7 @@ def build_facebook_offer_message(brand: dict, link: str) -> str:
         f"🔥 Today's Top Deal — {brand['name']} {flags}\n\n"
         f"{brand['welcome']}\n"
         f"{brand['bonus_highlight']}\n\n"
-        f"{_stars(brand['stars'])} {brand['tag']}\n"
+        f"{_stars_prefix(brand, sep=' ')}{brand['tag']}\n"
         f"Min deposit {brand['min_deposit']} · {brand['licence']}\n"
         f"Available in: {countries_str}\n\n"
         f"Read the full review → {link}\n"

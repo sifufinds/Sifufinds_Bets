@@ -31,7 +31,7 @@ load_dotenv(Path(__file__).parent / ".env")
 sys.path.insert(0, str(Path(__file__).parent))
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from utils.logger import log
-from utils.affiliate_links import cta_plain
+from utils.affiliate_links import cta_plain, promo_code_line
 from utils.tweet_text import tweet_len as _tweet_len, trim_to_limit as _trim_to_limit, TWEET_MAX
 from seo_meta import strip_dangling_words
 
@@ -72,6 +72,17 @@ BRANDS = [
         "min_deposit": "₦100",
         "licence": "NLRC + BCLB",
         "hashtags": "#Melbet #Africa #200Bonus #SportsBetting",
+    },
+    {
+        "name": "MostBet",
+        "flag": "🌍",
+        "countries": ["Kenya", "Ghana", "Tanzania", "Egypt", "Morocco", "Ivory Coast", "Benin"],
+        "welcome": "Welcome Bonus up to 150% + 250 Free Spins",
+        "highlight": "Sports betting, casino and Aviator-style games",
+        "url": "https://mostbet.com/",   # posts use the masked sifufinds.com/mostbet; real tracking link not issued yet
+        "min_deposit": "Varies by country",
+        "licence": "Licensing varies, check official site",
+        "hashtags": "#MostBet #Aviator #CasinoBonus #SportsBetting",
     },
     {
         "name": "BetWinner",
@@ -265,11 +276,14 @@ def _next_brand(state: dict, force: bool = False) -> dict | None:
 
 
 def _build_offer_tweet(brand: dict) -> str:
+    promo_line = promo_code_line(brand["name"])
+    promo_bit = f"🎁 {promo_line}\n" if promo_line else ""
     tweet = (
         f"🔥 TODAY'S DEAL — {brand['name']} {brand['flag']}\n"
         f"💰 {brand['welcome']}\n"
         f"✨ {brand['highlight']}\n\n"
         f"Min deposit: {brand['min_deposit']} | {brand['licence']}\n\n"
+        f"{promo_bit}"
         f"👉 {cta_plain(brand)}\n\n"
         f"{brand['hashtags']} #SifuFinds #AfricanBetting"
     )
