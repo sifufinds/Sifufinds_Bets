@@ -1,7 +1,7 @@
 {
   "_schema_version": 1,
   "_comment": "Canonical brand x country bookmaker facts database — the Sifufinds Testing Database. Single source of truth intended to replace the overlapping brand schemas in agent_brand_reviews.py, agent_telegram_offers.py, brands/data.json and data/bookmaker_links.json. See CLAUDE.md's 'Sifufinds Testing Database' section for the verification-status model this file follows (not_yet_researched -> documented -> claimed -> verified -> tested).",
-  "generated_at": "2026-10-22T16:43:17.709544+00:00",
+  "generated_at": "2026-10-22T16:43:34.599420+00:00",
   "generated_by": "scripts/build_bookmakers_db.py",
   "countries_reference": {
     "NG": {
