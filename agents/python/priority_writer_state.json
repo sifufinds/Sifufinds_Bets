@@ -1524,25 +1524,35 @@
     "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Tanzania": {
       "slug": "nigeria-champions-league-betting-tips-tanzania",
       "posted_at": "2026-10-21T17:42:35.737053+00:00"
+    },
+    "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Uganda": {
+      "slug": "nigeria-champions-league-lookman-ayaosi-shine-betting-tips-uganda",
+      "posted_at": "2026-10-22T03:16:36.085935+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-21T18:50:09.093076+00:00",
+    "checked_at": "2026-10-22T03:16:41.130908+00:00",
     "candidates_available": 185,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Egypt",
         "country": "Egypt",
         "result": "failed",
-        "reason": "quality_gate: only 780 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "reason": "quality_gate: final line was 'Betting is legal in Egypt as long as the operator follows the rules of the Egyptian Gambling Regulatory Authority (EGRA). The bookmakers listed operate under Curacao licences but are accepted in the market when they respect EGRA’s consumer‑protection standards.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Morocco",
         "country": "Morocco",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Curacao‑licensed operators such as 1xBet Maroc, Melbet Maroc, BetWinner Maroc and FairPari Morocco are regulated under international standards and must comply with AML and responsible‑gaming rules. While they are not MDJS‑licensed, they are widely used by Moroccan bettors and provide secure payment options.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Uganda",
+        "country": "Uganda",
+        "result": "written",
+        "slug": "nigeria-champions-league-lookman-ayaosi-shine-betting-tips-uganda"
       }
     ]
   }
