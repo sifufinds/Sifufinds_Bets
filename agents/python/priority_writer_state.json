@@ -1532,31 +1532,43 @@
     "Junior Starlets seek revival against USA as FKF betting tips Kenya": {
       "slug": "junior-starlets-vs-usa-betting-tips-kenya",
       "posted_at": "2026-10-22T21:03:17.597708+00:00"
+    },
+    "President grace First National Bank Head State Golf betting tips Ghana": {
+      "slug": "president-grace-fnb-head-state-golf-betting-tips-ghana",
+      "posted_at": "2026-10-22T21:28:21.655624+00:00"
+    },
+    "Ligue des champions UEFA Le but somptueux de betting tips Tanzania": {
+      "slug": "ligue-des-champions-uefa-betting-tips-tanzania",
+      "posted_at": "2026-10-22T21:43:42.595002+00:00"
+    },
+    "Nigerian Players Watch Arokodare, Moffi, Nwaiwu score as betting tips Nigeria": {
+      "slug": "nigerian-players-watch-arokodare-moffi-nwaiwu-betting-tips-nigeria",
+      "posted_at": "2026-10-22T21:51:53.417460+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-22T21:03:31.441315+00:00",
-    "candidates_available": 205,
+    "checked_at": "2026-10-22T21:51:57.831823+00:00",
+    "candidates_available": 204,
     "attempted": 3,
-    "written": 1,
+    "written": 3,
     "attempts": [
-      {
-        "keyword": "UCL Osimhen Picks Up Man Match Award Galatasaray’s betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Each promotion states a 30‑day window from the moment the bonus is credited. If you do not fulfil the x5 roll‑over in that period, the bonus and any winnings generated from it will be forfeited.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Junior Starlets seek revival against USA as FKF betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "junior-starlets-vs-usa-betting-tips-kenya"
-      },
       {
         "keyword": "President grace First National Bank Head State Golf betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 471)"
+        "result": "written",
+        "slug": "president-grace-fnb-head-state-golf-betting-tips-ghana"
+      },
+      {
+        "keyword": "Ligue des champions UEFA Le but somptueux de betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "ligue-des-champions-uefa-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Nigerian Players Watch Arokodare, Moffi, Nwaiwu score as betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "nigerian-players-watch-arokodare-moffi-nwaiwu-betting-tips-nigeria"
       }
     ]
   }
