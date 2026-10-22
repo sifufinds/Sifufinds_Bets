@@ -1550,12 +1550,6 @@ BANNER_BRANDS: dict[str, dict] = {
         'sub': 'Welcome offer · confirm terms for your country before depositing',
         'promo_code': 'SIFUKAI',
     },
-    'pepeta': {
-        'name': 'Pepeta', 'slug': 'pepeta', 'abbr': 'PPT', 'bg': '#6A1B9A', 'tc': '#fff',
-        'headline': 'Crash Games & Casino · Kenya', 'offer': '100% Deposit Bonus',
-        'sub': 'BCLB licensed · M-Pesa and Airtel Money',
-        'promo_code': None,
-    },
 }
 
 # For a review post, the offer banner must feature only the brand actually
@@ -2182,7 +2176,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=31"></script>
+<script src="../../assets/shared.js?v=32"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 function copyPostLink(btn,url){{

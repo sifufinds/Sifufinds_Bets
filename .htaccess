@@ -96,7 +96,11 @@ RewriteRule ^tictacbet/?$ "https://trackrt.tictacbets.co.za/o/zdY0CA?site_id=102
 RewriteRule ^betxchange/?$ "https://track.trkbxa.click/o/yDSAGh?lpage=m0gk2w&site_id=1226" [R=301,L,NC]
 RewriteRule ^bettabets/?$ "https://track.bettapartners.co.za/o/zNV2Pk?lpage=AjB-aC&site_id=777" [R=301,L,NC]
 RewriteRule ^playbet/?$ "https://trk.playbet.net/o/5tgJzp?site_id=284" [R=301,L,NC]
-RewriteRule ^pepeta/?$ "https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/" [R=301,L,NC]
+# Pepeta is no longer promoted (removed 2026-10-22): old links go to the Kenya comparison.
+RewriteRule ^pepeta/?$ /best-betting-in-kenya/ [R=301,L,NC]
+RewriteRule ^bookmakers/pepeta/?$ /best-betting-in-kenya/ [R=301,L,NC]
+RewriteRule ^blog/pepeta-review(-sw)?/?$ /best-betting-in-kenya/ [R=301,L,NC]
+RewriteRule ^blog/global-sports-roundup-from-college-football-to-rugby-and-cycling/?$ /blog/global-sports-roundup-college-football-boxing/ [R=301,L,NC]
 # MostBet (added 2026-10-21). NO affiliate tracking URL has been supplied yet, so this
 # masked link temporarily points at the operator's own site (promo code SIFUKAI is shown on
 # every MostBet listing/banner). Replace the target with the real affiliate URL once issued;

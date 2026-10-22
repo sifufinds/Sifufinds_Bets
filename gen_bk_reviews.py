@@ -217,50 +217,6 @@ BOOKMAKERS = [
             {'q': 'Does 22Bet offer live streaming?', 'a': 'No. Unlike some rivals, 22Bet does not currently offer live match streaming in its African markets. It does support cash-out on all listed markets.'},
         ],
     },
-    {
-        'slug': 'pepeta',
-        'name': 'Pepeta',
-        'country_code': 'KE',
-        'country_name': 'Kenya',
-        'country_page': 'kenya',
-        'rating': '3.8',
-        'licence': 'BCLB Licence Nos. BK 0000694 & PG 0000421',
-        'licence_body': 'BCLB (Betting Control and Licensing Board, Kenya)',
-        'tagline': 'Kenyan Crash Games & Casino Platform With Sports Betting',
-        'hero_color': '#6A1B9A',
-        'hero_color2': '#8E24AA',
-        'bonus': '100% Welcome Bonus on First Deposit',
-        'bonus_desc': '100% match on your first deposit via M-Pesa or Airtel Money. Minimum deposit KSh 100.',
-        'bonus_code': 'No code needed — automatic on first deposit',
-        'acca_boost': 'Regular crash-game promotions for active players',
-        'min_deposit': 'KSh 100',
-        'min_withdrawal': 'KSh 100',
-        'payments': ['M-Pesa', 'Airtel Money'],
-        'sports': '20+',
-        'url': 'https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/',
-        'live_stream': False,
-        'cashout': True,
-        'verdict': "Pepeta is a Nairobi-based platform, run by Norm Kick Off Kenya Limited and launched in 2023, that leans primarily on crash games and casino products with sports betting as a strong secondary offering across 20+ sports. It's licensed by Kenya's BCLB under two separate licence numbers (BK 0000694 for betting, PG 0000421 for gaming). As a newer, smaller platform than Kenya's established giants like SportPesa, Pepeta is best suited to bettors specifically drawn to its crash-game and casino lineup rather than those prioritising deep sports betting markets.",
-        'pros': [
-            'BCLB licensed under two separate numbers for betting and gaming',
-            '100% welcome bonus on first deposit',
-            'Low KSh 100 minimum deposit via M-Pesa or Airtel Money',
-            'Strong crash-game and casino product lineup',
-            'Cash-out available on sports bets',
-        ],
-        'cons': [
-            'Newer brand (launched 2023) with a smaller track record than Kenya\'s established operators',
-            'Sports betting is a secondary focus behind crash games and casino',
-            'Limited payment methods — M-Pesa and Airtel Money only',
-            'No live streaming',
-        ],
-        'faqs': [
-            {'q': 'Is Pepeta licensed in Kenya?', 'a': "Yes. Pepeta is operated by Norm Kick Off Kenya Limited and holds BCLB licence numbers BK 0000694 and PG 0000421, issued under Kenya's Betting, Lotteries and Gaming Board Act (CAP 131)."},
-            {'q': 'What is the Pepeta welcome bonus?', 'a': 'Pepeta offers a 100% match bonus on your first deposit, credited automatically with no promo code needed. Minimum deposit is KSh 100 via M-Pesa or Airtel Money.'},
-            {'q': 'Is Pepeta mainly a sportsbook or a casino?', 'a': 'Pepeta positions itself primarily around crash games (including an Aviator-style title) and casino products, with sports betting across 20+ sports as a secondary offering.'},
-            {'q': 'When was Pepeta launched?', 'a': 'Pepeta launched in 2023 and is operated by Norm Kick Off Kenya Limited, headquartered in Westlands, Nairobi.'},
-        ],
-    },
 ]
 
 
@@ -538,7 +494,7 @@ def make_html(bk):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=31"></script>
+<script src="../../assets/shared.js?v=32"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 const _BK_CTY='{compare_cty}';

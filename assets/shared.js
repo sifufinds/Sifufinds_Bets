@@ -81,7 +81,7 @@ function affiliateBooks(books){return(books||[]).filter(isAffiliate);}
 // news and live odds) and local previews. hide_brands.py fails the deploy if
 // these two arrays drift from the JSON. No regex lookbehind: older Safari
 // throws on it, which would blank every page.
-const HIDDEN_BRAND_PATTERNS=['hollywood ?bets?','bet9ja','betking','super ?sport ?bets?','bet ?xchange','tic ?tac ?bets?','playbets?','betta ?bets?','sunbets?','supabets?','easybets?','betfred','jsb ?sport','soccershop','firstbets?','thababets?','interbets?','betika'];
+const HIDDEN_BRAND_PATTERNS=['hollywood ?bets?','bet9ja','betking','super ?sport ?bets?','bet ?xchange','tic ?tac ?bets?','playbets?','betta ?bets?','sunbets?','supabets?','easybets?','betfred','jsb ?sport','soccershop','firstbets?','thababets?','interbets?','betika','pepeta'];
 const HIDDEN_BRAND_DOMAINS=['hollywoodbets.net','trkbxa.click','bettapartners.co.za'];
 const _HIDDEN_BRAND_RE=new RegExp('(?:^|[^A-Za-z0-9])(?:'+HIDDEN_BRAND_PATTERNS.join('|')+')(?![A-Za-z])','i');
 function isHiddenBrand(s){
@@ -142,7 +142,6 @@ KE:[
 {abbr:'HB',bg:'#430084',tc:'#fff',name:'HelaBet Kenya',url:'https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235',tag:'Licensed Kenyan Brand – Instant M-Pesa Payouts',off:'100% Welcome Bonus – Up to KSh 5,000',top:'KSh 5,000',stars:4,min:'KSh 10',instant:true,cashout:true,stream:false,sports:25,lic:'BCLB Licensed',nodep:false,badge:'new',terms:'100% match on first deposit up to KSh 5,000. M-Pesa instant. Wagering requirements apply. T&Cs. 18+.',pms:['M-Pesa','Airtel Money','Bank Transfer']},
 {abbr:'PP',bg:'#172BE2',tc:'#fff',name:'Paripesa Kenya',url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',tag:'200% Bonus – 50+ Sports Markets',off:'200% First Deposit Bonus – Up to KSh 20,000',top:'KSh 20,000',stars:4,min:'KSh 50',instant:true,cashout:true,stream:true,sports:50,lic:'BCLB Licensed',nodep:false,badge:'new',terms:'200% match on first deposit up to KSh 20,000. Wager x5 at min odds 1.40. 30 days. T&Cs. 18+.',pms:['M-Pesa','Airtel Money','Visa','Mastercard']},
 {abbr:'LB',bg:'#0B8A4B',tc:'#fff',name:'Linebet Kenya',url:'https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611',tag:'International Brand – 1,000+ Daily Events',off:'100% First Deposit Bonus – Up to KSh 13,000',top:'KSh 13,000',stars:4,min:'KSh 20',instant:true,cashout:true,stream:true,sports:40,lic:'Curaçao Licensed',nodep:false,badge:'new',terms:'100% match up to KSh 13,000. Min deposit KSh 20. Wager x5 accumulators at min odds 1.40. 30 days. T&Cs. 18+.',pms:['M-Pesa','Airtel Money','Visa','Mastercard']},
-{abbr:'PPT',bg:'#6A1B9A',tc:'#fff',name:'Pepeta',url:'https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/',tag:'Win Big Everyday',off:'100% Welcome Bonus',top:'100% Match',stars:3,min:'KSh 10',instant:true,cashout:true,stream:false,sports:15,lic:'BCLB Licensed',nodep:false,badge:'',terms:'100% match on first deposit. M-Pesa. T&Cs. 18+.',pms:['M-Pesa','Airtel Money']},
 {abbr:'MOS',bg:'#0D1F52',tc:'#fff',name:'Mostbet Kenya',url:'https://sifufinds.com/mostbet',tag:'Sports & Casino – Welcome Bonus',off:'Welcome Bonus up to 150% + 250 Free Spins',top:'150% + 250 FS',stars:3,min:'Varies',instant:false,cashout:false,stream:false,sports:30,lic:'Licensing status not independently verified',nodep:false,badge:'new',terms:'Promo code SIFUKAI. Welcome bonus up to 150% + 250 free spins. Wagering, minimum deposit and eligibility terms apply and vary by country, so confirm them on the official site before depositing. T&Cs. 18+.',pms:[]},
 {abbr:'SP',bg:'#2F3081',tc:'#fff',name:'SportPesa Kenya',url:'https://www.sportpesa.co.ke',tag:'Official Sponsor of the SportPesa Premier League',off:'300% Welcome Karibu Gift on First Deposit',top:'300% Karibu',stars:5,min:'KSh 10',instant:true,cashout:true,stream:true,sports:30,lic:'BCLB Licensed',nodep:false,badge:'hot',terms:'Deposit and receive 300% Karibu Gift as free bets. M-Pesa instant. Jackpot products available. T&Cs. 18+.',pms:['M-Pesa','Airtel Money','Bank Transfer','Visa','Mastercard']},
 {abbr:'BW',bg:'#232323',tc:'#fff',name:'Betway Kenya',url:'https://www.betway.com/en-ke/',tag:'M-Pesa Instant – Super Group East Africa',off:'50% Welcome Bonus – Up to KSh 5,000',top:'KSh 5,000',stars:4,min:'KSh 10',instant:true,cashout:true,stream:true,sports:28,lic:'BCLB Licensed',nodep:false,badge:'',terms:'50% match up to KSh 5,000. M-Pesa paybill: 880185. Wager 3x at odds 3.0+. 30 days. T&Cs. 18+.',pms:['M-Pesa','Airtel Money','Visa','Mastercard']},
@@ -843,7 +842,7 @@ const BRAND_DOMAINS={
   'TBB':'thababet.co.za','SP+':'supabets.com','PB':'premierbet.com',
   'BTA':'betano.com','BLB':'bolabet.com',
   'PB':'premierbet.com','BNZ':'bonanzabet.co.zm','RB':'rasbet.bet',
-  'LB':'linebet.com','PPT':'pepeta.co.ke'
+  'LB':'linebet.com'
 };
 // Local logo assets — served from /assets/logos/ on the site root.
 // These take priority over any remote service. Add new entries as logos are downloaded.
@@ -1174,7 +1173,6 @@ const HEADER_BRANDS=[
 {name:'HelaBet',abbr:'HB',bg:'#430084',tc:'#fff',url:'https://1212fghnna.com/L?tag=d_2204817m_52235c_&site=2204817&ad=52235',domain:'helabet.com',tag:'100% Welcome Bonus'},
 {name:'Melbet',abbr:'MB',bg:'#212121',tc:'#fff',url:'https://refpa3665.com/L?tag=d_6242359m_2170c_&site=6242359&ad=2170',domain:'melbet.com',tag:'200% + 150 Sports'},
 {name:'Paripesa',abbr:'PP',bg:'#172BE2',tc:'#fff',url:'https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569',domain:'paripesa.com',tag:'200% First Deposit'},
-{name:'Pepeta',abbr:'PPT',bg:'#6A1B9A',tc:'#fff',url:'https://record.bigcatpartners.com/_ly3L7Y-nqfDCP9GC20JVYmNd7ZgqdRLk/1/',domain:'pepeta.co.ke',tag:'Win Big Everyday'},
 
 ];
 _dropHidden(HEADER_BRANDS);

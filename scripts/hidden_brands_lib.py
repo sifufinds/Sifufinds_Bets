@@ -34,7 +34,7 @@ _EXTRA_BOOKMAKERS = {
     "paripesa", "betwinner", "helabet", "linebet", "fairpari", "premier bet",
     "betano", "10bet", "sportingbet", "wsb", "playabet", "mozzartbet",
     "odibets", "betpawa", "msport", "nairabet", "merrybet", "bangbet",
-    "betlion", "parimatch", "stake", "bet365", "william hill", "pepeta",
+    "betlion", "parimatch", "stake", "bet365", "william hill",
     "gal sport", "betfair", "bwin", "unibet", "betsson", "888sport",
 }
 # Trailing qualifiers that don't change which bookmaker an item names.
