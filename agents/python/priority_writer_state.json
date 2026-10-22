@@ -1528,31 +1528,35 @@
     "Nigeria Champions League - Lookman, Ayaosi Shine As betting tips Uganda": {
       "slug": "nigeria-champions-league-lookman-ayaosi-shine-betting-tips-uganda",
       "posted_at": "2026-10-22T03:16:36.085935+00:00"
+    },
+    "Junior Starlets seek revival against USA as FKF betting tips Kenya": {
+      "slug": "junior-starlets-vs-usa-betting-tips-kenya",
+      "posted_at": "2026-10-22T21:03:17.597708+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-22T11:39:15.317772+00:00",
-    "candidates_available": 189,
+    "checked_at": "2026-10-22T21:03:31.441315+00:00",
+    "candidates_available": 205,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "UCL Osimhen Picks Up Man Match Award Galatasaray’s betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'The market is offered by all NLRC‑licensed operators and is regulated by the National Lottery Regulatory Commission. As long as you bet within your budget and use a licensed site, the market is safe and the odds are transparent.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Each promotion states a 30‑day window from the moment the bonus is credited. If you do not fulfil the x5 roll‑over in that period, the bonus and any winnings generated from it will be forfeited.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Junior Starlets seek revival against USA as FKF betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Absolutely. Betika, SportPesa, 22Bet and several other operators accept USSD *644# as a quick way to top up your betting balance using M‑Pay, which is especially handy if you do not have internet access at the moment.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "junior-starlets-vs-usa-betting-tips-kenya"
       },
       {
         "keyword": "President grace First National Bank Head State Golf betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'First, review the Terms & Conditions for the specific market. If you still need assistance, contact 22Bet’s customer support via live chat or email. For regulatory concerns, you can file a complaint with the Gaming Commission of Ghana, which oversees all licensed operators.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 471)"
       }
     ]
   }
