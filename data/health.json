@@ -1,18 +1,18 @@
 {
-  "checked_at": "2026-10-22T05:47:50.667652+00:00",
+  "checked_at": "2026-10-22T11:16:26.489846+00:00",
   "healthy": false,
   "pages": {
     "Home": true,
     "Odds": true,
     "Tips": true,
-    "Casino": true,
-    "Countries": true,
-    "shared.js": true,
+    "Casino": false,
+    "Countries": false,
+    "shared.js": false,
     "shared.css": true,
-    "live.json": true
+    "live.json": false
   },
   "fixes_applied": [
-    "refreshed stale live.json (238 min old)",
+    "refreshed stale live.json (278 min old)",
     "patched missing football keys: afcon, cafl, local, world",
     "generated 1 missing blog page(s): trinity-rodman-victorias-secret-fashion-show"
   ],
