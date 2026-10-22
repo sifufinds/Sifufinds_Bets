@@ -52,6 +52,8 @@ BRAND_SLUGS: dict[str, str] = {
     "bettabets": "bettabets",
     "bettabet": "bettabets",
     "playbet": "playbet",
+    "betika": "betika",
+    "pepeta": "pepeta",
 }
 
 CTA_FREE_BETS = "FREE BETS"
