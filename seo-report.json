@@ -1,13 +1,19 @@
 {
   "date": "2026-10-22",
-  "total": 101,
+  "total": 102,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 4,
+    "HIGH": 5,
     "MEDIUM": 96,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "bulls-sa-stars-coaching-drama-betting-insights",
+      "detail": "Title 73 chars (max 60): 'Bulls, SA Stars, and Coaching Drama: Betting Insights for African Bett'"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
