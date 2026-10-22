@@ -55,6 +55,7 @@ BOOKMAKERS = {
     "hollywoodbets-review": ("hollywoodbets_hq.png", "Hollywoodbets"),
     "linebet-review":      ("linebet.png",          "Linebet"),
     "melbet-review":       ("melbet_hq.png",        "Melbet"),
+    "mostbet-review":      ("mostbet.png",          "Mostbet"),
     "mozzartbet-review":   ("mozzartbet_hq.png",    "Mozzartbet"),
     "msport-review":       ("msport.png",           "MSport"),
     "nairabet-review":     ("nairabet.png",         "NairaBet"),
