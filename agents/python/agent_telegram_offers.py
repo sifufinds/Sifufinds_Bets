@@ -541,6 +541,8 @@ def _next_brand(state: dict, force_name: str | None = None, force: bool = False)
     brand_last = state.get("brand_last_posted", {})
 
     if force_name:
+        # The workflow passes --brand 'Name' through an unquoted $ARGS, so the quote marks arrive literally.
+        force_name = force_name.strip("'\" ")
         candidates = [b for b in AFFILIATE_BRANDS if b["name"].lower() == force_name.lower()]
         if not candidates:
             print(f"✗ Brand '{force_name}' not found or has no affiliate link. Options: {', '.join(BRAND_NAMES)}")
