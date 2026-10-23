@@ -1544,31 +1544,35 @@
     "Nigerian Players Watch Arokodare, Moffi, Nwaiwu score as betting tips Nigeria": {
       "slug": "nigerian-players-watch-arokodare-moffi-nwaiwu-betting-tips-nigeria",
       "posted_at": "2026-10-22T21:51:53.417460+00:00"
+    },
+    "Ten-man Spurs rescue draw Man Utd, Arsenal survive betting tips Kenya": {
+      "slug": "ten-man-spurs-rescue-draw-man-utd-arsenal-survive-kenya-betting-tips",
+      "posted_at": "2026-10-22T23:28:15.607571+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-22T21:51:57.831823+00:00",
-    "candidates_available": 204,
+    "checked_at": "2026-10-23T01:29:23.009656+00:00",
+    "candidates_available": 219,
     "attempted": 3,
-    "written": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "President grace First National Bank Head State Golf betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "president-grace-fnb-head-state-golf-betting-tips-ghana"
+        "keyword": "Ex-PSL star hands Yeye first win Chiefs betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 476)"
       },
       {
-        "keyword": "Ligue des champions UEFA Le but somptueux de betting tips Tanzania",
+        "keyword": "Africa African Football Chiefs Back Infantino Remain As betting tips Tanzania",
         "country": "Tanzania",
-        "result": "written",
-        "slug": "ligue-des-champions-uefa-betting-tips-tanzania"
+        "result": "failed",
+        "reason": "quality_gate: final line was 'The Gaming Board of Tanzania licences and oversees all locally operating bookmakers, ensuring they meet standards for player safety, fair play and financial integrity.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Nigerian Players Watch Arokodare, Moffi, Nwaiwu score as betting tips Nigeria",
+        "keyword": "Ifowodo wins $100,000 Nigeria Prize Literature betting tips Nigeria",
         "country": "Nigeria",
-        "result": "written",
-        "slug": "nigerian-players-watch-arokodare-moffi-nwaiwu-betting-tips-nigeria"
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, the bonus on 1xBet, 22Bet, and Melbet can be used on any market, including the Premier League, CAF Champions League, or UEFA Champions League. However, the bonus must be wagered on accumulators at a minimum odds of 1.40 to satisfy the wagering requirement.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
