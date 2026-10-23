@@ -1,13 +1,19 @@
 {
   "date": "2026-10-23",
-  "total": 97,
+  "total": 98,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
+    "HIGH": 6,
     "MEDIUM": 91,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "howe-favourite-man-united-manager-job-betting-tips-nigeria",
+      "detail": "Title 72 chars (max 60): 'Howe Emerges Favourite Man United Manager Job \u2013 Betting Tips for Niger'"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
