@@ -1,13 +1,37 @@
 {
   "date": "2026-10-23",
-  "total": 97,
+  "total": 101,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
+    "HIGH": 9,
     "MEDIUM": 91,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "african-football-buzz-sundowns-chiefs-caf-champions-league",
+      "detail": "Title 65 chars (max 60): 'African Football Buzz: Sundowns, Chiefs, and CAF Champions League'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "six-nations-springboks-betting-guide-african-punters",
+      "detail": "Title 84 chars (max 60): 'Six Nations & Springboks Betting Guide: How Latest UK Rugby News Shape'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "african-football-buzz-sundowns-chiefs-caf-champions-league",
+      "detail": "Excerpt 193 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "six-nations-springboks-betting-guide-african-punters",
+      "detail": "Excerpt 179 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
