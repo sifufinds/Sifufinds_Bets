@@ -73,7 +73,7 @@ RedirectMatch 404 ^/webhooks/rapidwombat-secrets\.php$
 RewriteRule ^fairpari/?$ "https://fairpaff.top/L?tag=d_5941712m_72465c_&site=5941712&ad=72465&r=registration" [R=301,L,NC]
 RewriteRule ^1xbet/?$ "https://reffpa.com/L?tag=d_5969542m_1599c_&site=5969542&ad=1599" [R=301,L,NC]
 RewriteRule ^linebet/?$ "https://lb-aff.com/L?tag=d_5966746m_22611c_sifufinds&site=5966746&ad=22611" [R=301,L,NC]
-RewriteRule ^melbet/?$ "https://refpa3665.com/L?tag=d_6242359m_2170c_&site=6242359&ad=2170" [R=301,L,NC]
+RewriteRule ^melbet/?$ "https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=17&bid=1484" [R=301,L,NC]
 RewriteRule ^betwinner/?$ "https://bwredir.com/1Lvf?p=%2Fregistration%2F&s1=sifufinds" [R=301,L,NC]
 RewriteRule ^helabet/?$ "https://1212fghnna.com/L?tag=d_5833683m_52235c_sifufinds&site=5833683&ad=52235" [R=301,L,NC]
 RewriteRule ^paripesa/?$ "https://combodef.com/L?tag=d_2350859m_45569c_&site=2350859&ad=45569" [R=301,L,NC]
@@ -101,11 +101,8 @@ RewriteRule ^pepeta/?$ /best-betting-in-kenya/ [R=301,L,NC]
 RewriteRule ^bookmakers/pepeta/?$ /best-betting-in-kenya/ [R=301,L,NC]
 RewriteRule ^blog/pepeta-review(-sw)?/?$ /best-betting-in-kenya/ [R=301,L,NC]
 RewriteRule ^blog/global-sports-roundup-from-college-football-to-rugby-and-cycling/?$ /blog/global-sports-roundup-college-football-boxing/ [R=301,L,NC]
-# MostBet (added 2026-10-21). NO affiliate tracking URL has been supplied yet, so this
-# masked link temporarily points at the operator's own site (promo code SIFUKAI is shown on
-# every MostBet listing/banner). Replace the target with the real affiliate URL once issued;
-# every MostBet CTA on the site routes through this one rule.
-RewriteRule ^mostbet/?$ https://mostbet.com/ [R=301,L,NC]
+# MostBet affiliate link (updated 2026-10-23). Every MostBet CTA on the site routes through this one rule.
+RewriteRule ^mostbet/?$ "https://omxbjm.com/ct7U?sub2=africa" [R=301,L,NC]
 # Betika is no longer promoted (removed 2026-10-21). Old masked/social links go to the
 # relevant on-site country comparison instead of the operator.
 RewriteRule ^betika/?$ /best-betting-in-kenya/ [R=301,L,NC]

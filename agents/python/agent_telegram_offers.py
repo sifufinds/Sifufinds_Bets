@@ -170,7 +170,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania", "Ethiopia"],
         "welcome": "200% First Deposit Bonus – Up to ₦480,000",
         "bonus_highlight": "150+ sports markets — most in Africa",
-        "url": "https://refpa3665.com/L?tag=d_6242359m_2170c_&site=6242359&ad=2170",
+        "url": "https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=17&bid=1484",
         "affiliate": True,
         "min_deposit": "₦100",
         "stars": 4,
@@ -188,7 +188,7 @@ BRANDS = [
         "bonus_highlight": "Sports betting, casino and Aviator-style games",
         # Owner-confirmed facts only (headline offer + SIFUKAI code). Everything else is
         # None so the post builders omit that line instead of claiming something unverified.
-        "url": "https://mostbet.com/",   # real tracking link not issued yet; posts use the masked sifufinds.com/mostbet
+        "url": "https://omxbjm.com/ct7U?sub2=africa",
         "affiliate": True,
         "min_deposit": "Varies by country",
         "stars": None,
