@@ -1,25 +1,13 @@
 {
-  "date": "2026-10-22",
-  "total": 99,
+  "date": "2026-10-23",
+  "total": 97,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 5,
     "MEDIUM": 91,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "europa-league-nfl-sports-news-africa",
-      "detail": "Title 73 chars (max 60): 'Europa League Thrills & NFL Drama: Latest Sports News for African Punt'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "f1-betting-preview-united-states-grand-Prix-2026",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
