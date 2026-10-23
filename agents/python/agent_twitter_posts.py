@@ -68,7 +68,7 @@ BRANDS = [
         "countries": ["Nigeria", "Kenya", "Ghana", "Tanzania", "Ethiopia"],
         "welcome": "200% First Deposit Bonus – Up to ₦480,000",
         "highlight": "150+ sports markets — widest range in Africa",
-        "url": "https://refpa3665.com/L?tag=d_6242359m_2170c_&site=6242359&ad=2170",
+        "url": "https://che.fluxbrox.com/redirect.aspx?pid=191766&lpid=17&bid=1484",
         "min_deposit": "₦100",
         "licence": "NLRC + BCLB",
         "hashtags": "#Melbet #Africa #200Bonus #SportsBetting",
@@ -79,7 +79,7 @@ BRANDS = [
         "countries": ["Kenya", "Ghana", "Tanzania", "Egypt", "Morocco", "Ivory Coast", "Benin"],
         "welcome": "Welcome Bonus up to 150% + 250 Free Spins",
         "highlight": "Sports betting, casino and Aviator-style games",
-        "url": "https://mostbet.com/",   # posts use the masked sifufinds.com/mostbet; real tracking link not issued yet
+        "url": "https://omxbjm.com/ct7U?sub2=africa",
         "min_deposit": "Varies by country",
         "licence": "Licensing varies, check official site",
         "hashtags": "#MostBet #Aviator #CasinoBonus #SportsBetting",
