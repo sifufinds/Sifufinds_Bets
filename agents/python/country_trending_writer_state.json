@@ -814,7 +814,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-23T22:35:09.018467+00:00",
+    "checked_at": "2026-10-23T23:25:18.974120+00:00",
     "candidates_available": 258,
     "attempted": 3,
     "written": 0,
@@ -823,19 +823,13 @@
         "keyword": "Howe Emerges Favourite Man United Manager Job As betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'For more betting tips and to compare the best odds across Nigerian bookmakers, head over to sifufinds.com. The site offers up‑to‑date odds, promotions and a user‑friendly interface that makes it easy to find the best value for your stake. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Kenyan girls face off Chinese Taipei ISF World betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 585 words (minimum 600); no '## FAQ' section heading found"
-      },
-      {
-        "keyword": "VRA defend UG Corporate Tennis Championship title betting tips Ghana",
-        "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
