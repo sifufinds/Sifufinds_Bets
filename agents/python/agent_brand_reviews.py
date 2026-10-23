@@ -241,7 +241,7 @@ BRANDS: list[dict] = [
         "welcome": "200% First Deposit Bonus – Up to ₦480,000 (Nigeria) / 300% up to KSh 1,500 (Kenya)",
         "bonus_top": "200% first deposit match (Nigeria)",
         "acca_boost": None,
-        "promo_code": "MBMAX",
+        "promo_code": "SIFUKAI",
         "stars": 4,
         "min_deposit": "₦100",
         "min_stake": "₦20",

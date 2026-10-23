@@ -1,7 +1,7 @@
 {
   "_schema_version": 1,
   "_comment": "Canonical brand x country bookmaker facts database — the Sifufinds Testing Database. Single source of truth intended to replace the overlapping brand schemas in agent_brand_reviews.py, agent_telegram_offers.py, brands/data.json and data/bookmaker_links.json. See CLAUDE.md's 'Sifufinds Testing Database' section for the verification-status model this file follows (not_yet_researched -> documented -> claimed -> verified -> tested).",
-  "generated_at": "2026-10-23T14:39:14.394414+00:00",
+  "generated_at": "2026-10-23T15:52:49.850541+00:00",
   "generated_by": "scripts/build_bookmakers_db.py",
   "countries_reference": {
     "NG": {
@@ -8117,7 +8117,7 @@
           "welcome": "200% First Deposit Bonus – Up to ₦480,000 (Nigeria) / 300% up to KSh 1,500 (Kenya)",
           "bonus_top": "200% first deposit match (Nigeria)",
           "acca_boost": null,
-          "promo_code": "MBMAX",
+          "promo_code": "SIFUKAI",
           "stars": 4,
           "min_deposit": "₦100",
           "min_stake": "₦20",
