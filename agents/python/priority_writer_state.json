@@ -1551,7 +1551,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-23T01:29:23.009656+00:00",
+    "checked_at": "2026-10-23T04:00:11.455654+00:00",
     "candidates_available": 219,
     "attempted": 3,
     "written": 0,
@@ -1560,19 +1560,13 @@
         "keyword": "Ex-PSL star hands Yeye first win Chiefs betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 476)"
+        "reason": "quality_gate: final line was 'All the bookmakers featured allow you to set daily, weekly or monthly deposit limits through the responsible gambling centre on their website. You can also apply a session timer or request self‑exclusion if you need a longer break. These tools are mandatory under WCGRB and NGB regulations.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Africa African Football Chiefs Back Infantino Remain As betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'The Gaming Board of Tanzania licences and oversees all locally operating bookmakers, ensuring they meet standards for player safety, fair play and financial integrity.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Ifowodo wins $100,000 Nigeria Prize Literature betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, the bonus on 1xBet, 22Bet, and Melbet can be used on any market, including the Premier League, CAF Champions League, or UEFA Champions League. However, the bonus must be wagered on accumulators at a minimum odds of 1.40 to satisfy the wagering requirement.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
