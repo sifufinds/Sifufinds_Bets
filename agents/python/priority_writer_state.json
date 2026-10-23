@@ -1555,7 +1555,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-23T11:27:48.961237+00:00",
+    "checked_at": "2026-10-23T13:33:18.516544+00:00",
     "candidates_available": 212,
     "attempted": 3,
     "written": 0,
@@ -1563,6 +1563,12 @@
       {
         "keyword": "Kenyan girls face off Chinese Taipei ISF World betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: only 946 words (minimum 1000); no '## FAQ' section heading found; final line was 'The wagering requirements for the 300% Welcome Karibu Gift with SportPesa Kenya are T&Cs apply.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "VRA defend UG Corporate Tennis Championship title betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
