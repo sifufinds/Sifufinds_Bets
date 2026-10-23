@@ -441,7 +441,7 @@ def build_bookmaker_block(cta: dict, html: bool) -> str:
     bet_link = cta_html(cta, label=CTA_BET_NOW) if html else cta_plain(cta, label=CTA_BET_NOW)
 
     block = (
-        f"🏅 {b(cta['name'])} {_stars(cta['stars'])} — {cta['tag']}\n"
+        f"🏅 {b(cta['name'])} {(_stars(cta['stars']) + ' ') if cta.get('stars') else ''}— {cta['tag']}\n"
         f"🛡 {trust_line}\n"
         f"💰 {b(cta['welcome'])}\n\n"
         f"🎁 New here? {claim_link}\n"

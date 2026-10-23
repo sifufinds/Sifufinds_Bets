@@ -129,9 +129,13 @@ def pick_cta(brand: dict) -> str:
 
 def cta_html(brand: dict, label: str | None = None) -> str:
     """Real clickable hyperlink for platforms that render HTML (Telegram
-    parse_mode=HTML) — the CTA phrase itself is the anchor text."""
+    parse_mode=HTML) — the CTA phrase itself is the anchor text. The masked
+    URL is also printed after it (2026-10-23): with the link hidden behind the
+    CTA words alone, readers saw no link at all in the post and assumed the
+    affiliate link was missing. Telegram auto-links the visible URL too."""
     cta = label or pick_cta(brand)
-    return f'<a href="{masked_url(brand["name"])}">{cta}</a>'
+    url = masked_url(brand["name"])
+    return f'<a href="{url}">{cta}</a> → {url}'
 
 
 def cta_plain(brand: dict, label: str | None = None) -> str:
