@@ -1552,17 +1552,33 @@
     "Howe Emerges Favourite Man United Manager Job As betting tips Nigeria": {
       "slug": "howe-favourite-man-united-manager-job-betting-tips-nigeria",
       "posted_at": "2026-10-23T07:21:43.606401+00:00"
+    },
+    "VRA defend UG Corporate Tennis Championship title betting tips Ghana": {
+      "slug": "vra-defend-ug-corporate-tennis-championship-betting-tips-ghana",
+      "posted_at": "2026-10-23T17:33:41.766683+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-23T15:28:55.605946+00:00",
+    "checked_at": "2026-10-23T17:43:21.065086+00:00",
     "candidates_available": 232,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Kenyan girls face off Chinese Taipei ISF World betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: only 974 words (minimum 1000); final line was 'To report a problem with a bookmaker, contact the BCLB or the bookmaker's customer support team.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "VRA defend UG Corporate Tennis Championship title betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "vra-defend-ug-corporate-tennis-championship-betting-tips-ghana"
+      },
+      {
+        "keyword": "URC | Round 4 Fixtures, teams betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
