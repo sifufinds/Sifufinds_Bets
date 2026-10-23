@@ -814,28 +814,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-23T06:23:56.121954+00:00",
-    "candidates_available": 243,
+    "checked_at": "2026-10-23T07:51:03.819747+00:00",
+    "candidates_available": 223,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "President grace First National Bank Head State Golf betting tips Ghana",
-        "country": "Ghana",
-        "result": "failed",
-        "reason": "fact_check: President Mahama; 150% up to GH₵500 free bet (min deposit GH₵1); 50% up to GH₵200 (min deposit GH₵2); 100% up to GH₵1,491 (min deposit GH₵5); 200% up to GH₵2,846 (min deposit GH₵5); 3.15; 1.40; 150% welcome bonus up to GH₵500 as a free bet; 50% match up to GH₵200"
-      },
-      {
-        "keyword": "Ligue des champions UEFA Le but somptueux de betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "ligue-des-champions-diomande-leipzig-tanzania-betting-tips"
-      },
-      {
-        "keyword": "UCL We Showed Our Level Against Barcelona — betting tips Nigeria",
+        "keyword": "Howe Emerges Favourite Man United Manager Job As betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Note: This article is for entertainment purposes only. Please gamble responsibly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Kenyan girls face off Chinese Taipei ISF World betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "VRA defend UG Corporate Tennis Championship title betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
       }
     ]
   }
