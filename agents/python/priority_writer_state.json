@@ -1587,28 +1587,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-24T13:03:53.772202+00:00",
-    "candidates_available": 253,
+    "checked_at": "2026-10-24T14:53:09.300692+00:00",
+    "candidates_available": 252,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Cardoso There are other trophies win betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 473)"
-      },
-      {
-        "keyword": "Coupe CAF le Raja qualifié, Kaizer Chiefs éliminé, betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: only 824 words (minimum 1000)"
-      },
-      {
-        "keyword": "Why 2027 Beijing World Championships are crucial Nairobi betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "2027-beijing-world-championships-betting-tips-kenya"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
