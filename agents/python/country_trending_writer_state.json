@@ -818,7 +818,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-24T20:21:47.735065+00:00",
+    "checked_at": "2026-10-24T20:46:27.123814+00:00",
     "candidates_available": 258,
     "attempted": 3,
     "written": 0,
@@ -827,19 +827,13 @@
         "keyword": "Glasner Fumes After Diop Escapes Red Card Nottingham betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 543)"
+        "reason": "fact_check: BTTS markets are typically priced around 1.70‑1.80 for matches with similar profiles.; The first‑goal‑scorer market often sits near 4.00‑5.00 for these types of fixtures.; 1xBet Nigeria currently offers a 300 % first‑deposit bonus up to ₦1,200,000 with the code **1BONUSNG**.; 22Bet Nigeria matches deposits 100 % up to ₦207,500 under the code **BNSNG**.; Glasner was upset because referee Michael Oliver did not send Issa Diop off for a challenge on James McAtee that many pundits believed warranted a straight red."
       },
       {
         "keyword": "FIFA appoints normalisation committee oversee Nigerian football until betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 450)"
-      },
-      {
-        "keyword": "Cardoso There are other trophies win betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "fact_check: 1.50; 3.80; 6.00; 1.45; 3.75; 5.90; 1.55; 3.90; 6.20; R10 extra bet, 10 spins, and 10 flights after a R50 deposit, along with a chance to win a R1 million prize; 200% first deposit bonus up to R4,500 with the code SIFUKAI; matches your first deposit 100% up to €100, with a minimum deposit of R10"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
