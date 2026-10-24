@@ -818,7 +818,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-24T11:07:09.878350+00:00",
+    "checked_at": "2026-10-24T13:18:17.582447+00:00",
     "candidates_available": 258,
     "attempted": 3,
     "written": 0,
@@ -827,13 +827,19 @@
         "keyword": "Glasner Fumes After Diop Escapes Red Card Nottingham betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 555 words (minimum 600); no '## FAQ' section heading found; final line was '18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "fact_check: Forest are likely to start the next match as slight favourites; Four of the last six Forest games have finished with three or fewer goals; Ipswich’s defence has been resilient, and Forest have struggled to convert chances when pressed; Williams opened the scoring in the Nottingham‑Ipswich encounter and remains a regular starter; 1xBet and 22Bet consistently offer competitive odds on the Premier League; a ₦10,000 first deposit with 1xBet turns into ₦40,000 of betting power after the 300% match; Always meet the wagering requirement (x5 accumulator at minimum odds of 1.40) before attempting a cash‑out; Glasner publicly described the referee’s decision as “unacceptable” and indicated that Forest will lodge a formal complaint with the Premier League’s disciplinary panel"
       },
       {
         "keyword": "FIFA appoints normalisation committee oversee Nigerian football until betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
+      },
+      {
+        "keyword": "Cardoso There are other trophies win betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "fact_check: four trophies won in just 100 games; FairPari South Africa, for instance, offers a range of enticing odds on Sundowns' upcoming matches; Here's a comparison of odds for Sundowns to win the DStv Premiership and CAF Champions League:; | Bookmaker | Odds (DStv Premiership) | Odds (CAF Champions League) |\n| --- | --- | --- |\n| FairPari South Africa | 2.50 | 3.20 |\n| Linebet South Africa | 2.40 | 3.10 |\n| BetWinner South Africa | 2.60 | 3.30 |; FairPari South Africa, for example, provides a 100% First Deposit Bonus – Up to €100; BetWinner South Africa also offers a 200% First Deposit Bonus – Up to R2,340"
       }
     ]
   }
