@@ -1,31 +1,13 @@
 {
   "date": "2026-10-24",
-  "total": 100,
+  "total": 97,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 8,
+    "HIGH": 5,
     "MEDIUM": 91,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "fifa-normalisation-committee-nigeria-betting-ghana",
-      "detail": "Title 72 chars (max 60): 'FIFA Normalisation Committee in Nigeria: How to Bet on Ghanaian Footba'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "glasner-fumes-diop-escapes-red-card-nottingham-betting-tips-nigeria",
-      "detail": "Title 86 chars (max 60): 'Glasner Fumes After Diop Escapes Red Card \u2013 Nottingham Betting Tips & '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "glasner-fumes-diop-escapes-red-card-nottingham-betting-tips-nigeria",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
