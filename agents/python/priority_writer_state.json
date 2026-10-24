@@ -1583,26 +1583,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-24T08:39:59.620828+00:00",
-    "candidates_available": 255,
+    "checked_at": "2026-10-24T10:53:52.522491+00:00",
+    "candidates_available": 253,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Glasner Fumes After Diop Escapes Red Card Nottingham betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "glasner-fumes-diop-escapes-red-card-nottingham-betting-tips-nigeria"
-      },
-      {
-        "keyword": "FIFA appoints normalisation committee oversee Nigerian football until betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "fifa-normalisation-committee-nigeria-betting-ghana"
-      },
       {
         "keyword": "Cardoso There are other trophies win betting tips South Africa",
         "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Absolutely. Visa and Mastercard are accepted by Linebet, BetWinner, Melbet, and Paripesa. FairPari and Betway also accept card deposits, but they also offer a broader range of South African bank options for added convenience.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Coupe CAF le Raja qualifié, Kaizer Chiefs éliminé, betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
