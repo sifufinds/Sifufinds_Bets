@@ -818,7 +818,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-24T15:05:40.204701+00:00",
+    "checked_at": "2026-10-24T16:23:43.573752+00:00",
     "candidates_available": 258,
     "attempted": 3,
     "written": 0,
@@ -826,20 +826,14 @@
       {
         "keyword": "Glasner Fumes After Diop Escapes Red Card Nottingham betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "fact_check: Diop’s challenge on McAtee in the 59th minute; the odds for a 1‑1 finish are currently in the 2.00‑2.20 range across the main Nigerian bookmakers"
+        "result": "skipped",
+        "reason": "similar_title_exists"
       },
       {
         "keyword": "FIFA appoints normalisation committee oversee Nigerian football until betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
-      },
-      {
-        "keyword": "Cardoso There are other trophies win betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
