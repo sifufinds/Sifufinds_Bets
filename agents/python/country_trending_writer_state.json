@@ -814,7 +814,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-23T23:25:18.974120+00:00",
+    "checked_at": "2026-10-24T01:44:21.646908+00:00",
     "candidates_available": 258,
     "attempted": 3,
     "written": 0,
@@ -823,13 +823,19 @@
         "keyword": "Howe Emerges Favourite Man United Manager Job As betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "fact_check: With Howe's odds shortening; Howe's odds tumbling across various platforms; While the odds for Howe's appointment are not explicitly stated, it's worth noting that bookmakers like 22Bet Nigeria and 1xBet Nigeria offer competitive odds on Premier League markets.; While specific odds are not provided in the source material, Nigerian bettors can find the latest odds on SifuFinds' odds page. Bookmakers like 22Bet Nigeria and 1xBet Nigeria are likely to offer competitive prices on this market."
       },
       {
         "keyword": "Kenyan girls face off Chinese Taipei ISF World betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 568 words (minimum 600); no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "VRA defend UG Corporate Tennis Championship title betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was 'The minimum odds required to trigger the bonus at 22Bet Ghana is 1.40.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }

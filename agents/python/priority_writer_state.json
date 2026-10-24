@@ -1560,19 +1560,35 @@
     "Kenyan girls face off Chinese Taipei ISF World betting tips Kenya": {
       "slug": "kenyan-girls-chinese-taipei-isf-world-betting-tips-kenya",
       "posted_at": "2026-10-23T20:16:11.299261+00:00"
+    },
+    "Man United defender Martínez blames club hierarchy after betting tips Nigeria": {
+      "slug": "martinez-blames-man-united-hierarchy-betting-tips-nigeria",
+      "posted_at": "2026-10-24T01:20:20.348064+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-23T23:17:47.066447+00:00",
+    "checked_at": "2026-10-24T01:20:25.116971+00:00",
     "candidates_available": 249,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "URC | Round 4 Fixtures, teams betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Log into your bookmaker’s responsible‑gaming centre and set deposit, loss or session limits. You can also request a self‑exclusion through the WCGRB, NGB or ECGBB, which will block your access to all licensed operators in South Africa.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue des champions CAF Le MC Alger en betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, most of the listed bookmakers offer live‑betting options. You can add or adjust bets during the match, but keep in mind that live odds can change rapidly based on the flow of the game.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Man United defender Martínez blames club hierarchy after betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "martinez-blames-man-united-hierarchy-betting-tips-nigeria"
       }
     ]
   }
