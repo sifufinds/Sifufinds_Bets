@@ -811,31 +811,35 @@
     "Ligue des champions UEFA Le but somptueux de betting tips Tanzania": {
       "slug": "ligue-des-champions-diomande-leipzig-tanzania-betting-tips",
       "posted_at": "2026-10-23T06:16:53.049474+00:00"
+    },
+    "Kenyan girls face off Chinese Taipei ISF World betting tips Kenya": {
+      "slug": "kenyan-girls-vs-chinese-taipei-isf-world-cup-betting-tips-kenya",
+      "posted_at": "2026-10-24T06:39:09.917509+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-24T05:02:52.637379+00:00",
+    "checked_at": "2026-10-24T06:46:24.442225+00:00",
     "candidates_available": 258,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Howe Emerges Favourite Man United Manager Job As betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: Bookmakers across Nigeria are offering competitive odds; with Howe consistently leading the pack.; Eddie Howe Odds; Michael Carrick to Stay Odds; Other Candidates Odds; 100% First Deposit Bonus up to ₦207,500; 300% First Deposit Bonus up to ₦1,200,000; 200% First Deposit Bonus up to ₦480,000; 200% First Deposit Bonus up to ₦200,000; 100% First Deposit Bonus up to ₦180,000; 150% Welcome Bonus up to ₦30,000 Free Bet; Eddie Howe has been without a club since leaving Newcastle United at the end of July"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 445)"
       },
       {
         "keyword": "Kenyan girls face off Chinese Taipei ISF World betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: 300% Welcome Karibu Gift on First Deposit; 100% First Deposit Bonus up to KSh 19,000; 200% First Deposit Bonus up to KSh 20,000; 300% First Deposit Bonus up to KSh 1,500; 100% Welcome Bonus up to KSh 5,000; 200% First Deposit Bonus up to KSh 20,000; Kenyan Girls Win; Draw; Chinese Taipei Win"
+        "result": "written",
+        "slug": "kenyan-girls-vs-chinese-taipei-isf-world-cup-betting-tips-kenya"
       },
       {
         "keyword": "VRA defend UG Corporate Tennis Championship title betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: no '## FAQ' section heading found"
       }
     ]
   }
