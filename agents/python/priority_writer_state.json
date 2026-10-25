@@ -1592,19 +1592,39 @@
     "Coupe CAF le Raja qualifié, Kaizer Chiefs éliminé, betting tips Tanzania": {
       "slug": "coupe-caf-raja-qualified-kaizer-chiefs-eliminated-betting-tips-tanzania",
       "posted_at": "2026-10-24T17:48:52.925260+00:00"
+    },
+    "Nigeria Plateau United End Pillars' Unbeaten Run 4-0 betting tips Tanzania": {
+      "slug": "nigeria-plateau-united-end-pillars-unbeaten-run-4-0-betting-tips-tanzania",
+      "posted_at": "2026-10-25T00:25:22.964568+00:00"
+    },
+    "Ex-PSL star hands Yeye first win Chiefs betting tips South Africa": {
+      "slug": "ex-psl-star-hands-yeye-first-win-chiefs-betting-tips-south-africa",
+      "posted_at": "2026-10-25T00:26:19.175408+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-24T22:38:06.558897+00:00",
+    "checked_at": "2026-10-25T00:27:02.187121+00:00",
     "candidates_available": 250,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Nigeria Plateau United End Pillars' Unbeaten Run 4-0 betting tips Tanzania",
         "country": "Tanzania",
+        "result": "written",
+        "slug": "nigeria-plateau-united-end-pillars-unbeaten-run-4-0-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Ex-PSL star hands Yeye first win Chiefs betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "ex-psl-star-hands-yeye-first-win-chiefs-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Africa African Football Chiefs Back Infantino Remain As betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "missing_output_markers"
       }
     ]
   }
