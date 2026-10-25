@@ -1,23 +1,57 @@
 {
-  "updated": "2026-10-25T19:38:17.886434+00:00",
+  "updated": "2026-10-25T21:30:38.408788+00:00",
   "count": 38,
   "events": [
     {
-      "league": "NBA",
-      "key": "basketball",
-      "live": false,
+      "league": "La Liga",
+      "key": "laliga",
+      "live": true,
       "complete": false,
-      "home": "Utah Jazz",
-      "away": "Los Angeles Lakers",
-      "hScore": null,
-      "aScore": null,
-      "time": "25 Oct 2026 \u00b7 21:00 UTC",
-      "h": 3.05,
+      "home": "Barcelona",
+      "away": "Real Madrid",
+      "hScore": "1",
+      "aScore": "1",
+      "time": "67'",
+      "h": 1.59,
       "d": 0.0,
-      "a": 1.4,
+      "a": 4.0,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
+    },
+    {
+      "league": "Serie A",
+      "key": "seriea",
+      "live": true,
+      "complete": false,
+      "home": "Udinese",
+      "away": "AC Milan",
+      "hScore": "0",
+      "aScore": "2",
+      "time": "88'",
+      "h": 4.6,
+      "d": 0.0,
+      "a": 1.74,
+      "hBk": "DraftKings",
+      "dBk": "",
+      "aBk": "DraftKings"
+    },
+    {
+      "league": "NBA",
+      "key": "basketball",
+      "live": true,
+      "complete": false,
+      "home": "Utah Jazz",
+      "away": "Los Angeles Lakers",
+      "hScore": "26",
+      "aScore": "12",
+      "time": "4:35",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
     },
     {
       "league": "NBA",
@@ -29,12 +63,12 @@
       "hScore": null,
       "aScore": null,
       "time": "25 Oct 2026 \u00b7 22:00 UTC",
-      "h": 3.0,
+      "h": 2.95,
       "d": 0.0,
-      "a": 1.41,
-      "hBk": "DraftKings",
+      "a": 1.42,
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -49,9 +83,9 @@
       "h": 1.35,
       "d": 0.0,
       "a": 3.3,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -66,9 +100,9 @@
       "h": 1.87,
       "d": 0.0,
       "a": 1.95,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -83,9 +117,9 @@
       "h": 1.07,
       "d": 0.0,
       "a": 9.5,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -97,12 +131,12 @@
       "hScore": null,
       "aScore": null,
       "time": "25 Oct 2026 \u00b7 23:30 UTC",
-      "h": 1.93,
+      "h": 2.02,
       "d": 0.0,
-      "a": 1.89,
-      "hBk": "DraftKings",
+      "a": 1.82,
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "NBA",
@@ -117,9 +151,9 @@
       "h": 2.4,
       "d": 0.0,
       "a": 1.6,
-      "hBk": "DraftKings",
+      "hBk": "Draft Kings",
       "dBk": "",
-      "aBk": "DraftKings"
+      "aBk": "Draft Kings"
     },
     {
       "league": "WNBA",
@@ -139,23 +173,6 @@
       "aBk": "DraftKings"
     },
     {
-      "league": "La Liga",
-      "key": "laliga",
-      "live": false,
-      "complete": false,
-      "home": "Barcelona",
-      "away": "Real Madrid",
-      "hScore": null,
-      "aScore": null,
-      "time": "25 Oct 2026 \u00b7 20:00 UTC",
-      "h": 1.59,
-      "d": 0.0,
-      "a": 4.0,
-      "hBk": "DraftKings",
-      "dBk": "",
-      "aBk": "DraftKings"
-    },
-    {
       "league": "MLB",
       "key": "baseball",
       "live": false,
@@ -168,23 +185,6 @@
       "h": 1.83,
       "d": 0.0,
       "a": 1.99,
-      "hBk": "DraftKings",
-      "dBk": "",
-      "aBk": "DraftKings"
-    },
-    {
-      "league": "Serie A",
-      "key": "seriea",
-      "live": false,
-      "complete": false,
-      "home": "Udinese",
-      "away": "AC Milan",
-      "hScore": null,
-      "aScore": null,
-      "time": "25 Oct 2026 \u00b7 19:45 UTC",
-      "h": 4.6,
-      "d": 0.0,
-      "a": 1.74,
       "hBk": "DraftKings",
       "dBk": "",
       "aBk": "DraftKings"
