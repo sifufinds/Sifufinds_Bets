@@ -1607,7 +1607,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-25T13:22:17.614943+00:00",
+    "checked_at": "2026-10-25T15:20:42.430832+00:00",
     "candidates_available": 258,
     "attempted": 3,
     "written": 0,
@@ -1615,6 +1615,12 @@
       {
         "keyword": "Mombasa Super Cup targets new talent Sh1 million betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Both 1xBet Kenya and 22Bet Kenya require the bonus amount to be wagered five times at minimum odds of 1.40 within 30 days. SportPesa’s free‑bet Karibu Gift also has wagering conditions, but they apply only to the free‑bet balance, not to the original stake.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ankrah gives Ghana winning start African Boxing Championships betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
