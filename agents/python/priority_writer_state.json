@@ -1603,7 +1603,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-25T01:10:54.159389+00:00",
+    "checked_at": "2026-10-25T03:01:20.458483+00:00",
     "candidates_available": 248,
     "attempted": 3,
     "written": 0,
@@ -1611,6 +1611,18 @@
       {
         "keyword": "Africa African Football Chiefs Back Infantino Remain As betting tips Tanzania",
         "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'The regulator mandates self‑exclusion, deposit limits, and reality‑check reminders. Each platform also provides a “take a break” button and links to local support services.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ifowodo wins $100,000 Nigeria Prize Literature betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'First, register with a licensed bookmaker, deposit at least ₦100, claim the relevant bonus code, then navigate to the “Special Events” or “Literature” section. Find the “Nigeria Prize for Literature – Winner” market, select Ifowodo, set your stake and confirm. Make sure the odds meet the minimum 1.40 requirement for the bonus rollover.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "All Blacks crush Wallabies’ hopes dominant Eden Park betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
