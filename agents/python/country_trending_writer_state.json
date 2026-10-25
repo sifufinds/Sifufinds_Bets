@@ -826,7 +826,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-25T11:38:25.384240+00:00",
+    "checked_at": "2026-10-25T13:34:49.594434+00:00",
     "candidates_available": 257,
     "attempted": 3,
     "written": 0,
@@ -835,19 +835,19 @@
         "keyword": "Mombasa Super Cup targets new talent Sh1 million betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 483)"
       },
       {
         "keyword": "Ankrah gives Ghana winning start African Boxing Championships betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: only 580 words (minimum 600); no '## FAQ' section heading found"
+        "reason": "quality_gate: no '## FAQ' section heading found"
       },
       {
         "keyword": "Kwagga's Bull! Springbok flanker signs three-year deal betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: final line was '(Note: The final line must be exactly \"*18+ | Bet Responsibly | T&Cs Apply*\", which is included above.)', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: no '## FAQ' section heading found"
       }
     ]
   }
