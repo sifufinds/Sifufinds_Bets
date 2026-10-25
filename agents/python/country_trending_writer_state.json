@@ -826,22 +826,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-25T09:44:56.792553+00:00",
-    "candidates_available": 258,
+    "checked_at": "2026-10-25T11:38:25.384240+00:00",
+    "candidates_available": 257,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Police probe attack MC Porcupine Edo betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "police-probe-attack-mc-porcupine-edo-betting-tips-nigeria"
-      },
       {
         "keyword": "Mombasa Super Cup targets new talent Sh1 million betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+      },
+      {
+        "keyword": "Ankrah gives Ghana winning start African Boxing Championships betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: only 580 words (minimum 600); no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Kwagga's Bull! Springbok flanker signs three-year deal betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was '(Note: The final line must be exactly \"*18+ | Bet Responsibly | T&Cs Apply*\", which is included above.)', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
