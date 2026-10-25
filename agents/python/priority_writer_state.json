@@ -1603,28 +1603,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-25T00:27:02.187121+00:00",
-    "candidates_available": 250,
+    "checked_at": "2026-10-25T01:10:54.159389+00:00",
+    "candidates_available": 248,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Nigeria Plateau United End Pillars' Unbeaten Run 4-0 betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "nigeria-plateau-united-end-pillars-unbeaten-run-4-0-betting-tips-tanzania"
-      },
-      {
-        "keyword": "Ex-PSL star hands Yeye first win Chiefs betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "ex-psl-star-hands-yeye-first-win-chiefs-betting-tips-south-africa"
-      },
       {
         "keyword": "Africa African Football Chiefs Back Infantino Remain As betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "missing_output_markers"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }

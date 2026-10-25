@@ -822,20 +822,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-25T00:45:40.729499+00:00",
-    "candidates_available": 258,
+    "checked_at": "2026-10-25T01:21:00.571057+00:00",
+    "candidates_available": 257,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Glasner Fumes After Diop Escapes Red Card Nottingham betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "glasner-diop-red-card-nottingham-forest-ipswich-betting-tips-nigeria"
-      },
       {
         "keyword": "FIFA appoints normalisation committee oversee Nigerian football until betting tips Ghana",
         "country": "Ghana",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 487)"
+      },
+      {
+        "keyword": "Cardoso There are other trophies win betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
