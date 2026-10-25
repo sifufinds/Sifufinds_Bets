@@ -1603,14 +1603,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-25T05:02:11.754234+00:00",
-    "candidates_available": 248,
+    "checked_at": "2026-10-25T07:42:52.978881+00:00",
+    "candidates_available": 259,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Africa African Football Chiefs Back Infantino Remain As betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "Police probe attack MC Porcupine Edo betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'The welcome bonuses typically have a validity period of 30 days, except for Sportybet’s free bets, which expire after 7 days. Ensure you meet the wagering requirements within this timeframe to avoid losing the bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Mombasa Super Cup targets new talent Sh1 million betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
