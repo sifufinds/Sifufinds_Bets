@@ -1,10 +1,10 @@
 {
-  "date": "2026-10-24",
-  "total": 97,
+  "date": "2026-10-25",
+  "total": 99,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 5,
-    "MEDIUM": 91,
+    "MEDIUM": 93,
     "INFO": 1
   },
   "issues": [
@@ -31,6 +31,18 @@
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "glasner-diop-red-card-nottingham-forest-ipswich-betting-tips-nigeria",
+      "detail": "High title overlap (6 meaningful tokens) with 'glasner-fumes-diop-escapes-red-card-nottingham-betting-tips-nigeria' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "ex-psl-star-hands-yeye-first-win-chiefs-betting-tips-south-africa",
+      "detail": "High title overlap (5 meaningful tokens) with 'ex-psl-star-yeye-first-win-chiefs-betting-tips-south-africa' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
