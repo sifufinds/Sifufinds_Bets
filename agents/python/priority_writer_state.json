@@ -1604,23 +1604,33 @@
     "Police probe attack MC Porcupine Edo betting tips Nigeria": {
       "slug": "police-probe-attack-mc-porcupine-edo-betting-tips-nigeria",
       "posted_at": "2026-10-25T09:22:39.179830+00:00"
+    },
+    "Mombasa Super Cup targets new talent Sh1 million betting tips Kenya": {
+      "slug": "mombasa-super-cup-sh1-million-betting-tips-kenya",
+      "posted_at": "2026-10-26T01:08:57.745428+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-26T00:48:21.812043+00:00",
+    "checked_at": "2026-10-26T01:29:28.830355+00:00",
     "candidates_available": 257,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Mombasa Super Cup targets new talent Sh1 million betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, all bookmakers listed are licensed by the Betting Control and Licensing Board (BCLB), ensuring compliance with local gambling regulations and player protection standards.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "mombasa-super-cup-sh1-million-betting-tips-kenya"
       },
       {
         "keyword": "Kwagga's Bull! Springbok flanker signs three-year deal betting tips South Africa",
         "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, many bookmakers offer player-specific markets, such as “Man of the Match” or “First Try Scorer.” Check the rugby section of your chosen bookmaker for available options.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue des champions CAF le FC Nouadhibou face betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
