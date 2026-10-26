@@ -1608,17 +1608,33 @@
     "Mombasa Super Cup targets new talent Sh1 million betting tips Kenya": {
       "slug": "mombasa-super-cup-sh1-million-betting-tips-kenya",
       "posted_at": "2026-10-26T01:08:57.745428+00:00"
+    },
+    "Euromatch NPFL Nasarawa United Deserved Victory Over Enyimba betting tips Nigeria": {
+      "slug": "euromatch-npfl-nasarawa-united-enyimba-betting-tips",
+      "posted_at": "2026-10-26T09:45:15.864414+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-26T07:59:44.365004+00:00",
+    "checked_at": "2026-10-26T09:58:55.694916+00:00",
     "candidates_available": 261,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Euromatch NPFL Nasarawa United Deserved Victory Over Enyimba betting tips Nigeria",
         "country": "Nigeria",
+        "result": "written",
+        "slug": "euromatch-npfl-nasarawa-united-enyimba-betting-tips"
+      },
+      {
+        "keyword": "Junior Starlets thump Samoa 4-0, make history World betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 423)"
+      },
+      {
+        "keyword": "Joanita Borteye storms into Round 16 2026 ITTF betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
