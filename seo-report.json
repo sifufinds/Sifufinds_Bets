@@ -1,49 +1,13 @@
 {
   "date": "2026-10-26",
-  "total": 105,
+  "total": 99,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 11,
+    "HIGH": 5,
     "MEDIUM": 93,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "euromatch-npfl-nasarawa-united-enyimba-betting-tips",
-      "detail": "Title 81 chars (max 60): 'Euromatch NPFL Nasarawa United vs Enyimba Betting Tips & Best Nigerian'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nasarawa-united-enyimba-betting-tips-nigeria",
-      "detail": "Title 73 chars (max 60): \"Nasarawa United's NPFL Victory Over Enyimba: Betting Insights for Nige\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "jackson-brace-emery-rumours-mapeza-sacking-betting-tips",
-      "detail": "Title 81 chars (max 60): 'Jackson Brace, Emery Rumours & Mapeza Sacking: Betting Angles for Afri'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "euromatch-npfl-nasarawa-united-enyimba-betting-tips",
-      "detail": "Excerpt 174 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "aaron-rodgers-super-bowl-dream-steelers",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "jackson-brace-emery-rumours-mapeza-sacking-betting-tips",
-      "detail": "Excerpt 160 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
