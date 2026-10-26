@@ -1612,31 +1612,39 @@
     "Euromatch NPFL Nasarawa United Deserved Victory Over Enyimba betting tips Nigeria": {
       "slug": "euromatch-npfl-nasarawa-united-enyimba-betting-tips",
       "posted_at": "2026-10-26T09:45:15.864414+00:00"
+    },
+    "Joanita Borteye storms into Round 16 2026 ITTF betting tips Ghana": {
+      "slug": "joanita-borteye-ittf-round-16-betting-tips-ghana",
+      "posted_at": "2026-10-26T12:46:07.226525+00:00"
+    },
+    "Zimbabwe Scottland FC Fires Mapeza After CAF Champions' betting tips Tanzania": {
+      "slug": "zimbabwe-scottland-fc-fires-mapeza-caf-champions-betting-tips-tanzania",
+      "posted_at": "2026-10-26T12:46:29.846804+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-26T09:58:55.694916+00:00",
-    "candidates_available": 261,
+    "checked_at": "2026-10-26T12:46:33.895159+00:00",
+    "candidates_available": 260,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Euromatch NPFL Nasarawa United Deserved Victory Over Enyimba betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "euromatch-npfl-nasarawa-united-enyimba-betting-tips"
-      },
       {
         "keyword": "Junior Starlets thump Samoa 4-0, make history World betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 423)"
+        "reason": "quality_gate: final line was 'M‑Pay​sa and Airtel Money are the fastest options in Kenya. Both are accepted by SportPesa, 1xBet and 22Bet and credit your account within seconds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Joanita Borteye storms into Round 16 2026 ITTF betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "joanita-borteye-ittf-round-16-betting-tips-ghana"
+      },
+      {
+        "keyword": "Zimbabwe Scottland FC Fires Mapeza After CAF Champions' betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "zimbabwe-scottland-fc-fires-mapeza-caf-champions-betting-tips-tanzania"
       }
     ]
   }

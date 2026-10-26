@@ -834,7 +834,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-26T10:16:04.705032+00:00",
+    "checked_at": "2026-10-26T12:57:49.947508+00:00",
     "candidates_available": 255,
     "attempted": 3,
     "written": 0,
@@ -843,13 +843,19 @@
         "keyword": "Junior Starlets thump Samoa 4-0, make history World betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: **SportPesa Kenya**’s 300% Welcome Karibu Gift on the first deposit; **22Bet Kenya** and **1xBet Kenya** offer generous first deposit bonuses of up to KSh 19,000 and KSh 20,000, respectively; **Melbet Kenya** offers a 300% first deposit bonus up to KSh 1,500 with the code **SIFUKAI**; **Paripesa Kenya** matches your first deposit by 200% up to KSh 20,000"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 510)"
       },
       {
         "keyword": "Joanita Borteye storms into Round 16 2026 ITTF betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: fact-checker response was not valid JSON"
+      },
+      {
+        "keyword": "Zimbabwe Scottland FC Fires Mapeza After CAF Champions' betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "fact_check: SportPesa Tanzania provides a 250% Karibu Gift on the first deposit; 22Bet Tanzania       | 100% up to TSh 460,000           | TSh 500         | M-Pesa, Airtel Money, Visa, Mastercard; 1xBet Tanzania       | 200% up to TSh 500,000           | TSh 500         | M-Pesa, Airtel Money, Tigo Pesa, Halotel Pesa, Visa; FairPari Tanzania    | 100% up to €100                  | TSh 500         | M-Pesa, Airtel Money, Tigo Pesa, Halotel Pesa, Visa; Betway Tanzania      | 50% up to TSh 120,000            | TSh 500         | M-Pesa, Airtel Money, Visa, Mastercard; Linebet Tanzania     | 100% up to TSh 305,000           | TSh 500         | M-Pesa, Airtel Money, Tigo Pesa, Halotel Pesa, Visa"
       }
     ]
   }
