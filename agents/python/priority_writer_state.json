@@ -1623,28 +1623,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-26T12:46:33.895159+00:00",
-    "candidates_available": 260,
+    "checked_at": "2026-10-26T15:01:00.923472+00:00",
+    "candidates_available": 258,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Junior Starlets thump Samoa 4-0, make history World betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'M‑Pay​sa and Airtel Money are the fastest options in Kenya. Both are accepted by SportPesa, 1xBet and 22Bet and credit your account within seconds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Joanita Borteye storms into Round 16 2026 ITTF betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "joanita-borteye-ittf-round-16-betting-tips-ghana"
-      },
-      {
-        "keyword": "Zimbabwe Scottland FC Fires Mapeza After CAF Champions' betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "zimbabwe-scottland-fc-fires-mapeza-caf-champions-betting-tips-tanzania"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
