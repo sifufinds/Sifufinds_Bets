@@ -1,13 +1,37 @@
 {
   "date": "2026-10-26",
-  "total": 99,
+  "total": 103,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
+    "HIGH": 9,
     "MEDIUM": 93,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "zimbabwe-scottland-fc-fires-mapeza-caf-champions-betting-tips-tanzania",
+      "detail": "Title 84 chars (max 60): 'Zimbabwe Scottland FC Fires Mapeza After CAF Champions Betting Tips \u2013 '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "joanita-borteye-ittf-round-16-betting-tips-ghana",
+      "detail": "Title 70 chars (max 60): 'Joanita Borteye ITTF Round 16 Betting Tips for Ghana \u2013 Best Bookmakers'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "zimbabwe-scottland-fc-fires-mapeza-caf-champions-betting-tips-tanzania",
+      "detail": "Excerpt 173 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "joanita-borteye-ittf-round-16-betting-tips-ghana",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
