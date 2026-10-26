@@ -1,13 +1,37 @@
 {
   "date": "2026-10-26",
-  "total": 100,
+  "total": 104,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 6,
+    "HIGH": 10,
     "MEDIUM": 93,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "global-igaming-updates-october-2026",
+      "detail": "Title 77 chars (max 60): 'Global iGaming Updates: From DELULU\u2019s New Slots to Nigeria\u2019s Regulator'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ballon-dor-2026-kane-yamal-london-awards",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "global-igaming-updates-october-2026",
+      "detail": "Excerpt 189 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "boxing-upsets-betting-underdogs",
+      "detail": "Excerpt 164 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
