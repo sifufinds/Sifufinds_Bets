@@ -1607,14 +1607,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-25T20:42:28.650596+00:00",
-    "candidates_available": 258,
+    "checked_at": "2026-10-26T00:48:21.812043+00:00",
+    "candidates_available": 257,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
         "keyword": "Mombasa Super Cup targets new talent Sh1 million betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, all bookmakers listed are licensed by the Betting Control and Licensing Board (BCLB), ensuring compliance with local gambling regulations and player protection standards.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Kwagga's Bull! Springbok flanker signs three-year deal betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
