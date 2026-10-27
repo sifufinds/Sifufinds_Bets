@@ -1631,7 +1631,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-27T12:12:12.623001+00:00",
+    "checked_at": "2026-10-27T16:21:12.497282+00:00",
     "candidates_available": 266,
     "attempted": 3,
     "written": 0,
@@ -1639,6 +1639,12 @@
       {
         "keyword": "Morning Kane wins Ballon d’Or, EFCC arrests 15, betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: only 838 words (minimum 1000); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was '**', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Kane beats Yamal Mbappe taste Ballon d'Or glory betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
