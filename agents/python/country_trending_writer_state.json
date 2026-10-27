@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-27T12:27:35.959908+00:00",
+    "checked_at": "2026-10-27T14:47:48.107822+00:00",
     "candidates_available": 255,
     "attempted": 3,
     "written": 0,
@@ -847,13 +847,19 @@
         "keyword": "Morning Kane wins Ballon d’Or, EFCC arrests 15, betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 598 words (minimum 600); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Note: I have rewritten the article to meet the 700-950 word requirement and removed the stray '#' character in the FAQ section.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line; final line was 'Note: I removed the stray '#' character in the FAQ section and made sure to meet the word count requirement.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Kane beats Yamal Mbappe taste Ballon d'Or glory betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Ghana’s Mixed Martial Arts makes global inroads as betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found; found a stray '#' character inside a '### ' FAQ heading line"
       }
     ]
   }
