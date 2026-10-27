@@ -1631,7 +1631,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-27T03:53:59.350327+00:00",
+    "checked_at": "2026-10-27T04:54:49.222117+00:00",
     "candidates_available": 256,
     "attempted": 3,
     "written": 0,
@@ -1640,19 +1640,13 @@
         "keyword": "PSG 'got lucky' win Man City thriller, says betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '; final line was 'Equitel and the USSD *644# service are popular in Kenya, but only a few operators list them explicitly. M‑Pesa remains the most universally accepted method for instant deposits.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Safety depends on the bookmaker, not the team’s performance. All the operators in this guide hold a BCLB licence, which means they are regulated, audited and required to protect player funds. As long as you bet with a licensed site, your money is safe.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Africa African Football Chiefs Back Infantino Remain As betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 459)"
-      },
-      {
-        "keyword": "Ifowodo wins $100,000 Nigeria Prize Literature betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: only 674 words (minimum 1000); no '## FAQ' section heading found"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }

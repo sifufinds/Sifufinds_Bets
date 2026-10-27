@@ -838,22 +838,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-27T04:07:49.417796+00:00",
-    "candidates_available": 255,
+    "checked_at": "2026-10-27T05:14:28.360967+00:00",
+    "candidates_available": 254,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Junior Starlets thump Samoa 4-0, make history World betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "kenya-junior-starlets-world-cup-last-16-betting-tips"
-      },
       {
         "keyword": "Joanita Borteye storms into Round 16 2026 ITTF betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
+      },
+      {
+        "keyword": "Zimbabwe Scottland FC Fires Mapeza After CAF Champions' betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was '18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Mombasa Super Cup targets new talent Sh1 million betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
       }
     ]
   }
