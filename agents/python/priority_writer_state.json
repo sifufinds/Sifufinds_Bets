@@ -1631,7 +1631,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-27T22:08:24.091152+00:00",
+    "checked_at": "2026-10-27T22:42:48.885170+00:00",
     "candidates_available": 266,
     "attempted": 3,
     "written": 0,
@@ -1639,12 +1639,6 @@
       {
         "keyword": "Morning Kane wins Ballon d’Or, EFCC arrests 15, betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'No, each bookmaker has a unique promo code. Using a code from one operator on another will not activate the bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Kane beats Yamal Mbappe taste Ballon d'Or glory betting tips Kenya",
-        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
