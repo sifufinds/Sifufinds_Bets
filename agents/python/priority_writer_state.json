@@ -1623,7 +1623,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-26T16:55:53.594237+00:00",
+    "checked_at": "2026-10-26T23:58:17.929535+00:00",
     "candidates_available": 258,
     "attempted": 3,
     "written": 0,
@@ -1631,6 +1631,12 @@
       {
         "keyword": "Junior Starlets thump Samoa 4-0, make history World betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'All the welcome offers listed above have a 30‑day expiry. Players must fulfil the wagering requirements within this period, or the bonus and any accrued winnings will be forfeited.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue des champions CAF le FC Nouadhibou face betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
