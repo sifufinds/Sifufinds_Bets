@@ -1631,26 +1631,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-27T06:51:29.525343+00:00",
-    "candidates_available": 255,
+    "checked_at": "2026-10-27T09:03:27.085795+00:00",
+    "candidates_available": 266,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "PSG 'got lucky' win Man City thriller, says betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'All the promotions listed – SportPesa’s Karibu Gift, 22Bet’s 100% match, 1xBet’s 200% match, and the others – are strictly for first‑time depositors who are 18 years or older and have not previously claimed a welcome bonus with the operator.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Africa African Football Chiefs Back Infantino Remain As betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Contact the customer support team of the bookmaker you are using. Most of them have live chat or email support available 24 hours. If the issue persists, you can also reach out to the Gaming Board of Tanzania for additional assistance.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Ifowodo wins $100,000 Nigeria Prize Literature betting tips Nigeria",
+        "keyword": "Morning Kane wins Ballon d’Or, EFCC arrests 15, betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: only 982 words (minimum 1000)"
+      },
+      {
+        "keyword": "Kane beats Yamal Mbappe taste Ballon d'Or glory betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
