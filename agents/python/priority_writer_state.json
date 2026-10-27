@@ -1620,25 +1620,39 @@
     "Zimbabwe Scottland FC Fires Mapeza After CAF Champions' betting tips Tanzania": {
       "slug": "zimbabwe-scottland-fc-fires-mapeza-caf-champions-betting-tips-tanzania",
       "posted_at": "2026-10-26T12:46:29.846804+00:00"
+    },
+    "Junior Starlets thump Samoa 4-0, make history World betting tips Kenya": {
+      "slug": "junior-starlets-thump-samoa-4-0-kenya-betting-tips",
+      "posted_at": "2026-10-27T01:45:00.325907+00:00"
+    },
+    "Ligue des champions CAF le FC Nouadhibou face betting tips Tanzania": {
+      "slug": "fc-nouadhibou-caf-champions-betting-tips-tanzania",
+      "posted_at": "2026-10-27T01:45:36.133017+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-26T23:58:17.929535+00:00",
+    "checked_at": "2026-10-27T01:45:53.520205+00:00",
     "candidates_available": 258,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Junior Starlets thump Samoa 4-0, make history World betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'All the welcome offers listed above have a 30‑day expiry. Players must fulfil the wagering requirements within this period, or the bonus and any accrued winnings will be forfeited.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "junior-starlets-thump-samoa-4-0-kenya-betting-tips"
       },
       {
         "keyword": "Ligue des champions CAF le FC Nouadhibou face betting tips Tanzania",
         "country": "Tanzania",
+        "result": "written",
+        "slug": "fc-nouadhibou-caf-champions-betting-tips-tanzania"
+      },
+      {
+        "keyword": "PSG 'got lucky' win Man City thriller, says betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
       }
     ]
   }
