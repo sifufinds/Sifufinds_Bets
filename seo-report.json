@@ -1,36 +1,18 @@
 {
   "date": "2026-10-28",
-  "total": 105,
+  "total": 102,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 10,
+    "HIGH": 7,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
-      "check": "title_length",
-      "page": "arsenal-fleetwood-league-cup-betting-tips-kenya",
-      "detail": "Title 84 chars (max 60): 'Arsenal stunned by fourth\u2011tier Fleetwood League Cup betting tips Kenya'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sundowns-chief-orlando-pirates-betting",
-      "detail": "Title 99 chars (max 60): 'Sundowns Celebration, Chiefs Rising Star & Pirates Postponement: Betti'"
-    },
-    {
-      "severity": "HIGH",
       "check": "meta_desc_length",
       "page": "arsenal-fleetwood-league-cup-betting-tips-kenya",
       "detail": "Excerpt 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sundowns-chief-orlando-pirates-betting",
-      "detail": "Excerpt 194 chars (max 155)"
     },
     {
       "severity": "HIGH",
