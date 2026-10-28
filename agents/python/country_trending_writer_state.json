@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-28T15:03:08.599649+00:00",
+    "checked_at": "2026-10-28T17:15:01.712116+00:00",
     "candidates_available": 271,
     "attempted": 3,
     "written": 0,
@@ -847,11 +847,17 @@
         "keyword": "FULL LIST Top 10 memorable cup upsets English betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: odds of 12.0 or higher; 22Bet Nigeria (min odds 1.40); 300 % first‑deposit bonus up to ₦1,200,000 (code 1BONUSNG); 100 % match up to ₦207,500, ideal for those who want a straightforward boost without the higher wagering requirements of a 300 % offer; all listed operators accept a ₦100 stake"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Arsenal stunned by fourth-tier Fleetwood League Cup betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "fact_check: This monumental upset has left many wondering how such a result could happen and what it means for future betting strategies.; The Gunners, reigning Premier League champions, were expected to breeze past Fleetwood, but the match ended in a penalty shoot-out defeat, as reported by *Standard Media*."
+      },
+      {
+        "keyword": "Basketball Spintex Knights return home unbeaten, set sights betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }

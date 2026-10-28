@@ -1648,23 +1648,33 @@
     "FULL LIST Top 10 memorable cup upsets English betting tips Nigeria": {
       "slug": "full-list-top-10-memorable-cup-upsets-english-betting-tips-nigeria",
       "posted_at": "2026-10-28T09:19:56.877273+00:00"
+    },
+    "Arsenal stunned by fourth-tier Fleetwood League Cup betting tips Kenya": {
+      "slug": "arsenal-fleetwood-league-cup-betting-tips-kenya",
+      "posted_at": "2026-10-28T16:38:34.853987+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-28T14:54:17.098516+00:00",
+    "checked_at": "2026-10-28T16:57:24.236702+00:00",
     "candidates_available": 278,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Arsenal stunned by fourth-tier Fleetwood League Cup betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+        "result": "written",
+        "slug": "arsenal-fleetwood-league-cup-betting-tips-kenya"
       },
       {
         "keyword": "Basketball Spintex Knights return home unbeaten, set sights betting tips Ghana",
         "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'No. The listed GCA‑licensed operators accept only mobile money, Visa and Mastercard; crypto deposits are not supported for the bonuses described.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ligue des champions CAF Alain Traoré et Adama betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
