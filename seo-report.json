@@ -1,43 +1,13 @@
 {
   "date": "2026-10-28",
-  "total": 106,
+  "total": 101,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 11,
+    "HIGH": 6,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "full-list-top-10-memorable-cup-upsets-english-betting-tips-nigeria",
-      "detail": "Title 72 chars (max 60): 'FULL LIST Top 10 Memorable Cup Upsets \u2013 English Betting Tips for Niger'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "midweek-betting-preview-efl-cup-upsets-tennis-farewells-nfl-drama",
-      "detail": "Title 69 chars (max 60): 'EFL Cup Upsets, Tennis Farewells & NFL Drama: Midweek Betting Preview'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sundowns-caf-exit-betting-buzz",
-      "detail": "Title 76 chars (max 60): 'Sundowns\u2019 CAF Exit Sparks Betting Buzz: What It Means for African Book'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "full-list-top-10-memorable-cup-upsets-english-betting-tips-nigeria",
-      "detail": "Excerpt 167 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sundowns-caf-exit-betting-buzz",
-      "detail": "Excerpt 214 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
