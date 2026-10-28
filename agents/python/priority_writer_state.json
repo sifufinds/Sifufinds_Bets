@@ -1640,31 +1640,35 @@
     "Ghana’s Mixed Martial Arts makes global inroads as betting tips Ghana": {
       "slug": "ghana-mma-global-betting-tips",
       "posted_at": "2026-10-28T02:27:02.432065+00:00"
+    },
+    "Zimbabwe Peter Ndlovu Replaces Mapeza As New Scottland betting tips Tanzania": {
+      "slug": "zimbabwe-peter-ndlovu-replaces-mapeza-scotland-betting-tips-tanzania",
+      "posted_at": "2026-10-28T05:21:08.737130+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-28T02:27:07.977850+00:00",
-    "candidates_available": 266,
+    "checked_at": "2026-10-28T05:21:29.632424+00:00",
+    "candidates_available": 263,
     "attempted": 3,
-    "written": 3,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "Morning Kane wins Ballon d’Or, EFCC arrests 15, betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "morning-kane-ballon-dor-efcc-arrests-15-betting-tips-nigeria"
+        "keyword": "VIDEO| African Stars coach How Far I Think betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'No. Each operator sets its own terms. FairPari requires a standard roll‑over on the matched amount, while BetWinner and Melbet both ask for a 5‑times wager at minimum odds of 1.40. Always read the T&Cs before claiming a bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Kane beats Yamal Mbappe taste Ballon d'Or glory betting tips Kenya",
+        "keyword": "Zimbabwe Peter Ndlovu Replaces Mapeza As New Scottland betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "zimbabwe-peter-ndlovu-replaces-mapeza-scotland-betting-tips-tanzania"
+      },
+      {
+        "keyword": "PSG 'got lucky' win Man City thriller, says betting tips Kenya",
         "country": "Kenya",
-        "result": "written",
-        "slug": "kane-vs-mbappe-betting-tips-kenya"
-      },
-      {
-        "keyword": "Ghana’s Mixed Martial Arts makes global inroads as betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "ghana-mma-global-betting-tips"
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 463)"
       }
     ]
   }
