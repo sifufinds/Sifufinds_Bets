@@ -1651,14 +1651,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-28T12:50:17.161839+00:00",
-    "candidates_available": 258,
+    "checked_at": "2026-10-28T14:54:17.098516+00:00",
+    "candidates_available": 278,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
         "keyword": "Arsenal stunned by fourth-tier Fleetwood League Cup betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Basketball Spintex Knights return home unbeaten, set sights betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }

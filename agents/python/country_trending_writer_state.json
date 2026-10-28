@@ -838,14 +838,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-28T12:59:34.428467+00:00",
-    "candidates_available": 253,
+    "checked_at": "2026-10-28T15:03:08.599649+00:00",
+    "candidates_available": 271,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
         "keyword": "FULL LIST Top 10 memorable cup upsets English betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "fact_check: odds of 12.0 or higher; 22Bet Nigeria (min odds 1.40); 300 % first‑deposit bonus up to ₦1,200,000 (code 1BONUSNG); 100 % match up to ₦207,500, ideal for those who want a straightforward boost without the higher wagering requirements of a 300 % offer; all listed operators accept a ₦100 stake"
+      },
+      {
+        "keyword": "Arsenal stunned by fourth-tier Fleetwood League Cup betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
