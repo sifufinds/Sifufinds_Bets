@@ -1,13 +1,43 @@
 {
-  "date": "2026-10-27",
-  "total": 100,
+  "date": "2026-10-28",
+  "total": 106,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 6,
-    "MEDIUM": 93,
+    "HIGH": 11,
+    "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "morning-kane-ballon-dor-efcc-arrests-15-betting-tips-nigeria",
+      "detail": "Title 86 chars (max 60): 'Morning Kane Ballon d\u2019Or Win, EFCC Arrests 15 \u2013 Nigeria Betting Tips &'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ghana-mma-global-betting-tips",
+      "detail": "Title 62 chars (max 60): 'Ghana\u2019s MMA Goes Global \u2013 Betting Tips & Best Bonuses for 2024'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "packers-to-penalties-weeks-hottest-sports-stories",
+      "detail": "Title 61 chars (max 60): \"From Packers to Penalties: This Week's Hottest Sports Stories\""
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ghana-mma-global-betting-tips",
+      "detail": "Excerpt 190 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "packers-to-penalties-weeks-hottest-sports-stories",
+      "detail": "Excerpt 181 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
@@ -37,6 +67,12 @@
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "best-free-bets-at-licensed-nigerian-bookmakers-in-2026",
+      "detail": "High title overlap (5 meaningful tokens) with '5-best-free-bets-at-licensed-nigerian-bookmakers-2026' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
