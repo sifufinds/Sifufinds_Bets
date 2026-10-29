@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-29T04:17:10.049685+00:00",
+    "checked_at": "2026-10-29T06:15:18.864754+00:00",
     "candidates_available": 309,
     "attempted": 3,
     "written": 0,
@@ -847,7 +847,19 @@
         "keyword": "FULL LIST Top 10 memorable cup upsets English betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 540 words (minimum 600); no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Arsenal stunned by fourth-tier Fleetwood League Cup betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Basketball Spintex Knights return home unbeaten, set sights betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: only 539 words (minimum 600); no '## FAQ' section heading found"
       }
     ]
   }
