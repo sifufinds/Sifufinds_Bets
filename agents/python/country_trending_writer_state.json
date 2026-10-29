@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-29T00:27:04.880118+00:00",
+    "checked_at": "2026-10-29T02:15:20.486972+00:00",
     "candidates_available": 309,
     "attempted": 3,
     "written": 0,
@@ -846,6 +846,12 @@
       {
         "keyword": "FULL LIST Top 10 memorable cup upsets English betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 435)"
+      },
+      {
+        "keyword": "Arsenal stunned by fourth-tier Fleetwood League Cup betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
