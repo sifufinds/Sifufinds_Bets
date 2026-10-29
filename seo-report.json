@@ -1,31 +1,13 @@
 {
   "date": "2026-10-29",
-  "total": 105,
+  "total": 102,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 10,
+    "HIGH": 7,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "bulls-coach-praises-electric-cheswill-loftus-hat-trick-betting-tips-sa",
-      "detail": "Title 88 chars (max 60): 'Bulls coach praises electric Cheswill after Loftus hat\u2011trick \u2013 betting'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "psg-got-lucky-win-man-city-betting-tips-kenya",
-      "detail": "Excerpt 180 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bulls-coach-praises-electric-cheswill-loftus-hat-trick-betting-tips-sa",
-      "detail": "Excerpt 186 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
