@@ -1675,22 +1675,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-29T07:52:45.670026+00:00",
-    "candidates_available": 308,
+    "checked_at": "2026-10-29T09:37:17.998075+00:00",
+    "candidates_available": 311,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "PSG 'got lucky' win Man City thriller, says betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "psg-got-lucky-win-man-city-betting-tips-kenya"
+        "keyword": "‘A Fantastic Goalkeeper’ –Zaniolo Applauds Okoye’s Heroics Against betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Because NLRC‑licensed operators are regulated locally, you can file a complaint directly with the National Lottery Regulatory Commission. Most reputable sites also provide live chat support and an email address for dispute resolution. Always keep screenshots of your bet slips and transaction records.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "‘God is our side, we’ll win Amputee World betting tips Ghana",
+        "keyword": "AC Milan vs. Bologna Lineups betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'M‑Pesa provides the quickest withdrawal speed, usually processing requests within a few minutes. Airtel Money is a close second, while bank transfers can take up to 24 hours.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ghana edge Argentina thrilling penalty shootout reach U-17 betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 458)"
       }
     ]
   }
