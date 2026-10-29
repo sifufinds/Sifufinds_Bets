@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-29T12:57:06.161430+00:00",
+    "checked_at": "2026-10-29T15:04:39.027061+00:00",
     "candidates_available": 312,
     "attempted": 3,
     "written": 0,
@@ -846,6 +846,12 @@
       {
         "keyword": "‘A Fantastic Goalkeeper’ –Zaniolo Applauds Okoye’s Heroics Against betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+      },
+      {
+        "keyword": "AC Milan vs. Bologna Lineups betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
