@@ -1668,31 +1668,29 @@
     "Bulls coach praises electric Cheswill after Loftus hat-trick betting tips South Africa": {
       "slug": "bulls-coach-praises-electric-cheswill-loftus-hat-trick-betting-tips-sa",
       "posted_at": "2026-10-29T04:00:37.397372+00:00"
+    },
+    "PSG 'got lucky' win Man City thriller, says betting tips Kenya": {
+      "slug": "psg-got-lucky-win-man-city-betting-tips-kenya",
+      "posted_at": "2026-10-29T07:36:18.042494+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-29T04:01:51.369650+00:00",
-    "candidates_available": 310,
+    "checked_at": "2026-10-29T07:52:45.670026+00:00",
+    "candidates_available": 308,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Bulls coach praises electric Cheswill after Loftus hat-trick betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "bulls-coach-praises-electric-cheswill-loftus-hat-trick-betting-tips-sa"
-      },
-      {
         "keyword": "PSG 'got lucky' win Man City thriller, says betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'All BCLB‑licensed bookmakers provide self‑exclusion tools and deposit limits. Activate a limit on your account, or use the self‑exclusion feature to block yourself for a set period. If you need further assistance, contact local support services or the BCLB responsible‑gaming hotline.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "psg-got-lucky-win-man-city-betting-tips-kenya"
       },
       {
         "keyword": "‘God is our side, we’ll win Amputee World betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Betway Ghana accepts MTN MoMo deposits without additional fees. However, some mobile operators may charge a small transaction fee; it is best to confirm with your service provider before making the transfer.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
