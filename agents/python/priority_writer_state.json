@@ -1675,7 +1675,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-29T09:37:17.998075+00:00",
+    "checked_at": "2026-10-29T12:50:46.753192+00:00",
     "candidates_available": 311,
     "attempted": 3,
     "written": 0,
@@ -1684,19 +1684,19 @@
         "keyword": "‘A Fantastic Goalkeeper’ –Zaniolo Applauds Okoye’s Heroics Against betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Because NLRC‑licensed operators are regulated locally, you can file a complaint directly with the National Lottery Regulatory Commission. Most reputable sites also provide live chat support and an email address for dispute resolution. Always keep screenshots of your bet slips and transaction records.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'A 5‑times wagering requirement means you must bet an amount equal to five times the bonus value before you can withdraw any winnings derived from that bonus. For example, if you receive a ₦100,000 bonus from 1xBet, you need to place bets totalling ₦500,000 at minimum odds of 1.40. Once the requirement is met, you can request a withdrawal of any remaining bonus balance and associated winnings.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "AC Milan vs. Bologna Lineups betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'M‑Pesa provides the quickest withdrawal speed, usually processing requests within a few minutes. Airtel Money is a close second, while bank transfers can take up to 24 hours.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "Ghana edge Argentina thrilling penalty shootout reach U-17 betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 458)"
+        "reason": "quality_gate: final line was 'Promotions are typically released closer to the match date. Keep an eye on', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
