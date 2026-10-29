@@ -1664,31 +1664,35 @@
     "VIDEO| African Stars coach How Far I Think betting tips South Africa": {
       "slug": "african-stars-coach-betting-tips-south-africa",
       "posted_at": "2026-10-29T02:00:55.050063+00:00"
+    },
+    "Bulls coach praises electric Cheswill after Loftus hat-trick betting tips South Africa": {
+      "slug": "bulls-coach-praises-electric-cheswill-loftus-hat-trick-betting-tips-sa",
+      "posted_at": "2026-10-29T04:00:37.397372+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-29T02:01:24.719334+00:00",
-    "candidates_available": 312,
+    "checked_at": "2026-10-29T04:01:51.369650+00:00",
+    "candidates_available": 310,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Ligue des champions CAF Alain Traoré et Adama betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "ligue-des-champions-caf-alain-traore-adama-betting-tips-tanzania"
-      },
-      {
-        "keyword": "VIDEO| African Stars coach How Far I Think betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "african-stars-coach-betting-tips-south-africa"
-      },
       {
         "keyword": "Bulls coach praises electric Cheswill after Loftus hat-trick betting tips South Africa",
         "country": "South Africa",
+        "result": "written",
+        "slug": "bulls-coach-praises-electric-cheswill-loftus-hat-trick-betting-tips-sa"
+      },
+      {
+        "keyword": "PSG 'got lucky' win Man City thriller, says betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, BetWinner South Africa uses the promo code WBONUS1 for the 200% match up to R2 340, while Melbet South Africa uses SIFUKAI for a 200% match up to R4 500. Always check the terms for each code before using it.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'All BCLB‑licensed bookmakers provide self‑exclusion tools and deposit limits. Activate a limit on your account, or use the self‑exclusion feature to block yourself for a set period. If you need further assistance, contact local support services or the BCLB responsible‑gaming hotline.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "‘God is our side, we’ll win Amputee World betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Betway Ghana accepts MTN MoMo deposits without additional fees. However, some mobile operators may charge a small transaction fee; it is best to confirm with your service provider before making the transfer.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
