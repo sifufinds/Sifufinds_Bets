@@ -1,13 +1,31 @@
 {
   "date": "2026-10-29",
-  "total": 102,
+  "total": 105,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 10,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "bulls-coach-praises-electric-cheswill-loftus-hat-trick-betting-tips-sa",
+      "detail": "Title 88 chars (max 60): 'Bulls coach praises electric Cheswill after Loftus hat\u2011trick \u2013 betting'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "psg-got-lucky-win-man-city-betting-tips-kenya",
+      "detail": "Excerpt 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "bulls-coach-praises-electric-cheswill-loftus-hat-trick-betting-tips-sa",
+      "detail": "Excerpt 186 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
@@ -611,8 +629,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "56 posts",
-      "detail": "56 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "55 posts",
+      "detail": "55 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     },
     {
       "severity": "HIGH",
