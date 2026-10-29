@@ -1,13 +1,37 @@
 {
   "date": "2026-10-29",
-  "total": 102,
+  "total": 106,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 11,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "boxing-news-stevenson-muratalla-jake-paul-return",
+      "detail": "Title 62 chars (max 60): 'Boxing Buzz: Stevenson vs Muratalla Ordered, Jake Paul Returns'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "sundowns-sharks-pyramids-betting-insight",
+      "detail": "Title 83 chars (max 60): 'Sundowns win, Sharks milestone & Pyramids alert \u2013 what it means for Af'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "boxing-news-stevenson-muratalla-jake-paul-return",
+      "detail": "Excerpt 175 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "sundowns-sharks-pyramids-betting-insight",
+      "detail": "Excerpt 234 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
