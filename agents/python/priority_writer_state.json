@@ -1715,20 +1715,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-30T19:22:43.701116+00:00",
-    "candidates_available": 323,
+    "checked_at": "2026-10-30T21:18:34.588012+00:00",
+    "candidates_available": 322,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Springbok Women tweak side final Test 2026 betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "springbok-women-tweak-side-final-test-2026-betting-tips-south-africa"
-      },
       {
         "keyword": "CAF – Patrice Motsepe (Président) « Gianni est betting tips Tanzania",
         "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+      },
+      {
+        "keyword": "‘God is our side, we’ll win Amputee World betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
