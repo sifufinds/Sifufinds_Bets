@@ -1676,25 +1676,39 @@
     "‘A Fantastic Goalkeeper’ –Zaniolo Applauds Okoye’s Heroics Against betting tips Nigeria": {
       "slug": "fantastic-goalkeeper-zaniolo-okoye-betting-tips-nigeria",
       "posted_at": "2026-10-30T00:15:23.176969+00:00"
+    },
+    "AC Milan vs. Bologna Lineups betting tips Kenya": {
+      "slug": "ac-milan-vs-bologna-lineups-betting-tips-kenya",
+      "posted_at": "2026-10-30T04:15:15.689314+00:00"
+    },
+    "European football Bayern ease Cup victory after Kompany betting tips South Africa": {
+      "slug": "bayern-ease-cup-victory-kompany-betting-tips-south-africa",
+      "posted_at": "2026-10-30T04:17:12.591034+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-30T02:29:02.534582+00:00",
+    "checked_at": "2026-10-30T04:17:17.284456+00:00",
     "candidates_available": 326,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "AC Milan vs. Bologna Lineups betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 495)"
+        "result": "written",
+        "slug": "ac-milan-vs-bologna-lineups-betting-tips-kenya"
       },
       {
         "keyword": "Ghana edge Argentina thrilling penalty shootout reach U-17 betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'All listed bookmakers are licensed by the GCA and accept players from Ghana who meet the 18+ age requirement. However, you should verify local regulations and any potential regional restrictions before attempting to claim a bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "European football Bayern ease Cup victory after Kompany betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "bayern-ease-cup-victory-kompany-betting-tips-south-africa"
       }
     ]
   }
