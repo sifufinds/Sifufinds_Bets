@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-30T15:14:30.199322+00:00",
+    "checked_at": "2026-10-30T16:47:02.508146+00:00",
     "candidates_available": 332,
     "attempted": 3,
     "written": 0,
@@ -847,19 +847,19 @@
         "keyword": "AFCON hold every two years again — CAF betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: The Super Eagles will be among the favourites.; Odds on Nigeria to win AFCON; Odds on Super Eagles to win first match; Victor Osimhen and Wilfred Ndidi; Osimhen’s goal‑scorer market frequently offers value at odds above 4.0; 1xBet’s 300 % match up to ₦1,200,000; 22Bet’s platform is praised for quick settlement and a clean user interface; 1xBet’s 300 % match up to ₦1,200,000 provides the deepest cash‑back potential; funds are usually credited instantly for OPay and PalmPay; bank transfers may take a few hours"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 429)"
       },
       {
         "keyword": "Olunga, Okumu, Kibet headline Harambee Stars provisional squad betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: only 581 words (minimum 600)"
+        "reason": "fact_check: fact-checker response was not valid JSON"
       },
       {
         "keyword": "Ampem Darkoa Ladies beat Edo Queens book CAF betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "quality_gate: only 596 words (minimum 600); no '## FAQ' section heading found"
       }
     ]
   }
