@@ -1679,20 +1679,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-30T00:32:59.250888+00:00",
-    "candidates_available": 327,
+    "checked_at": "2026-10-30T02:29:02.534582+00:00",
+    "candidates_available": 326,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "‘A Fantastic Goalkeeper’ –Zaniolo Applauds Okoye’s Heroics Against betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "fantastic-goalkeeper-zaniolo-okoye-betting-tips-nigeria"
-      },
       {
         "keyword": "AC Milan vs. Bologna Lineups betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 495)"
+      },
+      {
+        "keyword": "Ghana edge Argentina thrilling penalty shootout reach U-17 betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
