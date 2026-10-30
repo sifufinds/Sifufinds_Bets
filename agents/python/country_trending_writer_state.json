@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-30T16:47:02.508146+00:00",
+    "checked_at": "2026-10-30T19:33:49.796198+00:00",
     "candidates_available": 332,
     "attempted": 3,
     "written": 0,
@@ -847,19 +847,7 @@
         "keyword": "AFCON hold every two years again — CAF betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 429)"
-      },
-      {
-        "keyword": "Olunga, Okumu, Kibet headline Harambee Stars provisional squad betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
-      },
-      {
-        "keyword": "Ampem Darkoa Ladies beat Edo Queens book CAF betting tips Ghana",
-        "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: only 596 words (minimum 600); no '## FAQ' section heading found"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
