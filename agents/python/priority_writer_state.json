@@ -1687,28 +1687,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-30T04:17:17.284456+00:00",
-    "candidates_available": 326,
+    "checked_at": "2026-10-30T05:52:07.796772+00:00",
+    "candidates_available": 324,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "AC Milan vs. Bologna Lineups betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "ac-milan-vs-bologna-lineups-betting-tips-kenya"
-      },
       {
         "keyword": "Ghana edge Argentina thrilling penalty shootout reach U-17 betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All listed bookmakers are licensed by the GCA and accept players from Ghana who meet the 18+ age requirement. However, you should verify local regulations and any potential regional restrictions before attempting to claim a bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'If the wagering requirements are not fulfilled within the allotted period, the bonus and any associated winnings are forfeited.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "European football Bayern ease Cup victory after Kompany betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "bayern-ease-cup-victory-kompany-betting-tips-south-africa"
+        "keyword": "Namibia Kaunatjike, Chikwaya Shine Botswana International Chess Championship betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
