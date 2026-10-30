@@ -1,13 +1,43 @@
 {
   "date": "2026-10-30",
-  "total": 102,
+  "total": 107,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 12,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "springbok-women-tweak-side-final-test-2026-betting-tips-south-africa",
+      "detail": "Title 72 chars (max 60): 'Springbok Women Tweak Side Final Test 2026 Betting Tips for South Afri'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "caf-betting-tips-ampem-darkoa-ladies-vs-edo-queens-ghana-guide",
+      "detail": "Title 65 chars (max 60): 'CAF Betting Tips: Ampem Darkoa Ladies vs Edo Queens \u2013 Ghana Guide'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "olunga-okumu-kibet-harambee-stars-betting-tips-kenya",
+      "detail": "Title 102 chars (max 60): 'Olunga, Okumu, Kibet Headline Harambee Stars Provisional Squad \u2013 Betti'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "olunga-okumu-kibet-harambee-stars-betting-tips-kenya",
+      "detail": "Excerpt 168 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "afcon-biennial-caf-betting-tips-nigeria",
+      "detail": "Excerpt 167 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
