@@ -1,31 +1,13 @@
 {
   "date": "2026-10-30",
-  "total": 105,
+  "total": 102,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 10,
+    "HIGH": 7,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "simba-pirates-sundowns-psl-coaches-betting",
-      "detail": "Title 103 chars (max 60): 'Simba vs Pirates, Sundowns Slip & PSL Coaches\u2019 Meltdown: Betting Angle'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "tennis-upsets-triumphs-betting-markets-shift",
-      "detail": "Title 68 chars (max 60): 'Tennis Upsets and Triumphs: How Recent Results Shift Betting Markets'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "simba-pirates-sundowns-psl-coaches-betting",
-      "detail": "Excerpt 182 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
