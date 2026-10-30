@@ -1,48 +1,47 @@
 {
-  "updated": "2026-10-30T11:14:28.859455+00:00",
+  "updated": "2026-10-30T16:29:25.108165+00:00",
   "source": "predictz.com",
-  "count": 124,
+  "count": 93,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-10-30T11:14:28.859455+00:00"
+      "ts": "2026-10-30T16:29:25.108165+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-10-30T11:14:28.859455+00:00"
+      "ts": "2026-10-30T16:29:25.108165+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-10-30T11:14:28.859455+00:00"
+      "ts": "2026-10-30T16:29:25.108165+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-10-30T11:14:28.859455+00:00"
+      "ts": "2026-10-30T16:29:25.108165+00:00"
     },
     {
       "page": "score",
-      "status": "error",
-      "error": "All scrapers failed for https://www.predictz.com/predictions/today/correct-score/: firecrawl: The read operation timed out",
-      "ts": "2026-10-30T11:14:28.859455+00:00"
+      "status": "ok",
+      "ts": "2026-10-30T16:29:25.108165+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-10-30T11:14:28.859455+00:00"
+      "ts": "2026-10-30T16:29:25.108165+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-10-30T11:14:28.859455+00:00"
+      "ts": "2026-10-30T16:29:25.108165+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-10-30T11:14:28.859455+00:00"
+      "ts": "2026-10-30T16:29:25.108165+00:00"
     }
   ],
   "predictions": [
@@ -65,7 +64,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611270+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930611+00:00"
     },
     {
       "id": "1209464",
@@ -84,9 +83,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610294+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929601+00:00"
     },
     {
       "id": "1193862",
@@ -105,30 +104,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612816+00:00"
-    },
-    {
-      "id": "1214280",
-      "home": "Abha Club",
-      "away": "Ittihad Jeddah",
-      "competition": "Saudi Arabia Professional League",
-      "comp_slug": "saudi-arabia/professional-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615163+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931851+00:00"
     },
     {
       "id": "1205894",
@@ -147,9 +125,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610399+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929721+00:00"
     },
     {
       "id": "1224895",
@@ -168,30 +146,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615114+00:00"
-    },
-    {
-      "id": "1224880",
-      "home": "Al Ittifaq",
-      "away": "Malkiya",
-      "competition": "Bahrain Premier League",
-      "comp_slug": "bahrain/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614629+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933337+00:00"
     },
     {
       "id": "1218910",
@@ -210,9 +167,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615627+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933420+00:00"
     },
     {
       "id": "1218911",
@@ -231,30 +188,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615661+00:00"
-    },
-    {
-      "id": "1224879",
-      "home": "Al Rifaa",
-      "away": "Al Najma",
-      "competition": "Bahrain Premier League",
-      "comp_slug": "bahrain/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614661+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933449+00:00"
     },
     {
       "id": "1214275",
@@ -273,30 +209,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615286+00:00"
-    },
-    {
-      "id": "1224894",
-      "home": "Al Shahaniya",
-      "away": "Al Ahli",
-      "competition": "Qatar Stars League",
-      "comp_slug": "qatar/stars-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615082+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933376+00:00"
     },
     {
       "id": "1224088",
@@ -315,9 +230,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615042+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933307+00:00"
     },
     {
       "id": "1215814",
@@ -336,9 +251,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611374+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930704+00:00"
     },
     {
       "id": "1205898",
@@ -357,9 +272,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610439+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929759+00:00"
     },
     {
       "id": "1205246",
@@ -378,30 +293,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610812+00:00"
-    },
-    {
-      "id": "1219017",
-      "home": "Asyut Petroleum",
-      "away": "El Gouna",
-      "competition": "Egypt Premier League",
-      "comp_slug": "egypt/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615588+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930198+00:00"
     },
     {
       "id": "1207503",
@@ -422,7 +316,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610950+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930352+00:00"
     },
     {
       "id": "1209092",
@@ -443,7 +337,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611233+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930580+00:00"
     },
     {
       "id": "1207795",
@@ -464,28 +358,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610990+00:00"
-    },
-    {
-      "id": "1219904",
-      "home": "Bac Ninh",
-      "away": "Hoang Anh Gia Lai",
-      "competition": "Vietnam V League",
-      "comp_slug": "vietnam/v-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615516+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930386+00:00"
     },
     {
       "id": "1205896",
@@ -504,9 +377,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610478+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929793+00:00"
     },
     {
       "id": "1172216",
@@ -525,9 +398,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613145+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932169+00:00"
     },
     {
       "id": "1205900",
@@ -546,9 +419,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610518+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929827+00:00"
     },
     {
       "id": "1209087",
@@ -569,28 +442,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611306+00:00"
-    },
-    {
-      "id": "1193252",
-      "home": "CSKA 1948",
-      "away": "Spartak Varna",
-      "competition": "Bulgaria First League",
-      "comp_slug": "bulgaria/first-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612346+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930646+00:00"
     },
     {
       "id": "1204333",
@@ -609,9 +461,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613284+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932265+00:00"
     },
     {
       "id": "1224904",
@@ -630,9 +482,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614379+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933183+00:00"
     },
     {
       "id": "1213235",
@@ -653,7 +505,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612575+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931637+00:00"
     },
     {
       "id": "1213470",
@@ -672,9 +524,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614226+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933039+00:00"
     },
     {
       "id": "1199725",
@@ -693,9 +545,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610633+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929962+00:00"
     },
     {
       "id": "1176125",
@@ -714,9 +566,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613822+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932706+00:00"
     },
     {
       "id": "1205899",
@@ -735,9 +587,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610557+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929894+00:00"
     },
     {
       "id": "1176129",
@@ -756,9 +608,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613874+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932754+00:00"
     },
     {
       "id": "1170907",
@@ -777,9 +629,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614088+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932942+00:00"
     },
     {
       "id": "1205245",
@@ -798,9 +650,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610859+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930270+00:00"
     },
     {
       "id": "1193453",
@@ -819,9 +671,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613224+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932218+00:00"
     },
     {
       "id": "1183637",
@@ -840,9 +692,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614139+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932987+00:00"
     },
     {
       "id": "1224668",
@@ -861,30 +713,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615705+00:00"
-    },
-    {
-      "id": "1214278",
-      "home": "Diriyah Club",
-      "away": "Neom SC",
-      "competition": "Saudi Arabia Professional League",
-      "comp_slug": "saudi-arabia/professional-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615240+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933487+00:00"
     },
     {
       "id": "1171251",
@@ -903,9 +734,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612875+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931903+00:00"
     },
     {
       "id": "1171250",
@@ -924,9 +755,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612931+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931952+00:00"
     },
     {
       "id": "1204923",
@@ -945,9 +776,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610756+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930146+00:00"
     },
     {
       "id": "1208691",
@@ -966,9 +797,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613727+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932623+00:00"
     },
     {
       "id": "1215312",
@@ -987,9 +818,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613934+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932807+00:00"
     },
     {
       "id": "1195430",
@@ -1008,9 +839,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "0-3",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613600+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932508+00:00"
     },
     {
       "id": "1198360",
@@ -1031,7 +862,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612666+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931717+00:00"
     },
     {
       "id": "1192289",
@@ -1050,9 +881,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611874+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931173+00:00"
     },
     {
       "id": "1205897",
@@ -1071,30 +902,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610592+00:00"
-    },
-    {
-      "id": "1222927",
-      "home": "Foolad",
-      "away": "Aluminium Arak",
-      "competition": "Iran Pro League",
-      "comp_slug": "iran/pro-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614970+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929923+00:00"
     },
     {
       "id": "1207095",
@@ -1113,9 +923,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610910+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930316+00:00"
     },
     {
       "id": "1201749",
@@ -1134,9 +944,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612083+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931361+00:00"
     },
     {
       "id": "1192944",
@@ -1155,30 +965,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611611+00:00"
-    },
-    {
-      "id": "1219909",
-      "home": "Hanoi FC",
-      "away": "Phu Dong",
-      "competition": "Vietnam V League",
-      "comp_slug": "vietnam/v-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615548+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930913+00:00"
     },
     {
       "id": "1192290",
@@ -1197,9 +986,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611932+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931225+00:00"
     },
     {
       "id": "1211800",
@@ -1220,7 +1009,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611098+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930485+00:00"
     },
     {
       "id": "1215305",
@@ -1239,9 +1028,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613986+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932851+00:00"
     },
     {
       "id": "1209091",
@@ -1262,7 +1051,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611335+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930671+00:00"
     },
     {
       "id": "1198560",
@@ -1281,9 +1070,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612231+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931464+00:00"
     },
     {
       "id": "1214533",
@@ -1302,9 +1091,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612610+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931668+00:00"
     },
     {
       "id": "1206307",
@@ -1323,72 +1112,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612716+00:00"
-    },
-    {
-      "id": "1221271",
-      "home": "Kataka",
-      "away": "Uganda Police",
-      "competition": "Uganda Premier League",
-      "comp_slug": "uganda/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615836+00:00"
-    },
-    {
-      "id": "1222925",
-      "home": "Kheybar Khorramabad",
-      "away": "Sepahan",
-      "competition": "Iran Pro League",
-      "comp_slug": "iran/pro-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614938+00:00"
-    },
-    {
-      "id": "1181130",
-      "home": "Kokand 1912",
-      "away": "Qizilqum",
-      "competition": "Uzbekistan Super League",
-      "comp_slug": "uzbekistan/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615405+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931761+00:00"
     },
     {
       "id": "1208057",
@@ -1407,30 +1133,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613677+00:00"
-    },
-    {
-      "id": "1217438",
-      "home": "Kowloon City",
-      "away": "Hong Kong Rangers",
-      "competition": "Hong Kong Premier League",
-      "comp_slug": "hong-kong/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614694+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932575+00:00"
     },
     {
       "id": "1199723",
@@ -1449,9 +1154,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610666+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930021+00:00"
     },
     {
       "id": "1192945",
@@ -1470,9 +1175,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611663+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930960+00:00"
     },
     {
       "id": "1192625",
@@ -1491,9 +1196,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "0-3",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611458+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930778+00:00"
     },
     {
       "id": "1192619",
@@ -1512,9 +1217,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611556+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930865+00:00"
     },
     {
       "id": "1193249",
@@ -1533,9 +1238,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612397+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931555+00:00"
     },
     {
       "id": "1207798",
@@ -1556,7 +1261,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611029+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930423+00:00"
     },
     {
       "id": "1224905",
@@ -1575,9 +1280,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614337+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933146+00:00"
     },
     {
       "id": "1207800",
@@ -1598,7 +1303,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611059+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930450+00:00"
     },
     {
       "id": "1191257",
@@ -1617,9 +1322,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612767+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931806+00:00"
     },
     {
       "id": "1211795",
@@ -1640,28 +1345,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611137+00:00"
-    },
-    {
-      "id": "1222924",
-      "home": "Malavan",
-      "away": "Chador Malu Yazd",
-      "competition": "Iran Pro League",
-      "comp_slug": "iran/pro-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614900+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930519+00:00"
     },
     {
       "id": "1214959",
@@ -1680,9 +1364,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615782+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933545+00:00"
     },
     {
       "id": "1192942",
@@ -1701,9 +1385,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611717+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931007+00:00"
     },
     {
       "id": "1225163",
@@ -1724,28 +1408,7 @@
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614454+00:00"
-    },
-    {
-      "id": "1213242",
-      "home": "NK Dubrava",
-      "away": "Radnik Sesvete",
-      "competition": "Croatia 2.HNL",
-      "comp_slug": "croatia/2-hnl",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612500+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933249+00:00"
     },
     {
       "id": "1190812",
@@ -1764,9 +1427,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612447+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931600+00:00"
     },
     {
       "id": "1192941",
@@ -1785,30 +1448,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611771+00:00"
-    },
-    {
-      "id": "1222923",
-      "home": "Nassaji Mazandaran",
-      "away": "Persepolis",
-      "competition": "Iran Pro League",
-      "comp_slug": "iran/pro-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614860+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931054+00:00"
     },
     {
       "id": "1195428",
@@ -1827,9 +1469,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613634+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932538+00:00"
     },
     {
       "id": "1201109",
@@ -1848,9 +1490,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610239+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929524+00:00"
     },
     {
       "id": "1192624",
@@ -1869,51 +1511,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611510+00:00"
-    },
-    {
-      "id": "1223325",
-      "home": "Niger Tornadoes",
-      "away": "Barau",
-      "competition": "Nigeria NPFL",
-      "comp_slug": "nigeria/npfl",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615749+00:00"
-    },
-    {
-      "id": "1223989",
-      "home": "NorthEast United",
-      "away": "Bengaluru",
-      "competition": "India Super League",
-      "comp_slug": "india/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614769+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930825+00:00"
     },
     {
       "id": "1173992",
@@ -1932,9 +1532,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613462+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932391+00:00"
     },
     {
       "id": "1206632",
@@ -1955,70 +1555,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613419+00:00"
-    },
-    {
-      "id": "1213239",
-      "home": "Opatija",
-      "away": "NK Mladost Zdralovi",
-      "competition": "Croatia 2.HNL",
-      "comp_slug": "croatia/2-hnl",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612541+00:00"
-    },
-    {
-      "id": "1219297",
-      "home": "Persebaya Surabaya",
-      "away": "Persijap Jepara",
-      "competition": "Indonesia Liga 1",
-      "comp_slug": "indonesia/liga-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614728+00:00"
-    },
-    {
-      "id": "1223740",
-      "home": "Pyunik",
-      "away": "Urartu",
-      "competition": "Armenia Premier League",
-      "comp_slug": "armenia/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614555+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932352+00:00"
     },
     {
       "id": "1198557",
@@ -2037,9 +1574,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612286+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931509+00:00"
     },
     {
       "id": "1192287",
@@ -2058,30 +1595,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611987+00:00"
-    },
-    {
-      "id": "1224087",
-      "home": "Ramtha",
-      "away": "Al Baqaa",
-      "competition": "Jordan Pro League",
-      "comp_slug": "jordan/pro-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615010+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931276+00:00"
     },
     {
       "id": "1202172",
@@ -2100,9 +1616,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613336+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932312+00:00"
     },
     {
       "id": "1195432",
@@ -2121,9 +1637,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613514+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932436+00:00"
     },
     {
       "id": "1225164",
@@ -2144,7 +1660,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614484+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933277+00:00"
     },
     {
       "id": "1224515",
@@ -2163,9 +1679,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614038+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932897+00:00"
     },
     {
       "id": "1215823",
@@ -2184,9 +1700,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611410+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930732+00:00"
     },
     {
       "id": "1192286",
@@ -2205,9 +1721,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612033+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931318+00:00"
     },
     {
       "id": "1192947",
@@ -2226,30 +1742,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611818+00:00"
-    },
-    {
-      "id": "1223739",
-      "home": "Sardarapat",
-      "away": "Van",
-      "competition": "Armenia Premier League",
-      "comp_slug": "armenia/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614523+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931097+00:00"
     },
     {
       "id": "1204120",
@@ -2270,7 +1765,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613771+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932660+00:00"
     },
     {
       "id": "1199989",
@@ -2289,9 +1784,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610133+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929449+00:00"
     },
     {
       "id": "1171249",
@@ -2310,30 +1805,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612989+00:00"
-    },
-    {
-      "id": "1222246",
-      "home": "Sisaket United",
-      "away": "Ratchaburi",
-      "competition": "Thailand League 1",
-      "comp_slug": "thailand/league-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615364+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932002+00:00"
     },
     {
       "id": "1171252",
@@ -2352,30 +1826,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613045+00:00"
-    },
-    {
-      "id": "1181129",
-      "home": "Sogdiana Jizzakh",
-      "away": "Bukhara",
-      "competition": "Uzbekistan Super League",
-      "comp_slug": "uzbekistan/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615445+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932052+00:00"
     },
     {
       "id": "1213472",
@@ -2394,9 +1847,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614285+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933085+00:00"
     },
     {
       "id": "1171248",
@@ -2415,9 +1868,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613095+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932096+00:00"
     },
     {
       "id": "1195431",
@@ -2436,9 +1889,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613558+00:00"
+      "scraped_at": "2026-10-30T16:29:29.932472+00:00"
     },
     {
       "id": "1211802",
@@ -2459,7 +1912,7 @@
       "over25": "Over 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.611168+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930546+00:00"
     },
     {
       "id": "1195867",
@@ -2478,9 +1931,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "3-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610346+00:00"
+      "scraped_at": "2026-10-30T16:29:29.929650+00:00"
     },
     {
       "id": "1224903",
@@ -2499,72 +1952,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
-      "correct_score": "",
+      "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614415+00:00"
-    },
-    {
-      "id": "1158418",
-      "home": "Tanjong Pagar",
-      "away": "FC Jurong",
-      "competition": "Singapore Premier League",
-      "comp_slug": "singapore/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615328+00:00"
-    },
-    {
-      "id": "1218681",
-      "home": "Turan Tovuz",
-      "away": "Sabah FK",
-      "competition": "Azerbaijan Premier League",
-      "comp_slug": "azerbaijan/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614589+00:00"
-    },
-    {
-      "id": "1206633",
-      "home": "Veles",
-      "away": "Spartak Kostroma",
-      "competition": "Russia FNL",
-      "comp_slug": "russia/fnl",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS Yes",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.613385+00:00"
+      "scraped_at": "2026-10-30T16:29:29.933213+00:00"
     },
     {
       "id": "1202642",
@@ -2583,51 +1973,9 @@
       "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.610707+00:00"
-    },
-    {
-      "id": "1181125",
-      "home": "Xorazm",
-      "away": "Pakhtakor",
-      "competition": "Uzbekistan Super League",
-      "comp_slug": "uzbekistan/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.615476+00:00"
-    },
-    {
-      "id": "1222922",
-      "home": "Zob Ahan Esfahan",
-      "away": "Esteghlal Khuzestan",
-      "competition": "Iran Pro League",
-      "comp_slug": "iran/pro-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "BTTS No",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.614819+00:00"
+      "scraped_at": "2026-10-30T16:29:29.930060+00:00"
     },
     {
       "id": "1201843",
@@ -2646,9 +1994,9 @@
       "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
-      "correct_score": "",
+      "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-10-30T11:15:42.612141+00:00"
+      "scraped_at": "2026-10-30T16:29:29.931409+00:00"
     }
   ]
 }
