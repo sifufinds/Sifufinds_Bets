@@ -1699,7 +1699,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-30T12:52:20.336215+00:00",
+    "checked_at": "2026-10-30T14:59:13.433386+00:00",
     "candidates_available": 326,
     "attempted": 3,
     "written": 0,
@@ -1708,7 +1708,19 @@
         "keyword": "AFCON hold every two years again — CAF betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 367)"
+      },
+      {
+        "keyword": "Olunga, Okumu, Kibet headline Harambee Stars provisional squad betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: only 978 words (minimum 1000); no '## FAQ' section heading found; final line was 'You can contact the BCLB in Kenya by visiting their website or contacting them directly via phone or email.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ampem Darkoa Ladies beat Edo Queens book CAF betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: only 953 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       }
     ]
   }
