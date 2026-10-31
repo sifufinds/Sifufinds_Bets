@@ -1,25 +1,13 @@
 {
   "date": "2026-10-31",
-  "total": 104,
+  "total": 102,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 9,
+    "HIGH": 7,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "world-sport-news-betting-insights-africa",
-      "detail": "Title 80 chars (max 60): 'Premier League, Rugby, Cricket, WNBA & NFL: Betting Insights for Afric'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "world-sport-news-betting-insights-africa",
-      "detail": "Excerpt 189 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
