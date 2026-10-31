@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-31T20:56:41.821058+00:00",
+    "checked_at": "2026-10-31T23:38:50.581405+00:00",
     "candidates_available": 335,
     "attempted": 3,
     "written": 0,
@@ -847,19 +847,7 @@
         "keyword": "Tennis Fernandez beats Rakhimova reach Tokyo final betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
-      },
-      {
-        "keyword": "CAF makes U-turn, AFCON reverts back being held betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: 300% Karibu Gift on First Deposit; 100% First Deposit Bonus – Up to KSh 19,000; 200% First Deposit Bonus – Up to KSh 20,000; 300% First Deposit Bonus – Up to KSh 1,500; 100% Welcome Bonus – Up to KSh 5,000; 200% First Deposit Bonus – Up to KSh 20,000"
-      },
-      {
-        "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
-        "country": "Ghana",
-        "result": "failed",
-        "reason": "fact_check: 150% Welcome Bonus – Up to GH₵500 Free Bet; 50% Welcome Bonus – Up to GH₵200; 100% First Deposit Bonus – Up to GH₵1,491; 200% First Deposit Bonus – Up to GH₵2,846; 300% First Deposit Bonus – Up to GH₵1,500; 100% First Deposit Bonus – Up to €100"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
