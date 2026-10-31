@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-31T09:36:05.768409+00:00",
+    "checked_at": "2026-10-31T12:52:57.564251+00:00",
     "candidates_available": 335,
     "attempted": 3,
     "written": 0,
@@ -847,7 +847,19 @@
         "keyword": "Tennis Fernandez beats Rakhimova reach Tokyo final betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: The win marks Fernandez’s third final appearance of the season and positions her as a strong contender for the title.; The 300 % first‑deposit bonus up to ₦1,200,000 (code 1BONUSNG) gives a huge bankroll boost.; The 100 % match up to ₦207,500 (code BNSNG).; A 200 % match up to ₦480,000 (code SIFUKAI) is available for new users.; The bonus is subject to a 5‑times wagering requirement and a 30‑day validity period.; All three operators are regulated by the National Lottery Regulatory Commission (NLRC), ensuring a safe betting environment for Nigerian customers.; Both 1xBet and 22Bet accept these mobile‑money services, allowing you to add funds in seconds and place bets on the live market without delay."
+      },
+      {
+        "keyword": "CAF makes U-turn, AFCON reverts back being held betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Kenyan bettors can stay up-to-date with the latest odds and betting options by visiting the website of their preferred bookmaker or by checking out the latest news and updates on the SifuFinds website.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "fact_check: Sportybet Ghana offers a 150% Welcome Bonus up to GH₵500, while Melbet Ghana provides a 300% First Deposit Bonus up to GH₵1,500 using code **SIFUKAI**; | Sportybet Ghana | 7.00           | 5.50           | 6.00           |\n| Betway Ghana    | 6.50           | 5.00           | 5.50           |\n| 22Bet Ghana     | 7.20           | 5.70           | 6.20           |"
       }
     ]
   }
