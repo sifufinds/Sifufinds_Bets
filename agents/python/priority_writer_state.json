@@ -1723,7 +1723,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-31T20:39:02.374427+00:00",
+    "checked_at": "2026-10-31T22:47:56.029078+00:00",
     "candidates_available": 325,
     "attempted": 3,
     "written": 0,
@@ -1731,6 +1731,12 @@
       {
         "keyword": "Tennis Fernandez beats Rakhimova reach Tokyo final betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: only 890 words (minimum 1000); final line was 'Set a budget, avoid chasing losses, and take regular breaks. If betting becomes stressful, seek help from organisations like the **National Lottery Regulatory Commission**.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "CAF makes U-turn, AFCON reverts back being held betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
