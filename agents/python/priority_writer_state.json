@@ -1716,31 +1716,35 @@
     "CAF – Patrice Motsepe (Président) « Gianni est betting tips Tanzania": {
       "slug": "caf-patrice-motsepe-betting-tips-tanzania",
       "posted_at": "2026-10-30T23:58:26.415710+00:00"
+    },
+    "Bledisloe Cup Wallabies 14-43 All Blacks betting tips South Africa": {
+      "slug": "bledisloe-cup-2026-wallabies-14-43-all-blacks-betting-tips-south-africa",
+      "posted_at": "2026-10-31T05:16:56.347331+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-31T04:11:13.872990+00:00",
+    "checked_at": "2026-10-31T05:32:48.811918+00:00",
     "candidates_available": 321,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "‘God is our side, we’ll win Amputee World betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: final line was 'No. Each welcome offer is tied to a single account and can only be claimed once per person. Opening multiple accounts to abuse bonuses breaches the terms and can lead to account suspension.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Bledisloe Cup Wallabies 14-43 All Blacks betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 564)"
+        "result": "written",
+        "slug": "bledisloe-cup-2026-wallabies-14-43-all-blacks-betting-tips-south-africa"
       },
       {
         "keyword": "CAF – Patrice Motsepe (Président) « Gianni est betting tips Uganda",
         "country": "Uganda",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
