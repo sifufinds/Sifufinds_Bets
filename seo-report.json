@@ -1,9 +1,9 @@
 {
   "date": "2026-10-31",
-  "total": 105,
+  "total": 104,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 10,
+    "HIGH": 9,
     "MEDIUM": 94,
     "INFO": 1
   },
@@ -11,20 +11,14 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "bledisloe-cup-2026-wallabies-14-43-all-blacks-betting-tips-south-africa",
-      "detail": "Title 78 chars (max 60): 'Bledisloe Cup 2026: Wallabies 14-43 All Blacks \u2013 Betting Tips for Sout'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "evaluating-3-platforms-for-online-casino-games-including-pin-up-casino-nigeria",
-      "detail": "Title 86 chars (max 60): 'Evaluating 3 Platforms for Online Casino Games including Pin Up Casino'"
+      "page": "world-sport-news-betting-insights-africa",
+      "detail": "Title 80 chars (max 60): 'Premier League, Rugby, Cricket, WNBA & NFL: Betting Insights for Afric'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "bledisloe-cup-2026-wallabies-14-43-all-blacks-betting-tips-south-africa",
-      "detail": "Excerpt 179 chars (max 155)"
+      "page": "world-sport-news-betting-insights-africa",
+      "detail": "Excerpt 189 chars (max 155)"
     },
     {
       "severity": "HIGH",
