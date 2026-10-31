@@ -1719,22 +1719,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-31T00:21:48.513389+00:00",
-    "candidates_available": 322,
+    "checked_at": "2026-10-31T04:11:13.872990+00:00",
+    "candidates_available": 321,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "CAF – Patrice Motsepe (Président) « Gianni est betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "caf-patrice-motsepe-betting-tips-tanzania"
-      },
       {
         "keyword": "‘God is our side, we’ll win Amputee World betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+      },
+      {
+        "keyword": "Bledisloe Cup Wallabies 14-43 All Blacks betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 564)"
+      },
+      {
+        "keyword": "CAF – Patrice Motsepe (Président) « Gianni est betting tips Uganda",
+        "country": "Uganda",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
       }
     ]
   }
