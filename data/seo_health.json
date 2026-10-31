@@ -1,16 +1,17 @@
 {
   "date": "2026-10-31",
-  "fixes_applied": 4,
+  "fixes_applied": 5,
   "warnings": 2,
   "fixes": [
+    "llms.txt: Last Updated \u2192 2026-10-31, blog post count refreshed",
     "Blog HTML: refreshed dateModified on 1628 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 1922",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 2758 total URLs",
+    "Blog HTML regenerated:     Total blog posts in JSON: 1924",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 2760 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "772 posts below 900 words: sports-news-roundup-f1-rugby-nba-darts, nba-action-knicks-76ers-lakers-warriors, breaking-sports-news-boxing-nfl-football-updates-african-bettors, rugby-betting-guide-team-news-world-cup-insights, tennis-upsets-triumphs-betting-markets-shift...",
-    "530 posts missing FAQ section: sports-news-roundup-f1-rugby-nba-darts, nba-action-knicks-76ers-lakers-warriors, breaking-sports-news-boxing-nfl-football-updates-african-bettors, simba-pirates-sundowns-psl-coaches-betting, tennis-upsets-triumphs-betting-markets-shift"
+    "774 posts below 900 words: f1-mexico-city-gp-hirakawa-replaces-ocon-haas, canelo-alvarez-vs-christian-mbilli-live-boxing, sports-news-roundup-f1-rugby-nba-darts, nba-action-knicks-76ers-lakers-warriors, breaking-sports-news-boxing-nfl-football-updates-african-bettors...",
+    "532 posts missing FAQ section: f1-mexico-city-gp-hirakawa-replaces-ocon-haas, canelo-alvarez-vs-christian-mbilli-live-boxing, sports-news-roundup-f1-rugby-nba-darts, nba-action-knicks-76ers-lakers-warriors, breaking-sports-news-boxing-nfl-football-updates-african-bettors"
   ],
   "status": "warnings"
 }
