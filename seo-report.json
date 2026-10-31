@@ -1,13 +1,19 @@
 {
   "date": "2026-10-31",
-  "total": 102,
+  "total": 103,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 8,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "canelo-alvarez-vs-christian-mbilli-live-boxing",
+      "detail": "Title 62 chars (max 60): 'Canelo Alvarez vs Christian Mbilli: Live Boxing Action Tonight'"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
