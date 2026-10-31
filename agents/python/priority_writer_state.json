@@ -1723,22 +1723,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-10-31T05:32:48.811918+00:00",
-    "candidates_available": 321,
+    "checked_at": "2026-10-31T07:39:34.741860+00:00",
+    "candidates_available": 320,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "‘God is our side, we’ll win Amputee World betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'No. Each welcome offer is tied to a single account and can only be claimed once per person. Opening multiple accounts to abuse bonuses breaches the terms and can lead to account suspension.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Bledisloe Cup Wallabies 14-43 All Blacks betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "bledisloe-cup-2026-wallabies-14-43-all-blacks-betting-tips-south-africa"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 467)"
       },
       {
         "keyword": "CAF – Patrice Motsepe (Président) « Gianni est betting tips Uganda",
