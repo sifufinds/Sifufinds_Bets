@@ -1724,31 +1724,35 @@
     "CAF makes U-turn, AFCON reverts back being held betting tips Kenya": {
       "slug": "caf-makes-u-turn-afcon-betting-tips-kenya",
       "posted_at": "2026-11-01T01:18:37.048193+00:00"
+    },
+    "Tennis Fernandez beats Rakhimova reach Tokyo final betting tips Nigeria": {
+      "slug": "fernandez-rakhimova-tokyo-final-betting-tips-nigeria",
+      "posted_at": "2026-11-01T05:45:19.438455+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-01T03:19:11.639413+00:00",
+    "checked_at": "2026-11-01T05:46:21.690871+00:00",
     "candidates_available": 324,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Tennis Fernandez beats Rakhimova reach Tokyo final betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Sportybet’s free‑bet is capped at ₦30,000 and can only be used on bets with minimum odds of 3.15. Since Fernandez’s odds are lower, the free‑bet cannot be applied to this specific market, making it less suitable for the Tokyo final.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "fernandez-rakhimova-tokyo-final-betting-tips-nigeria"
       },
       {
         "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All GCA‑licensed bookmakers allow betting on AFCON matches. However, you must be at least 18 years old and comply with the wagering requirements and terms of each promotion.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Pay attention to the recent form of Ghanaian Premier League players, injury news for Europe‑based stars, and the odds on both‑teams‑to‑score markets. Early‑stage odds can be generous, and in‑play betting offers extra value as the game unfolds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Agent discusses why PSL golden boot winners struggle betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 468)"
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
       }
     ]
   }
