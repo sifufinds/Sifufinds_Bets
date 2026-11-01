@@ -1731,14 +1731,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-01T07:56:39.894132+00:00",
-    "candidates_available": 323,
+    "checked_at": "2026-11-01T09:57:47.262736+00:00",
+    "candidates_available": 327,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
-        "country": "Ghana",
+        "keyword": "2027 Tinubu’s projects will win votes APC, says betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'The markets', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Daggers drawn as divided Kandanda House heads Meru betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
