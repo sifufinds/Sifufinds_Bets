@@ -1,13 +1,19 @@
 {
   "date": "2026-11-01",
-  "total": 102,
+  "total": 103,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 8,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "fernandez-rakhimova-tokyo-final-betting-tips-nigeria",
+      "detail": "Excerpt 156 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
