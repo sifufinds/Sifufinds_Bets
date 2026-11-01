@@ -1,37 +1,13 @@
 {
   "date": "2026-11-01",
-  "total": 107,
+  "total": 103,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 12,
+    "HIGH": 8,
     "MEDIUM": 94,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "cricket-betting-guide-series-updates-proteas",
-      "detail": "Title 63 chars (max 60): 'Cricket Betting Guide: Latest Series Updates & Proteas Insights'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "bills-ravens-t20i-la-liga-superclasico-betting-insight",
-      "detail": "Title 72 chars (max 60): 'Bills vs Ravens, T20I Thriller, La Liga & Superclasico \u2013 Betting Insig'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "cricket-betting-guide-series-updates-proteas",
-      "detail": "Excerpt 166 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bills-ravens-t20i-la-liga-superclasico-betting-insight",
-      "detail": "Excerpt 238 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
