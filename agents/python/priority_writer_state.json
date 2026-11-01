@@ -1720,19 +1720,35 @@
     "Bledisloe Cup Wallabies 14-43 All Blacks betting tips South Africa": {
       "slug": "bledisloe-cup-2026-wallabies-14-43-all-blacks-betting-tips-south-africa",
       "posted_at": "2026-10-31T05:16:56.347331+00:00"
+    },
+    "CAF makes U-turn, AFCON reverts back being held betting tips Kenya": {
+      "slug": "caf-makes-u-turn-afcon-betting-tips-kenya",
+      "posted_at": "2026-11-01T01:18:37.048193+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-10-31T23:28:41.148060+00:00",
+    "checked_at": "2026-11-01T01:18:52.217028+00:00",
     "candidates_available": 325,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Tennis Fernandez beats Rakhimova reach Tokyo final betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was '1xBet Nigeria holds an NLRC licence, meaning it complies with Nigerian gambling regulations. The site also offers responsible‑gaming tools and secure payment options, making it a safe choice for players over 18.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "CAF makes U-turn, AFCON reverts back being held betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "caf-makes-u-turn-afcon-betting-tips-kenya"
+      },
+      {
+        "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 422)"
       }
     ]
   }
