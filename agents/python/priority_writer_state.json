@@ -1731,7 +1731,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-01T17:16:54.122059+00:00",
+    "checked_at": "2026-11-01T19:06:43.677263+00:00",
     "candidates_available": 327,
     "attempted": 3,
     "written": 0,
@@ -1739,6 +1739,12 @@
       {
         "keyword": "2027 Tinubu’s projects will win votes APC, says betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'To make the most of the 2027 betting market and keep your bankroll growing, sign up with the bookmakers highlighted above. Visit sifufinds.com for up‑to‑date comparisons and the latest betting tips tailored to Nigeria’s sports and political scene. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Daggers drawn as divided Kandanda House heads Meru betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
