@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-01T01:25:19.555619+00:00",
+    "checked_at": "2026-11-01T03:29:55.058618+00:00",
     "candidates_available": 335,
     "attempted": 3,
     "written": 0,
@@ -847,17 +847,11 @@
         "keyword": "Tennis Fernandez beats Rakhimova reach Tokyo final betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 463)"
+        "reason": "fact_check: Current live odds on SifuFinds show that the market is leaning heavily towards Fernandez, but the exact figures fluctuate every few minutes.; 1xBet Nigeria | 300 % up to ₦1 200 000; 22Bet Nigeria | 100 % up to ₦207 500; Melbet Nigeria | 200 % up to ₦480 000; Paripesa Nigeria | 200 % up to ₦200 000; Linebet Nigeria | 100 % up to ₦180 000; Sportybet Nigeria | 150 % free bet up to ₦30 000; All of these operators are licensed by the National Lottery Regulatory Commission (NLRC); 1xBet often lists slightly higher odds for Fernandez’s victory in the final than 22Bet; the NLRC mandates that all licensed operators provide resources for self‑exclusion and limit‑setting; The Pan Pacific Open is typically streamed by the WTA’s official partners and can be accessed via the WTA website or licensed broadcasters that operate in Nigeria; Enter the code 1BONUSNG in the bonus field before your first deposit"
       },
       {
         "keyword": "CAF makes U-turn, AFCON reverts back being held betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "fact_check: Slightly higher than 22Bet; Slightly lower than SportPesa; 200 % bonus up to KSh 20 000"
-      },
-      {
-        "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
-        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }

@@ -1727,28 +1727,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-01T01:18:52.217028+00:00",
-    "candidates_available": 325,
+    "checked_at": "2026-11-01T03:19:11.639413+00:00",
+    "candidates_available": 324,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Tennis Fernandez beats Rakhimova reach Tokyo final betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was '1xBet Nigeria holds an NLRC licence, meaning it complies with Nigerian gambling regulations. The site also offers responsible‑gaming tools and secure payment options, making it a safe choice for players over 18.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "CAF makes U-turn, AFCON reverts back being held betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "caf-makes-u-turn-afcon-betting-tips-kenya"
+        "reason": "quality_gate: final line was 'Sportybet’s free‑bet is capped at ₦30,000 and can only be used on bets with minimum odds of 3.15. Since Fernandez’s odds are lower, the free‑bet cannot be applied to this specific market, making it less suitable for the Tokyo final.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 422)"
+        "reason": "quality_gate: final line was 'All GCA‑licensed bookmakers allow betting on AFCON matches. However, you must be at least 18 years old and comply with the wagering requirements and terms of each promotion.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Agent discusses why PSL golden boot winners struggle betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 468)"
       }
     ]
   }
