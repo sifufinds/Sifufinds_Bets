@@ -838,7 +838,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-01T10:04:59.419362+00:00",
+    "checked_at": "2026-11-01T13:27:27.686333+00:00",
     "candidates_available": 339,
     "attempted": 3,
     "written": 0,
@@ -846,6 +846,12 @@
       {
         "keyword": "2027 Tinubu’s projects will win votes APC, says betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 448)"
+      },
+      {
+        "keyword": "Daggers drawn as divided Kandanda House heads Meru betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
