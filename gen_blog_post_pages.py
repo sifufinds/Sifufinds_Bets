@@ -1977,7 +1977,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 <html {html_lang_attr}>
 <head>
 <!-- Google tag (gtag.js) -->
-<script>/* GTM loads after load+3s or first interaction: it cost ~300ms main-thread and delayed LCP by seconds on mobile. */(function(){var d=0,go=function(){if(d)return;d=1;var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE";document.head.appendChild(s)};["pointerdown","keydown","scroll","touchstart"].forEach(function(e){addEventListener(e,go,{once:true,passive:true})});addEventListener("load",function(){setTimeout(go,3000)})})();</script>
+<script>/* GTM loads after load+3s or first interaction: it cost ~300ms main-thread and delayed LCP by seconds on mobile. */(function(){{var d=0,go=function(){{if(d)return;d=1;var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE";document.head.appendChild(s)}};["pointerdown","keydown","scroll","touchstart"].forEach(function(e){{addEventListener(e,go,{{once:true,passive:true}})}});addEventListener("load",function(){{setTimeout(go,3000)}})}})();</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
