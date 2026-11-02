@@ -1728,25 +1728,35 @@
     "Tennis Fernandez beats Rakhimova reach Tokyo final betting tips Nigeria": {
       "slug": "fernandez-rakhimova-tokyo-final-betting-tips-nigeria",
       "posted_at": "2026-11-01T05:45:19.438455+00:00"
+    },
+    "Four Crazy Soweto Derby moments betting tips South Africa": {
+      "slug": "four-crazy-soweto-derby-moments-betting-tips-south-africa",
+      "posted_at": "2026-11-02T05:44:20.799724+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-01T19:06:43.677263+00:00",
-    "candidates_available": 327,
+    "checked_at": "2026-11-02T05:44:25.691224+00:00",
+    "candidates_available": 326,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "2027 Tinubu’s projects will win votes APC, says betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'To make the most of the 2027 betting market and keep your bankroll growing, sign up with the bookmakers highlighted above. Visit sifufinds.com for up‑to‑date comparisons and the latest betting tips tailored to Nigeria’s sports and political scene. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
       {
         "keyword": "Daggers drawn as divided Kandanda House heads Meru betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'The 200 % match bonus on 1xBet Kenya must be wagered five times at minimum odds of 1.40 before any profit can be withdrawn. This means a KSh 1,000 bonus requires KSh 5,000 in qualifying bets at the stipulated odds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Ghana Premier League Kotoko plot Medeama ambush, Hearts betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Withdrawals are typically processed within 24 to 48 hours for GCA‑licensed operators, but the exact time depends on the chosen payment method and the bookmaker’s processing policy.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Four Crazy Soweto Derby moments betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "four-crazy-soweto-derby-moments-betting-tips-south-africa"
       }
     ]
   }
