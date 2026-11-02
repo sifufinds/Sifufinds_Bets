@@ -842,20 +842,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-01T23:34:31.930937+00:00",
-    "candidates_available": 339,
+    "checked_at": "2026-11-02T00:26:19.404334+00:00",
+    "candidates_available": 338,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "2027 Tinubu’s projects will win votes APC, says betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "tinubus-projects-apc-odds-nigeria-2027"
-      },
       {
         "keyword": "Daggers drawn as divided Kandanda House heads Meru betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "fact_check: With the tournament still a few years away, bookmakers like **SportPesa Kenya**, **22Bet Kenya**, and **1xBet Kenya** are likely to offer long-term bets on Kenya's performance.; To give you a better idea of how bookmakers are viewing Kenya's AFCON 2027 prospects, here’s a comparison of odds from top Kenyan bookmakers:; **SportPesa Kenya**: 300% Welcome Karibu Gift on First Deposit (up to KSh 300% Karibu, min deposit: KSh 10).; **22Bet Kenya**: 100% First Deposit Bonus – Up to KSh 19,000 (min deposit: KSh 100).; **1xBet Kenya**: 200% First Deposit Bonus – Up to KSh 20,000 (min deposit: KSh 50).; **Melbet Kenya**: 300% First Deposit Bonus – Up to KSh 1,500 (min deposit: KSh 50, use code SIFUKAI).; **HelaBet Kenya**: 100% Welcome Bonus – Up to KSh 5,000 (min deposit: KSh 10).; **Paripesa Kenya**: 200% First Deposit Bonus – Up to KSh 20,000 (min deposit: KSh 50)."
+      },
+      {
+        "keyword": "Ghana Premier League Kotoko plot Medeama ambush, Hearts betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
