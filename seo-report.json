@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-01",
-  "total": 103,
+  "date": "2026-11-02",
+  "total": 107,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 8,
-    "MEDIUM": 94,
+    "MEDIUM": 98,
     "INFO": 1
   },
   "issues": [
@@ -49,6 +49,30 @@
       "check": "meta_desc_length",
       "page": "global-sports-roundup-england-croatia-india-t20-nfl-week-4",
       "detail": "Excerpt 156 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "global-igaming-updates-what-african-bettors-need-to-know",
+      "detail": "High title overlap (7 meaningful tokens) with 'global-igaming-updates-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "global-igaming-updates-what-african-bettors-need-to-know",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-regulatory-shifts-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "global-igaming-updates-what-african-bettors-need-to-know",
+      "detail": "High title overlap (6 meaningful tokens) with 'igaming-industry-updates-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "global-igaming-updates-what-african-bettors-need-to-know",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-shake-up-african-bettors' \u2014 consider noindex"
     },
     {
       "severity": "MEDIUM",
