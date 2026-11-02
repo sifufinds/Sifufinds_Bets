@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from urllib.parse import urlparse
 
 from bs4 import BeautifulSoup, Comment, Doctype, NavigableString, Tag
+from bs4.formatter import HTMLFormatter
 
 from hidden_brands_lib import (PH_CLOSE, PH_OPEN, HiddenBrands, scrub_json, scrub_json_strings,
                                scrub_text)
@@ -428,6 +429,22 @@ def _scrub_comments(soup, hb: HiddenBrands) -> None:
             c.extract()
 
 
+# ── serialisation ────────────────────────────────────────────────────────────
+
+class _OrderedFormatter(HTMLFormatter):
+    """bs4 alphabetises every tag's attributes on output (`<meta content=.. name=..>`).
+    Valid HTML, but simple SEO crawlers/regex audits that expect `name=` before
+    `content=` then report "missing meta description/title/canonical" on every
+    rewritten page (found 2026-11-02). Keep the source attribute order instead."""
+
+    def attributes(self, tag):
+        return list(tag.attrs.items())
+
+
+# void_element_close_prefix=None writes `<meta ...>` as the source does, not `<meta .../>`.
+_ORDERED_FORMATTER = _OrderedFormatter(void_element_close_prefix=None)
+
+
 # ── entry points ─────────────────────────────────────────────────────────────
 
 def scrub_html(source: str, page: Page) -> str | None:
@@ -445,7 +462,7 @@ def scrub_html(source: str, page: Page) -> str | None:
     _scrub_links(soup, page)
     _scrub_text_nodes(soup, page)
     _safety_net(soup, page)
-    out = str(soup)
+    out = soup.decode(formatter=_ORDERED_FORMATTER)
     return out if out != source else None
 
 
