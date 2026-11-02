@@ -417,6 +417,7 @@ def build_page(bk, country_slug, country, combo):
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
+  gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'}});try{{if(localStorage.getItem('sf_consent')==='granted')gtag('consent','update',{{analytics_storage:'granted'}})}}catch(e){{}}
   gtag('js', new Date());
   gtag('config', 'G-0B51MX2ZKE');
 </script>
@@ -493,8 +494,8 @@ def build_page(bk, country_slug, country, combo):
 }}
 </script>
 
-<link rel="preload" href="{assets}assets/shared.css?v=12" as="style">
-<link rel="stylesheet" href="{assets}assets/shared.css?v=12">
+<link rel="preload" href="{assets}assets/shared.css?v=13" as="style">
+<link rel="stylesheet" href="{assets}assets/shared.css?v=13">
 <style>
 .bkr-hero{{background:linear-gradient(135deg,{color} 0%,{color}cc 100%);color:#fff;padding:28px 0}}
 .bkr-hero h1{{font-size:clamp(20px,3.5vw,30px);font-weight:900;margin-bottom:8px;letter-spacing:-.5px}}
@@ -682,7 +683,7 @@ def build_page(bk, country_slug, country, combo):
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="{assets}assets/shared.js?v=35"></script>
+<script src="{assets}assets/shared.js?v=36"></script>
 <script>
 const SITE={{home:'{assets}',tips:'{assets}tips/',casino:'{assets}casino/',odds:'{assets}odds/',countries:'{assets}countries/'}};
 const _BK_CTY='{code}';

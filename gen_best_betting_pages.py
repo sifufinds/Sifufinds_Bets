@@ -287,8 +287,8 @@ def generate_page(code, c):
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=3">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=3">
-<link rel="preload" href="../assets/shared.css?v=12" as="style">
-<link rel="stylesheet" href="../assets/shared.css?v=12">
+<link rel="preload" href="../assets/shared.css?v=13" as="style">
+<link rel="stylesheet" href="../assets/shared.css?v=13">
 <style>
 .reg-badge{{display:inline-block;background:#edf7f0;border:1px solid #c8e6c9;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;color:#1a6b35;margin-bottom:10px}}
 .pay-grid{{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}}
@@ -465,7 +465,7 @@ def generate_page(code, c):
   </div>
 </div>
 
-<script src="../assets/shared.js?v=35"></script>
+<script src="../assets/shared.js?v=36"></script>
 <script>
 const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'
 }};
@@ -699,8 +699,8 @@ def generate_emerging_page(code, c):
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=3">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=3">
-<link rel="preload" href="../assets/shared.css?v=12" as="style">
-<link rel="stylesheet" href="../assets/shared.css?v=12">
+<link rel="preload" href="../assets/shared.css?v=13" as="style">
+<link rel="stylesheet" href="../assets/shared.css?v=13">
 <style>
 .reg-badge{{display:inline-block;background:#fff3e0;border:1px solid #ffcc80;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;color:#8a5600;margin-bottom:10px}}
 .pay-grid{{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}}
@@ -844,7 +844,7 @@ def generate_emerging_page(code, c):
   </div>
 </div>
 
-<script src="../assets/shared.js?v=35"></script>
+<script src="../assets/shared.js?v=36"></script>
 <script>
 const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'
 }};
@@ -1022,8 +1022,8 @@ def generate_restricted_page(code, c):
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=3">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=3">
-<link rel="preload" href="../assets/shared.css?v=12" as="style">
-<link rel="stylesheet" href="../assets/shared.css?v=12">
+<link rel="preload" href="../assets/shared.css?v=13" as="style">
+<link rel="stylesheet" href="../assets/shared.css?v=13">
 <style>
 .reg-badge{{display:inline-block;background:#fdecea;border:1px solid #f5b7b1;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;color:#a12a1f;margin-bottom:10px}}
 .pay-grid{{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}}
@@ -1141,7 +1141,7 @@ def generate_restricted_page(code, c):
   © <span id="foot-yr"></span> SifuFinds. All rights reserved. 18+ only. Gambling can be addictive. Play responsibly.
 </div>
 
-<script src="../assets/shared.js?v=35"></script>
+<script src="../assets/shared.js?v=36"></script>
 <script>
 const SITE={{home:'../',tips:'../tips/',casino:'../casino/',odds:'../odds/',countries:'../countries/'
 }};

@@ -1797,3 +1797,10 @@ While following up on the blog-pipeline work above (checking whether the 3-5 pos
 - **Research limits**: `mostbet.com` returns HTTP 451 to WebFetch and empty to Jina, so Mostbet licence, payments and payout speed are labelled unverified in the post. Do not fill them in without a real source or a human test. Melbet bonus caps and the 12x/3-leg/2.10/30-day rollover come from one third-party review (livetipsportal) and are labelled as such.
 - **Open for the owner**: `melbet-review` still quotes the stale promo code `MBMAX` and claims "no cash-out" and "no 24/7 support", which third-party sources contradict. Not edited this session.
 - **Gotcha**: the free-search background job (`fc_search` x8) can exceed 280s and save nothing. Write results incrementally. `mcp WebSearch` gave faster, usable results.
+
+## 2026-11-02 — Cookie consent (Code Patterns)
+- Added a consent banner using Google Consent Mode v2. Every page head (2,854 HTML files + the 7 generators that emit `gtag('js'`) now sets `gtag('consent','default',…denied)` immediately before `gtag('js'`, then restores a stored `sf_consent==='granted'` choice. The banner/logic lives once in `assets/shared.js` (end of file); styles in `shared.css` (`#sf-consent`). Cookie settings can be reopened from any `[data-cookie-settings]` link (privacy page + privacy modal).
+- **Any new generator that emits the GA head snippet must include the consent-default line before `gtag('js'`** (inside f-strings the braces must be doubled `{{ }}`), or that page tracks before consent.
+- GoatCounter is cookieless and left ungated. The offer popup is suppressed while the banner is on screen.
+- Bumped `shared.js?v=36` and `shared.css?v=13` site-wide (the CSS version is independent of the JS one — it was at 12, not 35).
+- Environment note: this repo's local checkout under ~/Desktop (iCloud) can be thousands of commits behind origin and `git grep`/`grep -r` over it time out; do bulk edits in a `git worktree` off `origin/main` in the scratchpad.

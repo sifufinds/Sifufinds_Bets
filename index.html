@@ -57,8 +57,8 @@
   }).catch(function(){/* no redirect — render this generic homepage as-is */});
 })();
 </script>
-<link rel="preload" href="assets/shared.js?v=35" as="script">
-<link rel="preload" href="assets/shared.css?v=12" as="style">
+<link rel="preload" href="assets/shared.js?v=36" as="script">
+<link rel="preload" href="assets/shared.css?v=13" as="style">
 <!-- Critical-path connections -->
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
@@ -72,6 +72,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});try{if(localStorage.getItem('sf_consent')==='granted')gtag('consent','update',{analytics_storage:'granted'})}catch(e){}
   gtag('js', new Date());
   gtag('config', 'G-0B51MX2ZKE');
 </script>
@@ -281,7 +282,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="assets/shared.css?v=12">
+<link rel="stylesheet" href="assets/shared.css?v=13">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=3">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
@@ -658,7 +659,7 @@
 <script>
 const SITE={home:'/',tips:'tips/',casino:'casino/',odds:'odds/',countries:'countries/'};
 </script>
-<script src="assets/shared.js?v=35"></script>
+<script src="assets/shared.js?v=36"></script>
 <script>
 // ── PAGE-SPECIFIC JS ──────────────────────────────────────────────────────────
 const CTY_NAMES={NG:'Nigeria',KE:'Kenya',GH:'Ghana',ZA:'South Africa',TZ:'Tanzania',UG:'Uganda',ZM:'Zambia',ET:'Ethiopia',CI:'Ivory Coast',CM:'Cameroon',SN:'Senegal',RW:'Rwanda',ZW:'Zimbabwe',MW:'Malawi',MZ:'Mozambique',AO:'Angola',CD:'DR Congo',BW:'Botswana',NA:'Namibia',EG:'Egypt',MA:'Morocco',SL:'Sierra Leone',LR:'Liberia'};

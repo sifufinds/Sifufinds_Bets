@@ -781,7 +781,7 @@ privacy:`<h1>Privacy Policy</h1>
 <h2>Information We Collect</h2>
 <p>SifuFinds does not collect personal data beyond standard web analytics (anonymous page views, country of origin). We use cookies to remember your country preference and improve your experience.</p>
 <h2>Cookies</h2>
-<p>We use a single cookie (<code>ab_country</code>) to save your selected country. No tracking cookies from ad networks are placed without consent.</p>
+<p>We save your selected country in your browser. With your consent we also use Google Analytics cookies to measure how the site is used; if you reject, analytics cookies are not set. <a href="#" data-cookie-settings>Cookie settings</a></p>
 <h2>Third-Party Links</h2>
 <p>SifuFinds contains affiliate links to licensed bookmakers. When you click a link we may receive a commission at no extra cost to you. We are not responsible for the privacy practices of third-party sites.</p>
 <h2>Contact</h2><p>For privacy enquiries: privacy@sifufinds.com</p>`,
@@ -1077,6 +1077,7 @@ function closeOfferPopup(){
 }
 function showOfferPopup(){
   if(sessionStorage.getItem(_OFFER_POPUP_SS))return;
+  if(document.getElementById('sf-consent'))return; // cookie banner still awaiting a choice
   if(document.getElementById('cmp-modal')?.classList.contains('open'))return;
   if(document.getElementById('page-modal')?.classList.contains('open'))return;
   const cty=getCurrentCountry();
@@ -1241,6 +1242,8 @@ document.addEventListener('DOMContentLoaded',function(){
     var gs=document.createElement('script');
     gs.async=true;gs.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
     document.head.appendChild(gs);
+    gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+    try{if(localStorage.getItem('sf_consent')==='granted')gtag('consent','update',{analytics_storage:'granted'});}catch(e){}
     gtag('js',new Date());
     gtag('config',GA_ID,{send_page_view:true});
   }
@@ -1905,3 +1908,51 @@ injectLangSelector();
 applyI18n();
 syncLangUI();
 window.addEventListener('load',function(){applyI18n();syncLangUI();});
+
+// ── COOKIE CONSENT ───────────────────────────────────────────────────────────
+// Google Analytics runs in Consent Mode: every page head sets analytics_storage
+// to 'denied' by default, and this banner flips it to 'granted' only on Accept.
+// Choice lives in localStorage['sf_consent'] ('granted' | 'denied').
+(function(){
+  'use strict';
+  var KEY='sf_consent';
+  function read(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+  function save(v){try{localStorage.setItem(KEY,v);}catch(e){}}
+  function gtag(){(window.dataLayer=window.dataLayer||[]).push(arguments);}
+  function apply(v){
+    gtag('consent','update',{analytics_storage:v,ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  }
+  function close(){var el=document.getElementById('sf-consent');if(el)el.remove();}
+  function choose(v){
+    save(v);apply(v);close();
+    if(v==='denied'){ // drop any GA cookies already set by an earlier visit
+      var host=location.hostname.replace(/^www\./,'');
+      document.cookie.split(';').forEach(function(c){
+        var n=c.split('=')[0].trim();
+        if(n==='_ga'||n.indexOf('_ga_')===0||n==='_gid'||n==='_gat'){
+          ['',';domain='+host,';domain=.'+host].forEach(function(d){
+            document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+d;
+          });
+        }
+      });
+    }
+  }
+  function show(){
+    if(document.getElementById('sf-consent'))return;
+    var d=document.createElement('div');
+    d.id='sf-consent';d.setAttribute('role','dialog');d.setAttribute('aria-label','Cookie consent');
+    d.innerHTML='<p>We use cookies to measure site usage and improve SifuFinds. Analytics cookies stay off unless you accept. '
+      +'<a href="/privacy/">Privacy policy</a></p>'
+      +'<div class="sf-consent-btns"><button type="button" data-c="denied">Reject</button>'
+      +'<button type="button" data-c="granted" class="sf-consent-accept">Accept</button></div>';
+    d.addEventListener('click',function(e){var b=e.target.closest('button[data-c]');if(b)choose(b.getAttribute('data-c'));});
+    document.body.appendChild(d);
+    var a=d.querySelector('.sf-consent-accept');if(a)a.focus({preventScroll:true});
+  }
+  window.sfCookieSettings=show;
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-cookie-settings]');
+    if(t){e.preventDefault();show();}
+  });
+  if(read()===null)show();
+})();

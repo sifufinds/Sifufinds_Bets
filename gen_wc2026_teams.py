@@ -220,7 +220,7 @@ def page_html(t: dict) -> str:
 <html lang="en">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'}});try{{if(localStorage.getItem('sf_consent')==='granted')gtag('consent','update',{{analytics_storage:'granted'}})}}catch(e){{}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{seo_title(f'{name} World Cup 2026 Odds, Predictions & Betting Tips')}</title>

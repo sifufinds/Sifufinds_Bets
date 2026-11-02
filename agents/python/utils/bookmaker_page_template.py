@@ -157,11 +157,12 @@ def render_bookmaker_page(facts: dict) -> str:
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
+  gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'}});try{{if(localStorage.getItem('sf_consent')==='granted')gtag('consent','update',{{analytics_storage:'granted'}})}}catch(e){{}}
   gtag('js', new Date());
   gtag('config', 'G-0B51MX2ZKE');
 </script>
 <meta charset="UTF-8">
-<link rel="preload" href="../../assets/shared.js?v=35" as="script">
+<link rel="preload" href="../../assets/shared.js?v=36" as="script">
 <link rel="preconnect" href="https://ipapi.co">
 <link rel="preconnect" href="https://www.google-analytics.com">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -227,8 +228,8 @@ def render_bookmaker_page(facts: dict) -> str:
 }}
 </script>
 
-<link rel="preload" href="../../assets/shared.css?v=12" as="style">
-<link rel="stylesheet" href="../../assets/shared.css?v=12">
+<link rel="preload" href="../../assets/shared.css?v=13" as="style">
+<link rel="stylesheet" href="../../assets/shared.css?v=13">
 <style>
 .bkr-hero{{background:linear-gradient(135deg,{grad_a} 0%,{grad_b} 100%);color:#fff;padding:28px 0}}
 .bkr-hero h1{{font-size:clamp(20px,3.5vw,30px);font-weight:900;margin-bottom:8px;letter-spacing:-.5px}}
@@ -397,7 +398,7 @@ def render_bookmaker_page(facts: dict) -> str:
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=35"></script>
+<script src="../../assets/shared.js?v=36"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 const _BK_CTY='{iso2}';
@@ -443,7 +444,7 @@ def render_discontinued_page(slug: str, name: str, evidence: str) -> str:
 <meta name="description" content="{name} appears to no longer be operating. SifuFinds has removed it from active bookmaker comparisons. See our current bookmaker reviews instead.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://sifufinds.com/bookmakers/{slug}/">
-<link rel="stylesheet" href="../../assets/shared.css?v=12">
+<link rel="stylesheet" href="../../assets/shared.css?v=13">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3">
 </head>
 <body>
