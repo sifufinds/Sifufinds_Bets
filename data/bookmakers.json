@@ -1,7 +1,7 @@
 {
   "_schema_version": 1,
   "_comment": "Canonical brand x country bookmaker facts database — the Sifufinds Testing Database. Single source of truth intended to replace the overlapping brand schemas in agent_brand_reviews.py, agent_telegram_offers.py, brands/data.json and data/bookmaker_links.json. See CLAUDE.md's 'Sifufinds Testing Database' section for the verification-status model this file follows (not_yet_researched -> documented -> claimed -> verified -> tested).",
-  "generated_at": "2026-10-23T15:52:49.850541+00:00",
+  "generated_at": "2026-11-02T20:34:36.835671+00:00",
   "generated_by": "scripts/build_bookmakers_db.py",
   "countries_reference": {
     "NG": {
@@ -920,22 +920,24 @@
         },
         "scraped_daily": {
           "name": "1xBet",
-          "welcome_bonus": "Get up to ₦1,200,000 in bonuses on your first deposits with a 200% to 300% match.",
-          "bonus_headline": "Up to ₦1,200,000 Bonus",
-          "bonus_sub": "New Nigerian customers · Use promo code 1GLNG, ACEMAX, or 1XREGI",
-          "promo_code": "1GLNG, ACEMAX, 1XREGI, STYVIP",
+          "welcome_bonus": "300% deposit match offer, up to ₦1,200,000",
+          "bonus_headline": "Get ₦1,200,000 FREE BET",
+          "bonus_sub": "No deposit required · NLRC Licensed",
+          "promo_code": "1GLNG",
           "min_deposit": "₦1,700",
           "free_games": [
-            "Casino games with free spins"
+            "Aviator",
+            "Virtual Sports",
+            "Casino Slots"
           ],
           "best_markets": [
-            "Sports betting",
-            null,
-            null
+            "Football",
+            "Basketball",
+            "Tennis"
           ],
-          "casino_offer": "Up to ₦2,550,000 + 150 free spins with promo code NGCODE",
-          "last_scraped": "2026-10-23T06:42:56.571530+00:00",
-          "scrape_confidence": 0.7,
+          "casino_offer": "₦255,000 + 150 FS in Aviator",
+          "last_scraped": "2026-11-01T08:29:25.350433+00:00",
+          "scrape_confidence": 0.8,
           "scrape_source": "ddgs"
         },
         "review_page_copy": {
@@ -1902,24 +1904,24 @@
         },
         "scraped_daily": {
           "name": "Bet9ja",
-          "welcome_bonus": "100% welcome bonus on the first deposit for new users.",
-          "bonus_headline": "Get 100% WELCOME BONUS",
-          "bonus_sub": "First deposit match · Sportsbook & Casino",
-          "promo_code": "LEAD9JA, 2500PROMO",
-          "min_deposit": "₦1,000",
+          "welcome_bonus": "100% welcome bonus",
+          "bonus_headline": "Get ₦100,000 WELCOME BONUS",
+          "bonus_sub": "No deposit required · NLRC Licensed",
+          "promo_code": "yohaig",
+          "min_deposit": "₦100",
           "free_games": [
             "Aviator",
-            "Virtuals",
-            "Zoom"
+            "Virtual Sports",
+            "Casino Slots"
           ],
           "best_markets": [
             "Football",
-            null,
-            null
+            "Virtual Sports",
+            "Zoom"
           ],
           "casino_offer": "Casino match included in welcome bonus",
-          "last_scraped": "2026-10-16T06:32:56.029258+00:00",
-          "scrape_confidence": 0.65,
+          "last_scraped": "2026-11-01T08:24:58.161632+00:00",
+          "scrape_confidence": 0.7,
           "scrape_source": "ddgs"
         },
         "review_page_copy": null,
@@ -3562,22 +3564,23 @@
         },
         "scraped_daily": {
           "name": "Betway",
-          "welcome_bonus": "100% first deposit match up to ₦100,000 as a free bet",
-          "bonus_headline": "Get ₦100,000 FREE BET",
-          "bonus_sub": "100% match up to ₦100,000",
+          "welcome_bonus": "100% first‑deposit match up to ₦100,000 as a free bet",
+          "bonus_headline": "Get up to ₦100,000 FREE BET",
+          "bonus_sub": "100% match up to ₦100,000 · Free Bet",
           "promo_code": "AFIWAY",
           "min_deposit": "₦1,000",
           "free_games": [
-            "Aviator"
+            "Free Spins",
+            "Free Flights"
           ],
           "best_markets": [
             "Football",
-            null,
-            null
+            "Live Games",
+            "Top Markets"
           ],
-          "casino_offer": "10 free spins on casino games",
-          "last_scraped": "2026-10-23T06:40:57.967254+00:00",
-          "scrape_confidence": 0.9,
+          "casino_offer": "10 free spins + 10 free flights with the welcome pack",
+          "last_scraped": "2026-11-02T08:33:13.583641+00:00",
+          "scrape_confidence": 0.65,
           "scrape_source": "ddgs+direct"
         },
         "review_page_copy": null,
@@ -3986,9 +3989,9 @@
         },
         "scraped_daily": {
           "name": "BetWinner",
-          "welcome_bonus": "200% first deposit bonus up to ₦130,000 for new users.",
-          "bonus_headline": "Get ₦130,000 Welcome Bonus",
-          "bonus_sub": "200% deposit match · Exclusive to new players",
+          "welcome_bonus": "Get a 200% first deposit bonus up to ₦130,000 for new players in Nigeria.",
+          "bonus_headline": "200% Bonus up to ₦130,000",
+          "bonus_sub": "Exclusive for new Nigerian players · T&Cs apply",
           "promo_code": "SPORTYVIP",
           "min_deposit": "$1",
           "free_games": [
@@ -3999,10 +4002,10 @@
           "best_markets": [
             "Football",
             "Rugby",
-            null
+            "Tennis"
           ],
           "casino_offer": "100% up to ₦655,000 + 150 free spins",
-          "last_scraped": "2026-10-21T06:44:27.537255+00:00",
+          "last_scraped": "2026-11-02T08:34:42.108968+00:00",
           "scrape_confidence": 0.7,
           "scrape_source": "ddgs"
         },
@@ -5448,23 +5451,24 @@
         },
         "scraped_daily": {
           "name": "HelaBet",
-          "welcome_bonus": "Get a 100% first deposit bonus up to 16,000 KES for sports betting or up to 162,000 KES + 150 free spins for casino.",
-          "bonus_headline": "100% up to 16,000 KES",
-          "bonus_sub": "New Kenyan customers · Use promo code THN or PROMO130",
-          "promo_code": "THN, PROMO130",
+          "welcome_bonus": "100% deposit bonus up to €130",
+          "bonus_headline": "Get 100% up to €130 Bonus",
+          "bonus_sub": "No deposit required · KES & EUR accepted",
+          "promo_code": "PROMO130",
           "min_deposit": "KES 100",
           "free_games": [
             "Aviator",
-            "Casino games"
+            "Virtual Sports",
+            "Casino Slots"
           ],
           "best_markets": [
             "Football",
-            null,
-            null
+            "Basketball",
+            "Tennis"
           ],
-          "casino_offer": "Up to 162,000 KES + 150 free spins",
-          "last_scraped": "2026-10-23T06:43:47.861960+00:00",
-          "scrape_confidence": 0.7,
+          "casino_offer": "100% deposit bonus up to €100",
+          "last_scraped": "2026-10-29T07:55:35.562711+00:00",
+          "scrape_confidence": 0.8,
           "scrape_source": "ddgs"
         },
         "review_page_copy": null,
@@ -6034,21 +6038,21 @@
         },
         "scraped_daily": {
           "name": "Hollywoodbets",
-          "welcome_bonus": "Get a R25 sign-up bonus and 50 free spins when you register with Hollywoodbets.",
-          "bonus_headline": "Get R25 + 50 Free Spins",
-          "bonus_sub": "New customers only · Use promo code SPIN50 or HOLLYBET",
-          "promo_code": "SPIN50, HOLLYBET",
+          "welcome_bonus": "Get a R25 no-deposit sign-up bonus plus 50 free spins for new players.",
+          "bonus_headline": "R25 No Deposit + 50 Free Spins",
+          "bonus_sub": "Explore Sports & Casino · 1x Wagering · T&Cs apply",
+          "promo_code": "spin50",
           "min_deposit": "R10",
           "free_games": [
-            "Spina Zonke games"
+            "Spina Zonke Casino Slots"
           ],
           "best_markets": [
-            "Soccer",
-            "Horse Racing",
-            "Tennis"
+            "Football",
+            "Rugby",
+            "Cricket"
           ],
-          "casino_offer": "50 free spins on Spina Zonke games",
-          "last_scraped": "2026-10-23T06:42:34.484361+00:00",
+          "casino_offer": "50 free spins on Spina Zonke Casino slots with no deposit required.",
+          "last_scraped": "2026-11-02T08:35:01.957913+00:00",
           "scrape_confidence": 0.8,
           "scrape_source": "ddgs"
         },
@@ -8187,14 +8191,15 @@
         },
         "scraped_daily": {
           "name": "Melbet",
-          "welcome_bonus": "200% match up to ₦320,000",
-          "bonus_headline": "200% Match Bonus",
-          "bonus_sub": "200% match up to ₦320k",
-          "promo_code": "WAP200",
-          "min_deposit": "₦100",
+          "welcome_bonus": "200% first deposit match up to ₦320,000 for new users in Nigeria.",
+          "bonus_headline": "Get ₦320,000 WELCOME BONUS",
+          "bonus_sub": "200% deposit match · Promo code: STYVIP1",
+          "promo_code": "STYVIP1",
+          "min_deposit": "₦455",
           "free_games": [
-            "Casino Games",
-            "Fast Games"
+            "Aviator",
+            "Virtual Sports",
+            "Casino Slots"
           ],
           "best_markets": [
             "Football",
@@ -8202,8 +8207,8 @@
             "Tennis"
           ],
           "casino_offer": "Improved casino welcome deal with promo code GUIDE777",
-          "last_scraped": "2026-10-20T06:49:23.963816+00:00",
-          "scrape_confidence": 0.85,
+          "last_scraped": "2026-10-29T07:46:29.961980+00:00",
+          "scrape_confidence": 0.7,
           "scrape_source": "ddgs+direct"
         },
         "review_page_copy": null,
@@ -9592,11 +9597,11 @@
         },
         "scraped_daily": {
           "name": "Paripesa",
-          "welcome_bonus": "100% deposit match up to ₦180,000",
+          "welcome_bonus": "100% match up to ₦180,000 on first deposit",
           "bonus_headline": "Get ₦180,000 FREE",
-          "bonus_sub": "100% match up to ₦180k · New players only",
-          "promo_code": "DAILYSPORTS2",
-          "min_deposit": "₦1 (or equivalent)",
+          "bonus_sub": "No deposit required · 4 deposit stages",
+          "promo_code": "PARIXPERT",
+          "min_deposit": "₦1,500",
           "free_games": [
             "Casino Games"
           ],
@@ -9605,9 +9610,9 @@
             null,
             null
           ],
-          "casino_offer": "Up to ₦2.7M + 150 freespins on 4 casino deposits",
-          "last_scraped": "2026-10-19T07:05:24.292873+00:00",
-          "scrape_confidence": 0.9,
+          "casino_offer": "100% welcome bonus up to ₦100,000-₦150,000",
+          "last_scraped": "2026-10-27T07:10:55.340674+00:00",
+          "scrape_confidence": 0.7,
           "scrape_source": "ddgs"
         },
         "review_page_copy": null,
@@ -10797,9 +10802,9 @@
         },
         "scraped_daily": {
           "name": "Sportybet",
-          "welcome_bonus": "Get up to 135% bonus on returns for accumulators with 4+ selections.",
-          "bonus_headline": "Get 135% Super Bonus",
-          "bonus_sub": "Accumulator boost · 4+ selections · Odds 1.2+",
+          "welcome_bonus": "100% welcome bonus up to ₦10,000",
+          "bonus_headline": "100% up to ₦10,000",
+          "bonus_sub": "Deposit as low as ₦100, get 100% back",
           "promo_code": "SPORTY",
           "min_deposit": "₦100",
           "free_games": [
@@ -10812,7 +10817,7 @@
             "Tennis"
           ],
           "casino_offer": "up to ₦10,000 rewards",
-          "last_scraped": "2026-10-05T07:50:40.097272+00:00",
+          "last_scraped": "2026-11-01T08:19:56.342635+00:00",
           "scrape_confidence": 0.7,
           "scrape_source": "ddgs"
         },
@@ -11248,22 +11253,22 @@
         },
         "scraped_daily": {
           "name": "TicTacBets",
-          "welcome_bonus": "25 free spins no deposit + 100% match up to R5,000 + 75 free spins",
-          "bonus_headline": "25 Free Spins + R5k Match",
-          "bonus_sub": "No deposit required · 100% match up to R5,000",
+          "welcome_bonus": "Get a 100% first deposit match up to R5,000 plus 75 free spins for new players.",
+          "bonus_headline": "100% Match + 75 Free Spins",
+          "bonus_sub": "Up to R5,000 · Min deposit R50 · T&Cs apply",
           "promo_code": "CORG25",
           "min_deposit": "R50",
           "free_games": [
-            "Pragmatic Play slots"
+            "Pragmatic Play Slots"
           ],
           "best_markets": [
             "PSL",
             "Rugby",
             "Cricket"
           ],
-          "casino_offer": "25 free spins no deposit + 75 free spins on deposit",
-          "last_scraped": "2026-10-20T06:49:44.212256+00:00",
-          "scrape_confidence": 0.7,
+          "casino_offer": "25 free spins no deposit required for new players on Pragmatic Play slots.",
+          "last_scraped": "2026-11-02T08:34:52.510579+00:00",
+          "scrape_confidence": 0.8,
           "scrape_source": "ddgs+direct"
         },
         "review_page_copy": null,

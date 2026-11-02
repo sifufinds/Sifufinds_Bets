@@ -115,8 +115,27 @@ def _country_links_block() -> str:
     )
 
 
+META_DESCRIPTION = (
+    f"MostBet review by SifuFinds: welcome bonus up to 150% + 250 free spins with promo code {PROMO_CODE}. "
+    "Licensing and terms vary by country."
+)
+
+
+def _short_meta(html: str) -> str:
+    """The shared template concatenates bonus + licensing + disclaimer into one 266-char
+    description (limit 155). Replace the description/og/twitter copies with a short one."""
+    import re
+    for attr, key in (("name", "description"), ("property", "og:description"), ("name", "twitter:description")):
+        html = re.sub(
+            rf'(<meta\s+{attr}="{re.escape(key)}"\s+content=")[^"]*(")',
+            lambda m: m.group(1) + META_DESCRIPTION + m.group(2),
+            html,
+        )
+    return html
+
+
 def build() -> str:
-    html = render_bookmaker_page(FACTS)
+    html = _short_meta(render_bookmaker_page(FACTS))
     official = FACTS["official_url"]
 
     old_adv_start = html.index('<div class="adv">')
