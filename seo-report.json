@@ -1,36 +1,18 @@
 {
   "date": "2026-11-02",
-  "total": 111,
+  "total": 108,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 12,
+    "HIGH": 9,
     "MEDIUM": 98,
     "INFO": 1
   },
   "issues": [
     {
       "severity": "HIGH",
-      "check": "title_length",
-      "page": "bellingham-rice-african-betting-insights",
-      "detail": "Title 77 chars (max 60): \"Bellingham's Milestone, Carragher's Rice Praise, and African Betting I\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "world-sports-highlights-mma-premier-league-nfl-nba-tennis-betting-insights",
-      "detail": "Title 117 chars (max 60): 'World Sports Highlights: MMA Champion, Premier League, NFL, NBA, Tenni'"
-    },
-    {
-      "severity": "HIGH",
       "check": "meta_desc_length",
       "page": "bellingham-rice-african-betting-insights",
       "detail": "Excerpt 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "world-sports-highlights-mma-premier-league-nfl-nba-tennis-betting-insights",
-      "detail": "Excerpt 209 chars (max 155)"
     },
     {
       "severity": "HIGH",
