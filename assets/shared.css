@@ -417,3 +417,7 @@ select.csel option{color:#222;background:#fff}
 .sf-consent-btns button{border:1px solid rgba(255,255,255,.45);background:transparent;color:#fff;padding:9px 18px;border-radius:8px;font-weight:600;font-size:13px;min-height:40px}
 .sf-consent-btns .sf-consent-accept{background:var(--gold);border-color:var(--gold);color:#1a1a1a}
 .sf-consent-btns button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+/* CLS guard (2026-11-02): reserve the final height of the bars shared.js fills in, so the hero below no longer jumps when they populate (measured 10px desktop / 24px mobile). */
+.hbrands{min-height:54px}
+@media(max-width:600px){.tbar{min-height:43px}.snav,.snav-in{min-height:46px}}

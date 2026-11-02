@@ -333,8 +333,8 @@ def make_html(bk):
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=3">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=3">
-<link rel="preload" href="../../assets/shared.css?v=13" as="style">
-<link rel="stylesheet" href="../../assets/shared.css?v=13">
+<link rel="preload" href="../../assets/shared.css?v=14" as="style">
+<link rel="stylesheet" href="../../assets/shared.css?v=14">
 <style>
 .bkr-hero{{background:linear-gradient(135deg,{bk['hero_color']} 0%,{bk['hero_color2']} 100%);color:#fff;padding:28px 0}}
 .bkr-hero h1{{font-size:clamp(20px,3.5vw,30px);font-weight:900;margin-bottom:8px;letter-spacing:-.5px}}

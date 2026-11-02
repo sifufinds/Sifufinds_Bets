@@ -153,7 +153,7 @@ def render_bookmaker_page(facts: dict) -> str:
 <!-- sifufinds.com/bookmakers/{slug}/ — {name} Review {year} — auto-researched listing -->
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE"></script>
+<script>/* GTM loads after load+3s or first interaction: it cost ~300ms main-thread and delayed LCP by seconds on mobile. */(function(){var d=0,go=function(){if(d)return;d=1;var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=G-0B51MX2ZKE";document.head.appendChild(s)};["pointerdown","keydown","scroll","touchstart"].forEach(function(e){addEventListener(e,go,{once:true,passive:true})});addEventListener("load",function(){setTimeout(go,3000)})})();</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
@@ -228,8 +228,8 @@ def render_bookmaker_page(facts: dict) -> str:
 }}
 </script>
 
-<link rel="preload" href="../../assets/shared.css?v=13" as="style">
-<link rel="stylesheet" href="../../assets/shared.css?v=13">
+<link rel="preload" href="../../assets/shared.css?v=14" as="style">
+<link rel="stylesheet" href="../../assets/shared.css?v=14">
 <style>
 .bkr-hero{{background:linear-gradient(135deg,{grad_a} 0%,{grad_b} 100%);color:#fff;padding:28px 0}}
 .bkr-hero h1{{font-size:clamp(20px,3.5vw,30px);font-weight:900;margin-bottom:8px;letter-spacing:-.5px}}
@@ -444,7 +444,7 @@ def render_discontinued_page(slug: str, name: str, evidence: str) -> str:
 <meta name="description" content="{name} appears to no longer be operating. SifuFinds has removed it from active bookmaker comparisons. See our current bookmaker reviews instead.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://sifufinds.com/bookmakers/{slug}/">
-<link rel="stylesheet" href="../../assets/shared.css?v=13">
+<link rel="stylesheet" href="../../assets/shared.css?v=14">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3">
 </head>
 <body>
