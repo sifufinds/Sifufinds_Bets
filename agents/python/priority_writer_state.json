@@ -1735,13 +1735,19 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-02T07:58:54.124349+00:00",
-    "candidates_available": 325,
+    "checked_at": "2026-11-02T10:07:45.124455+00:00",
+    "candidates_available": 331,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Daggers drawn as divided Kandanda House heads Meru betting tips Kenya",
+        "keyword": "EUROMATCH NPFL Ogunmodede Reflects Kano Pillars’ 2-0 Win betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 446)"
+      },
+      {
+        "keyword": "Cristiano Ronaldo DROPPED by Al Nassr amid major betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
