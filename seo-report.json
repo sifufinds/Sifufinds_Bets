@@ -1,13 +1,25 @@
 {
   "date": "2026-11-02",
-  "total": 108,
+  "total": 110,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 9,
+    "HIGH": 11,
     "MEDIUM": 98,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "euromatch-npfl-ogunmodede-kano-pillars-2-0-betting-tips",
+      "detail": "Title 76 chars (max 60): 'EUROMATCH NPFL Ogunmodede Reflects Kano Pillars 2-0 Win Betting Tips N'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "euromatch-npfl-ogunmodede-kano-pillars-2-0-betting-tips",
+      "detail": "Excerpt 171 chars (max 155)"
+    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
