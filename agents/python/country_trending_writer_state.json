@@ -842,7 +842,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-02T10:28:42.536884+00:00",
+    "checked_at": "2026-11-02T15:51:45.378833+00:00",
     "candidates_available": 343,
     "attempted": 3,
     "written": 0,
@@ -851,19 +851,19 @@
         "keyword": "EUROMATCH NPFL Ogunmodede Reflects Kano Pillars’ 2-0 Win betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: “Over 1.5 goals” – With a goal already scored in the first half and a second added later, the match produced more than one goal.; **First Goal Scorer – Ibrahim Yahaya**; Ogunmodede praised Ibrahim Yahaya’s early goal and the team’s defensive shape that kept Nasarawa United from scoring. He said the clean sheet demonstrated the Pillars’ ability to control games from the first whistle."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 414)"
       },
       {
         "keyword": "Cristiano Ronaldo DROPPED by Al Nassr amid major betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: Kenyan bookmakers like SportPesa Kenya, 22Bet Kenya, and 1xBet Kenya will adjust their odds; SportPesa Kenya is likely to offer competitive odds on Al Nassr’s next match, considering the impact of Ronaldo’s exclusion; SportPesa Kenya, known for its 300% Welcome Karibu Gift on the first deposit; Melbet Kenya’s 300% first deposit bonus up to KSh 1,500; Paripesa Kenya’s 200% first deposit bonus up to KSh 20,000; 22Bet Kenya and 1xBet Kenya, both offering generous first deposit bonuses of up to KSh 19,000 and KSh 20,000 respectively"
+        "reason": "fact_check: SportPesa often places a 1.70‑to‑1.75 range for an Al Nassr win, whereas 22Bet may list it at 1.75‑1.80; 22Bet sometimes offers a slightly higher payout, around 2.20‑2.30, compared to SportPesa’s 2.10‑2.20; Typically, bookmakers have adjusted the home win odds slightly downwards following Ronaldo’s omission, while the away win odds have risen marginally"
       },
       {
         "keyword": "Ghana take Japan FIFA U-17 Women's World Cup betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 565 words (minimum 600); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       }
     ]
   }
