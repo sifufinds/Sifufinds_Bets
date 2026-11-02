@@ -1,25 +1,13 @@
 {
   "date": "2026-11-02",
-  "total": 110,
+  "total": 107,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 11,
+    "HIGH": 8,
     "MEDIUM": 98,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "ghana-take-japan-fifa-u-17-womens-world-cup-betting-tips",
-      "detail": "Title 70 chars (max 60): \"Ghana take Japan FIFA U-17 Women's World Cup Betting Tips \u2013 2026 Guide\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "ghana-take-japan-fifa-u-17-womens-world-cup-betting-tips",
-      "detail": "Excerpt 174 chars (max 155)"
-    },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
@@ -661,12 +649,6 @@
       "check": "formulaic_opener",
       "page": "55 posts",
       "detail": "55 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bookmakers/mostbet/index.html",
-      "detail": "Meta description 266 chars (max 155)"
     }
   ]
 }
