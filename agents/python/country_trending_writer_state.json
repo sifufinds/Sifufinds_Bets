@@ -842,7 +842,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-02T15:51:45.378833+00:00",
+    "checked_at": "2026-11-02T17:55:35.098935+00:00",
     "candidates_available": 343,
     "attempted": 3,
     "written": 0,
@@ -851,19 +851,19 @@
         "keyword": "EUROMATCH NPFL Ogunmodede Reflects Kano Pillars’ 2-0 Win betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 414)"
+        "reason": "quality_gate: only 564 words (minimum 600); no '## FAQ' section heading found; final line was '18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Cristiano Ronaldo DROPPED by Al Nassr amid major betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: SportPesa often places a 1.70‑to‑1.75 range for an Al Nassr win, whereas 22Bet may list it at 1.75‑1.80; 22Bet sometimes offers a slightly higher payout, around 2.20‑2.30, compared to SportPesa’s 2.10‑2.20; Typically, bookmakers have adjusted the home win odds slightly downwards following Ronaldo’s omission, while the away win odds have risen marginally"
+        "reason": "fact_check: On SportPesa Kenya, the odds of Al Nassr winning their next match have dropped from 2.50 to 2.20, while the odds of Ronaldo's former club, Manchester United, winning their next match have increased from 3.20 to 3.50.; Similarly, on 22Bet Kenya, the odds of Al Nassr winning their next match have dropped from 2.80 to 2.40.; SportPesa Kenya is offering a 300% Welcome Karibu Gift on First Deposit, which can be used to place a wager on Manchester United's next match.; 22Bet Kenya is offering a 100% First Deposit Bonus – Up to KSh 19,000, which can also be used to place a wager on Manchester United's next match."
       },
       {
         "keyword": "Ghana take Japan FIFA U-17 Women's World Cup betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: only 565 words (minimum 600); found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: only 500 words (minimum 600); no '## FAQ' section heading found"
       }
     ]
   }
