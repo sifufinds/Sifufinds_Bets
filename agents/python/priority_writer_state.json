@@ -1744,25 +1744,39 @@
     "Ghana take Japan FIFA U-17 Women's World Cup betting tips Ghana": {
       "slug": "ghana-take-japan-fifa-u-17-womens-world-cup-betting-tips",
       "posted_at": "2026-11-02T19:31:35.830240+00:00"
+    },
+    "5 Soweto Derby stats that tell story Pirates' betting tips South Africa": {
+      "slug": "5-soweto-derby-stats-pirates-betting-tips-south-africa",
+      "posted_at": "2026-11-03T01:26:40.587882+00:00"
+    },
+    "Daggers drawn as divided Kandanda House heads Meru betting tips Kenya": {
+      "slug": "daggers-drawn-as-divided-kandanda-house-heads-meru-betting-tips-kenya",
+      "posted_at": "2026-11-03T01:27:15.119000+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-02T19:53:14.343594+00:00",
-    "candidates_available": 329,
+    "checked_at": "2026-11-03T01:27:18.922356+00:00",
+    "candidates_available": 328,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Ghana take Japan FIFA U-17 Women's World Cup betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "ghana-take-japan-fifa-u-17-womens-world-cup-betting-tips"
-      },
       {
         "keyword": "5 Soweto Derby stats that tell story Pirates' betting tips South Africa",
         "country": "South Africa",
+        "result": "written",
+        "slug": "5-soweto-derby-stats-pirates-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Kenya Petition Filed Compel Disclosure Bayern Munich-Ajax Match betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'All bonuses listed require a wagering multiplier of x5, with a 30‑day period to meet the terms. Make sure you read the full terms and conditions before claiming.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Daggers drawn as divided Kandanda House heads Meru betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "daggers-drawn-as-divided-kandanda-house-heads-meru-betting-tips-kenya"
       }
     ]
   }
