@@ -1776,31 +1776,35 @@
     "Kenya Petition Filed Compel Disclosure Bayern Munich-Ajax Match betting tips Tanzania": {
       "slug": "kenya-petition-bayern-ajax-betting-tips-tanzania",
       "posted_at": "2026-11-03T16:08:31.940535+00:00"
+    },
+    "Nigeria/Benin Future Eagles Hammer New Caledonia, Beaten By betting tips Tanzania": {
+      "slug": "nigeria-benin-future-eagles-beat-new-caledonia-tanzania-betting-tips",
+      "posted_at": "2026-11-03T18:09:38.346704+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-03T16:08:46.279230+00:00",
-    "candidates_available": 324,
+    "checked_at": "2026-11-03T18:09:45.670608+00:00",
+    "candidates_available": 322,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Ligue des champions UEFA Bodø/Glimt veut se relancer, betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "bodo-glimt-lille-champions-league-betting-tips-tanzania"
-      },
-      {
-        "keyword": "Kenya Petition Filed Compel Disclosure Bayern Munich-Ajax Match betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "kenya-petition-bayern-ajax-betting-tips-tanzania"
-      },
       {
         "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Yes, with a biennial schedule, bookmakers often introduce markets such as “first goal scorer”, “total goals over/under” and “match winner” for each fixture, allowing punters to diversify their bets across a broader range of outcomes.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Each GCA‑licensed site provides responsible‑gambling controls in the account settings. You can set daily, weekly or monthly deposit caps, as well as loss limits and self‑exclusion periods. Activate these tools before the tournament starts to keep your betting in check.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Agent discusses why PSL golden boot winners struggle betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Nigeria/Benin Future Eagles Hammer New Caledonia, Beaten By betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "nigeria-benin-future-eagles-beat-new-caledonia-tanzania-betting-tips"
       }
     ]
   }
