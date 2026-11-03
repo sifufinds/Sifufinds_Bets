@@ -846,7 +846,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-03T01:37:19.282276+00:00",
+    "checked_at": "2026-11-03T04:00:50.058193+00:00",
     "candidates_available": 342,
     "attempted": 3,
     "written": 0,
@@ -854,6 +854,12 @@
       {
         "keyword": "EUROMATCH NPFL Ogunmodede Reflects Kano Pillars’ 2-0 Win betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 483)"
+      },
+      {
+        "keyword": "Ghana take Japan FIFA U-17 Women's World Cup betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
