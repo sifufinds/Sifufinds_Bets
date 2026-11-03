@@ -1783,28 +1783,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-03T18:09:45.670608+00:00",
-    "candidates_available": 322,
+    "checked_at": "2026-11-03T20:30:39.210813+00:00",
+    "candidates_available": 321,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Each GCA‑licensed site provides responsible‑gambling controls in the account settings. You can set daily, weekly or monthly deposit caps, as well as loss limits and self‑exclusion periods. Activate these tools before the tournament starts to keep your betting in check.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 443)"
       },
       {
         "keyword": "Agent discusses why PSL golden boot winners struggle betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
-      },
-      {
-        "keyword": "Nigeria/Benin Future Eagles Hammer New Caledonia, Beaten By betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "nigeria-benin-future-eagles-beat-new-caledonia-tanzania-betting-tips"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
