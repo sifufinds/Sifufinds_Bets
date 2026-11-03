@@ -1,61 +1,13 @@
 {
   "date": "2026-11-03",
-  "total": 107,
+  "total": 99,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 8,
+    "HIGH": 0,
     "MEDIUM": 98,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "afc-postpones-2027-asian-cup-december-betting-tips-nigeria",
-      "detail": "Title 69 chars (max 60): 'AFC postpones 2027 Asian Cup till December \u2013 Betting tips for Nigeria'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "japan-ambassadors-championship-fuels-martial-arts-betting-ghana-tips",
-      "detail": "Title 71 chars (max 60): 'Japan Ambassador\u2019s Championship Fuels Martial Arts Betting - Ghana Tip'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "psl-coach-resignation-betting-impact",
-      "detail": "Title 86 chars (max 60): 'PSL Coach Resignation Shakes South African Betting Markets \u2013 What Punt'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "west-ham-sack-nuno-impact-african-bettors",
-      "detail": "Title 64 chars (max 60): 'West Ham\u2019s Shock Sack of Nuno: What It Means for African Bettors'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sports-betting-roundup-fury-joshua-nfl-upsets-villa-elite-test",
-      "detail": "Title 74 chars (max 60): \"Sports Betting Roundup: Fury vs Joshua, NFL Upsets, and Villa's Elite \""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "psl-coach-resignation-betting-impact",
-      "detail": "Excerpt 238 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "west-ham-sack-nuno-impact-african-bettors",
-      "detail": "Excerpt 172 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sports-betting-roundup-fury-joshua-nfl-upsets-villa-elite-test",
-      "detail": "Excerpt 181 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
