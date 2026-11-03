@@ -209,7 +209,10 @@ def seo_meta_description(text: str, max_len: int = 155, prefer_sentence: bool = 
         return text
     if prefer_sentence:
         window = text[:max_len + 1]
-        ends = [m.end() for m in re.finditer(r"[.!?](?=\s|$)", window)]
+        # window is max_len+1 so the lookahead can see the char after a sentence
+        # end at position max_len; end <= max_len keeps the result within the limit
+        # (was unbounded: a period at index max_len produced max_len+1 chars).
+        ends = [m.end() for m in re.finditer(r"[.!?](?=\s|$)", window) if m.end() <= max_len]
         if ends and ends[-1] >= MIN_SENTENCE_DESCRIPTION:
             return window[:ends[-1]].strip()
     truncated = text[:max_len].rsplit(" ", 1)[0].rstrip(".,;:—- ")
