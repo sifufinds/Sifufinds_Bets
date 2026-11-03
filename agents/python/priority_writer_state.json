@@ -1768,31 +1768,39 @@
     "Japan Ambassador’s Championship drives grassroots interest martial arts betting tips Ghana": {
       "slug": "japan-ambassadors-championship-fuels-martial-arts-betting-ghana-tips",
       "posted_at": "2026-11-03T10:25:17.647930+00:00"
+    },
+    "Ligue des champions UEFA Bodø/Glimt veut se relancer, betting tips Tanzania": {
+      "slug": "bodo-glimt-lille-champions-league-betting-tips-tanzania",
+      "posted_at": "2026-11-03T16:08:05.530424+00:00"
+    },
+    "Kenya Petition Filed Compel Disclosure Bayern Munich-Ajax Match betting tips Tanzania": {
+      "slug": "kenya-petition-bayern-ajax-betting-tips-tanzania",
+      "posted_at": "2026-11-03T16:08:31.940535+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-03T10:37:38.206110+00:00",
-    "candidates_available": 326,
+    "checked_at": "2026-11-03T16:08:46.279230+00:00",
+    "candidates_available": 324,
     "attempted": 3,
     "written": 2,
     "attempts": [
       {
-        "keyword": "AFC postpones 2027 Asian Cup till December betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "afc-postpones-2027-asian-cup-december-betting-tips-nigeria"
-      },
-      {
-        "keyword": "Japan Ambassador’s Championship drives grassroots interest martial arts betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "japan-ambassadors-championship-fuels-martial-arts-betting-ghana-tips"
-      },
-      {
         "keyword": "Ligue des champions UEFA Bodø/Glimt veut se relancer, betting tips Tanzania",
         "country": "Tanzania",
+        "result": "written",
+        "slug": "bodo-glimt-lille-champions-league-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Kenya Petition Filed Compel Disclosure Bayern Munich-Ajax Match betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "kenya-petition-bayern-ajax-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Yes, with a biennial schedule, bookmakers often introduce markets such as “first goal scorer”, “total goals over/under” and “match winner” for each fixture, allowing punters to diversify their bets across a broader range of outcomes.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
