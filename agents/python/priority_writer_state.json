@@ -1780,25 +1780,39 @@
     "Nigeria/Benin Future Eagles Hammer New Caledonia, Beaten By betting tips Tanzania": {
       "slug": "nigeria-benin-future-eagles-beat-new-caledonia-tanzania-betting-tips",
       "posted_at": "2026-11-03T18:09:38.346704+00:00"
+    },
+    "Agent discusses why PSL golden boot winners struggle betting tips South Africa": {
+      "slug": "psl-golden-boot-winners-betting-tips-south-africa",
+      "posted_at": "2026-11-03T23:12:21.058725+00:00"
+    },
+    "UCL Osimhen Picks Up Man Match Award Galatasaray’s betting tips Nigeria": {
+      "slug": "ucl-osimhen-man-match-award-galatasaray-betting-tips-nigeria",
+      "posted_at": "2026-11-03T23:12:41.179099+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-03T20:30:39.210813+00:00",
-    "candidates_available": 321,
+    "checked_at": "2026-11-03T23:12:46.904326+00:00",
+    "candidates_available": 322,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 443)"
+        "reason": "quality_gate: final line was 'All bets must be placed with a GCA‑licensed operator, and you must be at least 18 years old. Bonuses are subject to wagering requirements, minimum odds and expiry periods as stated in each bookmaker’s terms and conditions.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Agent discusses why PSL golden boot winners struggle betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "psl-golden-boot-winners-betting-tips-south-africa"
+      },
+      {
+        "keyword": "UCL Osimhen Picks Up Man Match Award Galatasaray’s betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "ucl-osimhen-man-match-award-galatasaray-betting-tips-nigeria"
       }
     ]
   }
