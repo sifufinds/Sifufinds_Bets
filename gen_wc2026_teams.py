@@ -219,7 +219,7 @@ def page_html(t: dict) -> str:
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>/* GTM loads after load+3s or first interaction: it cost ~300ms main-thread and delayed LCP by seconds on mobile. */(function(){{var d=0,go=function(){{if(d)return;d=1;var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id={GA_ID}";document.head.appendChild(s)}};["pointerdown","keydown","scroll","touchstart"].forEach(function(e){{addEventListener(e,go,{{once:true,passive:true}})}});addEventListener("load",function(){{setTimeout(go,3000)}})}})();</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'}});try{{if(localStorage.getItem('sf_consent')==='granted')gtag('consent','update',{{analytics_storage:'granted'}})}}catch(e){{}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">

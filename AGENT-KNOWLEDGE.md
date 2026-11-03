@@ -1804,3 +1804,11 @@ While following up on the blog-pipeline work above (checking whether the 3-5 pos
 - GoatCounter is cookieless and left ungated. The offer popup is suppressed while the banner is on screen.
 - Bumped `shared.js?v=36` and `shared.css?v=13` site-wide (the CSS version is independent of the JS one — it was at 12, not 35).
 - Environment note: this repo's local checkout under ~/Desktop (iCloud) can be thousands of commits behind origin and `git grep`/`grep -r` over it time out; do bulk edits in a `git worktree` off `origin/main` in the scratchpad.
+
+## 2026-11-03 — Brand changes, performance and deploy lessons
+- **Code Patterns**: Betika and Pepeta are hidden brands (`data/hidden_brands.json`); MostBet launched (KE/GH/TZ/CI/EG/MA/BJ, masked `/mostbet`). Melbet's working link is the `refpa3665.com` `d_6242359m` one; the `che.fluxbrox.com` host returns 404 for every path, so do not use it. Promo code for Melbet and MostBet is SIFUKAI (`PROMO_CODE_BRANDS`).
+- **Code Patterns**: GTM is deferred (loads at load+3s or first interaction) on every page and in all generators including `gen_wc2026_teams.py`. Header heights are reserved in `shared.css` to avoid CLS. Logos in `assets/logos/` are 256px palette PNGs; keep new ones under ~30KB.
+- **Errors to Never Repeat**: JS braces inside Python f-string generators must be doubled (`{{ }}`); an unescaped snippet broke six generators and blocked a deploy. Run `python3 -m compileall -q .` and `scripts/seo_check.py` before pushing.
+- **Errors to Never Repeat**: `deploy_hostinger.yml` has a 15-minute cooldown, so a push-triggered deploy can silently skip while reporting success. Use `workflow_dispatch` after the cooldown. Pushes that modify `.github/workflows/*` are rejected without the `workflow` OAuth scope.
+- **Errors to Never Repeat**: `telegram_offers` passes `--brand 'Melbet'` with literal quotes; the agent now strips them.
+- **SEO Learnings**: remaining `seo_check` output is 98 medium `potential_duplicate` title warnings (bots posting several articles on one story), an editorial call, not a defect.
