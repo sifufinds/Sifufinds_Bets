@@ -1791,28 +1791,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-03T23:12:46.904326+00:00",
-    "candidates_available": 322,
+    "checked_at": "2026-11-04T01:21:03.199921+00:00",
+    "candidates_available": 338,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All bets must be placed with a GCA‑licensed operator, and you must be at least 18 years old. Bonuses are subject to wagering requirements, minimum odds and expiry periods as stated in each bookmaker’s terms and conditions.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Agent discusses why PSL golden boot winners struggle betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "psl-golden-boot-winners-betting-tips-south-africa"
-      },
-      {
-        "keyword": "UCL Osimhen Picks Up Man Match Award Galatasaray’s betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "ucl-osimhen-man-match-award-galatasaray-betting-tips-nigeria"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
