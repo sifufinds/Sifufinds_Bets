@@ -1791,14 +1791,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-04T06:21:04.525858+00:00",
-    "candidates_available": 338,
+    "checked_at": "2026-11-04T10:11:50.744384+00:00",
+    "candidates_available": 342,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
-        "country": "Ghana",
+        "keyword": "Brazil vs Nigeria betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, once the wagering requirements are met or the 30‑day expiry passes, you can withdraw your winnings through any supported payment method.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "FIFA share documents related World Cup private investment betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
