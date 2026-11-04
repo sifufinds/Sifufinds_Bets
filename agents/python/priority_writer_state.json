@@ -1799,28 +1799,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-04T18:28:40.453811+00:00",
-    "candidates_available": 342,
+    "checked_at": "2026-11-04T22:05:22.993383+00:00",
+    "candidates_available": 340,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Brazil vs Nigeria betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "brazil-vs-nigeria-betting-tips-nigeria"
-      },
       {
         "keyword": "FIFA share documents related World Cup private investment betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Choose M‑Pay (M‑Pesa), Airtel Money, Equitel or USSD *644# as your payment method on the bookmaker’s deposit page. Enter your mobile number, confirm the USSD prompt and the funds will appear in your betting account within seconds, ready for you to place a World Cup tip.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Amputee Football World Cup GFA unveils $500,000 Gold betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "amputee-football-world-cup-betting-tips-ghana"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
