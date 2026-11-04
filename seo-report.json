@@ -1,31 +1,13 @@
 {
   "date": "2026-11-04",
-  "total": 102,
+  "total": 99,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 0,
     "MEDIUM": 98,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "psl-premier-league-betting-insights",
-      "detail": "Title 76 chars (max 60): 'From PSL to the Premier League: Betting Insights on the Latest Footbal'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "global-sports-roundup-transfers-squad-news-betting",
-      "detail": "Title 61 chars (max 60): 'Global Sports Roundup: Transfers, Squad News & Betting Angles'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "global-sports-roundup-transfers-squad-news-betting",
-      "detail": "Excerpt 160 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
