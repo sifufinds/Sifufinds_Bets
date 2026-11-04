@@ -1788,19 +1788,39 @@
     "UCL Osimhen Picks Up Man Match Award Galatasaray’s betting tips Nigeria": {
       "slug": "ucl-osimhen-man-match-award-galatasaray-betting-tips-nigeria",
       "posted_at": "2026-11-03T23:12:41.179099+00:00"
+    },
+    "Brazil vs Nigeria betting tips Nigeria": {
+      "slug": "brazil-vs-nigeria-betting-tips-nigeria",
+      "posted_at": "2026-11-04T18:19:46.111218+00:00"
+    },
+    "Amputee Football World Cup GFA unveils $500,000 Gold betting tips Ghana": {
+      "slug": "amputee-football-world-cup-betting-tips-ghana",
+      "posted_at": "2026-11-04T18:28:35.982291+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-04T14:29:49.760185+00:00",
+    "checked_at": "2026-11-04T18:28:40.453811+00:00",
     "candidates_available": 342,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Brazil vs Nigeria betting tips Nigeria",
         "country": "Nigeria",
+        "result": "written",
+        "slug": "brazil-vs-nigeria-betting-tips-nigeria"
+      },
+      {
+        "keyword": "FIFA share documents related World Cup private investment betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Choose M‑Pay (M‑Pesa), Airtel Money, Equitel or USSD *644# as your payment method on the bookmaker’s deposit page. Enter your mobile number, confirm the USSD prompt and the funds will appear in your betting account within seconds, ready for you to place a World Cup tip.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Amputee Football World Cup GFA unveils $500,000 Gold betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "amputee-football-world-cup-betting-tips-ghana"
       }
     ]
   }
