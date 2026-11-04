@@ -1,49 +1,13 @@
 {
-  "date": "2026-11-03",
-  "total": 105,
+  "date": "2026-11-04",
+  "total": 99,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 6,
+    "HIGH": 0,
     "MEDIUM": 98,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "african-football-buzz-chiefs-champions-league-caf-leadership",
-      "detail": "Title 67 chars (max 60): 'African Football Buzz: Chiefs, Champions League, and CAF Leadership'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nigeria-benin-future-eagles-beat-new-caledonia-tanzania-betting-tips",
-      "detail": "Title 83 chars (max 60): 'Nigeria/Benin Future Eagles Beat New Caledonia \u2013 Betting Tips for Tanz'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kenya-petition-bayern-ajax-betting-tips-tanzania",
-      "detail": "Title 71 chars (max 60): 'Kenya Petition on Bayern\u2011Ajax Match: Betting Tips for Tanzanian Punter'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "bodo-glimt-lille-champions-league-betting-tips-tanzania",
-      "detail": "Title 81 chars (max 60): 'Bod\u00f8/Glimt vs Lille Champions League Betting Tips Tanzania \u2013 Top Bookm'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "kenya-petition-bayern-ajax-betting-tips-tanzania",
-      "detail": "Excerpt 180 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "bodo-glimt-lille-champions-league-betting-tips-tanzania",
-      "detail": "Excerpt 175 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
