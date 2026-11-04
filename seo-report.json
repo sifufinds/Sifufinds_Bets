@@ -1,13 +1,19 @@
 {
   "date": "2026-11-04",
-  "total": 99,
+  "total": 100,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 98,
+    "MEDIUM": 99,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "igaming-industry-shifts-global-trends-african-betting-impact",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-trends-africa-impact-global-industry-shifts' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",

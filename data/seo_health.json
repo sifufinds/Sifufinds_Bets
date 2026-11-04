@@ -1,16 +1,17 @@
 {
   "date": "2026-11-04",
-  "fixes_applied": 4,
+  "fixes_applied": 5,
   "warnings": 2,
   "fixes": [
+    "llms.txt: Last Updated \u2192 2026-11-04, blog post count refreshed",
     "Blog HTML: refreshed dateModified on 1665 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 1968",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 2805 total URLs",
+    "Blog HTML regenerated:     Total blog posts in JSON: 1971",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 2808 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "780 posts below 900 words: global-sports-roundup-transfers-squad-news-betting, global-sports-headlines-serrano-nba-rugby-world-cup, midweek-sports-roundup-ucl-college-football, african-football-buzz-chiefs-champions-league-caf-leadership, sports-betting-roundup-fury-joshua-nfl-upsets-villa-elite-test...",
-    "543 posts missing FAQ section: psl-premier-league-betting-insights, global-sports-roundup-transfers-squad-news-betting, global-sports-headlines-serrano-nba-rugby-world-cup, springboks-nations-championship-betting-african-punters, midweek-sports-roundup-ucl-college-football"
+    "781 posts below 900 words: igaming-industry-shifts-global-trends-african-betting-impact, global-sports-roundup-transfers-squad-news-betting, global-sports-headlines-serrano-nba-rugby-world-cup, midweek-sports-roundup-ucl-college-football, african-football-buzz-chiefs-champions-league-caf-leadership...",
+    "544 posts missing FAQ section: igaming-industry-shifts-global-trends-african-betting-impact, psl-premier-league-betting-insights, global-sports-roundup-transfers-squad-news-betting, global-sports-headlines-serrano-nba-rugby-world-cup, springboks-nations-championship-betting-african-punters"
   ],
   "status": "warnings"
 }
