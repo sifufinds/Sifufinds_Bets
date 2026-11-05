@@ -1800,31 +1800,29 @@
     "Défi PSG 1000 buts contre 1200 matchs — betting tips Egypt": {
       "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-egypt",
       "posted_at": "2026-11-05T04:25:21.745093+00:00"
+    },
+    "Défi PSG 1000 buts contre 1200 matchs — betting tips Tanzania": {
+      "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-tanzania",
+      "posted_at": "2026-11-05T06:25:03.334311+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-05T04:25:25.919082+00:00",
-    "candidates_available": 339,
+    "checked_at": "2026-11-05T06:39:12.347073+00:00",
+    "candidates_available": 338,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Place a bet confirming the milestone on the next available market. If the bookmaker still offers the “1000 goals before 1200 matches” line, a correct wager will pay out at the listed odds, usually around 2.00.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-tanzania"
       },
       {
         "keyword": "Afcon return two-year cycle after Caf U-turn betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 469)"
-      },
-      {
-        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Egypt",
-        "country": "Egypt",
-        "result": "written",
-        "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-egypt"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
