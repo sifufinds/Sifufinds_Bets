@@ -850,28 +850,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-05T00:37:42.719946+00:00",
-    "candidates_available": 367,
+    "checked_at": "2026-11-05T02:21:44.028653+00:00",
+    "candidates_available": 366,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Brazil vs Nigeria betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 232 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '/If', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "FIFA share documents related World Cup private investment betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "fifa-world-cup-private-investment-betting-tips-kenya"
+        "reason": "fact_check: Both teams have scored in every match leading up to the final.; Brazil’s midfield playmaker has been involved in three of their five goals,; Nigeria’s striker netted the winner against Poland.; minimum odds threshold (most NLRC‑licensed sites require at least 1.40).; 22Bet Nigeria currently promotes a 100 % first deposit bonus up to ₦207,500; 1xBet Nigeria offers a massive 300 % match up to ₦1,200,000; The match will be streamed on the official FIFA platform."
       },
       {
         "keyword": "Amputee Football World Cup GFA unveils $500,000 Gold betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: 150% up to GH₵500 Free Bet; 50% up to GH₵200; 100% up to GH₵1,491; 200% up to GH₵2,846; 300% up to GH₵1,500 (Code: SIFUKAI); 100% up to €100"
+      },
+      {
+        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "fact_check: 250% Karibu Gift; 100% up to TSh 460,000; 200% up to TSh 500,000; 100% up to €100; 50% up to TSh 120,000; 100% up to TSh 305,000"
       }
     ]
   }
