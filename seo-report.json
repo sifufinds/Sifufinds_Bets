@@ -1,25 +1,13 @@
 {
   "date": "2026-11-05",
-  "total": 103,
+  "total": 101,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 100,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "igaming-news-lebron-james-canada-gambling-regulations-africa-betting-boom",
-      "detail": "Title 84 chars (max 60): 'iGaming News: LeBron James, Canada\u2019s Gambling Regulations, and Africa\u2019'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "igaming-news-lebron-james-canada-gambling-regulations-africa-betting-boom",
-      "detail": "Excerpt 242 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
