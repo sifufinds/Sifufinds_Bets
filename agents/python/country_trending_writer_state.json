@@ -858,7 +858,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-05T21:23:36.981439+00:00",
+    "checked_at": "2026-11-05T23:19:56.768296+00:00",
     "candidates_available": 345,
     "attempted": 3,
     "written": 0,
@@ -866,12 +866,6 @@
       {
         "keyword": "Downs coach opens up about Allende's future betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 528)"
-      },
-      {
-        "keyword": "Amputee Football World Cup GFA unveils $500,000 Gold betting tips Ghana",
-        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
