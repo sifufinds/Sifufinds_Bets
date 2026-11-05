@@ -1,9 +1,9 @@
 {
   "date": "2026-11-05",
-  "total": 111,
+  "total": 103,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 10,
+    "HIGH": 2,
     "MEDIUM": 100,
     "INFO": 1
   },
@@ -11,62 +11,14 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "scotland-russell-tuipulotu-return-all-blacks-betting",
-      "detail": "Title 70 chars (max 60): 'Scotland\u2019s Russell & Tuipulotu Return: Betting on the All Blacks Clash'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "psl-twist-gift-links-danish-cup-pitso-call-betting-insights",
-      "detail": "Title 92 chars (max 60): 'PSL Twist, Gift Links\u2019 Danish Cup Clash, and Pitso\u2019s Call: Betting Ins'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "brazil-vs-nigeria-u17-womens-world-cup-betting-tips-nigeria",
-      "detail": "Title 75 chars (max 60): \"Brazil vs Nigeria U-17 Women's World Cup: Betting Tips for Nigerian Pu\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "afcon-return-two-year-cycle-ghana-betting-tips",
-      "detail": "Title 68 chars (max 60): 'Afcon Return to Two\u2011Year Cycle: Ghana Betting Tips & Best Bookmakers'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nigeria-brazil-1-3-nigeria-super-flamingos-betting-tips-tanzania",
-      "detail": "Title 79 chars (max 60): 'Nigeria Brazil 1-3 Nigeria \u2013 Super Flamingos Betting Tips for Tanzania'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "downs-coach-allende-future-betting-tips-south-africa",
-      "detail": "Title 79 chars (max 60): \"Downs coach opens up about Allende's future \u2013 betting tips & best SA b\""
+      "page": "igaming-news-lebron-james-canada-gambling-regulations-africa-betting-boom",
+      "detail": "Title 84 chars (max 60): 'iGaming News: LeBron James, Canada\u2019s Gambling Regulations, and Africa\u2019'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "scotland-russell-tuipulotu-return-all-blacks-betting",
-      "detail": "Excerpt 165 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "afcon-return-two-year-cycle-ghana-betting-tips",
-      "detail": "Excerpt 166 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nigeria-brazil-1-3-nigeria-super-flamingos-betting-tips-tanzania",
-      "detail": "Excerpt 162 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "downs-coach-allende-future-betting-tips-south-africa",
-      "detail": "Excerpt 165 chars (max 155)"
+      "page": "igaming-news-lebron-james-canada-gambling-regulations-africa-betting-boom",
+      "detail": "Excerpt 242 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
