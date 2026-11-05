@@ -1,47 +1,47 @@
 {
-  "updated": "2026-11-05T12:58:44.519437+00:00",
+  "updated": "2026-11-05T17:49:25.314661+00:00",
   "source": "predictz.com",
-  "count": 68,
+  "count": 46,
   "scrape_log": [
     {
       "page": "main",
       "status": "ok",
-      "ts": "2026-11-05T12:58:44.519437+00:00"
+      "ts": "2026-11-05T17:49:25.314661+00:00"
     },
     {
       "page": "btts",
       "status": "ok",
-      "ts": "2026-11-05T12:58:44.519437+00:00"
+      "ts": "2026-11-05T17:49:25.314661+00:00"
     },
     {
       "page": "ou25",
       "status": "ok",
-      "ts": "2026-11-05T12:58:44.519437+00:00"
+      "ts": "2026-11-05T17:49:25.314661+00:00"
     },
     {
       "page": "bw",
       "status": "ok",
-      "ts": "2026-11-05T12:58:44.519437+00:00"
+      "ts": "2026-11-05T17:49:25.314661+00:00"
     },
     {
       "page": "score",
       "status": "ok",
-      "ts": "2026-11-05T12:58:44.519437+00:00"
+      "ts": "2026-11-05T17:49:25.314661+00:00"
     },
     {
       "page": "forebet_1x2",
       "status": "ok",
-      "ts": "2026-11-05T12:58:44.519437+00:00"
+      "ts": "2026-11-05T17:49:25.314661+00:00"
     },
     {
       "page": "forebet_btts",
       "status": "ok",
-      "ts": "2026-11-05T12:58:44.519437+00:00"
+      "ts": "2026-11-05T17:49:25.314661+00:00"
     },
     {
       "page": "forebet_ou",
       "status": "ok",
-      "ts": "2026-11-05T12:58:44.519437+00:00"
+      "ts": "2026-11-05T17:49:25.314661+00:00"
     }
   ],
   "predictions": [
@@ -61,10 +61,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Under 2.5",
+      "over25": "",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042183+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511226+00:00"
     },
     {
       "id": "1220577",
@@ -82,31 +82,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043299+00:00"
-    },
-    {
-      "id": "1223995",
-      "home": "ATK Mohun Bagan",
-      "away": "Odisha",
-      "competition": "India Super League",
-      "comp_slug": "india/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-1",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "2-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044867+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512279+00:00"
     },
     {
       "id": "1220730",
@@ -122,12 +101,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042711+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511753+00:00"
     },
     {
       "id": "1215324",
@@ -143,12 +122,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "0-2",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044399+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513375+00:00"
     },
     {
       "id": "1220737",
@@ -166,10 +145,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042265+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511306+00:00"
     },
     {
       "id": "1220572",
@@ -187,10 +166,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "3-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043355+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512336+00:00"
     },
     {
       "id": "1225054",
@@ -206,12 +185,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044761+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513750+00:00"
     },
     {
       "id": "1220731",
@@ -227,54 +206,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042772+00:00"
-    },
-    {
-      "id": "1223802",
-      "home": "Belouizdad",
-      "away": "CS Constantine",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045127+00:00"
-    },
-    {
-      "id": "1223803",
-      "home": "Ben Aknoun",
-      "away": "MC Oran",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045163+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511811+00:00"
     },
     {
       "id": "1220728",
@@ -290,33 +227,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042836+00:00"
-    },
-    {
-      "id": "1223801",
-      "home": "Biskra",
-      "away": "MB Rouissat",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-2",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045200+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511872+00:00"
     },
     {
       "id": "1183646",
@@ -332,33 +248,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044566+00:00"
-    },
-    {
-      "id": "1181139",
-      "home": "Bunyodkor",
-      "away": "Xorazm",
-      "competition": "Uzbekistan Super League",
-      "comp_slug": "uzbekistan/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "1-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045086+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513549+00:00"
     },
     {
       "id": "1220563",
@@ -374,12 +269,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043812+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512817+00:00"
     },
     {
       "id": "1220729",
@@ -395,12 +290,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042899+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511932+00:00"
     },
     {
       "id": "1220732",
@@ -416,54 +311,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042961+00:00"
-    },
-    {
-      "id": "1220972",
-      "home": "Chirundu United",
-      "away": "Green Eagles",
-      "competition": "Zambia Super League",
-      "comp_slug": "zambia/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045537+00:00"
-    },
-    {
-      "id": "1223994",
-      "home": "Churchill Brothers",
-      "away": "NorthEast United",
-      "competition": "India Super League",
-      "comp_slug": "india/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "1-1",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044814+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511990+00:00"
     },
     {
       "id": "1220570",
@@ -481,10 +334,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043414+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512396+00:00"
     },
     {
       "id": "1220741",
@@ -502,31 +355,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042332+00:00"
-    },
-    {
-      "id": "1225243",
-      "home": "Dhofar",
-      "away": "Saham",
-      "competition": "Oman Professional League",
-      "comp_slug": "oman/professional-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045047+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511372+00:00"
     },
     {
       "id": "1221284",
@@ -544,10 +376,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Under 2.5",
+      "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045462+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513793+00:00"
     },
     {
       "id": "1220568",
@@ -563,12 +395,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043872+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512877+00:00"
     },
     {
       "id": "1220573",
@@ -586,10 +418,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Under 2.5",
+      "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043470+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512450+00:00"
     },
     {
       "id": "1220560",
@@ -605,33 +437,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043931+00:00"
-    },
-    {
-      "id": "1225242",
-      "home": "Fanja",
-      "away": "Al Msnaa",
-      "competition": "Oman Professional League",
-      "comp_slug": "oman/professional-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045008+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512935+00:00"
     },
     {
       "id": "1222370",
@@ -647,12 +458,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044726+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513712+00:00"
     },
     {
       "id": "1220564",
@@ -668,12 +479,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044011+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512992+00:00"
     },
     {
       "id": "1215316",
@@ -689,33 +500,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044454+00:00"
-    },
-    {
-      "id": "1220969",
-      "home": "Green Buffaloes",
-      "away": "Zesco United",
-      "competition": "Zambia Super League",
-      "comp_slug": "zambia/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045574+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513430+00:00"
     },
     {
       "id": "1220727",
@@ -731,12 +521,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "1-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043055+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512048+00:00"
     },
     {
       "id": "1194085",
@@ -752,96 +542,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "2-2",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044675+00:00"
-    },
-    {
-      "id": "1223806",
-      "home": "JS El Biar",
-      "away": "Chlef",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045236+00:00"
-    },
-    {
-      "id": "1223804",
-      "home": "JS Saoura",
-      "away": "Kabylie",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-3",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045273+00:00"
-    },
-    {
-      "id": "1223807",
-      "home": "Khenchela",
-      "away": "ES Setif",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 1-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045312+00:00"
-    },
-    {
-      "id": "1220966",
-      "home": "Konkola Blades",
-      "away": "Trident",
-      "competition": "Zambia Super League",
-      "comp_slug": "zambia/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 3-2",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045611+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513661+00:00"
     },
     {
       "id": "1220575",
@@ -859,10 +565,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043527+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512507+00:00"
     },
     {
       "id": "1220735",
@@ -880,10 +586,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042397+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511436+00:00"
     },
     {
       "id": "1220742",
@@ -901,10 +607,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Under 2.5",
+      "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042460+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511496+00:00"
     },
     {
       "id": "1220571",
@@ -922,10 +628,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043580+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512573+00:00"
     },
     {
       "id": "1220567",
@@ -941,12 +647,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "3-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044072+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513051+00:00"
     },
     {
       "id": "1220576",
@@ -964,10 +670,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Under 2.5",
+      "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043637+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512630+00:00"
     },
     {
       "id": "1220574",
@@ -985,10 +691,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Under 2.5",
+      "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043695+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512694+00:00"
     },
     {
       "id": "1220566",
@@ -1004,33 +710,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044133+00:00"
-    },
-    {
-      "id": "1220971",
-      "home": "Mutondo Stars",
-      "away": "Mufulira Wanderers",
-      "competition": "Zambia Super League",
-      "comp_slug": "zambia/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045650+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513112+00:00"
     },
     {
       "id": "1220756",
@@ -1048,94 +733,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042522+00:00"
-    },
-    {
-      "id": "1220965",
-      "home": "Napsa Stars",
-      "away": "Power Dynamos",
-      "competition": "Zambia Super League",
-      "comp_slug": "zambia/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Away",
-      "match_winner_label": "Away 0-1",
-      "wdw": "2",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045687+00:00"
-    },
-    {
-      "id": "1220970",
-      "home": "Nchanga Rangers",
-      "away": "Makeni All Stars",
-      "competition": "Zambia Super League",
-      "comp_slug": "zambia/super-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Home",
-      "match_winner_label": "Home 2-0",
-      "wdw": "1",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045748+00:00"
-    },
-    {
-      "id": "1221286",
-      "home": "Ntugasaze",
-      "away": "Entebbe UPPC",
-      "competition": "Uganda Premier League",
-      "comp_slug": "uganda/premier-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045419+00:00"
-    },
-    {
-      "id": "1223805",
-      "home": "Olympique Akbou",
-      "away": "CR Temouchent",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 1-1",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045349+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511578+00:00"
     },
     {
       "id": "1170919",
@@ -1151,12 +752,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "3-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044511+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513485+00:00"
     },
     {
       "id": "1220561",
@@ -1172,12 +773,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044193+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513171+00:00"
     },
     {
       "id": "1220736",
@@ -1195,10 +796,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042588+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511636+00:00"
     },
     {
       "id": "1220562",
@@ -1214,12 +815,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044251+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513228+00:00"
     },
     {
       "id": "1213479",
@@ -1235,12 +836,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "0-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044622+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513607+00:00"
     },
     {
       "id": "1220733",
@@ -1256,54 +857,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043119+00:00"
-    },
-    {
-      "id": "1225182",
-      "home": "Samaleswari",
-      "away": "Dempo",
-      "competition": "India I League",
-      "comp_slug": "india/i-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044902+00:00"
-    },
-    {
-      "id": "1222930",
-      "home": "Shams Azar Qazvin",
-      "away": "Sanat Naft",
-      "competition": "Iran Pro League",
-      "comp_slug": "iran/pro-league",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 0-0",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Under 2.5",
-      "correct_score": "0-0",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044935+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512105+00:00"
     },
     {
       "id": "1220740",
@@ -1321,10 +880,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Over 2.5",
+      "over25": "",
       "correct_score": "1-2",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.042650+00:00"
+      "scraped_at": "2026-11-05T17:49:33.511697+00:00"
     },
     {
       "id": "1220565",
@@ -1340,12 +899,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044305+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513282+00:00"
     },
     {
       "id": "1220734",
@@ -1361,12 +920,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS No",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "2-0",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043180+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512162+00:00"
     },
     {
       "id": "1220726",
@@ -1382,12 +941,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Over 2.5",
       "correct_score": "2-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043239+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512219+00:00"
     },
     {
       "id": "1220569",
@@ -1405,31 +964,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Under 2.5",
+      "over25": "",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.043752+00:00"
-    },
-    {
-      "id": "1223808",
-      "home": "USM Alger",
-      "away": "MC Alger",
-      "competition": "Algeria Ligue 1",
-      "comp_slug": "algeria/ligue-1",
-      "ko_display": "Today",
-      "ko_utc": null,
-      "match_winner": "Draw",
-      "match_winner_label": "Draw 2-2",
-      "wdw": "X",
-      "home_odds": "",
-      "draw_odds": "",
-      "away_odds": "",
-      "btts": "",
-      "btts_win": "",
-      "over25": "Over 2.5",
-      "correct_score": "",
-      "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045379+00:00"
+      "scraped_at": "2026-11-05T17:49:33.512755+00:00"
     },
     {
       "id": "1205569",
@@ -1445,12 +983,12 @@
       "home_odds": "",
       "draw_odds": "",
       "away_odds": "",
-      "btts": "",
+      "btts": "BTTS Yes",
       "btts_win": "",
       "over25": "Under 2.5",
       "correct_score": "1-1",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.044350+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513326+00:00"
     },
     {
       "id": "1221283",
@@ -1468,10 +1006,10 @@
       "away_odds": "",
       "btts": "",
       "btts_win": "",
-      "over25": "Under 2.5",
+      "over25": "",
       "correct_score": "",
       "source": "predictz.com",
-      "scraped_at": "2026-11-05T12:59:35.045496+00:00"
+      "scraped_at": "2026-11-05T17:49:33.513851+00:00"
     }
   ]
 }
