@@ -1,13 +1,19 @@
 {
   "date": "2026-11-05",
-  "total": 100,
+  "total": 101,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 99,
+    "MEDIUM": 100,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-tanzania",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-egypt' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
