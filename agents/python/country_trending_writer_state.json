@@ -843,23 +843,33 @@
     "Cristiano Ronaldo DROPPED by Al Nassr amid major betting tips Kenya": {
       "slug": "ronaldo-dropped-al-nassr-afc-champions-league-kenya",
       "posted_at": "2026-11-02T23:51:47.412440+00:00"
+    },
+    "FIFA share documents related World Cup private investment betting tips Kenya": {
+      "slug": "fifa-world-cup-private-investment-betting-tips-kenya",
+      "posted_at": "2026-11-05T00:29:21.341520+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-04T18:45:42.320993+00:00",
+    "checked_at": "2026-11-05T00:37:42.719946+00:00",
     "candidates_available": 367,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Brazil vs Nigeria betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: fact-checker response was not valid JSON"
+        "reason": "quality_gate: only 232 words (minimum 600); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was '/If', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "FIFA share documents related World Cup private investment betting tips Kenya",
         "country": "Kenya",
+        "result": "written",
+        "slug": "fifa-world-cup-private-investment-betting-tips-kenya"
+      },
+      {
+        "keyword": "Amputee Football World Cup GFA unveils $500,000 Gold betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
