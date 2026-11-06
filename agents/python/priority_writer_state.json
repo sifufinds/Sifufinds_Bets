@@ -1824,29 +1824,33 @@
     "Défi PSG 1000 buts contre 1200 matchs — betting tips Uganda": {
       "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-uganda",
       "posted_at": "2026-11-06T01:02:01.260519+00:00"
+    },
+    "Défi PSG 1000 buts contre 1200 matchs — betting tips Zambia": {
+      "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-zambia",
+      "posted_at": "2026-11-06T02:13:33.257929+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-06T01:13:35.726864+00:00",
-    "candidates_available": 325,
+    "checked_at": "2026-11-06T02:31:26.959207+00:00",
+    "candidates_available": 323,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Morocco",
-        "country": "Morocco",
-        "result": "written",
-        "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-morocco"
-      },
-      {
-        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Uganda",
-        "country": "Uganda",
-        "result": "written",
-        "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-uganda"
-      },
       {
         "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Zambia",
         "country": "Zambia",
+        "result": "written",
+        "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-zambia"
+      },
+      {
+        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Ethiopia",
+        "country": "Ethiopia",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Withdrawals are subject to the bookmaker’s standard processing times; however, you must first fulfil the wagering requirement before a bonus can be withdrawn.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Ivory Coast",
+        "country": "Ivory Coast",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
