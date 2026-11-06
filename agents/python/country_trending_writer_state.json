@@ -866,7 +866,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-06T21:41:20.567178+00:00",
+    "checked_at": "2026-11-06T23:37:12.385798+00:00",
     "candidates_available": 346,
     "attempted": 3,
     "written": 0,
@@ -875,19 +875,19 @@
         "keyword": "Yahaya’s late strike sinks Liberia as Black Challenge betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Sportybet Ghana offers a 150% Welcome Bonus – Up to GH₵500 Free Bet, while Betway Ghana provides a 50% Welcome Bonus – Up to GH₵200.; | Bookmaker | Ghana to Win | Liberia to Win | Draw |\n| --- | --- | --- | --- |\n| Sportybet Ghana | 2.50 | 3.00 | 3.20 |\n| Betway Ghana | 2.60 | 3.20 | 3.40 |\n| 22Bet Ghana | 2.70 | 3.30 | 3.50 |\n| 1xBet Ghana | 2.80 | 3.40 | 3.60 |\n| Melbet Ghana | 3.00 | 3.50 | 3.70 |"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 465)"
       },
       {
         "keyword": "'I admire Rassie' Italy coach praises Bok boss betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "fact_check: 1.50; 1.48; 1.52; 1.55; 1.58; 1.60; 100% match on first deposit up to €100; 100% match on first deposit; 200% match up to R2,340; 200% match up to R4,500; 200% match on first deposit up to R3,600; R10 extra bet + 10 spins + 10 free flights after R50 deposit"
       },
       {
         "keyword": "Foot ce soir comment suivre vos matchs depuis betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: The Premier League remains one of the most-watched leagues in Tanzania. With teams like Manchester City, Liverpool, and Arsenal battling it out, there’s no shortage of betting opportunities.; SportPesa Tanzania’s 250% Karibu Gift on the first deposit is particularly attractive, giving bettors a significant head start.; Betway Tanzania, on the other hand, offers a 50% welcome bonus up to TSh 120,000, making it a great option for those looking to maximise their returns.; 1xBet Tanzania’s 200% bonus up to TSh 500,000 is also highly competitive.; Premier League 2026/27; La Liga 2026/2027; CAF Champions League 2026/27; Manchester City; Liverpool; Arsenal; TSh 460,000; TSh 500,000; €100; TSh 305,000; TSh 120,000; 250% Karibu Gift; 50% welcome bonus; 200% bonus; Manchester City, Liverpool, and Arsenal battling it out"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
       }
     ]
   }
