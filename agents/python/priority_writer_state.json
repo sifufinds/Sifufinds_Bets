@@ -1832,31 +1832,39 @@
     "Défi PSG 1000 buts contre 1200 matchs — betting tips Ethiopia": {
       "slug": "defi-psg-1000-buts-1200-matchs-ethiopia",
       "posted_at": "2026-11-06T04:13:43.449479+00:00"
+    },
+    "Défi PSG 1000 buts contre 1200 matchs — betting tips Ivory Coast": {
+      "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-ivory-coast",
+      "posted_at": "2026-11-06T06:13:35.646492+00:00"
+    },
+    "Défi PSG 1000 buts contre 1200 matchs — betting tips Cameroon": {
+      "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-cameroon",
+      "posted_at": "2026-11-06T06:13:59.340403+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-06T04:31:01.508070+00:00",
-    "candidates_available": 322,
+    "checked_at": "2026-11-06T06:14:48.461449+00:00",
+    "candidates_available": 321,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Ethiopia",
-        "country": "Ethiopia",
-        "result": "written",
-        "slug": "defi-psg-1000-buts-1200-matchs-ethiopia"
-      },
       {
         "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Ivory Coast",
         "country": "Ivory Coast",
-        "result": "failed",
-        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+        "result": "written",
+        "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-ivory-coast"
       },
       {
         "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Cameroon",
         "country": "Cameroon",
+        "result": "written",
+        "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-cameroon"
+      },
+      {
+        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Senegal",
+        "country": "Senegal",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'No, FairPari explicitly states that the bonus is not valid for crypto deposits. The other bookmakers do not mention crypto, so it is safe to assume crypto is not accepted for the bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
