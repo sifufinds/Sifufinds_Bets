@@ -1,13 +1,175 @@
 {
   "date": "2026-11-06",
-  "total": 101,
+  "total": 128,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 100,
+    "MEDIUM": 127,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-ivory-coast' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-ethiopia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-morocco' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-cameroon",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-ivory-coast",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-ethiopia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-ivory-coast",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-ivory-coast",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-ivory-coast",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-morocco' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-ivory-coast",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-ivory-coast",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-ethiopia",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-zambia' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-ethiopia",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-ethiopia",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-morocco' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-ethiopia",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-ethiopia",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-zambia",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-uganda' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-zambia",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-morocco' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-zambia",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-zambia",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-uganda",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-morocco' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-uganda",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-uganda",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-morocco",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-tanzania' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "defi-psg-1000-buts-1200-matchs-betting-tips-morocco",
+      "detail": "High title overlap (6 meaningful tokens) with 'defi-psg-1000-buts-1200-matchs-betting-tips-egypt' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
