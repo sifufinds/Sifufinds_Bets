@@ -1,25 +1,13 @@
 {
   "date": "2026-11-06",
-  "total": 130,
+  "total": 128,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 127,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sharks-hatton-kenya-bafana-sundowns-betting-insight",
-      "detail": "Title 104 chars (max 60): 'Sharks warn complacency, Kenya vs Bafana hype and Sundowns comeback \u2013 '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sharks-hatton-kenya-bafana-sundowns-betting-insight",
-      "detail": "Excerpt 182 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
