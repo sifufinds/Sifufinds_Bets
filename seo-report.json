@@ -1,13 +1,19 @@
 {
   "date": "2026-11-06",
-  "total": 128,
+  "total": 129,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 127,
+    "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "global-igaming-shifts-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'global-igaming-moves-african-bettors' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
