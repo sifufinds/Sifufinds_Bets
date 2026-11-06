@@ -1828,29 +1828,33 @@
     "Défi PSG 1000 buts contre 1200 matchs — betting tips Zambia": {
       "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-zambia",
       "posted_at": "2026-11-06T02:13:33.257929+00:00"
+    },
+    "Défi PSG 1000 buts contre 1200 matchs — betting tips Ethiopia": {
+      "slug": "defi-psg-1000-buts-1200-matchs-ethiopia",
+      "posted_at": "2026-11-06T04:13:43.449479+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-06T02:31:26.959207+00:00",
-    "candidates_available": 323,
+    "checked_at": "2026-11-06T04:31:01.508070+00:00",
+    "candidates_available": 322,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Zambia",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "defi-psg-1000-buts-1200-matchs-betting-tips-zambia"
-      },
-      {
         "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Ethiopia",
         "country": "Ethiopia",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Withdrawals are subject to the bookmaker’s standard processing times; however, you must first fulfil the wagering requirement before a bonus can be withdrawn.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "defi-psg-1000-buts-1200-matchs-ethiopia"
       },
       {
         "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Ivory Coast",
         "country": "Ivory Coast",
+        "result": "failed",
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Défi PSG 1000 buts contre 1200 matchs — betting tips Cameroon",
+        "country": "Cameroon",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
