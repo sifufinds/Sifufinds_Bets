@@ -1860,31 +1860,29 @@
     "CAF Women's Champions League Ampem Darkoa beat Kawempe betting tips Ghana": {
       "slug": "caf-womens-champions-league-ampem-darkoa-beat-kawempe-betting-tips-ghana",
       "posted_at": "2026-11-07T16:18:57.417498+00:00"
+    },
+    "Chikoya lifts lid why Zim are beating SA betting tips South Africa": {
+      "slug": "chikoya-lifts-lid-why-zim-are-beating-sa-betting-tips-south-africa",
+      "posted_at": "2026-11-07T18:18:35.892227+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-07T16:19:13.900830+00:00",
-    "candidates_available": 338,
+    "checked_at": "2026-11-07T18:37:34.159846+00:00",
+    "candidates_available": 336,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Olunga, Marcelo return as McCarthy names seven fresh betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "olunga-marcelo-return-seven-betting-tips-kenya"
-      },
-      {
-        "keyword": "CAF Women's Champions League Ampem Darkoa beat Kawempe betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "caf-womens-champions-league-ampem-darkoa-beat-kawempe-betting-tips-ghana"
-      },
       {
         "keyword": "Chikoya lifts lid why Zim are beating SA betting tips South Africa",
         "country": "South Africa",
+        "result": "written",
+        "slug": "chikoya-lifts-lid-why-zim-are-beating-sa-betting-tips-south-africa"
+      },
+      {
+        "keyword": "FIFA l’adversaire d’Infantino, Kozo Tashima, s’indigne « plus betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'No, only FairPari South Africa and Betway South Africa support local bank transfers via FNB, Standard Bank, Nedbank and Capitec. The other bookmakers primarily accept instant EFT and card payments.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
