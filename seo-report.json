@@ -1,19 +1,13 @@
 {
   "date": "2026-11-07",
-  "total": 130,
+  "total": 129,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 0,
     "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "boxing-upsets-how-to-bet-on-underdogs-like-a-pro",
-      "detail": "Excerpt 174 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
