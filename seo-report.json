@@ -1,37 +1,13 @@
 {
   "date": "2026-11-07",
-  "total": 133,
+  "total": 129,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 4,
+    "HIGH": 0,
     "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "cricket-news-roundup-shami-retires-india-dominates-and-pitch-conditions",
-      "detail": "Title 74 chars (max 60): 'Cricket News Roundup: Shami Retires, India Dominates, and Pitch Condit'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "alcaraz-saves-match-points-paris-masters-betting",
-      "detail": "Title 93 chars (max 60): 'Alcaraz Saves Match Points to Reach Paris Masters Semis \u2013 Betting Insi'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "cricket-news-roundup-shami-retires-india-dominates-and-pitch-conditions",
-      "detail": "Excerpt 186 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "alcaraz-saves-match-points-paris-masters-betting",
-      "detail": "Excerpt 197 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
