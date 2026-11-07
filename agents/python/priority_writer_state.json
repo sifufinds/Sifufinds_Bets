@@ -1852,25 +1852,39 @@
     "Iheanacho scores 17th league goal as Bursaspor share betting tips Nigeria": {
       "slug": "iheanacho-17th-league-goal-betting-tips-nigeria",
       "posted_at": "2026-11-07T12:40:32.798347+00:00"
+    },
+    "Olunga, Marcelo return as McCarthy names seven fresh betting tips Kenya": {
+      "slug": "olunga-marcelo-return-seven-betting-tips-kenya",
+      "posted_at": "2026-11-07T16:18:34.248242+00:00"
+    },
+    "CAF Women's Champions League Ampem Darkoa beat Kawempe betting tips Ghana": {
+      "slug": "caf-womens-champions-league-ampem-darkoa-beat-kawempe-betting-tips-ghana",
+      "posted_at": "2026-11-07T16:18:57.417498+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-07T12:57:11.334828+00:00",
-    "candidates_available": 339,
+    "checked_at": "2026-11-07T16:19:13.900830+00:00",
+    "candidates_available": 338,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Iheanacho scores 17th league goal as Bursaspor share betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "iheanacho-17th-league-goal-betting-tips-nigeria"
-      },
       {
         "keyword": "Olunga, Marcelo return as McCarthy names seven fresh betting tips Kenya",
         "country": "Kenya",
+        "result": "written",
+        "slug": "olunga-marcelo-return-seven-betting-tips-kenya"
+      },
+      {
+        "keyword": "CAF Women's Champions League Ampem Darkoa beat Kawempe betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "caf-womens-champions-league-ampem-darkoa-beat-kawempe-betting-tips-ghana"
+      },
+      {
+        "keyword": "Chikoya lifts lid why Zim are beating SA betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'No, only FairPari South Africa and Betway South Africa support local bank transfers via FNB, Standard Bank, Nedbank and Capitec. The other bookmakers primarily accept instant EFT and card payments.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
