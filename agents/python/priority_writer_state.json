@@ -1844,25 +1844,35 @@
     "FIFA U-17 WWC Ex-Delta Queens Coach Blankson Confident betting tips Nigeria": {
       "slug": "fifa-u-17-wwc-blankson-flamingos-betting-tips-nigeria",
       "posted_at": "2026-11-07T02:04:54.316293+00:00"
+    },
+    "'I admire Rassie' Italy coach praises Bok boss betting tips South Africa": {
+      "slug": "i-admire-rassie-italy-coach-praises-bok-boss-betting-tips-south-africa",
+      "posted_at": "2026-11-07T04:04:59.383055+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-07T02:19:35.621436+00:00",
-    "candidates_available": 335,
+    "checked_at": "2026-11-07T04:05:28.370611+00:00",
+    "candidates_available": 334,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "FIFA U-17 WWC Ex-Delta Queens Coach Blankson Confident betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "fifa-u-17-wwc-blankson-flamingos-betting-tips-nigeria"
-      },
-      {
         "keyword": "Yahaya’s late strike sinks Liberia as Black Challenge betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'All betting markets offered by GCA‑licensed operators, including first‑goal‑scorer and correct‑score on the Ghana‑Liberia friendly, are subject to the Gaming Commission of Ghana’s rules, ensuring fairness and transparency.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "'I admire Rassie' Italy coach praises Bok boss betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "i-admire-rassie-italy-coach-praises-bok-boss-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Foot ce soir comment suivre vos matchs depuis betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'You can withdraw your winnings only after meeting the wagering requirements associated with the bonus. Once those conditions are satisfied, you can request a withdrawal through M‑Pesa, Airtel Money, or a bank transfer, depending on the bookmaker’s options.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
