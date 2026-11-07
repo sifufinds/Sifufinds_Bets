@@ -1851,28 +1851,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-07T04:05:28.370611+00:00",
-    "candidates_available": 334,
+    "checked_at": "2026-11-07T08:56:19.122264+00:00",
+    "candidates_available": 339,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Yahaya’s late strike sinks Liberia as Black Challenge betting tips Ghana",
-        "country": "Ghana",
+        "keyword": "Iheanacho scores 17th league goal as Bursaspor share betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All betting markets offered by GCA‑licensed operators, including first‑goal‑scorer and correct‑score on the Ghana‑Liberia friendly, are subject to the Gaming Commission of Ghana’s rules, ensuring fairness and transparency.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "'I admire Rassie' Italy coach praises Bok boss betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "i-admire-rassie-italy-coach-praises-bok-boss-betting-tips-south-africa"
-      },
-      {
-        "keyword": "Foot ce soir comment suivre vos matchs depuis betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'You can withdraw your winnings only after meeting the wagering requirements associated with the bonus. Once those conditions are satisfied, you can request a withdrawal through M‑Pesa, Airtel Money, or a bank transfer, depending on the bookmaker’s options.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
