@@ -1887,28 +1887,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-08T20:40:40.594515+00:00",
-    "candidates_available": 341,
+    "checked_at": "2026-11-08T22:10:29.293570+00:00",
+    "candidates_available": 338,
     "attempted": 3,
-    "written": 3,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Nigeria crowned FIFA U-17 Women’s World Champions after betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "nigeria-fifa-u-17-womens-world-cup-ghana-betting-guide"
-      },
-      {
-        "keyword": "CAF confirm referee Sundowns' R8million clash betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "caf-referee-sundowns-r8-million-clash-betting-tips-south-africa"
-      },
-      {
-        "keyword": "Fixtures standings as SA travel Italy Nations Championship betting tips Tanzania",
+        "keyword": "FIFA l’adversaire d’Infantino, Kozo Tashima, s’indigne « plus betting tips Tanzania",
         "country": "Tanzania",
-        "result": "written",
-        "slug": "sa-vs-italy-nations-championship-betting-tips-tanzania"
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 438)"
+      },
+      {
+        "keyword": "Yahaya’s late strike sinks Liberia as Black Challenge betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
