@@ -866,7 +866,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-08T09:06:48.468811+00:00",
+    "checked_at": "2026-11-08T11:31:21.137917+00:00",
     "candidates_available": 349,
     "attempted": 3,
     "written": 0,
@@ -874,6 +874,12 @@
       {
         "keyword": "FULL LIST 20 youngest FIFA World Cup winners betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "fact_check: AI providers exhausted — could not run fact-check this run"
+      },
+      {
+        "keyword": "PSG vs. Troyes Confirmed Lineups betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
