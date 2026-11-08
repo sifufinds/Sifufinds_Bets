@@ -1867,7 +1867,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-08T01:51:15.985072+00:00",
+    "checked_at": "2026-11-08T02:14:30.393198+00:00",
     "candidates_available": 335,
     "attempted": 3,
     "written": 0,
@@ -1875,6 +1875,12 @@
       {
         "keyword": "FIFA l’adversaire d’Infantino, Kozo Tashima, s’indigne « plus betting tips Tanzania",
         "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, FairPari accepts withdrawals via bank transfer or M‑Pesa. The withdrawal will be processed once the wagering requirement is satisfied and the account has passed the necessary verification steps.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Yahaya’s late strike sinks Liberia as Black Challenge betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
