@@ -866,7 +866,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-08T02:23:48.393150+00:00",
+    "checked_at": "2026-11-08T04:30:08.857348+00:00",
     "candidates_available": 347,
     "attempted": 3,
     "written": 0,
@@ -875,7 +875,19 @@
         "keyword": "Iheanacho scores 17th league goal as Bursaspor share betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "Olunga, Marcelo return as McCarthy names seven fresh betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found"
+      },
+      {
+        "keyword": "CAF Women's Champions League Ampem Darkoa beat Kawempe betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found; found a stray '#' character inside a '### ' FAQ heading line; final line was 'The minimum deposit required to place a bet on Ampem Darkoa varies depending on the bookmaker. For example, Sportybet Ghana requires a minimum deposit of GH₵1, while Betway Ghana requires a minimum deposit of GH₵2.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
