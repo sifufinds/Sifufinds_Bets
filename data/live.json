@@ -1,24 +1,7 @@
 {
-  "updated": "2026-11-08T21:47:42.983241+00:00",
+  "updated": "2026-11-08T22:43:55.277736+00:00",
   "count": 40,
   "events": [
-    {
-      "league": "La Liga",
-      "key": "laliga",
-      "live": true,
-      "complete": false,
-      "home": "Atl\u00e9tico Madrid",
-      "away": "Barcelona",
-      "hScore": "1",
-      "aScore": "2",
-      "time": "86'",
-      "h": 3.35,
-      "d": 0.0,
-      "a": 1.91,
-      "hBk": "DraftKings",
-      "dBk": "",
-      "aBk": "DraftKings"
-    },
     {
       "league": "NBA",
       "key": "basketball",
@@ -26,9 +9,9 @@
       "complete": false,
       "home": "Chicago Bulls",
       "away": "Philadelphia 76ers",
-      "hScore": "61",
-      "aScore": "68",
-      "time": "11:45",
+      "hScore": "120",
+      "aScore": "125",
+      "time": "16.5",
       "h": 0.0,
       "d": 0.0,
       "a": 0.0,
@@ -49,9 +32,9 @@
       "h": 1.38,
       "d": 0.0,
       "a": 3.17,
-      "hBk": "Draft Kings",
+      "hBk": "DraftKings",
       "dBk": "",
-      "aBk": "Draft Kings"
+      "aBk": "DraftKings"
     },
     {
       "league": "NBA",
@@ -63,12 +46,12 @@
       "hScore": null,
       "aScore": null,
       "time": "9 Nov 2026 \u00b7 00:00 UTC",
-      "h": 1.15,
+      "h": 1.16,
       "d": 0.0,
-      "a": 5.7,
-      "hBk": "Draft Kings",
+      "a": 5.57,
+      "hBk": "DraftKings",
       "dBk": "",
-      "aBk": "Draft Kings"
+      "aBk": "DraftKings"
     },
     {
       "league": "NBA",
@@ -83,9 +66,9 @@
       "h": 1.33,
       "d": 0.0,
       "a": 3.48,
-      "hBk": "Draft Kings",
+      "hBk": "DraftKings",
       "dBk": "",
-      "aBk": "Draft Kings"
+      "aBk": "DraftKings"
     },
     {
       "league": "NBA",
@@ -100,9 +83,9 @@
       "h": 6.27,
       "d": 0.0,
       "a": 1.14,
-      "hBk": "Draft Kings",
+      "hBk": "DraftKings",
       "dBk": "",
-      "aBk": "Draft Kings"
+      "aBk": "DraftKings"
     },
     {
       "league": "NBA",
@@ -117,9 +100,9 @@
       "h": 2.03,
       "d": 0.0,
       "a": 1.83,
-      "hBk": "Draft Kings",
+      "hBk": "DraftKings",
       "dBk": "",
-      "aBk": "Draft Kings"
+      "aBk": "DraftKings"
     },
     {
       "league": "NBA",
@@ -134,9 +117,9 @@
       "h": 4.46,
       "d": 0.0,
       "a": 1.22,
-      "hBk": "Draft Kings",
+      "hBk": "DraftKings",
       "dBk": "",
-      "aBk": "Draft Kings"
+      "aBk": "DraftKings"
     },
     {
       "league": "Premier League",
@@ -283,6 +266,23 @@
       "away": "Getafe",
       "hScore": "2",
       "aScore": "0",
+      "time": "FT",
+      "h": 0.0,
+      "d": 0.0,
+      "a": 0.0,
+      "hBk": "",
+      "dBk": "",
+      "aBk": ""
+    },
+    {
+      "league": "La Liga",
+      "key": "laliga",
+      "live": false,
+      "complete": true,
+      "home": "Atl\u00e9tico Madrid",
+      "away": "Barcelona",
+      "hScore": "1",
+      "aScore": "2",
       "time": "FT",
       "h": 0.0,
       "d": 0.0,
