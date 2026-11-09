@@ -1550,6 +1550,12 @@ BANNER_BRANDS: dict[str, dict] = {
         'sub': 'Welcome offer · confirm terms for your country before depositing',
         'promo_code': 'SIFUKAI',
     },
+    'winwinbet': {
+        'name': 'WinWinBet', 'slug': 'winwinbet', 'abbr': 'WWB', 'bg': '#000000', 'tc': '#C6FF00',
+        'headline': 'Sports & Casino · Your Game. Your Moment.', 'offer': 'Welcome offer with code SIFUKAI',
+        'sub': 'Confirm bonus terms for your country before depositing',
+        'promo_code': 'SIFUKAI',
+    },
 }
 
 # For a review post, the offer banner must feature only the brand actually

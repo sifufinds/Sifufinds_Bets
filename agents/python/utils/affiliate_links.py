@@ -36,6 +36,7 @@ BRAND_SLUGS: dict[str, str] = {
     "betway": "betway",
     "hollywoodbets": "hollywoodbets",
     "mostbet": "mostbet",
+    "winwinbet": "winwinbet",
     "sportpesa": "sportpesa",
     "mozzartbet": "mozzartbet",
     "nairabet": "nairabet",
@@ -76,6 +77,7 @@ PROMO_CODE_BRANDS: frozenset[str] = frozenset({
     "1xbet",
     "22bet",
     "melbet",   # confirmed 2026-10-22: owner supplied Melbet creatives carrying SIFUKAI and asked for it in posts
+    "winwinbet",  # confirmed 2026-11-09: owner supplied WinWinBet banners + code SIFUKAI
     "mostbet",  # confirmed 2026-10-21: owner supplied MostBet banners carrying SIFUKAI
 })
 
