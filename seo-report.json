@@ -1,13 +1,19 @@
 {
   "date": "2026-11-09",
-  "total": 129,
+  "total": 130,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 1,
     "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "igaming-regulatory-updates-africa",
+      "detail": "Title 61 chars (max 60): 'Igaming Regulatory Updates: What it Means for African Bettors'"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
@@ -779,8 +785,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "55 posts",
-      "detail": "55 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "56 posts",
+      "detail": "56 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
