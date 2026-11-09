@@ -866,7 +866,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-09T12:00:45.410817+00:00",
+    "checked_at": "2026-11-09T13:50:21.004572+00:00",
     "candidates_available": 356,
     "attempted": 3,
     "written": 0,
@@ -874,6 +874,12 @@
       {
         "keyword": "Dalot gives everything Man United, says Carrick after betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 438)"
+      },
+      {
+        "keyword": "Gor Mahia move joint top day full draws betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }

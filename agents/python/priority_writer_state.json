@@ -1887,7 +1887,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-09T11:50:50.371572+00:00",
+    "checked_at": "2026-11-09T13:38:40.267765+00:00",
     "candidates_available": 343,
     "attempted": 3,
     "written": 0,
@@ -1896,13 +1896,19 @@
         "keyword": "Dalot gives everything Man United, says Carrick after betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'No, the bonus can be used on any match where the odds are 1.40 or higher. You are free to place bets on any league or competition you wish, including the Premier League, CAF Champions League or NPFL.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "Gor Mahia move joint top day full draws betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Pau Cubarsi explains how Barcelona fixed 'disconnected' first-half betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 461)"
       }
     ]
   }
