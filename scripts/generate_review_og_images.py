@@ -42,6 +42,8 @@ GREEN_LIGHT = (26, 107, 53)
 GOLD = (245, 197, 66)
 WHITE = (255, 255, 255)
 
+PROVISIONAL_BRANDS = {"WinWinBet"}
+
 # slug -> (logo filename, display name)
 BOOKMAKERS = {
     "1xbet-review":        ("1xbet_hq.png",        "1xBet"),
@@ -56,6 +58,7 @@ BOOKMAKERS = {
     "linebet-review":      ("linebet.png",          "Linebet"),
     "melbet-review":       ("melbet_hq.png",        "Melbet"),
     "mostbet-review":      ("mostbet.png",          "Mostbet"),
+    "winwinbet-review":    ("winwinbet.png",        "WinWinBet"),
     "mozzartbet-review":   ("mozzartbet_hq.png",    "Mozzartbet"),
     "msport-review":       ("msport.png",           "MSport"),
     "nairabet-review":     ("nairabet.png",         "NairaBet"),
@@ -126,7 +129,8 @@ def build_image(logo_file: str, display_name: str) -> Image.Image:
     f_headline = _font("Arial Black.ttf", 58)
     f_sub = _font("Arial.ttf", 28)
 
-    draw.text((text_x, 168), "SIFUFINDS VERIFIED REVIEW", font=f_kicker, fill=GOLD)
+    kicker = "SIFUFINDS PROVISIONAL REVIEW" if display_name in PROVISIONAL_BRANDS else "SIFUFINDS VERIFIED REVIEW"
+    draw.text((text_x, 168), kicker, font=f_kicker, fill=GOLD)
 
     headline = f"{display_name}"
     draw.text((text_x, 205), headline, font=f_headline, fill=WHITE)
