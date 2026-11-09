@@ -1884,31 +1884,35 @@
     "Fixtures standings as SA travel Italy Nations Championship betting tips Tanzania": {
       "slug": "sa-vs-italy-nations-championship-betting-tips-tanzania",
       "posted_at": "2026-11-08T20:40:36.574296+00:00"
+    },
+    "Gor Mahia move joint top day full draws betting tips Kenya": {
+      "slug": "gor-mahia-move-joint-top-betting-tips-kenya",
+      "posted_at": "2026-11-09T22:40:32.323778+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-09T13:38:40.267765+00:00",
+    "checked_at": "2026-11-09T22:54:34.437445+00:00",
     "candidates_available": 343,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Dalot gives everything Man United, says Carrick after betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: final line was 'Both 1xBet and Melbet provide detailed player‑prop sections for the Premier League. You can find “Dalot to score”, “Dalot to assist”, and “Dalot over 2.5 tackles” among the options. Check the live betting page on match day for the most up‑to‑date odds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Gor Mahia move joint top day full draws betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+        "result": "written",
+        "slug": "gor-mahia-move-joint-top-betting-tips-kenya"
       },
       {
         "keyword": "Pau Cubarsi explains how Barcelona fixed 'disconnected' first-half betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 461)"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
