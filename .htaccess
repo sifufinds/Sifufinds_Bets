@@ -1,8 +1,11 @@
 Options -Indexes
 # When a directory has no index.html, return 404 (not 403) so Google treats it
 # as "not found" rather than "forbidden" — prevents stuck GSC 403 errors.
-ErrorDocument 403 /404.html
-ErrorDocument 404 /404.html
+# Served from /assets/ on purpose: the deploy archive's top-level file
+# allow-list omits 404.html (so /404.html never reached the live server and
+# 500'd), but every top-level directory, assets/ included, is always shipped.
+ErrorDocument 403 /assets/404.html
+ErrorDocument 404 /assets/404.html
 
 # Declare charset at the HTTP header level, not just via <meta charset> in
 # each page — some proxies, embed/unfurl tools, and simple crawlers trust the
@@ -249,6 +252,15 @@ RewriteRule ^sports-news/?$ /blog/ [R=301,L]
 <FilesMatch "^(shared\.js|shared\.css)$">
   <IfModule mod_headers.c>
     Header always set Cache-Control "public, max-age=31536000, immutable"
+  </IfModule>
+</FilesMatch>
+
+# Static images and fonts: 30-day cache (PageSpeed "Use efficient cache
+# lifetimes"). Deliberately not immutable/1-year: feature and OG images are
+# regenerated under the same filename when a post is corrected.
+<FilesMatch "\.(png|jpe?g|gif|webp|avif|svg|ico|woff2?)$">
+  <IfModule mod_headers.c>
+    Header always set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
   </IfModule>
 </FilesMatch>
 
