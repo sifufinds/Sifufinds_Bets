@@ -1,31 +1,13 @@
 {
   "date": "2026-11-09",
-  "total": 132,
+  "total": 129,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 0,
     "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "sundowns-super-cup-loss-nigeria-legends-betting",
-      "detail": "Title 82 chars (max 60): 'Sundowns\u2019 Super Cup loss & Nigeria Legends win: betting angles for Afr'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "boxing-upset-fever-texas",
-      "detail": "Excerpt 238 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "sundowns-super-cup-loss-nigeria-legends-betting",
-      "detail": "Excerpt 176 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
