@@ -1887,7 +1887,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-09T09:52:29.134416+00:00",
+    "checked_at": "2026-11-09T11:50:50.371572+00:00",
     "candidates_available": 343,
     "attempted": 3,
     "written": 0,
@@ -1895,6 +1895,12 @@
       {
         "keyword": "Dalot gives everything Man United, says Carrick after betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'No, the bonus can be used on any match where the odds are 1.40 or higher. You are free to place bets on any league or competition you wish, including the Premier League, CAF Champions League or NPFL.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Gor Mahia move joint top day full draws betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
