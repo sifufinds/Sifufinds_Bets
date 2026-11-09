@@ -1887,7 +1887,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-09T00:19:03.528978+00:00",
+    "checked_at": "2026-11-09T02:05:31.916124+00:00",
     "candidates_available": 338,
     "attempted": 3,
     "written": 0,
@@ -1895,6 +1895,12 @@
       {
         "keyword": "FIFA l’adversaire d’Infantino, Kozo Tashima, s’indigne « plus betting tips Tanzania",
         "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+      },
+      {
+        "keyword": "Yahaya’s late strike sinks Liberia as Black Challenge betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
