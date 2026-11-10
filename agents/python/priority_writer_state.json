@@ -1904,31 +1904,35 @@
     "Mallet Losing Springboks made All Blacks better betting tips South Africa": {
       "slug": "mallett-springboks-all-blacks-betting-south-africa",
       "posted_at": "2026-11-10T14:46:35.136244+00:00"
+    },
+    "Olubadan signs economic blueprint transform Ibadan betting tips Nigeria": {
+      "slug": "olubadan-economic-blueprint-betting-tips-nigeria",
+      "posted_at": "2026-11-10T16:45:39.633921+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-10T14:46:38.743411+00:00",
-    "candidates_available": 344,
+    "checked_at": "2026-11-10T16:59:41.894921+00:00",
+    "candidates_available": 342,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Olubadan signs economic blueprint transform Ibadan betting tips Nigeria",
         "country": "Nigeria",
+        "result": "written",
+        "slug": "olubadan-economic-blueprint-betting-tips-nigeria"
+      },
+      {
+        "keyword": "CAF Awards 2026 Lagos retrouve les honneurs du betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'OPay and PalmPay are the fastest mobile wallets, allowing instant deposits that satisfy most welcome‑bonus conditions. Bank Transfer, Visa and Mastercard are also accepted by all major operators and work well for larger deposits.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 422)"
       },
       {
-        "keyword": "Cowbell Bike Caravan draws over 700 cyclists Kumasi betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "cowbell-bike-caravan-ghana-betting-tips"
-      },
-      {
-        "keyword": "Mallet Losing Springboks made All Blacks better betting tips South Africa",
+        "keyword": "Cele set Chiefs reunion Carling Knockout semi-finals betting tips South Africa",
         "country": "South Africa",
-        "result": "written",
-        "slug": "mallett-springboks-all-blacks-betting-south-africa"
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
