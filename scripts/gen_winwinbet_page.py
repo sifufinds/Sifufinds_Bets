@@ -55,7 +55,7 @@ FACTS = {
     "brand_name": "WinWinBet",
     "primary_country": "Nigeria",
     "official_url": "https://winwin.bet/",
-    "rating": 3.0,
+    "rating": 4.0,
     "welcome_bonus_summary": (
         f"Sports and casino welcome offer with promo code {PROMO_CODE}. "
         "The bonus amount and wagering terms vary by country, so confirm them on the official site before depositing."
