@@ -1896,19 +1896,39 @@
     "Pau Cubarsi explains how Barcelona fixed 'disconnected' first-half betting tips Ghana": {
       "slug": "pau-cubarsi-explains-barcelonas-first-half-betting-fix-ghana",
       "posted_at": "2026-11-10T06:04:07.744547+00:00"
+    },
+    "Cowbell Bike Caravan draws over 700 cyclists Kumasi betting tips Ghana": {
+      "slug": "cowbell-bike-caravan-ghana-betting-tips",
+      "posted_at": "2026-11-10T14:45:54.764553+00:00"
+    },
+    "Mallet Losing Springboks made All Blacks better betting tips South Africa": {
+      "slug": "mallett-springboks-all-blacks-betting-south-africa",
+      "posted_at": "2026-11-10T14:46:35.136244+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-10T08:09:29.525116+00:00",
-    "candidates_available": 340,
+    "checked_at": "2026-11-10T14:46:38.743411+00:00",
+    "candidates_available": 344,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
-        "keyword": "Cele set Chiefs reunion Carling Knockout semi-finals betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "Olubadan signs economic blueprint transform Ibadan betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'OPay and PalmPay are the fastest mobile wallets, allowing instant deposits that satisfy most welcome‑bonus conditions. Bank Transfer, Visa and Mastercard are also accepted by all major operators and work well for larger deposits.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Cowbell Bike Caravan draws over 700 cyclists Kumasi betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "cowbell-bike-caravan-ghana-betting-tips"
+      },
+      {
+        "keyword": "Mallet Losing Springboks made All Blacks better betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "mallett-springboks-all-blacks-betting-south-africa"
       }
     ]
   }
