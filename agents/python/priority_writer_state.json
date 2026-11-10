@@ -1899,28 +1899,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-10T06:04:39.810188+00:00",
-    "candidates_available": 342,
+    "checked_at": "2026-11-10T08:09:29.525116+00:00",
+    "candidates_available": 340,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Dalot gives everything Man United, says Carrick after betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "dalot-gives-everything-man-united-carrick-nigeria-betting-tips"
-      },
-      {
-        "keyword": "Pau Cubarsi explains how Barcelona fixed 'disconnected' first-half betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "pau-cubarsi-explains-barcelonas-first-half-betting-fix-ghana"
-      },
       {
         "keyword": "Cele set Chiefs reunion Carling Knockout semi-finals betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Betway South Africa offers the widest range of payment methods, including FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard and Instant EFT, making it highly convenient for local punters.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
