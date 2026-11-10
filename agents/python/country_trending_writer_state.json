@@ -866,7 +866,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-10T18:58:00.896201+00:00",
+    "checked_at": "2026-11-10T22:14:02.685568+00:00",
     "candidates_available": 357,
     "attempted": 3,
     "written": 0,
@@ -875,7 +875,7 @@
         "keyword": "Olubadan signs economic blueprint transform Ibadan betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 470)"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "Cowbell Bike Caravan draws over 700 cyclists Kumasi betting tips Ghana",
