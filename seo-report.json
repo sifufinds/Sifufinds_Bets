@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "total": 129,
   "by_severity": {
     "CRITICAL": 0,
@@ -779,8 +779,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "56 posts",
-      "detail": "56 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "57 posts",
+      "detail": "57 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
