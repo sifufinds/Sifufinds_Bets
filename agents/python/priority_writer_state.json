@@ -1891,26 +1891,14 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-09T22:54:34.437445+00:00",
-    "candidates_available": 343,
+    "checked_at": "2026-11-10T04:12:20.748854+00:00",
+    "candidates_available": 342,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Dalot gives everything Man United, says Carrick after betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Both 1xBet and Melbet provide detailed player‑prop sections for the Premier League. You can find “Dalot to score”, “Dalot to assist”, and “Dalot over 2.5 tackles” among the options. Check the live betting page on match day for the most up‑to‑date odds.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Gor Mahia move joint top day full draws betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "gor-mahia-move-joint-top-betting-tips-kenya"
-      },
-      {
-        "keyword": "Pau Cubarsi explains how Barcelona fixed 'disconnected' first-half betting tips Ghana",
-        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
