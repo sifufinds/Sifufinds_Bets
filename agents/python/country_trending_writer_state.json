@@ -866,7 +866,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-10T06:16:53.517198+00:00",
+    "checked_at": "2026-11-10T08:27:20.094575+00:00",
     "candidates_available": 356,
     "attempted": 3,
     "written": 0,
@@ -875,13 +875,19 @@
         "keyword": "Dalot gives everything Man United, says Carrick after betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: only 542 words (minimum 600); no '## FAQ' section heading found"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "Gor Mahia move joint top day full draws betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: Gor Mahia is currently trading at 2.50 to win the Kenya Premier League title, while Bandari is priced at 4.00. Meanwhile, Nairobi United is 7.00 to win the title.; According to the latest odds on SportPesa Kenya, Gor Mahia is trading at 1.50 to beat Kakamega Homeboyz, while Bandari is priced at 2.25 to beat Leopards. Nairobi United is 2.75 to beat Tusker."
+      },
+      {
+        "keyword": "Pau Cubarsi explains how Barcelona fixed 'disconnected' first-half betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'Yes, you can still place bets on Barcelona's next match using your MTN MoMo account. All of the bookmakers mentioned in this article accept MTN MoMo as a payment method.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
