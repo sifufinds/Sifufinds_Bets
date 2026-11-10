@@ -1,13 +1,37 @@
 {
   "date": "2026-11-10",
-  "total": 129,
+  "total": 133,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 4,
     "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "caf-awards-2026-lagos-betting-tips-tanzania",
+      "detail": "Title 70 chars (max 60): 'CAF Awards 2026 Lagos Betting Tips Tanzania \u2013 Top Bookmaker Comparison'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "cele-set-chiefs-reunion-carling-knockout-semi-finals-betting-tips",
+      "detail": "Title 78 chars (max 60): 'Cele set Chiefs reunion Carling Knockout semi-finals betting tips Sout'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "fc-andorra-betting-tips-tanzania",
+      "detail": "Title 79 chars (max 60): 'FC Andorra Betting Tips for Tanzanian Fans \u2013 Jes\u00fas Owono Retirement & '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "cele-set-chiefs-reunion-carling-knockout-semi-finals-betting-tips",
+      "detail": "Excerpt 190 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",

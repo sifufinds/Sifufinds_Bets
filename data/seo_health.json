@@ -1,16 +1,17 @@
 {
   "date": "2026-11-10",
-  "fixes_applied": 4,
+  "fixes_applied": 5,
   "warnings": 2,
   "fixes": [
+    "llms.txt: Last Updated \u2192 2026-11-10, blog post count refreshed",
     "Blog HTML: refreshed dateModified on 1812 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 2039",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 2879 total URLs",
+    "Blog HTML regenerated:     Total blog posts in JSON: 2046",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 2887 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
-    "798 posts below 900 words: manchester-united-sack-hamilton-f1-betting-impact, global-sports-news-roundup, man-utd-crisis-carrick-sack-odds, igaming-regulatory-updates-africa, florida-gators-college-basketball-rankings-betting...",
-    "563 posts missing FAQ section: manchester-united-sack-hamilton-f1-betting-impact, global-sports-news-roundup, man-utd-crisis-carrick-sack-odds, igaming-regulatory-updates-africa, florida-gators-college-basketball-rankings-betting"
+    "799 posts below 900 words: boxing-buzz-paul-doumbe-canelo-fury-joshua, manchester-united-sack-hamilton-f1-betting-impact, global-sports-news-roundup, man-utd-crisis-carrick-sack-odds, igaming-regulatory-updates-africa...",
+    "564 posts missing FAQ section: boxing-buzz-paul-doumbe-canelo-fury-joshua, manchester-united-sack-hamilton-f1-betting-impact, global-sports-news-roundup, man-utd-crisis-carrick-sack-odds, igaming-regulatory-updates-africa"
   ],
   "status": "warnings"
 }
