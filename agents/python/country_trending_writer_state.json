@@ -866,7 +866,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-10T04:22:02.826877+00:00",
+    "checked_at": "2026-11-10T06:16:53.517198+00:00",
     "candidates_available": 356,
     "attempted": 3,
     "written": 0,
@@ -875,19 +875,13 @@
         "keyword": "Dalot gives everything Man United, says Carrick after betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: then took a penalty that was saved; Both 22Bet and 1xBet are NLRC‑licensed for Nigerian customers and accept popular payment methods such as OPay, PalmPay, Bank Transfer, Visa and Mastercard.; 22Bet Nigeria – 100 % First Deposit Bonus up to ₦207,500. Minimum deposit is ₦100. Payments include OPay, Bank Transfer, Visa, Mastercard and MTN MoMo. Use code BNSNG.; 1xBet Nigeria – 300 % First Deposit Bonus up to ₦1,200,000. Minimum deposit is ₦100. Accepts OPay, PalmPay, Bank Transfer, Visa, Mastercard and MTN MoMo. Use code 1BONUSNG.; Melbet Nigeria – 200 % First Deposit Bonus up to ₦480,000. Minimum deposit is ₦100. Payments: OPay, Bank Transfer, Visa, Mastercard and MTN MoMo. Use code SIFUKAI.; Paripesa Nigeria – 200 % First Deposit Bonus up to ₦200,000. Minimum deposit is ₦100. Accepts OPay, PalmPay, Bank Transfer, Visa and Mastercard.; Linebet Nigeria – 100 % First Deposit Bonus up to ₦180,000. Minimum deposit is ₦100. Supports OPay, PalmPay, Bank Transfer, Visa, Mastercard and MTN MoMo.; Sportybet Nigeria – 150 % Welcome Bonus as a free bet up to ₦30,000. Minimum deposit is ₦100. Payment options include OPay, Quickteller, Bank Transfer, Visa and Mastercard.; All bonuses carry a 5‑times wagering requirement on accumulator bets with minimum odds of 1.40, and they expire after 30 days (30 days for Sportybet’s free bet).; Betting should always be a form of entertainment, not a way to solve financial problems. Set a budget before you log in, stick to it and never chase losses. If you feel you are losing control, the NLRC provides resources and contact numbers for help. Nigerian operators such as 22Bet and 1xBet display responsible‑gaming tools on their platforms, including deposit limits, self‑exclusion and reality checks. Use them wisely."
+        "reason": "quality_gate: only 542 words (minimum 600); no '## FAQ' section heading found"
       },
       {
         "keyword": "Gor Mahia move joint top day full draws betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: SportPesa Kenya is offering a 300% Welcome Karibu Gift on First Deposit, with a minimum stake of KSh 10 and a maximum reward of 300% Karibu; 22Bet Kenya, which is offering a 100% First Deposit Bonus – Up to KSh 19,000. This bonus is available to new customers, with a minimum deposit of KSh 100 and a wagering requirement of x5. The odds are set at a minimum of 1.40, and bettors have 30 days to meet the requirements; Melbet Kenya is also offering a 300% First Deposit Bonus – Up to KSh 1,500, with a minimum deposit of KSh 50 and a wagering requirement of x5; SportPesa Kenya offering a 300% Welcome Karibu Gift on First Deposit, and 22Bet Kenya offering a 100% First Deposit Bonus – Up to KSh 19,000"
-      },
-      {
-        "keyword": "Pau Cubarsi explains how Barcelona fixed 'disconnected' first-half betting tips Ghana",
-        "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }

@@ -1888,19 +1888,39 @@
     "Gor Mahia move joint top day full draws betting tips Kenya": {
       "slug": "gor-mahia-move-joint-top-betting-tips-kenya",
       "posted_at": "2026-11-09T22:40:32.323778+00:00"
+    },
+    "Dalot gives everything Man United, says Carrick after betting tips Nigeria": {
+      "slug": "dalot-gives-everything-man-united-carrick-nigeria-betting-tips",
+      "posted_at": "2026-11-10T06:03:19.306551+00:00"
+    },
+    "Pau Cubarsi explains how Barcelona fixed 'disconnected' first-half betting tips Ghana": {
+      "slug": "pau-cubarsi-explains-barcelonas-first-half-betting-fix-ghana",
+      "posted_at": "2026-11-10T06:04:07.744547+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-10T04:12:20.748854+00:00",
+    "checked_at": "2026-11-10T06:04:39.810188+00:00",
     "candidates_available": 342,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Dalot gives everything Man United, says Carrick after betting tips Nigeria",
         "country": "Nigeria",
+        "result": "written",
+        "slug": "dalot-gives-everything-man-united-carrick-nigeria-betting-tips"
+      },
+      {
+        "keyword": "Pau Cubarsi explains how Barcelona fixed 'disconnected' first-half betting tips Ghana",
+        "country": "Ghana",
+        "result": "written",
+        "slug": "pau-cubarsi-explains-barcelonas-first-half-betting-fix-ghana"
+      },
+      {
+        "keyword": "Cele set Chiefs reunion Carling Knockout semi-finals betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Betway South Africa offers the widest range of payment methods, including FNB, Standard Bank, Nedbank, Capitec, Visa, Mastercard and Instant EFT, making it highly convenient for local punters.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
