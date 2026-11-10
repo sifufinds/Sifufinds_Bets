@@ -1908,31 +1908,43 @@
     "Olubadan signs economic blueprint transform Ibadan betting tips Nigeria": {
       "slug": "olubadan-economic-blueprint-betting-tips-nigeria",
       "posted_at": "2026-11-10T16:45:39.633921+00:00"
+    },
+    "CAF Awards 2026 Lagos retrouve les honneurs du betting tips Tanzania": {
+      "slug": "caf-awards-2026-lagos-betting-tips-tanzania",
+      "posted_at": "2026-11-10T18:45:42.701231+00:00"
+    },
+    "Cele set Chiefs reunion Carling Knockout semi-finals betting tips South Africa": {
+      "slug": "cele-set-chiefs-reunion-carling-knockout-semi-finals-betting-tips",
+      "posted_at": "2026-11-10T18:46:21.713211+00:00"
+    },
+    "FC Andorra Jesús Owono pourrait arrêter sa carrière betting tips Tanzania": {
+      "slug": "fc-andorra-betting-tips-tanzania",
+      "posted_at": "2026-11-10T18:46:40.085221+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-10T16:59:41.894921+00:00",
-    "candidates_available": 342,
+    "checked_at": "2026-11-10T18:46:44.567110+00:00",
+    "candidates_available": 341,
     "attempted": 3,
-    "written": 1,
+    "written": 3,
     "attempts": [
-      {
-        "keyword": "Olubadan signs economic blueprint transform Ibadan betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "olubadan-economic-blueprint-betting-tips-nigeria"
-      },
       {
         "keyword": "CAF Awards 2026 Lagos retrouve les honneurs du betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 422)"
+        "result": "written",
+        "slug": "caf-awards-2026-lagos-betting-tips-tanzania"
       },
       {
         "keyword": "Cele set Chiefs reunion Carling Knockout semi-finals betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "cele-set-chiefs-reunion-carling-knockout-semi-finals-betting-tips"
+      },
+      {
+        "keyword": "FC Andorra Jesús Owono pourrait arrêter sa carrière betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "fc-andorra-betting-tips-tanzania"
       }
     ]
   }
