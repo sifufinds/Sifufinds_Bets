@@ -1935,7 +1935,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-11T18:04:33.309419+00:00",
+    "checked_at": "2026-11-11T20:01:09.711037+00:00",
     "candidates_available": 341,
     "attempted": 3,
     "written": 0,
@@ -1943,6 +1943,12 @@
       {
         "keyword": "Coaching 'inconsistency' hurting Black Stars - Chris Hughton betting tips Ghana",
         "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Have Pirates been dealt major injury blow ahead betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
