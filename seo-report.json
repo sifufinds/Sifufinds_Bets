@@ -1,13 +1,25 @@
 {
   "date": "2026-11-11",
-  "total": 129,
+  "total": 131,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "coaching-inconsistency-hurting-black-stars-chris-hughton-betting-tips-ghana",
+      "detail": "Title 80 chars (max 60): 'Coaching Inconsistency Hurting Black Stars? Chris Hughton Betting Tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "coaching-inconsistency-hurting-black-stars-chris-hughton-betting-tips-ghana",
+      "detail": "Excerpt 158 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
