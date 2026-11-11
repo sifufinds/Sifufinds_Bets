@@ -1,9 +1,9 @@
 {
   "date": "2026-11-11",
-  "total": 130,
+  "total": 132,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 3,
     "MEDIUM": 128,
     "INFO": 1
   },
@@ -11,8 +11,20 @@
     {
       "severity": "HIGH",
       "check": "title_length",
+      "page": "nandwa-southland-defender-year-betting-tips-kenya",
+      "detail": "Title 65 chars (max 60): 'Nandwa Named Southland Defender of the Year \u2013 Kenyan Betting Tips'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
       "page": "i-had-emergency-heart-treatment-before-world-cup-betting-tips-nigeria",
       "detail": "Title 74 chars (max 60): 'I Had Emergency Heart Treatment Before World Cup: Betting Tips for Nig'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nandwa-southland-defender-year-betting-tips-kenya",
+      "detail": "Excerpt 159 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
