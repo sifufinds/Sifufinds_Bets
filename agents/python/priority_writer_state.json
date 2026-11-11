@@ -1927,20 +1927,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-10T22:03:43.206623+00:00",
-    "candidates_available": 338,
+    "checked_at": "2026-11-10T23:59:55.794674+00:00",
+    "candidates_available": 337,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "FIFA l’adversaire d’Infantino, Kozo Tashima, s’indigne « plus betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "fifa-adversaire-infantino-kozo-tashima-betting-tips-tanzania"
-      },
       {
         "keyword": "Yahaya’s late strike sinks Liberia as Black Challenge betting tips Ghana",
         "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'WinWinBet is not GCA‑licensed, so it falls outside local regulatory oversight. While many Curaçao‑licenced sites are reputable, you should verify the bonus terms and withdrawal policies directly on the site before depositing.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Foot ce soir comment suivre vos matchs depuis betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
