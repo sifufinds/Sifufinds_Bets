@@ -1948,31 +1948,29 @@
     "Yahaya’s late strike sinks Liberia as Black Challenge betting tips Ghana": {
       "slug": "yahayas-late-strike-sinks-liberia-black-challenge-betting-tips-ghana",
       "posted_at": "2026-11-12T11:42:21.454488+00:00"
+    },
+    "Have Pirates been dealt major injury blow ahead betting tips South Africa": {
+      "slug": "pirates-injury-blow-betting-tips-south-africa",
+      "posted_at": "2026-11-12T18:07:29.209097+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-12T11:42:26.812774+00:00",
-    "candidates_available": 339,
+    "checked_at": "2026-11-12T18:15:35.599900+00:00",
+    "candidates_available": 338,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "Have Pirates been dealt major injury blow ahead betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Instant EFT through FNB, Standard Bank, Nedbank or Capitec delivers near‑instant credit, making it the quickest way to fund your account before a live Pirates game.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "pirates-injury-blow-betting-tips-south-africa"
       },
       {
         "keyword": "Kenya Senators Raise Concerns Over Kasarani Stadium's Readiness betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 486)"
-      },
-      {
-        "keyword": "Yahaya’s late strike sinks Liberia as Black Challenge betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "yahayas-late-strike-sinks-liberia-black-challenge-betting-tips-ghana"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
