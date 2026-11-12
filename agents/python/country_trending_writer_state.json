@@ -863,25 +863,35 @@
     "Liverpool's perfect Champions League run ends Istanbul betting tips Kenya": {
       "slug": "liverpool-fenerbahce-champions-league-betting-tips-kenya",
       "posted_at": "2026-11-06T19:31:04.823625+00:00"
+    },
+    "Kenyan star Nandwa named Southland defender year betting tips Kenya": {
+      "slug": "judith-nandwa-southland-defender-year-betting-tips-kenya",
+      "posted_at": "2026-11-12T05:02:59.270499+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-12T00:55:55.376036+00:00",
+    "checked_at": "2026-11-12T05:13:24.391532+00:00",
     "candidates_available": 360,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "I had emergency heart treatment before World Cup betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: All live prices are aggregated on sifufinds.com. Visit the site, select the World Cup section and compare the Scotland-Haiti odds offered by bookmakers such as 22Bet Nigeria, 1xBet Nigeria, and Melbet Nigeria. This will ensure you get the most competitive price before placing your stake.; *All odds are live on sifufinds.com – check the page for the most up-to-date price.*"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 495)"
       },
       {
         "keyword": "Kenyan star Nandwa named Southland defender year betting tips Kenya",
         "country": "Kenya",
+        "result": "written",
+        "slug": "judith-nandwa-southland-defender-year-betting-tips-kenya"
+      },
+      {
+        "keyword": "Coaching 'inconsistency' hurting Black Stars - Chris Hughton betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: Bookmakers like Sportybet Ghana and Betway Ghana are likely to offer competitive odds on a Ghana win.; Sites like Melbet Ghana often feature player-specific markets.; | Bookmaker          | Welcome Offer                          | Minimum Deposit | Payment Methods                  |\n|--------------------|----------------------------------------|-------------|-------------------------------|\n| Sportybet Ghana    | 150% Welcome Bonus – Up to GH₵500 Free Bet | GH₵1      | MTN MoMo, Vodafone Cash, AirtelTigo Money, Visa, Mastercard |\n| Betway Ghana       | 50% Welcome Bonus – Up to GH₵200       | GH₵2      | MTN MoMo, Vodafone Cash, Visa, Mastercard |\n| 22Bet Ghana        | 100% First Deposit Bonus – Up to GH₵1,491 | GH₵5      | MTN MoMo, Vodafone Cash, Visa, Mastercard |\n| 1xBet Ghana        | 200% First Deposit Bonus – Up to GH₵2,846 | GH₵5      | MTN MoMo, Vodafone Cash, Visa, Mastercard |\n| Melbet Ghana       | 300% First Deposit Bonus – Up to GH₵1,500 | GH₵1      | MTN MoMo, Vodafone Cash, Visa, Mastercard |"
       }
     ]
   }
