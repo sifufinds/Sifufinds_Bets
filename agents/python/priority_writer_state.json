@@ -1952,25 +1952,39 @@
     "Have Pirates been dealt major injury blow ahead betting tips South Africa": {
       "slug": "pirates-injury-blow-betting-tips-south-africa",
       "posted_at": "2026-11-12T18:07:29.209097+00:00"
+    },
+    "Kenya Senators Raise Concerns Over Kasarani Stadium's Readiness betting tips Tanzania": {
+      "slug": "kenya-senators-kasarani-stadium-readiness-betting-tips-tanzania",
+      "posted_at": "2026-11-12T20:07:31.482869+00:00"
+    },
+    "Cardoso opens up meeting Motsepe after CAF exit betting tips South Africa": {
+      "slug": "cardoso-caf-exit-betting-tips-south-africa",
+      "posted_at": "2026-11-12T20:19:10.967821+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-12T18:15:35.599900+00:00",
-    "candidates_available": 338,
+    "checked_at": "2026-11-12T20:19:14.179629+00:00",
+    "candidates_available": 337,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Have Pirates been dealt major injury blow ahead betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "pirates-injury-blow-betting-tips-south-africa"
-      },
       {
         "keyword": "Kenya Senators Raise Concerns Over Kasarani Stadium's Readiness betting tips Tanzania",
         "country": "Tanzania",
+        "result": "written",
+        "slug": "kenya-senators-kasarani-stadium-readiness-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Foot ce soir comment suivre vos matchs depuis betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 484)"
+      },
+      {
+        "keyword": "Cardoso opens up meeting Motsepe after CAF exit betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "cardoso-caf-exit-betting-tips-south-africa"
       }
     ]
   }
