@@ -45,6 +45,10 @@ POSTS_PATH = Path(__file__).parent.parent.parent / "blog" / "posts.json"
 
 BRAND_COOLDOWN_HOURS = 48
 
+# Offer-mode brand posted first, once per UTC day. Set to None for plain rotation.
+# Owner request 2026-11-12: Mostbet Kenya campaign posts every day.
+DAILY_PINNED_BRAND: str | None = "MostBet"
+
 # Content-type rotation for --mode auto: news → offer → tip → offer
 ROTATION = ["news", "offer", "tip", "tool", "offer", "news", "tip", "offer"]
 
@@ -260,6 +264,11 @@ def _next_brand(state: dict, force: bool = False, only: str | None = None) -> di
             return match[0]
     now = datetime.now(timezone.utc)
     brand_last = state.get("brand_last_posted", {})
+    if DAILY_PINNED_BRAND and brand_last.get(DAILY_PINNED_BRAND, "")[:10] != now.date().isoformat():
+        pinned = [b for b in BRANDS if b["name"] == DAILY_PINNED_BRAND]
+        if pinned:
+            state["last_brand_index"] = BRANDS.index(pinned[0])
+            return pinned[0]
     n = len(BRANDS)
     start = (state.get("last_brand_index", -1) + 1) % n
 

@@ -42,6 +42,10 @@ BOT_TOKEN  = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
 SITE_URL   = "https://sifufinds.com"
 STATE_FILE = Path(__file__).parent / "offers_state.json"
 
+# Brand posted first, once per UTC day, by the scheduled (no --brand) run. Set to None to
+# return to plain rotation. Owner request 2026-11-12: Mostbet Kenya campaign posts every day.
+DAILY_PINNED_BRAND: str | None = "MostBet"
+
 # Minimum hours between posts of the SAME brand
 BRAND_COOLDOWN_HOURS = 48
 
@@ -793,6 +797,11 @@ def _bonus_link_and_post(brand: dict) -> tuple[str, dict | None]:
 def run(brand_name: str | None = None, force: bool = False, facebook: bool = True, dry_run: bool = False) -> None:
     log("offers", "start", "running")
     state = _load_state()
+
+    if brand_name is None and DAILY_PINNED_BRAND and not force:
+        last = state.get("brand_last_posted", {}).get(DAILY_PINNED_BRAND, "")
+        if last[:10] != datetime.now(timezone.utc).date().isoformat():
+            brand_name, force = DAILY_PINNED_BRAND, True
 
     brand = _next_brand(state, force_name=brand_name, force=force)
     if not brand:
