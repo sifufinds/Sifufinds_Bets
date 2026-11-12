@@ -211,6 +211,17 @@
   content-visibility:auto;
   contain-intrinsic-size:0 500px;
 }
+.mb-side{padding:12px 14px 14px;border-top:1px solid #eee}
+.mb-side img{display:block;width:100%;height:auto;border-radius:10px}
+.mb-side p,.mb-card small{font-size:10px;color:#888;margin:6px 0 0;text-align:center}
+.mb-card{display:flex;gap:12px;align-items:center;background:#0D1F52;color:#fff;border-radius:12px;padding:10px;margin:0 0 12px;text-decoration:none}
+.mb-card img{width:110px;height:auto;flex-shrink:0;border-radius:8px}
+.mb-card b{display:block;font-size:15px;line-height:1.25;margin-bottom:4px}
+.mb-card span{display:block;font-size:12px;color:rgba(255,255,255,.85);line-height:1.5}
+.mb-card em{display:inline-block;margin-top:8px;background:#d4af37;color:#0a1a44;font-style:normal;font-weight:900;font-size:13px;padding:8px 14px;border-radius:8px}
+.mb-side[hidden],.mb-card[hidden]{display:none}
+@media(min-width:768px){.mb-card{display:none}}
+@media(max-width:767px){.mb-side{display:none}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","url":"https://sifufinds.com/tips/","speakable":{"@type":"SpeakableSpecification","cssSelector":["h1","h2",".tip-card-title",".tip-match",".tip-pick"]}}
@@ -314,6 +325,10 @@
         <div id="fsb-comp-list"></div>
       </div>
     </div><!-- /fsb-sport football -->
+    <div class="mb-side" id="mb-side" hidden>
+      <a href="../mostbet-kenya/" rel="sponsored"><img src="../assets/banners/mostbet/mostbet-penalty-480x853.webp" width="480" height="853" loading="lazy" alt="Mostbet Kenya welcome bonus: up to 150% plus 250 free spins, promo code SIFUKAI"></a>
+      <p>Sponsored · 18+ · T&amp;Cs apply</p>
+    </div>
   </aside>
 
   <!-- MAIN PREDICTION CONTENT -->
@@ -334,6 +349,11 @@
       <span class="refresh-dot" id="refresh-dot"></span>
       <span id="refresh-lbl">Checking for updates…</span>
     </div>
+
+    <a class="mb-card" id="mb-card" href="../mostbet-kenya/" rel="sponsored" hidden>
+      <img src="../assets/banners/mostbet/mostbet-penalty-480x853.webp" width="480" height="853" loading="lazy" alt="Mostbet Kenya welcome bonus, promo code SIFUKAI">
+      <div><b>Mostbet Kenya: up to 150% + 250 free spins</b><span>Football, Aviator and 1,000+ casino games, with M-Pesa. Promo code SIFUKAI.</span><em>Claim bonus at Mostbet</em><small>Sponsored · 18+ · T&amp;Cs apply</small></div>
+    </a>
 
     <!-- Prediction cards output -->
     <div id="pred-cards"></div>
@@ -972,6 +992,20 @@ async function init() {
   }
 
   syncCountryUI();
+  if (getCurrentCountry() === 'KE') {
+    const mbCreatives = [
+      { f: 'mostbet-penalty-480x853.webp', alt: 'Mostbet Kenya welcome bonus: up to 150% plus 250 free spins, promo code SIFUKAI' },
+      { f: 'mostbet-pilot-480x853.webp', alt: 'Mostbet Kenya: bonus up to 150% plus 250 free spins and 30 free spins on registration, promo code SIFUKAI' }
+    ];
+    const mbPick = mbCreatives[Math.floor(Math.random() * mbCreatives.length)];
+    ['mb-side', 'mb-card'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const img = el.querySelector('img');
+      if (img) { img.src = '../assets/banners/mostbet/' + mbPick.f; img.alt = mbPick.alt; }
+      el.hidden = false;
+    });
+  }
   H('foot-yr', NOW.getFullYear());
 
   // Show loading state
