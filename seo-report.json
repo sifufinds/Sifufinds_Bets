@@ -1,13 +1,25 @@
 {
   "date": "2026-11-12",
-  "total": 129,
+  "total": 131,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "world-sports-headlines-ufc-brawl-nfl-trades-dodgers-lockout",
+      "detail": "Title 106 chars (max 60): 'World Sports Headlines: UFC Brawl, NFL Trades, Dodgers Lockout & More '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "world-sports-headlines-ufc-brawl-nfl-trades-dodgers-lockout",
+      "detail": "Excerpt 173 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
