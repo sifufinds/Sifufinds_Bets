@@ -183,7 +183,8 @@ BRANDS = [
     {
         "name": "MostBet",
         "flag": "🌍",
-        "countries": ["Kenya", "Ghana", "Tanzania", "Egypt", "Morocco", "Ivory Coast", "Benin"],
+        "countries": ["Kenya"],
+        "landing_url": "https://sifufinds.com/mostbet-kenya/",
         "welcome": "Welcome Bonus up to 150% + 250 Free Spins",
         "bonus_highlight": "Sports betting, casino and Aviator-style games",
         # Owner-confirmed facts only (headline offer + SIFUKAI code). Everything else is
