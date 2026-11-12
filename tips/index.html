@@ -992,7 +992,20 @@ async function init() {
   }
 
   syncCountryUI();
-  if (getCurrentCountry() === 'KE') { ['mb-side','mb-card'].forEach(id => { const el = document.getElementById(id); if (el) el.hidden = false; }); }
+  if (getCurrentCountry() === 'KE') {
+    const mbCreatives = [
+      { f: 'mostbet-penalty-480x853.webp', alt: 'Mostbet Kenya welcome bonus: up to 150% plus 250 free spins, promo code SIFUKAI' },
+      { f: 'mostbet-pilot-480x853.webp', alt: 'Mostbet Kenya: bonus up to 150% plus 250 free spins and 30 free spins on registration, promo code SIFUKAI' }
+    ];
+    const mbPick = mbCreatives[Math.floor(Math.random() * mbCreatives.length)];
+    ['mb-side', 'mb-card'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const img = el.querySelector('img');
+      if (img) { img.src = '../assets/banners/mostbet/' + mbPick.f; img.alt = mbPick.alt; }
+      el.hidden = false;
+    });
+  }
   H('foot-yr', NOW.getFullYear());
 
   // Show loading state
