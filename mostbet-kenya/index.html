@@ -157,6 +157,10 @@
 .bn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:18px 0 0}
 .bn-row a{flex:1 1 150px;max-width:230px}
 .bn-row img{display:block;width:100%;height:auto;border-radius:10px}
+.lp-rail{display:none}
+.lp-rail small{display:block;font-size:10px;color:#888;text-align:center;margin-top:6px}
+.lp-rail img{display:block;width:100%;height:auto;border-radius:10px}
+@media(min-width:1360px){.lp-rails{display:grid;grid-template-columns:1fr minmax(0,820px) 1fr;gap:16px;align-items:start;padding:24px 16px 0}.lp-rail{display:block;position:sticky;top:90px;width:220px}.lp-rail-l{justify-self:end}.lp-rail-r{justify-self:start}.bn-row{display:none}}
 </style>
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=3">
@@ -215,6 +219,11 @@
 </div>
 
 <div style="background:#f0f0eb">
+<div class="lp-rails">
+<aside class="lp-rail lp-rail-l" aria-label="Sponsored">
+  <a href="https://sifufinds.com/mostbet" target="_blank" rel="noopener noreferrer sponsored"><img src="../assets/banners/mostbet/mostbet-penalty-480x853.webp" width="480" height="853" loading="lazy" alt="Mostbet Kenya welcome bonus: up to 150% plus 250 free spins, promo code SIFUKAI"></a>
+  <small>Sponsored · 18+ · T&amp;Cs apply</small>
+</aside>
 <div class="wrap">
   <div class="breadcrumb"><a href="../">Home</a><span>›</span>Mostbet Kenya</div>
   <div class="legal-body">
@@ -263,6 +272,11 @@
 
     <div class="danger-box">18+ only. Gambling involves risk and can be addictive. Bet responsibly. Help is available from BeGambleAware (begambleaware.org) and our <a href="../responsible/" style="color:#991b1b;text-decoration:underline">Responsible Gambling</a> page.</div>
   </div>
+</div>
+<aside class="lp-rail lp-rail-r" aria-label="Sponsored">
+  <a href="https://sifufinds.com/mostbet" target="_blank" rel="noopener noreferrer sponsored"><img src="../assets/banners/mostbet/mostbet-pilot-480x853.webp" width="480" height="853" loading="lazy" alt="Mostbet Kenya: bonus up to 150% plus 250 free spins and 30 free spins on registration, promo code SIFUKAI"></a>
+  <small>Sponsored · 18+ · T&amp;Cs apply</small>
+</aside>
 </div>
 </div>
 
