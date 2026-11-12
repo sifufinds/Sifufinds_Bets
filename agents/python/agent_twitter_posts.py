@@ -75,14 +75,15 @@ BRANDS = [
     },
     {
         "name": "MostBet",
-        "flag": "🌍",
-        "countries": ["Kenya", "Ghana", "Tanzania", "Egypt", "Morocco", "Ivory Coast", "Benin"],
+        "flag": "🇰🇪",
+        "countries": ["Kenya"],
+        "landing_url": "https://sifufinds.com/mostbet-kenya/",
         "welcome": "Welcome Bonus up to 150% + 250 Free Spins",
-        "highlight": "Sports betting, casino and Aviator-style games",
+        "highlight": "Football, Aviator, casino. M-Pesa deposits",
         "url": "https://omxbjm.com/ct7U?sub2=africa",
-        "min_deposit": "Varies by country",
-        "licence": "Licensing varies, check official site",
-        "hashtags": "#MostBet #Aviator #CasinoBonus #SportsBetting",
+        "min_deposit": "Varies",
+        "licence": "18+",
+        "hashtags": "#MostBet #Kenya",
     },
     {
         "name": "BetWinner",
@@ -251,7 +252,12 @@ def _save_state(state: dict) -> None:
 
 # ── OFFER MODE ────────────────────────────────────────────────────────────────
 
-def _next_brand(state: dict, force: bool = False) -> dict | None:
+def _next_brand(state: dict, force: bool = False, only: str | None = None) -> dict | None:
+    if only:
+        match = [b for b in BRANDS if b["name"].lower() == only.lower()]
+        if match:
+            state["last_brand_index"] = BRANDS.index(match[0])
+            return match[0]
     now = datetime.now(timezone.utc)
     brand_last = state.get("brand_last_posted", {})
     n = len(BRANDS)
@@ -868,7 +874,7 @@ def _post_tweet(text: str, dry_run: bool = False) -> bool:
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
-def run(mode: str = "auto", dry_run: bool = False, force: bool = False) -> None:
+def run(mode: str = "auto", dry_run: bool = False, force: bool = False, brand_name: str | None = None) -> None:
     log("twitter", "start", "running", mode)
     state = _load_state()
 
@@ -880,7 +886,7 @@ def run(mode: str = "auto", dry_run: bool = False, force: bool = False) -> None:
         print(f"Auto mode → selected: {mode}")
 
     if mode == "offer":
-        brand = _next_brand(state, force=force)
+        brand = _next_brand(state, force=force, only=brand_name)
         if not brand:
             print("✗ No brands available")
             sys.exit(1)
@@ -948,5 +954,6 @@ if __name__ == "__main__":
     )
     parser.add_argument("--dry-run", action="store_true", help="Preview tweet without posting")
     parser.add_argument("--force", action="store_true", help="Ignore brand cooldown")
+    parser.add_argument("--brand", type=str, default=None, help="Offer mode: post this specific brand")
     args = parser.parse_args()
-    run(mode=args.mode, dry_run=args.dry_run, force=args.force)
+    run(mode=args.mode, dry_run=args.dry_run, force=args.force, brand_name=args.brand)

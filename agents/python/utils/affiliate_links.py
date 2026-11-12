@@ -136,7 +136,7 @@ def cta_html(brand: dict, label: str | None = None) -> str:
     CTA words alone, readers saw no link at all in the post and assumed the
     affiliate link was missing. Telegram auto-links the visible URL too."""
     cta = label or pick_cta(brand)
-    url = masked_url(brand["name"])
+    url = brand.get("landing_url") or masked_url(brand["name"])
     return f'<a href="{url}">{cta}</a> → {url}'
 
 
@@ -144,4 +144,4 @@ def cta_plain(brand: dict, label: str | None = None) -> str:
     """Plain-text platforms (Facebook captions, X, Instagram) can't render
     custom anchor text, so the CTA phrase precedes the masked link instead."""
     cta = label or pick_cta(brand)
-    return f"{cta} → {masked_url(brand['name'])}"
+    return f"{cta} → {brand.get('landing_url') or masked_url(brand['name'])}"
