@@ -1,55 +1,13 @@
 {
   "date": "2026-11-12",
-  "total": 136,
+  "total": 129,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 7,
+    "HIGH": 0,
     "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "yahayas-late-strike-sinks-liberia-black-challenge-betting-tips-ghana",
-      "detail": "Title 75 chars (max 60): 'Yahaya\u2019s Late Strike Sinks Liberia \u2013 Black Challenge Betting Tips for '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kenya-sports-economy-afcon-2027-betting-guide",
-      "detail": "Title 79 chars (max 60): 'Kenya Eyes Sports Economy Boom Ahead AFCON 2027: Betting Tips & Bookma'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "oluebube-umejiaku-betting-tips-nigeria",
-      "detail": "Title 78 chars (max 60): 'Oluebube Umejiaku\u2019s Betting Tips: Emotional Drive and Best Nigerian Bo'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "south-africa-u20-academy-clinton-larsen-ngcobo",
-      "detail": "Title 74 chars (max 60): 'South Africa Preps U20 Academy, New PSL Coach, & Ngcobo Contract Count'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "yahayas-late-strike-sinks-liberia-black-challenge-betting-tips-ghana",
-      "detail": "Excerpt 169 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "oluebube-umejiaku-betting-tips-nigeria",
-      "detail": "Excerpt 156 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "south-africa-u20-academy-clinton-larsen-ngcobo",
-      "detail": "Excerpt 197 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
