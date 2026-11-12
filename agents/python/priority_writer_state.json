@@ -1939,7 +1939,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-12T00:43:47.321626+00:00",
+    "checked_at": "2026-11-12T02:41:16.754900+00:00",
     "candidates_available": 340,
     "attempted": 3,
     "written": 0,
@@ -1947,6 +1947,12 @@
       {
         "keyword": "Have Pirates been dealt major injury blow ahead betting tips South Africa",
         "country": "South Africa",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 486)"
+      },
+      {
+        "keyword": "Kenya Senators Raise Concerns Over Kasarani Stadium's Readiness betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
