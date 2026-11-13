@@ -1,9 +1,9 @@
 {
   "date": "2026-11-13",
-  "total": 133,
+  "total": 134,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 4,
+    "HIGH": 5,
     "MEDIUM": 128,
     "INFO": 1
   },
@@ -11,26 +11,32 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "south-african-stars-springboks-clash-betting-tips",
-      "detail": "Title 72 chars (max 60): 'South African Stars & Springboks Clash: Betting Tips for African Punte'"
+      "page": "zimbabwe-equatorial-guinea-betting-tips-uganda",
+      "detail": "Title 77 chars (max 60): 'Zimbabwe vs Equatorial Guinea \u2013 Betting Tips for Ugandans \u2013 Uganda Gui'"
     },
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "elim-can-2027-cameroun-betting-tips-egypt",
-      "detail": "Title 67 chars (max 60): 'Elim. CAN 2027 o\u00f9 suivre le match Cameroun \u2013 Betting tips for Egypt'"
+      "page": "zimbabwe-equatorial-guinea-goalless-draw-betting-tips-tanzania",
+      "detail": "Title 78 chars (max 60): 'Zimbabwe vs Equatorial Guinea Goalless Draw Betting Tips for Tanzanian'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "senegal-vs-sudan-lineups-betting-tips-ghana",
+      "detail": "Title 70 chars (max 60): 'Senegal vs Sudan Lineups Betting Tips for Ghana \u2013 Best Offers & Advice'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "harambee-stars-vs-south-africa-betting-tips-kenya",
-      "detail": "Excerpt 160 chars (max 155)"
+      "page": "zimbabwe-equatorial-guinea-betting-tips-uganda",
+      "detail": "Excerpt 168 chars (max 155)"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "elim-can-2027-cameroun-betting-tips-egypt",
-      "detail": "Excerpt 199 chars (max 155)"
+      "page": "senegal-vs-sudan-lineups-betting-tips-ghana",
+      "detail": "Excerpt 167 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
