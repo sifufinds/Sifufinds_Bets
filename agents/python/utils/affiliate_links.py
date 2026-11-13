@@ -37,6 +37,9 @@ BRAND_SLUGS: dict[str, str] = {
     "hollywoodbets": "hollywoodbets",
     "mostbet": "mostbet",
     "winwinbet": "winwinbet",
+    "megapari": "megapari",
+    "megapariapk": "megapari-apk",
+    "megapariios": "megapari-ios",
     "sportpesa": "sportpesa",
     "mozzartbet": "mozzartbet",
     "nairabet": "nairabet",
@@ -78,6 +81,7 @@ PROMO_CODE_BRANDS: frozenset[str] = frozenset({
     "22bet",
     "melbet",   # confirmed 2026-10-22: owner supplied Melbet creatives carrying SIFUKAI and asked for it in posts
     "winwinbet",  # confirmed 2026-11-09: owner supplied WinWinBet banners + code SIFUKAI
+    "megapari",  # confirmed 2026-11-13: owner supplied MegaPari banners + code SIFUKAI
     "mostbet",  # confirmed 2026-10-21: owner supplied MostBet banners carrying SIFUKAI
 })
 

@@ -108,6 +108,10 @@ RewriteRule ^blog/global-sports-roundup-from-college-football-to-rugby-and-cycli
 RewriteRule ^mostbet/?$ "https://omxbjm.com/ct7U?sub2=africa" [R=301,L,NC]
 # WinWinBet affiliate link (added 2026-11-09). Every WinWinBet CTA on the site routes through this one rule.
 RewriteRule ^winwinbet/?$ "https://refpa49781.com/L?tag=d_6330538m_126158c_&site=6330538&ad=126158" [R=301,L,NC]
+# MegaPari affiliate links (added 2026-11-13): registration, Android APK and iOS PWA. Promo code SIFUKAI.
+RewriteRule ^megapari/?$ "https://6330487.megapari-229404.com" [R=301,L,NC]
+RewriteRule ^megapari-apk/?$ "https://refpazitag.top/L?tag=d_6330487m_54987c_&site=6330487&ad=54987" [R=301,L,NC]
+RewriteRule ^megapari-ios/?$ "https://6330487ai.megapari-229404.com" [R=301,L,NC]
 # Betika is no longer promoted (removed 2026-10-21). Old masked/social links go to the
 # relevant on-site country comparison instead of the operator.
 RewriteRule ^betika/?$ /best-betting-in-kenya/ [R=301,L,NC]
