@@ -874,7 +874,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-13T13:35:13.074877+00:00",
+    "checked_at": "2026-11-13T17:49:32.940883+00:00",
     "candidates_available": 358,
     "attempted": 3,
     "written": 0,
@@ -883,11 +883,17 @@
         "keyword": "Senegal vs. Sudan Lineups betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: The odds on the SifuFinds live page currently favour Senegal.; A 2-0 or 3-1 win for Senegal is a popular choice, reflecting their attacking potency.; 1xBet Ghana offers a 200% first deposit bonus up to GH₵2,846, and 22Bet Ghana offers a 100% first deposit bonus up to GH₵1,491."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 381)"
       },
       {
         "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Tanzania",
         "country": "Tanzania",
+        "result": "skipped",
+        "reason": "similar_title_exists"
+      },
+      {
+        "keyword": "Coaching 'inconsistency' hurting Black Stars - Chris Hughton betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
