@@ -591,6 +591,104 @@ def fetch_category(category: str, max_per_feed: int = 6) -> list[NewsItem]:
     return result if len(result) >= MIN_FRESH_ITEMS else []
 
 
+# ── BREAKING SPORT NEWS (year-round, not tied to a transfer window) ─────────
+# Added 2026-11-12: a manager sacking (Man Utd / Michael Carrick) never
+# reached the site or socials because the only live-news bot,
+# transfer_news.yml, was gated to the Jan/Jun-Aug transfer windows and the
+# general breaking_news.yml bot writes 700-900 word betting articles that the
+# fact-checker keeps rejecting. This is a separate, deterministic path: pull
+# fresh headlines from trusted outlets, keep ONLY genuinely high-impact
+# events involving notable people/clubs, so the caller can post them fast.
+
+BREAKING_MAX_AGE_HOURS = 8
+BREAKING_ALLOWED_SOURCE_TERMS = (
+    "bbc", "sky sports", "sky news", "espn", "talksport", "athletic", "ornstein",
+    "romano", "guardian", "independent", "reuters", "associated press", "ap news",
+    "cbs sports", "marca", "as.com", "l'equipe", "kickoff", "supersport",
+)
+
+# High-impact event words. Deliberately excludes routine words (win, draw,
+# score, preview, odds) so match reports never count as breaking news.
+_BREAKING_EVENT_RE = re.compile(
+    r"\b(sack|sacked|sacks|sacking|axed|axes|dismissed|dismisses|fired|fires|parts? company|"
+    r"part ways|relieved of|leaves (?:his|the) (?:role|post|job)|resigns?|resigned|"
+    r"resignation|steps? down|stepped down|quits?|walks? away|"
+    r"appointed|appoints|named (?:as )?(?:new )?(?:head coach|manager|boss|coach)|"
+    r"new (?:head coach|manager|boss)|interim (?:boss|manager|head coach)|"
+    r"takes? charge|"
+    r"dies|died|dead|death|passes? away|passed away|tributes?|"
+    r"banned|ban for|suspended|charged with|arrested|jailed|"
+    r"retires?|retired|retirement|"
+    r"ruled out|out for the season|cruciate|ruptured|"
+    r"rushed to hospital|"
+    r"world record|"
+    r"confirmed as|officially confirmed|bombshell|shock exit|stunning exit)\b",
+    re.IGNORECASE,
+)
+
+# A story must name someone/something notable, otherwise a League Two
+# sacking would be pushed to every channel as "BREAKING".
+_NOTABLE_RE = re.compile(
+    r"\b(man(?:chester)? (?:utd|united|city)|arsenal|chelsea|liverpool|tottenham|spurs|"
+    r"newcastle|aston villa|west ham|everton|leeds|real madrid|barcelona|atletico|"
+    r"bayern|dortmund|psg|paris saint-germain|juventus|inter milan|ac milan|napoli|roma|"
+    r"premier league|champions league|europa league|la liga|serie a|bundesliga|ligue 1|"
+    r"world cup|euros?|afcon|caf|fifa|uefa|"
+    r"england|france|spain|brazil|argentina|germany|portugal|netherlands|italy|"
+    r"nigeria|super eagles|kenya|harambee|ghana|black stars|bafana|south africa|"
+    r"tanzania|uganda|zambia|egypt|morocco|senegal|cameroon|ivory coast|algeria|tunisia|"
+    r"mamelodi|sundowns|kaizer chiefs|orlando pirates|al ahly|zamalek|enyimba|"
+    r"salah|mane|osimhen|haaland|mbappe|messi|ronaldo|bellingham|saka|kane|"
+    r"guardiola|klopp|ancelotti|mourinho|ten hag|arteta|slot|amorim|carrick|tuchel|"
+    r"nba|lebron|curry|wembanyama|nfl|f1|formula 1|hamilton|verstappen|norris|"
+    r"fury|usyk|joshua|wilder|canelo|"
+    r"wimbledon|us open|australian open|roland garros|djokovic|alcaraz|sinner|"
+    r"springboks|all blacks|six nations|rugby world cup|"
+    r"ipl|proteas|ashes|olympics?|ioc)\b",
+    re.IGNORECASE,
+)
+
+
+def _is_allowed_breaking_source(source: str) -> bool:
+    s = (source or "").lower()
+    return any(term in s for term in BREAKING_ALLOWED_SOURCE_TERMS)
+
+
+def is_breaking_headline(title: str) -> bool:
+    """High-impact event wording AND a notable person/club/competition."""
+    return bool(_BREAKING_EVENT_RE.search(title)) and bool(_NOTABLE_RE.search(title))
+
+
+BREAKING_SEARCH_QUERIES = [
+    "manager sacked football news",
+    "head coach appointed football breaking news",
+    "breaking sport news today",
+    "football manager leaves club",
+    "star player ruled out injury breaking",
+    "sport death tribute legend",
+    "NBA NFL F1 boxing breaking news",
+]
+
+
+def fetch_breaking() -> list[NewsItem]:
+    """Fresh, high-impact sport headlines from trusted outlets, newest first.
+    No minimum-count threshold (unlike fetch_category) — one real breaking
+    story is enough. Returns [] if nothing qualifies."""
+    cat = "breaking"
+    items: list[NewsItem] = []
+    for q in BREAKING_SEARCH_QUERIES:
+        items.extend(_ddg_search(q, cat, BREAKING_MAX_AGE_HOURS, max_results=8))
+        items.extend(_google_news_search(q, cat, BREAKING_MAX_AGE_HOURS))
+    breaking_feeds = [(s, u, c) for s, u, c in FEEDS if c in ("sportnews", "football")
+                      and any(k in s for k in ("BBC", "Guardian", "TalkSport", "Independent", "Sky News"))]
+    items.extend(_fetch_site_feeds(breaking_feeds, cat, BREAKING_MAX_AGE_HOURS, max_per_feed=15))
+    items = [i for i in items
+             if _is_allowed_breaking_source(i["source"])
+             and is_breaking_headline(i["title"])
+             and not _is_rolling_recap(i["title"])]
+    return _dedupe_sort(items)
+
+
 # ── PER-COUNTRY TRENDING (country-scoped, not a shared/global pool) ─────────
 # Country name -> feed source names already in FEEDS that are genuinely
 # published by an outlet based in that country, so this function can prefer
