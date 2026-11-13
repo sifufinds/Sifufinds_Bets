@@ -1558,7 +1558,7 @@ BANNER_BRANDS: dict[str, dict] = {
     },
     'megapari': {
         'name': 'MegaPari', 'slug': 'megapari', 'abbr': 'MP', 'bg': '#0B1B3F', 'tc': '#fff',
-        'headline': 'Sports & Casino · Promo code SIFUKAI', 'offer': 'Welcome offer up to 200% + 150 FS',
+        'headline': 'Sports & Casino · Promo code SIFUKAI', 'offer': '200% welcome bonus up to 1924 USD + 150 FS',
         'sub': 'Confirm bonus terms for your country before depositing',
         'promo_code': 'SIFUKAI',
     },
@@ -2189,7 +2189,7 @@ def build_post_page(post: dict, locale: str = 'en', translations: dict | None = 
 
 <div class="page-modal-bg" id="page-modal"><div class="page-modal"><button class="page-modal-close" onclick="closePage()">×</button><div class="pm" id="page-content"></div></div></div>
 
-<script src="../../assets/shared.js?v=38"></script>
+<script src="../../assets/shared.js?v=39"></script>
 <script>
 const SITE={{home:'../../',tips:'../../tips/',casino:'../../casino/',odds:'../../odds/',countries:'../../countries/'}};
 function copyPostLink(btn,url){{
