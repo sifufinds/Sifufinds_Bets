@@ -1972,31 +1972,35 @@
     "Elim. CAN 2027 où suivre le match Cameroun betting tips Uganda": {
       "slug": "elim-can-2027-ou-suivre-le-match-cameroun-uganda-betting-tips",
       "posted_at": "2026-11-13T03:14:03.809038+00:00"
+    },
+    "Elim. CAN 2027 où suivre le match Cameroun betting tips Egypt": {
+      "slug": "elim-can-2027-cameroun-betting-tips-egypt",
+      "posted_at": "2026-11-13T05:01:12.100004+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-13T03:14:09.261147+00:00",
-    "candidates_available": 333,
+    "checked_at": "2026-11-13T05:02:08.076590+00:00",
+    "candidates_available": 332,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
         "keyword": "Elim. CAN 2027 où suivre le match Cameroun betting tips Egypt",
         "country": "Egypt",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Betting is safe when you choose a Curacao‑licensed operator that complies with EGRA regulations. Ensure you verify your identity, read the terms and use responsible‑gambling tools provided by the site.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "elim-can-2027-cameroun-betting-tips-egypt"
       },
       {
         "keyword": "Elim. CAN 2027 où suivre le match Cameroun betting tips Morocco",
         "country": "Morocco",
         "result": "failed",
-        "reason": "quality_gate: final line was '18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Orange Money Morocco is accepted by PMU Maroc and BetWinner Maroc. Other bookmakers offer bank transfer and card options instead.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Elim. CAN 2027 où suivre le match Cameroun betting tips Uganda",
-        "country": "Uganda",
-        "result": "written",
-        "slug": "elim-can-2027-ou-suivre-le-match-cameroun-uganda-betting-tips"
+        "keyword": "Elim. CAN 2027 où suivre le match Cameroun betting tips Zambia",
+        "country": "Zambia",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 437)"
       }
     ]
   }
