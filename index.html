@@ -47,13 +47,27 @@
   var fresh=(Date.now()-ts)<CTY_TTL_MS;
   // MAP[saved] guards against a stale 'NG' fallback stamp written by the old
   // version of this script before every unmatched code was a genuine match.
-  if(saved&&MAP[saved]&&(manual||fresh)){go(saved);return;}
+  // sf_cty_geo marks a country that was genuinely IP-detected (set only on a MAP match
+  // below). Without it, shared.js's own 'NG' fallback stamp for a non-African visitor
+  // would look like a fresh detection and pin them to Nigeria instead of rotating.
+  var geoReal=localStorage.getItem('sf_cty_geo')===saved;
+  if(saved&&MAP[saved]&&(manual||(fresh&&geoReal))){go(saved);return;}
   var req=fetch('https://ipapi.co/json/').then(function(r){return r.json();});
   var timeout=new Promise(function(res){setTimeout(function(){res(null);},2000);});
   Promise.race([req,timeout]).then(function(d){
     var code=(d&&d.country_code||'').toUpperCase();
-    if(MAP[code]){stamp(code);go(code);}
-    // else: no redirect — render this generic homepage as-is.
+    if(MAP[code]){stamp(code);localStorage.setItem('sf_cty_geo',code);go(code);return;}
+    // 2026-11-13 (user request): a successfully detected NON-African visitor (e.g. UK)
+    // is sent to a different random country page on every visit, never sticky, never
+    // the same one twice in a row. A failed/timed-out lookup (code '') still renders
+    // this generic page in place rather than guessing.
+    if(code){
+      var keys=Object.keys(MAP),last=localStorage.getItem('sf_cty_rot')||'';
+      var pool=keys.filter(function(k){return k!==last;});
+      var pick=pool[Math.floor(Math.random()*pool.length)];
+      localStorage.setItem('sf_cty_rot',pick);
+      go(pick);
+    }
   }).catch(function(){/* no redirect — render this generic homepage as-is */});
 })();
 </script>
