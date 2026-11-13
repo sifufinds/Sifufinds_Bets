@@ -1,9 +1,9 @@
 {
   "date": "2026-11-13",
-  "total": 130,
+  "total": 133,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 1,
+    "HIGH": 4,
     "MEDIUM": 128,
     "INFO": 1
   },
@@ -11,8 +11,26 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "how-to-find-value-in-sports-betting-predictions-across-african-markets",
-      "detail": "Title 70 chars (max 60): 'How to Find Value in Sports Betting Predictions Across African Markets'"
+      "page": "south-african-stars-springboks-clash-betting-tips",
+      "detail": "Title 72 chars (max 60): 'South African Stars & Springboks Clash: Betting Tips for African Punte'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "elim-can-2027-cameroun-betting-tips-egypt",
+      "detail": "Title 67 chars (max 60): 'Elim. CAN 2027 o\u00f9 suivre le match Cameroun \u2013 Betting tips for Egypt'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "harambee-stars-vs-south-africa-betting-tips-kenya",
+      "detail": "Excerpt 160 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "elim-can-2027-cameroun-betting-tips-egypt",
+      "detail": "Excerpt 199 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
@@ -785,8 +803,8 @@
     {
       "severity": "INFO",
       "check": "formulaic_opener",
-      "page": "56 posts",
-      "detail": "56 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
+      "page": "55 posts",
+      "detail": "55 posts still open with a banned formulaic phrase (see CLAUDE.md Voice & Language Rules) \u2014 queued in agent_content_backfill.py's rewrite pipeline, not auto-fixable here"
     }
   ]
 }
