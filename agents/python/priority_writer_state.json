@@ -1999,7 +1999,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-13T19:46:41.698242+00:00",
+    "checked_at": "2026-11-13T21:47:13.946924+00:00",
     "candidates_available": 328,
     "attempted": 3,
     "written": 0,
@@ -2007,6 +2007,18 @@
       {
         "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Ivory Coast",
         "country": "Ivory Coast",
+        "result": "failed",
+        "reason": "missing_output_markers"
+      },
+      {
+        "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Cameroon",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Senegal",
+        "country": "Senegal",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
