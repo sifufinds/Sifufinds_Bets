@@ -1999,28 +1999,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-13T17:40:13.464591+00:00",
-    "candidates_available": 330,
+    "checked_at": "2026-11-13T19:46:41.698242+00:00",
+    "candidates_available": 328,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Zambia",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "zambia-betting-tips-zimbabwe-equatorial-guinea"
-      },
-      {
-        "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Ethiopia",
-        "country": "Ethiopia",
-        "result": "written",
-        "slug": "zimbabwe-equatorial-guinea-betting-tips-ethiopia"
-      },
       {
         "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Ivory Coast",
         "country": "Ivory Coast",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, all odds are set by the ARJEL CI regulator, ensuring fairness and transparency for all Ivory Coast bettors.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
