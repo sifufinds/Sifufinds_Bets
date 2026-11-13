@@ -870,13 +870,19 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-13T05:07:09.911086+00:00",
+    "checked_at": "2026-11-13T09:44:21.738792+00:00",
     "candidates_available": 359,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Coaching 'inconsistency' hurting Black Stars - Chris Hughton betting tips Ghana",
+        "keyword": "Harambee Stars hoping end winless run against South betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "fact_check: SportPesa lists the Stars at +250, 1xBet might show them at +275; BTTS odds often sit around the 1.80‑2.00 mark; under market can yield value, especially on bookmakers that offer higher payouts on the underdog side"
+      },
+      {
+        "keyword": "Senegal vs. Sudan Lineups betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
