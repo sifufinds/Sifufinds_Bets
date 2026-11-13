@@ -1976,25 +1976,43 @@
     "Elim. CAN 2027 où suivre le match Cameroun betting tips Egypt": {
       "slug": "elim-can-2027-cameroun-betting-tips-egypt",
       "posted_at": "2026-11-13T05:01:12.100004+00:00"
+    },
+    "Senegal vs. Sudan Lineups betting tips Ghana": {
+      "slug": "senegal-vs-sudan-lineups-betting-tips-ghana",
+      "posted_at": "2026-11-13T13:25:35.983315+00:00"
+    },
+    "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Tanzania": {
+      "slug": "zimbabwe-equatorial-guinea-goalless-draw-betting-tips-tanzania",
+      "posted_at": "2026-11-13T13:26:41.818573+00:00"
+    },
+    "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Uganda": {
+      "slug": "zimbabwe-equatorial-guinea-betting-tips-uganda",
+      "posted_at": "2026-11-13T13:27:04.150264+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-13T11:34:51.608891+00:00",
-    "candidates_available": 334,
+    "checked_at": "2026-11-13T13:27:07.761930+00:00",
+    "candidates_available": 333,
     "attempted": 3,
-    "written": 0,
+    "written": 3,
     "attempts": [
-      {
-        "keyword": "Harambee Stars hoping end winless run against South betting tips Kenya",
-        "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: final line was '22Bet offers a 100 % first‑deposit bonus up to KSh 19,000, which can be applied to any football market, including the Harambee Stars vs South Africa fixture. Check the site for any match‑specific promotions.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
       {
         "keyword": "Senegal vs. Sudan Lineups betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "result": "written",
+        "slug": "senegal-vs-sudan-lineups-betting-tips-ghana"
+      },
+      {
+        "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "written",
+        "slug": "zimbabwe-equatorial-guinea-goalless-draw-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Uganda",
+        "country": "Uganda",
+        "result": "written",
+        "slug": "zimbabwe-equatorial-guinea-betting-tips-uganda"
       }
     ]
   }
