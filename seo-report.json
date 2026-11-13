@@ -1,9 +1,9 @@
 {
-  "date": "2026-11-12",
-  "total": 132,
+  "date": "2026-11-13",
+  "total": 130,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 3,
+    "HIGH": 1,
     "MEDIUM": 128,
     "INFO": 1
   },
@@ -11,20 +11,8 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "nba-injury-updates-betting-insights-curry-injury",
-      "detail": "Title 69 chars (max 60): \"NBA Injury Updates & Betting Insights: Curry's Absence Shakes Markets\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "kenya-senators-kasarani-stadium-readiness-betting-tips-tanzania",
-      "detail": "Title 91 chars (max 60): \"Kenya Senators Raise Concerns Over Kasarani Stadium's Readiness \u2013 Bett\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "cardoso-caf-exit-betting-tips-south-africa",
-      "detail": "Excerpt 172 chars (max 155)"
+      "page": "how-to-find-value-in-sports-betting-predictions-across-african-markets",
+      "detail": "Title 70 chars (max 60): 'How to Find Value in Sports Betting Predictions Across African Markets'"
     },
     {
       "severity": "MEDIUM",
