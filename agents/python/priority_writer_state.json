@@ -1979,7 +1979,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-13T09:35:54.719733+00:00",
+    "checked_at": "2026-11-13T11:34:51.608891+00:00",
     "candidates_available": 334,
     "attempted": 3,
     "written": 0,
@@ -1987,6 +1987,12 @@
       {
         "keyword": "Harambee Stars hoping end winless run against South betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: final line was '22Bet offers a 100 % first‑deposit bonus up to KSh 19,000, which can be applied to any football market, including the Harambee Stars vs South Africa fixture. Check the site for any match‑specific promotions.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Senegal vs. Sudan Lineups betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
