@@ -1968,31 +1968,35 @@
     "Arrows coach gifted car after Chiefs upset betting tips South Africa": {
       "slug": "arrows-coach-gifted-car-chiefs-upset-betting-tips-south-africa",
       "posted_at": "2026-11-12T22:18:25.804505+00:00"
+    },
+    "Elim. CAN 2027 où suivre le match Cameroun betting tips Uganda": {
+      "slug": "elim-can-2027-ou-suivre-le-match-cameroun-uganda-betting-tips",
+      "posted_at": "2026-11-13T03:14:03.809038+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-12T22:26:00.124499+00:00",
-    "candidates_available": 335,
+    "checked_at": "2026-11-13T03:14:09.261147+00:00",
+    "candidates_available": 333,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Foot ce soir comment suivre vos matchs depuis betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "foot-ce-soir-betting-tips-tanzania"
-      },
-      {
-        "keyword": "Arrows coach gifted car after Chiefs upset betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "arrows-coach-gifted-car-chiefs-upset-betting-tips-south-africa"
-      },
       {
         "keyword": "Elim. CAN 2027 où suivre le match Cameroun betting tips Egypt",
         "country": "Egypt",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Betting is safe when you choose a Curacao‑licensed operator that complies with EGRA regulations. Ensure you verify your identity, read the terms and use responsible‑gambling tools provided by the site.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Elim. CAN 2027 où suivre le match Cameroun betting tips Morocco",
+        "country": "Morocco",
+        "result": "failed",
+        "reason": "quality_gate: final line was '18+ | Bet Responsibly | T&Cs Apply', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Elim. CAN 2027 où suivre le match Cameroun betting tips Uganda",
+        "country": "Uganda",
+        "result": "written",
+        "slug": "elim-can-2027-ou-suivre-le-match-cameroun-uganda-betting-tips"
       }
     ]
   }
