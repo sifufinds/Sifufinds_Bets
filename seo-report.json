@@ -1,43 +1,13 @@
 {
   "date": "2026-11-13",
-  "total": 134,
+  "total": 129,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 5,
+    "HIGH": 0,
     "MEDIUM": 128,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "zimbabwe-equatorial-guinea-betting-tips-uganda",
-      "detail": "Title 77 chars (max 60): 'Zimbabwe vs Equatorial Guinea \u2013 Betting Tips for Ugandans \u2013 Uganda Gui'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "zimbabwe-equatorial-guinea-goalless-draw-betting-tips-tanzania",
-      "detail": "Title 78 chars (max 60): 'Zimbabwe vs Equatorial Guinea Goalless Draw Betting Tips for Tanzanian'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "senegal-vs-sudan-lineups-betting-tips-ghana",
-      "detail": "Title 70 chars (max 60): 'Senegal vs Sudan Lineups Betting Tips for Ghana \u2013 Best Offers & Advice'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "zimbabwe-equatorial-guinea-betting-tips-uganda",
-      "detail": "Excerpt 168 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "senegal-vs-sudan-lineups-betting-tips-ghana",
-      "detail": "Excerpt 167 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
