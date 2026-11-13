@@ -870,7 +870,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-12T22:33:13.959752+00:00",
+    "checked_at": "2026-11-13T01:40:13.765302+00:00",
     "candidates_available": 359,
     "attempted": 3,
     "written": 0,
@@ -879,13 +879,19 @@
         "keyword": "Coaching 'inconsistency' hurting Black Stars - Chris Hughton betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: He told the press that “coaching inconsistency” is the main reason Ghana lost to Ivory Coast and The Gambia; The Black Stars have gone through three head coaches in the past twelve months – from James Kwesi Appiah to Carlos Queiroz and now an interim set‑up; Sportybet Ghana, the featured bookmaker, often posts slightly higher odds on a Ghana win when the team is listed as a favourite; Hughton warned that the constant change of coaches has created uncertainty in tactics and player selection, which he believes is directly responsible for the recent defeats to Ivory Coast and The Gambia; Sportybet Ghana often lists slightly higher odds on a Ghana victory compared with Betway Ghana, while also providing a 150% welcome bonus up to GH₵500"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
         "keyword": "Flamingos star Oluebube Umejiaku reveals emotional motivation behind betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "fact_check: **1xBet Nigeria**: Offers a 300% first deposit bonus up to ₦1,200,000 with the promo code **1BONUSNG**.; **22Bet Nigeria**: Provides a 100% first deposit bonus up to ₦207,500 with the promo code **BNSNG**.; **Melbet Nigeria**: Features a 200% first deposit bonus up to ₦480,000 with the promo code **SIFUKAI**.; **Paripesa Nigeria**: Offers a 200% first deposit bonus up to ₦200,000.; **Linebet Nigeria**: Provides a 100% first deposit bonus up to ₦180,000.; | Bookmaker        | Flamingos Win | Draw | Opponent Win |\n|------------------|---------------|------|----------------|\n| 1xBet Nigeria    | 2.50          | 3.20 | 2.80          |\n| 22Bet Nigeria    | 2.45          | 3.15 | 2.75          |\n| Melbet Nigeria   | 2.55          | 3.25 | 2.85          |\n| Paripesa Nigeria | 2.60          | 3.30 | 2.90          |\n| Linebet Nigeria  | 2.40          | 3.10 | 2.70          |"
+      },
+      {
+        "keyword": "Kenya eyes sports economy boom ahead AFCON 2027 betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "fact_check: **SportPesa Kenya**: Offers a 300% Welcome Karibu Gift on the first deposit.; **22Bet Kenya**: Provides a 100% first deposit bonus up to KSh 19,000.; **1xBet Kenya**: Features a 200% first deposit bonus up to KSh 20,000.; **Melbet Kenya**: Offers a 300% first deposit bonus up to KSh 1,500 with the promo code **SIFUKAI**.; **HelaBet Kenya**: Provides a 100% welcome bonus up to KSh 5,000.; | Bookmaker        | Kenya Win | Draw | Opponent Win |\n|------------------|-----------|------|----------------|\n| SportPesa Kenya  | 2.20      | 3.00 | 3.50          |\n| 22Bet Kenya      | 2.15      | 2.95 | 3.45          |\n| 1xBet Kenya      | 2.25      | 3.05 | 3.55          |\n| Melbet Kenya     | 2.30      | 3.10 | 3.60          |\n| HelaBet Kenya    | 2.10      | 2.90 | 3.40          |"
       }
     ]
   }
