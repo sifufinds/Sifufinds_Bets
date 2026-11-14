@@ -1,13 +1,19 @@
 {
   "date": "2026-11-14",
-  "total": 129,
+  "total": 130,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 128,
+    "MEDIUM": 129,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "zimbabwe-equatorial-guinea-goalless-draw-betting-tips-ivory-coast",
+      "detail": "High title overlap (5 meaningful tokens) with 'zimbabwe-equatorial-guinea-goalless-draw-betting-tips-tanzania' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
