@@ -2004,25 +2004,35 @@
     "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Cameroon": {
       "slug": "cameroon-betting-tips-zimbabwe-equatorial-guinea-goalless-draw",
       "posted_at": "2026-11-14T06:01:01.197864+00:00"
+    },
+    "How to Watch Argentina vs. Uruguay Online for Free betting tips South Africa": {
+      "slug": "how-to-watch-argentina-vs-uruguay-online-for-free-betting-tips-south-africa",
+      "posted_at": "2026-11-14T10:23:51.506146+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-14T08:05:25.333062+00:00",
-    "candidates_available": 326,
+    "checked_at": "2026-11-14T10:23:55.122051+00:00",
+    "candidates_available": 334,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Senegal",
-        "country": "Senegal",
+        "keyword": "Argentina beaten by Uruguay first game since Messi betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, the Autorité de Régulation des Télécommunications et des Postes regulates all betting operators in Senegal, ensuring they comply with local laws and consumer protection standards.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 672 words (minimum 1000); no '## FAQ' section heading found"
       },
       {
-        "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Zimbabwe",
-        "country": "Zimbabwe",
+        "keyword": "Jesus Owono Goalkeeper involved fatal collision De Miguel betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 813 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'To ensure a bookmaker is safe to use in Ghana, check the bookmaker's licensing information and read reviews from other bettors.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "How to Watch Argentina vs. Uruguay Online for Free betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "how-to-watch-argentina-vs-uruguay-online-for-free-betting-tips-south-africa"
       }
     ]
   }
