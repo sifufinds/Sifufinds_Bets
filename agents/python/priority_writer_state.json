@@ -2008,31 +2008,39 @@
     "How to Watch Argentina vs. Uruguay Online for Free betting tips South Africa": {
       "slug": "how-to-watch-argentina-vs-uruguay-online-for-free-betting-tips-south-africa",
       "posted_at": "2026-11-14T10:23:51.506146+00:00"
+    },
+    "Jesus Owono Goalkeeper involved fatal collision De Miguel betting tips Ghana": {
+      "slug": "jesus-owono-goalkeeper-fatal-collision-betting-tips-ghana",
+      "posted_at": "2026-11-14T13:26:24.842957+00:00"
+    },
+    "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Tanzania": {
+      "slug": "elim-can-2027-algerie-togo-tv-channels-betting-tips-tanzania",
+      "posted_at": "2026-11-14T13:26:41.301786+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-14T10:23:55.122051+00:00",
-    "candidates_available": 334,
+    "checked_at": "2026-11-14T13:34:10.780838+00:00",
+    "candidates_available": 332,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Argentina beaten by Uruguay first game since Messi betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: only 672 words (minimum 1000); no '## FAQ' section heading found"
-      },
       {
         "keyword": "Jesus Owono Goalkeeper involved fatal collision De Miguel betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: only 813 words (minimum 1000); fewer than 3 '### ' FAQ question headings found; found a heading with 4+ '#' characters — FAQ questions must use exactly '### '; final line was 'To ensure a bookmaker is safe to use in Ghana, check the bookmaker's licensing information and read reviews from other bettors.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "jesus-owono-goalkeeper-fatal-collision-betting-tips-ghana"
       },
       {
-        "keyword": "How to Watch Argentina vs. Uruguay Online for Free betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Tanzania",
+        "country": "Tanzania",
         "result": "written",
-        "slug": "how-to-watch-argentina-vs-uruguay-online-for-free-betting-tips-south-africa"
+        "slug": "elim-can-2027-algerie-togo-tv-channels-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Egypt",
+        "country": "Egypt",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }

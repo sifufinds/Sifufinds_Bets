@@ -878,28 +878,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-14T10:37:22.708012+00:00",
-    "candidates_available": 361,
+    "checked_at": "2026-11-14T13:42:07.480202+00:00",
+    "candidates_available": 360,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Argentina beaten by Uruguay first game since Messi betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "argentina-uruguay-betting-tips-nigeria"
-      },
       {
         "keyword": "Jesus Owono Goalkeeper involved fatal collision De Miguel betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Sportybet Ghana is offering a 150% Welcome Bonus – Up to GH₵500 Free Bet.; Betway Ghana is offering a 50% Welcome Bonus – Up to GH₵200.; As of now, Sportybet Ghana is offering the following odds: Accra Hearts of Oak: 1.80, Asante Kotoko: 2.20; On the other hand, Betway Ghana is offering the following odds: Accra Hearts of Oak: 1.90, Asante Kotoko: 2.10"
-      },
-      {
-        "keyword": "How to Watch Argentina vs. Uruguay Online for Free betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; final line was '*SifuFinds is not responsible for any losses incurred from betting. Always bet responsibly and within your means. 18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
