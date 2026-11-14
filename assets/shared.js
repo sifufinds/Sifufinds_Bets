@@ -1291,6 +1291,15 @@ document.addEventListener('DOMContentLoaded',function(){
     gtag('config',GA_ID,{send_page_view:true});
   }
 
+  // ── Google Tag Manager container (loaded once, site-wide, from shared.js) ──
+  var GTM_ID='GTM-59D4C86D';
+  if(!document.querySelector('script[src*="googletagmanager.com/gtm.js"]')){
+    window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+    var gtm=document.createElement('script');
+    gtm.async=true;gtm.src='https://www.googletagmanager.com/gtm.js?id='+GTM_ID;
+    document.head.appendChild(gtm);
+  }
+
   // ── GoatCounter (lightweight page views + custom events → goatcounter.com) ──
   if(!document.querySelector('script[data-goatcounter]')){
     var gcs=document.createElement('script');
