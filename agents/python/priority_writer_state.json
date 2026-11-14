@@ -2007,28 +2007,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-14T06:12:22.500553+00:00",
-    "candidates_available": 327,
+    "checked_at": "2026-11-14T08:05:25.333062+00:00",
+    "candidates_available": 326,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Cameroon",
-        "country": "Cameroon",
-        "result": "written",
-        "slug": "cameroon-betting-tips-zimbabwe-equatorial-guinea-goalless-draw"
-      },
       {
         "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Senegal",
         "country": "Senegal",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Orange Money and Wave are accepted by all three top bookmakers, making mobile money a convenient deposit method for Senegalese bettors.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Yes, the Autorité de Régulation des Télécommunications et des Postes regulates all betting operators in Senegal, ensuring they comply with local laws and consumer protection standards.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Zimbabwe/Equatorial Guinea Zimbabwe Held Goalless Draw By Equatorial betting tips Zimbabwe",
         "country": "Zimbabwe",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Consider factors like bonus amount, wagering requirements, and payment methods. **Melbet Zimbabwe** is ideal for high rollers, while **1xBet Zimbabwe** and **Paripesa Zimbabwe** offer excellent value for mid-range deposits.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
