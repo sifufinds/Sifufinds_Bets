@@ -2020,23 +2020,27 @@
     "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Egypt": {
       "slug": "elim-can-2027-algerie-togo-tv-betting-tips-egypt",
       "posted_at": "2026-11-14T15:26:14.999064+00:00"
+    },
+    "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Morocco": {
+      "slug": "elim-can-2027-algerie-togo-chaines-tv-betting-tips-morocco",
+      "posted_at": "2026-11-14T17:26:13.880725+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-14T15:34:00.838261+00:00",
-    "candidates_available": 330,
+    "checked_at": "2026-11-14T17:33:54.753203+00:00",
+    "candidates_available": 329,
     "attempted": 3,
     "written": 1,
     "attempts": [
       {
-        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Egypt",
-        "country": "Egypt",
-        "result": "written",
-        "slug": "elim-can-2027-algerie-togo-tv-betting-tips-egypt"
-      },
-      {
         "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Morocco",
         "country": "Morocco",
+        "result": "written",
+        "slug": "elim-can-2027-algerie-togo-chaines-tv-betting-tips-morocco"
+      },
+      {
+        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Uganda",
+        "country": "Uganda",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
