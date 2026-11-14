@@ -2027,7 +2027,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-14T19:10:28.323415+00:00",
+    "checked_at": "2026-11-14T21:16:35.792862+00:00",
     "candidates_available": 328,
     "attempted": 3,
     "written": 0,
@@ -2035,6 +2035,12 @@
       {
         "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Uganda",
         "country": "Uganda",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Withdrawal times vary by operator and payment method. For MTN MoMo or Airtel Money, funds are usually credited within 24 hours. Card withdrawals may take up to 5 business days, and Bank Transfer withdrawals can take up to 7 days, depending on the bank’s processing times.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Zambia",
+        "country": "Zambia",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
