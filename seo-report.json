@@ -1,13 +1,37 @@
 {
   "date": "2026-11-14",
-  "total": 130,
+  "total": 134,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 4,
     "MEDIUM": 129,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "how-to-watch-argentina-vs-uruguay-online-for-free-betting-tips-south-africa",
+      "detail": "Title 76 chars (max 60): 'How to Watch Argentina vs. Uruguay Online for Free betting tips South '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "liverpool-vs-manchester-united-preview-african-betting",
+      "detail": "Title 62 chars (max 60): 'Liverpool vs Manchester United Preview: African Betting Angles'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "wta-finals-svitolina-sabalenka-upset-noskova-preview",
+      "detail": "Excerpt 157 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "liverpool-vs-manchester-united-preview-african-betting",
+      "detail": "Excerpt 210 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
