@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T18:18:14.897478+00:00",
+  "updated_at": "2026-11-14T18:39:52.127618+00:00",
   "items": [
     {
       "category": "football",
@@ -18,36 +18,68 @@
       "published_at": "2026-11-14T19:22:50+00:00"
     },
     {
+      "category": "sportnews",
+      "label": "\ud83d\udcf0 NEWS",
+      "text": "Kyle Whittingham replacements: Ranking Michigan's best candidates from Bob Chesney to Brian Kelly",
+      "source": "Sporting News",
+      "url": "https://www.sportingnews.com/us/ncaa-football/michigan/news/kyle-whittingham-replacements-michigan-candidates-jason-eck/31e29a6f934cde3f20e8f1bd",
+      "published_at": "2026-11-14T18:37:54+00:00"
+    },
+    {
       "category": "rugby",
       "label": "\ud83c\udfc9 RUGBY",
-      "text": "England v Japan: Nations Championship rugby union \u2013 live",
+      "text": "Five-try Will Joseph equals record as England steamroller Japan",
+      "source": "Guardian Rugby",
+      "url": "https://www.theguardian.com/sport/2026/nov/14/england-japan-nations-championship-match-report",
+      "published_at": "2026-11-14T18:39:16+00:00"
+    },
+    {
+      "category": "rugby",
+      "label": "\ud83c\udfc9 RUGBY",
+      "text": "England 78-15 Japan: Nations Championship rugby union \u2013 live",
       "source": "Guardian Rugby",
       "url": "https://www.theguardian.com/sport/live/2026/nov/14/england-v-japan-nations-championship-rugby-union-live",
-      "published_at": "2026-11-14T18:16:15+00:00"
+      "published_at": "2026-11-14T18:38:31+00:00"
     },
     {
       "category": "sportnews",
       "label": "\ud83d\udcf0 NEWS",
-      "text": "Texas high school football playoffs: Area round schedule for Houston-area teams",
-      "source": "Yahoo Sports",
-      "url": "https://sports.yahoo.com/articles/texas-high-school-football-playoffs-181049191.html",
-      "published_at": "2026-11-14T18:10:49+00:00"
-    },
-    {
-      "category": "sportnews",
-      "label": "\ud83d\udcf0 NEWS",
-      "text": "Is away goals rule used in Concacaf Nations League? Tiebreaker explained",
-      "source": "Yahoo Sports",
-      "url": "https://sports.yahoo.com/articles/away-goals-rule-used-concacaf-180957840.html",
-      "published_at": "2026-11-14T18:09:57+00:00"
+      "text": "Joseph scores record-equalling five tries as England rout Japan",
+      "source": "BBC Sport All",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/cmvg208nlw04o?at_medium=RSS&at_campaign=rss",
+      "published_at": "2026-11-14T18:31:30+00:00"
     },
     {
       "category": "basketball",
       "label": "\ud83c\udfc0 BASKETBALL",
-      "text": "LIVE: College football travel delays due to FAA ground stop",
-      "source": "Sporting News NBA",
-      "url": "https://www.sportingnews.com/us/ncaa-football/news/live-college-football-travel-delays-due-faa-ground-stop/01fee61e3a09f3c2a5fb35bd",
-      "published_at": "2026-11-14T18:07:00+00:00"
+      "text": "NFL Week 10 last-minute picks, best bets: Chiefs, Steelers take advantage of schedule quirk",
+      "source": "CBS Sports NBA",
+      "url": "https://www.cbssports.com/nfl/news/nfl-week-10-picks-best-bets-chiefs-steelers/",
+      "published_at": "2026-11-14T18:34:35+00:00"
+    },
+    {
+      "category": "basketball",
+      "label": "\ud83c\udfc0 BASKETBALL",
+      "text": "Where to watch UFC 334: Fight card, start time and more key info for tonight on Paramount+",
+      "source": "CBS Sports NBA",
+      "url": "https://www.cbssports.com/ufc/news/where-watch-ufc-334-start-time-live-stream/",
+      "published_at": "2026-11-14T18:30:47+00:00"
+    },
+    {
+      "category": "f1",
+      "label": "\ud83d\udcf0 NEWS",
+      "text": "Madrid\u2019s Formula 1 Return Delivers Economic Windfall Far Beyond Race Weekend - Speedway Digest",
+      "source": "Speedway Digest",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdktITGtGdjhqckI5cjkzT2p3WndHdTJHenBDNXVKX25IWkRCa1l3TUxEeXhodWRhWUhzWWFKbDlSUmMtOVBTQVVnN3ZXM1g3WVNqY2pYVE1iYUhrblVxbWRySThpNTN5dGVvOHVleTN5eUpnb0UyMlNiT3Bkc1h1NXRXbEoxVTVhTVA0VFRUSXBfTHVwOS00OEdtZFJfSUk0UTBNMjNDOWpjQ0FDV2Zpc3FjT1IxTTllbXRHcGN1U1RGVlpSSkREVE9GWjJ1TGxSMU40?oc=5",
+      "published_at": "2026-11-14T18:33:49+00:00"
+    },
+    {
+      "category": "f1",
+      "label": "\ud83d\udcf0 NEWS",
+      "text": "Topps Made a Card for Lewis Hamilton\u2019s 400th F1 Start. Only One Other Driver Has Done It - Yahoo Sports",
+      "source": "Yahoo Sports",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNVWhhaHVVaVRpRjMxbndRcl9iamZtaVF4OXpSdE9lQzUwTkJvU1JmNW9JblZONGprb3g1YXgyNG5rMTV2c0dkN0pabXRwWWR5Vk9fZVIwSklOVE5EaEhIemU5TTg3SS1LSUFxT3FQbUFhWGkzUVpTakVzdER4cEhZdHpiZHoxdw?oc=5",
+      "published_at": "2026-11-14T18:15:00+00:00"
     },
     {
       "category": "igaming",
@@ -58,12 +90,12 @@
       "published_at": "2026-11-14T18:07:42+00:00"
     },
     {
-      "category": "basketball",
-      "label": "\ud83c\udfc0 BASKETBALL",
-      "text": "USC vs. Indiana prediction, odds, time: Week 11 college football picks by proven model",
-      "source": "CBS Sports NBA",
-      "url": "https://www.cbssports.com/betting/news/usc-indiana-prediction-odds-game-time-2026-week-11-college-football-picks-best-bets/",
-      "published_at": "2026-11-14T18:00:48+00:00"
+      "category": "cricket",
+      "label": "\ud83c\udfcf CRICKET",
+      "text": "IND vs NZ Playing 11 Today, Live Streaming, Pitch & Weather: India tour of New Zealand 2026, 5th ODI - Cricket Addictor",
+      "source": "Cricket Addictor",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNMjVsXzNVS05UM1FEYkVWVVpwamZYWldtZEl1RnR1WkUybjcwYzZteHpwZGQ3NF9ock41N0VOOGRwWjVMU3dEUTdwZy1rd0VMTTJGVkotdy02R0txeDVKdXB0STlxUTlOaVpYUVQ3MTdUSGRISjFTNFpaeUV2ZG0tWjFUdTR3TUJJeGVhejd0QU5DN0RMdjZ1Ym50cEJ3U21fNVFvTk02N0poeEhZY3RIRWdBcjBaLVV6aDN1UWt2d21XdGhHel9yWFcyemE4ZTlfVDYyZG1PRU52Y0E?oc=5",
+      "published_at": "2026-11-14T18:04:26+00:00"
     },
     {
       "category": "cricket",
@@ -72,14 +104,6 @@
       "source": "ESPN Cricinfo",
       "url": "https://www.cricinfo.com/ci/content/story/1562647.html?ex_cid=OTC-RSS",
       "published_at": "2026-11-14T17:57:08+00:00"
-    },
-    {
-      "category": "rugby",
-      "label": "\ud83c\udfc9 RUGBY",
-      "text": "(\ud835\udc0b\ud835\udc08\ud835\udc15\ud835\udc04!!) England vs Japan Rugby Union \uff2c\uff29\uff36\uff25 \uff33\uff54\uff52\uff45\uff41\uff4d\uff49\uff4e\uff47 \uff26\uff52\uff45\uff45 \uff34\uff4f\uff44\uff41\uff59 - \u65e5\u672c\u53d6\u5f15\u6240\u30b0\u30eb\u30fc\u30d7",
-      "source": "\u65e5\u672c\u53d6\u5f15\u6240\u30b0\u30eb\u30fc\u30d7",
-      "url": "https://news.google.com/rss/articles/CBMijARBVV95cUxPVHJoamRmM1N3cVo2QWcyRVBTeHF5cXU5ZkVsdTlPR0VaVFVXY1EyeGtWMlNmNTJpcFNKWXBoQWc3ZkZxZGF0Q0h2SjBYNVFKR3BzNGJSLTcwOUhhMjNpS25ackpWa0JyY1ZyeThlYkVIdjJDMjNCRjFneGh2V3lDbU8wbmdhbGMzVnc4UFhiRUVUY1ZlZzN6enV6c0xCQ2FoOFJueW1YX09JNU1SLS1EUGJiQW1MTkZaMzlLTnpIQ1dhX0NpQ1EtVVhtWHE2TkUwSGlYU2JfVVBKOWtYY0pQSWVMMlh6ODR4U1RmRmJfN25wSXBld2ZHUHdpaFc5ZnlUY1R1M2FvTUxxeUZBWmZtZGNibzhybXU2WkpCbHRtLUg4RzhRUG1sT3JwZk53cUFfWFF0V0ltUUVDVmtkcF9YMDEtMERxWHowdXNlZ2JTZkczUkh5MmoxZm5nMUNJQkdFVnRIc20ydk9XWHpZejNGdGY4bnNrUjBKRWs2VlFGSXhzTmlEdEJhazctcmt6X1dkZFJLWEtmamRlbmh6OVpCMGZYWkJMSlRoNXJtMlRkcFdsNFgzWXZnRzhOU1hRUHduaHNKTy1NVXZJMkE1b2szaWdCczZDekI1S1c2SHVmdUtxWGJPWGNMckE1R2xfSFd6Z0NxU19fTzdzR3BQa2FkeU9pYWlhckExVHc3UQ?oc=5",
-      "published_at": "2026-11-14T17:57:31+00:00"
     },
     {
       "category": "tennis",
@@ -98,36 +122,12 @@
       "published_at": "2026-11-14T17:17:12+00:00"
     },
     {
-      "category": "cricket",
-      "label": "\ud83c\udfcf CRICKET",
-      "text": "World Test Championship set to stay nine-team contest till 2031",
-      "source": "ESPN Cricinfo",
-      "url": "https://www.cricinfo.com/ci/content/story/1562664.html?ex_cid=OTC-RSS",
-      "published_at": "2026-11-14T17:20:58+00:00"
-    },
-    {
-      "category": "f1",
-      "label": "\ud83d\udcf0 NEWS",
-      "text": "Madrid F1 race claims \u20ac544m economic impact as study reveals tourism and jobs figures - Grande Pr\u00eamio",
-      "source": "Grande Pr\u00eamio",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOVFpyaTdBUmhYTm45Z0JWQldsaGUwR1RLVlluREpXRHhabS1ScGhLVkxhSHFNblJQbW9FSHhEa2hmTERmYW5uTmdJWkduUldPUHVNd080UEVtUlFWSVZkVUxPUmhaUWswYmNsR2dMcFA2d0dWXzhPaXFhS21ublZQRTVzb0ZPdjhSenpvSlYyanNVaGdESDRKbExWcnNmVzFLM192QTBacw?oc=5",
-      "published_at": "2026-11-14T17:00:00+00:00"
-    },
-    {
-      "category": "f1",
-      "label": "\ud83d\udcf0 NEWS",
-      "text": "Topps celebrates Lewis Hamilton\u2019s 400th F1 start with limited NOW card - Yahoo Sports",
-      "source": "Yahoo Sports",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNSHhRNHo3alVjOF9aT0FKZ2lULV91Y2d3aXVpeGpJRWhLNkg3WlFQQ25lanRiWWprX0JaYTJvYVJETmlobDVvbkRnVUp4eEg4OVhicmdWQW9JLVhJQ1dKMXZwVkE3OG01Z19oSzlkOWM0cmlKSWJGQnN2VmRVcG5vMkcxTDlvVE51OFVCNDZ5bw?oc=5",
-      "published_at": "2026-11-14T16:24:23+00:00"
-    },
-    {
       "category": "boxing",
       "label": "\ud83d\udcf0 NEWS",
-      "text": "All About Muhammad Ali\u2019s 9 Kids and Where They Are Now",
-      "source": "InStyle via Yahoo News",
-      "url": "https://www.yahoo.com/entertainment/celebrity/articles/muhammad-ali-9-kids-where-160000485.html",
-      "published_at": "2026-11-14T16:18:03+00:00"
+      "text": "Could Floyd Mayweather really return to fight Ryan Garcia? | DAZN News Canada - DAZN",
+      "source": "DAZN",
+      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOMUtveHBGUGViZ3JQRkNIWVBacTJrZHU1dy11NXRROWI5SFVKMlR0SFI4UlVvLWlyYUtfeUFOM29xRHczN2NGSnVsUTlneWwxUHFfOHZLWjJOeXluSEV2RDFoOERMYk5YcGRkQl9wTFc1anV6ZGxPODdScWEwYWdHOTlSemR5UFU2ajQzRmNXSElIM3ktbmFHZHFFc3JzaEtmS204UUJGZTUxZmx5TTIyOGdnNTRjZmdFeGgxUlAtelpuQ2pOdEU4R2p2ZFYtX29nT2czUUEzb09TWEI4RndoU0p2VHdSZ1VVb3BzMGZTd3FsMXR2TmVDNENTSWhqMHJoZzVHTnRrb2tsMTli?oc=5",
+      "published_at": "2026-11-14T17:08:00+00:00"
     },
     {
       "category": "boxing",
