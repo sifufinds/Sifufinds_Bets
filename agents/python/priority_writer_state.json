@@ -2044,31 +2044,35 @@
     "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Senegal": {
       "slug": "elim-can-2027-algerie-togo-tv-betting-guide-senegal",
       "posted_at": "2026-11-15T06:05:32.999613+00:00"
+    },
+    "Top South Korean exam scorer admits using AI betting tips Nigeria": {
+      "slug": "top-south-korean-exam-scorer-ai-betting-tips-nigeria",
+      "posted_at": "2026-11-15T15:36:00.226025+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-15T10:23:58.317379+00:00",
+    "checked_at": "2026-11-15T15:51:22.966092+00:00",
     "candidates_available": 330,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Top South Korean exam scorer admits using AI betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'All the bonuses listed require you to complete the wagering within 30 days from the moment the bonus is credited to your account.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "top-south-korean-exam-scorer-ai-betting-tips-nigeria"
       },
       {
         "keyword": "TV schedule for Edmonton vs. Montreal in CFL final betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+        "reason": "quality_gate: final line was 'Yes, all bonuses come with wagering requirements. For example, the 300 % Karibu Gift has a wagering multiplier of x5 and a minimum odds requirement of 1.40. Read the full terms on the bookmaker’s site before claiming the offer.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Koogo Atia wins 2026 FNB Accra Marathon as betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: only 983 words (minimum 1000)"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
