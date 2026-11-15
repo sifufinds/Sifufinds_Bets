@@ -1,13 +1,73 @@
 {
   "date": "2026-11-15",
-  "total": 137,
+  "total": 147,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
-    "MEDIUM": 136,
+    "HIGH": 5,
+    "MEDIUM": 141,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "casino-com-kevin-craig-future-igaming-african-bettors",
+      "detail": "Title 85 chars (max 60): 'Casino.com, Kevin Craig, and the Future of iGaming: What African Betto'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "koogo-atia-wins-2026-fnb-accra-marathon-betting-tips-ghana",
+      "detail": "Title 77 chars (max 60): 'Koogo Atia Wins 2026 FNB Accra Marathon \u2013 Betting Tips & Top Ghana Boo'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "tv-schedule-edmonton-montreal-cfl-final-betting-tips-kenya",
+      "detail": "Title 71 chars (max 60): 'TV Schedule for Edmonton vs Montreal CFL Final & Betting Tips for Keny'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "casino-com-kevin-craig-future-igaming-african-bettors",
+      "detail": "Excerpt 221 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "koogo-atia-wins-2026-fnb-accra-marathon-betting-tips-ghana",
+      "detail": "Excerpt 166 chars (max 155)"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "casino-com-kevin-craig-future-igaming-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'global-igaming-updates-what-african-bettors-need-to-know' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "casino-com-kevin-craig-future-igaming-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'global-igaming-updates-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "casino-com-kevin-craig-future-igaming-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-regulatory-shifts-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "casino-com-kevin-craig-future-igaming-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-industry-updates-african-bettors' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "casino-com-kevin-craig-future-igaming-african-bettors",
+      "detail": "High title overlap (5 meaningful tokens) with 'igaming-shake-up-african-bettors' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
