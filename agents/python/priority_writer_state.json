@@ -2024,19 +2024,39 @@
     "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Morocco": {
       "slug": "elim-can-2027-algerie-togo-chaines-tv-betting-tips-morocco",
       "posted_at": "2026-11-14T17:26:13.880725+00:00"
+    },
+    "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Uganda": {
+      "slug": "elim-can-2027-algerie-togo-uganda-betting-guide",
+      "posted_at": "2026-11-15T01:50:26.095486+00:00"
+    },
+    "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Zambia": {
+      "slug": "elim-can-2027-algerie-togo-zambia-betting-guide",
+      "posted_at": "2026-11-15T01:50:42.626395+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-14T23:09:51.439981+00:00",
+    "checked_at": "2026-11-15T01:51:22.951345+00:00",
     "candidates_available": 328,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Uganda",
         "country": "Uganda",
+        "result": "written",
+        "slug": "elim-can-2027-algerie-togo-uganda-betting-guide"
+      },
+      {
+        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Zambia",
+        "country": "Zambia",
+        "result": "written",
+        "slug": "elim-can-2027-algerie-togo-zambia-betting-guide"
+      },
+      {
+        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Ethiopia",
+        "country": "Ethiopia",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Yes. For example, 1xBet’s bonus requires a 5× playthrough at minimum odds of 1.40 within 30 days. FairPari and Linebet have similar wagering terms, so review the specific conditions on the bookmaker’s site before claiming.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
