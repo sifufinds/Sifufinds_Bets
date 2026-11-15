@@ -2047,22 +2047,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-15T08:15:57.299049+00:00",
-    "candidates_available": 323,
+    "checked_at": "2026-11-15T10:23:58.317379+00:00",
+    "candidates_available": 330,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Ivory Coast",
-        "country": "Ivory Coast",
+        "keyword": "Top South Korean exam scorer admits using AI betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "quality_gate: final line was 'All the bonuses listed require you to complete the wagering within 30 days from the moment the bonus is credited to your account.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Zimbabwe",
-        "country": "Zimbabwe",
+        "keyword": "TV schedule for Edmonton vs. Montreal in CFL final betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+      },
+      {
+        "keyword": "Koogo Atia wins 2026 FNB Accra Marathon as betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: only 983 words (minimum 1000)"
       }
     ]
   }
