@@ -2048,31 +2048,39 @@
     "Top South Korean exam scorer admits using AI betting tips Nigeria": {
       "slug": "top-south-korean-exam-scorer-ai-betting-tips-nigeria",
       "posted_at": "2026-11-15T15:36:00.226025+00:00"
+    },
+    "TV schedule for Edmonton vs. Montreal in CFL final betting tips Kenya": {
+      "slug": "tv-schedule-edmonton-montreal-cfl-final-betting-tips-kenya",
+      "posted_at": "2026-11-15T17:35:50.674117+00:00"
+    },
+    "Koogo Atia wins 2026 FNB Accra Marathon as betting tips Ghana": {
+      "slug": "koogo-atia-wins-2026-fnb-accra-marathon-betting-tips-ghana",
+      "posted_at": "2026-11-15T17:36:12.957679+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-15T15:51:22.966092+00:00",
-    "candidates_available": 330,
+    "checked_at": "2026-11-15T17:46:59.081006+00:00",
+    "candidates_available": 329,
     "attempted": 3,
-    "written": 1,
+    "written": 2,
     "attempts": [
-      {
-        "keyword": "Top South Korean exam scorer admits using AI betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "top-south-korean-exam-scorer-ai-betting-tips-nigeria"
-      },
       {
         "keyword": "TV schedule for Edmonton vs. Montreal in CFL final betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, all bonuses come with wagering requirements. For example, the 300 % Karibu Gift has a wagering multiplier of x5 and a minimum odds requirement of 1.40. Read the full terms on the bookmaker’s site before claiming the offer.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "tv-schedule-edmonton-montreal-cfl-final-betting-tips-kenya"
       },
       {
         "keyword": "Koogo Atia wins 2026 FNB Accra Marathon as betting tips Ghana",
         "country": "Ghana",
+        "result": "written",
+        "slug": "koogo-atia-wins-2026-fnb-accra-marathon-betting-tips-ghana"
+      },
+      {
+        "keyword": "Ex-Bucs outcast seals US league title hat-trick betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 871 words (minimum 1000); final line was 'Contact the bookmaker’s customer support team and provide necessary documentation to resolve withdrawal issues promptly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
