@@ -1,13 +1,31 @@
 {
   "date": "2026-11-15",
-  "total": 134,
+  "total": 137,
   "by_severity": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "MEDIUM": 133,
+    "MEDIUM": 136,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "elim-can-2027-algerie-togo-tv-betting-tips-cameroon",
+      "detail": "High title overlap (5 meaningful tokens) with 'elim-can-2027-algerie-togo-uganda-betting-guide' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "elim-can-2027-algerie-togo-tv-betting-tips-cameroon",
+      "detail": "High title overlap (5 meaningful tokens) with 'elim-can-2027-algerie-togo-tv-betting-tips-egypt' \u2014 consider noindex"
+    },
+    {
+      "severity": "MEDIUM",
+      "check": "potential_duplicate",
+      "page": "elim-can-2027-algerie-togo-tv-betting-tips-cameroon",
+      "detail": "High title overlap (5 meaningful tokens) with 'elim-can-2027-algerie-togo-tv-channels-betting-tips-tanzania' \u2014 consider noindex"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
