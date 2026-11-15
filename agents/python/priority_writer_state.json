@@ -2059,28 +2059,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-15T17:46:59.081006+00:00",
-    "candidates_available": 329,
+    "checked_at": "2026-11-15T21:17:49.600466+00:00",
+    "candidates_available": 327,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "TV schedule for Edmonton vs. Montreal in CFL final betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "tv-schedule-edmonton-montreal-cfl-final-betting-tips-kenya"
-      },
-      {
-        "keyword": "Koogo Atia wins 2026 FNB Accra Marathon as betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "koogo-atia-wins-2026-fnb-accra-marathon-betting-tips-ghana"
-      },
       {
         "keyword": "Ex-Bucs outcast seals US league title hat-trick betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: only 871 words (minimum 1000); final line was 'Contact the bookmaker’s customer support team and provide necessary documentation to resolve withdrawal issues promptly.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'An NGB licence means the operator is monitored by the National Gambling Board, which enforces consumer protection standards, requires regular audits and provides a dispute‑resolution pathway for players. This adds an extra layer of confidence compared with offshore licences.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Tanzania",
+        "country": "Tanzania",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 463)"
+      },
+      {
+        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Uganda",
+        "country": "Uganda",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
