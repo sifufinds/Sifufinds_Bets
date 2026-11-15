@@ -2056,31 +2056,39 @@
     "Koogo Atia wins 2026 FNB Accra Marathon as betting tips Ghana": {
       "slug": "koogo-atia-wins-2026-fnb-accra-marathon-betting-tips-ghana",
       "posted_at": "2026-11-15T17:36:12.957679+00:00"
+    },
+    "Ex-Bucs outcast seals US league title hat-trick betting tips South Africa": {
+      "slug": "ex-bucs-outcast-us-league-title-hat-trick-betting-tips-south-africa",
+      "posted_at": "2026-11-15T23:00:25.352746+00:00"
+    },
+    "Classement FIFA le Maroc dépasse le Portugal et betting tips Tanzania": {
+      "slug": "maroc-surpasses-portugal-fifa-rankings-betting-tips-tanzania",
+      "posted_at": "2026-11-15T23:00:40.604186+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-15T21:17:49.600466+00:00",
+    "checked_at": "2026-11-15T23:13:38.424438+00:00",
     "candidates_available": 327,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Ex-Bucs outcast seals US league title hat-trick betting tips South Africa",
         "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'An NGB licence means the operator is monitored by the National Gambling Board, which enforces consumer protection standards, requires regular audits and provides a dispute‑resolution pathway for players. This adds an extra layer of confidence compared with offshore licences.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "ex-bucs-outcast-us-league-title-hat-trick-betting-tips-south-africa"
       },
       {
         "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Tanzania",
         "country": "Tanzania",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 463)"
+        "result": "written",
+        "slug": "maroc-surpasses-portugal-fifa-rankings-betting-tips-tanzania"
       },
       {
         "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Uganda",
         "country": "Uganda",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Research Morocco’s recent form, analyze opponent strengths, and take advantage of special promotions from bookmakers. Consider using cash-out options to secure profits when available.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }

@@ -886,7 +886,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-15T21:37:41.318733+00:00",
+    "checked_at": "2026-11-15T23:30:42.219337+00:00",
     "candidates_available": 359,
     "attempted": 3,
     "written": 0,
@@ -895,11 +895,17 @@
         "keyword": "Top South Korean exam scorer admits using AI betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: No, AI-generated betting tips cannot guarantee a win. While AI algorithms can process vast amounts of data and identify patterns, they are not foolproof. The outcome of a bet depends on various factors, including luck and unforeseen events.; Here's a comparison of some popular bookmakers and their offers:; Please note that odds are subject to change and may vary across bookmakers. Always check the latest odds on SifuFinds before placing a bet.; Yes, AI betting tips are legal in Nigeria, as long as they are provided by licensed bookmakers and do not violate any NLRC regulations.; Nigerian bettors can use various payment methods, including OPay, PalmPay, Bank Transfer, Visa, Mastercard, and USSD."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 425)"
       },
       {
         "keyword": "Koogo Atia wins 2026 FNB Accra Marathon as betting tips Ghana",
         "country": "Ghana",
+        "result": "failed",
+        "reason": "fact_check: With David Nakousi and Ishmael Fialor finishing second and third respectively, the race showcased Ghana’s growing talent in marathon events.; While specific odds for the FNB Accra Marathon may vary, these bookmakers typically offer competitive prices on athletics events.; For instance, **Sportybet Ghana** offers a 150% welcome bonus up to GH₵500, making it an attractive option for new bettors.; Betway Ghana**, on the other hand, provides a 50% welcome bonus up to GH₵200, while **22Bet Ghana** offers a 100% first deposit bonus up to GH₵1,491.; 1xBet Ghana; Melbet Ghana; visit **sifufinds.com/odds/** to compare and find the best value for your bets."
+      },
+      {
+        "keyword": "Ex-Bucs outcast seals US league title hat-trick betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
