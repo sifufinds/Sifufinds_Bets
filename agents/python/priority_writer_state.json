@@ -2032,31 +2032,35 @@
     "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Zambia": {
       "slug": "elim-can-2027-algerie-togo-zambia-betting-guide",
       "posted_at": "2026-11-15T01:50:42.626395+00:00"
+    },
+    "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Ethiopia": {
+      "slug": "elim-can-2027-algeria-togo-tv-betting-ethiopia",
+      "posted_at": "2026-11-15T03:50:38.395981+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-15T01:51:22.951345+00:00",
-    "candidates_available": 328,
+    "checked_at": "2026-11-15T03:51:52.454037+00:00",
+    "candidates_available": 326,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Uganda",
-        "country": "Uganda",
-        "result": "written",
-        "slug": "elim-can-2027-algerie-togo-uganda-betting-guide"
-      },
-      {
-        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Zambia",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "elim-can-2027-algerie-togo-zambia-betting-guide"
-      },
       {
         "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Ethiopia",
         "country": "Ethiopia",
+        "result": "written",
+        "slug": "elim-can-2027-algeria-togo-tv-betting-ethiopia"
+      },
+      {
+        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Ivory Coast",
+        "country": "Ivory Coast",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes. For example, 1xBet’s bonus requires a 5× playthrough at minimum odds of 1.40 within 30 days. FairPari and Linebet have similar wagering terms, so review the specific conditions on the bookmaker’s site before claiming.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Enter the code SIFUKAI during the deposit process; the bonus will be applied automatically once the deposit is confirmed.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Cameroon",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Mobile money through Orange Money or MTN MoMo offers instant deposits and withdrawals, making them the quickest choice for most Cameroonian bettors. Bank transfers are slower but can accommodate larger sums.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
