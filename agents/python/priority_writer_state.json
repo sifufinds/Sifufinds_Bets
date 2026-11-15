@@ -2047,28 +2047,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-15T06:05:36.109655+00:00",
-    "candidates_available": 325,
+    "checked_at": "2026-11-15T08:15:57.299049+00:00",
+    "candidates_available": 323,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Ivory Coast",
         "country": "Ivory Coast",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Yes, 1xBet Côte d'Ivoire, 22Bet Côte d'Ivoire and FairPari Ivory Coast all hold an ARJEL CI licence, which ensures they meet strict standards for player protection, fund segregation and fair play.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
       },
       {
-        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Cameroon",
-        "country": "Cameroon",
-        "result": "written",
-        "slug": "elim-can-2027-algerie-togo-tv-betting-tips-cameroon"
-      },
-      {
-        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Senegal",
-        "country": "Senegal",
-        "result": "written",
-        "slug": "elim-can-2027-algerie-togo-tv-betting-guide-senegal"
+        "keyword": "Elim CAN 2027 Algérie – Togo, Chaînes Tv, betting tips Zimbabwe",
+        "country": "Zimbabwe",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
