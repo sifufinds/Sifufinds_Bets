@@ -2064,31 +2064,35 @@
     "Classement FIFA le Maroc dépasse le Portugal et betting tips Tanzania": {
       "slug": "maroc-surpasses-portugal-fifa-rankings-betting-tips-tanzania",
       "posted_at": "2026-11-15T23:00:40.604186+00:00"
+    },
+    "Classement FIFA le Maroc dépasse le Portugal et betting tips Uganda": {
+      "slug": "maroc-5e-classement-fifa-betting-tips-uganda",
+      "posted_at": "2026-11-16T01:00:09.172578+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-15T23:13:38.424438+00:00",
-    "candidates_available": 327,
+    "checked_at": "2026-11-16T01:22:56.533349+00:00",
+    "candidates_available": 325,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Ex-Bucs outcast seals US league title hat-trick betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "ex-bucs-outcast-us-league-title-hat-trick-betting-tips-south-africa"
-      },
-      {
-        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "maroc-surpasses-portugal-fifa-rankings-betting-tips-tanzania"
-      },
       {
         "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Uganda",
         "country": "Uganda",
+        "result": "written",
+        "slug": "maroc-5e-classement-fifa-betting-tips-uganda"
+      },
+      {
+        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Zambia",
+        "country": "Zambia",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Research Morocco’s recent form, analyze opponent strengths, and take advantage of special promotions from bookmakers. Consider using cash-out options to secure profits when available.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: only 764 words (minimum 1000); no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Ethiopia",
+        "country": "Ethiopia",
+        "result": "failed",
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
