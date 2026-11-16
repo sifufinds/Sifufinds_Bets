@@ -2068,19 +2068,39 @@
     "Classement FIFA le Maroc dépasse le Portugal et betting tips Uganda": {
       "slug": "maroc-5e-classement-fifa-betting-tips-uganda",
       "posted_at": "2026-11-16T01:00:09.172578+00:00"
+    },
+    "Classement FIFA le Maroc dépasse le Portugal et betting tips Zambia": {
+      "slug": "maroc-5e-classement-fifa-betting-tips-zambia",
+      "posted_at": "2026-11-16T03:49:08.299236+00:00"
+    },
+    "Classement FIFA le Maroc dépasse le Portugal et betting tips Ivory Coast": {
+      "slug": "morocco-5th-fifa-ranking-betting-tips-ivory-coast",
+      "posted_at": "2026-11-16T03:49:57.142551+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-16T01:55:44.943034+00:00",
+    "checked_at": "2026-11-16T03:50:01.820673+00:00",
     "candidates_available": 324,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Zambia",
         "country": "Zambia",
+        "result": "written",
+        "slug": "maroc-5e-classement-fifa-betting-tips-zambia"
+      },
+      {
+        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Ethiopia",
+        "country": "Ethiopia",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'All the bookmakers mentioned give access to deposit limits, session timers and self‑exclusion tools in the account settings. You can also contact the National Lottery Administration for additional support and to join the national self‑exclusion register.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Ivory Coast",
+        "country": "Ivory Coast",
+        "result": "written",
+        "slug": "morocco-5th-fifa-ranking-betting-tips-ivory-coast"
       }
     ]
   }
