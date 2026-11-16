@@ -2079,28 +2079,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-16T03:50:01.820673+00:00",
-    "candidates_available": 324,
+    "checked_at": "2026-11-16T05:50:22.249306+00:00",
+    "candidates_available": 322,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Zambia",
-        "country": "Zambia",
-        "result": "written",
-        "slug": "maroc-5e-classement-fifa-betting-tips-zambia"
-      },
       {
         "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Ethiopia",
         "country": "Ethiopia",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All the bookmakers mentioned give access to deposit limits, session timers and self‑exclusion tools in the account settings. You can also contact the National Lottery Administration for additional support and to join the national self‑exclusion register.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Les paris à handicap positif (Maroc -1) et les paris combinés incluant le Maroc dans la CAF Confederation Cup offrent souvent un bon rapport risque‑gain, surtout lorsque les cotes sont ajustées suite à son nouveau rang.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Ivory Coast",
-        "country": "Ivory Coast",
-        "result": "written",
-        "slug": "morocco-5th-fifa-ranking-betting-tips-ivory-coast"
+        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Cameroon",
+        "country": "Cameroon",
+        "result": "failed",
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+      },
+      {
+        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Senegal",
+        "country": "Senegal",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'If you feel you may be developing a gambling problem, contact the operator’s support team or seek professional help from a local gambling helpline. Use the self‑exclusion or deposit‑limit tools provided by ARTP‑licensed bookmakers.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
