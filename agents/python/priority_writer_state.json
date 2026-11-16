@@ -2079,28 +2079,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-16T05:50:22.249306+00:00",
-    "candidates_available": 322,
+    "checked_at": "2026-11-16T09:34:37.646790+00:00",
+    "candidates_available": 329,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Ethiopia",
-        "country": "Ethiopia",
+        "keyword": "COP31 Nigeria won’t sacrifice development energy transition – betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Les paris à handicap positif (Maroc -1) et les paris combinés incluant le Maroc dans la CAF Confederation Cup offrent souvent un bon rapport risque‑gain, surtout lorsque les cotes sont ajustées suite à son nouveau rang.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Cameroon",
-        "country": "Cameroon",
-        "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
-      },
-      {
-        "keyword": "Classement FIFA le Maroc dépasse le Portugal et betting tips Senegal",
-        "country": "Senegal",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'If you feel you may be developing a gambling problem, contact the operator’s support team or seek professional help from a local gambling helpline. Use the self‑exclusion or deposit‑limit tools provided by ARTP‑licensed bookmakers.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
