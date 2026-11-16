@@ -1889,3 +1889,11 @@ While following up on the blog-pipeline work above (checking whether the 3-5 pos
 - **Market Intelligence**: Fabricated Content Fix failed again after a 3h run (06:44–09:50). Priority Content still in-progress after 4+ hours (started 05:58). Retry Safety Net running 1h+ (started 08:45). Workflow Watchdog skipped 14 times — confirmed not matching these failure types.
 - **Market Intelligence**: Core site infrastructure all healthy: Deploy to Hostinger (4 successes), SEO Doctor, Site Doctor, Site Monitor, Brand Bonus Scraper, SERP Monitor, Keyword Research, Trending Keywords, Blog Self-Heal, Content Backfill, Country Localisation, Telegram Brand Offers, Transfer News Bot, Update Countries Live Data, Update Football Data, Leagues, 15-min Scrape, RapidWombat Import all succeeded.
 - **Code Patterns**: Daily reporter issue #34 created and closed via REST API. Same pattern confirmed: `gh api repos/{owner}/{repo}/issues --method POST`, then PATCH close, then POST comment. First day with X Twitter partial recovery.
+
+### 2026-11-16 — Daily Reporter (10:00 UTC run)
+- **Market Intelligence**: 100 workflow runs in the last 24h. ✅ Success: 63, ❌ Failed: 16, ⚠️ Cancelled/Skipped: 20, 🔄 In Progress: 1 (Priority Content still running at time of report).
+- **Alert**: X (Twitter) Posts failed 13× today (00:33–08:39 UTC) — 5th consecutive day of multi-daily failures (11-05, 11-07, 11-13, 11-15, 11-16). No X successes in this 24h window (1 success only at 02:07 and 00:56 UTC — 2 successes total). Root cause still unresolved despite multi-week pattern.
+- **Alert**: Breaking News Bot failed 3× today (07:26–08:51 UTC) — 5th consecutive day of daily failures. Same multi-week unresolved pattern.
+- **Alert**: Fabricated Content Fix ran 3h (06:49–09:48) before failing — 3rd consecutive day with this hung-run pattern (11-13, 11-15, 11-16). Workflow likely needs a timeout added.
+- **Core infrastructure healthy**: Deploy to Hostinger, SEO Doctor, Site Doctor, Site Monitor, Blog Self-Heal, Brand Bonus Scraper, SERP Monitor, Content Backfill, Country Localisation, RapidWombat Import all succeeded.
+- **Code Patterns**: Daily reporter issue #36 created and closed via REST API (`gh api repos/{owner}/{repo}/issues --method POST`, PATCH close, POST comment). No changes to pattern from prior runs.
