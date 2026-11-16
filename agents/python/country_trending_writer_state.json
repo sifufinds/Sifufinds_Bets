@@ -886,7 +886,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-16T01:33:01.011379+00:00",
+    "checked_at": "2026-11-16T02:09:03.843436+00:00",
     "candidates_available": 359,
     "attempted": 3,
     "written": 0,
@@ -895,19 +895,19 @@
         "keyword": "Top South Korean exam scorer admits using AI betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: 22Bet Nigeria offers a 100 % first deposit bonus up to ₦207,500; 1xBet Nigeria provides a massive 300 % first deposit boost up to ₦1,200,000; WinWinBet Nigeria often posts slightly tighter pricing on popular leagues compared with 22Bet.; OPay and PalmPay dominate the instant deposit scene, while Bank Transfer remains a reliable fallback for larger sums.; Visa and Mastercard give you flexibility to fund accounts from abroad, and USSD codes still serve users without smartphones.; The NLRC has the authority to investigate unfair practices, including the use of unauthorised predictive tools that manipulate betting outcomes.; The regulator’s focus is primarily on match‑fixing, any activity that threatens the integrity of the betting market can attract penalties, including account suspension.; The Korean case shows that when AI is used without oversight, it can breach rules – whether in an exam hall or a betting market – and attract serious consequences."
+        "reason": "fact_check: The 100% First Deposit Bonus offered by 22Bet Nigeria, worth up to ₦207,500, is a popular choice among Nigerian bettors. Similarly, 1xBet Nigeria's 300% First Deposit Bonus, worth up to ₦1,200,000, is a major draw."
       },
       {
         "keyword": "Koogo Atia wins 2026 FNB Accra Marathon as betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 409)"
+        "reason": "fact_check: At the time of writing, Sportybet Ghana had the lowest odds for Koogo Atia to win the marathon, with 1.50. In contrast, 22Bet Ghana had the highest odds, at 2.00."
       },
       {
         "keyword": "Ex-Bucs outcast seals US league title hat-trick betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: only 556 words (minimum 600)"
       }
     ]
   }
