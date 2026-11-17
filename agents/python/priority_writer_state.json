@@ -2087,16 +2087,28 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-17T08:37:36.690427+00:00",
-    "candidates_available": 328,
+    "checked_at": "2026-11-17T15:54:00.226230+00:00",
+    "candidates_available": 332,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "Cheetah FC stun Wonder FC win 2026/2027 Phygital betting tips Ghana",
+        "keyword": "Euromatch NPFL Abia Government Dissolves Enyimba Management, Technical betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'OPay, PalmPay, Bank Transfer, Visa, Mastercard and MTN MoMo are accepted by the majority of NLRC‑licensed bookmakers. Choose the method that offers the quickest processing time for live betting.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Why Bafana Bafana head coach Pitso Mosimane has betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
+      },
+      {
+        "keyword": "Amputee World Cup Black Challenge massacre Iraq 6-0, betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found; final line was 'Ready to place your first bet? Visit sifufinds.com to explore the best offers and start betting responsibly today. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
