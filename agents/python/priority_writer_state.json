@@ -2119,28 +2119,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-18T19:11:13.880647+00:00",
-    "candidates_available": 331,
+    "checked_at": "2026-11-18T21:17:54.304404+00:00",
+    "candidates_available": 330,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Amputee World Cup Opentil rallies Black Challenge USA betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Once the wagering requirement is fulfilled, any remaining winnings become cash in your account and can be withdrawn or used for further bets, subject to the operator’s withdrawal policy.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "Bafana complete FIFA rankings see-saw swing betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "bafana-fifa-rankings-see-swing-betting-tips-south-africa"
-      },
-      {
-        "keyword": "Elim. CAN 2027 – Sébastien Desabre (Coach RDC) betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'The board ensures that licensed operators keep player funds in segregated accounts, offer transparent terms and provide responsible‑gaming tools such as deposit limits and self‑exclusion options.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
