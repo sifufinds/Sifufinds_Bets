@@ -894,7 +894,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-17T20:05:13.994785+00:00",
+    "checked_at": "2026-11-18T00:00:20.649853+00:00",
     "candidates_available": 357,
     "attempted": 3,
     "written": 0,
@@ -903,19 +903,13 @@
         "keyword": "Why Bafana Bafana head coach Pitso Mosimane has betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a heading with 4+ '#' characters — FAQ questions must use exactly '### '"
+        "reason": "fact_check: SportPesa Kenya offers the best value for a South Africa win, while 1xBet Kenya provides higher odds for a Kenya victory.; For Both Teams to Score, 22Bet Kenya edges out the competition.; SportPesa Kenya: 300% Welcome Karibu Gift on First Deposit.; 22Bet Kenya: 100% First Deposit Bonus up to KSh 19,000.; 1xBet Kenya: 200% First Deposit Bonus up to KSh 20,000.; Melbet Kenya: 300% First Deposit Bonus up to KSh 1,500.; HelaBet Kenya: 100% Welcome Bonus up to KSh 5,000.; Based on our comparison, SportPesa Kenya offers competitive odds for a South Africa win, while 1xBet Kenya provides better value for a Kenya victory.; M-Pesa, Airtel Money, and Equitel are the most widely used payment methods among Kenyan bettors, offering convenience and security."
       },
       {
         "keyword": "Amputee World Cup Black Challenge massacre Iraq 6-0, betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found"
-      },
-      {
-        "keyword": "Benni Bafana AFCON fate 'Nothing do me' betting tips South Africa",
-        "country": "South Africa",
-        "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
