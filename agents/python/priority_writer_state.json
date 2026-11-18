@@ -2103,7 +2103,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-17T23:39:05.697794+00:00",
+    "checked_at": "2026-11-18T01:40:01.551036+00:00",
     "candidates_available": 328,
     "attempted": 3,
     "written": 0,
@@ -2111,6 +2111,12 @@
       {
         "keyword": "Elim. CAN 2027 Où suivre le match Ethiopie betting tips Tanzania",
         "country": "Tanzania",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Yes, SportPesa, 22Bet, 1xBet, FairPari, and Betway hold a Gaming Board of Tanzania licence. WinWinBet operates under a Curaçao licence that is not independently verified by the GBT, which may carry higher risk.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Cheetah FC stun Wonder FC win 2026/2027 Phygital betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
