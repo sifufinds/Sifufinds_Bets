@@ -1,13 +1,25 @@
 {
   "date": "2026-11-18",
-  "total": 136,
+  "total": 138,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nba-college-basketball-buzz-arizona-uconn-michigan-state-pistons",
+      "detail": "Title 82 chars (max 60): 'NBA & College Basketball Buzz: Arizona\u2011UConn, Michigan State Upset & P'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nba-college-basketball-buzz-arizona-uconn-michigan-state-pistons",
+      "detail": "Excerpt 189 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
