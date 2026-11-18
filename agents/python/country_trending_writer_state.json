@@ -894,14 +894,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-18T09:24:51.268281+00:00",
-    "candidates_available": 357,
+    "checked_at": "2026-11-18T11:23:29.847910+00:00",
+    "candidates_available": 358,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
         "keyword": "Why Bafana Bafana head coach Pitso Mosimane has betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 449)"
+      },
+      {
+        "keyword": "England eyes Nations League finals hosting rights betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }

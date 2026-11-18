@@ -2111,19 +2111,25 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-18T09:14:49.960794+00:00",
-    "candidates_available": 327,
+    "checked_at": "2026-11-18T11:14:47.962968+00:00",
+    "candidates_available": 332,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
-        "keyword": "Cheetah FC stun Wonder FC win 2026/2027 Phygital betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "cheetah-fc-wonder-fc-phygital-betting-tips-ghana"
+        "keyword": "England eyes Nations League finals hosting rights betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'You must place accumulator bets that total five times the bonus amount, with each leg priced at odds of 1.40 or higher. Keep a record of each bet and its odds to ensure you satisfy the condition before requesting a withdrawal.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "JUST Pirates’ blockbuster fixture moved line changes betting tips South Africa",
+        "keyword": "Amputee World Cup Opentil rallies Black Challenge USA betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 425)"
+      },
+      {
+        "keyword": "Bafana complete FIFA rankings see-saw swing betting tips South Africa",
         "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
