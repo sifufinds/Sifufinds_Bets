@@ -47,6 +47,8 @@
 
 | 2026-11-18 | Daily reporter: 27 failures out of 100 runs (27%). Breaking News Bot failed 13× + X (Twitter) Posts failed 14× — both now 6 consecutive days (11-05, 11-07, 11-13, 11-15, 11-17, 11-18). Fabricated Content Fix stuck in-progress since 07:42 (2h+). Workflow Watchdog skipped 13× without retrying. Daily report issue #38 at https://github.com/sifufinds/Sifufinds_Bets/issues/38 | Root cause for X/Twitter and Breaking News still unknown after 6 days — X credentials or rate-limit lockout the most likely cause. Fabricated Content Fix needs `timeout-minutes` added to its workflow YAML. |
 
+| 2026-11-19 | Daily reporter: 20 failures out of 100 runs (20%). Breaking News Bot failed 13× (01:34–07:59 UTC) + X (Twitter) Posts failed 5× (02:05–10:04 UTC) — both now 7 consecutive days. Fabricated Content Fix stuck in_progress since 07:39 UTC (2h22m+ hung run). Workflow Watchdog skipped 14× without retrying any failures. Total cancelled/skipped: 20. Daily report issue #39 at https://github.com/sifufinds/Sifufinds_Bets/issues/39 | X (Twitter) Posts + Breaking News Bot now 7 days of daily failures with no root-cause investigation. CRITICAL: check Twitter/X API credentials and Breaking News Bot API keys immediately — likely a credential expiry. Fabricated Content Fix needs `timeout-minutes:` in its workflow YAML urgently (3 consecutive weekly hung runs). Workflow Watchdog trigger conditions need auditing — 14 skips/day without retrying obvious failures means the watchdog is essentially non-functional for these workflows. |
+
 ---
 
 ## SEO Learnings
