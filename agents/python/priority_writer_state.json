@@ -2119,7 +2119,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-19T00:23:31.954832+00:00",
+    "checked_at": "2026-11-19T02:23:01.291713+00:00",
     "candidates_available": 330,
     "attempted": 3,
     "written": 0,
@@ -2128,7 +2128,7 @@
         "keyword": "Amputee World Cup Opentil rallies Black Challenge USA betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'WinWinBet’s payment methods are not listed in the real data; you should verify on the official site before depositing.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 512)"
       },
       {
         "keyword": "Elim. CAN 2027 – Sébastien Desabre (Coach RDC) betting tips Tanzania",
