@@ -2127,28 +2127,16 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-19T20:27:35.840942+00:00",
-    "candidates_available": 337,
+    "checked_at": "2026-11-19T22:35:43.456482+00:00",
+    "candidates_available": 336,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
       {
         "keyword": "Win or lose Why Harambee Stars' Benni McCarthy betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line (e.g. a doubled '### ### question' marker) — the heading must contain only the question text after '### '"
-      },
-      {
-        "keyword": "Ngendahayo wins again as May Stars maintain dominance betting tips Ghana",
-        "country": "Ghana",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 474)"
-      },
-      {
-        "keyword": "Silva key for Chiefs vs Sundowns betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "silva-key-chiefs-sundowns-betting-tips-south-africa"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
