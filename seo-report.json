@@ -1,25 +1,13 @@
 {
   "date": "2026-11-19",
-  "total": 138,
+  "total": 136,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "six-nations-wales-botham-rest-england-historic-win-odds",
-      "detail": "Title 76 chars (max 60): \"Six Nations Update: Wales Rest Botham, England's Historic Win & Odds I\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "why-premier-league-big-six-clubs-get-betting-tips-nigeria",
-      "detail": "Title 73 chars (max 60): 'Why Premier League Big Six Clubs Get Betting Tips in Nigeria \u2013 Full Gu'"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
