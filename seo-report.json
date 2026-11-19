@@ -1,25 +1,13 @@
 {
-  "date": "2026-11-18",
-  "total": 138,
+  "date": "2026-11-19",
+  "total": 136,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "england-nations-league-hosting-bid-nigeria-betting-tips",
-      "detail": "Title 71 chars (max 60): \"England's Nations League Hosting Bid: Betting Tips for Nigerian Punter\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "england-nations-league-hosting-bid-nigeria-betting-tips",
-      "detail": "Excerpt 162 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
