@@ -1,25 +1,13 @@
 {
-  "date": "2026-11-19",
-  "total": 138,
+  "date": "2026-11-20",
+  "total": 136,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "arsenal-women-lyon-vasco-inter-sundowns-betting-analysis",
-      "detail": "Title 84 chars (max 60): 'Arsenal Women vs Lyon, Vasco vs Inter & Sundowns: Betting Angles for A'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "arsenal-women-lyon-vasco-inter-sundowns-betting-analysis",
-      "detail": "Excerpt 235 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
