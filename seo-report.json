@@ -1,13 +1,25 @@
 {
   "date": "2026-11-20",
-  "total": 136,
+  "total": 138,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "nff-registration-guidelines-2027-president-federation-cup-betting-tips-nigeria",
+      "detail": "Title 93 chars (max 60): 'NFF Releases Registration Guidelines 2027 \u2013 President Federation Cup B'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "nff-registration-guidelines-2027-president-federation-cup-betting-tips-nigeria",
+      "detail": "Excerpt 193 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
