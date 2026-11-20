@@ -894,7 +894,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-20T03:24:06.290291+00:00",
+    "checked_at": "2026-11-20T05:22:27.139454+00:00",
     "candidates_available": 361,
     "attempted": 3,
     "written": 0,
@@ -902,6 +902,12 @@
       {
         "keyword": "Why Premier League big six clubs keep getting betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "fact_check: AI providers exhausted — could not run fact-check this run"
+      },
+      {
+        "keyword": "Win or lose Why Harambee Stars' Benni McCarthy betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
