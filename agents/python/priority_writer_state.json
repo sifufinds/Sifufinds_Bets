@@ -2132,17 +2132,37 @@
     "NFF Releases Registration Guidelines 2027 President Federation Cup betting tips Nigeria": {
       "slug": "nff-registration-guidelines-2027-president-federation-cup-betting-tips-nigeria",
       "posted_at": "2026-11-20T14:44:55.794797+00:00"
+    },
+    "Achimota Golf Club's Pink Cup donates GH¢96,900 breast betting tips Ghana": {
+      "slug": "achimota-golf-club-pink-cup-betting-tips-ghana",
+      "posted_at": "2026-11-20T23:47:04.364723+00:00"
+    },
+    "Festival fever forces Kruger move Sundowns fixture betting tips South Africa": {
+      "slug": "sundowns-kruger-move-betting-tips-south-africa",
+      "posted_at": "2026-11-20T23:47:16.052222+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-20T21:57:32.105075+00:00",
+    "checked_at": "2026-11-20T23:56:21.114639+00:00",
     "candidates_available": 339,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "Achimota Golf Club's Pink Cup donates GH¢96,900 breast betting tips Ghana",
         "country": "Ghana",
+        "result": "written",
+        "slug": "achimota-golf-club-pink-cup-betting-tips-ghana"
+      },
+      {
+        "keyword": "Festival fever forces Kruger move Sundowns fixture betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "sundowns-kruger-move-betting-tips-south-africa"
+      },
+      {
+        "keyword": "Libye-Tunisie les Aigles de Carthage quittent le terrain, betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
