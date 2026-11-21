@@ -1,13 +1,19 @@
 {
-  "date": "2026-11-20",
-  "total": 136,
+  "date": "2026-11-21",
+  "total": 137,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 1,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "how-nigeria-afcon-fixtures-and-table-rankings-shape-betting-markets",
+      "detail": "Title 67 chars (max 60): 'How Nigeria AFCON Fixtures and Table Rankings Shape Betting Markets'"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
