@@ -1,13 +1,25 @@
 {
   "date": "2026-11-22",
-  "total": 136,
+  "total": 138,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "premier-league-wsl-us-betting-angles",
+      "detail": "Title 81 chars (max 60): 'Premier League clash, WSL drama and US hoops \u2013 betting angles for Afri'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "premier-league-wsl-us-betting-angles",
+      "detail": "Excerpt 195 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
