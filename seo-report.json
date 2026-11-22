@@ -1,25 +1,13 @@
 {
   "date": "2026-11-22",
-  "total": 138,
+  "total": 136,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "tottenham-ipswich-win-betting-insight",
-      "detail": "Title 88 chars (max 60): 'Tottenham\u2019s Luca Williams\u2011Barnett shines in 2\u20110 win \u2013 Betting angles f'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "tottenham-ipswich-win-betting-insight",
-      "detail": "Excerpt 218 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
