@@ -2143,7 +2143,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-22T12:35:07.489803+00:00",
+    "checked_at": "2026-11-22T14:33:25.957317+00:00",
     "candidates_available": 360,
     "attempted": 3,
     "written": 0,
@@ -2151,6 +2151,18 @@
       {
         "keyword": "Kabras see off KCB kick off Kenya Cup betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: no '## FAQ' section heading found; fewer than 3 '### ' FAQ question headings found; final line was 'Ready to turn your Kabras insight into a real stake? Compare the offers above on Sifufinds and pick the bookmaker that matches your style. With the right bonus, instant mobile‑money deposit and a clear understanding of the match angles, you’ll be set for a thrilling Kenya Cup kick‑off.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "CAF names six cities host 2027 Africa Cup betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+      },
+      {
+        "keyword": "Football féminin une CAN U17 bientôt au programme betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }

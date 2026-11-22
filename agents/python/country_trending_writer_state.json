@@ -898,7 +898,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-22T12:47:00.055131+00:00",
+    "checked_at": "2026-11-22T14:39:58.298124+00:00",
     "candidates_available": 372,
     "attempted": 3,
     "written": 0,
@@ -907,19 +907,19 @@
         "keyword": "Kabras see off KCB kick off Kenya Cup betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "fact_check: Kabras beat KCB 3–1; Ambale scoring a brace, the match set the tone for what promises to be an exciting season; Kabras’ midfield dominance and disciplined defence kept the opposition at bay; The win not only gives Kabras a strong psychological edge but also ensures they start the Cup with a high point tally – a valuable factor in the early group stages; a strong favourite for Kabras to win; a draw would be unlikely given the goal difference; the 3–1 scoreline suggests a strong favourite for Kabras to win; the odds for Kabras winning are attractive; Ambale’s two goals make him a good candidate for a player‑to‑score bet; the match finished 3‑1; early season games can be more defensive, so keep an eye on recent fixtures; Ambale to score"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 450)"
       },
       {
         "keyword": "CAF names six cities host 2027 Africa Cup betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "fact_check: Sportybet Ghana: 3.15 odds for Ghana to win the tournament; Betway Ghana: 3.25 odds for Ghana to win the tournament; WinWinBet Ghana: 3.10 odds for Ghana to win the tournament; 22Bet Ghana: 3.20 odds for Ghana to win the tournament; 1xBet Ghana: 3.30 odds for Ghana to win the tournament; Melbet Ghana: 3.05 odds for Ghana to win the tournament; MTN MoMo and Vodafone Cash are the most popular payment methods among Ghanaian bettors, widely accepted by bookmakers in the country."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 436)"
       },
       {
         "keyword": "Football féminin une CAN U17 bientôt au programme betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "fact_check: The odds of the Tanzania women's U17 team winning the competition on SportPesa Tanzania are currently 3.50; The odds of the Tanzania men's U17 team winning the CAF Champions League on 1xBet Tanzania are 2.20; The odds of the Tanzania women's U17 team winning the competition on 22Bet Tanzania are currently 3.80; The odds of the Tanzania men's U17 team winning the CAF Champions League on Betway Tanzania are 2.50"
+        "reason": "quality_gate: no '## FAQ' section heading found; found a 'Q:'/'A:' label on a heading line — questions must be plain headings with no label; final line was 'Vous pouvez trouver les cotes les plus compétitives pour la Coupe d'Afrique des Nations féminine U17 sur SifuFinds, votre comparateur de cotes de football. N'oubliez pas de miser responsable et de suivre les conditions du bonus avant de pouvoir se retirer les gains. *18+ | Bet Responsibly | T&Cs Apply*', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
