@@ -2140,17 +2140,27 @@
     "Festival fever forces Kruger move Sundowns fixture betting tips South Africa": {
       "slug": "sundowns-kruger-move-betting-tips-south-africa",
       "posted_at": "2026-11-20T23:47:16.052222+00:00"
+    },
+    "Kabras see off KCB kick off Kenya Cup betting tips Kenya": {
+      "slug": "kablas-beat-kcb-kenya-cup-kickoff-betting-tips",
+      "posted_at": "2026-11-22T22:41:16.374655+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-22T20:53:47.471170+00:00",
+    "checked_at": "2026-11-22T22:52:08.804937+00:00",
     "candidates_available": 360,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Kabras see off KCB kick off Kenya Cup betting tips Kenya",
         "country": "Kenya",
+        "result": "written",
+        "slug": "kablas-beat-kcb-kenya-cup-kickoff-betting-tips"
+      },
+      {
+        "keyword": "CAF names six cities host 2027 Africa Cup betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
