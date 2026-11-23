@@ -2152,31 +2152,35 @@
     "CAF Unveils U-17 Women’s AFCON, Opens Bidding 2028 betting tips Nigeria": {
       "slug": "caf-u17-womens-afcon-2028-betting-tips-nigeria",
       "posted_at": "2026-11-23T04:29:47.406206+00:00"
+    },
+    "Repeat African rivalry Ghana, Morocco set up historic betting tips Ghana": {
+      "slug": "repeat-african-rivalry-ghana-morocco-betting-tips",
+      "posted_at": "2026-11-23T06:29:48.707467+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-23T04:29:51.332704+00:00",
-    "candidates_available": 359,
+    "checked_at": "2026-11-23T06:29:52.936945+00:00",
+    "candidates_available": 357,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "CAF names six cities host 2027 Africa Cup betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "caf-names-six-cities-host-2027-africa-cup-betting-tips-ghana"
-      },
       {
         "keyword": "Football féminin une CAN U17 bientôt au programme betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "quality_gate: final line was 'All GBT‑licensed bookmakers offer self‑exclusion, deposit limits and loss limits. You can set these controls in your account settings or contact the Gaming Board of Tanzania for additional support.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Withdrawals to M‑Pesa (Vodacom) are processed within 24 hours for most Tanzanian bookmakers, though some may complete the transfer even faster during off‑peak hours.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "CAF Unveils U-17 Women’s AFCON, Opens Bidding 2028 betting tips Nigeria",
-        "country": "Nigeria",
+        "keyword": "Reprieve as delayed National Super League set kick-off betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Each bookmaker provides a deposit‑limit tool in the account settings. Activate the limit before you start betting, and the platform will block any attempt to exceed the amount you have set. This feature is part of the BCLB‑mandated responsible‑gambling measures.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Repeat African rivalry Ghana, Morocco set up historic betting tips Ghana",
+        "country": "Ghana",
         "result": "written",
-        "slug": "caf-u17-womens-afcon-2028-betting-tips-nigeria"
+        "slug": "repeat-african-rivalry-ghana-morocco-betting-tips"
       }
     ]
   }
