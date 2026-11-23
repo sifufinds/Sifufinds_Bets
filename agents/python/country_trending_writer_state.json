@@ -898,7 +898,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-23T16:33:51.654256+00:00",
+    "checked_at": "2026-11-23T18:33:51.000558+00:00",
     "candidates_available": 383,
     "attempted": 3,
     "written": 0,
@@ -907,19 +907,19 @@
         "keyword": "Nigeria not ready host World Cup, says FIFA betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 498)"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 484)"
       },
       {
         "keyword": "Former champions GSU KCB Bank winning ways betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was '[1] The Standard: Former champions GSU and KCB Bank on winning ways.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "Black Challenge win Amputee World Cup after historic betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: no '## FAQ' section heading found; final line was 'Note: The article is written in a style that is specific to the target country, Ghana, and includes information about the local betting market, bookmakers, and regulatory body. The article is also more comprehensive than the top-ranked pages, with a word count of over 480 words.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
