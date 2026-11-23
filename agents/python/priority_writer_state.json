@@ -2144,25 +2144,39 @@
     "Kabras see off KCB kick off Kenya Cup betting tips Kenya": {
       "slug": "kablas-beat-kcb-kenya-cup-kickoff-betting-tips",
       "posted_at": "2026-11-22T22:41:16.374655+00:00"
+    },
+    "CAF names six cities host 2027 Africa Cup betting tips Ghana": {
+      "slug": "caf-names-six-cities-host-2027-africa-cup-betting-tips-ghana",
+      "posted_at": "2026-11-23T04:28:41.266056+00:00"
+    },
+    "CAF Unveils U-17 Women’s AFCON, Opens Bidding 2028 betting tips Nigeria": {
+      "slug": "caf-u17-womens-afcon-2028-betting-tips-nigeria",
+      "posted_at": "2026-11-23T04:29:47.406206+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-23T02:48:13.893357+00:00",
+    "checked_at": "2026-11-23T04:29:51.332704+00:00",
     "candidates_available": 359,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "CAF names six cities host 2027 Africa Cup betting tips Ghana",
         "country": "Ghana",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'The 22Bet offer requires a 5× wagering on a minimum odds of 1.40 and must be fulfilled within 30 days of claiming the bonus.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "result": "written",
+        "slug": "caf-names-six-cities-host-2027-africa-cup-betting-tips-ghana"
       },
       {
         "keyword": "Football féminin une CAN U17 bientôt au programme betting tips Tanzania",
         "country": "Tanzania",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'All GBT‑licensed bookmakers offer self‑exclusion, deposit limits and loss limits. You can set these controls in your account settings or contact the Gaming Board of Tanzania for additional support.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "CAF Unveils U-17 Women’s AFCON, Opens Bidding 2028 betting tips Nigeria",
+        "country": "Nigeria",
+        "result": "written",
+        "slug": "caf-u17-womens-afcon-2028-betting-tips-nigeria"
       }
     ]
   }
