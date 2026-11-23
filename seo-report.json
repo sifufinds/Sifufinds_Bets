@@ -1,49 +1,13 @@
 {
   "date": "2026-11-23",
-  "total": 142,
+  "total": 136,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 6,
+    "HIGH": 0,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "black-challenge-amputee-world-cup-betting-tips-ghana",
-      "detail": "Title 89 chars (max 60): 'Black Challenge Win Amputee World Cup: Historic Betting Tips & Ghana B'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "former-champions-gsu-kcb-bank-winning-ways-betting-tips-kenya",
-      "detail": "Title 86 chars (max 60): 'Former champions GSU & KCB Bank winning ways betting tips Kenya \u2013 best'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "nigeria-not-ready-host-world-cup-says-fifa-betting-tips",
-      "detail": "Title 75 chars (max 60): 'Nigeria Not Ready to Host World Cup, Says FIFA \u2013 Betting Tips & Real O'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "black-challenge-amputee-world-cup-betting-tips-ghana",
-      "detail": "Excerpt 164 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "former-champions-gsu-kcb-bank-winning-ways-betting-tips-kenya",
-      "detail": "Excerpt 158 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "nigeria-not-ready-host-world-cup-says-fifa-betting-tips",
-      "detail": "Excerpt 196 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
