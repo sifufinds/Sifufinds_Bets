@@ -898,7 +898,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-23T14:39:08.653293+00:00",
+    "checked_at": "2026-11-23T16:33:51.654256+00:00",
     "candidates_available": 383,
     "attempted": 3,
     "written": 0,
@@ -907,11 +907,17 @@
         "keyword": "Nigeria not ready host World Cup, says FIFA betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "fact_check: 22Bet Nigeria, which is offering a 100% First Deposit Bonus – Up to ₦207,500.; WinWinBet, which is offering a Welcome offer – use promo code SIFUKAI."
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 498)"
       },
       {
         "keyword": "Former champions GSU KCB Bank winning ways betting tips Kenya",
         "country": "Kenya",
+        "result": "failed",
+        "reason": "quality_gate: found a stray '#' character inside a '### ' FAQ heading line"
+      },
+      {
+        "keyword": "Black Challenge win Amputee World Cup after historic betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
