@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-24T08:48:25.653308+00:00",
+  "checked_at": "2026-11-24T18:40:58.339246+00:00",
   "healthy": false,
   "pages": {
     "Home": true,
@@ -12,8 +12,9 @@
     "live.json": true
   },
   "fixes_applied": [
-    "patched missing football keys: afcon, cafl",
+    "refreshed stale live.json (145 min old)",
+    "patched missing football keys: afcon, cafl, local, world",
     "generated 1 missing blog page(s): trinity-rodman-victorias-secret-fashion-show"
   ],
-  "fix_count": 2
+  "fix_count": 3
 }
