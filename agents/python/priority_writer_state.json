@@ -2188,31 +2188,29 @@
     "Makgopa's goal vs Stellies betting tips South Africa": {
       "slug": "makgopa-goal-stellies-betting-tips-south-africa",
       "posted_at": "2026-11-24T16:46:07.644714+00:00"
+    },
+    "Senegal/Mali 2026 FIFA U-17 World Cup - Mali betting tips Tanzania": {
+      "slug": "senegal-mali-2026-u17-world-cup-betting-tips-tanzania",
+      "posted_at": "2026-11-24T18:46:21.417908+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-24T16:46:27.639956+00:00",
-    "candidates_available": 366,
+    "checked_at": "2026-11-24T18:57:26.967358+00:00",
+    "candidates_available": 364,
     "attempted": 3,
-    "written": 2,
+    "written": 1,
     "attempts": [
-      {
-        "keyword": "Lampard delivers Yirenkyi, Awoniyi injury betting tips Ghana",
-        "country": "Ghana",
-        "result": "written",
-        "slug": "lampard-yirenkyi-awoniyi-injury-betting-tips-ghana"
-      },
-      {
-        "keyword": "Makgopa's goal vs Stellies betting tips South Africa",
-        "country": "South Africa",
-        "result": "written",
-        "slug": "makgopa-goal-stellies-betting-tips-south-africa"
-      },
       {
         "keyword": "Senegal/Mali 2026 FIFA U-17 World Cup - Mali betting tips Tanzania",
         "country": "Tanzania",
+        "result": "written",
+        "slug": "senegal-mali-2026-u17-world-cup-betting-tips-tanzania"
+      },
+      {
+        "keyword": "Have Chiefs just 'announced' CKO final venue? betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
-        "reason": "quality_gate: fewer than 3 '### ' FAQ question headings found"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
