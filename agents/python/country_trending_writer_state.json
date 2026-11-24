@@ -898,7 +898,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-23T18:33:51.000558+00:00",
+    "checked_at": "2026-11-24T03:10:12.588073+00:00",
     "candidates_available": 383,
     "attempted": 3,
     "written": 0,
@@ -907,19 +907,19 @@
         "keyword": "Nigeria not ready host World Cup, says FIFA betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 484)"
+        "reason": "fact_check: \"22Bet Nigeria offers a 100 % first‑deposit boost up to ₦207,500 (code BNSNG).\"; \"1xBet Nigeria pushes a more aggressive welcome bonus – 300 % up to ₦1,200,000 (code 1BONUSNG).\"; \"Both operators require a minimum deposit of ₦100 and impose a five‑fold wagering requirement on bonuses, with a minimum odds threshold of 1.40.\"; \"Nigerian clubs such as Enyimba and Kano Pillars often feature in the early rounds, offering value on both match‑winner and group‑stage futures.\"; \"The league’s top three clubs – Enyimba, Plateau United and Rivers United – are within a few points of each other.\"; \"The match often sees a high volume of 'both teams to score' tickets.\"; \"22Bet tends to tighten its margins on high‑profile international games, whereas 1xBet may offer slightly richer returns on club‑level contests.\""
       },
       {
         "keyword": "Former champions GSU KCB Bank winning ways betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; final line was '[1] The Standard: Former champions GSU and KCB Bank on winning ways.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 438)"
       },
       {
         "keyword": "Black Challenge win Amputee World Cup after historic betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: no '## FAQ' section heading found; final line was 'Note: The article is written in a style that is specific to the target country, Ghana, and includes information about the local betting market, bookmakers, and regulatory body. The article is also more comprehensive than the top-ranked pages, with a word count of over 480 words.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "fact_check: Sportybet Ghana offers a 150 % welcome bonus up to GH₵500 in free bets.; Betway Ghana provides a 50 % match bonus up to GH₵200.; Sportybet’s odds on the final are slightly higher for the Black Challenge, giving you a marginal edge if you prefer value over safety.; Betway’s odds are typically a touch tighter, favouring a more conservative play style.; SifuFinds pulls real‑time data from both operators, allowing you to see which offers a higher return on the Black Challenge’s win.; MTN MoMo remains the most popular mobile money service in Ghana, and it is accepted by every operator listed here."
       }
     ]
   }
