@@ -1,9 +1,9 @@
 {
   "date": "2026-11-24",
-  "total": 140,
+  "total": 138,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 4,
+    "HIGH": 2,
     "MEDIUM": 135,
     "INFO": 1
   },
@@ -11,26 +11,14 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "makgopa-goal-stellies-betting-tips-south-africa",
-      "detail": "Title 79 chars (max 60): \"Makgopa's goal vs Stellies betting tips South Africa \u2013 best offers & h\""
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "lampard-yirenkyi-awoniyi-injury-betting-tips-ghana",
-      "detail": "Title 84 chars (max 60): 'Lampard delivers Yirenkyi, Awoniyi injury betting tips Ghana \u2013 Best Bo'"
+      "page": "senegal-mali-2026-u17-world-cup-betting-tips-tanzania",
+      "detail": "Title 81 chars (max 60): 'Senegal vs Mali 2026 U\u201117 World Cup Betting Tips Tanzania \u2013 Best Booki'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "makgopa-goal-stellies-betting-tips-south-africa",
-      "detail": "Excerpt 199 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "lampard-yirenkyi-awoniyi-injury-betting-tips-ghana",
-      "detail": "Excerpt 162 chars (max 155)"
+      "page": "senegal-mali-2026-u17-world-cup-betting-tips-tanzania",
+      "detail": "Excerpt 167 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
