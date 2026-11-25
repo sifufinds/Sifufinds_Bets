@@ -2207,26 +2207,20 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-25T02:47:04.234366+00:00",
-    "candidates_available": 362,
+    "checked_at": "2026-11-25T04:48:13.715255+00:00",
+    "candidates_available": 360,
     "attempted": 3,
-    "written": 2,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Football féminin une CAN U17 bientôt au programme betting tips Tanzania",
-        "country": "Tanzania",
-        "result": "written",
-        "slug": "football-feminin-can-u17-betting-tips-tanzania"
-      },
-      {
-        "keyword": "Reprieve as delayed National Super League set kick-off betting tips Kenya",
-        "country": "Kenya",
-        "result": "written",
-        "slug": "reprieve-delayed-national-super-league-kick-off-betting-tips-kenya"
-      },
       {
         "keyword": "REVEALED Young duo closes dream Chiefs promotion betting tips South Africa",
         "country": "South Africa",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'FairPari primarily supports local bank transfers such as FNB, Standard Bank, Nedbank, Capitec and Instant EFT. Credit card deposits are not available with this operator.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "CAF le président de la FFF, Philippe Diallo, betting tips Tanzania",
+        "country": "Tanzania",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
