@@ -2207,20 +2207,26 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-25T04:48:13.715255+00:00",
-    "candidates_available": 360,
+    "checked_at": "2026-11-25T11:16:39.824369+00:00",
+    "candidates_available": 364,
     "attempted": 3,
     "written": 0,
     "attempts": [
       {
-        "keyword": "REVEALED Young duo closes dream Chiefs promotion betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "Villarreal 0-6 Paris Saint-Germain Busy Mobile Night betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'FairPari primarily supports local bank transfers such as FNB, Standard Bank, Nedbank, Capitec and Instant EFT. Credit card deposits are not available with this operator.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'Both OPay and PalmPay are regulated mobile wallets in Nigeria and are considered secure for deposits and withdrawals. Always use the official app or USSD codes and keep your credentials confidential.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
-        "keyword": "CAF le président de la FFF, Philippe Diallo, betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "Ferroviaro recover from Game One loss keep BAL betting tips Kenya",
+        "country": "Kenya",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 482)"
+      },
+      {
+        "keyword": "CAS reinstate Senegal as 2025 AFCON winners betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
