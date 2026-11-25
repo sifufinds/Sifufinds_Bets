@@ -1,9 +1,9 @@
 {
-  "date": "2026-11-24",
-  "total": 138,
+  "date": "2026-11-25",
+  "total": 141,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 5,
     "MEDIUM": 135,
     "INFO": 1
   },
@@ -11,14 +11,32 @@
     {
       "severity": "HIGH",
       "check": "title_length",
-      "page": "senegal-mali-2026-u17-world-cup-betting-tips-tanzania",
-      "detail": "Title 81 chars (max 60): 'Senegal vs Mali 2026 U\u201117 World Cup Betting Tips Tanzania \u2013 Best Booki'"
+      "page": "reprieve-delayed-national-super-league-kick-off-betting-tips-kenya",
+      "detail": "Title 78 chars (max 60): 'Reprieve as Delayed National Super League Set Kick\u2011Off: Betting Tips f'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "football-feminin-can-u17-betting-tips-tanzania",
+      "detail": "Title 73 chars (max 60): 'Football f\u00e9minin CAN U17 betting tips Tanzania \u2013 best offers & how to '"
+    },
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "mastering-the-sportybet-sign-up-best-mobile-first-betting-platforms-in-nigeria",
+      "detail": "Title 84 chars (max 60): 'Mastering the SportyBet Sign Up: Best Mobile-First Betting Platforms i'"
     },
     {
       "severity": "HIGH",
       "check": "meta_desc_length",
-      "page": "senegal-mali-2026-u17-world-cup-betting-tips-tanzania",
-      "detail": "Excerpt 167 chars (max 155)"
+      "page": "reprieve-delayed-national-super-league-kick-off-betting-tips-kenya",
+      "detail": "Excerpt 180 chars (max 155)"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "football-feminin-can-u17-betting-tips-tanzania",
+      "detail": "Excerpt 181 chars (max 155)"
     },
     {
       "severity": "MEDIUM",
