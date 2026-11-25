@@ -2211,28 +2211,22 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-25T13:08:18.760341+00:00",
-    "candidates_available": 364,
+    "checked_at": "2026-11-25T15:15:06.540840+00:00",
+    "candidates_available": 363,
     "attempted": 3,
-    "written": 1,
+    "written": 0,
     "attempts": [
-      {
-        "keyword": "Villarreal 0-6 Paris Saint-Germain Busy Mobile Night betting tips Nigeria",
-        "country": "Nigeria",
-        "result": "written",
-        "slug": "villarreal-0-6-psg-busy-mobile-night-betting-tips-nigeria"
-      },
       {
         "keyword": "Ferroviaro recover from Game One loss keep BAL betting tips Kenya",
         "country": "Kenya",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Every bookmaker displayed in the comparison table holds a BCLB licence, which the regulator lists on its official website. When you open the betting site, the licence number is usually shown in the footer. This confirms that the BAL market is legally offered in Kenya.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "quality_gate: final line was 'While WinWinBet offers a promo code, its licence is not independently verified by BCLB. Kenyan bettors who prefer a fully regulated environment may opt for BCLB‑licensed platforms such as SportPesa, 22Bet, 1xBet, Melbet, or HelaBet.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       },
       {
         "keyword": "CAS reinstate Senegal as 2025 AFCON winners betting tips Ghana",
         "country": "Ghana",
         "result": "failed",
-        "reason": "quality_gate: final line was 'Choose a GCA‑licensed bookmaker, verify your identity, set responsible gambling limits, and keep track of your deposits and withdrawals. The GCA regulates all licensed operators to safeguard player funds and ensure fair play.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "AIProvidersExhausted"
       }
     ]
   }
