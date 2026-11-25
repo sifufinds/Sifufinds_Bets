@@ -1,37 +1,13 @@
 {
   "date": "2026-11-25",
-  "total": 140,
+  "total": 136,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 4,
+    "HIGH": 0,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "orlando-pirates-ouaddou-lineup-chiocs-sanctions-betting",
-      "detail": "Title 90 chars (max 60): 'Orlando Pirates Coach Ouaddou Sets Line\u2011up as Chiefs Sanctions Loom \u2013 '"
-    },
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "villarreal-0-6-psg-busy-mobile-night-betting-tips-nigeria",
-      "detail": "Title 65 chars (max 60): 'Villarreal 0-6 PSG Busy Mobile Night Betting Tips \u2013 Nigeria Guide'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "orlando-pirates-ouaddou-lineup-chiocs-sanctions-betting",
-      "detail": "Excerpt 202 chars (max 155)"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "villarreal-0-6-psg-busy-mobile-night-betting-tips-nigeria",
-      "detail": "Excerpt 176 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
