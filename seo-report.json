@@ -1,25 +1,13 @@
 {
   "date": "2026-11-26",
-  "total": 138,
+  "total": 136,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 2,
+    "HIGH": 0,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
-    {
-      "severity": "HIGH",
-      "check": "title_length",
-      "page": "masinga-keen-inspire-jkuat-kenya-cup-betting-tips-kenya",
-      "detail": "Title 81 chars (max 60): 'Masinga keen inspire JKUAT Kenya Cup stay: betting tips and top Kenyan'"
-    },
-    {
-      "severity": "HIGH",
-      "check": "meta_desc_length",
-      "page": "masinga-keen-inspire-jkuat-kenya-cup-betting-tips-kenya",
-      "detail": "Excerpt 156 chars (max 155)"
-    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
