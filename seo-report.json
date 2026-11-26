@@ -1,13 +1,25 @@
 {
-  "date": "2026-11-25",
-  "total": 136,
+  "date": "2026-11-26",
+  "total": 138,
   "by_severity": {
     "CRITICAL": 0,
-    "HIGH": 0,
+    "HIGH": 2,
     "MEDIUM": 135,
     "INFO": 1
   },
   "issues": [
+    {
+      "severity": "HIGH",
+      "check": "title_length",
+      "page": "ferroviaro-recover-game-one-loss-bal-betting-tips-kenya",
+      "detail": "Title 62 chars (max 60): 'Ferroviaro Recover from Game One Loss \u2013 BAL Betting Tips Kenya'"
+    },
+    {
+      "severity": "HIGH",
+      "check": "meta_desc_length",
+      "page": "ferroviaro-recover-game-one-loss-bal-betting-tips-kenya",
+      "detail": "Excerpt 167 chars (max 155)"
+    },
     {
       "severity": "MEDIUM",
       "check": "potential_duplicate",
