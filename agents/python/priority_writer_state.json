@@ -2220,19 +2220,35 @@
     "Masinga keen inspire JKUAT Kenya Cup stay after betting tips Kenya": {
       "slug": "masinga-keen-inspire-jkuat-kenya-cup-betting-tips-kenya",
       "posted_at": "2026-11-26T16:47:12.855719+00:00"
+    },
+    "Euromatch NPFL Rivers United Land N490m Goka Shirt betting tips Nigeria": {
+      "slug": "euromatch-npfl-rivers-united-goka-shirt-betting-tips-nigeria",
+      "posted_at": "2026-11-26T20:46:09.591479+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-26T18:58:26.596483+00:00",
+    "checked_at": "2026-11-26T20:47:31.397140+00:00",
     "candidates_available": 365,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "Euromatch NPFL Rivers United Land N490m Goka Shirt betting tips Nigeria",
         "country": "Nigeria",
+        "result": "written",
+        "slug": "euromatch-npfl-rivers-united-goka-shirt-betting-tips-nigeria"
+      },
+      {
+        "keyword": "Ghana miss out all six men's categories final betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Wagering requirements vary: Sportybet’s free‑bet gift has no wagering, Betway applies standard requirements, 22Bet, 1xBet and Melbet each require a 5‑times turnover on minimum odds of 1.40, and the bonus must be cleared within 30 days. Always read the specific T&Cs before claiming.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Andoni Iraola provides Liverpool injury after Club Brugge betting tips South Africa",
+        "country": "South Africa",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 458)"
       }
     ]
   }
