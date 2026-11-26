@@ -2216,19 +2216,35 @@
     "CAS reinstate Senegal as 2025 AFCON winners betting tips Ghana": {
       "slug": "cas-reinstates-senegal-2025-afcon-winners-betting-tips-ghana",
       "posted_at": "2026-11-26T06:06:01.002462+00:00"
+    },
+    "Masinga keen inspire JKUAT Kenya Cup stay after betting tips Kenya": {
+      "slug": "masinga-keen-inspire-jkuat-kenya-cup-betting-tips-kenya",
+      "posted_at": "2026-11-26T16:47:12.855719+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-26T08:18:01.571145+00:00",
-    "candidates_available": 361,
+    "checked_at": "2026-11-26T16:47:33.138016+00:00",
+    "candidates_available": 366,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "Ligue des champions UEFA Club Bruges-Liverpool, où suivre betting tips Tanzania",
-        "country": "Tanzania",
+        "keyword": "Euromatch NPFL Rivers United Land N490m Goka Shirt betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'An NLRC licence means the operator is regulated under Nigerian law, which includes consumer protection standards and dispute‑resolution mechanisms. While it does not guarantee a win, it does provide a higher level of security compared with unlicensed sites.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Masinga keen inspire JKUAT Kenya Cup stay after betting tips Kenya",
+        "country": "Kenya",
+        "result": "written",
+        "slug": "masinga-keen-inspire-jkuat-kenya-cup-betting-tips-kenya"
+      },
+      {
+        "keyword": "Ghana miss out all six men's categories final betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'All bonuses listed, including those from 1xBet, 22Bet, Sportybet, Betway and Melbet, require wagering. The specific multiplier and minimum odds vary by bookmaker and must be read in the terms and conditions.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
       }
     ]
   }
