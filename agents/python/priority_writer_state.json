@@ -2227,7 +2227,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-27T12:57:01.605608+00:00",
+    "checked_at": "2026-11-27T14:57:18.451592+00:00",
     "candidates_available": 369,
     "attempted": 3,
     "written": 0,
@@ -2236,17 +2236,11 @@
         "keyword": "How gunmen attacked my office Edo – Ex-NBA betting tips Nigeria",
         "country": "Nigeria",
         "result": "failed",
-        "reason": "quality_gate: final line was 'OPay and PalmPay usually process deposits instantly, making them the quickest way to fund your betting account. Bank transfers can take a few hours, while Visa and Mastercard are also fast but may incur small fees.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 397)"
       },
       {
         "keyword": "AFCON 2027, World Athletics 2029 preps face Sh8.38bn betting tips Kenya",
         "country": "Kenya",
-        "result": "failed",
-        "reason": "quality_gate: final line was 'You will be asked to upload a copy of a government‑issued ID, a passport or a driver’s licence. The process typically takes a few minutes, and the platform will confirm once verification is complete.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
-      },
-      {
-        "keyword": "World champions Black Challenge return home heroes’ welcome betting tips Ghana",
-        "country": "Ghana",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
