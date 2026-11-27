@@ -2224,25 +2224,39 @@
     "Euromatch NPFL Rivers United Land N490m Goka Shirt betting tips Nigeria": {
       "slug": "euromatch-npfl-rivers-united-goka-shirt-betting-tips-nigeria",
       "posted_at": "2026-11-26T20:46:09.591479+00:00"
+    },
+    "How gunmen attacked my office Edo – Ex-NBA betting tips Nigeria": {
+      "slug": "how-gunmen-attacked-my-office-edo-ex-nba-betting-tips-nigeria",
+      "posted_at": "2026-11-27T21:03:21.785436+00:00"
+    },
+    "AFCON 2027, World Athletics 2029 preps face Sh8.38bn betting tips Kenya": {
+      "slug": "afcon-2027-world-athletics-2029-betting-tips-kenya",
+      "posted_at": "2026-11-27T21:05:22.869228+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-27T14:57:18.451592+00:00",
+    "checked_at": "2026-11-27T21:05:32.429184+00:00",
     "candidates_available": 369,
     "attempted": 3,
-    "written": 0,
+    "written": 2,
     "attempts": [
       {
         "keyword": "How gunmen attacked my office Edo – Ex-NBA betting tips Nigeria",
         "country": "Nigeria",
-        "result": "failed",
-        "reason": "json_parse_error: Extra data: line 9 column 1 (char 397)"
+        "result": "written",
+        "slug": "how-gunmen-attacked-my-office-edo-ex-nba-betting-tips-nigeria"
       },
       {
         "keyword": "AFCON 2027, World Athletics 2029 preps face Sh8.38bn betting tips Kenya",
         "country": "Kenya",
+        "result": "written",
+        "slug": "afcon-2027-world-athletics-2029-betting-tips-kenya"
+      },
+      {
+        "keyword": "World champions Black Challenge return home heroes’ welcome betting tips Ghana",
+        "country": "Ghana",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 480)"
       }
     ]
   }
