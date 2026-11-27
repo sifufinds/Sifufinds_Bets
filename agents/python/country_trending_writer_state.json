@@ -902,7 +902,7 @@
     }
   },
   "last_run": {
-    "checked_at": "2026-11-27T01:55:28.361858+00:00",
+    "checked_at": "2026-11-27T03:53:31.377721+00:00",
     "candidates_available": 383,
     "attempted": 3,
     "written": 0,
@@ -910,6 +910,12 @@
       {
         "keyword": "Euromatch NPFL Rivers United Land N490m Goka Shirt betting tips Nigeria",
         "country": "Nigeria",
+        "result": "failed",
+        "reason": "json_parse_error: Extra data: line 9 column 1 (char 416)"
+      },
+      {
+        "keyword": "Masinga keen inspire JKUAT Kenya Cup stay after betting tips Kenya",
+        "country": "Kenya",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
