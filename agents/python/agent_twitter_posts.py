@@ -644,12 +644,22 @@ async def _post_playwright(text: str) -> bool:
                 pass
 
         if not compose_opened:
-            # Open the compose modal via sidebar button
-            compose_btn = page.locator('[data-testid="SideNav_NewTweet_Button"]')
-            await compose_btn.wait_for(state="visible", timeout=15_000)
-            await compose_btn.click()
-            await page.wait_for_timeout(1_500)
-            print("Opened compose modal via sidebar button")
+            # Open the compose modal via sidebar button. X intermittently
+            # renders /home without either the inline box or the sidebar
+            # button (interstitial/overlay, slow hydrate), which used to fail
+            # ~3 of every 4 runs, so fall back to the composer's own URL.
+            try:
+                await page.keyboard.press("Escape")
+                compose_btn = page.locator('[data-testid="SideNav_NewTweet_Button"]')
+                await compose_btn.wait_for(state="visible", timeout=8_000)
+                await compose_btn.click()
+                await page.wait_for_timeout(1_500)
+                print("Opened compose modal via sidebar button")
+            except PWTimeout:
+                print("Sidebar compose button not visible — opening x.com/compose/post directly")
+                await page.goto("https://x.com/compose/post", wait_until="domcontentloaded", timeout=30_000)
+                await page.wait_for_timeout(3_000)
+                print(f"Compose URL: {page.url}")
 
         # Find the active contenteditable tweet box
         textarea = page.locator(
@@ -657,7 +667,12 @@ async def _post_playwright(text: str) -> bool:
             '[data-testid="tweetTextarea_0"] div[contenteditable="true"],'
             'div[role="textbox"][contenteditable="true"]'
         ).first
-        await textarea.wait_for(state="visible", timeout=15_000)
+        try:
+            await textarea.wait_for(state="visible", timeout=15_000)
+        except PWTimeout:
+            await page.screenshot(path="x_debug_compose.png", full_page=True)
+            raise Exception(f"Compose box never appeared — URL: {page.url} "
+                            "(screenshot uploaded as the x-compose-failure artifact)")
         # Click + explicit JS focus to ensure React receives keyboard events
         await textarea.click()
         await page.evaluate("() => { const el = document.activeElement; if (el) el.focus(); }")

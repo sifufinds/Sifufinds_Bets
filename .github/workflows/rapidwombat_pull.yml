@@ -60,6 +60,12 @@ jobs:
       - name: Generate static blog post pages
         run: python3 gen_blog_post_pages.py
 
+      # Imported copy can carry phrases the compliance gate bans (e.g.
+      # "guaranteed win"); reword them the same way blog_self_heal.yml does
+      # instead of failing the whole import.
+      - name: Heal posts that would fail the deploy gates
+        run: python3 scripts/heal_blog_gates.py
+
       - name: Run every pre-deploy gate before committing
         run: |
           python3 scripts/validate_site.py
