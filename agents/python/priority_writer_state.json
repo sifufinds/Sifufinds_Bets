@@ -2232,17 +2232,27 @@
     "AFCON 2027, World Athletics 2029 preps face Sh8.38bn betting tips Kenya": {
       "slug": "afcon-2027-world-athletics-2029-betting-tips-kenya",
       "posted_at": "2026-11-27T21:05:22.869228+00:00"
+    },
+    "World champions Black Challenge return home heroes’ welcome betting tips Ghana": {
+      "slug": "world-champions-black-challenge-home-welcome-betting-tips-ghana",
+      "posted_at": "2026-11-28T01:03:14.542109+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-27T23:09:44.251238+00:00",
+    "checked_at": "2026-11-28T01:10:12.408860+00:00",
     "candidates_available": 367,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
         "keyword": "World champions Black Challenge return home heroes’ welcome betting tips Ghana",
         "country": "Ghana",
+        "result": "written",
+        "slug": "world-champions-black-challenge-home-welcome-betting-tips-ghana"
+      },
+      {
+        "keyword": "Bafana trio face MLS Cup playoff fight survival betting tips South Africa",
+        "country": "South Africa",
         "result": "failed",
         "reason": "AIProvidersExhausted"
       }
