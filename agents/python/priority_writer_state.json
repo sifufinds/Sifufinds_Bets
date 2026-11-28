@@ -2236,19 +2236,35 @@
     "World champions Black Challenge return home heroes’ welcome betting tips Ghana": {
       "slug": "world-champions-black-challenge-home-welcome-betting-tips-ghana",
       "posted_at": "2026-11-28T01:03:14.542109+00:00"
+    },
+    "Where to watch Monmouth vs. Harvard betting tips South Africa": {
+      "slug": "monmouth-vs-harvard-betting-tips-south-africa",
+      "posted_at": "2026-11-28T12:55:09.002147+00:00"
     }
   },
   "last_run": {
-    "checked_at": "2026-11-28T08:03:42.851082+00:00",
-    "candidates_available": 366,
+    "checked_at": "2026-11-28T12:55:13.614453+00:00",
+    "candidates_available": 370,
     "attempted": 3,
-    "written": 0,
+    "written": 1,
     "attempts": [
       {
-        "keyword": "Bafana trio face MLS Cup playoff fight survival betting tips South Africa",
-        "country": "South Africa",
+        "keyword": "‘Just Turn Up Be There’ –Fury’s Manager Reassures betting tips Nigeria",
+        "country": "Nigeria",
         "result": "failed",
-        "reason": "AIProvidersExhausted"
+        "reason": "quality_gate: final line was 'Curaçao licences are legal for online gambling in Nigeria, but they are not overseen by the NLRC. For the highest level of consumer protection, many players prefer NLRC‑licensed operators.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Sammy Adjei making Ghana’s legendary goalkeeper betting tips Ghana",
+        "country": "Ghana",
+        "result": "failed",
+        "reason": "quality_gate: final line was 'Each bookmaker provides tools such as deposit limits, loss limits and self‑exclusion. Access these features through the account settings page and set limits that suit your personal budget.', must be exactly '*18+ | Bet Responsibly | T&Cs Apply*'"
+      },
+      {
+        "keyword": "Where to watch Monmouth vs. Harvard betting tips South Africa",
+        "country": "South Africa",
+        "result": "written",
+        "slug": "monmouth-vs-harvard-betting-tips-south-africa"
       }
     ]
   }
