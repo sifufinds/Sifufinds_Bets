@@ -1,11 +1,13 @@
 {
-  "date": "2026-11-27",
-  "fixes_applied": 4,
+  "date": "2026-11-28",
+  "fixes_applied": 6,
   "warnings": 2,
   "fixes": [
-    "Blog HTML: refreshed dateModified on 2038 stale pages",
-    "Blog HTML regenerated:     Total blog posts in JSON: 2175",
-    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 3021 total URLs",
+    "llms.txt: Last Updated \u2192 2026-11-28, blog post count refreshed",
+    "index.html: dateModified \u2192 2026-11-28",
+    "Blog HTML: refreshed dateModified on 2083 stale pages",
+    "Blog HTML regenerated:     Total blog posts in JSON: 2177",
+    "Sitemap regenerated:   \u2713  sitemap.xml (index) \u2014 7 child sitemaps, 3023 total URLs",
     "Crawler pings sent (Google, Bing, Yandex)"
   ],
   "warnings_list": [
