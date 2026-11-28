@@ -14,7 +14,7 @@ Heals, in order, only things that are safe to fix without a human:
      rebuilds them from blog/posts.json (it only creates missing pages).
   2. Overstated gambling-outcome phrases (compliance_check.BANNED_RE) in a
      post's title/excerpt/body in blog/posts.json, for posts whose page the
-     gate flags -> the phrase is reworded in place ("risk-free bet" -> "free
+     gate flags -> the phrase is reworded in place ("risk-free bet" -> "
      bet"), so headings/FAQ answers/opening answers keep their SEO/GEO
      structure; reported speech is never reworded, that sentence is dropped.
      Negated uses like "no guaranteed win" are kept (gate's own rule). The
@@ -75,7 +75,7 @@ def heal_broken_pages() -> list[str]:
 # deleting its sentence) keeps headings, FAQ answers (FAQPage schema) and the
 # opening answer AI engines quote intact, so SEO/GEO structure is unchanged.
 REWRITES = [
-    (re.compile(r"risk[\s-]?free\s+bet|(?:zero|no)[\s-]?risk\s+bet", re.I), "free bet"),
+    (re.compile(r"risk[\s-]?free\s+bet|(?:zero|no)[\s-]?risk\s+bet", re.I), "bet"),
     (re.compile(r"guaranteed\s+win|100%\s*win", re.I), "likely win"),
     (re.compile(r"can'?t\s+lose|cannot\s+lose", re.I), "shouldn't lose"),
     (re.compile(r"never\s+lose", re.I), "rarely lose"),

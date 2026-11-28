@@ -6,11 +6,11 @@ API (Claude, Gemini, etc.) — see the 2026-08-10 removal note below.
 
 Fallback chain (each tier is tried before the next):
   1. Groq openai/gpt-oss-120b      — best quality, separate free TPD quota
-  2. Groq qwen/qwen3.6-27b         — separate free TPD quota
+  2. Groq qwen/qwen3.8-27b         — separate free TPD quota
   3. Groq openai/gpt-oss-20b       — faster, separate free TPD quota
   (llama-3.3-70b-versatile and llama-3.1-8b-instant, previously tiers 1-2,
   were retired by Groq — see the 2026-08-21 note below on _GROQ_MODELS)
-  5. g4f (CohereForAI_C4AI_Command) — no signup, no API key, no billing;
+  5. g4f (Gemini, then KiloCode)   — no signup, no API key, no billing;
                                       hosted (seconds, not CPU-bound
                                       minutes) open-source aggregator of
                                       free reverse-engineered LLM
@@ -136,9 +136,11 @@ else:
 # list, for a 3rd genuinely-distinct quota bucket alongside the two
 # gpt-oss sizes. Re-verify with the same GET request if content generation
 # ever silently stops again — Groq can retire/rename models without notice.
+# 2026-11-28: qwen/qwen3.6-27b started 404ing (model_not_found) on every
+# call; Groq's model list now carries qwen/qwen3.8-27b in its place.
 _GROQ_MODELS = [
     "openai/gpt-oss-120b",
-    "qwen/qwen3.6-27b",
+    "qwen/qwen3.8-27b",
     "openai/gpt-oss-20b",
 ]
 
@@ -221,13 +223,21 @@ except ImportError as e:
           "Ollama instead). Add 'g4f' to requirements.txt.")
 
 if _g4f_client is not None:
+    # 2026-11-28: CohereForAI_C4AI_Command now 401s ("You have to be logged
+    # in") on every call. Replaced with Gemini then KiloCode, both live-tested
+    # against g4f 8.9.8 with the strict-JSON fact-checker shape and the
+    # ===META===/===BLOG===/===END=== marker shape (Gemini 6/6, KiloCode 5/6,
+    # its miss was an empty reply, which falls through cleanly). Model "" means
+    # "use the provider's own default_model" so a g4f model rename can't break
+    # the pin the way a hard-coded model string would.
     for _provider_name, _model, _label in (
-        ("CohereForAI_C4AI_Command", "command-a", "CohereForAI_C4AI_Command"),
+        ("Gemini", "", "Gemini"),
+        ("KiloCode", "", "KiloCode"),
     ):
         try:
             import g4f.Provider as _g4f_provider_module
             _provider_cls = getattr(_g4f_provider_module, _provider_name)
-            _G4F_PROVIDERS.append((_provider_cls, _model, _label))
+            _G4F_PROVIDERS.append((_provider_cls, _model or _provider_cls.default_model, _label))
         except AttributeError as e:
             print(f"[llm] g4f provider '{_label}' unavailable in this g4f version ({e}) — "
                   f"skipping just this provider, trying the rest of the g4f tier.")
