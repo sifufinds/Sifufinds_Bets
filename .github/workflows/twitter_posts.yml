@@ -87,6 +87,15 @@ jobs:
           if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
           python agent_twitter_posts.py $ARGS
 
+      - name: Upload compose failure screenshot
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: x-compose-failure
+          path: agents/python/x_debug_compose.png
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Commit updated state
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
