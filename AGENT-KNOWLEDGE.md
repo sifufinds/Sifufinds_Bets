@@ -1916,3 +1916,6 @@ While following up on the blog-pipeline work above (checking whether the 3-5 pos
 - **Alert**: Fabricated Content Fix ran 3h (06:49–09:48) before failing — 3rd consecutive day with this hung-run pattern (11-13, 11-15, 11-16). Workflow likely needs a timeout added.
 - **Core infrastructure healthy**: Deploy to Hostinger, SEO Doctor, Site Doctor, Site Monitor, Blog Self-Heal, Brand Bonus Scraper, SERP Monitor, Content Backfill, Country Localisation, RapidWombat Import all succeeded.
 - **Code Patterns**: Daily reporter issue #36 created and closed via REST API (`gh api repos/{owner}/{repo}/issues --method POST`, PATCH close, POST comment). No changes to pattern from prior runs.
+
+### 2026-11-28 — X Posts: composer not found on /home
+- **Errors to Never Repeat**: ~3 of 4 X runs failed after a valid session reached `https://x.com/home`: neither `tweetTextarea_0` nor `SideNav_NewTweet_Button` rendered (`Locator.wait_for: Timeout 15000ms`). The session was fine (other runs posted). `_post_playwright` now presses Escape, waits 8s for the sidebar button, then falls back to `https://x.com/compose/post`. If the box still never appears it saves `x_debug_compose.png`, uploaded as the `x-compose-failure` artifact, so the next diagnosis starts from a screenshot.
